@@ -1,0 +1,5 @@
+.env
+data/auth_keys.json
+data/rate_limits.json
+__pycache__/
+*.pyc
