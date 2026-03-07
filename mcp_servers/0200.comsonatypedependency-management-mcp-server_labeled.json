@@ -1,15 +1,13 @@
 {
   "labels": {
-    "analysis": "The MCP Server \"com.sonatype/dependency-management-mcp-server\" provides 3 tools for development tools tasks.",
-    "reasoning": "Primary label \"Development Tools\" assigned based on tool names and descriptions.",
+    "analysis": "The MCP Server \"com.sonatype/dependency-management-mcp-server\" provides 3 tools focused on development tools tasks. Core capabilities include various operations. Key tools: getComponentVersion, getLatestComponentVersion, getRecommendedComponentVersions.",
+    "reasoning": "Primary label \"Development Tools\" assigned based on strong keyword matches in tool names and descriptions: package, dependency.",
     "primary_label": "Development Tools",
     "secondary_labels": [
-      "API Integration",
-      "DevOps",
       "Data Analysis & Processing",
-      "AI/ML Tools"
+      "Security & Authentication"
     ],
-    "custom_label": "Development Tools - com.sonatype/dependency-management-mcp-server",
+    "custom_label": "Data Access - com.sonatype/dependency-management-mcp-server",
     "is_connected": true,
     "is_remote_tool_valid": true,
     "featured_server": false
@@ -21,7 +19,7 @@
     "usage_count": "10",
     "original_file": "tools.json#200",
     "mode": "gateway",
-    "timestamp": 1772871482,
+    "timestamp": 1772876338,
     "remote_server_response": {
       "url": "https://mcp.guide.sonatype.com/mcp",
       "is_success": true,
@@ -120,7 +118,7 @@
       "id": 200,
       "name": "com.sonatype/dependency-management-mcp-server",
       "author": "",
-      "overview": "com.sonatype/dependency-management-mcp-server - Development Tools MCP server with 3 tools.",
+      "overview": "com.sonatype/dependency-management-mcp-server - Development Tools server with 3 tools. The MCP Server \"com.sonatype/dependency-management-mcp-server\" provides 3 tools focused on developme",
       "repository_url": "",
       "homepage": "https://mcp.guide.sonatype.com/mcp",
       "remote_or_local": "Remote",
@@ -128,10 +126,14 @@
       "usage_count": "10",
       "success_rate": "100%",
       "tags": [
-        "development-tools"
+        "development-tools",
+        "data-analysis-processing",
+        "security-authentication"
       ],
       "categories": [
-        "development tools"
+        "development tools",
+        "data analysis & processing",
+        "security & authentication"
       ],
       "tools_count": 3,
       "tools": [
@@ -221,7 +223,7 @@
       "python_sdk_config": "{\"debug\": false}"
     },
     "source_filename": "0200.comsonatypedependency-management-mcp-server_labeled.json",
-    "processed_timestamp": 1772871482,
+    "processed_timestamp": 1772876338,
     "processing_mode": "gateway",
     "rank": 201
   }

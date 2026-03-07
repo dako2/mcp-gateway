@@ -1,15 +1,13 @@
 {
   "labels": {
-    "analysis": "The MCP Server \"Context7\" provides 2 tools for development tools tasks.",
-    "reasoning": "Primary label \"Development Tools\" assigned based on tool names and descriptions.",
-    "primary_label": "Development Tools",
+    "analysis": "The MCP Server \"Context7\" provides 2 tools focused on gaming tasks. Core capabilities include data access and reading. Key tools: resolve-library-id, get-library-docs.",
+    "reasoning": "Primary label \"Gaming\" assigned based on strong keyword matches in tool names and descriptions: score, match.",
+    "primary_label": "Gaming",
     "secondary_labels": [
-      "API Integration",
-      "DevOps",
-      "Web Search & Research",
-      "Gaming"
+      "Productivity",
+      "Development Tools"
     ],
-    "custom_label": "Development Tools - Context7",
+    "custom_label": "Data Access - Context7",
     "is_connected": true,
     "is_remote_tool_valid": true,
     "featured_server": false
@@ -21,7 +19,7 @@
     "usage_count": "10",
     "original_file": "tools.json#241",
     "mode": "gateway",
-    "timestamp": 1772871482,
+    "timestamp": 1772876338,
     "remote_server_response": {
       "url": "https://server.smithery.ai/@geobio/context7/mcp",
       "is_success": true,
@@ -82,7 +80,7 @@
       "id": 241,
       "name": "Context7",
       "author": "",
-      "overview": "Context7 - Development Tools MCP server with 2 tools.",
+      "overview": "Context7 - Gaming server with 2 tools. The MCP Server \"Context7\" provides 2 tools focused on gaming tasks. Core capabilities include data a",
       "repository_url": "",
       "homepage": "https://server.smithery.ai/@geobio/context7/mcp",
       "remote_or_local": "Remote",
@@ -90,9 +88,13 @@
       "usage_count": "10",
       "success_rate": "100%",
       "tags": [
+        "gaming",
+        "productivity",
         "development-tools"
       ],
       "categories": [
+        "gaming",
+        "productivity",
         "development tools"
       ],
       "tools_count": 2,
@@ -146,7 +148,7 @@
       "python_sdk_config": "{\"debug\": false}"
     },
     "source_filename": "0241.Context7_labeled.json",
-    "processed_timestamp": 1772871482,
+    "processed_timestamp": 1772876338,
     "processing_mode": "gateway",
     "rank": 242
   }

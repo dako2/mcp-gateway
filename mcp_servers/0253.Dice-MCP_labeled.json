@@ -1,15 +1,13 @@
 {
   "labels": {
-    "analysis": "The MCP Server \"Dice MCP\" provides 1 tools for development tools tasks.",
-    "reasoning": "Primary label \"Development Tools\" assigned based on tool names and descriptions.",
-    "primary_label": "Development Tools",
+    "analysis": "The MCP Server \"Dice MCP\" provides 1 tools focused on web search & research tasks. Core capabilities include data access and reading, search and retrieval. Key tools: search_jobs.",
+    "reasoning": "Primary label \"Web Search & Research\" assigned based on strong keyword matches in tool names and descriptions: search.",
+    "primary_label": "Web Search & Research",
     "secondary_labels": [
-      "API Integration",
-      "DevOps",
-      "Web Search & Research",
-      "AI/ML Tools"
+      "Maps & Location",
+      "Data Analysis & Processing"
     ],
-    "custom_label": "Development Tools - Dice MCP",
+    "custom_label": "Search - Dice MCP",
     "is_connected": true,
     "is_remote_tool_valid": true,
     "featured_server": false
@@ -21,7 +19,7 @@
     "usage_count": "10",
     "original_file": "tools.json#253",
     "mode": "gateway",
-    "timestamp": 1772871482,
+    "timestamp": 1772876338,
     "remote_server_response": {
       "url": "https://mcp.dice.com/mcp",
       "is_success": true,
@@ -954,7 +952,7 @@
       "id": 253,
       "name": "Dice MCP",
       "author": "",
-      "overview": "Dice MCP - Development Tools MCP server with 1 tools.",
+      "overview": "Dice MCP - Web Search & Research server with 1 tools. The MCP Server \"Dice MCP\" provides 1 tools focused on web search & research tasks. Core capabilities",
       "repository_url": "",
       "homepage": "https://mcp.dice.com/mcp",
       "remote_or_local": "Remote",
@@ -962,10 +960,14 @@
       "usage_count": "10",
       "success_rate": "100%",
       "tags": [
-        "development-tools"
+        "web-search-research",
+        "maps-location",
+        "data-analysis-processing"
       ],
       "categories": [
-        "development tools"
+        "web search & research",
+        "maps & location",
+        "data analysis & processing"
       ],
       "tools_count": 1,
       "tools": [
@@ -1891,7 +1893,7 @@
       "python_sdk_config": "{\"debug\": false}"
     },
     "source_filename": "0253.Dice-MCP_labeled.json",
-    "processed_timestamp": 1772871482,
+    "processed_timestamp": 1772876338,
     "processing_mode": "gateway",
     "rank": 254
   }

@@ -1,15 +1,13 @@
 {
   "labels": {
-    "analysis": "The MCP Server \"dev.svelte/mcp\" provides 4 tools for development tools tasks.",
-    "reasoning": "Primary label \"Development Tools\" assigned based on tool names and descriptions.",
+    "analysis": "The MCP Server \"dev.svelte/mcp\" provides 4 tools focused on development tools tasks. Core capabilities include creation and generation, data access and reading, search and retrieval. Key tools: get-documentation, list-sections, playground-link, svelte-autofixer.",
+    "reasoning": "Primary label \"Development Tools\" assigned based on strong keyword matches in tool names and descriptions: deploy, build, code, snippet.",
     "primary_label": "Development Tools",
     "secondary_labels": [
-      "API Integration",
-      "DevOps",
-      "Web Search & Research",
-      "E-Commerce"
+      "File Management",
+      "Web Search & Research"
     ],
-    "custom_label": "Development Tools - dev.svelte/mcp",
+    "custom_label": "Data Access - dev.svelte/mcp",
     "is_connected": true,
     "is_remote_tool_valid": true,
     "featured_server": false
@@ -21,7 +19,7 @@
     "usage_count": "10",
     "original_file": "tools.json#178",
     "mode": "gateway",
-    "timestamp": 1772871482,
+    "timestamp": 1772876337,
     "remote_server_response": {
       "url": "https://mcp.svelte.dev/mcp",
       "is_success": true,
@@ -271,7 +269,7 @@
       "id": 178,
       "name": "dev.svelte/mcp",
       "author": "",
-      "overview": "dev.svelte/mcp - Development Tools MCP server with 4 tools.",
+      "overview": "dev.svelte/mcp - Development Tools server with 4 tools. The MCP Server \"dev.svelte/mcp\" provides 4 tools focused on development tools tasks. Core capabiliti",
       "repository_url": "",
       "homepage": "https://mcp.svelte.dev/mcp",
       "remote_or_local": "Remote",
@@ -279,10 +277,14 @@
       "usage_count": "10",
       "success_rate": "100%",
       "tags": [
-        "development-tools"
+        "development-tools",
+        "file-management",
+        "web-search-research"
       ],
       "categories": [
-        "development tools"
+        "development tools",
+        "file management",
+        "web search & research"
       ],
       "tools_count": 4,
       "tools": [
@@ -522,7 +524,7 @@
       "python_sdk_config": "{\"debug\": false}"
     },
     "source_filename": "0178.devsveltemcp_labeled.json",
-    "processed_timestamp": 1772871482,
+    "processed_timestamp": 1772876337,
     "processing_mode": "gateway",
     "rank": 179
   }

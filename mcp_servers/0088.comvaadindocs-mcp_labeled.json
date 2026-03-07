@@ -1,15 +1,13 @@
 {
   "labels": {
-    "analysis": "The MCP Server \"com.vaadin/docs-mcp\" provides 9 tools for development tools tasks.",
-    "reasoning": "Primary label \"Development Tools\" assigned based on tool names and descriptions.",
-    "primary_label": "Development Tools",
+    "analysis": "The MCP Server \"com.vaadin/docs-mcp\" provides 9 tools focused on file management tasks. Core capabilities include data access and reading, modification and updates, search and retrieval. Key tools: get_vaadin_primer, search_vaadin_docs, get_full_document, get_vaadin_version, get_components_by_version.",
+    "reasoning": "Primary label \"File Management\" assigned based on strong keyword matches in tool names and descriptions: file_, document.",
+    "primary_label": "File Management",
     "secondary_labels": [
-      "API Integration",
-      "DevOps",
       "Web Search & Research",
-      "DNS & Networking"
+      "Development Tools"
     ],
-    "custom_label": "Development Tools - com.vaadin/docs-mcp",
+    "custom_label": "Data Access & Search - com.vaadin/docs-mcp",
     "is_connected": true,
     "is_remote_tool_valid": true,
     "featured_server": true
@@ -21,7 +19,7 @@
     "usage_count": "240",
     "original_file": "tools.json#88",
     "mode": "gateway",
-    "timestamp": 1772871481,
+    "timestamp": 1772876337,
     "remote_server_response": {
       "url": "https://mcp.vaadin.com/docs",
       "is_success": true,
@@ -305,7 +303,7 @@
       "id": 88,
       "name": "com.vaadin/docs-mcp",
       "author": "",
-      "overview": "com.vaadin/docs-mcp - Development Tools MCP server with 9 tools.",
+      "overview": "com.vaadin/docs-mcp - File Management server with 9 tools. The MCP Server \"com.vaadin/docs-mcp\" provides 9 tools focused on file management tasks. Core capabil",
       "repository_url": "",
       "homepage": "https://mcp.vaadin.com/docs",
       "remote_or_local": "Remote",
@@ -313,9 +311,13 @@
       "usage_count": "240",
       "success_rate": "100%",
       "tags": [
+        "file-management",
+        "web-search-research",
         "development-tools"
       ],
       "categories": [
+        "file management",
+        "web search & research",
         "development tools"
       ],
       "tools_count": 9,
@@ -585,7 +587,7 @@
       "python_sdk_config": "{\"debug\": false}"
     },
     "source_filename": "0088.comvaadindocs-mcp_labeled.json",
-    "processed_timestamp": 1772871481,
+    "processed_timestamp": 1772876337,
     "processing_mode": "gateway",
     "rank": 89
   }

@@ -1,15 +1,13 @@
 {
   "labels": {
-    "analysis": "The MCP Server \"HAPI Strava MCP Server\" provides 13 tools for development tools tasks.",
-    "reasoning": "Primary label \"Development Tools\" assigned based on tool names and descriptions.",
-    "primary_label": "Development Tools",
+    "analysis": "The MCP Server \"HAPI Strava MCP Server\" provides 13 tools focused on data analysis & processing tasks. Core capabilities include creation and generation, data access and reading, modification and updates, search and retrieval. Key tools: getStats, getLoggedInAthlete, getLoggedInAthleteStarredSegments, getEffortsBySegmentId, exploreSegments.",
+    "reasoning": "Primary label \"Data Analysis & Processing\" assigned based on strong keyword matches in tool names and descriptions: data, etl.",
+    "primary_label": "Data Analysis & Processing",
     "secondary_labels": [
-      "API Integration",
-      "DevOps",
-      "Data Analysis & Processing",
-      "DNS & Networking"
+      "Maps & Location",
+      "Cryptocurrency & Blockchain"
     ],
-    "custom_label": "Development Tools - HAPI Strava MCP Server",
+    "custom_label": "Data Access - HAPI Strava MCP Server",
     "is_connected": true,
     "is_remote_tool_valid": true,
     "featured_server": true
@@ -21,7 +19,7 @@
     "usage_count": "660",
     "original_file": "tools.json#67",
     "mode": "gateway",
-    "timestamp": 1772871481,
+    "timestamp": 1772876337,
     "remote_server_response": {
       "url": "https://strava.run.mcp.com.ai/mcp",
       "is_success": true,
@@ -360,7 +358,7 @@
       "id": 67,
       "name": "HAPI Strava MCP Server",
       "author": "",
-      "overview": "HAPI Strava MCP Server - Development Tools MCP server with 13 tools.",
+      "overview": "HAPI Strava MCP Server - Data Analysis & Processing server with 13 tools. The MCP Server \"HAPI Strava MCP Server\" provides 13 tools focused on data analysis & processing task",
       "repository_url": "",
       "homepage": "https://strava.run.mcp.com.ai/mcp",
       "remote_or_local": "Remote",
@@ -368,10 +366,14 @@
       "usage_count": "660",
       "success_rate": "100%",
       "tags": [
-        "development-tools"
+        "data-analysis-processing",
+        "maps-location",
+        "cryptocurrency-blockchain"
       ],
       "categories": [
-        "development tools"
+        "data analysis & processing",
+        "maps & location",
+        "cryptocurrency & blockchain"
       ],
       "tools_count": 13,
       "tools": [
@@ -691,7 +693,7 @@
       "python_sdk_config": "{\"debug\": false}"
     },
     "source_filename": "0067.HAPI-Strava-MCP-Server_labeled.json",
-    "processed_timestamp": 1772871481,
+    "processed_timestamp": 1772876337,
     "processing_mode": "gateway",
     "rank": 68
   }

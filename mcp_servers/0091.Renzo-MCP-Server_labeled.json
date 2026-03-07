@@ -1,14 +1,13 @@
 {
   "labels": {
-    "analysis": "The MCP Server \"Renzo MCP Server\" provides 9 tools for cryptocurrency & blockchain tasks.",
-    "reasoning": "Primary label \"Cryptocurrency & Blockchain\" assigned based on tool names and descriptions.",
+    "analysis": "The MCP Server \"Renzo MCP Server\" provides 9 tools focused on cryptocurrency & blockchain tasks. Core capabilities include data access and reading. Key tools: get_supported_chains, get_protocol_stats, get_ezeth_info, get_operators, get_vaults.",
+    "reasoning": "Primary label \"Cryptocurrency & Blockchain\" assigned based on strong keyword matches in tool names and descriptions: token, blockchain, ethereum.",
     "primary_label": "Cryptocurrency & Blockchain",
     "secondary_labels": [
-      "Financial Services",
-      "Development Tools",
-      "Data Analysis & Processing"
+      "Data Analysis & Processing",
+      "E-Commerce"
     ],
-    "custom_label": "Cryptocurrency & Blockchain - Renzo MCP Server",
+    "custom_label": "Data Access - Renzo MCP Server",
     "is_connected": true,
     "is_remote_tool_valid": true,
     "featured_server": true
@@ -20,7 +19,7 @@
     "usage_count": "180",
     "original_file": "tools.json#91",
     "mode": "gateway",
-    "timestamp": 1772871481,
+    "timestamp": 1772876337,
     "remote_server_response": {
       "url": "https://mcp.renzoprotocol.com/mcp",
       "is_success": true,
@@ -190,7 +189,7 @@
       "id": 91,
       "name": "Renzo MCP Server",
       "author": "",
-      "overview": "Renzo MCP Server - Cryptocurrency & Blockchain MCP server with 9 tools.",
+      "overview": "Renzo MCP Server - Cryptocurrency & Blockchain server with 9 tools. The MCP Server \"Renzo MCP Server\" provides 9 tools focused on cryptocurrency & blockchain tasks. Cor",
       "repository_url": "",
       "homepage": "https://mcp.renzoprotocol.com/mcp",
       "remote_or_local": "Remote",
@@ -198,10 +197,14 @@
       "usage_count": "180",
       "success_rate": "100%",
       "tags": [
-        "cryptocurrency-blockchain"
+        "cryptocurrency-blockchain",
+        "data-analysis-processing",
+        "e-commerce"
       ],
       "categories": [
-        "cryptocurrency & blockchain"
+        "cryptocurrency & blockchain",
+        "data analysis & processing",
+        "e-commerce"
       ],
       "tools_count": 9,
       "tools": [
@@ -356,7 +359,7 @@
       "python_sdk_config": "{\"debug\": false}"
     },
     "source_filename": "0091.Renzo-MCP-Server_labeled.json",
-    "processed_timestamp": 1772871481,
+    "processed_timestamp": 1772876337,
     "processing_mode": "gateway",
     "rank": 92
   }

@@ -1,11 +1,11 @@
 {
   "labels": {
-    "analysis": "The MCP Server \"Nansen\" provides 24 tools for cryptocurrency & blockchain tasks.",
-    "reasoning": "Primary label \"Cryptocurrency & Blockchain\" assigned based on tool names and descriptions.",
+    "analysis": "The MCP Server \"Nansen\" provides 24 tools focused on cryptocurrency & blockchain tasks. Core capabilities include analysis and computation, creation and generation, data access and reading. Key tools: smart_traders_and_funds_token_balances, smart_traders_and_funds_perp_trades, token_current_top_holders, token_dex_trades, token_transfers.",
+    "reasoning": "Primary label \"Cryptocurrency & Blockchain\" assigned based on strong keyword matches in tool names and descriptions: token, wallet, bitcoin, solana, blockchain, defi.",
     "primary_label": "Cryptocurrency & Blockchain",
     "secondary_labels": [
       "Financial Services",
-      "Development Tools"
+      "Gaming"
     ],
     "custom_label": "Cryptocurrency & Blockchain - Nansen",
     "is_connected": true,
@@ -19,7 +19,7 @@
     "usage_count": "8,200",
     "original_file": "tools.json#36",
     "mode": "gateway",
-    "timestamp": 1772871481,
+    "timestamp": 1772876337,
     "remote_server_response": {
       "url": "https://mcp.nansen.ai/ra/mcp",
       "is_success": true,
@@ -3185,7 +3185,7 @@
       "id": 36,
       "name": "Nansen",
       "author": "",
-      "overview": "Nansen - Cryptocurrency & Blockchain MCP server with 24 tools.",
+      "overview": "Nansen - Cryptocurrency & Blockchain server with 24 tools. The MCP Server \"Nansen\" provides 24 tools focused on cryptocurrency & blockchain tasks. Core capabil",
       "repository_url": "",
       "homepage": "https://mcp.nansen.ai/ra/mcp",
       "remote_or_local": "Remote",
@@ -3193,10 +3193,14 @@
       "usage_count": "8,200",
       "success_rate": "100%",
       "tags": [
-        "cryptocurrency-blockchain"
+        "cryptocurrency-blockchain",
+        "financial-services",
+        "gaming"
       ],
       "categories": [
-        "cryptocurrency & blockchain"
+        "cryptocurrency & blockchain",
+        "financial services",
+        "gaming"
       ],
       "tools_count": 24,
       "tools": [
@@ -6332,7 +6336,7 @@
       "python_sdk_config": "{\"debug\": false}"
     },
     "source_filename": "0036.Nansen_labeled.json",
-    "processed_timestamp": 1772871481,
+    "processed_timestamp": 1772876337,
     "processing_mode": "gateway",
     "rank": 37
   }

@@ -1,14 +1,13 @@
 {
   "labels": {
-    "analysis": "The MCP Server \"Flaim - Fantasy Sports AI Connector\" provides 9 tools for gaming tasks.",
-    "reasoning": "Primary label \"Gaming\" assigned based on tool names and descriptions.",
+    "analysis": "The MCP Server \"Flaim - Fantasy Sports AI Connector\" provides 9 tools focused on gaming tasks. Core capabilities include creation and generation, data access and reading, modification and updates, search and retrieval. Key tools: get_user_session, get_ancient_history, get_league_info, get_standings, get_matchups.",
+    "reasoning": "Primary label \"Gaming\" assigned based on strong keyword matches in tool names and descriptions: player, score, match, league, sport.",
     "primary_label": "Gaming",
     "secondary_labels": [
-      "Entertainment",
-      "Productivity",
-      "Financial Services"
+      "Financial Services",
+      "Web Search & Research"
     ],
-    "custom_label": "Gaming - Flaim - Fantasy Sports AI Connector",
+    "custom_label": "Data Access - Flaim - Fantasy Sports AI Connector",
     "is_connected": true,
     "is_remote_tool_valid": true,
     "featured_server": true
@@ -20,7 +19,7 @@
     "usage_count": "200",
     "original_file": "tools.json#90",
     "mode": "gateway",
-    "timestamp": 1772871481,
+    "timestamp": 1772876337,
     "remote_server_response": {
       "url": "https://api.flaim.app/mcp",
       "is_success": true,
@@ -623,7 +622,7 @@
       "id": 90,
       "name": "Flaim - Fantasy Sports AI Connector",
       "author": "",
-      "overview": "Flaim - Fantasy Sports AI Connector - Gaming MCP server with 9 tools.",
+      "overview": "Flaim - Fantasy Sports AI Connector - Gaming server with 9 tools. The MCP Server \"Flaim - Fantasy Sports AI Connector\" provides 9 tools focused on gaming tasks. Core ",
       "repository_url": "",
       "homepage": "https://api.flaim.app/mcp",
       "remote_or_local": "Remote",
@@ -631,10 +630,14 @@
       "usage_count": "200",
       "success_rate": "100%",
       "tags": [
-        "gaming"
+        "gaming",
+        "financial-services",
+        "web-search-research"
       ],
       "categories": [
-        "gaming"
+        "gaming",
+        "financial services",
+        "web search & research"
       ],
       "tools_count": 9,
       "tools": [
@@ -1222,7 +1225,7 @@
       "python_sdk_config": "{\"debug\": false}"
     },
     "source_filename": "0090.Flaim---Fantasy-Sports-AI-Connector_labeled.json",
-    "processed_timestamp": 1772871481,
+    "processed_timestamp": 1772876337,
     "processing_mode": "gateway",
     "rank": 91
   }

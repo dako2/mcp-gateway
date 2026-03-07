@@ -1,14 +1,13 @@
 {
   "labels": {
-    "analysis": "The MCP Server \"Midos Mcp\" provides 2 tools for web search & research tasks.",
-    "reasoning": "Primary label \"Web Search & Research\" assigned based on tool names and descriptions.",
+    "analysis": "The MCP Server \"Midos Mcp\" provides 2 tools focused on web search & research tasks. Core capabilities include data access and reading, search and retrieval. Key tools: search, stats.",
+    "reasoning": "Primary label \"Web Search & Research\" assigned based on strong keyword matches in tool names and descriptions: search.",
     "primary_label": "Web Search & Research",
     "secondary_labels": [
-      "Browser Automation",
-      "Data Analysis & Processing",
-      "Development Tools"
+      "DNS & Networking",
+      "Gaming"
     ],
-    "custom_label": "Web Search & Research - Midos Mcp",
+    "custom_label": "Search - Midos Mcp",
     "is_connected": true,
     "is_remote_tool_valid": true,
     "featured_server": false
@@ -20,7 +19,7 @@
     "usage_count": "10",
     "original_file": "tools.json#221",
     "mode": "gateway",
-    "timestamp": 1772871482,
+    "timestamp": 1772876338,
     "remote_server_response": {
       "url": "https://mcp.midos.dev/mcp",
       "is_success": true,
@@ -110,7 +109,7 @@
       "id": 221,
       "name": "Midos Mcp",
       "author": "",
-      "overview": "Midos Mcp - Web Search & Research MCP server with 2 tools.",
+      "overview": "Midos Mcp - Web Search & Research server with 2 tools. The MCP Server \"Midos Mcp\" provides 2 tools focused on web search & research tasks. Core capabilitie",
       "repository_url": "",
       "homepage": "https://mcp.midos.dev/mcp",
       "remote_or_local": "Remote",
@@ -118,10 +117,14 @@
       "usage_count": "10",
       "success_rate": "100%",
       "tags": [
-        "web-search-research"
+        "web-search-research",
+        "dns-networking",
+        "gaming"
       ],
       "categories": [
-        "web search & research"
+        "web search & research",
+        "dns & networking",
+        "gaming"
       ],
       "tools_count": 2,
       "tools": [
@@ -203,7 +206,7 @@
       "python_sdk_config": "{\"debug\": false}"
     },
     "source_filename": "0221.Midos-Mcp_labeled.json",
-    "processed_timestamp": 1772871482,
+    "processed_timestamp": 1772876338,
     "processing_mode": "gateway",
     "rank": 222
   }

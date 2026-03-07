@@ -1,15 +1,13 @@
 {
   "labels": {
-    "analysis": "The MCP Server \"Geo News MCP Server\" provides 2 tools for development tools tasks.",
-    "reasoning": "Primary label \"Development Tools\" assigned based on tool names and descriptions.",
-    "primary_label": "Development Tools",
+    "analysis": "The MCP Server \"Geo News MCP Server\" provides 2 tools focused on news & media tasks. Core capabilities include data access and reading, search and retrieval. Key tools: get_news_by_country, search_news.",
+    "reasoning": "Primary label \"News & Media\" assigned based on strong keyword matches in tool names and descriptions: news, article.",
+    "primary_label": "News & Media",
     "secondary_labels": [
-      "API Integration",
-      "DevOps",
-      "News & Media",
-      "Web Search & Research"
+      "Web Search & Research",
+      "Maps & Location"
     ],
-    "custom_label": "Development Tools - Geo News MCP Server",
+    "custom_label": "Data Access & Search - Geo News MCP Server",
     "is_connected": true,
     "is_remote_tool_valid": true,
     "featured_server": false
@@ -21,7 +19,7 @@
     "usage_count": "10",
     "original_file": "tools.json#239",
     "mode": "gateway",
-    "timestamp": 1772871482,
+    "timestamp": 1772876338,
     "remote_server_response": {
       "url": "https://server.smithery.ai/@Ymuberra/geo-news-mcp/mcp",
       "is_success": true,
@@ -87,7 +85,7 @@
       "id": 239,
       "name": "Geo News MCP Server",
       "author": "",
-      "overview": "Geo News MCP Server - Development Tools MCP server with 2 tools.",
+      "overview": "Geo News MCP Server - News & Media server with 2 tools. The MCP Server \"Geo News MCP Server\" provides 2 tools focused on news & media tasks. Core capabiliti",
       "repository_url": "",
       "homepage": "https://server.smithery.ai/@Ymuberra/geo-news-mcp/mcp",
       "remote_or_local": "Remote",
@@ -95,10 +93,14 @@
       "usage_count": "10",
       "success_rate": "100%",
       "tags": [
-        "development-tools"
+        "news-media",
+        "web-search-research",
+        "maps-location"
       ],
       "categories": [
-        "development tools"
+        "news & media",
+        "web search & research",
+        "maps & location"
       ],
       "tools_count": 2,
       "tools": [
@@ -156,7 +158,7 @@
       "python_sdk_config": "{\"debug\": false}"
     },
     "source_filename": "0239.Geo-News-MCP-Server_labeled.json",
-    "processed_timestamp": 1772871482,
+    "processed_timestamp": 1772876338,
     "processing_mode": "gateway",
     "rank": 240
   }

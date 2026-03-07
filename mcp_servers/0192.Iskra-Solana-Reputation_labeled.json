@@ -1,15 +1,13 @@
 {
   "labels": {
-    "analysis": "The MCP Server \"Iskra Solana Reputation\" provides 3 tools for web search & research tasks.",
-    "reasoning": "Primary label \"Web Search & Research\" assigned based on tool names and descriptions.",
-    "primary_label": "Web Search & Research",
+    "analysis": "The MCP Server \"Iskra Solana Reputation\" provides 3 tools focused on cryptocurrency & blockchain tasks. Core capabilities include creation and generation. Key tools: create_job, deliver_job, solana_reputation.",
+    "reasoning": "Primary label \"Cryptocurrency & Blockchain\" assigned based on strong keyword matches in tool names and descriptions: token, solana.",
+    "primary_label": "Cryptocurrency & Blockchain",
     "secondary_labels": [
-      "Browser Automation",
-      "Data Analysis & Processing",
-      "Cryptocurrency & Blockchain",
-      "Development Tools"
+      "Web Search & Research",
+      "Financial Services"
     ],
-    "custom_label": "Web Search & Research - Iskra Solana Reputation",
+    "custom_label": "Generation - Iskra Solana Reputation",
     "is_connected": true,
     "is_remote_tool_valid": true,
     "featured_server": false
@@ -21,7 +19,7 @@
     "usage_count": "10",
     "original_file": "tools.json#192",
     "mode": "gateway",
-    "timestamp": 1772871482,
+    "timestamp": 1772876337,
     "remote_server_response": {
       "url": "https://api.iskra-bot.xyz/mcp",
       "is_success": true,
@@ -138,7 +136,7 @@
       "id": 192,
       "name": "Iskra Solana Reputation",
       "author": "",
-      "overview": "Iskra Solana Reputation - Web Search & Research MCP server with 3 tools.",
+      "overview": "Iskra Solana Reputation - Cryptocurrency & Blockchain server with 3 tools. The MCP Server \"Iskra Solana Reputation\" provides 3 tools focused on cryptocurrency & blockchain tas",
       "repository_url": "",
       "homepage": "https://api.iskra-bot.xyz/mcp",
       "remote_or_local": "Remote",
@@ -146,10 +144,14 @@
       "usage_count": "10",
       "success_rate": "100%",
       "tags": [
-        "web-search-research"
+        "cryptocurrency-blockchain",
+        "web-search-research",
+        "financial-services"
       ],
       "categories": [
-        "web search & research"
+        "cryptocurrency & blockchain",
+        "web search & research",
+        "financial services"
       ],
       "tools_count": 3,
       "tools": [
@@ -257,7 +259,7 @@
       "python_sdk_config": "{\"debug\": false}"
     },
     "source_filename": "0192.Iskra-Solana-Reputation_labeled.json",
-    "processed_timestamp": 1772871482,
+    "processed_timestamp": 1772876337,
     "processing_mode": "gateway",
     "rank": 193
   }

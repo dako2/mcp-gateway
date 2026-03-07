@@ -1,15 +1,13 @@
 {
   "labels": {
-    "analysis": "The MCP Server \"com.getcims/mcp\" provides 2 tools for social media tasks.",
-    "reasoning": "Primary label \"Social Media\" assigned based on tool names and descriptions.",
+    "analysis": "The MCP Server \"com.getcims/mcp\" provides 2 tools focused on social media tasks. Core capabilities include search and retrieval. Key tools: get_creators, get_creator.",
+    "reasoning": "Primary label \"Social Media\" assigned based on strong keyword matches in tool names and descriptions: social, follower, instagram, tiktok, youtube.",
     "primary_label": "Social Media",
     "secondary_labels": [
-      "Communication Tools",
-      "Content Creation",
-      "Development Tools",
-      "Data Analysis & Processing"
+      "Data Analysis & Processing",
+      "Web Search & Research"
     ],
-    "custom_label": "Social Media - com.getcims/mcp",
+    "custom_label": "Data Access - com.getcims/mcp",
     "is_connected": true,
     "is_remote_tool_valid": true,
     "featured_server": false
@@ -21,7 +19,7 @@
     "usage_count": "10",
     "original_file": "tools.json#215",
     "mode": "gateway",
-    "timestamp": 1772871482,
+    "timestamp": 1772876338,
     "remote_server_response": {
       "url": "https://api.getcims.com/functions/v1/mcp",
       "is_success": true,
@@ -349,7 +347,7 @@
       "id": 215,
       "name": "com.getcims/mcp",
       "author": "",
-      "overview": "com.getcims/mcp - Social Media MCP server with 2 tools.",
+      "overview": "com.getcims/mcp - Social Media server with 2 tools. The MCP Server \"com.getcims/mcp\" provides 2 tools focused on social media tasks. Core capabilities i",
       "repository_url": "",
       "homepage": "https://api.getcims.com/functions/v1/mcp",
       "remote_or_local": "Remote",
@@ -357,10 +355,14 @@
       "usage_count": "10",
       "success_rate": "100%",
       "tags": [
-        "social-media"
+        "social-media",
+        "data-analysis-processing",
+        "web-search-research"
       ],
       "categories": [
-        "social media"
+        "social media",
+        "data analysis & processing",
+        "web search & research"
       ],
       "tools_count": 2,
       "tools": [
@@ -680,7 +682,7 @@
       "python_sdk_config": "{\"debug\": false}"
     },
     "source_filename": "0215.comgetcimsmcp_labeled.json",
-    "processed_timestamp": 1772871482,
+    "processed_timestamp": 1772876338,
     "processing_mode": "gateway",
     "rank": 216
   }

@@ -1,14 +1,13 @@
 {
   "labels": {
-    "analysis": "The MCP Server \"OpenZeppelin Solidity Contracts\" provides 8 tools for cryptocurrency & blockchain tasks.",
-    "reasoning": "Primary label \"Cryptocurrency & Blockchain\" assigned based on tool names and descriptions.",
-    "primary_label": "Cryptocurrency & Blockchain",
+    "analysis": "The MCP Server \"OpenZeppelin Solidity Contracts\" provides 8 tools focused on development tools tasks. Core capabilities include creation and generation, modification and updates. Key tools: solidity-erc20, solidity-erc721, solidity-erc1155, solidity-stablecoin, solidity-rwa.",
+    "reasoning": "Primary label \"Development Tools\" assigned based on strong keyword matches in tool names and descriptions: code.",
+    "primary_label": "Development Tools",
     "secondary_labels": [
-      "Financial Services",
-      "Development Tools",
-      "AI/ML Tools"
+      "AI/ML Tools",
+      "Cryptocurrency & Blockchain"
     ],
-    "custom_label": "Cryptocurrency & Blockchain - OpenZeppelin Solidity Contracts",
+    "custom_label": "Development Tools - OpenZeppelin Solidity Contracts",
     "is_connected": true,
     "is_remote_tool_valid": true,
     "featured_server": true
@@ -20,7 +19,7 @@
     "usage_count": "100",
     "original_file": "tools.json#103",
     "mode": "gateway",
-    "timestamp": 1772871481,
+    "timestamp": 1772876337,
     "remote_server_response": {
       "url": "https://mcp.openzeppelin.com/contracts/solidity/mcp",
       "is_success": true,
@@ -1098,7 +1097,7 @@
       "id": 103,
       "name": "OpenZeppelin Solidity Contracts",
       "author": "",
-      "overview": "OpenZeppelin Solidity Contracts - Cryptocurrency & Blockchain MCP server with 8 tools.",
+      "overview": "OpenZeppelin Solidity Contracts - Development Tools server with 8 tools. The MCP Server \"OpenZeppelin Solidity Contracts\" provides 8 tools focused on development tools tasks",
       "repository_url": "",
       "homepage": "https://mcp.openzeppelin.com/contracts/solidity/mcp",
       "remote_or_local": "Remote",
@@ -1106,9 +1105,13 @@
       "usage_count": "100",
       "success_rate": "100%",
       "tags": [
+        "development-tools",
+        "ai/ml-tools",
         "cryptocurrency-blockchain"
       ],
       "categories": [
+        "development tools",
+        "ai/ml tools",
         "cryptocurrency & blockchain"
       ],
       "tools_count": 8,
@@ -2173,7 +2176,7 @@
       "python_sdk_config": "{\"debug\": false}"
     },
     "source_filename": "0103.OpenZeppelin-Solidity-Contracts_labeled.json",
-    "processed_timestamp": 1772871481,
+    "processed_timestamp": 1772876337,
     "processing_mode": "gateway",
     "rank": 104
   }

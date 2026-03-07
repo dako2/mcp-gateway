@@ -1,15 +1,13 @@
 {
   "labels": {
-    "analysis": "The MCP Server \"World Airfares Flight Search\" provides 3 tools for development tools tasks.",
-    "reasoning": "Primary label \"Development Tools\" assigned based on tool names and descriptions.",
-    "primary_label": "Development Tools",
+    "analysis": "The MCP Server \"World Airfares Flight Search\" provides 3 tools focused on maps & location tasks. Core capabilities include creation and generation, data access and reading, search and retrieval. Key tools: get_itinerary_details, search_flights, get_more_results.",
+    "reasoning": "Primary label \"Maps & Location\" assigned based on strong keyword matches in tool names and descriptions: flight.",
+    "primary_label": "Maps & Location",
     "secondary_labels": [
-      "API Integration",
-      "DevOps",
-      "Web Search & Research",
-      "Data Analysis & Processing"
+      "Development Tools",
+      "Database Operations"
     ],
-    "custom_label": "Development Tools - World Airfares Flight Search",
+    "custom_label": "Data Access & Search - World Airfares Flight Search",
     "is_connected": true,
     "is_remote_tool_valid": true,
     "featured_server": false
@@ -21,7 +19,7 @@
     "usage_count": "10",
     "original_file": "tools.json#191",
     "mode": "gateway",
-    "timestamp": 1772871482,
+    "timestamp": 1772876337,
     "remote_server_response": {
       "url": "https://mcp.worldairfares.com",
       "is_success": true,
@@ -140,7 +138,7 @@
       "id": 191,
       "name": "World Airfares Flight Search",
       "author": "",
-      "overview": "World Airfares Flight Search - Development Tools MCP server with 3 tools.",
+      "overview": "World Airfares Flight Search - Maps & Location server with 3 tools. The MCP Server \"World Airfares Flight Search\" provides 3 tools focused on maps & location tasks. Cor",
       "repository_url": "",
       "homepage": "https://mcp.worldairfares.com",
       "remote_or_local": "Remote",
@@ -148,10 +146,14 @@
       "usage_count": "10",
       "success_rate": "100%",
       "tags": [
-        "development-tools"
+        "maps-location",
+        "development-tools",
+        "database-operations"
       ],
       "categories": [
-        "development tools"
+        "maps & location",
+        "development tools",
+        "database operations"
       ],
       "tools_count": 3,
       "tools": [
@@ -261,7 +263,7 @@
       "python_sdk_config": "{\"debug\": false}"
     },
     "source_filename": "0191.World-Airfares-Flight-Search_labeled.json",
-    "processed_timestamp": 1772871482,
+    "processed_timestamp": 1772876337,
     "processing_mode": "gateway",
     "rank": 192
   }

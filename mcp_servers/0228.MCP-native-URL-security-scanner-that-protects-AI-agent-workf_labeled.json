@@ -1,11 +1,11 @@
 {
   "labels": {
-    "analysis": "The MCP Server \"MCP-native URL security scanner that protects AI agent workflows.\" provides 2 tools for security & authentication tasks.",
-    "reasoning": "Primary label \"Security & Authentication\" assigned based on tool names and descriptions.",
+    "analysis": "The MCP Server \"MCP-native URL security scanner that protects AI agent workflows.\" provides 2 tools focused on security & authentication tasks. Core capabilities include analysis and computation. Key tools: url_scanner_scan, url_scanner_scan_with_intent.",
+    "reasoning": "Primary label \"Security & Authentication\" assigned based on strong keyword matches in tool names and descriptions: security, scan_, threat, phishing, malware.",
     "primary_label": "Security & Authentication",
     "secondary_labels": [
-      "Development Tools",
-      "AI/ML Tools"
+      "Gaming",
+      "Productivity"
     ],
     "custom_label": "Security & Authentication - MCP-native URL security scanner that protects AI agent workflows.",
     "is_connected": true,
@@ -19,7 +19,7 @@
     "usage_count": "10",
     "original_file": "tools.json#228",
     "mode": "gateway",
-    "timestamp": 1772871482,
+    "timestamp": 1772876338,
     "remote_server_response": {
       "url": "https://urlcheck.ai/mcp",
       "is_success": true,
@@ -89,7 +89,7 @@
       "id": 228,
       "name": "MCP-native URL security scanner that protects AI agent workflows.",
       "author": "",
-      "overview": "MCP-native URL security scanner that protects AI agent workflows. - Security & Authentication MCP server with 2 tools.",
+      "overview": "MCP-native URL security scanner that protects AI agent workflows. - Security & Authentication server with 2 tools. The MCP Server \"MCP-native URL security scanner that protects AI agent workflows.\" provides 2 tools ",
       "repository_url": "",
       "homepage": "https://urlcheck.ai/mcp",
       "remote_or_local": "Remote",
@@ -97,10 +97,14 @@
       "usage_count": "10",
       "success_rate": "100%",
       "tags": [
-        "security-authentication"
+        "security-authentication",
+        "gaming",
+        "productivity"
       ],
       "categories": [
-        "security & authentication"
+        "security & authentication",
+        "gaming",
+        "productivity"
       ],
       "tools_count": 2,
       "tools": [
@@ -162,7 +166,7 @@
       "python_sdk_config": "{\"debug\": false}"
     },
     "source_filename": "0228.MCP-native-URL-security-scanner-that-protects-AI-agent-workf_labeled.json",
-    "processed_timestamp": 1772871482,
+    "processed_timestamp": 1772876338,
     "processing_mode": "gateway",
     "rank": 229
   }

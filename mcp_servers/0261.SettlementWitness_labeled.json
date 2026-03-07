@@ -1,14 +1,10 @@
 {
   "labels": {
-    "analysis": "The MCP Server \"SettlementWitness\" provides 1 tools for web search & research tasks.",
-    "reasoning": "Primary label \"Web Search & Research\" assigned based on tool names and descriptions.",
-    "primary_label": "Web Search & Research",
-    "secondary_labels": [
-      "Browser Automation",
-      "Data Analysis & Processing",
-      "DNS & Networking"
-    ],
-    "custom_label": "Web Search & Research - SettlementWitness",
+    "analysis": "The MCP Server \"SettlementWitness\" provides 1 tools focused on development tools tasks. Core capabilities include modification and updates. Key tools: settlement_witness.",
+    "reasoning": "Default category assigned; no strong keyword matches found for settlementwitness.",
+    "primary_label": "Development Tools",
+    "secondary_labels": [],
+    "custom_label": "Development Tools - SettlementWitness",
     "is_connected": true,
     "is_remote_tool_valid": true,
     "featured_server": false
@@ -20,7 +16,7 @@
     "usage_count": "15",
     "original_file": "tools.json#261",
     "mode": "gateway",
-    "timestamp": 1772871482,
+    "timestamp": 1772876338,
     "remote_server_response": {
       "url": "https://defaultverifier.com/mcp",
       "is_success": true,
@@ -62,7 +58,7 @@
       "id": 261,
       "name": "SettlementWitness",
       "author": "",
-      "overview": "SettlementWitness - Web Search & Research MCP server with 1 tools.",
+      "overview": "SettlementWitness - Development Tools server with 1 tools. The MCP Server \"SettlementWitness\" provides 1 tools focused on development tools tasks. Core capabil",
       "repository_url": "",
       "homepage": "https://defaultverifier.com/mcp",
       "remote_or_local": "Remote",
@@ -70,10 +66,10 @@
       "usage_count": "15",
       "success_rate": "100%",
       "tags": [
-        "web-search-research"
+        "development-tools"
       ],
       "categories": [
-        "web search & research"
+        "development tools"
       ],
       "tools_count": 1,
       "tools": [
@@ -108,7 +104,7 @@
       "python_sdk_config": "{\"debug\": false}"
     },
     "source_filename": "0261.SettlementWitness_labeled.json",
-    "processed_timestamp": 1772871482,
+    "processed_timestamp": 1772876338,
     "processing_mode": "gateway",
     "rank": 262
   }

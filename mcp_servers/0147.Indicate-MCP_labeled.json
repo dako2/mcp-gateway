@@ -1,14 +1,13 @@
 {
   "labels": {
-    "analysis": "The MCP Server \"Indicate MCP\" provides 5 tools for data analysis & processing tasks.",
-    "reasoning": "Primary label \"Data Analysis & Processing\" assigned based on tool names and descriptions.",
+    "analysis": "The MCP Server \"Indicate MCP\" provides 5 tools focused on data analysis & processing tasks. Core capabilities include data access and reading. Key tools: list_tenants, list_data_sources, list_metrics, query_metric, health_check.",
+    "reasoning": "Primary label \"Data Analysis & Processing\" assigned based on strong keyword matches in tool names and descriptions: data, analytic, metric.",
     "primary_label": "Data Analysis & Processing",
     "secondary_labels": [
-      "Database Operations",
-      "Web Search & Research",
-      "Development Tools"
+      "Health & Fitness",
+      "Web Search & Research"
     ],
-    "custom_label": "Data Analysis & Processing - Indicate MCP",
+    "custom_label": "Data Access - Indicate MCP",
     "is_connected": true,
     "is_remote_tool_valid": true,
     "featured_server": true
@@ -20,7 +19,7 @@
     "usage_count": "100",
     "original_file": "tools.json#147",
     "mode": "gateway",
-    "timestamp": 1772871481,
+    "timestamp": 1772876337,
     "remote_server_response": {
       "url": "https://industry.indicate-data.io/agent/semantic/mcp",
       "is_success": true,
@@ -456,7 +455,7 @@
       "id": 147,
       "name": "Indicate MCP",
       "author": "",
-      "overview": "Indicate MCP - Data Analysis & Processing MCP server with 5 tools.",
+      "overview": "Indicate MCP - Data Analysis & Processing server with 5 tools. The MCP Server \"Indicate MCP\" provides 5 tools focused on data analysis & processing tasks. Core cap",
       "repository_url": "",
       "homepage": "https://industry.indicate-data.io/agent/semantic/mcp",
       "remote_or_local": "Remote",
@@ -464,10 +463,14 @@
       "usage_count": "100",
       "success_rate": "100%",
       "tags": [
-        "data-analysis-processing"
+        "data-analysis-processing",
+        "health-fitness",
+        "web-search-research"
       ],
       "categories": [
-        "data analysis & processing"
+        "data analysis & processing",
+        "health & fitness",
+        "web search & research"
       ],
       "tools_count": 5,
       "tools": [
@@ -892,7 +895,7 @@
       "python_sdk_config": "{\"debug\": false}"
     },
     "source_filename": "0147.Indicate-MCP_labeled.json",
-    "processed_timestamp": 1772871481,
+    "processed_timestamp": 1772876337,
     "processing_mode": "gateway",
     "rank": 148
   }

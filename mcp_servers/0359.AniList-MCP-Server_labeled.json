@@ -1,0 +1,62 @@
+{
+  "labels": {
+    "analysis": "The AniList MCP Server is designed to access and interact with comprehensive anime and manga data from AniList. It provides tools to retrieve detailed information about media (anime, manga), characters, studios, user profiles, and activities. The server enables both read-only operations (like fetching media details or searching for content) and user-specific actions (like managing lists, favourites, and activities). This makes it valuable for applications that require structured anime/manga data, user engagement features, and community interactions related to this niche.",
+    "reasoning": "The primary functionality revolves around accessing and managing anime/manga data, which aligns with a custom label around this domain. Secondary labels include user-profile management (as it handles user data) and community tools (due to activity and social features). No predefined category perfectly fits, so a custom label is most appropriate.",
+    "primary_label": "Database Operations",
+    "secondary_labels": [
+      "File Management",
+      "Social Media"
+    ],
+    "custom_label": "AniList API Integration",
+    "is_connected": false,
+    "is_remote_tool_valid": false,
+    "featured_server": false
+  },
+  "metadata": {
+    "server_id": 359,
+    "server_name": "AniList MCP Server",
+    "rank_by_usage": 1404,
+    "usage_count": "Not available",
+    "original_file": "toucan_live#@yuna0x0/anilist-mcp",
+    "mode": "toucan",
+    "timestamp": 1772876338,
+    "remote_server_response": {
+      "url": "https://server.smithery.ai/@yuna0x0/anilist-mcp/mcp",
+      "is_success": true,
+      "error": null,
+      "tools": [],
+      "tool_count": 0,
+      "tool_names": []
+    },
+    "server_info_crawled": {
+      "id": 359,
+      "name": "AniList MCP Server",
+      "author": "",
+      "overview": "Access and interact with anime and manga data seamlessly. Retrieve detailed information about your favorite shows, characters, and user profiles with ease. Enhance your LLM applications with rich anime and manga content from AniList.",
+      "repository_url": "",
+      "homepage": "https://server.smithery.ai/@yuna0x0/anilist-mcp/mcp",
+      "remote_or_local": "Remote",
+      "license": "",
+      "usage_count": "Not available",
+      "success_rate": "Not available",
+      "tags": [
+        "search",
+        "web",
+        "api",
+        "mcp"
+      ],
+      "categories": [
+        "search",
+        "api"
+      ],
+      "tools_count": 0,
+      "tools": [],
+      "python_sdk_url": "https://server.smithery.ai/@yuna0x0/anilist-mcp/mcp",
+      "python_sdk_config": "{\"debug\": false}"
+    },
+    "source_filename": "0359.AniList-MCP-Server_labeled.json",
+    "processed_timestamp": 1772876338,
+    "processing_mode": "toucan",
+    "rank": 1404
+  }
+}

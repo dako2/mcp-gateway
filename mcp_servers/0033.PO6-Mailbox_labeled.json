@@ -1,15 +1,13 @@
 {
   "labels": {
-    "analysis": "The MCP Server \"PO6 Mailbox\" provides 26 tools for development tools tasks.",
-    "reasoning": "Primary label \"Development Tools\" assigned based on tool names and descriptions.",
-    "primary_label": "Development Tools",
+    "analysis": "The MCP Server \"PO6 Mailbox\" provides 26 tools focused on communication tools tasks. Core capabilities include creation and generation, data access and reading, deletion and cleanup, search and retrieval. Key tools: list_mailboxes, get_mailbox_stats, list_emails, get_email, search_emails.",
+    "reasoning": "Primary label \"Communication Tools\" assigned based on strong keyword matches in tool names and descriptions: email, mail.",
+    "primary_label": "Communication Tools",
     "secondary_labels": [
-      "API Integration",
-      "DevOps",
-      "AI/ML Tools",
-      "Communication Tools"
+      "Web Search & Research",
+      "Data Analysis & Processing"
     ],
-    "custom_label": "Development Tools - PO6 Mailbox",
+    "custom_label": "Data Access & Search - PO6 Mailbox",
     "is_connected": true,
     "is_remote_tool_valid": true,
     "featured_server": true
@@ -21,7 +19,7 @@
     "usage_count": "8,350",
     "original_file": "tools.json#33",
     "mode": "gateway",
-    "timestamp": 1772871481,
+    "timestamp": 1772876337,
     "remote_server_response": {
       "url": "https://mcp.po6.com",
       "is_success": true,
@@ -857,7 +855,7 @@
       "id": 33,
       "name": "PO6 Mailbox",
       "author": "",
-      "overview": "PO6 Mailbox - Development Tools MCP server with 26 tools.",
+      "overview": "PO6 Mailbox - Communication Tools server with 26 tools. The MCP Server \"PO6 Mailbox\" provides 26 tools focused on communication tools tasks. Core capabiliti",
       "repository_url": "",
       "homepage": "https://mcp.po6.com",
       "remote_or_local": "Remote",
@@ -865,10 +863,14 @@
       "usage_count": "8,350",
       "success_rate": "100%",
       "tags": [
-        "development-tools"
+        "communication-tools",
+        "web-search-research",
+        "data-analysis-processing"
       ],
       "categories": [
-        "development tools"
+        "communication tools",
+        "web search & research",
+        "data analysis & processing"
       ],
       "tools_count": 26,
       "tools": [
@@ -1672,7 +1674,7 @@
       "python_sdk_config": "{\"debug\": false}"
     },
     "source_filename": "0033.PO6-Mailbox_labeled.json",
-    "processed_timestamp": 1772871481,
+    "processed_timestamp": 1772876337,
     "processing_mode": "gateway",
     "rank": 34
   }

@@ -1,14 +1,13 @@
 {
   "labels": {
-    "analysis": "The MCP Server \"com.wallet-connectors/wallet-verifier-mcp\" provides 1 tools for data analysis & processing tasks.",
-    "reasoning": "Primary label \"Data Analysis & Processing\" assigned based on tool names and descriptions.",
-    "primary_label": "Data Analysis & Processing",
+    "analysis": "The MCP Server \"com.wallet-connectors/wallet-verifier-mcp\" provides 1 tools focused on cryptocurrency & blockchain tasks. Core capabilities include creation and generation. Key tools: create_account.",
+    "reasoning": "Primary label \"Cryptocurrency & Blockchain\" assigned based on strong keyword matches in tool names and descriptions: wallet.",
+    "primary_label": "Cryptocurrency & Blockchain",
     "secondary_labels": [
-      "Database Operations",
-      "AI/ML Tools",
-      "Cryptocurrency & Blockchain"
+      "Data Analysis & Processing",
+      "AI/ML Tools"
     ],
-    "custom_label": "Data Analysis & Processing - com.wallet-connectors/wallet-verifier-mcp",
+    "custom_label": "Generation - com.wallet-connectors/wallet-verifier-mcp",
     "is_connected": true,
     "is_remote_tool_valid": true,
     "featured_server": false
@@ -20,7 +19,7 @@
     "usage_count": "10",
     "original_file": "tools.json#247",
     "mode": "gateway",
-    "timestamp": 1772871482,
+    "timestamp": 1772876338,
     "remote_server_response": {
       "url": "https://wallet-connectors.com/mcp",
       "is_success": true,
@@ -81,7 +80,7 @@
       "id": 247,
       "name": "com.wallet-connectors/wallet-verifier-mcp",
       "author": "",
-      "overview": "com.wallet-connectors/wallet-verifier-mcp - Data Analysis & Processing MCP server with 1 tools.",
+      "overview": "com.wallet-connectors/wallet-verifier-mcp - Cryptocurrency & Blockchain server with 1 tools. The MCP Server \"com.wallet-connectors/wallet-verifier-mcp\" provides 1 tools focused on cryptocurrenc",
       "repository_url": "",
       "homepage": "https://wallet-connectors.com/mcp",
       "remote_or_local": "Remote",
@@ -89,10 +88,14 @@
       "usage_count": "10",
       "success_rate": "100%",
       "tags": [
-        "data-analysis-processing"
+        "cryptocurrency-blockchain",
+        "data-analysis-processing",
+        "ai/ml-tools"
       ],
       "categories": [
-        "data analysis & processing"
+        "cryptocurrency & blockchain",
+        "data analysis & processing",
+        "ai/ml tools"
       ],
       "tools_count": 1,
       "tools": [
@@ -146,7 +149,7 @@
       "python_sdk_config": "{\"debug\": false}"
     },
     "source_filename": "0247.comwallet-connectorswallet-verifier-mcp_labeled.json",
-    "processed_timestamp": 1772871482,
+    "processed_timestamp": 1772876338,
     "processing_mode": "gateway",
     "rank": 248
   }

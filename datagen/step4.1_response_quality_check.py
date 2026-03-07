@@ -1,4 +1,3 @@
-import torch
 import os
 import sys
 import argparse
@@ -134,8 +133,6 @@ print(f"Tool Use Response Quality Assessment Manager.\nArguments:\n{args}") # Fo
 # Set random seed
 if args.seed is not None:
     np.random.seed(args.seed)
-    torch.manual_seed(args.seed)
-    torch.cuda.manual_seed_all(args.seed)
 
 #################
 # Load Input Data

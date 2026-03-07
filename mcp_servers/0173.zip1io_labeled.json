@@ -1,14 +1,13 @@
 {
   "labels": {
-    "analysis": "The MCP Server \"zip1.io\" provides 4 tools for ai/ml tools tasks.",
-    "reasoning": "Primary label \"AI/ML Tools\" assigned based on tool names and descriptions.",
+    "analysis": "The MCP Server \"zip1.io\" provides 4 tools focused on ai/ml tools tasks. Core capabilities include creation and generation, data access and reading. Key tools: create_short_url, get_url_stats, validate_url, generate_short_code.",
+    "reasoning": "Primary label \"AI/ML Tools\" assigned based on strong keyword matches in tool names and descriptions: generat.",
     "primary_label": "AI/ML Tools",
     "secondary_labels": [
-      "Content Creation",
       "Development Tools",
       "Data Analysis & Processing"
     ],
-    "custom_label": "AI/ML Tools - zip1.io",
+    "custom_label": "Data Access & Generation - zip1.io",
     "is_connected": true,
     "is_remote_tool_valid": true,
     "featured_server": false
@@ -20,7 +19,7 @@
     "usage_count": "10",
     "original_file": "tools.json#173",
     "mode": "gateway",
-    "timestamp": 1772871482,
+    "timestamp": 1772876337,
     "remote_server_response": {
       "url": "https://zip1.io/mcp",
       "is_success": true,
@@ -112,7 +111,7 @@
       "id": 173,
       "name": "zip1.io",
       "author": "",
-      "overview": "zip1.io - AI/ML Tools MCP server with 4 tools.",
+      "overview": "zip1.io - AI/ML Tools server with 4 tools. The MCP Server \"zip1.io\" provides 4 tools focused on ai/ml tools tasks. Core capabilities include cr",
       "repository_url": "",
       "homepage": "https://zip1.io/mcp",
       "remote_or_local": "Remote",
@@ -120,10 +119,14 @@
       "usage_count": "10",
       "success_rate": "100%",
       "tags": [
-        "ai/ml-tools"
+        "ai/ml-tools",
+        "development-tools",
+        "data-analysis-processing"
       ],
       "categories": [
-        "ai/ml tools"
+        "ai/ml tools",
+        "development tools",
+        "data analysis & processing"
       ],
       "tools_count": 4,
       "tools": [
@@ -205,7 +208,7 @@
       "python_sdk_config": "{\"debug\": false}"
     },
     "source_filename": "0173.zip1io_labeled.json",
-    "processed_timestamp": 1772871482,
+    "processed_timestamp": 1772876337,
     "processing_mode": "gateway",
     "rank": 174
   }

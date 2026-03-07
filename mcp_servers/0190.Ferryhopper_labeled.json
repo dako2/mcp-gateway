@@ -1,14 +1,12 @@
 {
   "labels": {
-    "analysis": "The MCP Server \"Ferryhopper\" provides 3 tools for dns & networking tasks.",
-    "reasoning": "Primary label \"DNS & Networking\" assigned based on tool names and descriptions.",
-    "primary_label": "DNS & Networking",
+    "analysis": "The MCP Server \"Ferryhopper\" provides 3 tools focused on web search & research tasks. Core capabilities include data access and reading. Key tools: get_ports, get_direct_connections_for_ports, search_trips.",
+    "reasoning": "Primary label \"Web Search & Research\" assigned based on strong keyword matches in tool names and descriptions: search.",
+    "primary_label": "Web Search & Research",
     "secondary_labels": [
-      "Security & Authentication",
-      "Development Tools",
-      "Web Search & Research"
+      "Maps & Location"
     ],
-    "custom_label": "DNS & Networking - Ferryhopper",
+    "custom_label": "Data Access & Search - Ferryhopper",
     "is_connected": true,
     "is_remote_tool_valid": true,
     "featured_server": false
@@ -20,7 +18,7 @@
     "usage_count": "10",
     "original_file": "tools.json#190",
     "mode": "gateway",
-    "timestamp": 1772871482,
+    "timestamp": 1772876337,
     "remote_server_response": {
       "url": "https://mcp.ferryhopper.com/mcp",
       "is_success": true,
@@ -375,7 +373,7 @@
       "id": 190,
       "name": "Ferryhopper",
       "author": "",
-      "overview": "Ferryhopper - DNS & Networking MCP server with 3 tools.",
+      "overview": "Ferryhopper - Web Search & Research server with 3 tools. The MCP Server \"Ferryhopper\" provides 3 tools focused on web search & research tasks. Core capabilit",
       "repository_url": "",
       "homepage": "https://mcp.ferryhopper.com/mcp",
       "remote_or_local": "Remote",
@@ -383,10 +381,12 @@
       "usage_count": "10",
       "success_rate": "100%",
       "tags": [
-        "dns-networking"
+        "web-search-research",
+        "maps-location"
       ],
       "categories": [
-        "dns & networking"
+        "web search & research",
+        "maps & location"
       ],
       "tools_count": 3,
       "tools": [
@@ -732,7 +732,7 @@
       "python_sdk_config": "{\"debug\": false}"
     },
     "source_filename": "0190.Ferryhopper_labeled.json",
-    "processed_timestamp": 1772871482,
+    "processed_timestamp": 1772876337,
     "processing_mode": "gateway",
     "rank": 191
   }

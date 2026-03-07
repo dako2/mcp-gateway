@@ -1,15 +1,13 @@
 {
   "labels": {
-    "analysis": "The MCP Server \"io.github.klever-io/mcp-klever-vm\" provides 16 tools for development tools tasks.",
-    "reasoning": "Primary label \"Development Tools\" assigned based on tool names and descriptions.",
+    "analysis": "The MCP Server \"io.github.klever-io/mcp-klever-vm\" provides 16 tools focused on development tools tasks. Core capabilities include analysis and computation, creation and generation, data access and reading, modification and updates. Key tools: query_context, get_context, find_similar, get_knowledge_stats, enhance_with_context.",
+    "reasoning": "Primary label \"Development Tools\" assigned based on strong keyword matches in tool names and descriptions: git, deploy, build, code, sdk, snippet.",
     "primary_label": "Development Tools",
     "secondary_labels": [
-      "API Integration",
-      "DevOps",
       "Cryptocurrency & Blockchain",
-      "Web Search & Research"
+      "File Management"
     ],
-    "custom_label": "Development Tools - io.github.klever-io/mcp-klever-vm",
+    "custom_label": "Analytics & Data Access - io.github.klever-io/mcp-klever-vm",
     "is_connected": true,
     "is_remote_tool_valid": true,
     "featured_server": true
@@ -21,7 +19,7 @@
     "usage_count": "1,290",
     "original_file": "tools.json#57",
     "mode": "gateway",
-    "timestamp": 1772871481,
+    "timestamp": 1772876337,
     "remote_server_response": {
       "url": "https://mcp.klever.org/mcp",
       "is_success": true,
@@ -574,7 +572,7 @@
       "id": 57,
       "name": "io.github.klever-io/mcp-klever-vm",
       "author": "",
-      "overview": "io.github.klever-io/mcp-klever-vm - Development Tools MCP server with 16 tools.",
+      "overview": "io.github.klever-io/mcp-klever-vm - Development Tools server with 16 tools. The MCP Server \"io.github.klever-io/mcp-klever-vm\" provides 16 tools focused on development tools ta",
       "repository_url": "",
       "homepage": "https://mcp.klever.org/mcp",
       "remote_or_local": "Remote",
@@ -582,10 +580,14 @@
       "usage_count": "1,290",
       "success_rate": "100%",
       "tags": [
-        "development-tools"
+        "development-tools",
+        "cryptocurrency-blockchain",
+        "file-management"
       ],
       "categories": [
-        "development tools"
+        "development tools",
+        "cryptocurrency & blockchain",
+        "file management"
       ],
       "tools_count": 16,
       "tools": [
@@ -1116,7 +1118,7 @@
       "python_sdk_config": "{\"debug\": false}"
     },
     "source_filename": "0057.iogithubklever-iomcp-klever-vm_labeled.json",
-    "processed_timestamp": 1772871481,
+    "processed_timestamp": 1772876337,
     "processing_mode": "gateway",
     "rank": 58
   }

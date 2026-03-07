@@ -1,15 +1,13 @@
 {
   "labels": {
-    "analysis": "The MCP Server \"dev.augments/mcp\" provides 3 tools for development tools tasks.",
-    "reasoning": "Primary label \"Development Tools\" assigned based on tool names and descriptions.",
-    "primary_label": "Development Tools",
+    "analysis": "The MCP Server \"dev.augments/mcp\" provides 3 tools focused on web search & research tasks. Core capabilities include data access and reading, search and retrieval. Key tools: get_api_context, search_apis, get_version_info.",
+    "reasoning": "Primary label \"Web Search & Research\" assigned based on strong keyword matches in tool names and descriptions: search.",
+    "primary_label": "Web Search & Research",
     "secondary_labels": [
-      "API Integration",
-      "DevOps",
-      "Web Search & Research",
-      "DNS & Networking"
+      "Development Tools",
+      "API Integration"
     ],
-    "custom_label": "Development Tools - dev.augments/mcp",
+    "custom_label": "Data Access & Search - dev.augments/mcp",
     "is_connected": true,
     "is_remote_tool_valid": true,
     "featured_server": false
@@ -21,7 +19,7 @@
     "usage_count": "10",
     "original_file": "tools.json#206",
     "mode": "gateway",
-    "timestamp": 1772871482,
+    "timestamp": 1772876338,
     "remote_server_response": {
       "url": "https://mcp.augments.dev/mcp",
       "is_success": true,
@@ -147,7 +145,7 @@
       "id": 206,
       "name": "dev.augments/mcp",
       "author": "",
-      "overview": "dev.augments/mcp - Development Tools MCP server with 3 tools.",
+      "overview": "dev.augments/mcp - Web Search & Research server with 3 tools. The MCP Server \"dev.augments/mcp\" provides 3 tools focused on web search & research tasks. Core capa",
       "repository_url": "",
       "homepage": "https://mcp.augments.dev/mcp",
       "remote_or_local": "Remote",
@@ -155,10 +153,14 @@
       "usage_count": "10",
       "success_rate": "100%",
       "tags": [
-        "development-tools"
+        "web-search-research",
+        "development-tools",
+        "api-integration"
       ],
       "categories": [
-        "development tools"
+        "web search & research",
+        "development tools",
+        "api integration"
       ],
       "tools_count": 3,
       "tools": [
@@ -275,7 +277,7 @@
       "python_sdk_config": "{\"debug\": false}"
     },
     "source_filename": "0206.devaugmentsmcp_labeled.json",
-    "processed_timestamp": 1772871482,
+    "processed_timestamp": 1772876338,
     "processing_mode": "gateway",
     "rank": 207
   }

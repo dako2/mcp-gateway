@@ -1,15 +1,13 @@
 {
   "labels": {
-    "analysis": "The MCP Server \"4fetch\" provides 1 tools for development tools tasks.",
-    "reasoning": "Primary label \"Development Tools\" assigned based on tool names and descriptions.",
-    "primary_label": "Development Tools",
+    "analysis": "The MCP Server \"4fetch\" provides 1 tools focused on web search & research tasks. Core capabilities include data access and reading. Key tools: fetch.",
+    "reasoning": "Primary label \"Web Search & Research\" assigned based on strong keyword matches in tool names and descriptions: fetch.",
+    "primary_label": "Web Search & Research",
     "secondary_labels": [
-      "API Integration",
-      "DevOps",
       "Data Analysis & Processing",
-      "Web Search & Research"
+      "Development Tools"
     ],
-    "custom_label": "Development Tools - 4fetch",
+    "custom_label": "Web Search & Research - 4fetch",
     "is_connected": true,
     "is_remote_tool_valid": true,
     "featured_server": false
@@ -21,7 +19,7 @@
     "usage_count": "10",
     "original_file": "tools.json#243",
     "mode": "gateway",
-    "timestamp": 1772871482,
+    "timestamp": 1772876338,
     "remote_server_response": {
       "url": "https://api.4fetch.com/mcp/v1/fetch",
       "is_success": true,
@@ -54,7 +52,7 @@
       "id": 243,
       "name": "4fetch",
       "author": "",
-      "overview": "4fetch - Development Tools MCP server with 1 tools.",
+      "overview": "4fetch - Web Search & Research server with 1 tools. The MCP Server \"4fetch\" provides 1 tools focused on web search & research tasks. Core capabilities i",
       "repository_url": "",
       "homepage": "https://api.4fetch.com/mcp/v1/fetch",
       "remote_or_local": "Remote",
@@ -62,9 +60,13 @@
       "usage_count": "10",
       "success_rate": "100%",
       "tags": [
+        "web-search-research",
+        "data-analysis-processing",
         "development-tools"
       ],
       "categories": [
+        "web search & research",
+        "data analysis & processing",
         "development tools"
       ],
       "tools_count": 1,
@@ -91,7 +93,7 @@
       "python_sdk_config": "{\"debug\": false}"
     },
     "source_filename": "0243.4fetch_labeled.json",
-    "processed_timestamp": 1772871482,
+    "processed_timestamp": 1772876338,
     "processing_mode": "gateway",
     "rank": 244
   }

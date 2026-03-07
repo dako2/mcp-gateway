@@ -1,15 +1,13 @@
 {
   "labels": {
-    "analysis": "The MCP Server \"cloud.dchub/mcp-server\" provides 11 tools for development tools tasks.",
-    "reasoning": "Primary label \"Development Tools\" assigned based on tool names and descriptions.",
-    "primary_label": "Development Tools",
+    "analysis": "The MCP Server \"cloud.dchub/mcp-server\" provides 11 tools focused on data analysis & processing tasks. Core capabilities include data access and reading, search and retrieval. Key tools: search_facilities, get_facility, list_transactions, get_market_intel, get_news.",
+    "reasoning": "Primary label \"Data Analysis & Processing\" assigned based on strong keyword matches in tool names and descriptions: data, metric.",
+    "primary_label": "Data Analysis & Processing",
     "secondary_labels": [
-      "API Integration",
-      "DevOps",
-      "Data Analysis & Processing",
-      "Web Search & Research"
+      "Development Tools",
+      "Maps & Location"
     ],
-    "custom_label": "Development Tools - cloud.dchub/mcp-server",
+    "custom_label": "Analytics & Data Access - cloud.dchub/mcp-server",
     "is_connected": true,
     "is_remote_tool_valid": true,
     "featured_server": true
@@ -21,7 +19,7 @@
     "usage_count": "500",
     "original_file": "tools.json#75",
     "mode": "gateway",
-    "timestamp": 1772871481,
+    "timestamp": 1772876337,
     "remote_server_response": {
       "url": "https://dchub.cloud/mcp",
       "is_success": true,
@@ -629,7 +627,7 @@
       "id": 75,
       "name": "cloud.dchub/mcp-server",
       "author": "",
-      "overview": "cloud.dchub/mcp-server - Development Tools MCP server with 11 tools.",
+      "overview": "cloud.dchub/mcp-server - Data Analysis & Processing server with 11 tools. The MCP Server \"cloud.dchub/mcp-server\" provides 11 tools focused on data analysis & processing task",
       "repository_url": "",
       "homepage": "https://dchub.cloud/mcp",
       "remote_or_local": "Remote",
@@ -637,10 +635,14 @@
       "usage_count": "500",
       "success_rate": "100%",
       "tags": [
-        "development-tools"
+        "data-analysis-processing",
+        "development-tools",
+        "maps-location"
       ],
       "categories": [
-        "development tools"
+        "data analysis & processing",
+        "development tools",
+        "maps & location"
       ],
       "tools_count": 11,
       "tools": [
@@ -1231,7 +1233,7 @@
       "python_sdk_config": "{\"debug\": false}"
     },
     "source_filename": "0075.clouddchubmcp-server_labeled.json",
-    "processed_timestamp": 1772871481,
+    "processed_timestamp": 1772876337,
     "processing_mode": "gateway",
     "rank": 76
   }

@@ -1,12 +1,9 @@
 {
   "labels": {
-    "analysis": "The MCP Server \"衍象坊 · 奇门遁甲 & 大六壬\" provides 2 tools for development tools tasks.",
-    "reasoning": "Primary label \"Development Tools\" assigned based on tool names and descriptions.",
+    "analysis": "The MCP Server \"衍象坊 · 奇门遁甲 & 大六壬\" provides 2 tools focused on development tools tasks. Core capabilities include various operations. Key tools: qimen_dunjia_calculate, da_liu_ren_calculate.",
+    "reasoning": "Default category assigned; no strong keyword matches found for 衍象坊 · 奇门遁甲 & 大六壬.",
     "primary_label": "Development Tools",
-    "secondary_labels": [
-      "API Integration",
-      "DevOps"
-    ],
+    "secondary_labels": [],
     "custom_label": "Development Tools - 衍象坊 · 奇门遁甲 & 大六壬",
     "is_connected": true,
     "is_remote_tool_valid": true,
@@ -19,7 +16,7 @@
     "usage_count": "10",
     "original_file": "tools.json#214",
     "mode": "gateway",
-    "timestamp": 1772871482,
+    "timestamp": 1772876338,
     "remote_server_response": {
       "url": "https://profound.fate-craft.com/api/mcp",
       "is_success": true,
@@ -110,7 +107,7 @@
       "id": 214,
       "name": "衍象坊 · 奇门遁甲 & 大六壬",
       "author": "",
-      "overview": "衍象坊 · 奇门遁甲 & 大六壬 - Development Tools MCP server with 2 tools.",
+      "overview": "衍象坊 · 奇门遁甲 & 大六壬 - Development Tools server with 2 tools. The MCP Server \"衍象坊 · 奇门遁甲 & 大六壬\" provides 2 tools focused on development tools tasks. Core capabili",
       "repository_url": "",
       "homepage": "https://profound.fate-craft.com/api/mcp",
       "remote_or_local": "Remote",
@@ -204,7 +201,7 @@
       "python_sdk_config": "{\"debug\": false}"
     },
     "source_filename": "0214.衍象坊-奇门遁甲-大六壬_labeled.json",
-    "processed_timestamp": 1772871482,
+    "processed_timestamp": 1772876338,
     "processing_mode": "gateway",
     "rank": 215
   }

@@ -1,12 +1,10 @@
 {
   "labels": {
-    "analysis": "The MCP Server \"com.redpanda/docs-mcp\" provides 1 tools for web search & research tasks.",
-    "reasoning": "Primary label \"Web Search & Research\" assigned based on tool names and descriptions.",
+    "analysis": "The MCP Server \"com.redpanda/docs-mcp\" provides 1 tools focused on web search & research tasks. Core capabilities include search and retrieval. Key tools: ask_redpanda_question.",
+    "reasoning": "Primary label \"Web Search & Research\" assigned based on strong keyword matches in tool names and descriptions: search.",
     "primary_label": "Web Search & Research",
     "secondary_labels": [
-      "Browser Automation",
-      "Data Analysis & Processing",
-      "Development Tools"
+      "File Management"
     ],
     "custom_label": "Web Search & Research - com.redpanda/docs-mcp",
     "is_connected": true,
@@ -20,7 +18,7 @@
     "usage_count": "10",
     "original_file": "tools.json#259",
     "mode": "gateway",
-    "timestamp": 1772871482,
+    "timestamp": 1772876338,
     "remote_server_response": {
       "url": "https://docs.redpanda.com/mcp",
       "is_success": true,
@@ -57,7 +55,7 @@
       "id": 259,
       "name": "com.redpanda/docs-mcp",
       "author": "",
-      "overview": "com.redpanda/docs-mcp - Web Search & Research MCP server with 1 tools.",
+      "overview": "com.redpanda/docs-mcp - Web Search & Research server with 1 tools. The MCP Server \"com.redpanda/docs-mcp\" provides 1 tools focused on web search & research tasks. Core",
       "repository_url": "",
       "homepage": "https://docs.redpanda.com/mcp",
       "remote_or_local": "Remote",
@@ -65,10 +63,12 @@
       "usage_count": "10",
       "success_rate": "100%",
       "tags": [
-        "web-search-research"
+        "web-search-research",
+        "file-management"
       ],
       "categories": [
-        "web search & research"
+        "web search & research",
+        "file management"
       ],
       "tools_count": 1,
       "tools": [
@@ -98,7 +98,7 @@
       "python_sdk_config": "{\"debug\": false}"
     },
     "source_filename": "0259.comredpandadocs-mcp_labeled.json",
-    "processed_timestamp": 1772871482,
+    "processed_timestamp": 1772876338,
     "processing_mode": "gateway",
     "rank": 260
   }

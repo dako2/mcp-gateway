@@ -1,0 +1,62 @@
+{
+  "labels": {
+    "analysis": "The Google Scholar MCP Server is designed to facilitate academic research by providing AI assistants with access to scholarly articles, metadata, and author information from Google Scholar. Its core functionality revolves around enabling AI-powered academic research tools, allowing users to search papers, retrieve relevant information, and analyze scholarly content efficiently.",
+    "reasoning": "The primary label is \"Web Search & Research\" because the server's primary purpose is to retrieve academic papers and information from Google Scholar, which aligns closely with research activities. The secondary label \"Database Operations\" is included because the server interacts with a database of scholarly articles to fetch information. Academic research is a key use case, so the additional context supports these labels.",
+    "primary_label": "Web Search & Research",
+    "secondary_labels": [
+      "Database Operations",
+      "Web Search & Research"
+    ],
+    "custom_label": "Scholarly Content Access",
+    "is_connected": false,
+    "is_remote_tool_valid": false,
+    "featured_server": false
+  },
+  "metadata": {
+    "server_id": 353,
+    "server_name": "Google Scholar MCP Server",
+    "rank_by_usage": 258,
+    "usage_count": "149",
+    "original_file": "toucan_live#@JackKuo666/google-scholar-mcp-server",
+    "mode": "toucan",
+    "timestamp": 1772876338,
+    "remote_server_response": {
+      "url": "https://server.smithery.ai/@JackKuo666/google-scholar-mcp-server/mcp",
+      "is_success": true,
+      "error": null,
+      "tools": [],
+      "tool_count": 0,
+      "tool_names": []
+    },
+    "server_info_crawled": {
+      "id": 353,
+      "name": "Google Scholar MCP Server",
+      "author": "",
+      "overview": "Enable AI assistants to search and access Google Scholar papers through a simple interface. Retrieve paper metadata, author information, and facilitate academic research efficiently. Enhance your AI's capabilities with seamless access to scholarly content.",
+      "repository_url": "",
+      "homepage": "https://server.smithery.ai/@JackKuo666/google-scholar-mcp-server/mcp",
+      "remote_or_local": "Remote",
+      "license": "",
+      "usage_count": "149",
+      "success_rate": "99.25%",
+      "tags": [
+        "search",
+        "web",
+        "api",
+        "mcp"
+      ],
+      "categories": [
+        "search",
+        "api"
+      ],
+      "tools_count": 0,
+      "tools": [],
+      "python_sdk_url": "https://server.smithery.ai/@JackKuo666/google-scholar-mcp-server/mcp",
+      "python_sdk_config": "{\"debug\": false}"
+    },
+    "source_filename": "0353.Google-Scholar-MCP-Server_labeled.json",
+    "processed_timestamp": 1772876338,
+    "processing_mode": "toucan",
+    "rank": 258
+  }
+}

@@ -1,15 +1,13 @@
 {
   "labels": {
-    "analysis": "The MCP Server \"Push Realm\" provides 10 tools for development tools tasks.",
-    "reasoning": "Primary label \"Development Tools\" assigned based on tool names and descriptions.",
-    "primary_label": "Development Tools",
+    "analysis": "The MCP Server \"Push Realm\" provides 10 tools focused on education tasks. Core capabilities include creation and generation, data access and reading, deletion and cleanup, search and retrieval. Key tools: search_learnings, submit_learning, confirm_learning, reject_learning, vote_learning.",
+    "reasoning": "Primary label \"Education\" assigned based on strong keyword matches in tool names and descriptions: learn.",
+    "primary_label": "Education",
     "secondary_labels": [
-      "API Integration",
-      "DevOps",
       "Web Search & Research",
-      "Data Analysis & Processing"
+      "Development Tools"
     ],
-    "custom_label": "Development Tools - Push Realm",
+    "custom_label": "Analytics & Data Access - Push Realm",
     "is_connected": true,
     "is_remote_tool_valid": true,
     "featured_server": true
@@ -21,7 +19,7 @@
     "usage_count": "380",
     "original_file": "tools.json#81",
     "mode": "gateway",
-    "timestamp": 1772871481,
+    "timestamp": 1772876337,
     "remote_server_response": {
       "url": "https://api.pushrealm.com/mcp",
       "is_success": true,
@@ -270,7 +268,7 @@
       "id": 81,
       "name": "Push Realm",
       "author": "",
-      "overview": "Push Realm - Development Tools MCP server with 10 tools.",
+      "overview": "Push Realm - Education server with 10 tools. The MCP Server \"Push Realm\" provides 10 tools focused on education tasks. Core capabilities include ",
       "repository_url": "",
       "homepage": "https://api.pushrealm.com/mcp",
       "remote_or_local": "Remote",
@@ -278,9 +276,13 @@
       "usage_count": "380",
       "success_rate": "100%",
       "tags": [
+        "education",
+        "web-search-research",
         "development-tools"
       ],
       "categories": [
+        "education",
+        "web search & research",
         "development tools"
       ],
       "tools_count": 10,
@@ -514,7 +516,7 @@
       "python_sdk_config": "{\"debug\": false}"
     },
     "source_filename": "0081.Push-Realm_labeled.json",
-    "processed_timestamp": 1772871481,
+    "processed_timestamp": 1772876337,
     "processing_mode": "gateway",
     "rank": 82
   }

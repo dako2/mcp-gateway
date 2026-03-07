@@ -1,14 +1,13 @@
 {
   "labels": {
-    "analysis": "The MCP Server \"Tarteel MCP Server\" provides 9 tools for web search & research tasks.",
-    "reasoning": "Primary label \"Web Search & Research\" assigned based on tool names and descriptions.",
-    "primary_label": "Web Search & Research",
+    "analysis": "The MCP Server \"Tarteel MCP Server\" provides 9 tools focused on development tools tasks. Core capabilities include data access and reading. Key tools: ayah_mutashabihat, phrase_mutashabihat, ayah_translation, ayah_tafsir, list_reciters.",
+    "reasoning": "Primary label \"Development Tools\" assigned based on strong keyword matches in tool names and descriptions: code.",
+    "primary_label": "Development Tools",
     "secondary_labels": [
-      "Browser Automation",
       "Data Analysis & Processing",
-      "Development Tools"
+      "Content Creation"
     ],
-    "custom_label": "Web Search & Research - Tarteel MCP Server",
+    "custom_label": "Data Access - Tarteel MCP Server",
     "is_connected": true,
     "is_remote_tool_valid": true,
     "featured_server": true
@@ -20,7 +19,7 @@
     "usage_count": "240",
     "original_file": "tools.json#92",
     "mode": "gateway",
-    "timestamp": 1772871481,
+    "timestamp": 1772876337,
     "remote_server_response": {
       "url": "https://mcp.tarteel.ai/mcp",
       "is_success": true,
@@ -516,7 +515,7 @@
       "id": 92,
       "name": "Tarteel MCP Server",
       "author": "",
-      "overview": "Tarteel MCP Server - Web Search & Research MCP server with 9 tools.",
+      "overview": "Tarteel MCP Server - Development Tools server with 9 tools. The MCP Server \"Tarteel MCP Server\" provides 9 tools focused on development tools tasks. Core capabi",
       "repository_url": "",
       "homepage": "https://mcp.tarteel.ai/mcp",
       "remote_or_local": "Remote",
@@ -524,10 +523,14 @@
       "usage_count": "240",
       "success_rate": "100%",
       "tags": [
-        "web-search-research"
+        "development-tools",
+        "data-analysis-processing",
+        "content-creation"
       ],
       "categories": [
-        "web search & research"
+        "development tools",
+        "data analysis & processing",
+        "content creation"
       ],
       "tools_count": 9,
       "tools": [
@@ -1008,7 +1011,7 @@
       "python_sdk_config": "{\"debug\": false}"
     },
     "source_filename": "0092.Tarteel-MCP-Server_labeled.json",
-    "processed_timestamp": 1772871481,
+    "processed_timestamp": 1772876337,
     "processing_mode": "gateway",
     "rank": 93
   }

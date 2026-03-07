@@ -1,14 +1,13 @@
 {
   "labels": {
-    "analysis": "The MCP Server \"MidOS - MCP Community Library\" provides 2 tools for web search & research tasks.",
-    "reasoning": "Primary label \"Web Search & Research\" assigned based on tool names and descriptions.",
+    "analysis": "The MCP Server \"MidOS - MCP Community Library\" provides 2 tools focused on web search & research tasks. Core capabilities include data access and reading, search and retrieval. Key tools: search, stats.",
+    "reasoning": "Primary label \"Web Search & Research\" assigned based on strong keyword matches in tool names and descriptions: search.",
     "primary_label": "Web Search & Research",
     "secondary_labels": [
-      "Browser Automation",
-      "Data Analysis & Processing",
-      "Development Tools"
+      "DNS & Networking",
+      "Gaming"
     ],
-    "custom_label": "Web Search & Research - MidOS - MCP Community Library",
+    "custom_label": "Search - MidOS - MCP Community Library",
     "is_connected": true,
     "is_remote_tool_valid": true,
     "featured_server": false
@@ -20,7 +19,7 @@
     "usage_count": "10",
     "original_file": "tools.json#217",
     "mode": "gateway",
-    "timestamp": 1772871482,
+    "timestamp": 1772876338,
     "remote_server_response": {
       "url": "https://midos.dev/mcp",
       "is_success": true,
@@ -110,7 +109,7 @@
       "id": 217,
       "name": "MidOS - MCP Community Library",
       "author": "",
-      "overview": "MidOS - MCP Community Library - Web Search & Research MCP server with 2 tools.",
+      "overview": "MidOS - MCP Community Library - Web Search & Research server with 2 tools. The MCP Server \"MidOS - MCP Community Library\" provides 2 tools focused on web search & research tas",
       "repository_url": "",
       "homepage": "https://midos.dev/mcp",
       "remote_or_local": "Remote",
@@ -118,10 +117,14 @@
       "usage_count": "10",
       "success_rate": "100%",
       "tags": [
-        "web-search-research"
+        "web-search-research",
+        "dns-networking",
+        "gaming"
       ],
       "categories": [
-        "web search & research"
+        "web search & research",
+        "dns & networking",
+        "gaming"
       ],
       "tools_count": 2,
       "tools": [
@@ -203,7 +206,7 @@
       "python_sdk_config": "{\"debug\": false}"
     },
     "source_filename": "0217.MidOS---MCP-Community-Library_labeled.json",
-    "processed_timestamp": 1772871482,
+    "processed_timestamp": 1772876338,
     "processing_mode": "gateway",
     "rank": 218
   }

@@ -1,14 +1,13 @@
 {
   "labels": {
-    "analysis": "The MCP Server \"TaScan\" provides 28 tools for productivity tasks.",
-    "reasoning": "Primary label \"Productivity\" assigned based on tool names and descriptions.",
+    "analysis": "The MCP Server \"TaScan\" provides 28 tools focused on productivity tasks. Core capabilities include creation and generation, data access and reading, deletion and cleanup, modification and updates. Key tools: tascan_list_projects, tascan_create_project, tascan_get_project, tascan_update_project, tascan_delete_project.",
+    "reasoning": "Primary label \"Productivity\" assigned based on strong keyword matches in tool names and descriptions: task, project, timer.",
     "primary_label": "Productivity",
     "secondary_labels": [
-      "Project Management",
-      "Communication Tools",
-      "DNS & Networking"
+      "Security & Authentication",
+      "Communication Tools"
     ],
-    "custom_label": "Productivity - TaScan",
+    "custom_label": "Data Access & Generation - TaScan",
     "is_connected": true,
     "is_remote_tool_valid": true,
     "featured_server": true
@@ -20,7 +19,7 @@
     "usage_count": "8,400",
     "original_file": "tools.json#32",
     "mode": "gateway",
-    "timestamp": 1772871481,
+    "timestamp": 1772876337,
     "remote_server_response": {
       "url": "https://tascan-live-event.netlify.app/mcp",
       "is_success": true,
@@ -897,7 +896,7 @@
       "id": 32,
       "name": "TaScan",
       "author": "",
-      "overview": "TaScan - Productivity MCP server with 28 tools.",
+      "overview": "TaScan - Productivity server with 28 tools. The MCP Server \"TaScan\" provides 28 tools focused on productivity tasks. Core capabilities include c",
       "repository_url": "",
       "homepage": "https://tascan-live-event.netlify.app/mcp",
       "remote_or_local": "Remote",
@@ -905,10 +904,14 @@
       "usage_count": "8,400",
       "success_rate": "100%",
       "tags": [
-        "productivity"
+        "productivity",
+        "security-authentication",
+        "communication-tools"
       ],
       "categories": [
-        "productivity"
+        "productivity",
+        "security & authentication",
+        "communication tools"
       ],
       "tools_count": 28,
       "tools": [
@@ -1751,7 +1754,7 @@
       "python_sdk_config": "{\"debug\": false}"
     },
     "source_filename": "0032.TaScan_labeled.json",
-    "processed_timestamp": 1772871481,
+    "processed_timestamp": 1772876337,
     "processing_mode": "gateway",
     "rank": 33
   }

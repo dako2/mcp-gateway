@@ -1,15 +1,13 @@
 {
   "labels": {
-    "analysis": "The MCP Server \"Kael MCP Server\" provides 16 tools for web search & research tasks.",
-    "reasoning": "Primary label \"Web Search & Research\" assigned based on tool names and descriptions.",
-    "primary_label": "Web Search & Research",
+    "analysis": "The MCP Server \"Kael MCP Server\" provides 16 tools focused on dns & networking tasks. Core capabilities include creation and generation, data access and reading, search and retrieval. Key tools: web_fetch, screenshot, html_extract, dns_lookup, whois.",
+    "reasoning": "Primary label \"DNS & Networking\" assigned based on strong keyword matches in tool names and descriptions: dns, domain, whois, ip_, registrar.",
+    "primary_label": "DNS & Networking",
     "secondary_labels": [
-      "Browser Automation",
-      "Data Analysis & Processing",
-      "DNS & Networking",
-      "AI/ML Tools"
+      "Web Search & Research",
+      "Data Analysis & Processing"
     ],
-    "custom_label": "Web Search & Research - Kael MCP Server",
+    "custom_label": "Search - Kael MCP Server",
     "is_connected": true,
     "is_remote_tool_valid": true,
     "featured_server": true
@@ -21,7 +19,7 @@
     "usage_count": "940",
     "original_file": "tools.json#53",
     "mode": "gateway",
-    "timestamp": 1772871481,
+    "timestamp": 1772876337,
     "remote_server_response": {
       "url": "https://www.kael.ink/mcp/stream",
       "is_success": true,
@@ -385,7 +383,7 @@
       "id": 53,
       "name": "Kael MCP Server",
       "author": "",
-      "overview": "Kael MCP Server - Web Search & Research MCP server with 16 tools.",
+      "overview": "Kael MCP Server - DNS & Networking server with 16 tools. The MCP Server \"Kael MCP Server\" provides 16 tools focused on dns & networking tasks. Core capabilit",
       "repository_url": "",
       "homepage": "https://www.kael.ink/mcp/stream",
       "remote_or_local": "Remote",
@@ -393,10 +391,14 @@
       "usage_count": "940",
       "success_rate": "100%",
       "tags": [
-        "web-search-research"
+        "dns-networking",
+        "web-search-research",
+        "data-analysis-processing"
       ],
       "categories": [
-        "web search & research"
+        "dns & networking",
+        "web search & research",
+        "data analysis & processing"
       ],
       "tools_count": 16,
       "tools": [
@@ -738,7 +740,7 @@
       "python_sdk_config": "{\"debug\": false}"
     },
     "source_filename": "0053.Kael-MCP-Server_labeled.json",
-    "processed_timestamp": 1772871481,
+    "processed_timestamp": 1772876337,
     "processing_mode": "gateway",
     "rank": 54
   }

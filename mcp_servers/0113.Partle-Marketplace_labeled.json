@@ -1,14 +1,13 @@
 {
   "labels": {
-    "analysis": "The MCP Server \"Partle Marketplace\" provides 7 tools for e-commerce tasks.",
-    "reasoning": "Primary label \"E-Commerce\" assigned based on tool names and descriptions.",
+    "analysis": "The MCP Server \"Partle Marketplace\" provides 7 tools focused on e-commerce tasks. Core capabilities include creation and generation, data access and reading, search and retrieval. Key tools: search_products, get_product, search_stores, get_store, get_stats.",
+    "reasoning": "Primary label \"E-Commerce\" assigned based on strong keyword matches in tool names and descriptions: product, store, price_.",
     "primary_label": "E-Commerce",
     "secondary_labels": [
-      "Financial Services",
-      "Development Tools",
-      "Web Search & Research"
+      "Web Search & Research",
+      "Content Creation"
     ],
-    "custom_label": "E-Commerce - Partle Marketplace",
+    "custom_label": "Data Access & Generation - Partle Marketplace",
     "is_connected": true,
     "is_remote_tool_valid": true,
     "featured_server": true
@@ -20,7 +19,7 @@
     "usage_count": "100",
     "original_file": "tools.json#113",
     "mode": "gateway",
-    "timestamp": 1772871481,
+    "timestamp": 1772876337,
     "remote_server_response": {
       "url": "https://partle.rubenayla.xyz/mcp",
       "is_success": true,
@@ -383,7 +382,7 @@
       "id": 113,
       "name": "Partle Marketplace",
       "author": "",
-      "overview": "Partle Marketplace - E-Commerce MCP server with 7 tools.",
+      "overview": "Partle Marketplace - E-Commerce server with 7 tools. The MCP Server \"Partle Marketplace\" provides 7 tools focused on e-commerce tasks. Core capabilities ",
       "repository_url": "",
       "homepage": "https://partle.rubenayla.xyz/mcp",
       "remote_or_local": "Remote",
@@ -391,10 +390,14 @@
       "usage_count": "100",
       "success_rate": "100%",
       "tags": [
-        "e-commerce"
+        "e-commerce",
+        "web-search-research",
+        "content-creation"
       ],
       "categories": [
-        "e-commerce"
+        "e-commerce",
+        "web search & research",
+        "content creation"
       ],
       "tools_count": 7,
       "tools": [
@@ -744,7 +747,7 @@
       "python_sdk_config": "{\"debug\": false}"
     },
     "source_filename": "0113.Partle-Marketplace_labeled.json",
-    "processed_timestamp": 1772871481,
+    "processed_timestamp": 1772876337,
     "processing_mode": "gateway",
     "rank": 114
   }

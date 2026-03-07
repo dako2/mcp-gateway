@@ -1,0 +1,124 @@
+{
+  "labels": {
+    "analysis": "The MCP Server is designed to automate the extraction of codebase context for Large Language Models (LLMs). Its primary function is to scan project directories, respecting version control configurations (like .gitignore), and format the extracted code in a structured way that enhances LLM context. The available tool enables recursive file reading, binary file exclusion, and chunking capabilities to handle large codebases efficiently. This serves developers and AI researchers by providing a streamlined way to ingest and analyze codebases programmatically.",
+    "reasoning": "The primary label \"Development Tools\" is chosen because the MCP Server's key functionality revolves around codebase analysis, which is a core need for software development workflows. \"Operating System\" is selected as a secondary label due to its interaction with file systems and .gitignore rules. The third is \"API Integration\" because the structured output suggests compatibility with MCP clients for further processing. No custom label is needed, as the predefined categories adequately cover the server's functionality.",
+    "primary_label": "Development Tools",
+    "secondary_labels": [
+      "Operating System",
+      "API Integration"
+    ],
+    "custom_label": null,
+    "is_connected": true,
+    "is_remote_tool_valid": false,
+    "featured_server": false
+  },
+  "metadata": {
+    "server_id": 382,
+    "server_name": "Codebase Context Dumper",
+    "rank_by_usage": 2309,
+    "usage_count": "Not available",
+    "original_file": "toucan_live#@lex-tools/codebase-context-dumper",
+    "mode": "toucan",
+    "timestamp": 1772876338,
+    "remote_server_response": {
+      "url": "https://server.smithery.ai/@lex-tools/codebase-context-dumper/mcp",
+      "is_success": true,
+      "error": null,
+      "tools": [
+        {
+          "name": "dump_codebase_context",
+          "description": "Recursively reads text files from a specified directory, respecting .gitignore rules and skipping binary files. Concatenates content with file path headers/footers. Supports chunking the output for large codebases.",
+          "input_schema": {
+            "type": "object",
+            "properties": {
+              "base_path": {
+                "type": "string",
+                "description": "The absolute path to the project directory to scan."
+              },
+              "num_chunks": {
+                "type": "integer",
+                "description": "Optional total number of chunks to divide the output into (default: 1).",
+                "minimum": 1,
+                "default": 1
+              },
+              "chunk_index": {
+                "type": "integer",
+                "description": "Optional 1-based index of the chunk to return (default: 1). Requires num_chunks > 1.",
+                "minimum": 1,
+                "default": 1
+              }
+            },
+            "required": [
+              "base_path"
+            ]
+          },
+          "annotations": {}
+        }
+      ],
+      "tool_count": 1,
+      "tool_names": [
+        "dump_codebase_context"
+      ]
+    },
+    "server_info_crawled": {
+      "id": 382,
+      "name": "Codebase Context Dumper",
+      "author": "",
+      "overview": "Automate the extraction of your codebase context for Large Language Models. This tool scans your project directory, respects .gitignore rules, and formats the output for seamless integration with MCP-compatible clients. Save time and enhance your LLM's context with structured codebase information.",
+      "repository_url": "",
+      "homepage": "https://server.smithery.ai/@lex-tools/codebase-context-dumper/mcp",
+      "remote_or_local": "Remote",
+      "license": "",
+      "usage_count": "Not available",
+      "success_rate": "Not available",
+      "tags": [
+        "search",
+        "web",
+        "api",
+        "mcp"
+      ],
+      "categories": [
+        "search",
+        "api"
+      ],
+      "tools_count": 1,
+      "tools": [
+        {
+          "name": "dump_codebase_context",
+          "description": "Recursively reads text files from a specified directory, respecting .gitignore rules and skipping binary files. Concatenates content with file path headers/footers. Supports chunking the output for large codebases.",
+          "input_schema": {
+            "type": "object",
+            "properties": {
+              "base_path": {
+                "type": "string",
+                "description": "The absolute path to the project directory to scan."
+              },
+              "num_chunks": {
+                "type": "integer",
+                "description": "Optional total number of chunks to divide the output into (default: 1).",
+                "minimum": 1,
+                "default": 1
+              },
+              "chunk_index": {
+                "type": "integer",
+                "description": "Optional 1-based index of the chunk to return (default: 1). Requires num_chunks > 1.",
+                "minimum": 1,
+                "default": 1
+              }
+            },
+            "required": [
+              "base_path"
+            ]
+          },
+          "annotations": {}
+        }
+      ],
+      "python_sdk_url": "https://server.smithery.ai/@lex-tools/codebase-context-dumper/mcp",
+      "python_sdk_config": "{\"debug\": false}"
+    },
+    "source_filename": "0382.Codebase-Context-Dumper_labeled.json",
+    "processed_timestamp": 1772876338,
+    "processing_mode": "toucan",
+    "rank": 2309
+  }
+}

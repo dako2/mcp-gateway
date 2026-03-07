@@ -1,0 +1,324 @@
+{
+  "labels": {
+    "analysis": "The MCP Server described is focused on providing specialized prompt engineering suggestions to enhance LLM-generated content for various development and design tasks. It covers backend, frontend, UI design, and general scenarios with tailored prompt completions. The available tools indicate that it is designed to integrate with MCP-compatible clients to improve the quality and relevance of prompts. While the specific implementations of these tools are not detailed, the primary function revolves around enhancing prompt generation and customization for specific use cases.",
+    "reasoning": "The primary label \"Content Creation\" was chosen because the server's core functionality revolves around generating and refining prompts, which is a key aspect of content creation in the context of AI and LLM interactions. The secondary label \"Development Tools\" was selected due to its focus on backend and frontend development scenarios. The secondary label \"UI Design\" was added to reflect its specific support for UI design-related prompt engineering.",
+    "primary_label": "Content Creation",
+    "secondary_labels": [
+      "Development Tools"
+    ],
+    "custom_label": "Prompt Engineering Support",
+    "is_connected": true,
+    "is_remote_tool_valid": false,
+    "featured_server": false
+  },
+  "metadata": {
+    "server_id": 370,
+    "server_name": "RT-Prompt",
+    "rank_by_usage": 405,
+    "usage_count": "58",
+    "original_file": "toucan_live#@yuyao1999/rt-prompt-mcp-server",
+    "mode": "toucan",
+    "timestamp": 1772876338,
+    "remote_server_response": {
+      "url": "https://server.smithery.ai/@yuyao1999/rt-prompt-mcp-server/mcp",
+      "is_success": true,
+      "error": null,
+      "tools": [
+        {
+          "name": "get_backend_suggestions",
+          "description": null,
+          "input_schema": {
+            "type": "object",
+            "properties": {
+              "context": {
+                "type": "string",
+                "description": "当前上下文或任务描述"
+              },
+              "databaseType": {
+                "type": "string",
+                "description": "数据库类型，如MySQL、PostgreSQL等"
+              },
+              "language": {
+                "type": "string",
+                "description": "编程语言，如Java、Python等"
+              }
+            },
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "annotations": null
+        },
+        {
+          "name": "get_frontend_suggestions",
+          "description": null,
+          "input_schema": {
+            "type": "object",
+            "properties": {
+              "context": {
+                "type": "string",
+                "description": "当前上下文或任务描述"
+              },
+              "framework": {
+                "type": "string",
+                "description": "前端框架，如React、Vue等"
+              },
+              "deviceType": {
+                "type": "string",
+                "description": "设备类型，如移动端、桌面端等"
+              }
+            },
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "annotations": null
+        },
+        {
+          "name": "get_general_suggestions",
+          "description": null,
+          "input_schema": {
+            "type": "object",
+            "properties": {
+              "context": {
+                "type": "string",
+                "description": "当前上下文或任务描述"
+              },
+              "taskType": {
+                "type": "string",
+                "description": "任务类型，如代码生成、文档生成等"
+              }
+            },
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "annotations": null
+        },
+        {
+          "name": "get_ui_design_suggestions",
+          "description": null,
+          "input_schema": {
+            "type": "object",
+            "properties": {
+              "context": {
+                "type": "string",
+                "description": "当前上下文或任务描述"
+              },
+              "designType": {
+                "type": "string",
+                "description": "设计类型，如线框图、高保真原型图等"
+              },
+              "platform": {
+                "type": "string",
+                "description": "平台类型，如Web、iOS、Android等"
+              }
+            },
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "annotations": null
+        },
+        {
+          "name": "get_rt_crud_suggestions",
+          "description": null,
+          "input_schema": {
+            "type": "object",
+            "properties": {
+              "base_path": {
+                "type": "string",
+                "description": "可选的 Java/Kotlin 根包路径，例如 'com.example.myapp' 或 'cn.teamy'。如果提供，将替换提示中默认的 'cn.teamy'。请使用点分隔。"
+              }
+            },
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "annotations": null
+        },
+        {
+          "name": "get_feishu_prompt",
+          "description": null,
+          "input_schema": {
+            "type": "object",
+            "properties": {
+              "prompt_name": {
+                "type": "string",
+                "description": "提示词名称，如'UI转化提示词'、'AI生成UI-3D风格'等"
+              }
+            },
+            "required": [
+              "prompt_name"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "annotations": null
+        }
+      ],
+      "tool_count": 6,
+      "tool_names": [
+        "get_backend_suggestions",
+        "get_frontend_suggestions",
+        "get_general_suggestions",
+        "get_ui_design_suggestions",
+        "get_rt_crud_suggestions",
+        "get_feishu_prompt"
+      ]
+    },
+    "server_info_crawled": {
+      "id": 370,
+      "name": "RT-Prompt",
+      "author": "",
+      "overview": "Provide specialized prompt engineering suggestions to enhance LLM-generated content for development and design tasks. Support backend, frontend, UI design, and general scenarios with tailored prompt completions. Easily integrate with MCP-compatible clients to improve prompt quality and relevance.",
+      "repository_url": "",
+      "homepage": "https://server.smithery.ai/@yuyao1999/rt-prompt-mcp-server/mcp",
+      "remote_or_local": "Remote",
+      "license": "",
+      "usage_count": "58",
+      "success_rate": "Not available",
+      "tags": [
+        "search",
+        "web",
+        "api",
+        "mcp"
+      ],
+      "categories": [
+        "search",
+        "api"
+      ],
+      "tools_count": 6,
+      "tools": [
+        {
+          "name": "get_backend_suggestions",
+          "description": null,
+          "input_schema": {
+            "type": "object",
+            "properties": {
+              "context": {
+                "type": "string",
+                "description": "当前上下文或任务描述"
+              },
+              "databaseType": {
+                "type": "string",
+                "description": "数据库类型，如MySQL、PostgreSQL等"
+              },
+              "language": {
+                "type": "string",
+                "description": "编程语言，如Java、Python等"
+              }
+            },
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "annotations": null
+        },
+        {
+          "name": "get_frontend_suggestions",
+          "description": null,
+          "input_schema": {
+            "type": "object",
+            "properties": {
+              "context": {
+                "type": "string",
+                "description": "当前上下文或任务描述"
+              },
+              "framework": {
+                "type": "string",
+                "description": "前端框架，如React、Vue等"
+              },
+              "deviceType": {
+                "type": "string",
+                "description": "设备类型，如移动端、桌面端等"
+              }
+            },
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "annotations": null
+        },
+        {
+          "name": "get_general_suggestions",
+          "description": null,
+          "input_schema": {
+            "type": "object",
+            "properties": {
+              "context": {
+                "type": "string",
+                "description": "当前上下文或任务描述"
+              },
+              "taskType": {
+                "type": "string",
+                "description": "任务类型，如代码生成、文档生成等"
+              }
+            },
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "annotations": null
+        },
+        {
+          "name": "get_ui_design_suggestions",
+          "description": null,
+          "input_schema": {
+            "type": "object",
+            "properties": {
+              "context": {
+                "type": "string",
+                "description": "当前上下文或任务描述"
+              },
+              "designType": {
+                "type": "string",
+                "description": "设计类型，如线框图、高保真原型图等"
+              },
+              "platform": {
+                "type": "string",
+                "description": "平台类型，如Web、iOS、Android等"
+              }
+            },
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "annotations": null
+        },
+        {
+          "name": "get_rt_crud_suggestions",
+          "description": null,
+          "input_schema": {
+            "type": "object",
+            "properties": {
+              "base_path": {
+                "type": "string",
+                "description": "可选的 Java/Kotlin 根包路径，例如 'com.example.myapp' 或 'cn.teamy'。如果提供，将替换提示中默认的 'cn.teamy'。请使用点分隔。"
+              }
+            },
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "annotations": null
+        },
+        {
+          "name": "get_feishu_prompt",
+          "description": null,
+          "input_schema": {
+            "type": "object",
+            "properties": {
+              "prompt_name": {
+                "type": "string",
+                "description": "提示词名称，如'UI转化提示词'、'AI生成UI-3D风格'等"
+              }
+            },
+            "required": [
+              "prompt_name"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "annotations": null
+        }
+      ],
+      "python_sdk_url": "https://server.smithery.ai/@yuyao1999/rt-prompt-mcp-server/mcp",
+      "python_sdk_config": "{\"debug\": false}"
+    },
+    "source_filename": "0370.RT-Prompt_labeled.json",
+    "processed_timestamp": 1772876338,
+    "processing_mode": "toucan",
+    "rank": 405
+  }
+}

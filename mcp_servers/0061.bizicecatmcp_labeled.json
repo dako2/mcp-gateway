@@ -1,14 +1,13 @@
 {
   "labels": {
-    "analysis": "The MCP Server \"biz.icecat/mcp\" provides 15 tools for data analysis & processing tasks.",
-    "reasoning": "Primary label \"Data Analysis & Processing\" assigned based on tool names and descriptions.",
-    "primary_label": "Data Analysis & Processing",
+    "analysis": "The MCP Server \"biz.icecat/mcp\" provides 15 tools focused on e-commerce tasks. Core capabilities include various operations. Key tools: product_analytics, product_gallery, product_identifiers, product_leaflet, product_lifecycle.",
+    "reasoning": "Primary label \"E-Commerce\" assigned based on strong keyword matches in tool names and descriptions: product.",
+    "primary_label": "E-Commerce",
     "secondary_labels": [
-      "Database Operations",
-      "Development Tools",
-      "AI/ML Tools"
+      "Data Analysis & Processing",
+      "Content Creation"
     ],
-    "custom_label": "Data Analysis & Processing - biz.icecat/mcp",
+    "custom_label": "E-Commerce - biz.icecat/mcp",
     "is_connected": true,
     "is_remote_tool_valid": true,
     "featured_server": true
@@ -20,7 +19,7 @@
     "usage_count": "780",
     "original_file": "tools.json#61",
     "mode": "gateway",
-    "timestamp": 1772871481,
+    "timestamp": 1772876337,
     "remote_server_response": {
       "url": "https://mcp.icecat.biz",
       "is_success": true,
@@ -1408,7 +1407,7 @@
       "id": 61,
       "name": "biz.icecat/mcp",
       "author": "",
-      "overview": "biz.icecat/mcp - Data Analysis & Processing MCP server with 15 tools.",
+      "overview": "biz.icecat/mcp - E-Commerce server with 15 tools. The MCP Server \"biz.icecat/mcp\" provides 15 tools focused on e-commerce tasks. Core capabilities inc",
       "repository_url": "",
       "homepage": "https://mcp.icecat.biz",
       "remote_or_local": "Remote",
@@ -1416,10 +1415,14 @@
       "usage_count": "780",
       "success_rate": "100%",
       "tags": [
-        "data-analysis-processing"
+        "e-commerce",
+        "data-analysis-processing",
+        "content-creation"
       ],
       "categories": [
-        "data analysis & processing"
+        "e-commerce",
+        "data analysis & processing",
+        "content creation"
       ],
       "tools_count": 15,
       "tools": [
@@ -2786,7 +2789,7 @@
       "python_sdk_config": "{\"debug\": false}"
     },
     "source_filename": "0061.bizicecatmcp_labeled.json",
-    "processed_timestamp": 1772871481,
+    "processed_timestamp": 1772876337,
     "processing_mode": "gateway",
     "rank": 62
   }

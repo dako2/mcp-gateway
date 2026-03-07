@@ -1,13 +1,10 @@
 {
   "labels": {
-    "analysis": "The MCP Server \"Subway MCP Server\" provides 1 tools for ai/ml tools tasks.",
-    "reasoning": "Primary label \"AI/ML Tools\" assigned based on tool names and descriptions.",
-    "primary_label": "AI/ML Tools",
-    "secondary_labels": [
-      "Content Creation",
-      "Maps & Location"
-    ],
-    "custom_label": "AI/ML Tools - Subway MCP Server",
+    "analysis": "The MCP Server \"Subway MCP Server\" provides 1 tools focused on maps & location tasks. Core capabilities include various operations. Key tools: subway.",
+    "reasoning": "Primary label \"Maps & Location\" assigned based on strong keyword matches in tool names and descriptions: subway.",
+    "primary_label": "Maps & Location",
+    "secondary_labels": [],
+    "custom_label": "Maps & Location - Subway MCP Server",
     "is_connected": true,
     "is_remote_tool_valid": true,
     "featured_server": false
@@ -19,7 +16,7 @@
     "usage_count": "10",
     "original_file": "tools.json#265",
     "mode": "gateway",
-    "timestamp": 1772871482,
+    "timestamp": 1772876338,
     "remote_server_response": {
       "url": "https://server.smithery.ai/@cyong80/subway-mcp/mcp",
       "is_success": true,
@@ -52,7 +49,7 @@
       "id": 265,
       "name": "Subway MCP Server",
       "author": "",
-      "overview": "Subway MCP Server - AI/ML Tools MCP server with 1 tools.",
+      "overview": "Subway MCP Server - Maps & Location server with 1 tools. The MCP Server \"Subway MCP Server\" provides 1 tools focused on maps & location tasks. Core capabilit",
       "repository_url": "",
       "homepage": "https://server.smithery.ai/@cyong80/subway-mcp/mcp",
       "remote_or_local": "Remote",
@@ -60,10 +57,10 @@
       "usage_count": "10",
       "success_rate": "100%",
       "tags": [
-        "ai/ml-tools"
+        "maps-location"
       ],
       "categories": [
-        "ai/ml tools"
+        "maps & location"
       ],
       "tools_count": 1,
       "tools": [
@@ -89,7 +86,7 @@
       "python_sdk_config": "{\"debug\": false}"
     },
     "source_filename": "0265.Subway-MCP-Server_labeled.json",
-    "processed_timestamp": 1772871482,
+    "processed_timestamp": 1772876338,
     "processing_mode": "gateway",
     "rank": 266
   }

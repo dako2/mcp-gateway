@@ -1,14 +1,13 @@
 {
   "labels": {
-    "analysis": "The MCP Server \"io.github.blathrop07/voyager-commerce\" provides 19 tools for e-commerce tasks.",
-    "reasoning": "Primary label \"E-Commerce\" assigned based on tool names and descriptions.",
+    "analysis": "The MCP Server \"io.github.blathrop07/voyager-commerce\" provides 19 tools focused on e-commerce tasks. Core capabilities include creation and generation, data access and reading, modification and updates, search and retrieval. Key tools: get_checkout_url, get_cart, get_order_status, add_to_cart, get_orders.",
+    "reasoning": "Primary label \"E-Commerce\" assigned based on strong keyword matches in tool names and descriptions: shop, cart, order_, product, checkout.",
     "primary_label": "E-Commerce",
     "secondary_labels": [
-      "Financial Services",
       "Development Tools",
-      "AI/ML Tools"
+      "Web Search & Research"
     ],
-    "custom_label": "E-Commerce - io.github.blathrop07/voyager-commerce",
+    "custom_label": "Data Access & Generation - io.github.blathrop07/voyager-commerce",
     "is_connected": true,
     "is_remote_tool_valid": true,
     "featured_server": true
@@ -20,7 +19,7 @@
     "usage_count": "1,100",
     "original_file": "tools.json#45",
     "mode": "gateway",
-    "timestamp": 1772871481,
+    "timestamp": 1772876337,
     "remote_server_response": {
       "url": "https://review-002-voyager-ai-commerce.zeus.gatewayticketing.hosting/mcp",
       "is_success": true,
@@ -768,7 +767,7 @@
       "id": 45,
       "name": "io.github.blathrop07/voyager-commerce",
       "author": "",
-      "overview": "io.github.blathrop07/voyager-commerce - E-Commerce MCP server with 19 tools.",
+      "overview": "io.github.blathrop07/voyager-commerce - E-Commerce server with 19 tools. The MCP Server \"io.github.blathrop07/voyager-commerce\" provides 19 tools focused on e-commerce tasks",
       "repository_url": "",
       "homepage": "https://review-002-voyager-ai-commerce.zeus.gatewayticketing.hosting/mcp",
       "remote_or_local": "Remote",
@@ -776,10 +775,14 @@
       "usage_count": "1,100",
       "success_rate": "100%",
       "tags": [
-        "e-commerce"
+        "e-commerce",
+        "development-tools",
+        "web-search-research"
       ],
       "categories": [
-        "e-commerce"
+        "e-commerce",
+        "development tools",
+        "web search & research"
       ],
       "tools_count": 19,
       "tools": [
@@ -1502,7 +1505,7 @@
       "python_sdk_config": "{\"debug\": false}"
     },
     "source_filename": "0045.iogithubblathrop07voyager-commerce_labeled.json",
-    "processed_timestamp": 1772871481,
+    "processed_timestamp": 1772876337,
     "processing_mode": "gateway",
     "rank": 46
   }

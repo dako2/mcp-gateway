@@ -1,15 +1,13 @@
 {
   "labels": {
-    "analysis": "The MCP Server \"Cpp_Guidelines_Mcp\" provides 5 tools for development tools tasks.",
-    "reasoning": "Primary label \"Development Tools\" assigned based on tool names and descriptions.",
+    "analysis": "The MCP Server \"Cpp_Guidelines_Mcp\" provides 5 tools focused on development tools tasks. Core capabilities include analysis and computation, data access and reading, modification and updates. Key tools: check_naming, check_include_guard, analyze_memory_safety, suggest_modern_cpp, check_const_correctness.",
+    "reasoning": "Primary label \"Development Tools\" assigned based on strong keyword matches in tool names and descriptions: code.",
     "primary_label": "Development Tools",
     "secondary_labels": [
-      "API Integration",
-      "DevOps",
       "Data Analysis & Processing",
-      "AI/ML Tools"
+      "Maps & Location"
     ],
-    "custom_label": "Development Tools - Cpp_Guidelines_Mcp",
+    "custom_label": "Analytics - Cpp_Guidelines_Mcp",
     "is_connected": true,
     "is_remote_tool_valid": true,
     "featured_server": true
@@ -21,7 +19,7 @@
     "usage_count": "100",
     "original_file": "tools.json#156",
     "mode": "gateway",
-    "timestamp": 1772871481,
+    "timestamp": 1772876337,
     "remote_server_response": {
       "url": "https://cpp-style-guide-mcp.fly.dev/mcp",
       "is_success": true,
@@ -253,7 +251,7 @@
       "id": 156,
       "name": "Cpp_Guidelines_Mcp",
       "author": "",
-      "overview": "Cpp_Guidelines_Mcp - Development Tools MCP server with 5 tools.",
+      "overview": "Cpp_Guidelines_Mcp - Development Tools server with 5 tools. The MCP Server \"Cpp_Guidelines_Mcp\" provides 5 tools focused on development tools tasks. Core capabi",
       "repository_url": "",
       "homepage": "https://cpp-style-guide-mcp.fly.dev/mcp",
       "remote_or_local": "Remote",
@@ -261,10 +259,14 @@
       "usage_count": "100",
       "success_rate": "100%",
       "tags": [
-        "development-tools"
+        "development-tools",
+        "data-analysis-processing",
+        "maps-location"
       ],
       "categories": [
-        "development tools"
+        "development tools",
+        "data analysis & processing",
+        "maps & location"
       ],
       "tools_count": 5,
       "tools": [
@@ -485,7 +487,7 @@
       "python_sdk_config": "{\"debug\": false}"
     },
     "source_filename": "0156.Cpp_Guidelines_Mcp_labeled.json",
-    "processed_timestamp": 1772871481,
+    "processed_timestamp": 1772876337,
     "processing_mode": "gateway",
     "rank": 157
   }

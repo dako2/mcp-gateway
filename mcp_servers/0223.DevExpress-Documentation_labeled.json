@@ -1,15 +1,13 @@
 {
   "labels": {
-    "analysis": "The MCP Server \"DevExpress Documentation\" provides 2 tools for development tools tasks.",
-    "reasoning": "Primary label \"Development Tools\" assigned based on tool names and descriptions.",
-    "primary_label": "Development Tools",
+    "analysis": "The MCP Server \"DevExpress Documentation\" provides 2 tools focused on news & media tasks. Core capabilities include data access and reading, search and retrieval. Key tools: devexpress_docs_search, devexpress_docs_get_content.",
+    "reasoning": "Primary label \"News & Media\" assigned based on strong keyword matches in tool names and descriptions: press.",
+    "primary_label": "News & Media",
     "secondary_labels": [
-      "API Integration",
-      "DevOps",
       "Web Search & Research",
-      "AI/ML Tools"
+      "File Management"
     ],
-    "custom_label": "Development Tools - DevExpress Documentation",
+    "custom_label": "Data Access & Search - DevExpress Documentation",
     "is_connected": true,
     "is_remote_tool_valid": true,
     "featured_server": false
@@ -21,7 +19,7 @@
     "usage_count": "10",
     "original_file": "tools.json#223",
     "mode": "gateway",
-    "timestamp": 1772871482,
+    "timestamp": 1772876338,
     "remote_server_response": {
       "url": "https://api.devexpress.com/mcp/docs",
       "is_success": true,
@@ -116,7 +114,7 @@
       "id": 223,
       "name": "DevExpress Documentation",
       "author": "",
-      "overview": "DevExpress Documentation - Development Tools MCP server with 2 tools.",
+      "overview": "DevExpress Documentation - News & Media server with 2 tools. The MCP Server \"DevExpress Documentation\" provides 2 tools focused on news & media tasks. Core capab",
       "repository_url": "",
       "homepage": "https://api.devexpress.com/mcp/docs",
       "remote_or_local": "Remote",
@@ -124,10 +122,14 @@
       "usage_count": "10",
       "success_rate": "100%",
       "tags": [
-        "development-tools"
+        "news-media",
+        "web-search-research",
+        "file-management"
       ],
       "categories": [
-        "development tools"
+        "news & media",
+        "web search & research",
+        "file management"
       ],
       "tools_count": 2,
       "tools": [
@@ -214,7 +216,7 @@
       "python_sdk_config": "{\"debug\": false}"
     },
     "source_filename": "0223.DevExpress-Documentation_labeled.json",
-    "processed_timestamp": 1772871482,
+    "processed_timestamp": 1772876338,
     "processing_mode": "gateway",
     "rank": 224
   }

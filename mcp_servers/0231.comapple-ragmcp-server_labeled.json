@@ -1,15 +1,13 @@
 {
   "labels": {
-    "analysis": "The MCP Server \"com.apple-rag/mcp-server\" provides 2 tools for development tools tasks.",
-    "reasoning": "Primary label \"Development Tools\" assigned based on tool names and descriptions.",
-    "primary_label": "Development Tools",
+    "analysis": "The MCP Server \"com.apple-rag/mcp-server\" provides 2 tools focused on web search & research tasks. Core capabilities include search and retrieval. Key tools: search, fetch.",
+    "reasoning": "Primary label \"Web Search & Research\" assigned based on strong keyword matches in tool names and descriptions: search, fetch.",
+    "primary_label": "Web Search & Research",
     "secondary_labels": [
-      "API Integration",
-      "DevOps",
-      "Web Search & Research",
-      "Education"
+      "File Management",
+      "Content Creation"
     ],
-    "custom_label": "Development Tools - com.apple-rag/mcp-server",
+    "custom_label": "Search - com.apple-rag/mcp-server",
     "is_connected": true,
     "is_remote_tool_valid": true,
     "featured_server": false
@@ -21,7 +19,7 @@
     "usage_count": "10",
     "original_file": "tools.json#231",
     "mode": "gateway",
-    "timestamp": 1772871482,
+    "timestamp": 1772876338,
     "remote_server_response": {
       "url": "https://mcp.apple-rag.com",
       "is_success": true,
@@ -82,7 +80,7 @@
       "id": 231,
       "name": "com.apple-rag/mcp-server",
       "author": "",
-      "overview": "com.apple-rag/mcp-server - Development Tools MCP server with 2 tools.",
+      "overview": "com.apple-rag/mcp-server - Web Search & Research server with 2 tools. The MCP Server \"com.apple-rag/mcp-server\" provides 2 tools focused on web search & research tasks. C",
       "repository_url": "",
       "homepage": "https://mcp.apple-rag.com",
       "remote_or_local": "Remote",
@@ -90,10 +88,14 @@
       "usage_count": "10",
       "success_rate": "100%",
       "tags": [
-        "development-tools"
+        "web-search-research",
+        "file-management",
+        "content-creation"
       ],
       "categories": [
-        "development tools"
+        "web search & research",
+        "file management",
+        "content creation"
       ],
       "tools_count": 2,
       "tools": [
@@ -146,7 +148,7 @@
       "python_sdk_config": "{\"debug\": false}"
     },
     "source_filename": "0231.comapple-ragmcp-server_labeled.json",
-    "processed_timestamp": 1772871482,
+    "processed_timestamp": 1772876338,
     "processing_mode": "gateway",
     "rank": 232
   }

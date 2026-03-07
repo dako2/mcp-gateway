@@ -1,14 +1,13 @@
 {
   "labels": {
-    "analysis": "The MCP Server \"Google Analytics (unofficial)\" provides 4 tools for data analysis & processing tasks.",
-    "reasoning": "Primary label \"Data Analysis & Processing\" assigned based on tool names and descriptions.",
+    "analysis": "The MCP Server \"Google Analytics (unofficial)\" provides 4 tools focused on data analysis & processing tasks. Core capabilities include data access and reading. Key tools: ga4_get_account, stats_significance_test, ga4_get_data, ga4_run_funnel_report.",
+    "reasoning": "Primary label \"Data Analysis & Processing\" assigned based on strong keyword matches in tool names and descriptions: data, analytic, metric, report.",
     "primary_label": "Data Analysis & Processing",
     "secondary_labels": [
-      "Database Operations",
-      "Development Tools",
-      "Web Search & Research"
+      "News & Media",
+      "Real Estate"
     ],
-    "custom_label": "Data Analysis & Processing - Google Analytics (unofficial)",
+    "custom_label": "Analytics & Data Access - Google Analytics (unofficial)",
     "is_connected": true,
     "is_remote_tool_valid": true,
     "featured_server": false
@@ -20,7 +19,7 @@
     "usage_count": "10",
     "original_file": "tools.json#167",
     "mode": "gateway",
-    "timestamp": 1772871482,
+    "timestamp": 1772876337,
     "remote_server_response": {
       "url": "https://api.safe-mcp.com/mcp",
       "is_success": true,
@@ -269,7 +268,7 @@
       "id": 167,
       "name": "Google Analytics (unofficial)",
       "author": "",
-      "overview": "Google Analytics (unofficial) - Data Analysis & Processing MCP server with 4 tools.",
+      "overview": "Google Analytics (unofficial) - Data Analysis & Processing server with 4 tools. The MCP Server \"Google Analytics (unofficial)\" provides 4 tools focused on data analysis & processin",
       "repository_url": "",
       "homepage": "https://api.safe-mcp.com/mcp",
       "remote_or_local": "Remote",
@@ -277,10 +276,14 @@
       "usage_count": "10",
       "success_rate": "100%",
       "tags": [
-        "data-analysis-processing"
+        "data-analysis-processing",
+        "news-media",
+        "real-estate"
       ],
       "categories": [
-        "data analysis & processing"
+        "data analysis & processing",
+        "news & media",
+        "real estate"
       ],
       "tools_count": 4,
       "tools": [
@@ -519,7 +522,7 @@
       "python_sdk_config": "{\"debug\": false}"
     },
     "source_filename": "0167.Google-Analytics-unofficial_labeled.json",
-    "processed_timestamp": 1772871482,
+    "processed_timestamp": 1772876337,
     "processing_mode": "gateway",
     "rank": 168
   }

@@ -1,14 +1,13 @@
 {
   "labels": {
-    "analysis": "The MCP Server \"io.github.greetwell/mcp\" provides 4 tools for web search & research tasks.",
-    "reasoning": "Primary label \"Web Search & Research\" assigned based on tool names and descriptions.",
+    "analysis": "The MCP Server \"io.github.greetwell/mcp\" provides 4 tools focused on web search & research tasks. Core capabilities include data access and reading, search and retrieval. Key tools: search_activities, get_activity_details, get_activity_availability, get_complementary_recommendation.",
+    "reasoning": "Primary label \"Web Search & Research\" assigned based on strong keyword matches in tool names and descriptions: search.",
     "primary_label": "Web Search & Research",
     "secondary_labels": [
-      "Browser Automation",
-      "Data Analysis & Processing",
-      "Development Tools"
+      "Real Estate",
+      "E-Commerce"
     ],
-    "custom_label": "Web Search & Research - io.github.greetwell/mcp",
+    "custom_label": "Data Access & Search - io.github.greetwell/mcp",
     "is_connected": true,
     "is_remote_tool_valid": true,
     "featured_server": false
@@ -20,7 +19,7 @@
     "usage_count": "10",
     "original_file": "tools.json#183",
     "mode": "gateway",
-    "timestamp": 1772871482,
+    "timestamp": 1772876337,
     "remote_server_response": {
       "url": "https://mcp.greetwell.com/mcp",
       "is_success": true,
@@ -313,7 +312,7 @@
       "id": 183,
       "name": "io.github.greetwell/mcp",
       "author": "",
-      "overview": "io.github.greetwell/mcp - Web Search & Research MCP server with 4 tools.",
+      "overview": "io.github.greetwell/mcp - Web Search & Research server with 4 tools. The MCP Server \"io.github.greetwell/mcp\" provides 4 tools focused on web search & research tasks. Co",
       "repository_url": "",
       "homepage": "https://mcp.greetwell.com/mcp",
       "remote_or_local": "Remote",
@@ -321,10 +320,14 @@
       "usage_count": "10",
       "success_rate": "100%",
       "tags": [
-        "web-search-research"
+        "web-search-research",
+        "real-estate",
+        "e-commerce"
       ],
       "categories": [
-        "web search & research"
+        "web search & research",
+        "real estate",
+        "e-commerce"
       ],
       "tools_count": 4,
       "tools": [
@@ -607,7 +610,7 @@
       "python_sdk_config": "{\"debug\": false}"
     },
     "source_filename": "0183.iogithubgreetwellmcp_labeled.json",
-    "processed_timestamp": 1772871482,
+    "processed_timestamp": 1772876337,
     "processing_mode": "gateway",
     "rank": 184
   }

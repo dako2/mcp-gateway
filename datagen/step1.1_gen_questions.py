@@ -1,4 +1,3 @@
-import torch
 import os
 import sys
 import argparse
@@ -394,8 +393,7 @@ print(f"Tool Use Question Generation Manager.\nArguments:\n{args}") # For loggin
 # Set random seed
 if args.seed is not None:
     np.random.seed(args.seed)
-    torch.manual_seed(args.seed)
-    torch.cuda.manual_seed_all(args.seed)
+    random.seed(args.seed)
 
 #################
 # Load Tool Data

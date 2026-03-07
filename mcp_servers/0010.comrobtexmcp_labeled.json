@@ -1,12 +1,11 @@
 {
   "labels": {
-    "analysis": "The MCP Server \"com.robtex/mcp\" provides 49 tools for dns & networking tasks.",
-    "reasoning": "Primary label \"DNS & Networking\" assigned based on tool names and descriptions.",
+    "analysis": "The MCP Server \"com.robtex/mcp\" provides 49 tools focused on dns & networking tasks. Core capabilities include creation and generation, data access and reading, search and retrieval. Key tools: latest_lightning_channels, ip_reputation, lookup_dns, reverse_lookup_dns_records, reverse_lookup_mx.",
+    "reasoning": "Primary label \"DNS & Networking\" assigned based on strong keyword matches in tool names and descriptions: dns, domain, whois, ip_, network, nameserver.",
     "primary_label": "DNS & Networking",
     "secondary_labels": [
-      "Security & Authentication",
-      "Web Search & Research",
-      "Development Tools"
+      "Database Operations",
+      "Web Search & Research"
     ],
     "custom_label": "DNS & Networking - com.robtex/mcp",
     "is_connected": true,
@@ -20,7 +19,7 @@
     "usage_count": "9,500",
     "original_file": "tools.json#10",
     "mode": "gateway",
-    "timestamp": 1772871481,
+    "timestamp": 1772876337,
     "remote_server_response": {
       "url": "https://mcp.robtex.com/mcp",
       "is_success": true,
@@ -1673,7 +1672,7 @@
       "id": 10,
       "name": "com.robtex/mcp",
       "author": "",
-      "overview": "com.robtex/mcp - DNS & Networking MCP server with 49 tools.",
+      "overview": "com.robtex/mcp - DNS & Networking server with 49 tools. The MCP Server \"com.robtex/mcp\" provides 49 tools focused on dns & networking tasks. Core capabiliti",
       "repository_url": "",
       "homepage": "https://mcp.robtex.com/mcp",
       "remote_or_local": "Remote",
@@ -1681,10 +1680,14 @@
       "usage_count": "9,500",
       "success_rate": "100%",
       "tags": [
-        "dns-networking"
+        "dns-networking",
+        "database-operations",
+        "web-search-research"
       ],
       "categories": [
-        "dns & networking"
+        "dns & networking",
+        "database operations",
+        "web search & research"
       ],
       "tools_count": 49,
       "tools": [
@@ -3282,7 +3285,7 @@
       "python_sdk_config": "{\"debug\": false}"
     },
     "source_filename": "0010.comrobtexmcp_labeled.json",
-    "processed_timestamp": 1772871481,
+    "processed_timestamp": 1772876337,
     "processing_mode": "gateway",
     "rank": 11
   }

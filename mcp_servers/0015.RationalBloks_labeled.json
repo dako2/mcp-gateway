@@ -1,15 +1,13 @@
 {
   "labels": {
-    "analysis": "The MCP Server \"RationalBloks\" provides 44 tools for development tools tasks.",
-    "reasoning": "Primary label \"Development Tools\" assigned based on tool names and descriptions.",
-    "primary_label": "Development Tools",
+    "analysis": "The MCP Server \"RationalBloks\" provides 44 tools focused on productivity tasks. Core capabilities include creation and generation, data access and reading, modification and updates. Key tools: list_projects, get_project, get_schema, get_user_info, get_job_status.",
+    "reasoning": "Primary label \"Productivity\" assigned based on strong keyword matches in tool names and descriptions: task, project, workflow.",
+    "primary_label": "Productivity",
     "secondary_labels": [
-      "API Integration",
-      "DevOps",
-      "Data Analysis & Processing",
-      "Productivity"
+      "Development Tools",
+      "Database Operations"
     ],
-    "custom_label": "Development Tools - RationalBloks",
+    "custom_label": "Data Access - RationalBloks",
     "is_connected": true,
     "is_remote_tool_valid": true,
     "featured_server": true
@@ -21,7 +19,7 @@
     "usage_count": "9,250",
     "original_file": "tools.json#15",
     "mode": "gateway",
-    "timestamp": 1772871481,
+    "timestamp": 1772876337,
     "remote_server_response": {
       "url": "https://mcp.rationalbloks.com/mcp",
       "is_success": true,
@@ -1412,7 +1410,7 @@
       "id": 15,
       "name": "RationalBloks",
       "author": "",
-      "overview": "RationalBloks - Development Tools MCP server with 44 tools.",
+      "overview": "RationalBloks - Productivity server with 44 tools. The MCP Server \"RationalBloks\" provides 44 tools focused on productivity tasks. Core capabilities in",
       "repository_url": "",
       "homepage": "https://mcp.rationalbloks.com/mcp",
       "remote_or_local": "Remote",
@@ -1420,10 +1418,14 @@
       "usage_count": "9,250",
       "success_rate": "100%",
       "tags": [
-        "development-tools"
+        "productivity",
+        "development-tools",
+        "database-operations"
       ],
       "categories": [
-        "development tools"
+        "productivity",
+        "development tools",
+        "database operations"
       ],
       "tools_count": 44,
       "tools": [
@@ -2764,7 +2766,7 @@
       "python_sdk_config": "{\"debug\": false}"
     },
     "source_filename": "0015.RationalBloks_labeled.json",
-    "processed_timestamp": 1772871481,
+    "processed_timestamp": 1772876337,
     "processing_mode": "gateway",
     "rank": 16
   }

@@ -1,15 +1,13 @@
 {
   "labels": {
-    "analysis": "The MCP Server \"io.github.hellosg/coderegistry\" provides 16 tools for development tools tasks.",
-    "reasoning": "Primary label \"Development Tools\" assigned based on tool names and descriptions.",
+    "analysis": "The MCP Server \"io.github.hellosg/coderegistry\" provides 16 tools focused on development tools tasks. Core capabilities include creation and generation, data access and reading, deletion and cleanup, modification and updates. Key tools: create_account, list_projects, get_project, create_project, delete_project.",
+    "reasoning": "Primary label \"Development Tools\" assigned based on strong keyword matches in tool names and descriptions: git, code, docker, endpoint, registry.",
     "primary_label": "Development Tools",
     "secondary_labels": [
-      "API Integration",
-      "DevOps",
-      "File Management",
-      "Data Analysis & Processing"
+      "AI/ML Tools",
+      "API Integration"
     ],
-    "custom_label": "Development Tools - io.github.hellosg/coderegistry",
+    "custom_label": "Analytics & Data Access - io.github.hellosg/coderegistry",
     "is_connected": true,
     "is_remote_tool_valid": true,
     "featured_server": true
@@ -21,7 +19,7 @@
     "usage_count": "840",
     "original_file": "tools.json#58",
     "mode": "gateway",
-    "timestamp": 1772871481,
+    "timestamp": 1772876337,
     "remote_server_response": {
       "url": "https://integrator.app.thecoderegistry.com/api/ai/router",
       "is_success": true,
@@ -631,7 +629,7 @@
       "id": 58,
       "name": "io.github.hellosg/coderegistry",
       "author": "",
-      "overview": "io.github.hellosg/coderegistry - Development Tools MCP server with 16 tools.",
+      "overview": "io.github.hellosg/coderegistry - Development Tools server with 16 tools. The MCP Server \"io.github.hellosg/coderegistry\" provides 16 tools focused on development tools tasks",
       "repository_url": "",
       "homepage": "https://integrator.app.thecoderegistry.com/api/ai/router",
       "remote_or_local": "Remote",
@@ -639,10 +637,14 @@
       "usage_count": "840",
       "success_rate": "100%",
       "tags": [
-        "development-tools"
+        "development-tools",
+        "ai/ml-tools",
+        "api-integration"
       ],
       "categories": [
-        "development tools"
+        "development tools",
+        "ai/ml tools",
+        "api integration"
       ],
       "tools_count": 16,
       "tools": [
@@ -1230,7 +1232,7 @@
       "python_sdk_config": "{\"debug\": false}"
     },
     "source_filename": "0058.iogithubhellosgcoderegistry_labeled.json",
-    "processed_timestamp": 1772871481,
+    "processed_timestamp": 1772876337,
     "processing_mode": "gateway",
     "rank": 59
   }

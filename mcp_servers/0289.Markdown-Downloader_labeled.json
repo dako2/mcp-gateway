@@ -1,0 +1,225 @@
+{
+  "labels": {
+    "analysis": "The MCP Server is designed to facilitate the downloading and management of web content in Markdown format. Its core functionality revolves around converting web pages into Markdown files, setting up directories for organized storage, and managing these files through various commands. This tool is particularly useful for users who need to extract and retain web content in a structured, text-based format, often for research, note-taking, or content archival purposes.",
+    "reasoning": "The primary functionality of converting web content into Markdown and managing these files aligns with the **Web Search & Research** category, as it aids in gathering and organizing web-based information. The ability to manage directories and files also relates to **File Management**, making it a secondary label. No custom label is necessary as the predefined categories adequately cover the server's capabilities.",
+    "primary_label": "Web Search & Research",
+    "secondary_labels": [
+      "File Management"
+    ],
+    "custom_label": null,
+    "is_connected": true,
+    "is_remote_tool_valid": true,
+    "featured_server": false
+  },
+  "metadata": {
+    "server_id": 289,
+    "server_name": "Markdown Downloader",
+    "rank_by_usage": 197,
+    "usage_count": "240",
+    "original_file": "toucan_live#@dazeb/markdown-downloader",
+    "mode": "toucan",
+    "timestamp": 1772876338,
+    "remote_server_response": {
+      "url": "https://server.smithery.ai/@dazeb/markdown-downloader/mcp",
+      "is_success": true,
+      "error": null,
+      "tools": [
+        {
+          "name": "download_markdown",
+          "description": "Download a webpage as markdown using r.jina.ai",
+          "input_schema": {
+            "type": "object",
+            "properties": {
+              "url": {
+                "type": "string",
+                "description": "URL of the webpage to download"
+              },
+              "subdirectory": {
+                "type": "string",
+                "description": "Optional subdirectory to save the file in"
+              }
+            },
+            "required": [
+              "url"
+            ]
+          },
+          "annotations": null
+        },
+        {
+          "name": "list_downloaded_files",
+          "description": "List all downloaded markdown files",
+          "input_schema": {
+            "type": "object",
+            "properties": {
+              "subdirectory": {
+                "type": "string",
+                "description": "Optional subdirectory to list files from"
+              }
+            }
+          },
+          "annotations": null
+        },
+        {
+          "name": "set_download_directory",
+          "description": "Set the main local download folder for markdown files",
+          "input_schema": {
+            "type": "object",
+            "properties": {
+              "directory": {
+                "type": "string",
+                "description": "Full path to the download directory"
+              }
+            },
+            "required": [
+              "directory"
+            ]
+          },
+          "annotations": null
+        },
+        {
+          "name": "get_download_directory",
+          "description": "Get the current download directory",
+          "input_schema": {
+            "type": "object",
+            "properties": {}
+          },
+          "annotations": null
+        },
+        {
+          "name": "create_subdirectory",
+          "description": "Create a new subdirectory in the root download folder",
+          "input_schema": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "Name of the subdirectory to create"
+              }
+            },
+            "required": [
+              "name"
+            ]
+          },
+          "annotations": null
+        }
+      ],
+      "tool_count": 5,
+      "tool_names": [
+        "download_markdown",
+        "list_downloaded_files",
+        "set_download_directory",
+        "get_download_directory",
+        "create_subdirectory"
+      ]
+    },
+    "server_info_crawled": {
+      "id": 289,
+      "name": "Markdown Downloader",
+      "author": "",
+      "overview": "Download webpages as markdown files effortlessly. Convert web content into markdown format with a simple command, and manage your downloads with ease. Enjoy a configurable download directory and automatic date-stamped filenames for organized storage.",
+      "repository_url": "",
+      "homepage": "https://server.smithery.ai/@dazeb/markdown-downloader/mcp",
+      "remote_or_local": "Remote",
+      "license": "",
+      "usage_count": "240",
+      "success_rate": "99.86%",
+      "tags": [
+        "search",
+        "web",
+        "api",
+        "mcp"
+      ],
+      "categories": [
+        "search",
+        "api"
+      ],
+      "tools_count": 5,
+      "tools": [
+        {
+          "name": "download_markdown",
+          "description": "Download a webpage as markdown using r.jina.ai",
+          "input_schema": {
+            "type": "object",
+            "properties": {
+              "url": {
+                "type": "string",
+                "description": "URL of the webpage to download"
+              },
+              "subdirectory": {
+                "type": "string",
+                "description": "Optional subdirectory to save the file in"
+              }
+            },
+            "required": [
+              "url"
+            ]
+          },
+          "annotations": null
+        },
+        {
+          "name": "list_downloaded_files",
+          "description": "List all downloaded markdown files",
+          "input_schema": {
+            "type": "object",
+            "properties": {
+              "subdirectory": {
+                "type": "string",
+                "description": "Optional subdirectory to list files from"
+              }
+            }
+          },
+          "annotations": null
+        },
+        {
+          "name": "set_download_directory",
+          "description": "Set the main local download folder for markdown files",
+          "input_schema": {
+            "type": "object",
+            "properties": {
+              "directory": {
+                "type": "string",
+                "description": "Full path to the download directory"
+              }
+            },
+            "required": [
+              "directory"
+            ]
+          },
+          "annotations": null
+        },
+        {
+          "name": "get_download_directory",
+          "description": "Get the current download directory",
+          "input_schema": {
+            "type": "object",
+            "properties": {}
+          },
+          "annotations": null
+        },
+        {
+          "name": "create_subdirectory",
+          "description": "Create a new subdirectory in the root download folder",
+          "input_schema": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "Name of the subdirectory to create"
+              }
+            },
+            "required": [
+              "name"
+            ]
+          },
+          "annotations": null
+        }
+      ],
+      "python_sdk_url": "https://server.smithery.ai/@dazeb/markdown-downloader/mcp",
+      "python_sdk_config": "{\"debug\": false}"
+    },
+    "source_filename": "0289.Markdown-Downloader_labeled.json",
+    "processed_timestamp": 1772876338,
+    "processing_mode": "toucan",
+    "rank": 197
+  }
+}

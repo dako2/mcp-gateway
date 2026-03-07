@@ -1,14 +1,13 @@
 {
   "labels": {
-    "analysis": "The MCP Server \"ai.meetlark/mcp-server\" provides 6 tools for communication tools tasks.",
-    "reasoning": "Primary label \"Communication Tools\" assigned based on tool names and descriptions.",
-    "primary_label": "Communication Tools",
+    "analysis": "The MCP Server \"ai.meetlark/mcp-server\" provides 6 tools focused on data analysis & processing tasks. Core capabilities include creation and generation, data access and reading, search and retrieval. Key tools: meetlark_create_poll, meetlark_get_results, meetlark_vote, meetlark_get_admin_view, meetlark_close_poll.",
+    "reasoning": "Primary label \"Data Analysis & Processing\" assigned based on strong keyword matches in tool names and descriptions: data, etl.",
+    "primary_label": "Data Analysis & Processing",
     "secondary_labels": [
-      "Social Media",
-      "Data Analysis & Processing",
-      "Development Tools"
+      "Communication Tools",
+      "Cryptocurrency & Blockchain"
     ],
-    "custom_label": "Communication Tools - ai.meetlark/mcp-server",
+    "custom_label": "Data Access & Generation - ai.meetlark/mcp-server",
     "is_connected": true,
     "is_remote_tool_valid": true,
     "featured_server": true
@@ -20,7 +19,7 @@
     "usage_count": "100",
     "original_file": "tools.json#135",
     "mode": "gateway",
-    "timestamp": 1772871481,
+    "timestamp": 1772876337,
     "remote_server_response": {
       "url": "https://meetlark.ai/mcp",
       "is_success": true,
@@ -264,7 +263,7 @@
       "id": 135,
       "name": "ai.meetlark/mcp-server",
       "author": "",
-      "overview": "ai.meetlark/mcp-server - Communication Tools MCP server with 6 tools.",
+      "overview": "ai.meetlark/mcp-server - Data Analysis & Processing server with 6 tools. The MCP Server \"ai.meetlark/mcp-server\" provides 6 tools focused on data analysis & processing tasks",
       "repository_url": "",
       "homepage": "https://meetlark.ai/mcp",
       "remote_or_local": "Remote",
@@ -272,10 +271,14 @@
       "usage_count": "100",
       "success_rate": "100%",
       "tags": [
-        "communication-tools"
+        "data-analysis-processing",
+        "communication-tools",
+        "cryptocurrency-blockchain"
       ],
       "categories": [
-        "communication tools"
+        "data analysis & processing",
+        "communication tools",
+        "cryptocurrency & blockchain"
       ],
       "tools_count": 6,
       "tools": [
@@ -507,7 +510,7 @@
       "python_sdk_config": "{\"debug\": false}"
     },
     "source_filename": "0135.aimeetlarkmcp-server_labeled.json",
-    "processed_timestamp": 1772871481,
+    "processed_timestamp": 1772876337,
     "processing_mode": "gateway",
     "rank": 136
   }

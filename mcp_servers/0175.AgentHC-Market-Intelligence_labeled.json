@@ -1,14 +1,13 @@
 {
   "labels": {
-    "analysis": "The MCP Server \"AgentHC Market Intelligence\" provides 4 tools for financial services tasks.",
-    "reasoning": "Primary label \"Financial Services\" assigned based on tool names and descriptions.",
-    "primary_label": "Financial Services",
+    "analysis": "The MCP Server \"AgentHC Market Intelligence\" provides 4 tools focused on data analysis & processing tasks. Core capabilities include various operations. Key tools: get_market_snapshot, get_crypto_data, get_news_sentiment, get_economic_calendar.",
+    "reasoning": "Primary label \"Data Analysis & Processing\" assigned based on strong keyword matches in tool names and descriptions: data.",
+    "primary_label": "Data Analysis & Processing",
     "secondary_labels": [
-      "E-Commerce",
-      "Productivity",
-      "Development Tools"
+      "Cryptocurrency & Blockchain",
+      "News & Media"
     ],
-    "custom_label": "Financial Services - AgentHC Market Intelligence",
+    "custom_label": "Data Access - AgentHC Market Intelligence",
     "is_connected": true,
     "is_remote_tool_valid": true,
     "featured_server": false
@@ -20,7 +19,7 @@
     "usage_count": "10",
     "original_file": "tools.json#175",
     "mode": "gateway",
-    "timestamp": 1772871482,
+    "timestamp": 1772876337,
     "remote_server_response": {
       "url": "https://api.traderhc.com/mcp",
       "is_success": true,
@@ -136,7 +135,7 @@
       "id": 175,
       "name": "AgentHC Market Intelligence",
       "author": "",
-      "overview": "AgentHC Market Intelligence - Financial Services MCP server with 4 tools.",
+      "overview": "AgentHC Market Intelligence - Data Analysis & Processing server with 4 tools. The MCP Server \"AgentHC Market Intelligence\" provides 4 tools focused on data analysis & processing ",
       "repository_url": "",
       "homepage": "https://api.traderhc.com/mcp",
       "remote_or_local": "Remote",
@@ -144,10 +143,14 @@
       "usage_count": "10",
       "success_rate": "100%",
       "tags": [
-        "financial-services"
+        "data-analysis-processing",
+        "cryptocurrency-blockchain",
+        "news-media"
       ],
       "categories": [
-        "financial services"
+        "data analysis & processing",
+        "cryptocurrency & blockchain",
+        "news & media"
       ],
       "tools_count": 4,
       "tools": [
@@ -253,7 +256,7 @@
       "python_sdk_config": "{\"debug\": false}"
     },
     "source_filename": "0175.AgentHC-Market-Intelligence_labeled.json",
-    "processed_timestamp": 1772871482,
+    "processed_timestamp": 1772876337,
     "processing_mode": "gateway",
     "rank": 176
   }

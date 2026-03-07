@@ -1,4 +1,3 @@
-import torch
 import os
 import sys
 import argparse
@@ -32,7 +31,7 @@ def get_args():
     parser.add_argument("--search_batch_size", type=int, default=4096, help="Batch size for searching similarity.")
     
     # System Settings
-    parser.add_argument("--device", type=str, default="cuda" if torch.cuda.is_available() else "cpu", help="Device to run the model on ('cuda' or 'cpu').")
+    parser.add_argument("--device", type=str, default="cpu", help="Device to run the model on ('cuda' or 'cpu').")
     parser.add_argument("--output_folder", type=str, default="../data")
     parser.add_argument("--timestamp", type=int, default=int(time.time()), help="Timestamp for the job.")
     parser.add_argument("--disable_sanitize", action="store_true", help="Disable the sanitize step and use extracted questions directly.")

@@ -1,13 +1,13 @@
 {
   "labels": {
-    "analysis": "The MCP Server \"Domscan Net Mcp Domain Checker\" provides 46 tools for dns & networking tasks.",
-    "reasoning": "Primary label \"DNS & Networking\" assigned based on tool names and descriptions.",
+    "analysis": "The MCP Server \"Domscan Net Mcp Domain Checker\" provides 46 tools focused on dns & networking tasks. Core capabilities include analysis and computation, creation and generation, data access and reading, modification and updates. Key tools: get_status, bulk_status, coverage, suggest_domains, domain_valuation.",
+    "reasoning": "Primary label \"DNS & Networking\" assigned based on strong keyword matches in tool names and descriptions: dns, domain, nameserver.",
     "primary_label": "DNS & Networking",
     "secondary_labels": [
-      "Security & Authentication",
+      "Database Operations",
       "Development Tools"
     ],
-    "custom_label": "DNS & Networking - Domscan Net Mcp Domain Checker",
+    "custom_label": "Data Access - Domscan Net Mcp Domain Checker",
     "is_connected": true,
     "is_remote_tool_valid": true,
     "featured_server": true
@@ -19,7 +19,7 @@
     "usage_count": "9,450",
     "original_file": "tools.json#11",
     "mode": "gateway",
-    "timestamp": 1772871481,
+    "timestamp": 1772876337,
     "remote_server_response": {
       "url": "https://domscan.net/mcp",
       "is_success": true,
@@ -1081,7 +1081,7 @@
       "id": 11,
       "name": "Domscan Net Mcp Domain Checker",
       "author": "",
-      "overview": "Domscan Net Mcp Domain Checker - DNS & Networking MCP server with 46 tools.",
+      "overview": "Domscan Net Mcp Domain Checker - DNS & Networking server with 46 tools. The MCP Server \"Domscan Net Mcp Domain Checker\" provides 46 tools focused on dns & networking tasks.",
       "repository_url": "",
       "homepage": "https://domscan.net/mcp",
       "remote_or_local": "Remote",
@@ -1089,10 +1089,14 @@
       "usage_count": "9,450",
       "success_rate": "100%",
       "tags": [
-        "dns-networking"
+        "dns-networking",
+        "database-operations",
+        "development-tools"
       ],
       "categories": [
-        "dns & networking"
+        "dns & networking",
+        "database operations",
+        "development tools"
       ],
       "tools_count": 46,
       "tools": [
@@ -2102,7 +2106,7 @@
       "python_sdk_config": "{\"debug\": false}"
     },
     "source_filename": "0011.Domscan-Net-Mcp-Domain-Checker_labeled.json",
-    "processed_timestamp": 1772871481,
+    "processed_timestamp": 1772876337,
     "processing_mode": "gateway",
     "rank": 12
   }

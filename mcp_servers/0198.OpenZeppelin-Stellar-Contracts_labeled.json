@@ -1,13 +1,11 @@
 {
   "labels": {
-    "analysis": "The MCP Server \"OpenZeppelin Stellar Contracts\" provides 3 tools for development tools tasks.",
-    "reasoning": "Primary label \"Development Tools\" assigned based on tool names and descriptions.",
+    "analysis": "The MCP Server \"OpenZeppelin Stellar Contracts\" provides 3 tools focused on development tools tasks. Core capabilities include various operations. Key tools: stellar-fungible, stellar-stablecoin, stellar-non-fungible.",
+    "reasoning": "Primary label \"Development Tools\" assigned based on strong keyword matches in tool names and descriptions: code.",
     "primary_label": "Development Tools",
     "secondary_labels": [
-      "API Integration",
-      "DevOps",
-      "AI/ML Tools",
-      "Cryptocurrency & Blockchain"
+      "Cryptocurrency & Blockchain",
+      "Database Operations"
     ],
     "custom_label": "Development Tools - OpenZeppelin Stellar Contracts",
     "is_connected": true,
@@ -21,7 +19,7 @@
     "usage_count": "10",
     "original_file": "tools.json#198",
     "mode": "gateway",
-    "timestamp": 1772871482,
+    "timestamp": 1772876338,
     "remote_server_response": {
       "url": "https://mcp.openzeppelin.com/contracts/stellar/mcp",
       "is_success": true,
@@ -300,7 +298,7 @@
       "id": 198,
       "name": "OpenZeppelin Stellar Contracts",
       "author": "",
-      "overview": "OpenZeppelin Stellar Contracts - Development Tools MCP server with 3 tools.",
+      "overview": "OpenZeppelin Stellar Contracts - Development Tools server with 3 tools. The MCP Server \"OpenZeppelin Stellar Contracts\" provides 3 tools focused on development tools tasks.",
       "repository_url": "",
       "homepage": "https://mcp.openzeppelin.com/contracts/stellar/mcp",
       "remote_or_local": "Remote",
@@ -308,10 +306,14 @@
       "usage_count": "10",
       "success_rate": "100%",
       "tags": [
-        "development-tools"
+        "development-tools",
+        "cryptocurrency-blockchain",
+        "database-operations"
       ],
       "categories": [
-        "development tools"
+        "development tools",
+        "cryptocurrency & blockchain",
+        "database operations"
       ],
       "tools_count": 3,
       "tools": [
@@ -581,7 +583,7 @@
       "python_sdk_config": "{\"debug\": false}"
     },
     "source_filename": "0198.OpenZeppelin-Stellar-Contracts_labeled.json",
-    "processed_timestamp": 1772871482,
+    "processed_timestamp": 1772876338,
     "processing_mode": "gateway",
     "rank": 199
   }

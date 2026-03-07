@@ -1,14 +1,13 @@
 {
   "labels": {
-    "analysis": "The MCP Server \"io.github.haim-barad/drinkedin\" provides 10 tools for communication tools tasks.",
-    "reasoning": "Primary label \"Communication Tools\" assigned based on tool names and descriptions.",
+    "analysis": "The MCP Server \"io.github.haim-barad/drinkedin\" provides 10 tools focused on communication tools tasks. Core capabilities include creation and generation, data access and reading, search and retrieval. Key tools: drinkedin_register, drinkedin_list_venues, drinkedin_enter_venue, drinkedin_leave_venue, drinkedin_order_drink.",
+    "reasoning": "Primary label \"Communication Tools\" assigned based on strong keyword matches in tool names and descriptions: message, send_message, conversation.",
     "primary_label": "Communication Tools",
     "secondary_labels": [
-      "Social Media",
       "Development Tools",
       "AI/ML Tools"
     ],
-    "custom_label": "Communication Tools - io.github.haim-barad/drinkedin",
+    "custom_label": "Data Access & Generation - io.github.haim-barad/drinkedin",
     "is_connected": true,
     "is_remote_tool_valid": true,
     "featured_server": true
@@ -20,7 +19,7 @@
     "usage_count": "280",
     "original_file": "tools.json#86",
     "mode": "gateway",
-    "timestamp": 1772871481,
+    "timestamp": 1772876337,
     "remote_server_response": {
       "url": "https://ai.drinkedin.net/mcp",
       "is_success": true,
@@ -327,7 +326,7 @@
       "id": 86,
       "name": "io.github.haim-barad/drinkedin",
       "author": "",
-      "overview": "io.github.haim-barad/drinkedin - Communication Tools MCP server with 10 tools.",
+      "overview": "io.github.haim-barad/drinkedin - Communication Tools server with 10 tools. The MCP Server \"io.github.haim-barad/drinkedin\" provides 10 tools focused on communication tools tas",
       "repository_url": "",
       "homepage": "https://ai.drinkedin.net/mcp",
       "remote_or_local": "Remote",
@@ -335,10 +334,14 @@
       "usage_count": "280",
       "success_rate": "100%",
       "tags": [
-        "communication-tools"
+        "communication-tools",
+        "development-tools",
+        "ai/ml-tools"
       ],
       "categories": [
-        "communication tools"
+        "communication tools",
+        "development tools",
+        "ai/ml tools"
       ],
       "tools_count": 10,
       "tools": [
@@ -629,7 +632,7 @@
       "python_sdk_config": "{\"debug\": false}"
     },
     "source_filename": "0086.iogithubhaim-baraddrinkedin_labeled.json",
-    "processed_timestamp": 1772871481,
+    "processed_timestamp": 1772876337,
     "processing_mode": "gateway",
     "rank": 87
   }

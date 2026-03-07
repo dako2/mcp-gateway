@@ -1,15 +1,13 @@
 {
   "labels": {
-    "analysis": "The MCP Server \"Pensiata - Bulgarian Pension Fund Analytics\" provides 21 tools for development tools tasks.",
-    "reasoning": "Primary label \"Development Tools\" assigned based on tool names and descriptions.",
-    "primary_label": "Development Tools",
+    "analysis": "The MCP Server \"Pensiata - Bulgarian Pension Fund Analytics\" provides 21 tools focused on data analysis & processing tasks. Core capabilities include analysis and computation, data access and reading, modification and updates. Key tools: list_managers, list_funds, get_nav_series, list_benchmarks, list_metrics.",
+    "reasoning": "Primary label \"Data Analysis & Processing\" assigned based on strong keyword matches in tool names and descriptions: data, analytic, metric, chart.",
+    "primary_label": "Data Analysis & Processing",
     "secondary_labels": [
-      "API Integration",
-      "DevOps",
-      "Data Analysis & Processing",
-      "Financial Services"
+      "Financial Services",
+      "Gaming"
     ],
-    "custom_label": "Development Tools - Pensiata - Bulgarian Pension Fund Analytics",
+    "custom_label": "Data Access & Management - Pensiata - Bulgarian Pension Fund Analytics",
     "is_connected": true,
     "is_remote_tool_valid": true,
     "featured_server": true
@@ -21,7 +19,7 @@
     "usage_count": "8,100",
     "original_file": "tools.json#38",
     "mode": "gateway",
-    "timestamp": 1772871481,
+    "timestamp": 1772876337,
     "remote_server_response": {
       "url": "https://mcp.pensiata.me/mcp",
       "is_success": true,
@@ -1478,7 +1476,7 @@
       "id": 38,
       "name": "Pensiata - Bulgarian Pension Fund Analytics",
       "author": "",
-      "overview": "Pensiata - Bulgarian Pension Fund Analytics - Development Tools MCP server with 21 tools.",
+      "overview": "Pensiata - Bulgarian Pension Fund Analytics - Data Analysis & Processing server with 21 tools. The MCP Server \"Pensiata - Bulgarian Pension Fund Analytics\" provides 21 tools focused on data analy",
       "repository_url": "",
       "homepage": "https://mcp.pensiata.me/mcp",
       "remote_or_local": "Remote",
@@ -1486,10 +1484,14 @@
       "usage_count": "8,100",
       "success_rate": "100%",
       "tags": [
-        "development-tools"
+        "data-analysis-processing",
+        "financial-services",
+        "gaming"
       ],
       "categories": [
-        "development tools"
+        "data analysis & processing",
+        "financial services",
+        "gaming"
       ],
       "tools_count": 21,
       "tools": [
@@ -2919,7 +2921,7 @@
       "python_sdk_config": "{\"debug\": false}"
     },
     "source_filename": "0038.Pensiata---Bulgarian-Pension-Fund-Analytics_labeled.json",
-    "processed_timestamp": 1772871481,
+    "processed_timestamp": 1772876337,
     "processing_mode": "gateway",
     "rank": 39
   }

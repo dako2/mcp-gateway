@@ -1,15 +1,13 @@
 {
   "labels": {
-    "analysis": "The MCP Server \"Deeprank Ai Docs Deeprank Mcp\" provides 8 tools for development tools tasks.",
-    "reasoning": "Primary label \"Development Tools\" assigned based on tool names and descriptions.",
+    "analysis": "The MCP Server \"Deeprank Ai Docs Deeprank Mcp\" provides 8 tools focused on development tools tasks. Core capabilities include creation and generation, data access and reading, search and retrieval. Key tools: deeprank_start_optimization, get_deeprank_methodology, get_optimization_steps, get_audit_checklist_with_hints, wrong_choice_when_examples.",
+    "reasoning": "Primary label \"Development Tools\" assigned based on strong keyword matches in tool names and descriptions: build, code, snippet.",
     "primary_label": "Development Tools",
     "secondary_labels": [
-      "API Integration",
-      "DevOps",
       "Web Search & Research",
-      "Data Analysis & Processing"
+      "AI/ML Tools"
     ],
-    "custom_label": "Development Tools - Deeprank Ai Docs Deeprank Mcp",
+    "custom_label": "Data Access - Deeprank Ai Docs Deeprank Mcp",
     "is_connected": true,
     "is_remote_tool_valid": true,
     "featured_server": true
@@ -21,7 +19,7 @@
     "usage_count": "100",
     "original_file": "tools.json#97",
     "mode": "gateway",
-    "timestamp": 1772871481,
+    "timestamp": 1772876337,
     "remote_server_response": {
       "url": "https://mcp.deeprank.ai/mcp",
       "is_success": true,
@@ -232,7 +230,7 @@
       "id": 97,
       "name": "Deeprank Ai Docs Deeprank Mcp",
       "author": "",
-      "overview": "Deeprank Ai Docs Deeprank Mcp - Development Tools MCP server with 8 tools.",
+      "overview": "Deeprank Ai Docs Deeprank Mcp - Development Tools server with 8 tools. The MCP Server \"Deeprank Ai Docs Deeprank Mcp\" provides 8 tools focused on development tools tasks. ",
       "repository_url": "",
       "homepage": "https://mcp.deeprank.ai/mcp",
       "remote_or_local": "Remote",
@@ -240,10 +238,14 @@
       "usage_count": "100",
       "success_rate": "100%",
       "tags": [
-        "development-tools"
+        "development-tools",
+        "web-search-research",
+        "ai/ml-tools"
       ],
       "categories": [
-        "development tools"
+        "development tools",
+        "web search & research",
+        "ai/ml tools"
       ],
       "tools_count": 8,
       "tools": [
@@ -440,7 +442,7 @@
       "python_sdk_config": "{\"debug\": false}"
     },
     "source_filename": "0097.Deeprank-Ai-Docs-Deeprank-Mcp_labeled.json",
-    "processed_timestamp": 1772871481,
+    "processed_timestamp": 1772876337,
     "processing_mode": "gateway",
     "rank": 98
   }

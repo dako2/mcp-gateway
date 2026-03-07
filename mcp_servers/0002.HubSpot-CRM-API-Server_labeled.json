@@ -1,15 +1,12 @@
 {
   "labels": {
-    "analysis": "The MCP Server \"HubSpot CRM API Server\" provides 111 tools for development tools tasks.",
-    "reasoning": "Primary label \"Development Tools\" assigned based on tool names and descriptions.",
-    "primary_label": "Development Tools",
+    "analysis": "The MCP Server \"HubSpot CRM API Server\" provides 111 tools focused on web search & research tasks. Core capabilities include creation and generation, data access and reading, deletion and cleanup, modification and updates. Key tools: crm_create_company, crm_update_company, crm_get_company, crm_search_companies, crm_batch_create_companies.",
+    "reasoning": "Primary label \"Web Search & Research\" assigned based on strong keyword matches in tool names and descriptions: search.",
+    "primary_label": "Web Search & Research",
     "secondary_labels": [
-      "API Integration",
-      "DevOps",
-      "Web Search & Research",
-      "AI/ML Tools"
+      "Real Estate"
     ],
-    "custom_label": "Development Tools - HubSpot CRM API Server",
+    "custom_label": "Data Access & Generation - HubSpot CRM API Server",
     "is_connected": true,
     "is_remote_tool_valid": true,
     "featured_server": true
@@ -21,7 +18,7 @@
     "usage_count": "49,800",
     "original_file": "tools.json#2",
     "mode": "gateway",
-    "timestamp": 1772871481,
+    "timestamp": 1772876337,
     "remote_server_response": {
       "url": "https://server.smithery.ai/@BlackSand-Software/hubspot-mcp/mcp",
       "is_success": true,
@@ -7184,7 +7181,7 @@
       "id": 2,
       "name": "HubSpot CRM API Server",
       "author": "",
-      "overview": "HubSpot CRM API Server - Development Tools MCP server with 111 tools.",
+      "overview": "HubSpot CRM API Server - Web Search & Research server with 111 tools. The MCP Server \"HubSpot CRM API Server\" provides 111 tools focused on web search & research tasks. C",
       "repository_url": "",
       "homepage": "https://server.smithery.ai/@BlackSand-Software/hubspot-mcp/mcp",
       "remote_or_local": "Remote",
@@ -7192,10 +7189,12 @@
       "usage_count": "49,800",
       "success_rate": "100%",
       "tags": [
-        "development-tools"
+        "web-search-research",
+        "real-estate"
       ],
       "categories": [
-        "development tools"
+        "web search & research",
+        "real estate"
       ],
       "tools_count": 111,
       "tools": [
@@ -14241,7 +14240,7 @@
       "python_sdk_config": "{\"debug\": false}"
     },
     "source_filename": "0002.HubSpot-CRM-API-Server_labeled.json",
-    "processed_timestamp": 1772871481,
+    "processed_timestamp": 1772876337,
     "processing_mode": "gateway",
     "rank": 3
   }

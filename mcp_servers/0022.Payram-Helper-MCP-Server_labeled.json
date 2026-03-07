@@ -1,15 +1,13 @@
 {
   "labels": {
-    "analysis": "The MCP Server \"Payram Helper MCP Server\" provides 36 tools for development tools tasks.",
-    "reasoning": "Primary label \"Development Tools\" assigned based on tool names and descriptions.",
+    "analysis": "The MCP Server \"Payram Helper MCP Server\" provides 36 tools focused on development tools tasks. Core capabilities include creation and generation, data access and reading, search and retrieval. Key tools: test_payram_connection, generate_payment_sdk_snippet, generate_payment_http_snippet, generate_payment_status_snippet, generate_payment_route_snippet.",
+    "reasoning": "Primary label \"Development Tools\" assigned based on strong keyword matches in tool names and descriptions: code, test_, sdk, snippet, endpoint, webhook_.",
     "primary_label": "Development Tools",
     "secondary_labels": [
-      "API Integration",
-      "DevOps",
-      "Web Search & Research",
-      "Data Analysis & Processing"
+      "AI/ML Tools",
+      "Financial Services"
     ],
-    "custom_label": "Development Tools - Payram Helper MCP Server",
+    "custom_label": "Generation - Payram Helper MCP Server",
     "is_connected": true,
     "is_remote_tool_valid": true,
     "featured_server": true
@@ -21,7 +19,7 @@
     "usage_count": "8,900",
     "original_file": "tools.json#22",
     "mode": "gateway",
-    "timestamp": 1772871481,
+    "timestamp": 1772876337,
     "remote_server_response": {
       "url": "https://mcp.payram.com/mcp",
       "is_success": true,
@@ -2761,7 +2759,7 @@
       "id": 22,
       "name": "Payram Helper MCP Server",
       "author": "",
-      "overview": "Payram Helper MCP Server - Development Tools MCP server with 36 tools.",
+      "overview": "Payram Helper MCP Server - Development Tools server with 36 tools. The MCP Server \"Payram Helper MCP Server\" provides 36 tools focused on development tools tasks. Core",
       "repository_url": "",
       "homepage": "https://mcp.payram.com/mcp",
       "remote_or_local": "Remote",
@@ -2769,10 +2767,14 @@
       "usage_count": "8,900",
       "success_rate": "100%",
       "tags": [
-        "development-tools"
+        "development-tools",
+        "ai/ml-tools",
+        "financial-services"
       ],
       "categories": [
-        "development tools"
+        "development tools",
+        "ai/ml tools",
+        "financial services"
       ],
       "tools_count": 36,
       "tools": [
@@ -5470,7 +5472,7 @@
       "python_sdk_config": "{\"debug\": false}"
     },
     "source_filename": "0022.Payram-Helper-MCP-Server_labeled.json",
-    "processed_timestamp": 1772871481,
+    "processed_timestamp": 1772876337,
     "processing_mode": "gateway",
     "rank": 23
   }

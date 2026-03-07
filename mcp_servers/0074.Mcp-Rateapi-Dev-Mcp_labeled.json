@@ -1,15 +1,13 @@
 {
   "labels": {
-    "analysis": "The MCP Server \"Mcp Rateapi Dev Mcp\" provides 12 tools for development tools tasks.",
-    "reasoning": "Primary label \"Development Tools\" assigned based on tool names and descriptions.",
-    "primary_label": "Development Tools",
+    "analysis": "The MCP Server \"Mcp Rateapi Dev Mcp\" provides 12 tools focused on api integration tasks. Core capabilities include creation and generation, data access and reading, deletion and cleanup, modification and updates. Key tools: get_financing_decision, list_credit_unions, get_credit_union, create_monitor, list_monitors.",
+    "reasoning": "Primary label \"API Integration\" assigned based on strong keyword matches in tool names and descriptions: webhook.",
+    "primary_label": "API Integration",
     "secondary_labels": [
-      "API Integration",
-      "DevOps",
       "Data Analysis & Processing",
-      "Financial Services"
+      "Development Tools"
     ],
-    "custom_label": "Development Tools - Mcp Rateapi Dev Mcp",
+    "custom_label": "Data Access & Generation - Mcp Rateapi Dev Mcp",
     "is_connected": true,
     "is_remote_tool_valid": true,
     "featured_server": true
@@ -21,7 +19,7 @@
     "usage_count": "520",
     "original_file": "tools.json#74",
     "mode": "gateway",
-    "timestamp": 1772871481,
+    "timestamp": 1772876337,
     "remote_server_response": {
       "url": "https://mcp.rateapi.dev/mcp",
       "is_success": true,
@@ -657,7 +655,7 @@
       "id": 74,
       "name": "Mcp Rateapi Dev Mcp",
       "author": "",
-      "overview": "Mcp Rateapi Dev Mcp - Development Tools MCP server with 12 tools.",
+      "overview": "Mcp Rateapi Dev Mcp - API Integration server with 12 tools. The MCP Server \"Mcp Rateapi Dev Mcp\" provides 12 tools focused on api integration tasks. Core capabi",
       "repository_url": "",
       "homepage": "https://mcp.rateapi.dev/mcp",
       "remote_or_local": "Remote",
@@ -665,9 +663,13 @@
       "usage_count": "520",
       "success_rate": "100%",
       "tags": [
+        "api-integration",
+        "data-analysis-processing",
         "development-tools"
       ],
       "categories": [
+        "api integration",
+        "data analysis & processing",
         "development tools"
       ],
       "tools_count": 12,
@@ -1286,7 +1288,7 @@
       "python_sdk_config": "{\"debug\": false}"
     },
     "source_filename": "0074.Mcp-Rateapi-Dev-Mcp_labeled.json",
-    "processed_timestamp": 1772871481,
+    "processed_timestamp": 1772876337,
     "processing_mode": "gateway",
     "rank": 75
   }

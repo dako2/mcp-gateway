@@ -1,13 +1,10 @@
 {
   "labels": {
-    "analysis": "The MCP Server \"PDF Kit\" provides 1 tools for ai/ml tools tasks.",
-    "reasoning": "Primary label \"AI/ML Tools\" assigned based on tool names and descriptions.",
-    "primary_label": "AI/ML Tools",
-    "secondary_labels": [
-      "Content Creation",
-      "File Management"
-    ],
-    "custom_label": "AI/ML Tools - PDF Kit",
+    "analysis": "The MCP Server \"PDF Kit\" provides 1 tools focused on file management tasks. Core capabilities include creation and generation. Key tools: basestation.create_autofill_job.",
+    "reasoning": "Primary label \"File Management\" assigned based on strong keyword matches in tool names and descriptions: pdf.",
+    "primary_label": "File Management",
+    "secondary_labels": [],
+    "custom_label": "Generation - PDF Kit",
     "is_connected": true,
     "is_remote_tool_valid": true,
     "featured_server": false
@@ -19,7 +16,7 @@
     "usage_count": "10",
     "original_file": "tools.json#258",
     "mode": "gateway",
-    "timestamp": 1772871482,
+    "timestamp": 1772876338,
     "remote_server_response": {
       "url": "https://mcp.hellobasestation.com/mcp",
       "is_success": true,
@@ -60,7 +57,7 @@
       "id": 258,
       "name": "PDF Kit",
       "author": "",
-      "overview": "PDF Kit - AI/ML Tools MCP server with 1 tools.",
+      "overview": "PDF Kit - File Management server with 1 tools. The MCP Server \"PDF Kit\" provides 1 tools focused on file management tasks. Core capabilities includ",
       "repository_url": "",
       "homepage": "https://mcp.hellobasestation.com/mcp",
       "remote_or_local": "Remote",
@@ -68,10 +65,10 @@
       "usage_count": "10",
       "success_rate": "100%",
       "tags": [
-        "ai/ml-tools"
+        "file-management"
       ],
       "categories": [
-        "ai/ml tools"
+        "file management"
       ],
       "tools_count": 1,
       "tools": [
@@ -105,7 +102,7 @@
       "python_sdk_config": "{\"debug\": false}"
     },
     "source_filename": "0258.PDF-Kit_labeled.json",
-    "processed_timestamp": 1772871482,
+    "processed_timestamp": 1772876338,
     "processing_mode": "gateway",
     "rank": 259
   }

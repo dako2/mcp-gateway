@@ -1,14 +1,13 @@
 {
   "labels": {
-    "analysis": "The MCP Server \"Ragora\" provides 3 tools for web search & research tasks.",
-    "reasoning": "Primary label \"Web Search & Research\" assigned based on tool names and descriptions.",
-    "primary_label": "Web Search & Research",
+    "analysis": "The MCP Server \"Ragora\" provides 3 tools focused on database operations tasks. Core capabilities include search and retrieval. Key tools: discover_collections, search, search_collection.",
+    "reasoning": "Primary label \"Database Operations\" assigned based on strong keyword matches in tool names and descriptions: collection.",
+    "primary_label": "Database Operations",
     "secondary_labels": [
-      "Browser Automation",
-      "Data Analysis & Processing",
-      "Development Tools"
+      "Web Search & Research",
+      "Data Analysis & Processing"
     ],
-    "custom_label": "Web Search & Research - Ragora",
+    "custom_label": "Search - Ragora",
     "is_connected": true,
     "is_remote_tool_valid": true,
     "featured_server": false
@@ -20,7 +19,7 @@
     "usage_count": "10",
     "original_file": "tools.json#195",
     "mode": "gateway",
-    "timestamp": 1772871482,
+    "timestamp": 1772876338,
     "remote_server_response": {
       "url": "https://mcp.ragora.app/mcp",
       "is_success": true,
@@ -184,7 +183,7 @@
       "id": 195,
       "name": "Ragora",
       "author": "",
-      "overview": "Ragora - Web Search & Research MCP server with 3 tools.",
+      "overview": "Ragora - Database Operations server with 3 tools. The MCP Server \"Ragora\" provides 3 tools focused on database operations tasks. Core capabilities inc",
       "repository_url": "",
       "homepage": "https://mcp.ragora.app/mcp",
       "remote_or_local": "Remote",
@@ -192,10 +191,14 @@
       "usage_count": "10",
       "success_rate": "100%",
       "tags": [
-        "web-search-research"
+        "database-operations",
+        "web-search-research",
+        "data-analysis-processing"
       ],
       "categories": [
-        "web search & research"
+        "database operations",
+        "web search & research",
+        "data analysis & processing"
       ],
       "tools_count": 3,
       "tools": [
@@ -350,7 +353,7 @@
       "python_sdk_config": "{\"debug\": false}"
     },
     "source_filename": "0195.Ragora_labeled.json",
-    "processed_timestamp": 1772871482,
+    "processed_timestamp": 1772876338,
     "processing_mode": "gateway",
     "rank": 196
   }

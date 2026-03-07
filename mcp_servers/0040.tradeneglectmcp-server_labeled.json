@@ -1,15 +1,13 @@
 {
   "labels": {
-    "analysis": "The MCP Server \"trade.neglect/mcp-server\" provides 20 tools for development tools tasks.",
-    "reasoning": "Primary label \"Development Tools\" assigned based on tool names and descriptions.",
-    "primary_label": "Development Tools",
+    "analysis": "The MCP Server \"trade.neglect/mcp-server\" provides 20 tools focused on cryptocurrency & blockchain tasks. Core capabilities include analysis and computation, creation and generation, data access and reading, search and retrieval. Key tools: get-token-metadata, get-token-marketdata, get-token-holders, get-trending-tokens, search-tokens.",
+    "reasoning": "Primary label \"Cryptocurrency & Blockchain\" assigned based on strong keyword matches in tool names and descriptions: token, wallet.",
+    "primary_label": "Cryptocurrency & Blockchain",
     "secondary_labels": [
-      "API Integration",
-      "DevOps",
       "Data Analysis & Processing",
-      "Financial Services"
+      "Security & Authentication"
     ],
-    "custom_label": "Development Tools - trade.neglect/mcp-server",
+    "custom_label": "Data Access & Deployment - trade.neglect/mcp-server",
     "is_connected": true,
     "is_remote_tool_valid": true,
     "featured_server": true
@@ -21,7 +19,7 @@
     "usage_count": "8,000",
     "original_file": "tools.json#40",
     "mode": "gateway",
-    "timestamp": 1772871481,
+    "timestamp": 1772876337,
     "remote_server_response": {
       "url": "https://api.neglect.trade/mcp",
       "is_success": true,
@@ -718,7 +716,7 @@
       "id": 40,
       "name": "trade.neglect/mcp-server",
       "author": "",
-      "overview": "trade.neglect/mcp-server - Development Tools MCP server with 20 tools.",
+      "overview": "trade.neglect/mcp-server - Cryptocurrency & Blockchain server with 20 tools. The MCP Server \"trade.neglect/mcp-server\" provides 20 tools focused on cryptocurrency & blockchain t",
       "repository_url": "",
       "homepage": "https://api.neglect.trade/mcp",
       "remote_or_local": "Remote",
@@ -726,10 +724,14 @@
       "usage_count": "8,000",
       "success_rate": "100%",
       "tags": [
-        "development-tools"
+        "cryptocurrency-blockchain",
+        "data-analysis-processing",
+        "security-authentication"
       ],
       "categories": [
-        "development tools"
+        "cryptocurrency & blockchain",
+        "data analysis & processing",
+        "security & authentication"
       ],
       "tools_count": 20,
       "tools": [
@@ -1400,7 +1402,7 @@
       "python_sdk_config": "{\"debug\": false}"
     },
     "source_filename": "0040.tradeneglectmcp-server_labeled.json",
-    "processed_timestamp": 1772871481,
+    "processed_timestamp": 1772876337,
     "processing_mode": "gateway",
     "rank": 41
   }

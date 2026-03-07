@@ -1,0 +1,171 @@
+{
+  "labels": {
+    "analysis": "The MCP Server, \"Databutton,\" appears to be focused on application development, particularly in building and deploying business applications. The description mentions generating initial app plans and creating foundations using React and Python APIs, suggesting a toolkit for developers. The sole available tool, \"submit_app_requirements,\" indicates that the server helps users define and manage application requirements, likely contributing to faster and more streamlined development processes.",
+    "reasoning": "The primary label \"Development Tools\" was chosen because the server's core functionality revolves around assisting in application development, particularly with front-end (React) and back-end (Python APIs) technologies. The secondary label \"AI/ML Tools\" was considered due to the mention of \"AI agent\" in the description, which might imply automated or intelligent components in the app-building process. However, since it's not specified, this might not be accurate. No custom label is needed as the server's functionality aligns well with pre-existing categories.",
+    "primary_label": "Development Tools",
+    "secondary_labels": [
+      "AI/ML Tools"
+    ],
+    "custom_label": null,
+    "is_connected": true,
+    "is_remote_tool_valid": true,
+    "featured_server": false
+  },
+  "metadata": {
+    "server_id": 321,
+    "server_name": "Databutton",
+    "rank_by_usage": 679,
+    "usage_count": "12",
+    "original_file": "toucan_live#@databutton/databutton-mcp",
+    "mode": "toucan",
+    "timestamp": 1772876338,
+    "remote_server_response": {
+      "url": "https://server.smithery.ai/@databutton/databutton-mcp/mcp",
+      "is_success": true,
+      "error": null,
+      "tools": [
+        {
+          "name": "submit_app_requirements",
+          "description": "Submit app requirements",
+          "input_schema": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "The name of the app"
+              },
+              "pitch": {
+                "type": "string",
+                "description": "The pitch for the app"
+              },
+              "spec": {
+                "type": "object",
+                "properties": {
+                  "description": {
+                    "type": "string",
+                    "description": "The app's specifications given in no more than 4-5 paragraphs"
+                  },
+                  "targetAudience": {
+                    "type": "string",
+                    "description": "The app's target audience"
+                  },
+                  "design": {
+                    "type": "string",
+                    "description": "The app's design"
+                  },
+                  "typography": {
+                    "type": "string",
+                    "description": "The app's typography"
+                  }
+                },
+                "required": [
+                  "description",
+                  "targetAudience",
+                  "design",
+                  "typography"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "required": [
+              "name",
+              "pitch",
+              "spec"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "annotations": null
+        }
+      ],
+      "tool_count": 1,
+      "tool_names": [
+        "submit_app_requirements"
+      ]
+    },
+    "server_info_crawled": {
+      "id": 321,
+      "name": "Databutton",
+      "author": "",
+      "overview": "Build and deploy beautiful business apps effortlessly with our AI agent. Generate initial app plans and create a solid foundation for your projects using React and Python APIs. Streamline your development process and unleash unbounded complexity with ease.",
+      "repository_url": "",
+      "homepage": "https://server.smithery.ai/@databutton/databutton-mcp/mcp",
+      "remote_or_local": "Remote",
+      "license": "",
+      "usage_count": "12",
+      "success_rate": "Not available",
+      "tags": [
+        "search",
+        "web",
+        "api",
+        "mcp"
+      ],
+      "categories": [
+        "search",
+        "api"
+      ],
+      "tools_count": 1,
+      "tools": [
+        {
+          "name": "submit_app_requirements",
+          "description": "Submit app requirements",
+          "input_schema": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "The name of the app"
+              },
+              "pitch": {
+                "type": "string",
+                "description": "The pitch for the app"
+              },
+              "spec": {
+                "type": "object",
+                "properties": {
+                  "description": {
+                    "type": "string",
+                    "description": "The app's specifications given in no more than 4-5 paragraphs"
+                  },
+                  "targetAudience": {
+                    "type": "string",
+                    "description": "The app's target audience"
+                  },
+                  "design": {
+                    "type": "string",
+                    "description": "The app's design"
+                  },
+                  "typography": {
+                    "type": "string",
+                    "description": "The app's typography"
+                  }
+                },
+                "required": [
+                  "description",
+                  "targetAudience",
+                  "design",
+                  "typography"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "required": [
+              "name",
+              "pitch",
+              "spec"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "annotations": null
+        }
+      ],
+      "python_sdk_url": "https://server.smithery.ai/@databutton/databutton-mcp/mcp",
+      "python_sdk_config": "{\"debug\": false}"
+    },
+    "source_filename": "0321.Databutton_labeled.json",
+    "processed_timestamp": 1772876338,
+    "processing_mode": "toucan",
+    "rank": 679
+  }
+}

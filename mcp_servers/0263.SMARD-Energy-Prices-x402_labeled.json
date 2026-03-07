@@ -1,13 +1,9 @@
 {
   "labels": {
-    "analysis": "The MCP Server \"SMARD Energy Prices (x402)\" provides 1 tools for development tools tasks.",
-    "reasoning": "Primary label \"Development Tools\" assigned based on tool names and descriptions.",
+    "analysis": "The MCP Server \"SMARD Energy Prices (x402)\" provides 1 tools focused on development tools tasks. Core capabilities include data access and reading. Key tools: smard_prices.",
+    "reasoning": "Default category assigned; no strong keyword matches found for smard energy prices (x402).",
     "primary_label": "Development Tools",
-    "secondary_labels": [
-      "API Integration",
-      "DevOps",
-      "E-Commerce"
-    ],
+    "secondary_labels": [],
     "custom_label": "Development Tools - SMARD Energy Prices (x402)",
     "is_connected": true,
     "is_remote_tool_valid": true,
@@ -20,7 +16,7 @@
     "usage_count": "10",
     "original_file": "tools.json#263",
     "mode": "gateway",
-    "timestamp": 1772871482,
+    "timestamp": 1772876338,
     "remote_server_response": {
       "url": "https://smard-energy-prices-x402.favo.workers.dev/mcp",
       "is_success": true,
@@ -61,7 +57,7 @@
       "id": 263,
       "name": "SMARD Energy Prices (x402)",
       "author": "",
-      "overview": "SMARD Energy Prices (x402) - Development Tools MCP server with 1 tools.",
+      "overview": "SMARD Energy Prices (x402) - Development Tools server with 1 tools. The MCP Server \"SMARD Energy Prices (x402)\" provides 1 tools focused on development tools tasks. Cor",
       "repository_url": "",
       "homepage": "https://smard-energy-prices-x402.favo.workers.dev/mcp",
       "remote_or_local": "Remote",
@@ -106,7 +102,7 @@
       "python_sdk_config": "{\"debug\": false}"
     },
     "source_filename": "0263.SMARD-Energy-Prices-x402_labeled.json",
-    "processed_timestamp": 1772871482,
+    "processed_timestamp": 1772876338,
     "processing_mode": "gateway",
     "rank": 264
   }

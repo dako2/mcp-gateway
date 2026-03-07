@@ -9,7 +9,6 @@ It extracts reasoning and scores for the quality dimensions and computes tool ca
 3. Tool Call Accuracy: Desired tools used percentage and order correctness
 """
 
-import torch
 import os
 import sys
 import argparse

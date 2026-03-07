@@ -1,14 +1,13 @@
 {
   "labels": {
-    "analysis": "The MCP Server \"co.heyspark.mcp/server\" provides 4 tools for maps & location tasks.",
-    "reasoning": "Primary label \"Maps & Location\" assigned based on tool names and descriptions.",
-    "primary_label": "Maps & Location",
+    "analysis": "The MCP Server \"co.heyspark.mcp/server\" provides 4 tools focused on web search & research tasks. Core capabilities include creation and generation, data access and reading, search and retrieval. Key tools: search_businesses, get_business_details, get_reviews_summary, list_categories.",
+    "reasoning": "Primary label \"Web Search & Research\" assigned based on strong keyword matches in tool names and descriptions: search.",
+    "primary_label": "Web Search & Research",
     "secondary_labels": [
-      "API Integration",
-      "Development Tools",
-      "Web Search & Research"
+      "Maps & Location",
+      "Gaming"
     ],
-    "custom_label": "Maps & Location - co.heyspark.mcp/server",
+    "custom_label": "Data Access & Search - co.heyspark.mcp/server",
     "is_connected": true,
     "is_remote_tool_valid": true,
     "featured_server": false
@@ -20,7 +19,7 @@
     "usage_count": "10",
     "original_file": "tools.json#185",
     "mode": "gateway",
-    "timestamp": 1772871482,
+    "timestamp": 1772876337,
     "remote_server_response": {
       "url": "https://mcp.heyspark.co/mcp",
       "is_success": true,
@@ -167,7 +166,7 @@
       "id": 185,
       "name": "co.heyspark.mcp/server",
       "author": "",
-      "overview": "co.heyspark.mcp/server - Maps & Location MCP server with 4 tools.",
+      "overview": "co.heyspark.mcp/server - Web Search & Research server with 4 tools. The MCP Server \"co.heyspark.mcp/server\" provides 4 tools focused on web search & research tasks. Cor",
       "repository_url": "",
       "homepage": "https://mcp.heyspark.co/mcp",
       "remote_or_local": "Remote",
@@ -175,10 +174,14 @@
       "usage_count": "10",
       "success_rate": "100%",
       "tags": [
-        "maps-location"
+        "web-search-research",
+        "maps-location",
+        "gaming"
       ],
       "categories": [
-        "maps & location"
+        "web search & research",
+        "maps & location",
+        "gaming"
       ],
       "tools_count": 4,
       "tools": [
@@ -315,7 +318,7 @@
       "python_sdk_config": "{\"debug\": false}"
     },
     "source_filename": "0185.coheysparkmcpserver_labeled.json",
-    "processed_timestamp": 1772871482,
+    "processed_timestamp": 1772876337,
     "processing_mode": "gateway",
     "rank": 186
   }

@@ -1,14 +1,13 @@
 {
   "labels": {
-    "analysis": "The MCP Server \"io.github.timescale/pg-aiguide\" provides 2 tools for data analysis & processing tasks.",
-    "reasoning": "Primary label \"Data Analysis & Processing\" assigned based on tool names and descriptions.",
-    "primary_label": "Data Analysis & Processing",
+    "analysis": "The MCP Server \"io.github.timescale/pg-aiguide\" provides 2 tools focused on database operations tasks. Core capabilities include creation and generation, search and retrieval. Key tools: search_docs, view_skill.",
+    "reasoning": "Primary label \"Database Operations\" assigned based on strong keyword matches in tool names and descriptions: database, postgres, table, migration.",
+    "primary_label": "Database Operations",
     "secondary_labels": [
-      "Database Operations",
-      "AI/ML Tools",
-      "Development Tools"
+      "Web Search & Research",
+      "Data Analysis & Processing"
     ],
-    "custom_label": "Data Analysis & Processing - io.github.timescale/pg-aiguide",
+    "custom_label": "Search - io.github.timescale/pg-aiguide",
     "is_connected": true,
     "is_remote_tool_valid": true,
     "featured_server": false
@@ -20,7 +19,7 @@
     "usage_count": "10",
     "original_file": "tools.json#226",
     "mode": "gateway",
-    "timestamp": 1772871482,
+    "timestamp": 1772876338,
     "remote_server_response": {
       "url": "https://mcp.tigerdata.com/docs",
       "is_success": true,
@@ -220,7 +219,7 @@
       "id": 226,
       "name": "io.github.timescale/pg-aiguide",
       "author": "",
-      "overview": "io.github.timescale/pg-aiguide - Data Analysis & Processing MCP server with 2 tools.",
+      "overview": "io.github.timescale/pg-aiguide - Database Operations server with 2 tools. The MCP Server \"io.github.timescale/pg-aiguide\" provides 2 tools focused on database operations task",
       "repository_url": "",
       "homepage": "https://mcp.tigerdata.com/docs",
       "remote_or_local": "Remote",
@@ -228,9 +227,13 @@
       "usage_count": "10",
       "success_rate": "100%",
       "tags": [
+        "database-operations",
+        "web-search-research",
         "data-analysis-processing"
       ],
       "categories": [
+        "database operations",
+        "web search & research",
         "data analysis & processing"
       ],
       "tools_count": 2,
@@ -423,7 +426,7 @@
       "python_sdk_config": "{\"debug\": false}"
     },
     "source_filename": "0226.iogithubtimescalepg-aiguide_labeled.json",
-    "processed_timestamp": 1772871482,
+    "processed_timestamp": 1772876338,
     "processing_mode": "gateway",
     "rank": 227
   }

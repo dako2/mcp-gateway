@@ -1,14 +1,13 @@
 {
   "labels": {
-    "analysis": "The MCP Server \"CrabbitMQ\" provides 6 tools for e-commerce tasks.",
-    "reasoning": "Primary label \"E-Commerce\" assigned based on tool names and descriptions.",
-    "primary_label": "E-Commerce",
+    "analysis": "The MCP Server \"CrabbitMQ\" provides 6 tools focused on communication tools tasks. Core capabilities include data access and reading, deletion and cleanup, modification and updates. Key tools: list_queues, create_queue, push_message, poll_messages, delete_message.",
+    "reasoning": "Primary label \"Communication Tools\" assigned based on strong keyword matches in tool names and descriptions: message.",
+    "primary_label": "Communication Tools",
     "secondary_labels": [
-      "Financial Services",
       "Cryptocurrency & Blockchain",
-      "Communication Tools"
+      "E-Commerce"
     ],
-    "custom_label": "E-Commerce - CrabbitMQ",
+    "custom_label": "Data Access & Generation - CrabbitMQ",
     "is_connected": true,
     "is_remote_tool_valid": true,
     "featured_server": true
@@ -20,7 +19,7 @@
     "usage_count": "100",
     "original_file": "tools.json#134",
     "mode": "gateway",
-    "timestamp": 1772871481,
+    "timestamp": 1772876337,
     "remote_server_response": {
       "url": "https://crabbitmq.com/mcp",
       "is_success": true,
@@ -179,7 +178,7 @@
       "id": 134,
       "name": "CrabbitMQ",
       "author": "",
-      "overview": "CrabbitMQ - E-Commerce MCP server with 6 tools.",
+      "overview": "CrabbitMQ - Communication Tools server with 6 tools. The MCP Server \"CrabbitMQ\" provides 6 tools focused on communication tools tasks. Core capabilities ",
       "repository_url": "",
       "homepage": "https://crabbitmq.com/mcp",
       "remote_or_local": "Remote",
@@ -187,9 +186,13 @@
       "usage_count": "100",
       "success_rate": "100%",
       "tags": [
+        "communication-tools",
+        "cryptocurrency-blockchain",
         "e-commerce"
       ],
       "categories": [
+        "communication tools",
+        "cryptocurrency & blockchain",
         "e-commerce"
       ],
       "tools_count": 6,
@@ -337,7 +340,7 @@
       "python_sdk_config": "{\"debug\": false}"
     },
     "source_filename": "0134.CrabbitMQ_labeled.json",
-    "processed_timestamp": 1772871481,
+    "processed_timestamp": 1772876337,
     "processing_mode": "gateway",
     "rank": 135
   }

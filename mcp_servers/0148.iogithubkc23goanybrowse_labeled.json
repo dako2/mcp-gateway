@@ -1,14 +1,13 @@
 {
   "labels": {
-    "analysis": "The MCP Server \"io.github.kc23go/anybrowse\" provides 5 tools for web search & research tasks.",
-    "reasoning": "Primary label \"Web Search & Research\" assigned based on tool names and descriptions.",
+    "analysis": "The MCP Server \"io.github.kc23go/anybrowse\" provides 5 tools focused on web search & research tasks. Core capabilities include data access and reading, search and retrieval. Key tools: batch_scrape, extract, scrape, crawl, search.",
+    "reasoning": "Primary label \"Web Search & Research\" assigned based on strong keyword matches in tool names and descriptions: search, crawl, scrape, browse.",
     "primary_label": "Web Search & Research",
     "secondary_labels": [
-      "Browser Automation",
       "Data Analysis & Processing",
-      "Development Tools"
+      "AI/ML Tools"
     ],
-    "custom_label": "Web Search & Research - io.github.kc23go/anybrowse",
+    "custom_label": "Search - io.github.kc23go/anybrowse",
     "is_connected": true,
     "is_remote_tool_valid": true,
     "featured_server": true
@@ -20,7 +19,7 @@
     "usage_count": "100",
     "original_file": "tools.json#148",
     "mode": "gateway",
-    "timestamp": 1772871481,
+    "timestamp": 1772876337,
     "remote_server_response": {
       "url": "https://anybrowse.dev/mcp",
       "is_success": true,
@@ -165,7 +164,7 @@
       "id": 148,
       "name": "io.github.kc23go/anybrowse",
       "author": "",
-      "overview": "io.github.kc23go/anybrowse - Web Search & Research MCP server with 5 tools.",
+      "overview": "io.github.kc23go/anybrowse - Web Search & Research server with 5 tools. The MCP Server \"io.github.kc23go/anybrowse\" provides 5 tools focused on web search & research tasks.",
       "repository_url": "",
       "homepage": "https://anybrowse.dev/mcp",
       "remote_or_local": "Remote",
@@ -173,10 +172,14 @@
       "usage_count": "100",
       "success_rate": "100%",
       "tags": [
-        "web-search-research"
+        "web-search-research",
+        "data-analysis-processing",
+        "ai/ml-tools"
       ],
       "categories": [
-        "web search & research"
+        "web search & research",
+        "data analysis & processing",
+        "ai/ml tools"
       ],
       "tools_count": 5,
       "tools": [
@@ -310,7 +313,7 @@
       "python_sdk_config": "{\"debug\": false}"
     },
     "source_filename": "0148.iogithubkc23goanybrowse_labeled.json",
-    "processed_timestamp": 1772871481,
+    "processed_timestamp": 1772876337,
     "processing_mode": "gateway",
     "rank": 149
   }

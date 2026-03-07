@@ -1,15 +1,13 @@
 {
   "labels": {
-    "analysis": "The MCP Server \"app.himalayas/mcp\" provides 41 tools for development tools tasks.",
-    "reasoning": "Primary label \"Development Tools\" assigned based on tool names and descriptions.",
-    "primary_label": "Development Tools",
+    "analysis": "The MCP Server \"app.himalayas/mcp\" provides 41 tools focused on web search & research tasks. Core capabilities include data access and reading, deletion and cleanup, modification and updates, search and retrieval. Key tools: get_jobs, search_jobs, get_job_details, get_related_jobs, get_companies.",
+    "reasoning": "Primary label \"Web Search & Research\" assigned based on strong keyword matches in tool names and descriptions: search, browse.",
+    "primary_label": "Web Search & Research",
     "secondary_labels": [
-      "API Integration",
-      "DevOps",
-      "Web Search & Research",
-      "Data Analysis & Processing"
+      "Data Analysis & Processing",
+      "Education"
     ],
-    "custom_label": "Development Tools - app.himalayas/mcp",
+    "custom_label": "Data Access & Search - app.himalayas/mcp",
     "is_connected": true,
     "is_remote_tool_valid": true,
     "featured_server": true
@@ -21,7 +19,7 @@
     "usage_count": "9,000",
     "original_file": "tools.json#20",
     "mode": "gateway",
-    "timestamp": 1772871481,
+    "timestamp": 1772876337,
     "remote_server_response": {
       "url": "https://mcp.himalayas.app/mcp",
       "is_success": true,
@@ -1723,7 +1721,7 @@
       "id": 20,
       "name": "app.himalayas/mcp",
       "author": "",
-      "overview": "app.himalayas/mcp - Development Tools MCP server with 41 tools.",
+      "overview": "app.himalayas/mcp - Web Search & Research server with 41 tools. The MCP Server \"app.himalayas/mcp\" provides 41 tools focused on web search & research tasks. Core ca",
       "repository_url": "",
       "homepage": "https://mcp.himalayas.app/mcp",
       "remote_or_local": "Remote",
@@ -1731,10 +1729,14 @@
       "usage_count": "9,000",
       "success_rate": "100%",
       "tags": [
-        "development-tools"
+        "web-search-research",
+        "data-analysis-processing",
+        "education"
       ],
       "categories": [
-        "development tools"
+        "web search & research",
+        "data analysis & processing",
+        "education"
       ],
       "tools_count": 41,
       "tools": [
@@ -3389,7 +3391,7 @@
       "python_sdk_config": "{\"debug\": false}"
     },
     "source_filename": "0020.apphimalayasmcp_labeled.json",
-    "processed_timestamp": 1772871481,
+    "processed_timestamp": 1772876337,
     "processing_mode": "gateway",
     "rank": 21
   }

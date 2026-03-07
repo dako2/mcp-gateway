@@ -1,15 +1,13 @@
 {
   "labels": {
-    "analysis": "The MCP Server \"PlanExe\" provides 9 tools for development tools tasks.",
-    "reasoning": "Primary label \"Development Tools\" assigned based on tool names and descriptions.",
-    "primary_label": "Development Tools",
+    "analysis": "The MCP Server \"PlanExe\" provides 9 tools focused on ai/ml tools tasks. Core capabilities include creation and generation, data access and reading, search and retrieval. Key tools: example_plans, example_prompts, model_profiles, plan_create, plan_status.",
+    "reasoning": "Primary label \"AI/ML Tools\" assigned based on strong keyword matches in tool names and descriptions: model_, generat, prompt.",
+    "primary_label": "AI/ML Tools",
     "secondary_labels": [
-      "API Integration",
-      "DevOps",
-      "Data Analysis & Processing",
-      "AI/ML Tools"
+      "Development Tools",
+      "Data Analysis & Processing"
     ],
-    "custom_label": "Development Tools - PlanExe",
+    "custom_label": "Data Access & Generation - PlanExe",
     "is_connected": true,
     "is_remote_tool_valid": true,
     "featured_server": true
@@ -21,7 +19,7 @@
     "usage_count": "140",
     "original_file": "tools.json#93",
     "mode": "gateway",
-    "timestamp": 1772871481,
+    "timestamp": 1772876337,
     "remote_server_response": {
       "url": "https://mcp.planexe.org/mcp",
       "is_success": true,
@@ -1044,7 +1042,7 @@
       "id": 93,
       "name": "PlanExe",
       "author": "",
-      "overview": "PlanExe - Development Tools MCP server with 9 tools.",
+      "overview": "PlanExe - AI/ML Tools server with 9 tools. The MCP Server \"PlanExe\" provides 9 tools focused on ai/ml tools tasks. Core capabilities include cr",
       "repository_url": "",
       "homepage": "https://mcp.planexe.org/mcp",
       "remote_or_local": "Remote",
@@ -1052,10 +1050,14 @@
       "usage_count": "140",
       "success_rate": "100%",
       "tags": [
-        "development-tools"
+        "ai/ml-tools",
+        "development-tools",
+        "data-analysis-processing"
       ],
       "categories": [
-        "development tools"
+        "ai/ml tools",
+        "development tools",
+        "data analysis & processing"
       ],
       "tools_count": 9,
       "tools": [
@@ -2063,7 +2065,7 @@
       "python_sdk_config": "{\"debug\": false}"
     },
     "source_filename": "0093.PlanExe_labeled.json",
-    "processed_timestamp": 1772871481,
+    "processed_timestamp": 1772876337,
     "processing_mode": "gateway",
     "rank": 94
   }

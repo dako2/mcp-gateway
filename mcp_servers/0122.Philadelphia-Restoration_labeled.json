@@ -1,15 +1,13 @@
 {
   "labels": {
-    "analysis": "The MCP Server \"Philadelphia Restoration\" provides 7 tools for development tools tasks.",
-    "reasoning": "Primary label \"Development Tools\" assigned based on tool names and descriptions.",
-    "primary_label": "Development Tools",
+    "analysis": "The MCP Server \"Philadelphia Restoration\" provides 7 tools focused on web search & research tasks. Core capabilities include search and retrieval. Key tools: assess_damage, check_insurance_coverage, estimate_cost, get_emergency_steps, get_local_info.",
+    "reasoning": "Primary label \"Web Search & Research\" assigned based on strong keyword matches in tool names and descriptions: search.",
+    "primary_label": "Web Search & Research",
     "secondary_labels": [
-      "API Integration",
-      "DevOps",
-      "Financial Services",
-      "Education"
+      "Development Tools",
+      "File Management"
     ],
-    "custom_label": "Development Tools - Philadelphia Restoration",
+    "custom_label": "Data Access & Search - Philadelphia Restoration",
     "is_connected": true,
     "is_remote_tool_valid": true,
     "featured_server": true
@@ -21,7 +19,7 @@
     "usage_count": "100",
     "original_file": "tools.json#122",
     "mode": "gateway",
-    "timestamp": 1772871481,
+    "timestamp": 1772876337,
     "remote_server_response": {
       "url": "https://mcp.philadelphiarestoration.org/mcp",
       "is_success": true,
@@ -257,7 +255,7 @@
       "id": 122,
       "name": "Philadelphia Restoration",
       "author": "",
-      "overview": "Philadelphia Restoration - Development Tools MCP server with 7 tools.",
+      "overview": "Philadelphia Restoration - Web Search & Research server with 7 tools. The MCP Server \"Philadelphia Restoration\" provides 7 tools focused on web search & research tasks. C",
       "repository_url": "",
       "homepage": "https://mcp.philadelphiarestoration.org/mcp",
       "remote_or_local": "Remote",
@@ -265,10 +263,14 @@
       "usage_count": "100",
       "success_rate": "100%",
       "tags": [
-        "development-tools"
+        "web-search-research",
+        "development-tools",
+        "file-management"
       ],
       "categories": [
-        "development tools"
+        "web search & research",
+        "development tools",
+        "file management"
       ],
       "tools_count": 7,
       "tools": [
@@ -491,7 +493,7 @@
       "python_sdk_config": "{\"debug\": false}"
     },
     "source_filename": "0122.Philadelphia-Restoration_labeled.json",
-    "processed_timestamp": 1772871481,
+    "processed_timestamp": 1772876337,
     "processing_mode": "gateway",
     "rank": 123
   }

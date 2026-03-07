@@ -1,15 +1,12 @@
 {
   "labels": {
-    "analysis": "The MCP Server \"MCP Registry Server\" provides 3 tools for development tools tasks.",
-    "reasoning": "Primary label \"Development Tools\" assigned based on tool names and descriptions.",
-    "primary_label": "Development Tools",
+    "analysis": "The MCP Server \"MCP Registry Server\" provides 3 tools focused on news & media tasks. Core capabilities include data access and reading. Key tools: getV01Servers, getV01ServersServerNameVersions, getV01ServersServerNameVersionsVersion.",
+    "reasoning": "Primary label \"News & Media\" assigned based on strong keyword matches in tool names and descriptions: rss.",
+    "primary_label": "News & Media",
     "secondary_labels": [
-      "API Integration",
-      "DevOps",
-      "AI/ML Tools",
-      "E-Commerce"
+      "Development Tools"
     ],
-    "custom_label": "Development Tools - MCP Registry Server",
+    "custom_label": "Data Access - MCP Registry Server",
     "is_connected": true,
     "is_remote_tool_valid": true,
     "featured_server": false
@@ -21,7 +18,7 @@
     "usage_count": "10",
     "original_file": "tools.json#203",
     "mode": "gateway",
-    "timestamp": 1772871482,
+    "timestamp": 1772876338,
     "remote_server_response": {
       "url": "https://registry.run.mcp.com.ai/mcp",
       "is_success": true,
@@ -115,7 +112,7 @@
       "id": 203,
       "name": "MCP Registry Server",
       "author": "",
-      "overview": "MCP Registry Server - Development Tools MCP server with 3 tools.",
+      "overview": "MCP Registry Server - News & Media server with 3 tools. The MCP Server \"MCP Registry Server\" provides 3 tools focused on news & media tasks. Core capabiliti",
       "repository_url": "",
       "homepage": "https://registry.run.mcp.com.ai/mcp",
       "remote_or_local": "Remote",
@@ -123,9 +120,11 @@
       "usage_count": "10",
       "success_rate": "100%",
       "tags": [
+        "news-media",
         "development-tools"
       ],
       "categories": [
+        "news & media",
         "development tools"
       ],
       "tools_count": 3,
@@ -211,7 +210,7 @@
       "python_sdk_config": "{\"debug\": false}"
     },
     "source_filename": "0203.MCP-Registry-Server_labeled.json",
-    "processed_timestamp": 1772871482,
+    "processed_timestamp": 1772876338,
     "processing_mode": "gateway",
     "rank": 204
   }

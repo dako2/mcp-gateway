@@ -1,14 +1,13 @@
 {
   "labels": {
-    "analysis": "The MCP Server \"myagentinbox\" provides 4 tools for communication tools tasks.",
-    "reasoning": "Primary label \"Communication Tools\" assigned based on tool names and descriptions.",
+    "analysis": "The MCP Server \"myagentinbox\" provides 4 tools focused on communication tools tasks. Core capabilities include creation and generation, data access and reading. Key tools: create_inbox, check_inbox, read_message, download_attachment.",
+    "reasoning": "Primary label \"Communication Tools\" assigned based on strong keyword matches in tool names and descriptions: email, message, inbox, mail.",
     "primary_label": "Communication Tools",
     "secondary_labels": [
-      "Social Media",
-      "AI/ML Tools",
-      "File Management"
+      "File Management",
+      "AI/ML Tools"
     ],
-    "custom_label": "Communication Tools - myagentinbox",
+    "custom_label": "Generation - myagentinbox",
     "is_connected": true,
     "is_remote_tool_valid": true,
     "featured_server": false
@@ -20,7 +19,7 @@
     "usage_count": "10",
     "original_file": "tools.json#184",
     "mode": "gateway",
-    "timestamp": 1772871482,
+    "timestamp": 1772876337,
     "remote_server_response": {
       "url": "https://myagentinbox.com/mcp",
       "is_success": true,
@@ -154,7 +153,7 @@
       "id": 184,
       "name": "myagentinbox",
       "author": "",
-      "overview": "myagentinbox - Communication Tools MCP server with 4 tools.",
+      "overview": "myagentinbox - Communication Tools server with 4 tools. The MCP Server \"myagentinbox\" provides 4 tools focused on communication tools tasks. Core capabiliti",
       "repository_url": "",
       "homepage": "https://myagentinbox.com/mcp",
       "remote_or_local": "Remote",
@@ -162,10 +161,14 @@
       "usage_count": "10",
       "success_rate": "100%",
       "tags": [
-        "communication-tools"
+        "communication-tools",
+        "file-management",
+        "ai/ml-tools"
       ],
       "categories": [
-        "communication tools"
+        "communication tools",
+        "file management",
+        "ai/ml tools"
       ],
       "tools_count": 4,
       "tools": [
@@ -289,7 +292,7 @@
       "python_sdk_config": "{\"debug\": false}"
     },
     "source_filename": "0184.myagentinbox_labeled.json",
-    "processed_timestamp": 1772871482,
+    "processed_timestamp": 1772876337,
     "processing_mode": "gateway",
     "rank": 185
   }

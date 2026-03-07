@@ -1,13 +1,13 @@
 {
   "labels": {
-    "analysis": "The MCP Server \"Moneychoice_Mcp\" provides 10 tools for financial services tasks.",
-    "reasoning": "Primary label \"Financial Services\" assigned based on tool names and descriptions.",
-    "primary_label": "Financial Services",
+    "analysis": "The MCP Server \"Moneychoice_Mcp\" provides 10 tools focused on data analysis & processing tasks. Core capabilities include data access and reading. Key tools: forecast_commodities, forecast_currency, forecast_equities, forecast_gdp, forecast_inflation.",
+    "reasoning": "Primary label \"Data Analysis & Processing\" assigned based on strong keyword matches in tool names and descriptions: data, forecast_.",
+    "primary_label": "Data Analysis & Processing",
     "secondary_labels": [
-      "E-Commerce",
-      "Development Tools"
+      "Financial Services",
+      "Gaming"
     ],
-    "custom_label": "Financial Services - Moneychoice_Mcp",
+    "custom_label": "Data Analysis & Processing - Moneychoice_Mcp",
     "is_connected": true,
     "is_remote_tool_valid": true,
     "featured_server": true
@@ -19,7 +19,7 @@
     "usage_count": "260",
     "original_file": "tools.json#87",
     "mode": "gateway",
-    "timestamp": 1772871481,
+    "timestamp": 1772876337,
     "remote_server_response": {
       "url": "https://api.moneychoice.us/mcp",
       "is_success": true,
@@ -599,7 +599,7 @@
       "id": 87,
       "name": "Moneychoice_Mcp",
       "author": "",
-      "overview": "Moneychoice_Mcp - Financial Services MCP server with 10 tools.",
+      "overview": "Moneychoice_Mcp - Data Analysis & Processing server with 10 tools. The MCP Server \"Moneychoice_Mcp\" provides 10 tools focused on data analysis & processing tasks. Core",
       "repository_url": "",
       "homepage": "https://api.moneychoice.us/mcp",
       "remote_or_local": "Remote",
@@ -607,10 +607,14 @@
       "usage_count": "260",
       "success_rate": "100%",
       "tags": [
-        "financial-services"
+        "data-analysis-processing",
+        "financial-services",
+        "gaming"
       ],
       "categories": [
-        "financial services"
+        "data analysis & processing",
+        "financial services",
+        "gaming"
       ],
       "tools_count": 10,
       "tools": [
@@ -1174,7 +1178,7 @@
       "python_sdk_config": "{\"debug\": false}"
     },
     "source_filename": "0087.Moneychoice_Mcp_labeled.json",
-    "processed_timestamp": 1772871481,
+    "processed_timestamp": 1772876337,
     "processing_mode": "gateway",
     "rank": 88
   }

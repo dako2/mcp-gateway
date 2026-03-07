@@ -1,14 +1,13 @@
 {
   "labels": {
-    "analysis": "The MCP Server \"Bitrix MCP\" provides 5 tools for web search & research tasks.",
-    "reasoning": "Primary label \"Web Search & Research\" assigned based on tool names and descriptions.",
+    "analysis": "The MCP Server \"Bitrix MCP\" provides 5 tools focused on web search & research tasks. Core capabilities include data access and reading, search and retrieval. Key tools: bitrix-search, bitrix-app-development-doc-details, bitrix-method-details, bitrix-article-details, bitrix-event-details.",
+    "reasoning": "Primary label \"Web Search & Research\" assigned based on strong keyword matches in tool names and descriptions: search, fetch.",
     "primary_label": "Web Search & Research",
     "secondary_labels": [
-      "Browser Automation",
-      "Data Analysis & Processing",
-      "AI/ML Tools"
+      "News & Media",
+      "File Management"
     ],
-    "custom_label": "Web Search & Research - Bitrix MCP",
+    "custom_label": "Search - Bitrix MCP",
     "is_connected": true,
     "is_remote_tool_valid": true,
     "featured_server": true
@@ -20,7 +19,7 @@
     "usage_count": "100",
     "original_file": "tools.json#153",
     "mode": "gateway",
-    "timestamp": 1772871481,
+    "timestamp": 1772876337,
     "remote_server_response": {
       "url": "https://mcp-dev.bitrix24.com/mcp",
       "is_success": true,
@@ -246,7 +245,7 @@
       "id": 153,
       "name": "Bitrix MCP",
       "author": "",
-      "overview": "Bitrix MCP - Web Search & Research MCP server with 5 tools.",
+      "overview": "Bitrix MCP - Web Search & Research server with 5 tools. The MCP Server \"Bitrix MCP\" provides 5 tools focused on web search & research tasks. Core capabiliti",
       "repository_url": "",
       "homepage": "https://mcp-dev.bitrix24.com/mcp",
       "remote_or_local": "Remote",
@@ -254,10 +253,14 @@
       "usage_count": "100",
       "success_rate": "100%",
       "tags": [
-        "web-search-research"
+        "web-search-research",
+        "news-media",
+        "file-management"
       ],
       "categories": [
-        "web search & research"
+        "web search & research",
+        "news & media",
+        "file management"
       ],
       "tools_count": 5,
       "tools": [
@@ -472,7 +475,7 @@
       "python_sdk_config": "{\"debug\": false}"
     },
     "source_filename": "0153.Bitrix-MCP_labeled.json",
-    "processed_timestamp": 1772871481,
+    "processed_timestamp": 1772876337,
     "processing_mode": "gateway",
     "rank": 154
   }

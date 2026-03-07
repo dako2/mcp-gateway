@@ -12,7 +12,6 @@ It extracts reasoning and scores for the six quality dimensions:
 6. Stability
 """
 
-import torch
 import os
 import sys
 import argparse

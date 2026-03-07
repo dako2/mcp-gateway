@@ -1,15 +1,12 @@
 {
   "labels": {
-    "analysis": "The MCP Server \"io.github.holomodular/servicebricks\" provides 1 tools for development tools tasks.",
-    "reasoning": "Primary label \"Development Tools\" assigned based on tool names and descriptions.",
-    "primary_label": "Development Tools",
+    "analysis": "The MCP Server \"io.github.holomodular/servicebricks\" provides 1 tools focused on ai/ml tools tasks. Core capabilities include creation and generation. Key tools: generate_microservice_zip.",
+    "reasoning": "Primary label \"AI/ML Tools\" assigned based on strong keyword matches in tool names and descriptions: generat.",
+    "primary_label": "AI/ML Tools",
     "secondary_labels": [
-      "API Integration",
-      "DevOps",
-      "AI/ML Tools",
-      "File Management"
+      "Development Tools"
     ],
-    "custom_label": "Development Tools - io.github.holomodular/servicebricks",
+    "custom_label": "Generation - io.github.holomodular/servicebricks",
     "is_connected": true,
     "is_remote_tool_valid": true,
     "featured_server": false
@@ -21,7 +18,7 @@
     "usage_count": "10",
     "original_file": "tools.json#249",
     "mode": "gateway",
-    "timestamp": 1772871482,
+    "timestamp": 1772876338,
     "remote_server_response": {
       "url": "https://servicebricks.com/api/mcp",
       "is_success": true,
@@ -126,7 +123,7 @@
       "id": 249,
       "name": "io.github.holomodular/servicebricks",
       "author": "",
-      "overview": "io.github.holomodular/servicebricks - Development Tools MCP server with 1 tools.",
+      "overview": "io.github.holomodular/servicebricks - AI/ML Tools server with 1 tools. The MCP Server \"io.github.holomodular/servicebricks\" provides 1 tools focused on ai/ml tools tasks. ",
       "repository_url": "",
       "homepage": "https://servicebricks.com/api/mcp",
       "remote_or_local": "Remote",
@@ -134,9 +131,11 @@
       "usage_count": "10",
       "success_rate": "100%",
       "tags": [
+        "ai/ml-tools",
         "development-tools"
       ],
       "categories": [
+        "ai/ml tools",
         "development tools"
       ],
       "tools_count": 1,
@@ -235,7 +234,7 @@
       "python_sdk_config": "{\"debug\": false}"
     },
     "source_filename": "0249.iogithubholomodularservicebricks_labeled.json",
-    "processed_timestamp": 1772871482,
+    "processed_timestamp": 1772876338,
     "processing_mode": "gateway",
     "rank": 250
   }

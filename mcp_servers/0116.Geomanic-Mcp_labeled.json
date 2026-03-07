@@ -1,15 +1,12 @@
 {
   "labels": {
-    "analysis": "The MCP Server \"Geomanic Mcp\" provides 7 tools for development tools tasks.",
-    "reasoning": "Primary label \"Development Tools\" assigned based on tool names and descriptions.",
-    "primary_label": "Development Tools",
+    "analysis": "The MCP Server \"Geomanic Mcp\" provides 7 tools focused on data analysis & processing tasks. Core capabilities include creation and generation, data access and reading, deletion and cleanup, modification and updates. Key tools: create_waypoint, update_waypoint, delete_waypoint, get_waypoint, list_waypoints.",
+    "reasoning": "Primary label \"Data Analysis & Processing\" assigned based on strong keyword matches in tool names and descriptions: aggregate, statistics.",
+    "primary_label": "Data Analysis & Processing",
     "secondary_labels": [
-      "API Integration",
-      "DevOps",
-      "Maps & Location",
-      "Data Analysis & Processing"
+      "Maps & Location"
     ],
-    "custom_label": "Development Tools - Geomanic Mcp",
+    "custom_label": "Data Access & Generation - Geomanic Mcp",
     "is_connected": true,
     "is_remote_tool_valid": true,
     "featured_server": true
@@ -21,7 +18,7 @@
     "usage_count": "100",
     "original_file": "tools.json#116",
     "mode": "gateway",
-    "timestamp": 1772871481,
+    "timestamp": 1772876337,
     "remote_server_response": {
       "url": "https://geomanic.com/api/v1/mcp",
       "is_success": true,
@@ -223,7 +220,7 @@
       "id": 116,
       "name": "Geomanic Mcp",
       "author": "",
-      "overview": "Geomanic Mcp - Development Tools MCP server with 7 tools.",
+      "overview": "Geomanic Mcp - Data Analysis & Processing server with 7 tools. The MCP Server \"Geomanic Mcp\" provides 7 tools focused on data analysis & processing tasks. Core cap",
       "repository_url": "",
       "homepage": "https://geomanic.com/api/v1/mcp",
       "remote_or_local": "Remote",
@@ -231,10 +228,12 @@
       "usage_count": "100",
       "success_rate": "100%",
       "tags": [
-        "development-tools"
+        "data-analysis-processing",
+        "maps-location"
       ],
       "categories": [
-        "development tools"
+        "data analysis & processing",
+        "maps & location"
       ],
       "tools_count": 7,
       "tools": [
@@ -423,7 +422,7 @@
       "python_sdk_config": "{\"debug\": false}"
     },
     "source_filename": "0116.Geomanic-Mcp_labeled.json",
-    "processed_timestamp": 1772871481,
+    "processed_timestamp": 1772876337,
     "processing_mode": "gateway",
     "rank": 117
   }

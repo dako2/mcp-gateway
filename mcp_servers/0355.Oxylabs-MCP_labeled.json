@@ -1,0 +1,61 @@
+{
+  "labels": {
+    "analysis": "The Oxylabs MCP server is primarily designed for web scraping and content retrieval from various web sources, specifically Google and Amazon. It offers specialized tools for scraping search results, product listings, and detailed product information. The server supports advanced features like geolocation, locale customization, pagination, and different output formats, making it highly versatile for data extraction tasks.",
+    "reasoning": "The primary label \"Browser Automation\" is chosen because the server's core functionality revolves around automated scraping and retrieving content from websites. \"Web Search & Research\" is a secondary label since it includes specialized tools for scraping search results. No custom label is needed as the predefined categories sufficiently cover the server's functionality.",
+    "primary_label": "Browser Automation",
+    "secondary_labels": [
+      "Web Search & Research"
+    ],
+    "custom_label": null,
+    "is_connected": false,
+    "is_remote_tool_valid": false,
+    "featured_server": false
+  },
+  "metadata": {
+    "server_id": 355,
+    "server_name": "Oxylabs MCP",
+    "rank_by_usage": 384,
+    "usage_count": "67",
+    "original_file": "toucan_live#@oxylabs/oxylabs-mcp",
+    "mode": "toucan",
+    "timestamp": 1772876338,
+    "remote_server_response": {
+      "url": "https://server.smithery.ai/@oxylabs/oxylabs-mcp/mcp",
+      "is_success": true,
+      "error": null,
+      "tools": [],
+      "tool_count": 0,
+      "tool_names": []
+    },
+    "server_info_crawled": {
+      "id": 355,
+      "name": "Oxylabs MCP",
+      "author": "",
+      "overview": "Fetch and process content from specified URLs using the Oxylabs Web Scraper API.",
+      "repository_url": "",
+      "homepage": "https://server.smithery.ai/@oxylabs/oxylabs-mcp/mcp",
+      "remote_or_local": "Remote",
+      "license": "",
+      "usage_count": "67",
+      "success_rate": "Not available",
+      "tags": [
+        "search",
+        "web",
+        "api",
+        "mcp"
+      ],
+      "categories": [
+        "search",
+        "api"
+      ],
+      "tools_count": 0,
+      "tools": [],
+      "python_sdk_url": "https://server.smithery.ai/@oxylabs/oxylabs-mcp/mcp",
+      "python_sdk_config": "{\"debug\": false}"
+    },
+    "source_filename": "0355.Oxylabs-MCP_labeled.json",
+    "processed_timestamp": 1772876338,
+    "processing_mode": "toucan",
+    "rank": 384
+  }
+}

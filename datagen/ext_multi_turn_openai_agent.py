@@ -1,4 +1,3 @@
-import torch
 import os
 import sys
 import argparse
@@ -46,13 +45,13 @@ def get_args():
     
     # Multi-turn Settings  
     parser.add_argument("--num_desired_turns", type=int, default=5, help="Number of turns to generate (default: 3)")
-    parser.add_argument("--user_simulation_model", type=str, default="openai/gpt-oss-120b", 
+    parser.add_argument("--user_simulation_model", type=str, default="grok-4-1-fast-reasoning", 
                         help="Model for generating user follow-up queries")
     
     # Agent Completion Settings (passed to completion_openai_agent.py)
-    parser.add_argument("--model_path", type=str, default="openai/gpt-oss-120b",
+    parser.add_argument("--model_path", type=str, default="grok-4-1-fast-reasoning",
                         help="Model path for agent responses")
-    parser.add_argument("--engine", type=str, default="vllm_api", choices=["vllm_api", "openrouter_api", "xai"],
+    parser.add_argument("--engine", type=str, default="xai", choices=["xai", "openrouter_api"],
                         help="Completion engine")
     parser.add_argument("--temperature", type=float, default=1.0, help="Temperature for generation")
     parser.add_argument("--max_tokens", type=int, default=32768, help="Max tokens for generation")
@@ -67,9 +66,8 @@ def get_args():
                         default="", 
                         help="OpenRouter API Key")
     parser.add_argument("--xai_api_key", type=str, default="", help="xAI API Key (for Grok models)")
-    parser.add_argument("--vllm_api_url", type=str, default="http://localhost:8000/v1", 
-                        help="vLLM API URL")
-    parser.add_argument("--vllm_api_key", type=str, default="EMPTY", help="vLLM API Key")
+    parser.add_argument("--vllm_api_url", type=str, default="", help="(unused)")
+    parser.add_argument("--vllm_api_key", type=str, default="", help="(unused)")
     parser.add_argument("--smithery_api_key", type=str, default="", 
                         help="Smithery API Key")
     parser.add_argument("--smithery_profile", type=str, default="", 
@@ -184,18 +182,6 @@ def generate_batch_user_queries(items, turn_number, args, input_file_path):
         completion_cmd.extend([
             '--openrouter_url', args.openrouter_url,
             '--openrouter_api_key', args.openrouter_api_key
-        ])
-    elif args.engine == 'vllm_api':
-        vllm_chat_url = args.vllm_api_url
-        if not vllm_chat_url.endswith('/chat/completions'):
-            if vllm_chat_url.endswith('/v1'):
-                vllm_chat_url = vllm_chat_url + '/chat/completions'
-            else:
-                vllm_chat_url = vllm_chat_url + '/v1/chat/completions'
-        
-        completion_cmd.extend([
-            '--vllm_api_url', vllm_chat_url,
-            '--vllm_api_key', args.vllm_api_key
         ])
     
     try:

@@ -1,15 +1,13 @@
 {
   "labels": {
-    "analysis": "The MCP Server \"io.github.bamchi/scrapi\" provides 5 tools for development tools tasks.",
-    "reasoning": "Primary label \"Development Tools\" assigned based on tool names and descriptions.",
-    "primary_label": "Development Tools",
+    "analysis": "The MCP Server \"io.github.bamchi/scrapi\" provides 5 tools focused on web search & research tasks. Core capabilities include data access and reading, modification and updates. Key tools: scrape_url, scrape_urls, get_usage, scraper_server_status, get_billing.",
+    "reasoning": "Primary label \"Web Search & Research\" assigned based on strong keyword matches in tool names and descriptions: scrape, browse.",
+    "primary_label": "Web Search & Research",
     "secondary_labels": [
-      "API Integration",
-      "DevOps",
-      "Web Search & Research",
-      "AI/ML Tools"
+      "Financial Services",
+      "Content Creation"
     ],
-    "custom_label": "Development Tools - io.github.bamchi/scrapi",
+    "custom_label": "Data Access - io.github.bamchi/scrapi",
     "is_connected": true,
     "is_remote_tool_valid": true,
     "featured_server": true
@@ -21,7 +19,7 @@
     "usage_count": "100",
     "original_file": "tools.json#144",
     "mode": "gateway",
-    "timestamp": 1772871481,
+    "timestamp": 1772876337,
     "remote_server_response": {
       "url": "https://scrapi.ai/mcp",
       "is_success": true,
@@ -167,7 +165,7 @@
       "id": 144,
       "name": "io.github.bamchi/scrapi",
       "author": "",
-      "overview": "io.github.bamchi/scrapi - Development Tools MCP server with 5 tools.",
+      "overview": "io.github.bamchi/scrapi - Web Search & Research server with 5 tools. The MCP Server \"io.github.bamchi/scrapi\" provides 5 tools focused on web search & research tasks. Co",
       "repository_url": "",
       "homepage": "https://scrapi.ai/mcp",
       "remote_or_local": "Remote",
@@ -175,10 +173,14 @@
       "usage_count": "100",
       "success_rate": "100%",
       "tags": [
-        "development-tools"
+        "web-search-research",
+        "financial-services",
+        "content-creation"
       ],
       "categories": [
-        "development tools"
+        "web search & research",
+        "financial services",
+        "content creation"
       ],
       "tools_count": 5,
       "tools": [
@@ -313,7 +315,7 @@
       "python_sdk_config": "{\"debug\": false}"
     },
     "source_filename": "0144.iogithubbamchiscrapi_labeled.json",
-    "processed_timestamp": 1772871481,
+    "processed_timestamp": 1772876337,
     "processing_mode": "gateway",
     "rank": 145
   }

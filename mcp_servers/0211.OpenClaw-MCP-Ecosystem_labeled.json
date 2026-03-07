@@ -1,15 +1,13 @@
 {
   "labels": {
-    "analysis": "The MCP Server \"OpenClaw MCP Ecosystem\" provides 3 tools for development tools tasks.",
-    "reasoning": "Primary label \"Development Tools\" assigned based on tool names and descriptions.",
-    "primary_label": "Development Tools",
+    "analysis": "The MCP Server \"OpenClaw MCP Ecosystem\" provides 3 tools focused on gaming tasks. Core capabilities include data access and reading, search and retrieval. Key tools: get_daily_fortune, get_fortune_ranking, get_all_fortunes.",
+    "reasoning": "Primary label \"Gaming\" assigned based on strong keyword matches in tool names and descriptions: score.",
+    "primary_label": "Gaming",
     "secondary_labels": [
-      "API Integration",
-      "DevOps",
-      "Web Search & Research",
-      "Data Analysis & Processing"
+      "Data Analysis & Processing",
+      "Communication Tools"
     ],
-    "custom_label": "Development Tools - OpenClaw MCP Ecosystem",
+    "custom_label": "Data Access - OpenClaw MCP Ecosystem",
     "is_connected": true,
     "is_remote_tool_valid": true,
     "featured_server": false
@@ -21,7 +19,7 @@
     "usage_count": "10",
     "original_file": "tools.json#211",
     "mode": "gateway",
-    "timestamp": 1772871482,
+    "timestamp": 1772876338,
     "remote_server_response": {
       "url": "https://openclaw-fortune-mcp.yagami8095.workers.dev/mcp",
       "is_success": true,
@@ -73,7 +71,7 @@
       "id": 211,
       "name": "OpenClaw MCP Ecosystem",
       "author": "",
-      "overview": "OpenClaw MCP Ecosystem - Development Tools MCP server with 3 tools.",
+      "overview": "OpenClaw MCP Ecosystem - Gaming server with 3 tools. The MCP Server \"OpenClaw MCP Ecosystem\" provides 3 tools focused on gaming tasks. Core capabilities ",
       "repository_url": "",
       "homepage": "https://openclaw-fortune-mcp.yagami8095.workers.dev/mcp",
       "remote_or_local": "Remote",
@@ -81,10 +79,14 @@
       "usage_count": "10",
       "success_rate": "100%",
       "tags": [
-        "development-tools"
+        "gaming",
+        "data-analysis-processing",
+        "communication-tools"
       ],
       "categories": [
-        "development tools"
+        "gaming",
+        "data analysis & processing",
+        "communication tools"
       ],
       "tools_count": 3,
       "tools": [
@@ -127,7 +129,7 @@
       "python_sdk_config": "{\"debug\": false}"
     },
     "source_filename": "0211.OpenClaw-MCP-Ecosystem_labeled.json",
-    "processed_timestamp": 1772871482,
+    "processed_timestamp": 1772876338,
     "processing_mode": "gateway",
     "rank": 212
   }

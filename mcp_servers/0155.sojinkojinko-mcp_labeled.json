@@ -1,14 +1,13 @@
 {
   "labels": {
-    "analysis": "The MCP Server \"so.jinko/jinko-mcp\" provides 5 tools for productivity tasks.",
-    "reasoning": "Primary label \"Productivity\" assigned based on tool names and descriptions.",
-    "primary_label": "Productivity",
+    "analysis": "The MCP Server \"so.jinko/jinko-mcp\" provides 5 tools focused on maps & location tasks. Core capabilities include creation and generation, data access and reading, search and retrieval. Key tools: search-hotels, load-more-hotels, get-filtering-metadata, get-hotel-details, book-hotel.",
+    "reasoning": "Primary label \"Maps & Location\" assigned based on strong keyword matches in tool names and descriptions: location, transit, hotel.",
+    "primary_label": "Maps & Location",
     "secondary_labels": [
-      "Project Management",
-      "AI/ML Tools",
-      "Maps & Location"
+      "Web Search & Research",
+      "Real Estate"
     ],
-    "custom_label": "Productivity - so.jinko/jinko-mcp",
+    "custom_label": "Data Access & Search - so.jinko/jinko-mcp",
     "is_connected": true,
     "is_remote_tool_valid": true,
     "featured_server": true
@@ -20,7 +19,7 @@
     "usage_count": "100",
     "original_file": "tools.json#155",
     "mode": "gateway",
-    "timestamp": 1772871481,
+    "timestamp": 1772876337,
     "remote_server_response": {
       "url": "https://mcp-remote.jinko.so/mcp",
       "is_success": true,
@@ -244,7 +243,7 @@
       "id": 155,
       "name": "so.jinko/jinko-mcp",
       "author": "",
-      "overview": "so.jinko/jinko-mcp - Productivity MCP server with 5 tools.",
+      "overview": "so.jinko/jinko-mcp - Maps & Location server with 5 tools. The MCP Server \"so.jinko/jinko-mcp\" provides 5 tools focused on maps & location tasks. Core capabili",
       "repository_url": "",
       "homepage": "https://mcp-remote.jinko.so/mcp",
       "remote_or_local": "Remote",
@@ -252,10 +251,14 @@
       "usage_count": "100",
       "success_rate": "100%",
       "tags": [
-        "productivity"
+        "maps-location",
+        "web-search-research",
+        "real-estate"
       ],
       "categories": [
-        "productivity"
+        "maps & location",
+        "web search & research",
+        "real estate"
       ],
       "tools_count": 5,
       "tools": [
@@ -468,7 +471,7 @@
       "python_sdk_config": "{\"debug\": false}"
     },
     "source_filename": "0155.sojinkojinko-mcp_labeled.json",
-    "processed_timestamp": 1772871481,
+    "processed_timestamp": 1772876337,
     "processing_mode": "gateway",
     "rank": 156
   }

@@ -1,0 +1,259 @@
+{
+  "labels": {
+    "analysis": "The MCP Server \"AIM Guard\" is designed to enhance AI agent security during interactions by analyzing text for harmful or inappropriate content and providing real-time safety instructions. It includes tools for AI safety guards, text analysis for harmful material, and security prompt enhancement, all aimed at ensuring safer AI interactions with contextual guidelines and threat detection. The core functionality revolves around security and safety enhancement for AI systems.",
+    "reasoning": "The primary function of this server is clearly aligned with security and safety for AI systems, making \"Security & Authentication\" the most fitting primary label. While it could also fall under \"AI/ML Tools\" due to its AI-specific enhancements, the focus is more on security rather than general AI capabilities. No secondary or custom labels are necessary as the predefined categories adequately cover its functionality.",
+    "primary_label": "Security & Authentication",
+    "secondary_labels": [],
+    "custom_label": null,
+    "is_connected": true,
+    "is_remote_tool_valid": true,
+    "featured_server": false
+  },
+  "metadata": {
+    "server_id": 342,
+    "server_name": "AIM Guard",
+    "rank_by_usage": 1210,
+    "usage_count": "Not available",
+    "original_file": "toucan_live#@AIM-Intelligence/aim-mcp",
+    "mode": "toucan",
+    "timestamp": 1772876338,
+    "remote_server_response": {
+      "url": "https://server.smithery.ai/@AIM-Intelligence/aim-mcp/mcp",
+      "is_success": true,
+      "error": null,
+      "tools": [
+        {
+          "name": "ai-safety-guard",
+          "description": "AI Safety Guard - MCP Caution Instructions for AI Agents",
+          "input_schema": {
+            "type": "object",
+            "properties": {
+              "mcp_type": {
+                "type": "string",
+                "enum": [
+                  "email",
+                  "slack",
+                  "database",
+                  "file",
+                  "web",
+                  "general"
+                ],
+                "default": "general",
+                "description": "Type of MCP the AI Agent is about to call"
+              },
+              "operation_type": {
+                "type": "string",
+                "enum": [
+                  "read",
+                  "write",
+                  "execute",
+                  "delete",
+                  "send",
+                  "query"
+                ],
+                "default": "read",
+                "description": "Type of operation being requested"
+              },
+              "sensitivity_level": {
+                "type": "string",
+                "enum": [
+                  "public",
+                  "internal",
+                  "confidential",
+                  "restricted"
+                ],
+                "default": "internal",
+                "description": "Sensitivity level of the data/operation"
+              }
+            },
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "annotations": null
+        },
+        {
+          "name": "aim-text-guard",
+          "description": "AIM-Intelligence Text Guard Tool",
+          "input_schema": {
+            "type": "object",
+            "properties": {
+              "text": {
+                "type": "string",
+                "description": "Text to analyze for harmful content"
+              }
+            },
+            "required": [
+              "text"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "annotations": null
+        },
+        {
+          "name": "aim-security-prompt-tool",
+          "description": "Security Prompt Enhancement Tool",
+          "input_schema": {
+            "type": "object",
+            "properties": {
+              "user_prompt": {
+                "type": "string",
+                "description": "The original user prompt to enhance with security instructions"
+              },
+              "security_level": {
+                "type": "string",
+                "enum": [
+                  "basic",
+                  "standard",
+                  "strict"
+                ],
+                "description": "Security enhancement level",
+                "default": "standard"
+              }
+            },
+            "required": [
+              "user_prompt"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "annotations": null
+        }
+      ],
+      "tool_count": 3,
+      "tool_names": [
+        "ai-safety-guard",
+        "aim-text-guard",
+        "aim-security-prompt-tool"
+      ]
+    },
+    "server_info_crawled": {
+      "id": 342,
+      "name": "AIM Guard",
+      "author": "",
+      "overview": "Provide AI-powered security analysis and safety instruction tools to protect AI agents during MCP interactions. Analyze text content for harmful or inappropriate material and enhance user prompts with security instructions. Ensure safer AI interactions with contextual security guidelines and real-time threat detection.",
+      "repository_url": "",
+      "homepage": "https://server.smithery.ai/@AIM-Intelligence/aim-mcp/mcp",
+      "remote_or_local": "Remote",
+      "license": "",
+      "usage_count": "Not available",
+      "success_rate": "Not available",
+      "tags": [
+        "search",
+        "web",
+        "api",
+        "mcp"
+      ],
+      "categories": [
+        "search",
+        "api"
+      ],
+      "tools_count": 3,
+      "tools": [
+        {
+          "name": "ai-safety-guard",
+          "description": "AI Safety Guard - MCP Caution Instructions for AI Agents",
+          "input_schema": {
+            "type": "object",
+            "properties": {
+              "mcp_type": {
+                "type": "string",
+                "enum": [
+                  "email",
+                  "slack",
+                  "database",
+                  "file",
+                  "web",
+                  "general"
+                ],
+                "default": "general",
+                "description": "Type of MCP the AI Agent is about to call"
+              },
+              "operation_type": {
+                "type": "string",
+                "enum": [
+                  "read",
+                  "write",
+                  "execute",
+                  "delete",
+                  "send",
+                  "query"
+                ],
+                "default": "read",
+                "description": "Type of operation being requested"
+              },
+              "sensitivity_level": {
+                "type": "string",
+                "enum": [
+                  "public",
+                  "internal",
+                  "confidential",
+                  "restricted"
+                ],
+                "default": "internal",
+                "description": "Sensitivity level of the data/operation"
+              }
+            },
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "annotations": null
+        },
+        {
+          "name": "aim-text-guard",
+          "description": "AIM-Intelligence Text Guard Tool",
+          "input_schema": {
+            "type": "object",
+            "properties": {
+              "text": {
+                "type": "string",
+                "description": "Text to analyze for harmful content"
+              }
+            },
+            "required": [
+              "text"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "annotations": null
+        },
+        {
+          "name": "aim-security-prompt-tool",
+          "description": "Security Prompt Enhancement Tool",
+          "input_schema": {
+            "type": "object",
+            "properties": {
+              "user_prompt": {
+                "type": "string",
+                "description": "The original user prompt to enhance with security instructions"
+              },
+              "security_level": {
+                "type": "string",
+                "enum": [
+                  "basic",
+                  "standard",
+                  "strict"
+                ],
+                "description": "Security enhancement level",
+                "default": "standard"
+              }
+            },
+            "required": [
+              "user_prompt"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "annotations": null
+        }
+      ],
+      "python_sdk_url": "https://server.smithery.ai/@AIM-Intelligence/aim-mcp/mcp",
+      "python_sdk_config": "{\"debug\": false}"
+    },
+    "source_filename": "0342.AIM-Guard_labeled.json",
+    "processed_timestamp": 1772876338,
+    "processing_mode": "toucan",
+    "rank": 1210
+  }
+}

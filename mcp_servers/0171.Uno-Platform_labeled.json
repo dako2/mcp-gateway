@@ -1,15 +1,13 @@
 {
   "labels": {
-    "analysis": "The MCP Server \"Uno Platform\" provides 4 tools for development tools tasks.",
-    "reasoning": "Primary label \"Development Tools\" assigned based on tool names and descriptions.",
+    "analysis": "The MCP Server \"Uno Platform\" provides 4 tools focused on development tools tasks. Core capabilities include data access and reading, search and retrieval. Key tools: uno_platform_docs_fetch, uno_platform_usage_rules_init, uno_platform_docs_search, uno_platform_agent_rules_init.",
+    "reasoning": "Primary label \"Development Tools\" assigned based on strong keyword matches in tool names and descriptions: git, deploy, build, code, debug, sdk.",
     "primary_label": "Development Tools",
     "secondary_labels": [
-      "API Integration",
-      "DevOps",
       "Web Search & Research",
-      "AI/ML Tools"
+      "Productivity"
     ],
-    "custom_label": "Development Tools - Uno Platform",
+    "custom_label": "Search - Uno Platform",
     "is_connected": true,
     "is_remote_tool_valid": true,
     "featured_server": false
@@ -21,7 +19,7 @@
     "usage_count": "10",
     "original_file": "tools.json#171",
     "mode": "gateway",
-    "timestamp": 1772871482,
+    "timestamp": 1772876337,
     "remote_server_response": {
       "url": "https://mcp.platform.uno/v1",
       "is_success": true,
@@ -108,7 +106,7 @@
       "id": 171,
       "name": "Uno Platform",
       "author": "",
-      "overview": "Uno Platform - Development Tools MCP server with 4 tools.",
+      "overview": "Uno Platform - Development Tools server with 4 tools. The MCP Server \"Uno Platform\" provides 4 tools focused on development tools tasks. Core capabilities",
       "repository_url": "",
       "homepage": "https://mcp.platform.uno/v1",
       "remote_or_local": "Remote",
@@ -116,10 +114,14 @@
       "usage_count": "10",
       "success_rate": "100%",
       "tags": [
-        "development-tools"
+        "development-tools",
+        "web-search-research",
+        "productivity"
       ],
       "categories": [
-        "development tools"
+        "development tools",
+        "web search & research",
+        "productivity"
       ],
       "tools_count": 4,
       "tools": [
@@ -196,7 +198,7 @@
       "python_sdk_config": "{\"debug\": false}"
     },
     "source_filename": "0171.Uno-Platform_labeled.json",
-    "processed_timestamp": 1772871482,
+    "processed_timestamp": 1772876337,
     "processing_mode": "gateway",
     "rank": 172
   }

@@ -1,15 +1,13 @@
 {
   "labels": {
-    "analysis": "The MCP Server \"Petstore MCP Server\" provides 19 tools for development tools tasks.",
-    "reasoning": "Primary label \"Development Tools\" assigned based on tool names and descriptions.",
-    "primary_label": "Development Tools",
+    "analysis": "The MCP Server \"Petstore MCP Server\" provides 19 tools focused on e-commerce tasks. Core capabilities include creation and generation, data access and reading, deletion and cleanup, modification and updates. Key tools: updatePet, addPet, findPetsByStatus, findPetsByTags, getPetById.",
+    "reasoning": "Primary label \"E-Commerce\" assigned based on strong keyword matches in tool names and descriptions: inventory, store.",
+    "primary_label": "E-Commerce",
     "secondary_labels": [
-      "API Integration",
-      "DevOps",
-      "E-Commerce",
-      "AI/ML Tools"
+      "File Management",
+      "Data Analysis & Processing"
     ],
-    "custom_label": "Development Tools - Petstore MCP Server",
+    "custom_label": "Data Access & Management - Petstore MCP Server",
     "is_connected": true,
     "is_remote_tool_valid": true,
     "featured_server": true
@@ -21,7 +19,7 @@
     "usage_count": "1,060",
     "original_file": "tools.json#47",
     "mode": "gateway",
-    "timestamp": 1772871481,
+    "timestamp": 1772876337,
     "remote_server_response": {
       "url": "https://petstore.run.mcp.com.ai/mcp",
       "is_success": true,
@@ -639,7 +637,7 @@
       "id": 47,
       "name": "Petstore MCP Server",
       "author": "",
-      "overview": "Petstore MCP Server - Development Tools MCP server with 19 tools.",
+      "overview": "Petstore MCP Server - E-Commerce server with 19 tools. The MCP Server \"Petstore MCP Server\" provides 19 tools focused on e-commerce tasks. Core capabilitie",
       "repository_url": "",
       "homepage": "https://petstore.run.mcp.com.ai/mcp",
       "remote_or_local": "Remote",
@@ -647,10 +645,14 @@
       "usage_count": "1,060",
       "success_rate": "100%",
       "tags": [
-        "development-tools"
+        "e-commerce",
+        "file-management",
+        "data-analysis-processing"
       ],
       "categories": [
-        "development tools"
+        "e-commerce",
+        "file management",
+        "data analysis & processing"
       ],
       "tools_count": 19,
       "tools": [
@@ -1243,7 +1245,7 @@
       "python_sdk_config": "{\"debug\": false}"
     },
     "source_filename": "0047.Petstore-MCP-Server_labeled.json",
-    "processed_timestamp": 1772871481,
+    "processed_timestamp": 1772876337,
     "processing_mode": "gateway",
     "rank": 48
   }

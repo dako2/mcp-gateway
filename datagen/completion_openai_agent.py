@@ -1,4 +1,3 @@
-import torch
 import os
 import sys
 import argparse
@@ -12,10 +11,8 @@ import types
 import asyncio
 import base64
 import threading
-import queue
 import signal
 import atexit
-import os
 from time import sleep, time
 from tqdm import tqdm
 from wrapt_timeout_decorator import timeout
@@ -68,22 +65,23 @@ signal.signal(signal.SIGTERM, signal_handler)  # Termination
 def get_args():
     # Experiment Settings
     parser = argparse.ArgumentParser(description="Response Generation Manager.")
-    parser.add_argument("--model_path", type=str, default="openai/gpt-oss-120b",
+    parser.add_argument("--model_path", type=str, default="grok-4-1-fast-reasoning",
                         help="Model path for inference")
     parser.add_argument("--input_file", type=str, default=None, help="Input dataset file name")
     parser.add_argument("--checkpoint_every", type=int, default=16, help="Save checkpoint every n completed items")
     parser.add_argument("--openrouter_url", type=str, default="https://openrouter.ai/api/v1", help="OpenRouter API URL")
     parser.add_argument("--openrouter_api_key", type=str, default="", help="OpenRouter API Key")
     parser.add_argument("--xai_api_key", type=str, default="", help="xAI API Key (for Grok models)")
-    parser.add_argument("--vllm_api_url", type=str, default="http://localhost:8000/v1", help="vLLM API URL")
-    parser.add_argument("--vllm_api_key", type=str, default="EMPTY", help="vLLM API Key")
+    # Legacy args kept for compatibility but unused
+    parser.add_argument("--vllm_api_url", type=str, default="", help="(unused)")
+    parser.add_argument("--vllm_api_key", type=str, default="", help="(unused)")
     parser.add_argument("--smithery_api_key", type=str, default="", help="Smithery API Key")
     parser.add_argument("--smithery_profile", type=str, default="", help="Smithery Profile")
     parser.add_argument("--smithery_api_pool", type=str, default="smithery_api_pool.json", help="Path to Smithery API pool JSON file")
     parser.add_argument("--max_workers", type=int, default=None, help="Maximum number of parallel workers (default: use API pool size)")
 
     # Generation Parameters
-    parser.add_argument('--engine', default="vllm_api", type=str, choices=["vllm_api", "openrouter_api", "xai"])
+    parser.add_argument('--engine', default="xai", type=str, choices=["xai", "openrouter_api"])
     parser.add_argument("--max_tokens", type=int, default=32768)
     parser.add_argument("--temperature", type=float, default=1.0)
     parser.add_argument("--top_p", type=float, default=1.0)
@@ -162,21 +160,6 @@ elif args.engine == "openrouter_api":
     API_PARAMS = {
         "model": args.model_path,
         "max_tokens": args.max_tokens,
-        "temperature": args.temperature,
-        "top_p": args.top_p,
-        "parallel_tool_calls": args.parallel_function_calls,
-        "reasoning": {"effort": args.reasoning_effort},
-    }
-
-elif args.engine == "vllm_api":
-    API_ENDPOINT = args.vllm_api_url + "/chat/completions"
-    API_HEADERS = {
-        "Authorization": f"Bearer {args.vllm_api_key}",
-        "Content-Type": "application/json"
-    }
-    API_PARAMS = {
-        "model": args.model_path,
-        # "max_tokens": args.max_tokens
         "temperature": args.temperature,
         "top_p": args.top_p,
         "parallel_tool_calls": args.parallel_function_calls,
@@ -502,14 +485,6 @@ def create_agent_for_item(item, api_key=None, profile=None):
             openai_client=AsyncClient(
                 base_url=args.openrouter_url,
                 api_key=args.openrouter_api_key,
-            ),
-        )
-    elif args.engine == "vllm_api":
-        model = OpenAIResponsesModel(
-            args.model_path,
-            openai_client=AsyncClient(
-                base_url=args.vllm_api_url,
-                api_key=args.vllm_api_key,
             ),
         )
     else:

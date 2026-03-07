@@ -1,15 +1,13 @@
 {
   "labels": {
-    "analysis": "The MCP Server \"io.github.BalajSaleem/criterion\" provides 3 tools for development tools tasks.",
-    "reasoning": "Primary label \"Development Tools\" assigned based on tool names and descriptions.",
-    "primary_label": "Development Tools",
+    "analysis": "The MCP Server \"io.github.BalajSaleem/criterion\" provides 3 tools focused on web search & research tasks. Core capabilities include search and retrieval. Key tools: search_quran, search_hadith, get_verse.",
+    "reasoning": "Primary label \"Web Search & Research\" assigned based on strong keyword matches in tool names and descriptions: search.",
+    "primary_label": "Web Search & Research",
     "secondary_labels": [
-      "API Integration",
-      "DevOps",
-      "Web Search & Research",
-      "Security & Authentication"
+      "Database Operations",
+      "Education"
     ],
-    "custom_label": "Development Tools - io.github.BalajSaleem/criterion",
+    "custom_label": "Data Access & Search - io.github.BalajSaleem/criterion",
     "is_connected": true,
     "is_remote_tool_valid": true,
     "featured_server": false
@@ -21,7 +19,7 @@
     "usage_count": "10",
     "original_file": "tools.json#202",
     "mode": "gateway",
-    "timestamp": 1772871482,
+    "timestamp": 1772876338,
     "remote_server_response": {
       "url": "https://criterion.life/api/mcp",
       "is_success": true,
@@ -135,7 +133,7 @@
       "id": 202,
       "name": "io.github.BalajSaleem/criterion",
       "author": "",
-      "overview": "io.github.BalajSaleem/criterion - Development Tools MCP server with 3 tools.",
+      "overview": "io.github.BalajSaleem/criterion - Web Search & Research server with 3 tools. The MCP Server \"io.github.BalajSaleem/criterion\" provides 3 tools focused on web search & research t",
       "repository_url": "",
       "homepage": "https://criterion.life/api/mcp",
       "remote_or_local": "Remote",
@@ -143,10 +141,14 @@
       "usage_count": "10",
       "success_rate": "100%",
       "tags": [
-        "development-tools"
+        "web-search-research",
+        "database-operations",
+        "education"
       ],
       "categories": [
-        "development tools"
+        "web search & research",
+        "database operations",
+        "education"
       ],
       "tools_count": 3,
       "tools": [
@@ -251,7 +253,7 @@
       "python_sdk_config": "{\"debug\": false}"
     },
     "source_filename": "0202.iogithubBalajSaleemcriterion_labeled.json",
-    "processed_timestamp": 1772871482,
+    "processed_timestamp": 1772876338,
     "processing_mode": "gateway",
     "rank": 203
   }

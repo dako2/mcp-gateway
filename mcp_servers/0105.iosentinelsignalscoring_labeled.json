@@ -1,15 +1,13 @@
 {
   "labels": {
-    "analysis": "The MCP Server \"io.sentinelsignal/scoring\" provides 8 tools for development tools tasks.",
-    "reasoning": "Primary label \"Development Tools\" assigned based on tool names and descriptions.",
-    "primary_label": "Development Tools",
+    "analysis": "The MCP Server \"io.sentinelsignal/scoring\" provides 8 tools focused on productivity tasks. Core capabilities include data access and reading. Key tools: get_limits, list_workflows, get_workflow_schema, validate_workflow_payload, get_usage.",
+    "reasoning": "Primary label \"Productivity\" assigned based on strong keyword matches in tool names and descriptions: workflow.",
+    "primary_label": "Productivity",
     "secondary_labels": [
-      "API Integration",
-      "DevOps",
-      "Web Search & Research",
-      "AI/ML Tools"
+      "Gaming",
+      "News & Media"
     ],
-    "custom_label": "Development Tools - io.sentinelsignal/scoring",
+    "custom_label": "Data Access - io.sentinelsignal/scoring",
     "is_connected": true,
     "is_remote_tool_valid": true,
     "featured_server": true
@@ -21,7 +19,7 @@
     "usage_count": "150",
     "original_file": "tools.json#105",
     "mode": "gateway",
-    "timestamp": 1772871481,
+    "timestamp": 1772876337,
     "remote_server_response": {
       "url": "https://mcp.sentinelsignal.io/mcp",
       "is_success": true,
@@ -378,7 +376,7 @@
       "id": 105,
       "name": "io.sentinelsignal/scoring",
       "author": "",
-      "overview": "io.sentinelsignal/scoring - Development Tools MCP server with 8 tools.",
+      "overview": "io.sentinelsignal/scoring - Productivity server with 8 tools. The MCP Server \"io.sentinelsignal/scoring\" provides 8 tools focused on productivity tasks. Core capa",
       "repository_url": "",
       "homepage": "https://mcp.sentinelsignal.io/mcp",
       "remote_or_local": "Remote",
@@ -386,10 +384,14 @@
       "usage_count": "150",
       "success_rate": "100%",
       "tags": [
-        "development-tools"
+        "productivity",
+        "gaming",
+        "news-media"
       ],
       "categories": [
-        "development tools"
+        "productivity",
+        "gaming",
+        "news & media"
       ],
       "tools_count": 8,
       "tools": [
@@ -732,7 +734,7 @@
       "python_sdk_config": "{\"debug\": false}"
     },
     "source_filename": "0105.iosentinelsignalscoring_labeled.json",
-    "processed_timestamp": 1772871481,
+    "processed_timestamp": 1772876337,
     "processing_mode": "gateway",
     "rank": 106
   }

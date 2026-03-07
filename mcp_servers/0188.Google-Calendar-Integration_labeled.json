@@ -1,14 +1,12 @@
 {
   "labels": {
-    "analysis": "The MCP Server \"Google Calendar Integration\" provides 4 tools for ai/ml tools tasks.",
-    "reasoning": "Primary label \"AI/ML Tools\" assigned based on tool names and descriptions.",
-    "primary_label": "AI/ML Tools",
+    "analysis": "The MCP Server \"Google Calendar Integration\" provides 4 tools focused on productivity tasks. Core capabilities include creation and generation, data access and reading, deletion and cleanup, modification and updates. Key tools: list_events, create_event, update_event, delete_event.",
+    "reasoning": "Primary label \"Productivity\" assigned based on strong keyword matches in tool names and descriptions: calendar.",
+    "primary_label": "Productivity",
     "secondary_labels": [
-      "Content Creation",
-      "Productivity",
-      "DNS & Networking"
+      "API Integration"
     ],
-    "custom_label": "AI/ML Tools - Google Calendar Integration",
+    "custom_label": "Data Access & Generation - Google Calendar Integration",
     "is_connected": true,
     "is_remote_tool_valid": true,
     "featured_server": false
@@ -20,7 +18,7 @@
     "usage_count": "10",
     "original_file": "tools.json#188",
     "mode": "gateway",
-    "timestamp": 1772871482,
+    "timestamp": 1772876337,
     "remote_server_response": {
       "url": "https://server.smithery.ai/@rishipradeep-think41/google-calendar-mcp/mcp",
       "is_success": true,
@@ -160,7 +158,7 @@
       "id": 188,
       "name": "Google Calendar Integration",
       "author": "",
-      "overview": "Google Calendar Integration - AI/ML Tools MCP server with 4 tools.",
+      "overview": "Google Calendar Integration - Productivity server with 4 tools. The MCP Server \"Google Calendar Integration\" provides 4 tools focused on productivity tasks. Core ca",
       "repository_url": "",
       "homepage": "https://server.smithery.ai/@rishipradeep-think41/google-calendar-mcp/mcp",
       "remote_or_local": "Remote",
@@ -168,10 +166,12 @@
       "usage_count": "10",
       "success_rate": "100%",
       "tags": [
-        "ai/ml-tools"
+        "productivity",
+        "api-integration"
       ],
       "categories": [
-        "ai/ml tools"
+        "productivity",
+        "api integration"
       ],
       "tools_count": 4,
       "tools": [
@@ -301,7 +301,7 @@
       "python_sdk_config": "{\"debug\": false}"
     },
     "source_filename": "0188.Google-Calendar-Integration_labeled.json",
-    "processed_timestamp": 1772871482,
+    "processed_timestamp": 1772876337,
     "processing_mode": "gateway",
     "rank": 189
   }

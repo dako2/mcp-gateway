@@ -1,15 +1,13 @@
 {
   "labels": {
-    "analysis": "The MCP Server \"io.github.davidmosiah/delx-mcp-a2a\" provides 43 tools for development tools tasks.",
-    "reasoning": "Primary label \"Development Tools\" assigned based on tool names and descriptions.",
-    "primary_label": "Development Tools",
+    "analysis": "The MCP Server \"io.github.davidmosiah/delx-mcp-a2a\" provides 43 tools focused on health & fitness tasks. Core capabilities include modification and updates. Key tools: start_therapy_session, quick_session, crisis_intervention, express_feelings, get_affirmation.",
+    "reasoning": "Primary label \"Health & Fitness\" assigned based on strong keyword matches in tool names and descriptions: health, therapy.",
+    "primary_label": "Health & Fitness",
     "secondary_labels": [
-      "API Integration",
-      "DevOps",
-      "Productivity",
-      "Health & Fitness"
+      "Data Analysis & Processing",
+      "Financial Services"
     ],
-    "custom_label": "Development Tools - io.github.davidmosiah/delx-mcp-a2a",
+    "custom_label": "Data Access & Management - io.github.davidmosiah/delx-mcp-a2a",
     "is_connected": true,
     "is_remote_tool_valid": true,
     "featured_server": true
@@ -21,7 +19,7 @@
     "usage_count": "9,050",
     "original_file": "tools.json#19",
     "mode": "gateway",
-    "timestamp": 1772871481,
+    "timestamp": 1772876337,
     "remote_server_response": {
       "url": "https://api.delx.ai/v1/mcp",
       "is_success": true,
@@ -1740,7 +1738,7 @@
       "id": 19,
       "name": "io.github.davidmosiah/delx-mcp-a2a",
       "author": "",
-      "overview": "io.github.davidmosiah/delx-mcp-a2a - Development Tools MCP server with 43 tools.",
+      "overview": "io.github.davidmosiah/delx-mcp-a2a - Health & Fitness server with 43 tools. The MCP Server \"io.github.davidmosiah/delx-mcp-a2a\" provides 43 tools focused on health & fitness ta",
       "repository_url": "",
       "homepage": "https://api.delx.ai/v1/mcp",
       "remote_or_local": "Remote",
@@ -1748,10 +1746,14 @@
       "usage_count": "9,050",
       "success_rate": "100%",
       "tags": [
-        "development-tools"
+        "health-fitness",
+        "data-analysis-processing",
+        "financial-services"
       ],
       "categories": [
-        "development tools"
+        "health & fitness",
+        "data analysis & processing",
+        "financial services"
       ],
       "tools_count": 43,
       "tools": [
@@ -3421,7 +3423,7 @@
       "python_sdk_config": "{\"debug\": false}"
     },
     "source_filename": "0019.iogithubdavidmosiahdelx-mcp-a2a_labeled.json",
-    "processed_timestamp": 1772871481,
+    "processed_timestamp": 1772876337,
     "processing_mode": "gateway",
     "rank": 20
   }

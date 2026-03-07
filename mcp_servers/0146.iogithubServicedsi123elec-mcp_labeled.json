@@ -1,15 +1,13 @@
 {
   "labels": {
-    "analysis": "The MCP Server \"io.github.Servicedsi/123elec-mcp\" provides 5 tools for development tools tasks.",
-    "reasoning": "Primary label \"Development Tools\" assigned based on tool names and descriptions.",
-    "primary_label": "Development Tools",
+    "analysis": "The MCP Server \"io.github.Servicedsi/123elec-mcp\" provides 5 tools focused on e-commerce tasks. Core capabilities include data access and reading. Key tools: search_products, get_product, check_stock, get_categories, get_recommendations.",
+    "reasoning": "Primary label \"E-Commerce\" assigned based on strong keyword matches in tool names and descriptions: product.",
+    "primary_label": "E-Commerce",
     "secondary_labels": [
-      "API Integration",
-      "DevOps",
-      "Web Search & Research",
-      "Data Analysis & Processing"
+      "Financial Services",
+      "Web Search & Research"
     ],
-    "custom_label": "Development Tools - io.github.Servicedsi/123elec-mcp",
+    "custom_label": "Data Access & Search - io.github.Servicedsi/123elec-mcp",
     "is_connected": true,
     "is_remote_tool_valid": true,
     "featured_server": true
@@ -21,7 +19,7 @@
     "usage_count": "100",
     "original_file": "tools.json#146",
     "mode": "gateway",
-    "timestamp": 1772871481,
+    "timestamp": 1772876337,
     "remote_server_response": {
       "url": "https://mcp.123elec.com/mcp",
       "is_success": true,
@@ -137,7 +135,7 @@
       "id": 146,
       "name": "io.github.Servicedsi/123elec-mcp",
       "author": "",
-      "overview": "io.github.Servicedsi/123elec-mcp - Development Tools MCP server with 5 tools.",
+      "overview": "io.github.Servicedsi/123elec-mcp - E-Commerce server with 5 tools. The MCP Server \"io.github.Servicedsi/123elec-mcp\" provides 5 tools focused on e-commerce tasks. Core",
       "repository_url": "",
       "homepage": "https://mcp.123elec.com/mcp",
       "remote_or_local": "Remote",
@@ -145,10 +143,14 @@
       "usage_count": "100",
       "success_rate": "100%",
       "tags": [
-        "development-tools"
+        "e-commerce",
+        "financial-services",
+        "web-search-research"
       ],
       "categories": [
-        "development tools"
+        "e-commerce",
+        "financial services",
+        "web search & research"
       ],
       "tools_count": 5,
       "tools": [
@@ -253,7 +255,7 @@
       "python_sdk_config": "{\"debug\": false}"
     },
     "source_filename": "0146.iogithubServicedsi123elec-mcp_labeled.json",
-    "processed_timestamp": 1772871481,
+    "processed_timestamp": 1772876337,
     "processing_mode": "gateway",
     "rank": 147
   }

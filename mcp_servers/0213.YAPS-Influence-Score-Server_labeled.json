@@ -1,14 +1,10 @@
 {
   "labels": {
-    "analysis": "The MCP Server \"YAPS Influence Score Server\" provides 3 tools for gaming tasks.",
-    "reasoning": "Primary label \"Gaming\" assigned based on tool names and descriptions.",
+    "analysis": "The MCP Server \"YAPS Influence Score Server\" provides 3 tools focused on gaming tasks. Core capabilities include various operations. Key tools: get_yaps_score, compare_scores, leaderboard_today.",
+    "reasoning": "Primary label \"Gaming\" assigned based on strong keyword matches in tool names and descriptions: score, nfl.",
     "primary_label": "Gaming",
-    "secondary_labels": [
-      "Entertainment",
-      "AI/ML Tools",
-      "Productivity"
-    ],
-    "custom_label": "Gaming - YAPS Influence Score Server",
+    "secondary_labels": [],
+    "custom_label": "Data Access - YAPS Influence Score Server",
     "is_connected": true,
     "is_remote_tool_valid": true,
     "featured_server": false
@@ -20,7 +16,7 @@
     "usage_count": "10",
     "original_file": "tools.json#213",
     "mode": "gateway",
-    "timestamp": 1772871482,
+    "timestamp": 1772876338,
     "remote_server_response": {
       "url": "https://server.smithery.ai/@degenpilot404/yap_mcp/mcp",
       "is_success": true,
@@ -86,7 +82,7 @@
       "id": 213,
       "name": "YAPS Influence Score Server",
       "author": "",
-      "overview": "YAPS Influence Score Server - Gaming MCP server with 3 tools.",
+      "overview": "YAPS Influence Score Server - Gaming server with 3 tools. The MCP Server \"YAPS Influence Score Server\" provides 3 tools focused on gaming tasks. Core capabili",
       "repository_url": "",
       "homepage": "https://server.smithery.ai/@degenpilot404/yap_mcp/mcp",
       "remote_or_local": "Remote",
@@ -154,7 +150,7 @@
       "python_sdk_config": "{\"debug\": false}"
     },
     "source_filename": "0213.YAPS-Influence-Score-Server_labeled.json",
-    "processed_timestamp": 1772871482,
+    "processed_timestamp": 1772876338,
     "processing_mode": "gateway",
     "rank": 214
   }

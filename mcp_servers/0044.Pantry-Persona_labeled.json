@@ -1,14 +1,13 @@
 {
   "labels": {
-    "analysis": "The MCP Server \"Pantry Persona\" provides 19 tools for e-commerce tasks.",
-    "reasoning": "Primary label \"E-Commerce\" assigned based on tool names and descriptions.",
+    "analysis": "The MCP Server \"Pantry Persona\" provides 19 tools focused on e-commerce tasks. Core capabilities include creation and generation, data access and reading, deletion and cleanup, modification and updates. Key tools: manage_shopping, manage_pantry, manage_meal_plan, find_recipes, manage_recipes.",
+    "reasoning": "Primary label \"E-Commerce\" assigned based on strong keyword matches in tool names and descriptions: shop, inventory, product, store.",
     "primary_label": "E-Commerce",
     "secondary_labels": [
-      "Financial Services",
-      "AI/ML Tools",
-      "DNS & Networking"
+      "Database Operations",
+      "Health & Fitness"
     ],
-    "custom_label": "E-Commerce - Pantry Persona",
+    "custom_label": "Data Access & Management - Pantry Persona",
     "is_connected": true,
     "is_remote_tool_valid": true,
     "featured_server": true
@@ -20,7 +19,7 @@
     "usage_count": "1,120",
     "original_file": "tools.json#44",
     "mode": "gateway",
-    "timestamp": 1772871481,
+    "timestamp": 1772876337,
     "remote_server_response": {
       "url": "https://www.pantrypersona.com/api/mcp",
       "is_success": true,
@@ -2017,7 +2016,7 @@
       "id": 44,
       "name": "Pantry Persona",
       "author": "",
-      "overview": "Pantry Persona - E-Commerce MCP server with 19 tools.",
+      "overview": "Pantry Persona - E-Commerce server with 19 tools. The MCP Server \"Pantry Persona\" provides 19 tools focused on e-commerce tasks. Core capabilities inc",
       "repository_url": "",
       "homepage": "https://www.pantrypersona.com/api/mcp",
       "remote_or_local": "Remote",
@@ -2025,10 +2024,14 @@
       "usage_count": "1,120",
       "success_rate": "100%",
       "tags": [
-        "e-commerce"
+        "e-commerce",
+        "database-operations",
+        "health-fitness"
       ],
       "categories": [
-        "e-commerce"
+        "e-commerce",
+        "database operations",
+        "health & fitness"
       ],
       "tools_count": 19,
       "tools": [
@@ -4000,7 +4003,7 @@
       "python_sdk_config": "{\"debug\": false}"
     },
     "source_filename": "0044.Pantry-Persona_labeled.json",
-    "processed_timestamp": 1772871481,
+    "processed_timestamp": 1772876337,
     "processing_mode": "gateway",
     "rank": 45
   }

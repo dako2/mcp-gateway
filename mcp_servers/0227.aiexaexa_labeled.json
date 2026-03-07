@@ -1,15 +1,13 @@
 {
   "labels": {
-    "analysis": "The MCP Server \"ai.exa/exa\" provides 2 tools for development tools tasks.",
-    "reasoning": "Primary label \"Development Tools\" assigned based on tool names and descriptions.",
+    "analysis": "The MCP Server \"ai.exa/exa\" provides 2 tools focused on development tools tasks. Core capabilities include data access and reading, search and retrieval. Key tools: web_search_exa, get_code_context_exa.",
+    "reasoning": "Primary label \"Development Tools\" assigned based on strong keyword matches in tool names and descriptions: git, code, debug, snippet.",
     "primary_label": "Development Tools",
     "secondary_labels": [
-      "API Integration",
-      "DevOps",
       "Web Search & Research",
-      "AI/ML Tools"
+      "File Management"
     ],
-    "custom_label": "Development Tools - ai.exa/exa",
+    "custom_label": "Data Access & Search - ai.exa/exa",
     "is_connected": true,
     "is_remote_tool_valid": true,
     "featured_server": false
@@ -21,7 +19,7 @@
     "usage_count": "15",
     "original_file": "tools.json#227",
     "mode": "gateway",
-    "timestamp": 1772871482,
+    "timestamp": 1772876338,
     "remote_server_response": {
       "url": "https://mcp.exa.ai/mcp",
       "is_success": true,
@@ -130,7 +128,7 @@
       "id": 227,
       "name": "ai.exa/exa",
       "author": "",
-      "overview": "ai.exa/exa - Development Tools MCP server with 2 tools.",
+      "overview": "ai.exa/exa - Development Tools server with 2 tools. The MCP Server \"ai.exa/exa\" provides 2 tools focused on development tools tasks. Core capabilities i",
       "repository_url": "",
       "homepage": "https://mcp.exa.ai/mcp",
       "remote_or_local": "Remote",
@@ -138,10 +136,14 @@
       "usage_count": "15",
       "success_rate": "100%",
       "tags": [
-        "development-tools"
+        "development-tools",
+        "web-search-research",
+        "file-management"
       ],
       "categories": [
-        "development tools"
+        "development tools",
+        "web search & research",
+        "file management"
       ],
       "tools_count": 2,
       "tools": [
@@ -242,7 +244,7 @@
       "python_sdk_config": "{\"debug\": false}"
     },
     "source_filename": "0227.aiexaexa_labeled.json",
-    "processed_timestamp": 1772871482,
+    "processed_timestamp": 1772876338,
     "processing_mode": "gateway",
     "rank": 228
   }

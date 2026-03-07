@@ -1,0 +1,84 @@
+{
+  "labels": {
+    "analysis": "The MCP Server is designed to streamline webhook management and debugging. Its primary function involves generating webhook endpoints to capture, inspect, and manage HTTP requests. This is particularly useful for developers testing API integrations, debugging incoming requests, and replaying or forwarding requests. The core problem it solves is simplifying the process of managing webhooks during development, which typically involves manual handling of payloads and endpoints.",
+    "reasoning": "The primary label \"API Integration\" was chosen because the server's main functionality revolves around handling webhook endpoints, which is a key aspect of API development and interaction. Additional secondary labels like \"Development Tools\" and \"Browser Automation\" were selected because the server aids in debugging and automating HTTP request handling, tasks commonly associated with these categories. No custom label was necessary as the predefined categories adequately cover the server's functionality.",
+    "primary_label": "API Integration",
+    "secondary_labels": [
+      "Development Tools",
+      "Browser Automation"
+    ],
+    "custom_label": null,
+    "is_connected": true,
+    "is_remote_tool_valid": true,
+    "featured_server": false
+  },
+  "metadata": {
+    "server_id": 338,
+    "server_name": "UseWebhook",
+    "rank_by_usage": 1037,
+    "usage_count": "2",
+    "original_file": "toucan_live#@figstra/usewebhook-mcp",
+    "mode": "toucan",
+    "timestamp": 1772876338,
+    "remote_server_response": {
+      "url": "https://server.smithery.ai/@figstra/usewebhook-mcp/mcp",
+      "is_success": true,
+      "error": null,
+      "tools": [
+        {
+          "name": "generate_webhook",
+          "description": "Generate a webhook endpoint that captures incoming HTTP requests",
+          "input_schema": {
+            "type": "object",
+            "properties": {}
+          },
+          "annotations": null
+        }
+      ],
+      "tool_count": 1,
+      "tool_names": [
+        "generate_webhook"
+      ]
+    },
+    "server_info_crawled": {
+      "id": 338,
+      "name": "UseWebhook",
+      "author": "",
+      "overview": "Generate webhook endpoints for testing, inspect and diff HTTP request payloads, replay requests from history, and forward requests to your localhost. Enhance your development workflow by easily managing and debugging webhooks in a streamlined manner.",
+      "repository_url": "",
+      "homepage": "https://server.smithery.ai/@figstra/usewebhook-mcp/mcp",
+      "remote_or_local": "Remote",
+      "license": "",
+      "usage_count": "2",
+      "success_rate": "Not available",
+      "tags": [
+        "search",
+        "web",
+        "api",
+        "mcp"
+      ],
+      "categories": [
+        "search",
+        "api"
+      ],
+      "tools_count": 1,
+      "tools": [
+        {
+          "name": "generate_webhook",
+          "description": "Generate a webhook endpoint that captures incoming HTTP requests",
+          "input_schema": {
+            "type": "object",
+            "properties": {}
+          },
+          "annotations": null
+        }
+      ],
+      "python_sdk_url": "https://server.smithery.ai/@figstra/usewebhook-mcp/mcp",
+      "python_sdk_config": "{\"debug\": false}"
+    },
+    "source_filename": "0338.UseWebhook_labeled.json",
+    "processed_timestamp": 1772876338,
+    "processing_mode": "toucan",
+    "rank": 1037
+  }
+}

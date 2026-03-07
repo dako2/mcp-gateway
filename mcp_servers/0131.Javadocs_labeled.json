@@ -1,13 +1,10 @@
 {
   "labels": {
-    "analysis": "The MCP Server \"Javadocs\" provides 6 tools for development tools tasks.",
-    "reasoning": "Primary label \"Development Tools\" assigned based on tool names and descriptions.",
+    "analysis": "The MCP Server \"Javadocs\" provides 6 tools focused on development tools tasks. Core capabilities include various operations. Key tools: get_latest_version, get_javadoc_content_list, get_javadoc_symbol_contents, get_source_contents, list_source_contents.",
+    "reasoning": "Primary label \"Development Tools\" assigned based on strong keyword matches in tool names and descriptions: test_.",
     "primary_label": "Development Tools",
-    "secondary_labels": [
-      "API Integration",
-      "DevOps"
-    ],
-    "custom_label": "Development Tools - Javadocs",
+    "secondary_labels": [],
+    "custom_label": "Data Access - Javadocs",
     "is_connected": true,
     "is_remote_tool_valid": true,
     "featured_server": false
@@ -19,7 +16,7 @@
     "usage_count": "100",
     "original_file": "tools.json#131",
     "mode": "gateway",
-    "timestamp": 1772871481,
+    "timestamp": 1772876337,
     "remote_server_response": {
       "url": "https://www.javadocs.dev/mcp",
       "is_success": true,
@@ -58,7 +55,7 @@
       "id": 131,
       "name": "Javadocs",
       "author": "",
-      "overview": "Javadocs - Development Tools MCP server with 6 tools.",
+      "overview": "Javadocs - Development Tools server with 6 tools. The MCP Server \"Javadocs\" provides 6 tools focused on development tools tasks. Core capabilities inc",
       "repository_url": "",
       "homepage": "https://www.javadocs.dev/mcp",
       "remote_or_local": "Remote",
@@ -96,7 +93,7 @@
       "python_sdk_config": "{\"debug\": false}"
     },
     "source_filename": "0131.Javadocs_labeled.json",
-    "processed_timestamp": 1772871481,
+    "processed_timestamp": 1772876337,
     "processing_mode": "gateway",
     "rank": 132
   }

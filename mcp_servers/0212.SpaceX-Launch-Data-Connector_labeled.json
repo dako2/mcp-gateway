@@ -1,15 +1,13 @@
 {
   "labels": {
-    "analysis": "The MCP Server \"SpaceX Launch Data Connector\" provides 3 tools for development tools tasks.",
-    "reasoning": "Primary label \"Development Tools\" assigned based on tool names and descriptions.",
+    "analysis": "The MCP Server \"SpaceX Launch Data Connector\" provides 3 tools focused on development tools tasks. Core capabilities include various operations. Key tools: get_latest_launch, get_upcoming_launches, get_company_info.",
+    "reasoning": "Primary label \"Development Tools\" assigned based on strong keyword matches in tool names and descriptions: test_.",
     "primary_label": "Development Tools",
     "secondary_labels": [
-      "API Integration",
-      "DevOps",
       "Data Analysis & Processing",
-      "AI/ML Tools"
+      "API Integration"
     ],
-    "custom_label": "Development Tools - SpaceX Launch Data Connector",
+    "custom_label": "Data Access - SpaceX Launch Data Connector",
     "is_connected": true,
     "is_remote_tool_valid": true,
     "featured_server": false
@@ -21,7 +19,7 @@
     "usage_count": "10",
     "original_file": "tools.json#212",
     "mode": "gateway",
-    "timestamp": 1772871482,
+    "timestamp": 1772876338,
     "remote_server_response": {
       "url": "https://server.smithery.ai/@rftsngl/spacex-mcp/mcp",
       "is_success": true,
@@ -72,7 +70,7 @@
       "id": 212,
       "name": "SpaceX Launch Data Connector",
       "author": "",
-      "overview": "SpaceX Launch Data Connector - Development Tools MCP server with 3 tools.",
+      "overview": "SpaceX Launch Data Connector - Development Tools server with 3 tools. The MCP Server \"SpaceX Launch Data Connector\" provides 3 tools focused on development tools tasks. C",
       "repository_url": "",
       "homepage": "https://server.smithery.ai/@rftsngl/spacex-mcp/mcp",
       "remote_or_local": "Remote",
@@ -80,10 +78,14 @@
       "usage_count": "10",
       "success_rate": "100%",
       "tags": [
-        "development-tools"
+        "development-tools",
+        "data-analysis-processing",
+        "api-integration"
       ],
       "categories": [
-        "development tools"
+        "development tools",
+        "data analysis & processing",
+        "api integration"
       ],
       "tools_count": 3,
       "tools": [
@@ -125,7 +127,7 @@
       "python_sdk_config": "{\"debug\": false}"
     },
     "source_filename": "0212.SpaceX-Launch-Data-Connector_labeled.json",
-    "processed_timestamp": 1772871482,
+    "processed_timestamp": 1772876338,
     "processing_mode": "gateway",
     "rank": 213
   }

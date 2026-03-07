@@ -1,14 +1,13 @@
 {
   "labels": {
-    "analysis": "The MCP Server \"ComOS Federation Gateway\" provides 35 tools for e-commerce tasks.",
-    "reasoning": "Primary label \"E-Commerce\" assigned based on tool names and descriptions.",
+    "analysis": "The MCP Server \"ComOS Federation Gateway\" provides 35 tools focused on e-commerce tasks. Core capabilities include creation and generation, data access and reading, deletion and cleanup, modification and updates. Key tools: federation_list_tenants, federation_tenant_info, federation_help, federation_list_agents, federation_run_agent.",
+    "reasoning": "Primary label \"E-Commerce\" assigned based on strong keyword matches in tool names and descriptions: shop, cart, product, catalog.",
     "primary_label": "E-Commerce",
     "secondary_labels": [
-      "Financial Services",
-      "Web Search & Research",
+      "Cryptocurrency & Blockchain",
       "Communication Tools"
     ],
-    "custom_label": "E-Commerce - ComOS Federation Gateway",
+    "custom_label": "Data Access & Search - ComOS Federation Gateway",
     "is_connected": true,
     "is_remote_tool_valid": true,
     "featured_server": true
@@ -20,7 +19,7 @@
     "usage_count": "8,750",
     "original_file": "tools.json#25",
     "mode": "gateway",
-    "timestamp": 1772871481,
+    "timestamp": 1772876337,
     "remote_server_response": {
       "url": "https://mcp.comos-gateway.com/mcp",
       "is_success": true,
@@ -1243,7 +1242,7 @@
       "id": 25,
       "name": "ComOS Federation Gateway",
       "author": "",
-      "overview": "ComOS Federation Gateway - E-Commerce MCP server with 35 tools.",
+      "overview": "ComOS Federation Gateway - E-Commerce server with 35 tools. The MCP Server \"ComOS Federation Gateway\" provides 35 tools focused on e-commerce tasks. Core capabi",
       "repository_url": "",
       "homepage": "https://mcp.comos-gateway.com/mcp",
       "remote_or_local": "Remote",
@@ -1251,10 +1250,14 @@
       "usage_count": "8,750",
       "success_rate": "100%",
       "tags": [
-        "e-commerce"
+        "e-commerce",
+        "cryptocurrency-blockchain",
+        "communication-tools"
       ],
       "categories": [
-        "e-commerce"
+        "e-commerce",
+        "cryptocurrency & blockchain",
+        "communication tools"
       ],
       "tools_count": 35,
       "tools": [
@@ -2436,7 +2439,7 @@
       "python_sdk_config": "{\"debug\": false}"
     },
     "source_filename": "0025.ComOS-Federation-Gateway_labeled.json",
-    "processed_timestamp": 1772871481,
+    "processed_timestamp": 1772876337,
     "processing_mode": "gateway",
     "rank": 26
   }

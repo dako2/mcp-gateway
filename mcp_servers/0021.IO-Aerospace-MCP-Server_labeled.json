@@ -1,14 +1,13 @@
 {
   "labels": {
-    "analysis": "The MCP Server \"IO Aerospace MCP Server\" provides 37 tools for ai/ml tools tasks.",
-    "reasoning": "Primary label \"AI/ML Tools\" assigned based on tool names and descriptions.",
-    "primary_label": "AI/ML Tools",
+    "analysis": "The MCP Server \"IO Aerospace MCP Server\" provides 37 tools focused on maps & location tasks. Core capabilities include data access and reading, search and retrieval. Key tools: degrees_to_radians, meters_to_miles, get_deep_space_station_planetodetic_coordinates, find_occulting_constraint, parsec_to_meters.",
+    "reasoning": "Primary label \"Maps & Location\" assigned based on strong keyword matches in tool names and descriptions: coordinate.",
+    "primary_label": "Maps & Location",
     "secondary_labels": [
-      "Content Creation",
-      "Weather",
-      "Development Tools"
+      "AI/ML Tools",
+      "File Management"
     ],
-    "custom_label": "AI/ML Tools - IO Aerospace MCP Server",
+    "custom_label": "Data Access - IO Aerospace MCP Server",
     "is_connected": true,
     "is_remote_tool_valid": true,
     "featured_server": true
@@ -20,7 +19,7 @@
     "usage_count": "8,950",
     "original_file": "tools.json#21",
     "mode": "gateway",
-    "timestamp": 1772871481,
+    "timestamp": 1772876337,
     "remote_server_response": {
       "url": "https://mcp.io-aerospace.org",
       "is_success": true,
@@ -15837,7 +15836,7 @@
       "id": 21,
       "name": "IO Aerospace MCP Server",
       "author": "",
-      "overview": "IO Aerospace MCP Server - AI/ML Tools MCP server with 37 tools.",
+      "overview": "IO Aerospace MCP Server - Maps & Location server with 37 tools. The MCP Server \"IO Aerospace MCP Server\" provides 37 tools focused on maps & location tasks. Core ca",
       "repository_url": "",
       "homepage": "https://mcp.io-aerospace.org",
       "remote_or_local": "Remote",
@@ -15845,10 +15844,14 @@
       "usage_count": "8,950",
       "success_rate": "100%",
       "tags": [
-        "ai/ml-tools"
+        "maps-location",
+        "ai/ml-tools",
+        "file-management"
       ],
       "categories": [
-        "ai/ml tools"
+        "maps & location",
+        "ai/ml tools",
+        "file management"
       ],
       "tools_count": 37,
       "tools": [
@@ -31622,7 +31625,7 @@
       "python_sdk_config": "{\"debug\": false}"
     },
     "source_filename": "0021.IO-Aerospace-MCP-Server_labeled.json",
-    "processed_timestamp": 1772871481,
+    "processed_timestamp": 1772876337,
     "processing_mode": "gateway",
     "rank": 22
   }

@@ -1,14 +1,13 @@
 {
   "labels": {
-    "analysis": "The MCP Server \"io.github.lilo-property/mcp-server\" provides 59 tools for real estate tasks.",
-    "reasoning": "Primary label \"Real Estate\" assigned based on tool names and descriptions.",
+    "analysis": "The MCP Server \"io.github.lilo-property/mcp-server\" provides 59 tools focused on real estate tasks. Core capabilities include data access and reading, search and retrieval. Key tools: get_property, search_properties, search_market_discovery, semantic_property_search, find_similar_properties.",
+    "reasoning": "Primary label \"Real Estate\" assigned based on strong keyword matches in tool names and descriptions: property, rental, house, booking, vacation.",
     "primary_label": "Real Estate",
     "secondary_labels": [
-      "E-Commerce",
-      "Development Tools",
-      "Web Search & Research"
+      "Web Search & Research",
+      "Data Analysis & Processing"
     ],
-    "custom_label": "Real Estate - io.github.lilo-property/mcp-server",
+    "custom_label": "Data Access & Search - io.github.lilo-property/mcp-server",
     "is_connected": true,
     "is_remote_tool_valid": true,
     "featured_server": true
@@ -20,7 +19,7 @@
     "usage_count": "49,300",
     "original_file": "tools.json#7",
     "mode": "gateway",
-    "timestamp": 1772871481,
+    "timestamp": 1772876337,
     "remote_server_response": {
       "url": "https://mcp.lilo.property/mcp",
       "is_success": true,
@@ -1544,7 +1543,7 @@
       "id": 7,
       "name": "io.github.lilo-property/mcp-server",
       "author": "",
-      "overview": "io.github.lilo-property/mcp-server - Real Estate MCP server with 59 tools.",
+      "overview": "io.github.lilo-property/mcp-server - Real Estate server with 59 tools. The MCP Server \"io.github.lilo-property/mcp-server\" provides 59 tools focused on real estate tasks. ",
       "repository_url": "",
       "homepage": "https://mcp.lilo.property/mcp",
       "remote_or_local": "Remote",
@@ -1552,10 +1551,14 @@
       "usage_count": "49,300",
       "success_rate": "100%",
       "tags": [
-        "real-estate"
+        "real-estate",
+        "web-search-research",
+        "data-analysis-processing"
       ],
       "categories": [
-        "real estate"
+        "real estate",
+        "web search & research",
+        "data analysis & processing"
       ],
       "tools_count": 59,
       "tools": [
@@ -3014,7 +3017,7 @@
       "python_sdk_config": "{\"debug\": false}"
     },
     "source_filename": "0007.iogithublilo-propertymcp-server_labeled.json",
-    "processed_timestamp": 1772871481,
+    "processed_timestamp": 1772876337,
     "processing_mode": "gateway",
     "rank": 8
   }

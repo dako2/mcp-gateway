@@ -1,14 +1,12 @@
 {
   "labels": {
-    "analysis": "The MCP Server \"SubwayInfo NYC\" provides 22 tools for maps & location tasks.",
-    "reasoning": "Primary label \"Maps & Location\" assigned based on tool names and descriptions.",
+    "analysis": "The MCP Server \"SubwayInfo NYC\" provides 22 tools focused on maps & location tasks. Core capabilities include data access and reading, search and retrieval. Key tools: mta_get_arrivals, mta_get_line_status, mta_list_alerts, mta_search_stations, mta_get_station_info.",
+    "reasoning": "Primary label \"Maps & Location\" assigned based on strong keyword matches in tool names and descriptions: route, subway, ferry.",
     "primary_label": "Maps & Location",
     "secondary_labels": [
-      "API Integration",
-      "Development Tools",
       "Web Search & Research"
     ],
-    "custom_label": "Maps & Location - SubwayInfo NYC",
+    "custom_label": "Data Access & Search - SubwayInfo NYC",
     "is_connected": true,
     "is_remote_tool_valid": true,
     "featured_server": true
@@ -20,7 +18,7 @@
     "usage_count": "8,150",
     "original_file": "tools.json#37",
     "mode": "gateway",
-    "timestamp": 1772871481,
+    "timestamp": 1772876337,
     "remote_server_response": {
       "url": "https://subwayinfo.nyc/mcp",
       "is_success": true,
@@ -930,7 +928,7 @@
       "id": 37,
       "name": "SubwayInfo NYC",
       "author": "",
-      "overview": "SubwayInfo NYC - Maps & Location MCP server with 22 tools.",
+      "overview": "SubwayInfo NYC - Maps & Location server with 22 tools. The MCP Server \"SubwayInfo NYC\" provides 22 tools focused on maps & location tasks. Core capabilitie",
       "repository_url": "",
       "homepage": "https://subwayinfo.nyc/mcp",
       "remote_or_local": "Remote",
@@ -938,10 +936,12 @@
       "usage_count": "8,150",
       "success_rate": "100%",
       "tags": [
-        "maps-location"
+        "maps-location",
+        "web-search-research"
       ],
       "categories": [
-        "maps & location"
+        "maps & location",
+        "web search & research"
       ],
       "tools_count": 22,
       "tools": [
@@ -1823,7 +1823,7 @@
       "python_sdk_config": "{\"debug\": false}"
     },
     "source_filename": "0037.SubwayInfo-NYC_labeled.json",
-    "processed_timestamp": 1772871481,
+    "processed_timestamp": 1772876337,
     "processing_mode": "gateway",
     "rank": 38
   }

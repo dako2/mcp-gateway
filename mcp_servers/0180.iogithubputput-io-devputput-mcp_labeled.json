@@ -1,15 +1,12 @@
 {
   "labels": {
-    "analysis": "The MCP Server \"io.github.putput-io-dev/putput-mcp\" provides 4 tools for development tools tasks.",
-    "reasoning": "Primary label \"Development Tools\" assigned based on tool names and descriptions.",
-    "primary_label": "Development Tools",
+    "analysis": "The MCP Server \"io.github.putput-io-dev/putput-mcp\" provides 4 tools focused on file management tasks. Core capabilities include data access and reading, deletion and cleanup. Key tools: upload_file, list_files, delete_file, get_file_info.",
+    "reasoning": "Primary label \"File Management\" assigned based on strong keyword matches in tool names and descriptions: file_, storage, upload.",
+    "primary_label": "File Management",
     "secondary_labels": [
-      "API Integration",
-      "DevOps",
-      "File Management",
-      "AI/ML Tools"
+      "Development Tools"
     ],
-    "custom_label": "Development Tools - io.github.putput-io-dev/putput-mcp",
+    "custom_label": "Data Access - io.github.putput-io-dev/putput-mcp",
     "is_connected": true,
     "is_remote_tool_valid": true,
     "featured_server": false
@@ -21,7 +18,7 @@
     "usage_count": "10",
     "original_file": "tools.json#180",
     "mode": "gateway",
-    "timestamp": 1772871482,
+    "timestamp": 1772876337,
     "remote_server_response": {
       "url": "https://putput.io/api/v1/mcp",
       "is_success": true,
@@ -129,7 +126,7 @@
       "id": 180,
       "name": "io.github.putput-io-dev/putput-mcp",
       "author": "",
-      "overview": "io.github.putput-io-dev/putput-mcp - Development Tools MCP server with 4 tools.",
+      "overview": "io.github.putput-io-dev/putput-mcp - File Management server with 4 tools. The MCP Server \"io.github.putput-io-dev/putput-mcp\" provides 4 tools focused on file management task",
       "repository_url": "",
       "homepage": "https://putput.io/api/v1/mcp",
       "remote_or_local": "Remote",
@@ -137,9 +134,11 @@
       "usage_count": "10",
       "success_rate": "100%",
       "tags": [
+        "file-management",
         "development-tools"
       ],
       "categories": [
+        "file management",
         "development tools"
       ],
       "tools_count": 4,
@@ -238,7 +237,7 @@
       "python_sdk_config": "{\"debug\": false}"
     },
     "source_filename": "0180.iogithubputput-io-devputput-mcp_labeled.json",
-    "processed_timestamp": 1772871482,
+    "processed_timestamp": 1772876337,
     "processing_mode": "gateway",
     "rank": 181
   }

@@ -1,15 +1,10 @@
 {
   "labels": {
-    "analysis": "The MCP Server \"LinkedIn MCP Server\" provides 3 tools for social media tasks.",
-    "reasoning": "Primary label \"Social Media\" assigned based on tool names and descriptions.",
+    "analysis": "The MCP Server \"LinkedIn MCP Server\" provides 3 tools focused on social media tasks. Core capabilities include creation and generation, data access and reading. Key tools: createSharePost, getSharePosts, getPersonProfile.",
+    "reasoning": "Primary label \"Social Media\" assigned based on strong keyword matches in tool names and descriptions: linkedin.",
     "primary_label": "Social Media",
-    "secondary_labels": [
-      "Communication Tools",
-      "Content Creation",
-      "AI/ML Tools",
-      "Security & Authentication"
-    ],
-    "custom_label": "Social Media - LinkedIn MCP Server",
+    "secondary_labels": [],
+    "custom_label": "Data Access & Generation - LinkedIn MCP Server",
     "is_connected": true,
     "is_remote_tool_valid": true,
     "featured_server": false
@@ -21,7 +16,7 @@
     "usage_count": "10",
     "original_file": "tools.json#197",
     "mode": "gateway",
-    "timestamp": 1772871482,
+    "timestamp": 1772876338,
     "remote_server_response": {
       "url": "https://linkedin.run.mcp.com.ai/mcp",
       "is_success": true,
@@ -170,7 +165,7 @@
       "id": 197,
       "name": "LinkedIn MCP Server",
       "author": "",
-      "overview": "LinkedIn MCP Server - Social Media MCP server with 3 tools.",
+      "overview": "LinkedIn MCP Server - Social Media server with 3 tools. The MCP Server \"LinkedIn MCP Server\" provides 3 tools focused on social media tasks. Core capabiliti",
       "repository_url": "",
       "homepage": "https://linkedin.run.mcp.com.ai/mcp",
       "remote_or_local": "Remote",
@@ -321,7 +316,7 @@
       "python_sdk_config": "{\"debug\": false}"
     },
     "source_filename": "0197.LinkedIn-MCP-Server_labeled.json",
-    "processed_timestamp": 1772871482,
+    "processed_timestamp": 1772876338,
     "processing_mode": "gateway",
     "rank": 198
   }

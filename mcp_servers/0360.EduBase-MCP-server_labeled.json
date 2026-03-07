@@ -1,0 +1,62 @@
+{
+  "labels": {
+    "analysis": "The MCP Server is designed primarily for educational assessment and learning management. Its core functionality revolves around creating, managing, and executing quizzes, exams, and assessments within an educational ecosystem. The server supports user management, permission control, and integration with existing educational systems through an API. It also facilitates tracking quiz and exam results, providing detailed analytics for educators. Additionally, the server handles organizational structures like classes, courses, and SCORM modules, making it a comprehensive platform for digital learning infrastructure.",
+    "reasoning": "The primary label \"Education\" was chosen because the server's tools and functionality are squarely focused on educational assessment and learning management, which aligns perfectly with this category. The secondary labels \"API Integration\" and \"Database Operations\" were selected because the server heavily relies on API interactions for its operations and manage various data entities like quizzes, exams, and users, indicating significant database functionality. The custom label \"Learning Management System (LMS)\" was added because while the \"Education\" label is broad, \"Learning Management System\" is a more specific descriptor of the server's role as a digital learning platform.",
+    "primary_label": "Education",
+    "secondary_labels": [
+      "API Integration",
+      "Database Operations"
+    ],
+    "custom_label": "Learning Management System (LMS)",
+    "is_connected": false,
+    "is_remote_tool_valid": false,
+    "featured_server": false
+  },
+  "metadata": {
+    "server_id": 360,
+    "server_name": "EduBase MCP server",
+    "rank_by_usage": 1802,
+    "usage_count": "Not available",
+    "original_file": "toucan_live#@EduBase/MCP",
+    "mode": "toucan",
+    "timestamp": 1772876338,
+    "remote_server_response": {
+      "url": "https://server.smithery.ai/@EduBase/MCP/mcp",
+      "is_success": true,
+      "error": null,
+      "tools": [],
+      "tool_count": 0,
+      "tool_names": []
+    },
+    "server_info_crawled": {
+      "id": 360,
+      "name": "EduBase MCP server",
+      "author": "",
+      "overview": "Interact with EduBase through our MCP server. Create dynamic quizzes, manage secure exams, and automate comprehensive assessment workflows. This seamless integration empowers educators to create personalized learning experiences, conduct secure online examinations, and scale assessment solutions with enterprise-grade security and compliance. Ideal for educational institutions, corporate training departments, and certification providers seeking to transform their digital learning infrastructure with AI-powered capabilities. Integrate with your existing systems through our secure API.\n\nCheck out our GitHub page for more details and setup instructions!",
+      "repository_url": "",
+      "homepage": "https://server.smithery.ai/@EduBase/MCP/mcp",
+      "remote_or_local": "Remote",
+      "license": "",
+      "usage_count": "Not available",
+      "success_rate": "Not available",
+      "tags": [
+        "search",
+        "web",
+        "api",
+        "mcp"
+      ],
+      "categories": [
+        "search",
+        "api"
+      ],
+      "tools_count": 0,
+      "tools": [],
+      "python_sdk_url": "https://server.smithery.ai/@EduBase/MCP/mcp",
+      "python_sdk_config": "{\"debug\": false}"
+    },
+    "source_filename": "0360.EduBase-MCP-server_labeled.json",
+    "processed_timestamp": 1772876338,
+    "processing_mode": "toucan",
+    "rank": 1802
+  }
+}

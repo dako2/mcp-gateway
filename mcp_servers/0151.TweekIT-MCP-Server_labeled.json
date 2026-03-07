@@ -1,14 +1,13 @@
 {
   "labels": {
-    "analysis": "The MCP Server \"TweekIT MCP Server\" provides 5 tools for file management tasks.",
-    "reasoning": "Primary label \"File Management\" assigned based on tool names and descriptions.",
+    "analysis": "The MCP Server \"TweekIT MCP Server\" provides 5 tools focused on file management tasks. Core capabilities include data access and reading, search and retrieval. Key tools: doctype, convert, convert_url, fetch, search.",
+    "reasoning": "Primary label \"File Management\" assigned based on strong keyword matches in tool names and descriptions: document, pdf, convert_, upload, download.",
     "primary_label": "File Management",
     "secondary_labels": [
-      "Cloud Storage",
-      "Development Tools",
-      "Web Search & Research"
+      "Web Search & Research",
+      "Maps & Location"
     ],
-    "custom_label": "File Management - TweekIT MCP Server",
+    "custom_label": "Search - TweekIT MCP Server",
     "is_connected": true,
     "is_remote_tool_valid": true,
     "featured_server": true
@@ -20,7 +19,7 @@
     "usage_count": "100",
     "original_file": "tools.json#151",
     "mode": "gateway",
-    "timestamp": 1772871481,
+    "timestamp": 1772876337,
     "remote_server_response": {
       "url": "https://mcp.tweekit.io/mcp",
       "is_success": true,
@@ -370,7 +369,7 @@
       "id": 151,
       "name": "TweekIT MCP Server",
       "author": "",
-      "overview": "TweekIT MCP Server - File Management MCP server with 5 tools.",
+      "overview": "TweekIT MCP Server - File Management server with 5 tools. The MCP Server \"TweekIT MCP Server\" provides 5 tools focused on file management tasks. Core capabili",
       "repository_url": "",
       "homepage": "https://mcp.tweekit.io/mcp",
       "remote_or_local": "Remote",
@@ -378,10 +377,14 @@
       "usage_count": "100",
       "success_rate": "100%",
       "tags": [
-        "file-management"
+        "file-management",
+        "web-search-research",
+        "maps-location"
       ],
       "categories": [
-        "file management"
+        "file management",
+        "web search & research",
+        "maps & location"
       ],
       "tools_count": 5,
       "tools": [
@@ -720,7 +723,7 @@
       "python_sdk_config": "{\"debug\": false}"
     },
     "source_filename": "0151.TweekIT-MCP-Server_labeled.json",
-    "processed_timestamp": 1772871481,
+    "processed_timestamp": 1772876337,
     "processing_mode": "gateway",
     "rank": 152
   }
