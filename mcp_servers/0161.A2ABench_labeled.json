@@ -1,0 +1,366 @@
+{
+  "labels": {
+    "analysis": "The MCP Server \"A2ABench\" provides 5 tools for development tools tasks.",
+    "reasoning": "Primary label \"Development Tools\" assigned based on tool names and descriptions.",
+    "primary_label": "Development Tools",
+    "secondary_labels": [
+      "API Integration",
+      "DevOps",
+      "Web Search & Research",
+      "Communication Tools"
+    ],
+    "custom_label": "Development Tools - A2ABench",
+    "is_connected": true,
+    "is_remote_tool_valid": true,
+    "featured_server": true
+  },
+  "metadata": {
+    "server_id": 161,
+    "server_name": "A2ABench",
+    "rank_by_usage": 162,
+    "usage_count": "100",
+    "original_file": "tools.json#161",
+    "mode": "gateway",
+    "timestamp": 1772871481,
+    "remote_server_response": {
+      "url": "https://a2abench-mcp.web.app/mcp",
+      "is_success": true,
+      "error": null,
+      "tools": [
+        {
+          "name": "search",
+          "title": "Search questions",
+          "description": "Search questions by keyword and return canonical URLs.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "query": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "required": [
+              "query"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "fetch",
+          "title": "Fetch question thread",
+          "description": "Fetch a question and its answers by id.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "required": [
+              "id"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "answer",
+          "title": "Answer",
+          "description": "Synthesize a grounded answer from A2ABench threads with citations.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "query": {
+                "type": "string",
+                "minLength": 1
+              },
+              "top_k": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 10
+              },
+              "include_evidence": {
+                "type": "boolean"
+              },
+              "mode": {
+                "type": "string",
+                "enum": [
+                  "balanced",
+                  "strict"
+                ]
+              },
+              "max_chars_per_evidence": {
+                "type": "integer",
+                "minimum": 200,
+                "maximum": 4000
+              }
+            },
+            "required": [
+              "query"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "create_question",
+          "title": "Create question",
+          "description": "Create a new question thread (requires API key).",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "title": {
+                "type": "string",
+                "minLength": 8
+              },
+              "bodyMd": {
+                "type": "string",
+                "minLength": 3
+              },
+              "tags": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "force": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "title",
+              "bodyMd"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "create_answer",
+          "title": "Create answer",
+          "description": "Create an answer for a question (requires API key).",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "bodyMd": {
+                "type": "string",
+                "minLength": 3
+              }
+            },
+            "required": [
+              "id",
+              "bodyMd"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        }
+      ],
+      "tool_count": 5,
+      "tool_names": [
+        "search",
+        "fetch",
+        "answer",
+        "create_question",
+        "create_answer"
+      ]
+    },
+    "server_info_crawled": {
+      "id": 161,
+      "name": "A2ABench",
+      "author": "",
+      "overview": "A2ABench - Development Tools MCP server with 5 tools.",
+      "repository_url": "",
+      "homepage": "https://a2abench-mcp.web.app/mcp",
+      "remote_or_local": "Remote",
+      "license": "",
+      "usage_count": "100",
+      "success_rate": "100%",
+      "tags": [
+        "development-tools"
+      ],
+      "categories": [
+        "development tools"
+      ],
+      "tools_count": 5,
+      "tools": [
+        {
+          "name": "search",
+          "title": "Search questions",
+          "description": "Search questions by keyword and return canonical URLs.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "query": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "required": [
+              "query"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "fetch",
+          "title": "Fetch question thread",
+          "description": "Fetch a question and its answers by id.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "required": [
+              "id"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "answer",
+          "title": "Answer",
+          "description": "Synthesize a grounded answer from A2ABench threads with citations.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "query": {
+                "type": "string",
+                "minLength": 1
+              },
+              "top_k": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 10
+              },
+              "include_evidence": {
+                "type": "boolean"
+              },
+              "mode": {
+                "type": "string",
+                "enum": [
+                  "balanced",
+                  "strict"
+                ]
+              },
+              "max_chars_per_evidence": {
+                "type": "integer",
+                "minimum": 200,
+                "maximum": 4000
+              }
+            },
+            "required": [
+              "query"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "create_question",
+          "title": "Create question",
+          "description": "Create a new question thread (requires API key).",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "title": {
+                "type": "string",
+                "minLength": 8
+              },
+              "bodyMd": {
+                "type": "string",
+                "minLength": 3
+              },
+              "tags": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "force": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "title",
+              "bodyMd"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "create_answer",
+          "title": "Create answer",
+          "description": "Create an answer for a question (requires API key).",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "bodyMd": {
+                "type": "string",
+                "minLength": 3
+              }
+            },
+            "required": [
+              "id",
+              "bodyMd"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        }
+      ],
+      "python_sdk_url": "https://a2abench-mcp.web.app/mcp",
+      "python_sdk_config": "{\"debug\": false}"
+    },
+    "source_filename": "0161.A2ABench_labeled.json",
+    "processed_timestamp": 1772871481,
+    "processing_mode": "gateway",
+    "rank": 162
+  }
+}

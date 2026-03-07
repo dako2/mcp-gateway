@@ -1,0 +1,544 @@
+{
+  "labels": {
+    "analysis": "The MCP Server \"SpecProof\" provides 8 tools for data analysis & processing tasks.",
+    "reasoning": "Primary label \"Data Analysis & Processing\" assigned based on tool names and descriptions.",
+    "primary_label": "Data Analysis & Processing",
+    "secondary_labels": [
+      "Database Operations",
+      "AI/ML Tools",
+      "Productivity"
+    ],
+    "custom_label": "Data Analysis & Processing - SpecProof",
+    "is_connected": true,
+    "is_remote_tool_valid": true,
+    "featured_server": true
+  },
+  "metadata": {
+    "server_id": 106,
+    "server_name": "SpecProof",
+    "rank_by_usage": 107,
+    "usage_count": "100",
+    "original_file": "tools.json#106",
+    "mode": "gateway",
+    "timestamp": 1772871481,
+    "remote_server_response": {
+      "url": "https://mcp.specproof.ai",
+      "is_success": true,
+      "error": null,
+      "tools": [
+        {
+          "name": "search_specifications",
+          "description": "Search across 3GPP and IETF specification documents using full-text search. Returns ranked results with content previews.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "query": {
+                "type": "string",
+                "description": "Search query terms"
+              },
+              "doc_type": {
+                "type": "string",
+                "enum": [
+                  "3gpp",
+                  "ietf"
+                ],
+                "description": "Filter by document type (optional)"
+              },
+              "spec_number": {
+                "type": "string",
+                "description": "Filter by specification number (optional)"
+              },
+              "max_results": {
+                "type": "integer",
+                "default": 10,
+                "minimum": 1,
+                "maximum": 50,
+                "description": "Maximum number of results"
+              }
+            },
+            "required": [
+              "query"
+            ],
+            "additionalProperties": false
+          }
+        },
+        {
+          "name": "semantic_search",
+          "description": "Perform semantic search using vector embeddings with FAISS acceleration for better conceptual matching.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "query": {
+                "type": "string",
+                "description": "Natural language search query"
+              },
+              "max_results": {
+                "type": "integer",
+                "default": 5,
+                "minimum": 1,
+                "maximum": 20,
+                "description": "Maximum number of results"
+              },
+              "similarity_threshold": {
+                "type": "number",
+                "default": 0.3,
+                "minimum": 0.0,
+                "maximum": 1.0,
+                "description": "Minimum similarity threshold"
+              },
+              "index_type": {
+                "type": "string",
+                "enum": [
+                  "hnsw",
+                  "ivf",
+                  "flat"
+                ],
+                "description": "FAISS index type (optional, auto-selected if not specified)"
+              }
+            },
+            "required": [
+              "query"
+            ],
+            "additionalProperties": false
+          }
+        },
+        {
+          "name": "get_document_content",
+          "description": "Retrieve specific content from a specification document by filename, with optional page range and section filtering.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "filename": {
+                "type": "string",
+                "description": "Document filename (e.g., 'TS_23.501_Rel17.pdf')"
+              },
+              "page_range": {
+                "type": "string",
+                "description": "Page range like '10-15' or single page '20' (optional)"
+              },
+              "section": {
+                "type": "string",
+                "description": "Section title filter (optional)"
+              }
+            },
+            "required": [
+              "filename"
+            ],
+            "additionalProperties": false
+          }
+        },
+        {
+          "name": "list_documents",
+          "description": "List available specification documents with filtering options.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "doc_type": {
+                "type": "string",
+                "enum": [
+                  "3gpp",
+                  "ietf"
+                ],
+                "description": "Filter by document type (optional)"
+              },
+              "search_pattern": {
+                "type": "string",
+                "description": "Search pattern for spec number or title (optional)"
+              },
+              "limit": {
+                "type": "integer",
+                "default": 20,
+                "minimum": 1,
+                "maximum": 100,
+                "description": "Maximum number of results"
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        {
+          "name": "get_database_stats",
+          "description": "Get comprehensive database and system statistics including document counts, search capabilities, and performance metrics.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {},
+            "additionalProperties": false
+          }
+        },
+        {
+          "name": "search_contributions",
+          "description": "Search 3GPP contribution documents by various criteria including document number, working group, meeting, work item, and agenda item.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "doc_number": {
+                "type": "string",
+                "description": "Contribution document number (e.g., 'S4-251419')"
+              },
+              "working_group": {
+                "type": "string",
+                "description": "Working group (e.g., 'S4', 'SA4')"
+              },
+              "meeting_number": {
+                "type": "string",
+                "description": "Meeting number (e.g., '133')"
+              },
+              "work_item": {
+                "type": "string",
+                "description": "Work item identifier (e.g., '5GMS_Pro_Ph2')"
+              },
+              "agenda_item": {
+                "type": "string",
+                "description": "Agenda item number"
+              },
+              "query": {
+                "type": "string",
+                "description": "Free text search in title and content"
+              },
+              "max_results": {
+                "type": "integer",
+                "default": 20,
+                "minimum": 1,
+                "maximum": 50,
+                "description": "Maximum results to return"
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        {
+          "name": "get_contribution_content",
+          "description": "Get the full content of a 3GPP contribution document by its document number.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "doc_number": {
+                "type": "string",
+                "description": "Contribution document number (e.g., 'S4-251419')"
+              }
+            },
+            "required": [
+              "doc_number"
+            ],
+            "additionalProperties": false
+          }
+        },
+        {
+          "name": "semantic_search_contributions",
+          "description": "Perform semantic search on 3GPP contribution documents using FAISS-accelerated vector similarity search.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "query": {
+                "type": "string",
+                "description": "Natural language search query"
+              },
+              "max_results": {
+                "type": "integer",
+                "default": 10,
+                "minimum": 1,
+                "maximum": 50,
+                "description": "Maximum results to return"
+              },
+              "similarity_threshold": {
+                "type": "number",
+                "default": 0.3,
+                "minimum": 0.0,
+                "maximum": 1.0,
+                "description": "Minimum similarity threshold"
+              },
+              "index_type": {
+                "type": "string",
+                "enum": [
+                  "hnsw",
+                  "ivf",
+                  "flat"
+                ],
+                "description": "FAISS index type (optional)"
+              }
+            },
+            "required": [
+              "query"
+            ],
+            "additionalProperties": false
+          }
+        }
+      ],
+      "tool_count": 8,
+      "tool_names": [
+        "search_specifications",
+        "semantic_search",
+        "get_document_content",
+        "list_documents",
+        "get_database_stats",
+        "search_contributions",
+        "get_contribution_content",
+        "semantic_search_contributions"
+      ]
+    },
+    "server_info_crawled": {
+      "id": 106,
+      "name": "SpecProof",
+      "author": "",
+      "overview": "SpecProof - Data Analysis & Processing MCP server with 8 tools.",
+      "repository_url": "",
+      "homepage": "https://mcp.specproof.ai",
+      "remote_or_local": "Remote",
+      "license": "",
+      "usage_count": "100",
+      "success_rate": "100%",
+      "tags": [
+        "data-analysis-processing"
+      ],
+      "categories": [
+        "data analysis & processing"
+      ],
+      "tools_count": 8,
+      "tools": [
+        {
+          "name": "search_specifications",
+          "description": "Search across 3GPP and IETF specification documents using full-text search. Returns ranked results with content previews.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "query": {
+                "type": "string",
+                "description": "Search query terms"
+              },
+              "doc_type": {
+                "type": "string",
+                "enum": [
+                  "3gpp",
+                  "ietf"
+                ],
+                "description": "Filter by document type (optional)"
+              },
+              "spec_number": {
+                "type": "string",
+                "description": "Filter by specification number (optional)"
+              },
+              "max_results": {
+                "type": "integer",
+                "default": 10,
+                "minimum": 1,
+                "maximum": 50,
+                "description": "Maximum number of results"
+              }
+            },
+            "required": [
+              "query"
+            ],
+            "additionalProperties": false
+          }
+        },
+        {
+          "name": "semantic_search",
+          "description": "Perform semantic search using vector embeddings with FAISS acceleration for better conceptual matching.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "query": {
+                "type": "string",
+                "description": "Natural language search query"
+              },
+              "max_results": {
+                "type": "integer",
+                "default": 5,
+                "minimum": 1,
+                "maximum": 20,
+                "description": "Maximum number of results"
+              },
+              "similarity_threshold": {
+                "type": "number",
+                "default": 0.3,
+                "minimum": 0.0,
+                "maximum": 1.0,
+                "description": "Minimum similarity threshold"
+              },
+              "index_type": {
+                "type": "string",
+                "enum": [
+                  "hnsw",
+                  "ivf",
+                  "flat"
+                ],
+                "description": "FAISS index type (optional, auto-selected if not specified)"
+              }
+            },
+            "required": [
+              "query"
+            ],
+            "additionalProperties": false
+          }
+        },
+        {
+          "name": "get_document_content",
+          "description": "Retrieve specific content from a specification document by filename, with optional page range and section filtering.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "filename": {
+                "type": "string",
+                "description": "Document filename (e.g., 'TS_23.501_Rel17.pdf')"
+              },
+              "page_range": {
+                "type": "string",
+                "description": "Page range like '10-15' or single page '20' (optional)"
+              },
+              "section": {
+                "type": "string",
+                "description": "Section title filter (optional)"
+              }
+            },
+            "required": [
+              "filename"
+            ],
+            "additionalProperties": false
+          }
+        },
+        {
+          "name": "list_documents",
+          "description": "List available specification documents with filtering options.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "doc_type": {
+                "type": "string",
+                "enum": [
+                  "3gpp",
+                  "ietf"
+                ],
+                "description": "Filter by document type (optional)"
+              },
+              "search_pattern": {
+                "type": "string",
+                "description": "Search pattern for spec number or title (optional)"
+              },
+              "limit": {
+                "type": "integer",
+                "default": 20,
+                "minimum": 1,
+                "maximum": 100,
+                "description": "Maximum number of results"
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        {
+          "name": "get_database_stats",
+          "description": "Get comprehensive database and system statistics including document counts, search capabilities, and performance metrics.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {},
+            "additionalProperties": false
+          }
+        },
+        {
+          "name": "search_contributions",
+          "description": "Search 3GPP contribution documents by various criteria including document number, working group, meeting, work item, and agenda item.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "doc_number": {
+                "type": "string",
+                "description": "Contribution document number (e.g., 'S4-251419')"
+              },
+              "working_group": {
+                "type": "string",
+                "description": "Working group (e.g., 'S4', 'SA4')"
+              },
+              "meeting_number": {
+                "type": "string",
+                "description": "Meeting number (e.g., '133')"
+              },
+              "work_item": {
+                "type": "string",
+                "description": "Work item identifier (e.g., '5GMS_Pro_Ph2')"
+              },
+              "agenda_item": {
+                "type": "string",
+                "description": "Agenda item number"
+              },
+              "query": {
+                "type": "string",
+                "description": "Free text search in title and content"
+              },
+              "max_results": {
+                "type": "integer",
+                "default": 20,
+                "minimum": 1,
+                "maximum": 50,
+                "description": "Maximum results to return"
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        {
+          "name": "get_contribution_content",
+          "description": "Get the full content of a 3GPP contribution document by its document number.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "doc_number": {
+                "type": "string",
+                "description": "Contribution document number (e.g., 'S4-251419')"
+              }
+            },
+            "required": [
+              "doc_number"
+            ],
+            "additionalProperties": false
+          }
+        },
+        {
+          "name": "semantic_search_contributions",
+          "description": "Perform semantic search on 3GPP contribution documents using FAISS-accelerated vector similarity search.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "query": {
+                "type": "string",
+                "description": "Natural language search query"
+              },
+              "max_results": {
+                "type": "integer",
+                "default": 10,
+                "minimum": 1,
+                "maximum": 50,
+                "description": "Maximum results to return"
+              },
+              "similarity_threshold": {
+                "type": "number",
+                "default": 0.3,
+                "minimum": 0.0,
+                "maximum": 1.0,
+                "description": "Minimum similarity threshold"
+              },
+              "index_type": {
+                "type": "string",
+                "enum": [
+                  "hnsw",
+                  "ivf",
+                  "flat"
+                ],
+                "description": "FAISS index type (optional)"
+              }
+            },
+            "required": [
+              "query"
+            ],
+            "additionalProperties": false
+          }
+        }
+      ],
+      "python_sdk_url": "https://mcp.specproof.ai",
+      "python_sdk_config": "{\"debug\": false}"
+    },
+    "source_filename": "0106.SpecProof_labeled.json",
+    "processed_timestamp": 1772871481,
+    "processing_mode": "gateway",
+    "rank": 107
+  }
+}

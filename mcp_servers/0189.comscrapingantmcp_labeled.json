@@ -1,0 +1,450 @@
+{
+  "labels": {
+    "analysis": "The MCP Server \"com.scrapingant/mcp\" provides 3 tools for development tools tasks.",
+    "reasoning": "Primary label \"Development Tools\" assigned based on tool names and descriptions.",
+    "primary_label": "Development Tools",
+    "secondary_labels": [
+      "API Integration",
+      "DevOps",
+      "Web Search & Research",
+      "AI/ML Tools"
+    ],
+    "custom_label": "Development Tools - com.scrapingant/mcp",
+    "is_connected": true,
+    "is_remote_tool_valid": true,
+    "featured_server": false
+  },
+  "metadata": {
+    "server_id": 189,
+    "server_name": "com.scrapingant/mcp",
+    "rank_by_usage": 190,
+    "usage_count": "10",
+    "original_file": "tools.json#189",
+    "mode": "gateway",
+    "timestamp": 1772871482,
+    "remote_server_response": {
+      "url": "https://api.scrapingant.com/mcp",
+      "is_success": true,
+      "error": null,
+      "tools": [
+        {
+          "name": "get_web_page_html",
+          "description": "Fetch (scrape) a URL using ScrapingAnt and return the web page content as HTML.\n\nArgs:\n    url: The URL of the page to extract (scrape).\n    browser: Whether to use browser rendering. Default: True.\n    proxy_type: Type of proxy to use. Default: 'datacenter'.\n        Use 'residential' if you encounter anti-bot detection, which improves anti-bot avoidance.\n    proxy_country: Optional ISO-3166 country code. Default: random worldwide proxy.\n        Use when facing geo-restrictions. Available country codes: ae, au, br, ca, cn, cz, de, es, fr, gb, hk, id, il, in, it, jp, kr, my, nl, ph, pl, ru, sa, sg, th, us, vn.",
+          "inputSchema": {
+            "properties": {
+              "url": {
+                "title": "Url",
+                "type": "string"
+              },
+              "browser": {
+                "default": true,
+                "title": "Browser",
+                "type": "boolean"
+              },
+              "proxy_type": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Proxy Type"
+              },
+              "proxy_country": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Proxy Country"
+              }
+            },
+            "required": [
+              "url"
+            ],
+            "type": "object"
+          },
+          "outputSchema": {
+            "properties": {
+              "result": {
+                "title": "Result",
+                "type": "string"
+              }
+            },
+            "required": [
+              "result"
+            ],
+            "title": "_WrappedResult",
+            "type": "object",
+            "x-fastmcp-wrap-result": true
+          },
+          "_meta": {
+            "_fastmcp": {
+              "tags": []
+            }
+          }
+        },
+        {
+          "name": "get_web_page_markdown",
+          "description": "Fetch (scrape) a URL using ScrapingAnt and return the web page content as Markdown.\n\nArgs:\n    url: The URL of the page to extract (scrape).\n    browser: Whether to use browser rendering. Default: True.\n    proxy_type: Type of proxy to use. Default: 'datacenter'.\n        Use 'residential' if you encounter anti-bot detection, which improves anti-bot avoidance.\n    proxy_country: Optional ISO-3166 country code. Default: random worldwide proxy.\n        Use when facing geo-restrictions. Available country codes: ae, au, br, ca, cn, cz, de, es, fr, gb, hk, id, il, in, it, jp, kr, my, nl, ph, pl, ru, sa, sg, th, us, vn.",
+          "inputSchema": {
+            "properties": {
+              "url": {
+                "title": "Url",
+                "type": "string"
+              },
+              "browser": {
+                "default": true,
+                "title": "Browser",
+                "type": "boolean"
+              },
+              "proxy_type": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Proxy Type"
+              },
+              "proxy_country": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Proxy Country"
+              }
+            },
+            "required": [
+              "url"
+            ],
+            "type": "object"
+          },
+          "outputSchema": {
+            "properties": {
+              "result": {
+                "title": "Result",
+                "type": "string"
+              }
+            },
+            "required": [
+              "result"
+            ],
+            "title": "_WrappedResult",
+            "type": "object",
+            "x-fastmcp-wrap-result": true
+          },
+          "_meta": {
+            "_fastmcp": {
+              "tags": []
+            }
+          }
+        },
+        {
+          "name": "get_web_page_text",
+          "description": "Fetch (scrape) a URL using ScrapingAnt and return the web page content as plain text.\n\nArgs:\n    url: The URL of the page to extract (scrape).\n    browser: Whether to use browser rendering. Default: True.\n    proxy_type: Type of proxy to use. Default: 'datacenter'.\n        Use 'residential' if you encounter anti-bot detection, which improves anti-bot avoidance.\n    proxy_country: Optional ISO-3166 country code. Default: random worldwide proxy.\n        Use when facing geo-restrictions. Available country codes: ae, au, br, ca, cn, cz, de, es, fr, gb, hk, id, il, in, it, jp, kr, my, nl, ph, pl, ru, sa, sg, th, us, vn.",
+          "inputSchema": {
+            "properties": {
+              "url": {
+                "title": "Url",
+                "type": "string"
+              },
+              "browser": {
+                "default": true,
+                "title": "Browser",
+                "type": "boolean"
+              },
+              "proxy_type": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Proxy Type"
+              },
+              "proxy_country": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Proxy Country"
+              }
+            },
+            "required": [
+              "url"
+            ],
+            "type": "object"
+          },
+          "outputSchema": {
+            "properties": {
+              "result": {
+                "title": "Result",
+                "type": "string"
+              }
+            },
+            "required": [
+              "result"
+            ],
+            "title": "_WrappedResult",
+            "type": "object",
+            "x-fastmcp-wrap-result": true
+          },
+          "_meta": {
+            "_fastmcp": {
+              "tags": []
+            }
+          }
+        }
+      ],
+      "tool_count": 3,
+      "tool_names": [
+        "get_web_page_html",
+        "get_web_page_markdown",
+        "get_web_page_text"
+      ]
+    },
+    "server_info_crawled": {
+      "id": 189,
+      "name": "com.scrapingant/mcp",
+      "author": "",
+      "overview": "com.scrapingant/mcp - Development Tools MCP server with 3 tools.",
+      "repository_url": "",
+      "homepage": "https://api.scrapingant.com/mcp",
+      "remote_or_local": "Remote",
+      "license": "",
+      "usage_count": "10",
+      "success_rate": "100%",
+      "tags": [
+        "development-tools"
+      ],
+      "categories": [
+        "development tools"
+      ],
+      "tools_count": 3,
+      "tools": [
+        {
+          "name": "get_web_page_html",
+          "description": "Fetch (scrape) a URL using ScrapingAnt and return the web page content as HTML.\n\nArgs:\n    url: The URL of the page to extract (scrape).\n    browser: Whether to use browser rendering. Default: True.\n    proxy_type: Type of proxy to use. Default: 'datacenter'.\n        Use 'residential' if you encounter anti-bot detection, which improves anti-bot avoidance.\n    proxy_country: Optional ISO-3166 country code. Default: random worldwide proxy.\n        Use when facing geo-restrictions. Available country codes: ae, au, br, ca, cn, cz, de, es, fr, gb, hk, id, il, in, it, jp, kr, my, nl, ph, pl, ru, sa, sg, th, us, vn.",
+          "inputSchema": {
+            "properties": {
+              "url": {
+                "title": "Url",
+                "type": "string"
+              },
+              "browser": {
+                "default": true,
+                "title": "Browser",
+                "type": "boolean"
+              },
+              "proxy_type": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Proxy Type"
+              },
+              "proxy_country": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Proxy Country"
+              }
+            },
+            "required": [
+              "url"
+            ],
+            "type": "object"
+          },
+          "outputSchema": {
+            "properties": {
+              "result": {
+                "title": "Result",
+                "type": "string"
+              }
+            },
+            "required": [
+              "result"
+            ],
+            "title": "_WrappedResult",
+            "type": "object",
+            "x-fastmcp-wrap-result": true
+          },
+          "_meta": {
+            "_fastmcp": {
+              "tags": []
+            }
+          }
+        },
+        {
+          "name": "get_web_page_markdown",
+          "description": "Fetch (scrape) a URL using ScrapingAnt and return the web page content as Markdown.\n\nArgs:\n    url: The URL of the page to extract (scrape).\n    browser: Whether to use browser rendering. Default: True.\n    proxy_type: Type of proxy to use. Default: 'datacenter'.\n        Use 'residential' if you encounter anti-bot detection, which improves anti-bot avoidance.\n    proxy_country: Optional ISO-3166 country code. Default: random worldwide proxy.\n        Use when facing geo-restrictions. Available country codes: ae, au, br, ca, cn, cz, de, es, fr, gb, hk, id, il, in, it, jp, kr, my, nl, ph, pl, ru, sa, sg, th, us, vn.",
+          "inputSchema": {
+            "properties": {
+              "url": {
+                "title": "Url",
+                "type": "string"
+              },
+              "browser": {
+                "default": true,
+                "title": "Browser",
+                "type": "boolean"
+              },
+              "proxy_type": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Proxy Type"
+              },
+              "proxy_country": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Proxy Country"
+              }
+            },
+            "required": [
+              "url"
+            ],
+            "type": "object"
+          },
+          "outputSchema": {
+            "properties": {
+              "result": {
+                "title": "Result",
+                "type": "string"
+              }
+            },
+            "required": [
+              "result"
+            ],
+            "title": "_WrappedResult",
+            "type": "object",
+            "x-fastmcp-wrap-result": true
+          },
+          "_meta": {
+            "_fastmcp": {
+              "tags": []
+            }
+          }
+        },
+        {
+          "name": "get_web_page_text",
+          "description": "Fetch (scrape) a URL using ScrapingAnt and return the web page content as plain text.\n\nArgs:\n    url: The URL of the page to extract (scrape).\n    browser: Whether to use browser rendering. Default: True.\n    proxy_type: Type of proxy to use. Default: 'datacenter'.\n        Use 'residential' if you encounter anti-bot detection, which improves anti-bot avoidance.\n    proxy_country: Optional ISO-3166 country code. Default: random worldwide proxy.\n        Use when facing geo-restrictions. Available country codes: ae, au, br, ca, cn, cz, de, es, fr, gb, hk, id, il, in, it, jp, kr, my, nl, ph, pl, ru, sa, sg, th, us, vn.",
+          "inputSchema": {
+            "properties": {
+              "url": {
+                "title": "Url",
+                "type": "string"
+              },
+              "browser": {
+                "default": true,
+                "title": "Browser",
+                "type": "boolean"
+              },
+              "proxy_type": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Proxy Type"
+              },
+              "proxy_country": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Proxy Country"
+              }
+            },
+            "required": [
+              "url"
+            ],
+            "type": "object"
+          },
+          "outputSchema": {
+            "properties": {
+              "result": {
+                "title": "Result",
+                "type": "string"
+              }
+            },
+            "required": [
+              "result"
+            ],
+            "title": "_WrappedResult",
+            "type": "object",
+            "x-fastmcp-wrap-result": true
+          },
+          "_meta": {
+            "_fastmcp": {
+              "tags": []
+            }
+          }
+        }
+      ],
+      "python_sdk_url": "https://api.scrapingant.com/mcp",
+      "python_sdk_config": "{\"debug\": false}"
+    },
+    "source_filename": "0189.comscrapingantmcp_labeled.json",
+    "processed_timestamp": 1772871482,
+    "processing_mode": "gateway",
+    "rank": 190
+  }
+}

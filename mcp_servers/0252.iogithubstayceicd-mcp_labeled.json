@@ -1,0 +1,172 @@
+{
+  "labels": {
+    "analysis": "The MCP Server \"io.github.stayce/icd-mcp\" provides 1 tools for development tools tasks.",
+    "reasoning": "Primary label \"Development Tools\" assigned based on tool names and descriptions.",
+    "primary_label": "Development Tools",
+    "secondary_labels": [
+      "API Integration",
+      "DevOps"
+    ],
+    "custom_label": "Development Tools - io.github.stayce/icd-mcp",
+    "is_connected": true,
+    "is_remote_tool_valid": true,
+    "featured_server": false
+  },
+  "metadata": {
+    "server_id": 252,
+    "server_name": "io.github.stayce/icd-mcp",
+    "rank_by_usage": 253,
+    "usage_count": "10",
+    "original_file": "tools.json#252",
+    "mode": "gateway",
+    "timestamp": 1772871482,
+    "remote_server_response": {
+      "url": "https://icd-mcp-server.staycek.workers.dev/mcp",
+      "is_success": true,
+      "error": null,
+      "tools": [
+        {
+          "name": "icd",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "action": {
+                "type": "string",
+                "enum": [
+                  "lookup",
+                  "search",
+                  "chapters",
+                  "children",
+                  "api",
+                  "help"
+                ]
+              },
+              "code": {
+                "type": "string",
+                "description": "ICD code (e.g., A00, J18.9, BA00)"
+              },
+              "query": {
+                "type": "string",
+                "description": "Search terms (ICD-11 only)"
+              },
+              "version": {
+                "type": "string",
+                "enum": [
+                  "10",
+                  "11"
+                ],
+                "description": "ICD version: 10 or 11 (default: 11)"
+              },
+              "chapter": {
+                "type": "string",
+                "description": "Chapter code to filter by"
+              },
+              "max_results": {
+                "type": "number",
+                "description": "Maximum results (default 10)"
+              },
+              "path": {
+                "type": "string",
+                "description": "API path for raw requests"
+              }
+            },
+            "required": [
+              "action"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        }
+      ],
+      "tool_count": 1,
+      "tool_names": [
+        "icd"
+      ]
+    },
+    "server_info_crawled": {
+      "id": 252,
+      "name": "io.github.stayce/icd-mcp",
+      "author": "",
+      "overview": "io.github.stayce/icd-mcp - Development Tools MCP server with 1 tools.",
+      "repository_url": "",
+      "homepage": "https://icd-mcp-server.staycek.workers.dev/mcp",
+      "remote_or_local": "Remote",
+      "license": "",
+      "usage_count": "10",
+      "success_rate": "100%",
+      "tags": [
+        "development-tools"
+      ],
+      "categories": [
+        "development tools"
+      ],
+      "tools_count": 1,
+      "tools": [
+        {
+          "name": "icd",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "action": {
+                "type": "string",
+                "enum": [
+                  "lookup",
+                  "search",
+                  "chapters",
+                  "children",
+                  "api",
+                  "help"
+                ]
+              },
+              "code": {
+                "type": "string",
+                "description": "ICD code (e.g., A00, J18.9, BA00)"
+              },
+              "query": {
+                "type": "string",
+                "description": "Search terms (ICD-11 only)"
+              },
+              "version": {
+                "type": "string",
+                "enum": [
+                  "10",
+                  "11"
+                ],
+                "description": "ICD version: 10 or 11 (default: 11)"
+              },
+              "chapter": {
+                "type": "string",
+                "description": "Chapter code to filter by"
+              },
+              "max_results": {
+                "type": "number",
+                "description": "Maximum results (default 10)"
+              },
+              "path": {
+                "type": "string",
+                "description": "API path for raw requests"
+              }
+            },
+            "required": [
+              "action"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        }
+      ],
+      "python_sdk_url": "https://icd-mcp-server.staycek.workers.dev/mcp",
+      "python_sdk_config": "{\"debug\": false}"
+    },
+    "source_filename": "0252.iogithubstayceicd-mcp_labeled.json",
+    "processed_timestamp": 1772871482,
+    "processing_mode": "gateway",
+    "rank": 253
+  }
+}

@@ -1,0 +1,79 @@
+{
+  "labels": {
+    "analysis": "The MCP Server \"Random Advice Server\" provides 1 tools for ai/ml tools tasks.",
+    "reasoning": "Primary label \"AI/ML Tools\" assigned based on tool names and descriptions.",
+    "primary_label": "AI/ML Tools",
+    "secondary_labels": [
+      "Content Creation"
+    ],
+    "custom_label": "AI/ML Tools - Random Advice Server",
+    "is_connected": true,
+    "is_remote_tool_valid": true,
+    "featured_server": false
+  },
+  "metadata": {
+    "server_id": 266,
+    "server_name": "Random Advice Server",
+    "rank_by_usage": 267,
+    "usage_count": "10",
+    "original_file": "tools.json#266",
+    "mode": "gateway",
+    "timestamp": 1772871482,
+    "remote_server_response": {
+      "url": "https://server.smithery.ai/@rftsngl/advicemcp/mcp",
+      "is_success": true,
+      "error": null,
+      "tools": [
+        {
+          "description": "Get a random advice string",
+          "inputSchema": {
+            "properties": {},
+            "required": [],
+            "type": "object"
+          },
+          "name": "get_advice"
+        }
+      ],
+      "tool_count": 1,
+      "tool_names": [
+        "get_advice"
+      ]
+    },
+    "server_info_crawled": {
+      "id": 266,
+      "name": "Random Advice Server",
+      "author": "",
+      "overview": "Random Advice Server - AI/ML Tools MCP server with 1 tools.",
+      "repository_url": "",
+      "homepage": "https://server.smithery.ai/@rftsngl/advicemcp/mcp",
+      "remote_or_local": "Remote",
+      "license": "",
+      "usage_count": "10",
+      "success_rate": "100%",
+      "tags": [
+        "ai/ml-tools"
+      ],
+      "categories": [
+        "ai/ml tools"
+      ],
+      "tools_count": 1,
+      "tools": [
+        {
+          "description": "Get a random advice string",
+          "inputSchema": {
+            "properties": {},
+            "required": [],
+            "type": "object"
+          },
+          "name": "get_advice"
+        }
+      ],
+      "python_sdk_url": "https://server.smithery.ai/@rftsngl/advicemcp/mcp",
+      "python_sdk_config": "{\"debug\": false}"
+    },
+    "source_filename": "0266.Random-Advice-Server_labeled.json",
+    "processed_timestamp": 1772871482,
+    "processing_mode": "gateway",
+    "rank": 267
+  }
+}

@@ -1,0 +1,2771 @@
+{
+  "labels": {
+    "analysis": "The MCP Server \"RationalBloks\" provides 44 tools for development tools tasks.",
+    "reasoning": "Primary label \"Development Tools\" assigned based on tool names and descriptions.",
+    "primary_label": "Development Tools",
+    "secondary_labels": [
+      "API Integration",
+      "DevOps",
+      "Data Analysis & Processing",
+      "Productivity"
+    ],
+    "custom_label": "Development Tools - RationalBloks",
+    "is_connected": true,
+    "is_remote_tool_valid": true,
+    "featured_server": true
+  },
+  "metadata": {
+    "server_id": 15,
+    "server_name": "RationalBloks",
+    "rank_by_usage": 16,
+    "usage_count": "9,250",
+    "original_file": "tools.json#15",
+    "mode": "gateway",
+    "timestamp": 1772871481,
+    "remote_server_response": {
+      "url": "https://mcp.rationalbloks.com/mcp",
+      "is_success": true,
+      "error": null,
+      "tools": [
+        {
+          "name": "list_projects",
+          "title": "List Projects",
+          "description": "List all your RationalBloks projects with their status and URLs",
+          "inputSchema": {
+            "type": "object",
+            "properties": {},
+            "required": []
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "get_project",
+          "title": "Get Project Details",
+          "description": "Get detailed information about a specific project",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "project_id": {
+                "type": "string",
+                "description": "Project ID (UUID)"
+              }
+            },
+            "required": [
+              "project_id"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "get_schema",
+          "title": "Get Project Schema",
+          "description": "Get the JSON schema definition of a project in FLAT format. Returns the schema structure where each table name maps directly to field definitions. This is the same format required for create_project and update_schema. USE CASES: Review current schema before making updates, copy schema as template for new projects, verify schema structure after deployment, learn the correct schema format by example. The returned schema will be in FLAT format: {table_name: {field_name: {type, properties}}}",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "project_id": {
+                "type": "string",
+                "description": "Project ID (UUID)"
+              }
+            },
+            "required": [
+              "project_id"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "get_user_info",
+          "title": "Get User Info",
+          "description": "Get information about the authenticated user",
+          "inputSchema": {
+            "type": "object",
+            "properties": {},
+            "required": []
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "get_job_status",
+          "title": "Get Job Status",
+          "description": "Check the status of a deployment job. STATUS VALUES: pending (job queued), running (deployment in progress), completed (success), failed (deployment failed). TIMELINE: Typical deployment takes 2-5 minutes. If status is 'running' for >10 minutes, check get_project_info for detailed pod status. If status is 'failed', use get_project_info to see deployment errors and check schema format (must be FLAT, no 'fields' nesting).",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "job_id": {
+                "type": "string",
+                "description": "Job ID returned from deployment operations"
+              }
+            },
+            "required": [
+              "job_id"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "get_project_info",
+          "title": "Get Project Info",
+          "description": "Get detailed project info including deployment status and resource usage. DEPLOYMENT STATUS: Running (healthy), Pending (starting), CrashLoopBackOff (init container failed - usually schema format error), ImagePullBackOff (image build failed). TROUBLESHOOTING: If status is CrashLoopBackOff, the schema is likely in wrong format (nested 'fields' key or missing 'type' properties). Use get_schema to review current schema. If replicas show 0/2, the init container (migration runner) is failing. This is almost always a schema format issue.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "project_id": {
+                "type": "string",
+                "description": "Project ID (UUID)"
+              }
+            },
+            "required": [
+              "project_id"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "get_version_history",
+          "title": "Get Version History",
+          "description": "Get the deployment and version history (git commits) for a project. Shows all schema changes with commit SHA, timestamp, and message. USE CASES: Review what changed between deployments, find the last working version before issues started, get commit SHA for rollback_project.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "project_id": {
+                "type": "string",
+                "description": "Project ID (UUID)"
+              }
+            },
+            "required": [
+              "project_id"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "get_template_schemas",
+          "title": "Get Template Schemas",
+          "description": "Get pre-built template schemas for common use cases. ⭐ USE THIS FIRST when creating a new project! Templates show the CORRECT schema format with: proper FLAT structure (no 'fields' nesting), every field has a 'type' property, foreign key relationships configured correctly, best practices for field naming and types. Available templates: E-commerce (products, orders, customers), Team collaboration (projects, tasks, users), General purpose templates. You can use these templates directly with create_project or modify them for your needs. TIP: Study these templates to understand the correct schema format before creating custom schemas.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {},
+            "required": []
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "get_subscription_status",
+          "title": "Get Subscription Status",
+          "description": "Get your subscription tier, limits, and usage",
+          "inputSchema": {
+            "type": "object",
+            "properties": {},
+            "required": []
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "get_project_usage",
+          "title": "Get Project Usage",
+          "description": "Get resource usage metrics (CPU, memory) for a project",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "project_id": {
+                "type": "string",
+                "description": "Project ID (UUID)"
+              }
+            },
+            "required": [
+              "project_id"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "get_schema_at_version",
+          "title": "Get Schema at Version",
+          "description": "Get the schema as it was at a specific version/commit",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "project_id": {
+                "type": "string",
+                "description": "Project ID (UUID)"
+              },
+              "version": {
+                "type": "string",
+                "description": "Commit SHA of the version"
+              }
+            },
+            "required": [
+              "project_id",
+              "version"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "create_project",
+          "title": "Create Project",
+          "description": "Create a new RationalBloks project from a JSON schema.\n\n⚠️ CRITICAL RULES - READ BEFORE CREATING SCHEMA:\n\n1. FLAT FORMAT (REQUIRED):\n   ✅ CORRECT: {users: {email: {type: \"string\", max_length: 255}}}\n   ❌ WRONG: {users: {fields: {email: {type: \"string\"}}}}\n   DO NOT nest under 'fields' key!\n\n2. FIELD TYPE REQUIREMENTS:\n   • string: MUST have \"max_length\" (e.g., max_length: 255)\n   • decimal: MUST have \"precision\" and \"scale\" (e.g., precision: 10, scale: 2)\n   • datetime: Use \"datetime\" NOT \"timestamp\"\n   • ALL fields: MUST have \"type\" property\n\n3. AUTOMATIC FIELDS (DON'T define):\n   • id (uuid, primary key)\n   • created_at (datetime)\n   • updated_at (datetime)\n\n4. USER AUTHENTICATION:\n   ❌ NEVER create \"users\", \"customers\", \"employees\" tables with email/password\n   ✅ USE built-in app_users table\n   \n   Example:\n   {\n     \"employee_profiles\": {\n       \"user_id\": {type: \"uuid\", foreign_key: \"app_users.id\", required: true},\n       \"department\": {type: \"string\", max_length: 100}\n     }\n   }\n\n5. AUTHORIZATION:\n   Add user_id → app_users.id to enable \"only see your own data\"\n   \n   Example:\n   {\n     \"orders\": {\n       \"user_id\": {type: \"uuid\", foreign_key: \"app_users.id\"},\n       \"total\": {type: \"decimal\", precision: 10, scale: 2}\n     }\n   }\n\n6. FIELD OPTIONS:\n   • required: true/false\n   • unique: true/false\n   • default: any value\n   • enum: [\"val1\", \"val2\"]\n   • foreign_key: \"table.id\"\n\nAVAILABLE TYPES: string, text, integer, decimal, boolean, uuid, date, datetime, json, uuid_array, integer_array, text_array, float_array\n\n   Array types store PostgreSQL native arrays with automatic GIN indexing:\n   • uuid_array: UUID[] — for sets of references (e.g., tensor coordinates)\n   • integer_array: BIGINT[] — for dimension indices, integer sets\n   • text_array: TEXT[] — for tags, categories, label sets\n   • float_array: DOUBLE PRECISION[] — for weight vectors, scores\n   GIN-indexed operators: @> (contains), <@ (contained_by), && (overlaps)\n\nBACKEND ENGINE:\n• python (default): FastAPI backend — mature, full-featured\n• rust: Axum backend — faster cold starts, lower memory, high performance\n\nWORKFLOW:\n1. Use get_template_schemas FIRST to see valid examples\n2. Create schema following ALL rules above\n3. Call this tool (optionally choose backend_type: \"python\" or \"rust\")\n4. Monitor with get_job_status (2-5 min deployment)\n\nAfter creation, use get_job_status with returned job_id to monitor deployment.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "Project name"
+              },
+              "schema": {
+                "type": "object",
+                "description": "JSON schema in FLAT format (table_name → field_name → properties). Every field MUST have a 'type' property. Use get_template_schemas to see valid examples."
+              },
+              "description": {
+                "type": "string",
+                "description": "Optional project description"
+              },
+              "backend_type": {
+                "type": "string",
+                "enum": [
+                  "python",
+                  "rust"
+                ],
+                "description": "Backend engine: 'python' (FastAPI, default) or 'rust' (Axum, faster). Default: python"
+              }
+            },
+            "required": [
+              "name",
+              "schema"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": false,
+            "idempotentHint": false,
+            "openWorldHint": true
+          }
+        },
+        {
+          "name": "update_schema",
+          "title": "Update Schema",
+          "description": "Update a project's schema (saves to database, does NOT deploy).\n\n⚠️ CRITICAL: Follow ALL rules from create_project:\n• FLAT format (no 'fields' nesting)\n• string: MUST have max_length\n• decimal: MUST have precision + scale\n• Use \"datetime\" NOT \"timestamp\"\n• DON'T define: id, created_at, updated_at\n• NEVER create users/customers/employees tables (use app_users)\n\n⚠️ MIGRATION RULES:\n• New fields MUST be \"required\": false OR have \"default\" value\n• Cannot add required field without default to existing tables\n• Safe: {new_field: {type: \"string\", max_length: 100, required: false}}\n\nWORKFLOW:\n1. Use get_schema to see current schema\n2. Modify following ALL rules\n3. Call update_schema (saves only)\n4. Call deploy_staging to apply changes\n5. Monitor with get_job_status\n\nNOTE: This only saves the schema. You MUST call deploy_staging afterwards to apply changes.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "project_id": {
+                "type": "string",
+                "description": "Project ID (UUID)"
+              },
+              "schema": {
+                "type": "object",
+                "description": "New JSON schema in FLAT format (table_name → field_name → properties). Every field MUST have a 'type' property."
+              }
+            },
+            "required": [
+              "project_id",
+              "schema"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": true
+          }
+        },
+        {
+          "name": "deploy_staging",
+          "title": "Deploy to Staging",
+          "description": "Deploy a project to the staging environment. This triggers: (1) Schema validation, (2) Docker image build, (3) GitHub commit, (4) Kubernetes deployment, (5) Database migrations. The operation is ASYNCHRONOUS - it returns immediately with a job_id. Use get_job_status with the job_id to monitor progress. Deployment typically takes 2-5 minutes depending on schema complexity. If deployment fails, check: (1) Schema format is FLAT (no 'fields' nesting), (2) Every field has a 'type' property, (3) Foreign keys reference existing tables, (4) No PostgreSQL reserved words in table/field names. Use get_project_info to see if the deployment succeeded.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "project_id": {
+                "type": "string",
+                "description": "Project ID (UUID)"
+              }
+            },
+            "required": [
+              "project_id"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": false,
+            "idempotentHint": false,
+            "openWorldHint": true
+          }
+        },
+        {
+          "name": "deploy_production",
+          "title": "Deploy to Production",
+          "description": "Promote staging to production (requires paid plan)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "project_id": {
+                "type": "string",
+                "description": "Project ID (UUID)"
+              }
+            },
+            "required": [
+              "project_id"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": false,
+            "idempotentHint": false,
+            "openWorldHint": true
+          }
+        },
+        {
+          "name": "delete_project",
+          "title": "Delete Project",
+          "description": "Delete a project (removes GitHub repo, K8s deployments, and database)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "project_id": {
+                "type": "string",
+                "description": "Project ID (UUID)"
+              }
+            },
+            "required": [
+              "project_id"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": true,
+            "idempotentHint": false,
+            "openWorldHint": true
+          }
+        },
+        {
+          "name": "rollback_project",
+          "title": "Rollback Project",
+          "description": "Rollback a project to a previous version. ⚠️ WARNING: This reverts schema AND code to the specified commit. Database data is NOT rolled back. Use get_version_history to find the commit SHA of the version you want to rollback to. After rollback, use get_job_status to monitor the redeployment. Rollback is useful when a schema change breaks deployment.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "project_id": {
+                "type": "string",
+                "description": "Project ID (UUID)"
+              },
+              "version": {
+                "type": "string",
+                "description": "Commit SHA or version to rollback to"
+              },
+              "environment": {
+                "type": "string",
+                "description": "Environment: staging or production (default: staging)"
+              }
+            },
+            "required": [
+              "project_id",
+              "version"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": true,
+            "idempotentHint": false,
+            "openWorldHint": true
+          }
+        },
+        {
+          "name": "rename_project",
+          "title": "Rename Project",
+          "description": "Rename a project (changes display name, not project_code)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "project_id": {
+                "type": "string",
+                "description": "Project ID (UUID)"
+              },
+              "name": {
+                "type": "string",
+                "description": "New display name for the project"
+              }
+            },
+            "required": [
+              "project_id",
+              "name"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "get_graph_schema",
+          "title": "Get Graph Schema",
+          "description": "Get the graph schema definition of a project. Returns the hierarchical schema with nodes (entities) and relationships. Graph schemas define entity hierarchies and typed relationships — a different format than relational flat-table schemas.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "project_id": {
+                "type": "string",
+                "description": "Project ID (UUID)"
+              }
+            },
+            "required": [
+              "project_id"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "get_graph_template_schemas",
+          "title": "Get Graph Template Schemas",
+          "description": "Get pre-built graph template schemas for common use cases. ⭐ USE THIS FIRST when creating a new graph project! Templates show the CORRECT graph schema format with: proper node definitions (description, flat_labels, schema with flat field definitions), relationship configurations (from, to, cardinality, data_schema), and hierarchical entity nesting. Available templates: Social Network (users, posts, follows), Knowledge Graph (topics, articles, authors), Product Catalog (products, categories, suppliers). You can use these templates directly with create_graph_project or modify them for your needs. TIP: Study these templates to understand the correct graph schema format before creating custom schemas.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {},
+            "required": []
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "get_graph_version_history",
+          "title": "Get Graph Version History",
+          "description": "Get the deployment and version history for a graph project. Shows all schema changes with commit SHAs, timestamps, version numbers, and messages. Use this to find a specific version for rollback operations.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "project_id": {
+                "type": "string",
+                "description": "Project ID (UUID)"
+              }
+            },
+            "required": [
+              "project_id"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "get_graph_schema_at_version",
+          "title": "Get Graph Schema at Version",
+          "description": "Get the graph schema as it existed at a specific version/commit. Use get_graph_version_history to find commit SHAs. Useful for comparing schemas across versions or auditing changes.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "project_id": {
+                "type": "string",
+                "description": "Project ID (UUID)"
+              },
+              "version": {
+                "type": "string",
+                "description": "Commit SHA of the version to retrieve"
+              }
+            },
+            "required": [
+              "project_id",
+              "version"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "get_graph_project_info",
+          "title": "Get Graph Project Info",
+          "description": "Get detailed graph project information including Kubernetes deployment status, Neo4j database health, pod status, and resource usage. Use this after deployment to verify the graph project is running correctly.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "project_id": {
+                "type": "string",
+                "description": "Project ID (UUID)"
+              }
+            },
+            "required": [
+              "project_id"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "create_graph_project",
+          "title": "Create Graph Project",
+          "description": "Create a new Neo4j graph database project from a hierarchical JSON schema.\n\n⚠️ GRAPH SCHEMA FORMAT — READ BEFORE CREATING:\n\nGraph schemas define nodes (entities) and relationships, NOT flat database tables.\nEach field is a dict with \"type\" and optional \"required\": true (defaults to false).\n\nSCHEMA STRUCTURE:\n{\n  \"nodes\": {\n    \"EntityName\": {\n      \"description\": \"What this entity represents\",\n      \"flat_labels\": [\"AdditionalLabel\"],\n      \"schema\": {\n        \"field_name\": {\"type\": \"string\", \"required\": true},\n        \"other_field\": {\"type\": \"integer\"}\n      }\n    }\n  },\n  \"relationships\": {\n    \"RELATIONSHIP_TYPE\": {\n      \"from\": \"EntityName\",\n      \"to\": \"OtherEntity\",\n      \"cardinality\": \"MANY_TO_MANY\",\n      \"data_schema\": {\n        \"field_name\": {\"type\": \"date\"}\n      }\n    }\n  }\n}\n\nFIELD TYPES: string, integer, float, boolean, date, json\n\nCARDINALITY OPTIONS: ONE_TO_ONE, ONE_TO_MANY, MANY_TO_ONE, MANY_TO_MANY\n\nHIERARCHICAL NODES:\nNest entities inside parent entities to create type hierarchies.\nChild entities inherit parent labels automatically.\n\nExample:\n{\n  \"nodes\": {\n    \"Animal\": {\n      \"description\": \"Base animal entity\",\n      \"flat_labels\": [\"LivingThing\"],\n      \"schema\": {\n        \"name\": {\"type\": \"string\", \"required\": true},\n        \"habitat\": {\"type\": \"string\"}\n      },\n      \"Dog\": {\n        \"description\": \"A dog (inherits Animal labels)\",\n        \"flat_labels\": [\"Pet\"],\n        \"schema\": {\n          \"breed\": {\"type\": \"string\", \"required\": true},\n          \"trained\": {\"type\": \"boolean\"}\n        }\n      }\n    }\n  },\n  \"relationships\": {\n    \"OWNS\": {\n      \"from\": \"Person\",\n      \"to\": \"Animal\",\n      \"cardinality\": \"ONE_TO_MANY\"\n    }\n  }\n}\n\nRULES:\n1. \"nodes\" key is REQUIRED — must contain at least one entity\n2. Each entity needs \"description\" and \"schema\" with field definitions\n3. Each field is {\"type\": \"...\", \"required\": true/false} — required defaults to false\n4. Relationship \"from\"/\"to\" must reference defined node names\n5. Relationship types should be UPPER_SNAKE_CASE\n6. Entity names should be PascalCase\n7. Automatic fields (id, created_at, updated_at) are NOT needed\n8. Use get_graph_template_schemas FIRST to see valid examples\n\nWORKFLOW:\n1. Use get_graph_template_schemas to see valid examples\n2. Create schema following the rules above\n3. Call this tool\n4. Monitor with get_job_status (2-5 min deployment)\n\nAfter creation, use get_job_status with returned job_id to monitor deployment.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "Project name"
+              },
+              "schema": {
+                "type": "object",
+                "description": "Graph schema with 'nodes' and optionally 'relationships' keys. Use get_graph_template_schemas to see valid examples."
+              },
+              "description": {
+                "type": "string",
+                "description": "Optional project description"
+              }
+            },
+            "required": [
+              "name",
+              "schema"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": false,
+            "idempotentHint": false,
+            "openWorldHint": true
+          }
+        },
+        {
+          "name": "update_graph_schema",
+          "title": "Update Graph Schema",
+          "description": "Update a graph project's schema (saves to database, does NOT deploy).\n\n⚠️ Follow ALL rules from create_graph_project:\n• Must have \"nodes\" key with at least one entity\n• Each entity needs \"description\" and \"schema\" with field definitions\n• Each field is {\"type\": \"...\", \"required\": true/false} — required defaults to false\n• Relationships need \"from\", \"to\", and \"cardinality\"\n• Field types: string, integer, float, boolean, date, json\n• Relationship types should be UPPER_SNAKE_CASE\n• Entity names should be PascalCase\n\nWORKFLOW:\n1. Use get_graph_schema to see current schema\n2. Modify following all rules\n3. Call update_graph_schema (saves only)\n4. Call deploy_graph_staging to apply changes\n5. Monitor with get_job_status\n\nNOTE: This only saves the schema. You MUST call deploy_graph_staging afterwards to deploy.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "project_id": {
+                "type": "string",
+                "description": "Project ID (UUID)"
+              },
+              "schema": {
+                "type": "object",
+                "description": "New graph schema with 'nodes' and optionally 'relationships' keys."
+              }
+            },
+            "required": [
+              "project_id",
+              "schema"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": true
+          }
+        },
+        {
+          "name": "deploy_graph_staging",
+          "title": "Deploy Graph to Staging",
+          "description": "Deploy a graph project to the staging environment. This triggers: (1) Schema validation, (2) Neo4j entity code generation, (3) Docker image build, (4) GitHub commit, (5) Kubernetes deployment with Neo4j instance. The operation is ASYNCHRONOUS — returns immediately with a job_id. Use get_job_status to monitor progress. Deployment typically takes 2-5 minutes. Use get_graph_project_info to verify deployment succeeded.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "project_id": {
+                "type": "string",
+                "description": "Project ID (UUID)"
+              }
+            },
+            "required": [
+              "project_id"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": false,
+            "idempotentHint": false,
+            "openWorldHint": true
+          }
+        },
+        {
+          "name": "deploy_graph_production",
+          "title": "Deploy Graph to Production",
+          "description": "Promote graph staging to production. Creates a separate production Neo4j instance with its own credentials and database. Requires paid plan.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "project_id": {
+                "type": "string",
+                "description": "Project ID (UUID)"
+              }
+            },
+            "required": [
+              "project_id"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": false,
+            "idempotentHint": false,
+            "openWorldHint": true
+          }
+        },
+        {
+          "name": "delete_graph_project",
+          "title": "Delete Graph Project",
+          "description": "Delete a graph project (removes GitHub repo, K8s deployments, Neo4j database, and credentials)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "project_id": {
+                "type": "string",
+                "description": "Project ID (UUID)"
+              }
+            },
+            "required": [
+              "project_id"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": true,
+            "idempotentHint": false,
+            "openWorldHint": true
+          }
+        },
+        {
+          "name": "rollback_graph_project",
+          "title": "Rollback Graph Project",
+          "description": "Rollback a graph project to a previous version. ⚠️ WARNING: This reverts schema AND code to the specified commit. Neo4j data is NOT rolled back. Use get_graph_version_history to find the commit SHA of the version you want to rollback to. After rollback, the graph API will be redeployed with the old schema.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "project_id": {
+                "type": "string",
+                "description": "Project ID (UUID)"
+              },
+              "version": {
+                "type": "string",
+                "description": "Commit SHA to rollback to"
+              },
+              "environment": {
+                "type": "string",
+                "description": "Environment: staging or production (default: staging)"
+              }
+            },
+            "required": [
+              "project_id",
+              "version"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": true,
+            "idempotentHint": false,
+            "openWorldHint": true
+          }
+        },
+        {
+          "name": "create_graph_node",
+          "title": "Create Graph Node",
+          "description": "Create a single node in a deployed graph project.\n\nREQUIRES: Project must be deployed (use deploy_graph_staging first).\n\nThe entity_type must match an entity key from the project schema.\nUse get_graph_data_schema to see available entity types and their fields.\n\nExample:\n  entity_type: \"person\"\n  entity_id: \"alan-turing-001\"\n  data: {\"name\": \"Alan Turing\", \"birth_year\": 1912, \"field\": \"Computer Science\"}\n\nThe entity_id is your unique identifier — use meaningful IDs for knowledge graphs.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "project_id": {
+                "type": "string",
+                "description": "Project ID (UUID)"
+              },
+              "entity_type": {
+                "type": "string",
+                "description": "Entity key (e.g., 'person', 'concept')"
+              },
+              "entity_id": {
+                "type": "string",
+                "description": "Unique identifier for the node"
+              },
+              "data": {
+                "type": "object",
+                "description": "Node properties matching the entity schema"
+              },
+              "environment": {
+                "type": "string",
+                "description": "Environment: staging or production (default: staging)"
+              }
+            },
+            "required": [
+              "project_id",
+              "entity_type",
+              "entity_id",
+              "data"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": false,
+            "idempotentHint": false,
+            "openWorldHint": true
+          }
+        },
+        {
+          "name": "get_graph_node",
+          "title": "Get Graph Node",
+          "description": "Get a specific node by its entity_id from a deployed graph project. Returns all node properties including created_at and updated_at timestamps.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "project_id": {
+                "type": "string",
+                "description": "Project ID (UUID)"
+              },
+              "entity_type": {
+                "type": "string",
+                "description": "Entity key (e.g., 'person', 'concept')"
+              },
+              "entity_id": {
+                "type": "string",
+                "description": "The node's entity_id"
+              },
+              "environment": {
+                "type": "string",
+                "description": "Environment: staging or production (default: staging)"
+              }
+            },
+            "required": [
+              "project_id",
+              "entity_type",
+              "entity_id"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "list_graph_nodes",
+          "title": "List Graph Nodes",
+          "description": "List nodes of a specific entity type from a deployed graph project. Supports pagination with limit/offset. Returns nodes ordered by creation date (newest first).",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "project_id": {
+                "type": "string",
+                "description": "Project ID (UUID)"
+              },
+              "entity_type": {
+                "type": "string",
+                "description": "Entity key (e.g., 'person', 'concept')"
+              },
+              "limit": {
+                "type": "integer",
+                "description": "Max results (default: 100, max: 1000)"
+              },
+              "offset": {
+                "type": "integer",
+                "description": "Pagination offset (default: 0)"
+              },
+              "environment": {
+                "type": "string",
+                "description": "Environment: staging or production (default: staging)"
+              }
+            },
+            "required": [
+              "project_id",
+              "entity_type"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "update_graph_node",
+          "title": "Update Graph Node",
+          "description": "Update properties of an existing node in a deployed graph project. Only send the fields you want to change — unspecified fields remain unchanged.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "project_id": {
+                "type": "string",
+                "description": "Project ID (UUID)"
+              },
+              "entity_type": {
+                "type": "string",
+                "description": "Entity key (e.g., 'person', 'concept')"
+              },
+              "entity_id": {
+                "type": "string",
+                "description": "The node's entity_id"
+              },
+              "data": {
+                "type": "object",
+                "description": "Properties to update (partial update)"
+              },
+              "environment": {
+                "type": "string",
+                "description": "Environment: staging or production (default: staging)"
+              }
+            },
+            "required": [
+              "project_id",
+              "entity_type",
+              "entity_id",
+              "data"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": true
+          }
+        },
+        {
+          "name": "delete_graph_node",
+          "title": "Delete Graph Node",
+          "description": "Delete a node and all its relationships from a deployed graph project. ⚠️ This also removes all relationships connected to this node (DETACH DELETE).",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "project_id": {
+                "type": "string",
+                "description": "Project ID (UUID)"
+              },
+              "entity_type": {
+                "type": "string",
+                "description": "Entity key (e.g., 'person', 'concept')"
+              },
+              "entity_id": {
+                "type": "string",
+                "description": "The node's entity_id"
+              },
+              "environment": {
+                "type": "string",
+                "description": "Environment: staging or production (default: staging)"
+              }
+            },
+            "required": [
+              "project_id",
+              "entity_type",
+              "entity_id"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": true,
+            "idempotentHint": false,
+            "openWorldHint": true
+          }
+        },
+        {
+          "name": "create_graph_relationship",
+          "title": "Create Graph Relationship",
+          "description": "Create a relationship between two nodes in a deployed graph project.\n\nThe rel_type must match a relationship key from the project schema.\nUse get_graph_data_schema to see available relationship types.\n\nExample:\n  rel_type: \"authored\"\n  from_id: \"alan-turing-001\"\n  to_id: \"on-computable-numbers-001\"\n  data: {\"year\": 1936}\n\nThe from_id and to_id must be entity_ids of existing nodes.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "project_id": {
+                "type": "string",
+                "description": "Project ID (UUID)"
+              },
+              "rel_type": {
+                "type": "string",
+                "description": "Relationship key (e.g., 'authored', 'related_to')"
+              },
+              "from_id": {
+                "type": "string",
+                "description": "Source node entity_id"
+              },
+              "to_id": {
+                "type": "string",
+                "description": "Target node entity_id"
+              },
+              "data": {
+                "type": "object",
+                "description": "Relationship properties (optional)"
+              },
+              "environment": {
+                "type": "string",
+                "description": "Environment: staging or production (default: staging)"
+              }
+            },
+            "required": [
+              "project_id",
+              "rel_type",
+              "from_id",
+              "to_id"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": false,
+            "idempotentHint": false,
+            "openWorldHint": true
+          }
+        },
+        {
+          "name": "get_node_relationships",
+          "title": "Get Node Relationships",
+          "description": "Get all relationships connected to a specific node. Supports direction filtering (incoming, outgoing, both) and relationship type filtering.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "project_id": {
+                "type": "string",
+                "description": "Project ID (UUID)"
+              },
+              "entity_type": {
+                "type": "string",
+                "description": "Entity key of the node"
+              },
+              "entity_id": {
+                "type": "string",
+                "description": "The node's entity_id"
+              },
+              "direction": {
+                "type": "string",
+                "description": "Filter: incoming, outgoing, or both (default: both)"
+              },
+              "rel_type_filter": {
+                "type": "string",
+                "description": "Filter by relationship type (UPPER_SNAKE_CASE)"
+              },
+              "environment": {
+                "type": "string",
+                "description": "Environment: staging or production (default: staging)"
+              }
+            },
+            "required": [
+              "project_id",
+              "entity_type",
+              "entity_id"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "delete_graph_relationship",
+          "title": "Delete Graph Relationship",
+          "description": "Delete a specific relationship by its internal ID. Use get_node_relationships to find relationship IDs.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "project_id": {
+                "type": "string",
+                "description": "Project ID (UUID)"
+              },
+              "rel_type": {
+                "type": "string",
+                "description": "Relationship key"
+              },
+              "rel_id": {
+                "type": "integer",
+                "description": "Internal relationship ID (from get_node_relationships)"
+              },
+              "environment": {
+                "type": "string",
+                "description": "Environment: staging or production (default: staging)"
+              }
+            },
+            "required": [
+              "project_id",
+              "rel_type",
+              "rel_id"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": true,
+            "idempotentHint": false,
+            "openWorldHint": true
+          }
+        },
+        {
+          "name": "bulk_create_graph_nodes",
+          "title": "Bulk Create Graph Nodes",
+          "description": "Create multiple nodes at once (up to 500 per call). Uses Neo4j UNWIND for high performance.\n\nEssential for knowledge graph population — create hundreds of entities from a single book chapter or article.\n\nEach node needs: entity_id (unique string) and data (properties dict).\n\nExample:\n  entity_type: \"concept\"\n  nodes: [\n    {\"entity_id\": \"quantum-mechanics-001\", \"data\": {\"name\": \"Quantum Mechanics\", \"field\": \"Physics\"}},\n    {\"entity_id\": \"wave-function-001\", \"data\": {\"name\": \"Wave Function\", \"field\": \"Physics\"}},\n    {\"entity_id\": \"superposition-001\", \"data\": {\"name\": \"Superposition\", \"field\": \"Physics\"}}\n  ]",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "project_id": {
+                "type": "string",
+                "description": "Project ID (UUID)"
+              },
+              "entity_type": {
+                "type": "string",
+                "description": "Entity key for all nodes"
+              },
+              "nodes": {
+                "type": "array",
+                "description": "List of nodes. Each: {entity_id: string, data: {properties}}",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "entity_id": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "object"
+                    }
+                  },
+                  "required": [
+                    "entity_id",
+                    "data"
+                  ]
+                }
+              },
+              "environment": {
+                "type": "string",
+                "description": "Environment: staging or production (default: staging)"
+              }
+            },
+            "required": [
+              "project_id",
+              "entity_type",
+              "nodes"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": false,
+            "idempotentHint": false,
+            "openWorldHint": true
+          }
+        },
+        {
+          "name": "bulk_create_graph_relationships",
+          "title": "Bulk Create Graph Relationships",
+          "description": "Create multiple relationships at once (up to 500 per call). Uses Neo4j UNWIND for high performance.\n\nEssential for connecting knowledge — link hundreds of concepts, people, and events in one operation.\n\nEach relationship needs: from_id, to_id, and optional data (properties).\n\nExample:\n  rel_type: \"related_to\"\n  relationships: [\n    {\"from_id\": \"quantum-mechanics-001\", \"to_id\": \"wave-function-001\", \"data\": {\"strength\": \"strong\"}},\n    {\"from_id\": \"quantum-mechanics-001\", \"to_id\": \"superposition-001\", \"data\": {\"strength\": \"strong\"}}\n  ]",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "project_id": {
+                "type": "string",
+                "description": "Project ID (UUID)"
+              },
+              "rel_type": {
+                "type": "string",
+                "description": "Relationship key for all relationships"
+              },
+              "relationships": {
+                "type": "array",
+                "description": "List of relationships. Each: {from_id, to_id, data?}",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "from_id": {
+                      "type": "string"
+                    },
+                    "to_id": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "object"
+                    }
+                  },
+                  "required": [
+                    "from_id",
+                    "to_id"
+                  ]
+                }
+              },
+              "environment": {
+                "type": "string",
+                "description": "Environment: staging or production (default: staging)"
+              }
+            },
+            "required": [
+              "project_id",
+              "rel_type",
+              "relationships"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": false,
+            "idempotentHint": false,
+            "openWorldHint": true
+          }
+        },
+        {
+          "name": "search_graph_nodes",
+          "title": "Search Graph Nodes",
+          "description": "Search for nodes by property values in a deployed graph project.\n\nSupports exact match and contains search (prefix value with ~ for contains).\n\nExamples:\n  Exact: filters: {\"name\": \"Alan Turing\"}\n  Contains: filters: {\"name\": \"~turing\"} (case-insensitive)\n  Combined: entity_type: \"person\", filters: {\"field\": \"~physics\"}\n\nWithout entity_type, searches ALL node types.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "project_id": {
+                "type": "string",
+                "description": "Project ID (UUID)"
+              },
+              "entity_type": {
+                "type": "string",
+                "description": "Entity key to filter by (optional — omit to search all types)"
+              },
+              "filters": {
+                "type": "object",
+                "description": "Property filters. Prefix value with ~ for contains search."
+              },
+              "limit": {
+                "type": "integer",
+                "description": "Max results (default: 100, max: 1000)"
+              },
+              "offset": {
+                "type": "integer",
+                "description": "Pagination offset (default: 0)"
+              },
+              "environment": {
+                "type": "string",
+                "description": "Environment: staging or production (default: staging)"
+              }
+            },
+            "required": [
+              "project_id",
+              "filters"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "fulltext_search_graph",
+          "title": "Full-Text Search Graph",
+          "description": "Search across ALL string properties of ALL nodes in a deployed graph using free-text queries.\n\nUnlike search_graph_nodes (which filters by specific property), this searches every text field at once.\nPerfect for finding knowledge when you don't know which property contains the answer.\n\nExample: query \"quantum\" searches name, description, summary, notes, and all other string fields.\nReturns nodes with _match_fields showing which properties matched.\n\nOptionally filter by entity_type to narrow results.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "project_id": {
+                "type": "string",
+                "description": "Project ID (UUID)"
+              },
+              "query": {
+                "type": "string",
+                "description": "Search text (case-insensitive, min 2 chars)"
+              },
+              "entity_type": {
+                "type": "string",
+                "description": "Entity key to filter by (optional — omit to search all types)"
+              },
+              "limit": {
+                "type": "integer",
+                "description": "Max results (default: 50, max: 500)"
+              },
+              "offset": {
+                "type": "integer",
+                "description": "Pagination offset (default: 0)"
+              },
+              "environment": {
+                "type": "string",
+                "description": "Environment: staging or production (default: staging)"
+              }
+            },
+            "required": [
+              "project_id",
+              "query"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "traverse_graph",
+          "title": "Traverse Graph",
+          "description": "Walk the graph from a starting node, discovering connected knowledge.\n\nReturns all nodes reachable within max_depth hops, with their distance from the start.\nEssential for exploring knowledge graphs — find related concepts, trace connections, discover clusters.\n\nExample: Start from \"Alan Turing\", traverse outgoing relationships up to 3 hops deep:\n  start_entity_type: \"person\"\n  start_entity_id: \"alan-turing-001\"\n  max_depth: 3\n  direction: \"outgoing\"\n\nSupports filtering by relationship types and direction.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "project_id": {
+                "type": "string",
+                "description": "Project ID (UUID)"
+              },
+              "start_entity_type": {
+                "type": "string",
+                "description": "Entity key of the starting node"
+              },
+              "start_entity_id": {
+                "type": "string",
+                "description": "Entity ID of the starting node"
+              },
+              "max_depth": {
+                "type": "integer",
+                "description": "Maximum traversal depth (default: 3, max: 10)"
+              },
+              "relationship_types": {
+                "type": "array",
+                "description": "Filter by relationship types (UPPER_SNAKE_CASE). Omit for all types.",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "direction": {
+                "type": "string",
+                "description": "Direction: outgoing, incoming, or both (default: both)"
+              },
+              "limit": {
+                "type": "integer",
+                "description": "Max results (default: 100, max: 1000)"
+              },
+              "environment": {
+                "type": "string",
+                "description": "Environment: staging or production (default: staging)"
+              }
+            },
+            "required": [
+              "project_id",
+              "start_entity_type",
+              "start_entity_id"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "get_graph_statistics",
+          "title": "Get Graph Statistics",
+          "description": "Get statistics about a deployed graph: total node count, total relationship count, counts per entity type, counts per relationship type. Essential for understanding the current state of a knowledge graph before adding more data.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "project_id": {
+                "type": "string",
+                "description": "Project ID (UUID)"
+              },
+              "environment": {
+                "type": "string",
+                "description": "Environment: staging or production (default: staging)"
+              }
+            },
+            "required": [
+              "project_id"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "get_graph_data_schema",
+          "title": "Get Graph Data Schema",
+          "description": "Get the runtime schema of a DEPLOYED graph project — shows the actual entity types and relationship types available for data operations.\n\nReturns: Available entity keys (for create_graph_node, list_graph_nodes, etc.) and relationship keys (for create_graph_relationship, etc.).\n\n⭐ USE THIS FIRST before creating nodes/relationships to know what entity_type and rel_type values are valid.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "project_id": {
+                "type": "string",
+                "description": "Project ID (UUID)"
+              },
+              "environment": {
+                "type": "string",
+                "description": "Environment: staging or production (default: staging)"
+              }
+            },
+            "required": [
+              "project_id"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        }
+      ],
+      "tool_count": 44,
+      "tool_names": [
+        "list_projects",
+        "get_project",
+        "get_schema",
+        "get_user_info",
+        "get_job_status",
+        "get_project_info",
+        "get_version_history",
+        "get_template_schemas",
+        "get_subscription_status",
+        "get_project_usage",
+        "get_schema_at_version",
+        "create_project",
+        "update_schema",
+        "deploy_staging",
+        "deploy_production",
+        "delete_project",
+        "rollback_project",
+        "rename_project",
+        "get_graph_schema",
+        "get_graph_template_schemas",
+        "get_graph_version_history",
+        "get_graph_schema_at_version",
+        "get_graph_project_info",
+        "create_graph_project",
+        "update_graph_schema",
+        "deploy_graph_staging",
+        "deploy_graph_production",
+        "delete_graph_project",
+        "rollback_graph_project",
+        "create_graph_node",
+        "get_graph_node",
+        "list_graph_nodes",
+        "update_graph_node",
+        "delete_graph_node",
+        "create_graph_relationship",
+        "get_node_relationships",
+        "delete_graph_relationship",
+        "bulk_create_graph_nodes",
+        "bulk_create_graph_relationships",
+        "search_graph_nodes",
+        "fulltext_search_graph",
+        "traverse_graph",
+        "get_graph_statistics",
+        "get_graph_data_schema"
+      ]
+    },
+    "server_info_crawled": {
+      "id": 15,
+      "name": "RationalBloks",
+      "author": "",
+      "overview": "RationalBloks - Development Tools MCP server with 44 tools.",
+      "repository_url": "",
+      "homepage": "https://mcp.rationalbloks.com/mcp",
+      "remote_or_local": "Remote",
+      "license": "",
+      "usage_count": "9,250",
+      "success_rate": "100%",
+      "tags": [
+        "development-tools"
+      ],
+      "categories": [
+        "development tools"
+      ],
+      "tools_count": 44,
+      "tools": [
+        {
+          "name": "list_projects",
+          "title": "List Projects",
+          "description": "List all your RationalBloks projects with their status and URLs",
+          "inputSchema": {
+            "type": "object",
+            "properties": {},
+            "required": []
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "get_project",
+          "title": "Get Project Details",
+          "description": "Get detailed information about a specific project",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "project_id": {
+                "type": "string",
+                "description": "Project ID (UUID)"
+              }
+            },
+            "required": [
+              "project_id"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "get_schema",
+          "title": "Get Project Schema",
+          "description": "Get the JSON schema definition of a project in FLAT format. Returns the schema structure where each table name maps directly to field definitions. This is the same format required for create_project and update_schema. USE CASES: Review current schema before making updates, copy schema as template for new projects, verify schema structure after deployment, learn the correct schema format by example. The returned schema will be in FLAT format: {table_name: {field_name: {type, properties}}}",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "project_id": {
+                "type": "string",
+                "description": "Project ID (UUID)"
+              }
+            },
+            "required": [
+              "project_id"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "get_user_info",
+          "title": "Get User Info",
+          "description": "Get information about the authenticated user",
+          "inputSchema": {
+            "type": "object",
+            "properties": {},
+            "required": []
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "get_job_status",
+          "title": "Get Job Status",
+          "description": "Check the status of a deployment job. STATUS VALUES: pending (job queued), running (deployment in progress), completed (success), failed (deployment failed). TIMELINE: Typical deployment takes 2-5 minutes. If status is 'running' for >10 minutes, check get_project_info for detailed pod status. If status is 'failed', use get_project_info to see deployment errors and check schema format (must be FLAT, no 'fields' nesting).",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "job_id": {
+                "type": "string",
+                "description": "Job ID returned from deployment operations"
+              }
+            },
+            "required": [
+              "job_id"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "get_project_info",
+          "title": "Get Project Info",
+          "description": "Get detailed project info including deployment status and resource usage. DEPLOYMENT STATUS: Running (healthy), Pending (starting), CrashLoopBackOff (init container failed - usually schema format error), ImagePullBackOff (image build failed). TROUBLESHOOTING: If status is CrashLoopBackOff, the schema is likely in wrong format (nested 'fields' key or missing 'type' properties). Use get_schema to review current schema. If replicas show 0/2, the init container (migration runner) is failing. This is almost always a schema format issue.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "project_id": {
+                "type": "string",
+                "description": "Project ID (UUID)"
+              }
+            },
+            "required": [
+              "project_id"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "get_version_history",
+          "title": "Get Version History",
+          "description": "Get the deployment and version history (git commits) for a project. Shows all schema changes with commit SHA, timestamp, and message. USE CASES: Review what changed between deployments, find the last working version before issues started, get commit SHA for rollback_project.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "project_id": {
+                "type": "string",
+                "description": "Project ID (UUID)"
+              }
+            },
+            "required": [
+              "project_id"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "get_template_schemas",
+          "title": "Get Template Schemas",
+          "description": "Get pre-built template schemas for common use cases. ⭐ USE THIS FIRST when creating a new project! Templates show the CORRECT schema format with: proper FLAT structure (no 'fields' nesting), every field has a 'type' property, foreign key relationships configured correctly, best practices for field naming and types. Available templates: E-commerce (products, orders, customers), Team collaboration (projects, tasks, users), General purpose templates. You can use these templates directly with create_project or modify them for your needs. TIP: Study these templates to understand the correct schema format before creating custom schemas.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {},
+            "required": []
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "get_subscription_status",
+          "title": "Get Subscription Status",
+          "description": "Get your subscription tier, limits, and usage",
+          "inputSchema": {
+            "type": "object",
+            "properties": {},
+            "required": []
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "get_project_usage",
+          "title": "Get Project Usage",
+          "description": "Get resource usage metrics (CPU, memory) for a project",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "project_id": {
+                "type": "string",
+                "description": "Project ID (UUID)"
+              }
+            },
+            "required": [
+              "project_id"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "get_schema_at_version",
+          "title": "Get Schema at Version",
+          "description": "Get the schema as it was at a specific version/commit",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "project_id": {
+                "type": "string",
+                "description": "Project ID (UUID)"
+              },
+              "version": {
+                "type": "string",
+                "description": "Commit SHA of the version"
+              }
+            },
+            "required": [
+              "project_id",
+              "version"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "create_project",
+          "title": "Create Project",
+          "description": "Create a new RationalBloks project from a JSON schema.\n\n⚠️ CRITICAL RULES - READ BEFORE CREATING SCHEMA:\n\n1. FLAT FORMAT (REQUIRED):\n   ✅ CORRECT: {users: {email: {type: \"string\", max_length: 255}}}\n   ❌ WRONG: {users: {fields: {email: {type: \"string\"}}}}\n   DO NOT nest under 'fields' key!\n\n2. FIELD TYPE REQUIREMENTS:\n   • string: MUST have \"max_length\" (e.g., max_length: 255)\n   • decimal: MUST have \"precision\" and \"scale\" (e.g., precision: 10, scale: 2)\n   • datetime: Use \"datetime\" NOT \"timestamp\"\n   • ALL fields: MUST have \"type\" property\n\n3. AUTOMATIC FIELDS (DON'T define):\n   • id (uuid, primary key)\n   • created_at (datetime)\n   • updated_at (datetime)\n\n4. USER AUTHENTICATION:\n   ❌ NEVER create \"users\", \"customers\", \"employees\" tables with email/password\n   ✅ USE built-in app_users table\n   \n   Example:\n   {\n     \"employee_profiles\": {\n       \"user_id\": {type: \"uuid\", foreign_key: \"app_users.id\", required: true},\n       \"department\": {type: \"string\", max_length: 100}\n     }\n   }\n\n5. AUTHORIZATION:\n   Add user_id → app_users.id to enable \"only see your own data\"\n   \n   Example:\n   {\n     \"orders\": {\n       \"user_id\": {type: \"uuid\", foreign_key: \"app_users.id\"},\n       \"total\": {type: \"decimal\", precision: 10, scale: 2}\n     }\n   }\n\n6. FIELD OPTIONS:\n   • required: true/false\n   • unique: true/false\n   • default: any value\n   • enum: [\"val1\", \"val2\"]\n   • foreign_key: \"table.id\"\n\nAVAILABLE TYPES: string, text, integer, decimal, boolean, uuid, date, datetime, json, uuid_array, integer_array, text_array, float_array\n\n   Array types store PostgreSQL native arrays with automatic GIN indexing:\n   • uuid_array: UUID[] — for sets of references (e.g., tensor coordinates)\n   • integer_array: BIGINT[] — for dimension indices, integer sets\n   • text_array: TEXT[] — for tags, categories, label sets\n   • float_array: DOUBLE PRECISION[] — for weight vectors, scores\n   GIN-indexed operators: @> (contains), <@ (contained_by), && (overlaps)\n\nBACKEND ENGINE:\n• python (default): FastAPI backend — mature, full-featured\n• rust: Axum backend — faster cold starts, lower memory, high performance\n\nWORKFLOW:\n1. Use get_template_schemas FIRST to see valid examples\n2. Create schema following ALL rules above\n3. Call this tool (optionally choose backend_type: \"python\" or \"rust\")\n4. Monitor with get_job_status (2-5 min deployment)\n\nAfter creation, use get_job_status with returned job_id to monitor deployment.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "Project name"
+              },
+              "schema": {
+                "type": "object",
+                "description": "JSON schema in FLAT format (table_name → field_name → properties). Every field MUST have a 'type' property. Use get_template_schemas to see valid examples."
+              },
+              "description": {
+                "type": "string",
+                "description": "Optional project description"
+              },
+              "backend_type": {
+                "type": "string",
+                "enum": [
+                  "python",
+                  "rust"
+                ],
+                "description": "Backend engine: 'python' (FastAPI, default) or 'rust' (Axum, faster). Default: python"
+              }
+            },
+            "required": [
+              "name",
+              "schema"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": false,
+            "idempotentHint": false,
+            "openWorldHint": true
+          }
+        },
+        {
+          "name": "update_schema",
+          "title": "Update Schema",
+          "description": "Update a project's schema (saves to database, does NOT deploy).\n\n⚠️ CRITICAL: Follow ALL rules from create_project:\n• FLAT format (no 'fields' nesting)\n• string: MUST have max_length\n• decimal: MUST have precision + scale\n• Use \"datetime\" NOT \"timestamp\"\n• DON'T define: id, created_at, updated_at\n• NEVER create users/customers/employees tables (use app_users)\n\n⚠️ MIGRATION RULES:\n• New fields MUST be \"required\": false OR have \"default\" value\n• Cannot add required field without default to existing tables\n• Safe: {new_field: {type: \"string\", max_length: 100, required: false}}\n\nWORKFLOW:\n1. Use get_schema to see current schema\n2. Modify following ALL rules\n3. Call update_schema (saves only)\n4. Call deploy_staging to apply changes\n5. Monitor with get_job_status\n\nNOTE: This only saves the schema. You MUST call deploy_staging afterwards to apply changes.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "project_id": {
+                "type": "string",
+                "description": "Project ID (UUID)"
+              },
+              "schema": {
+                "type": "object",
+                "description": "New JSON schema in FLAT format (table_name → field_name → properties). Every field MUST have a 'type' property."
+              }
+            },
+            "required": [
+              "project_id",
+              "schema"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": true
+          }
+        },
+        {
+          "name": "deploy_staging",
+          "title": "Deploy to Staging",
+          "description": "Deploy a project to the staging environment. This triggers: (1) Schema validation, (2) Docker image build, (3) GitHub commit, (4) Kubernetes deployment, (5) Database migrations. The operation is ASYNCHRONOUS - it returns immediately with a job_id. Use get_job_status with the job_id to monitor progress. Deployment typically takes 2-5 minutes depending on schema complexity. If deployment fails, check: (1) Schema format is FLAT (no 'fields' nesting), (2) Every field has a 'type' property, (3) Foreign keys reference existing tables, (4) No PostgreSQL reserved words in table/field names. Use get_project_info to see if the deployment succeeded.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "project_id": {
+                "type": "string",
+                "description": "Project ID (UUID)"
+              }
+            },
+            "required": [
+              "project_id"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": false,
+            "idempotentHint": false,
+            "openWorldHint": true
+          }
+        },
+        {
+          "name": "deploy_production",
+          "title": "Deploy to Production",
+          "description": "Promote staging to production (requires paid plan)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "project_id": {
+                "type": "string",
+                "description": "Project ID (UUID)"
+              }
+            },
+            "required": [
+              "project_id"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": false,
+            "idempotentHint": false,
+            "openWorldHint": true
+          }
+        },
+        {
+          "name": "delete_project",
+          "title": "Delete Project",
+          "description": "Delete a project (removes GitHub repo, K8s deployments, and database)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "project_id": {
+                "type": "string",
+                "description": "Project ID (UUID)"
+              }
+            },
+            "required": [
+              "project_id"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": true,
+            "idempotentHint": false,
+            "openWorldHint": true
+          }
+        },
+        {
+          "name": "rollback_project",
+          "title": "Rollback Project",
+          "description": "Rollback a project to a previous version. ⚠️ WARNING: This reverts schema AND code to the specified commit. Database data is NOT rolled back. Use get_version_history to find the commit SHA of the version you want to rollback to. After rollback, use get_job_status to monitor the redeployment. Rollback is useful when a schema change breaks deployment.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "project_id": {
+                "type": "string",
+                "description": "Project ID (UUID)"
+              },
+              "version": {
+                "type": "string",
+                "description": "Commit SHA or version to rollback to"
+              },
+              "environment": {
+                "type": "string",
+                "description": "Environment: staging or production (default: staging)"
+              }
+            },
+            "required": [
+              "project_id",
+              "version"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": true,
+            "idempotentHint": false,
+            "openWorldHint": true
+          }
+        },
+        {
+          "name": "rename_project",
+          "title": "Rename Project",
+          "description": "Rename a project (changes display name, not project_code)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "project_id": {
+                "type": "string",
+                "description": "Project ID (UUID)"
+              },
+              "name": {
+                "type": "string",
+                "description": "New display name for the project"
+              }
+            },
+            "required": [
+              "project_id",
+              "name"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "get_graph_schema",
+          "title": "Get Graph Schema",
+          "description": "Get the graph schema definition of a project. Returns the hierarchical schema with nodes (entities) and relationships. Graph schemas define entity hierarchies and typed relationships — a different format than relational flat-table schemas.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "project_id": {
+                "type": "string",
+                "description": "Project ID (UUID)"
+              }
+            },
+            "required": [
+              "project_id"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "get_graph_template_schemas",
+          "title": "Get Graph Template Schemas",
+          "description": "Get pre-built graph template schemas for common use cases. ⭐ USE THIS FIRST when creating a new graph project! Templates show the CORRECT graph schema format with: proper node definitions (description, flat_labels, schema with flat field definitions), relationship configurations (from, to, cardinality, data_schema), and hierarchical entity nesting. Available templates: Social Network (users, posts, follows), Knowledge Graph (topics, articles, authors), Product Catalog (products, categories, suppliers). You can use these templates directly with create_graph_project or modify them for your needs. TIP: Study these templates to understand the correct graph schema format before creating custom schemas.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {},
+            "required": []
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "get_graph_version_history",
+          "title": "Get Graph Version History",
+          "description": "Get the deployment and version history for a graph project. Shows all schema changes with commit SHAs, timestamps, version numbers, and messages. Use this to find a specific version for rollback operations.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "project_id": {
+                "type": "string",
+                "description": "Project ID (UUID)"
+              }
+            },
+            "required": [
+              "project_id"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "get_graph_schema_at_version",
+          "title": "Get Graph Schema at Version",
+          "description": "Get the graph schema as it existed at a specific version/commit. Use get_graph_version_history to find commit SHAs. Useful for comparing schemas across versions or auditing changes.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "project_id": {
+                "type": "string",
+                "description": "Project ID (UUID)"
+              },
+              "version": {
+                "type": "string",
+                "description": "Commit SHA of the version to retrieve"
+              }
+            },
+            "required": [
+              "project_id",
+              "version"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "get_graph_project_info",
+          "title": "Get Graph Project Info",
+          "description": "Get detailed graph project information including Kubernetes deployment status, Neo4j database health, pod status, and resource usage. Use this after deployment to verify the graph project is running correctly.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "project_id": {
+                "type": "string",
+                "description": "Project ID (UUID)"
+              }
+            },
+            "required": [
+              "project_id"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "create_graph_project",
+          "title": "Create Graph Project",
+          "description": "Create a new Neo4j graph database project from a hierarchical JSON schema.\n\n⚠️ GRAPH SCHEMA FORMAT — READ BEFORE CREATING:\n\nGraph schemas define nodes (entities) and relationships, NOT flat database tables.\nEach field is a dict with \"type\" and optional \"required\": true (defaults to false).\n\nSCHEMA STRUCTURE:\n{\n  \"nodes\": {\n    \"EntityName\": {\n      \"description\": \"What this entity represents\",\n      \"flat_labels\": [\"AdditionalLabel\"],\n      \"schema\": {\n        \"field_name\": {\"type\": \"string\", \"required\": true},\n        \"other_field\": {\"type\": \"integer\"}\n      }\n    }\n  },\n  \"relationships\": {\n    \"RELATIONSHIP_TYPE\": {\n      \"from\": \"EntityName\",\n      \"to\": \"OtherEntity\",\n      \"cardinality\": \"MANY_TO_MANY\",\n      \"data_schema\": {\n        \"field_name\": {\"type\": \"date\"}\n      }\n    }\n  }\n}\n\nFIELD TYPES: string, integer, float, boolean, date, json\n\nCARDINALITY OPTIONS: ONE_TO_ONE, ONE_TO_MANY, MANY_TO_ONE, MANY_TO_MANY\n\nHIERARCHICAL NODES:\nNest entities inside parent entities to create type hierarchies.\nChild entities inherit parent labels automatically.\n\nExample:\n{\n  \"nodes\": {\n    \"Animal\": {\n      \"description\": \"Base animal entity\",\n      \"flat_labels\": [\"LivingThing\"],\n      \"schema\": {\n        \"name\": {\"type\": \"string\", \"required\": true},\n        \"habitat\": {\"type\": \"string\"}\n      },\n      \"Dog\": {\n        \"description\": \"A dog (inherits Animal labels)\",\n        \"flat_labels\": [\"Pet\"],\n        \"schema\": {\n          \"breed\": {\"type\": \"string\", \"required\": true},\n          \"trained\": {\"type\": \"boolean\"}\n        }\n      }\n    }\n  },\n  \"relationships\": {\n    \"OWNS\": {\n      \"from\": \"Person\",\n      \"to\": \"Animal\",\n      \"cardinality\": \"ONE_TO_MANY\"\n    }\n  }\n}\n\nRULES:\n1. \"nodes\" key is REQUIRED — must contain at least one entity\n2. Each entity needs \"description\" and \"schema\" with field definitions\n3. Each field is {\"type\": \"...\", \"required\": true/false} — required defaults to false\n4. Relationship \"from\"/\"to\" must reference defined node names\n5. Relationship types should be UPPER_SNAKE_CASE\n6. Entity names should be PascalCase\n7. Automatic fields (id, created_at, updated_at) are NOT needed\n8. Use get_graph_template_schemas FIRST to see valid examples\n\nWORKFLOW:\n1. Use get_graph_template_schemas to see valid examples\n2. Create schema following the rules above\n3. Call this tool\n4. Monitor with get_job_status (2-5 min deployment)\n\nAfter creation, use get_job_status with returned job_id to monitor deployment.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "Project name"
+              },
+              "schema": {
+                "type": "object",
+                "description": "Graph schema with 'nodes' and optionally 'relationships' keys. Use get_graph_template_schemas to see valid examples."
+              },
+              "description": {
+                "type": "string",
+                "description": "Optional project description"
+              }
+            },
+            "required": [
+              "name",
+              "schema"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": false,
+            "idempotentHint": false,
+            "openWorldHint": true
+          }
+        },
+        {
+          "name": "update_graph_schema",
+          "title": "Update Graph Schema",
+          "description": "Update a graph project's schema (saves to database, does NOT deploy).\n\n⚠️ Follow ALL rules from create_graph_project:\n• Must have \"nodes\" key with at least one entity\n• Each entity needs \"description\" and \"schema\" with field definitions\n• Each field is {\"type\": \"...\", \"required\": true/false} — required defaults to false\n• Relationships need \"from\", \"to\", and \"cardinality\"\n• Field types: string, integer, float, boolean, date, json\n• Relationship types should be UPPER_SNAKE_CASE\n• Entity names should be PascalCase\n\nWORKFLOW:\n1. Use get_graph_schema to see current schema\n2. Modify following all rules\n3. Call update_graph_schema (saves only)\n4. Call deploy_graph_staging to apply changes\n5. Monitor with get_job_status\n\nNOTE: This only saves the schema. You MUST call deploy_graph_staging afterwards to deploy.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "project_id": {
+                "type": "string",
+                "description": "Project ID (UUID)"
+              },
+              "schema": {
+                "type": "object",
+                "description": "New graph schema with 'nodes' and optionally 'relationships' keys."
+              }
+            },
+            "required": [
+              "project_id",
+              "schema"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": true
+          }
+        },
+        {
+          "name": "deploy_graph_staging",
+          "title": "Deploy Graph to Staging",
+          "description": "Deploy a graph project to the staging environment. This triggers: (1) Schema validation, (2) Neo4j entity code generation, (3) Docker image build, (4) GitHub commit, (5) Kubernetes deployment with Neo4j instance. The operation is ASYNCHRONOUS — returns immediately with a job_id. Use get_job_status to monitor progress. Deployment typically takes 2-5 minutes. Use get_graph_project_info to verify deployment succeeded.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "project_id": {
+                "type": "string",
+                "description": "Project ID (UUID)"
+              }
+            },
+            "required": [
+              "project_id"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": false,
+            "idempotentHint": false,
+            "openWorldHint": true
+          }
+        },
+        {
+          "name": "deploy_graph_production",
+          "title": "Deploy Graph to Production",
+          "description": "Promote graph staging to production. Creates a separate production Neo4j instance with its own credentials and database. Requires paid plan.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "project_id": {
+                "type": "string",
+                "description": "Project ID (UUID)"
+              }
+            },
+            "required": [
+              "project_id"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": false,
+            "idempotentHint": false,
+            "openWorldHint": true
+          }
+        },
+        {
+          "name": "delete_graph_project",
+          "title": "Delete Graph Project",
+          "description": "Delete a graph project (removes GitHub repo, K8s deployments, Neo4j database, and credentials)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "project_id": {
+                "type": "string",
+                "description": "Project ID (UUID)"
+              }
+            },
+            "required": [
+              "project_id"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": true,
+            "idempotentHint": false,
+            "openWorldHint": true
+          }
+        },
+        {
+          "name": "rollback_graph_project",
+          "title": "Rollback Graph Project",
+          "description": "Rollback a graph project to a previous version. ⚠️ WARNING: This reverts schema AND code to the specified commit. Neo4j data is NOT rolled back. Use get_graph_version_history to find the commit SHA of the version you want to rollback to. After rollback, the graph API will be redeployed with the old schema.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "project_id": {
+                "type": "string",
+                "description": "Project ID (UUID)"
+              },
+              "version": {
+                "type": "string",
+                "description": "Commit SHA to rollback to"
+              },
+              "environment": {
+                "type": "string",
+                "description": "Environment: staging or production (default: staging)"
+              }
+            },
+            "required": [
+              "project_id",
+              "version"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": true,
+            "idempotentHint": false,
+            "openWorldHint": true
+          }
+        },
+        {
+          "name": "create_graph_node",
+          "title": "Create Graph Node",
+          "description": "Create a single node in a deployed graph project.\n\nREQUIRES: Project must be deployed (use deploy_graph_staging first).\n\nThe entity_type must match an entity key from the project schema.\nUse get_graph_data_schema to see available entity types and their fields.\n\nExample:\n  entity_type: \"person\"\n  entity_id: \"alan-turing-001\"\n  data: {\"name\": \"Alan Turing\", \"birth_year\": 1912, \"field\": \"Computer Science\"}\n\nThe entity_id is your unique identifier — use meaningful IDs for knowledge graphs.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "project_id": {
+                "type": "string",
+                "description": "Project ID (UUID)"
+              },
+              "entity_type": {
+                "type": "string",
+                "description": "Entity key (e.g., 'person', 'concept')"
+              },
+              "entity_id": {
+                "type": "string",
+                "description": "Unique identifier for the node"
+              },
+              "data": {
+                "type": "object",
+                "description": "Node properties matching the entity schema"
+              },
+              "environment": {
+                "type": "string",
+                "description": "Environment: staging or production (default: staging)"
+              }
+            },
+            "required": [
+              "project_id",
+              "entity_type",
+              "entity_id",
+              "data"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": false,
+            "idempotentHint": false,
+            "openWorldHint": true
+          }
+        },
+        {
+          "name": "get_graph_node",
+          "title": "Get Graph Node",
+          "description": "Get a specific node by its entity_id from a deployed graph project. Returns all node properties including created_at and updated_at timestamps.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "project_id": {
+                "type": "string",
+                "description": "Project ID (UUID)"
+              },
+              "entity_type": {
+                "type": "string",
+                "description": "Entity key (e.g., 'person', 'concept')"
+              },
+              "entity_id": {
+                "type": "string",
+                "description": "The node's entity_id"
+              },
+              "environment": {
+                "type": "string",
+                "description": "Environment: staging or production (default: staging)"
+              }
+            },
+            "required": [
+              "project_id",
+              "entity_type",
+              "entity_id"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "list_graph_nodes",
+          "title": "List Graph Nodes",
+          "description": "List nodes of a specific entity type from a deployed graph project. Supports pagination with limit/offset. Returns nodes ordered by creation date (newest first).",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "project_id": {
+                "type": "string",
+                "description": "Project ID (UUID)"
+              },
+              "entity_type": {
+                "type": "string",
+                "description": "Entity key (e.g., 'person', 'concept')"
+              },
+              "limit": {
+                "type": "integer",
+                "description": "Max results (default: 100, max: 1000)"
+              },
+              "offset": {
+                "type": "integer",
+                "description": "Pagination offset (default: 0)"
+              },
+              "environment": {
+                "type": "string",
+                "description": "Environment: staging or production (default: staging)"
+              }
+            },
+            "required": [
+              "project_id",
+              "entity_type"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "update_graph_node",
+          "title": "Update Graph Node",
+          "description": "Update properties of an existing node in a deployed graph project. Only send the fields you want to change — unspecified fields remain unchanged.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "project_id": {
+                "type": "string",
+                "description": "Project ID (UUID)"
+              },
+              "entity_type": {
+                "type": "string",
+                "description": "Entity key (e.g., 'person', 'concept')"
+              },
+              "entity_id": {
+                "type": "string",
+                "description": "The node's entity_id"
+              },
+              "data": {
+                "type": "object",
+                "description": "Properties to update (partial update)"
+              },
+              "environment": {
+                "type": "string",
+                "description": "Environment: staging or production (default: staging)"
+              }
+            },
+            "required": [
+              "project_id",
+              "entity_type",
+              "entity_id",
+              "data"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": true
+          }
+        },
+        {
+          "name": "delete_graph_node",
+          "title": "Delete Graph Node",
+          "description": "Delete a node and all its relationships from a deployed graph project. ⚠️ This also removes all relationships connected to this node (DETACH DELETE).",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "project_id": {
+                "type": "string",
+                "description": "Project ID (UUID)"
+              },
+              "entity_type": {
+                "type": "string",
+                "description": "Entity key (e.g., 'person', 'concept')"
+              },
+              "entity_id": {
+                "type": "string",
+                "description": "The node's entity_id"
+              },
+              "environment": {
+                "type": "string",
+                "description": "Environment: staging or production (default: staging)"
+              }
+            },
+            "required": [
+              "project_id",
+              "entity_type",
+              "entity_id"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": true,
+            "idempotentHint": false,
+            "openWorldHint": true
+          }
+        },
+        {
+          "name": "create_graph_relationship",
+          "title": "Create Graph Relationship",
+          "description": "Create a relationship between two nodes in a deployed graph project.\n\nThe rel_type must match a relationship key from the project schema.\nUse get_graph_data_schema to see available relationship types.\n\nExample:\n  rel_type: \"authored\"\n  from_id: \"alan-turing-001\"\n  to_id: \"on-computable-numbers-001\"\n  data: {\"year\": 1936}\n\nThe from_id and to_id must be entity_ids of existing nodes.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "project_id": {
+                "type": "string",
+                "description": "Project ID (UUID)"
+              },
+              "rel_type": {
+                "type": "string",
+                "description": "Relationship key (e.g., 'authored', 'related_to')"
+              },
+              "from_id": {
+                "type": "string",
+                "description": "Source node entity_id"
+              },
+              "to_id": {
+                "type": "string",
+                "description": "Target node entity_id"
+              },
+              "data": {
+                "type": "object",
+                "description": "Relationship properties (optional)"
+              },
+              "environment": {
+                "type": "string",
+                "description": "Environment: staging or production (default: staging)"
+              }
+            },
+            "required": [
+              "project_id",
+              "rel_type",
+              "from_id",
+              "to_id"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": false,
+            "idempotentHint": false,
+            "openWorldHint": true
+          }
+        },
+        {
+          "name": "get_node_relationships",
+          "title": "Get Node Relationships",
+          "description": "Get all relationships connected to a specific node. Supports direction filtering (incoming, outgoing, both) and relationship type filtering.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "project_id": {
+                "type": "string",
+                "description": "Project ID (UUID)"
+              },
+              "entity_type": {
+                "type": "string",
+                "description": "Entity key of the node"
+              },
+              "entity_id": {
+                "type": "string",
+                "description": "The node's entity_id"
+              },
+              "direction": {
+                "type": "string",
+                "description": "Filter: incoming, outgoing, or both (default: both)"
+              },
+              "rel_type_filter": {
+                "type": "string",
+                "description": "Filter by relationship type (UPPER_SNAKE_CASE)"
+              },
+              "environment": {
+                "type": "string",
+                "description": "Environment: staging or production (default: staging)"
+              }
+            },
+            "required": [
+              "project_id",
+              "entity_type",
+              "entity_id"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "delete_graph_relationship",
+          "title": "Delete Graph Relationship",
+          "description": "Delete a specific relationship by its internal ID. Use get_node_relationships to find relationship IDs.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "project_id": {
+                "type": "string",
+                "description": "Project ID (UUID)"
+              },
+              "rel_type": {
+                "type": "string",
+                "description": "Relationship key"
+              },
+              "rel_id": {
+                "type": "integer",
+                "description": "Internal relationship ID (from get_node_relationships)"
+              },
+              "environment": {
+                "type": "string",
+                "description": "Environment: staging or production (default: staging)"
+              }
+            },
+            "required": [
+              "project_id",
+              "rel_type",
+              "rel_id"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": true,
+            "idempotentHint": false,
+            "openWorldHint": true
+          }
+        },
+        {
+          "name": "bulk_create_graph_nodes",
+          "title": "Bulk Create Graph Nodes",
+          "description": "Create multiple nodes at once (up to 500 per call). Uses Neo4j UNWIND for high performance.\n\nEssential for knowledge graph population — create hundreds of entities from a single book chapter or article.\n\nEach node needs: entity_id (unique string) and data (properties dict).\n\nExample:\n  entity_type: \"concept\"\n  nodes: [\n    {\"entity_id\": \"quantum-mechanics-001\", \"data\": {\"name\": \"Quantum Mechanics\", \"field\": \"Physics\"}},\n    {\"entity_id\": \"wave-function-001\", \"data\": {\"name\": \"Wave Function\", \"field\": \"Physics\"}},\n    {\"entity_id\": \"superposition-001\", \"data\": {\"name\": \"Superposition\", \"field\": \"Physics\"}}\n  ]",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "project_id": {
+                "type": "string",
+                "description": "Project ID (UUID)"
+              },
+              "entity_type": {
+                "type": "string",
+                "description": "Entity key for all nodes"
+              },
+              "nodes": {
+                "type": "array",
+                "description": "List of nodes. Each: {entity_id: string, data: {properties}}",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "entity_id": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "object"
+                    }
+                  },
+                  "required": [
+                    "entity_id",
+                    "data"
+                  ]
+                }
+              },
+              "environment": {
+                "type": "string",
+                "description": "Environment: staging or production (default: staging)"
+              }
+            },
+            "required": [
+              "project_id",
+              "entity_type",
+              "nodes"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": false,
+            "idempotentHint": false,
+            "openWorldHint": true
+          }
+        },
+        {
+          "name": "bulk_create_graph_relationships",
+          "title": "Bulk Create Graph Relationships",
+          "description": "Create multiple relationships at once (up to 500 per call). Uses Neo4j UNWIND for high performance.\n\nEssential for connecting knowledge — link hundreds of concepts, people, and events in one operation.\n\nEach relationship needs: from_id, to_id, and optional data (properties).\n\nExample:\n  rel_type: \"related_to\"\n  relationships: [\n    {\"from_id\": \"quantum-mechanics-001\", \"to_id\": \"wave-function-001\", \"data\": {\"strength\": \"strong\"}},\n    {\"from_id\": \"quantum-mechanics-001\", \"to_id\": \"superposition-001\", \"data\": {\"strength\": \"strong\"}}\n  ]",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "project_id": {
+                "type": "string",
+                "description": "Project ID (UUID)"
+              },
+              "rel_type": {
+                "type": "string",
+                "description": "Relationship key for all relationships"
+              },
+              "relationships": {
+                "type": "array",
+                "description": "List of relationships. Each: {from_id, to_id, data?}",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "from_id": {
+                      "type": "string"
+                    },
+                    "to_id": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "object"
+                    }
+                  },
+                  "required": [
+                    "from_id",
+                    "to_id"
+                  ]
+                }
+              },
+              "environment": {
+                "type": "string",
+                "description": "Environment: staging or production (default: staging)"
+              }
+            },
+            "required": [
+              "project_id",
+              "rel_type",
+              "relationships"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": false,
+            "idempotentHint": false,
+            "openWorldHint": true
+          }
+        },
+        {
+          "name": "search_graph_nodes",
+          "title": "Search Graph Nodes",
+          "description": "Search for nodes by property values in a deployed graph project.\n\nSupports exact match and contains search (prefix value with ~ for contains).\n\nExamples:\n  Exact: filters: {\"name\": \"Alan Turing\"}\n  Contains: filters: {\"name\": \"~turing\"} (case-insensitive)\n  Combined: entity_type: \"person\", filters: {\"field\": \"~physics\"}\n\nWithout entity_type, searches ALL node types.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "project_id": {
+                "type": "string",
+                "description": "Project ID (UUID)"
+              },
+              "entity_type": {
+                "type": "string",
+                "description": "Entity key to filter by (optional — omit to search all types)"
+              },
+              "filters": {
+                "type": "object",
+                "description": "Property filters. Prefix value with ~ for contains search."
+              },
+              "limit": {
+                "type": "integer",
+                "description": "Max results (default: 100, max: 1000)"
+              },
+              "offset": {
+                "type": "integer",
+                "description": "Pagination offset (default: 0)"
+              },
+              "environment": {
+                "type": "string",
+                "description": "Environment: staging or production (default: staging)"
+              }
+            },
+            "required": [
+              "project_id",
+              "filters"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "fulltext_search_graph",
+          "title": "Full-Text Search Graph",
+          "description": "Search across ALL string properties of ALL nodes in a deployed graph using free-text queries.\n\nUnlike search_graph_nodes (which filters by specific property), this searches every text field at once.\nPerfect for finding knowledge when you don't know which property contains the answer.\n\nExample: query \"quantum\" searches name, description, summary, notes, and all other string fields.\nReturns nodes with _match_fields showing which properties matched.\n\nOptionally filter by entity_type to narrow results.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "project_id": {
+                "type": "string",
+                "description": "Project ID (UUID)"
+              },
+              "query": {
+                "type": "string",
+                "description": "Search text (case-insensitive, min 2 chars)"
+              },
+              "entity_type": {
+                "type": "string",
+                "description": "Entity key to filter by (optional — omit to search all types)"
+              },
+              "limit": {
+                "type": "integer",
+                "description": "Max results (default: 50, max: 500)"
+              },
+              "offset": {
+                "type": "integer",
+                "description": "Pagination offset (default: 0)"
+              },
+              "environment": {
+                "type": "string",
+                "description": "Environment: staging or production (default: staging)"
+              }
+            },
+            "required": [
+              "project_id",
+              "query"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "traverse_graph",
+          "title": "Traverse Graph",
+          "description": "Walk the graph from a starting node, discovering connected knowledge.\n\nReturns all nodes reachable within max_depth hops, with their distance from the start.\nEssential for exploring knowledge graphs — find related concepts, trace connections, discover clusters.\n\nExample: Start from \"Alan Turing\", traverse outgoing relationships up to 3 hops deep:\n  start_entity_type: \"person\"\n  start_entity_id: \"alan-turing-001\"\n  max_depth: 3\n  direction: \"outgoing\"\n\nSupports filtering by relationship types and direction.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "project_id": {
+                "type": "string",
+                "description": "Project ID (UUID)"
+              },
+              "start_entity_type": {
+                "type": "string",
+                "description": "Entity key of the starting node"
+              },
+              "start_entity_id": {
+                "type": "string",
+                "description": "Entity ID of the starting node"
+              },
+              "max_depth": {
+                "type": "integer",
+                "description": "Maximum traversal depth (default: 3, max: 10)"
+              },
+              "relationship_types": {
+                "type": "array",
+                "description": "Filter by relationship types (UPPER_SNAKE_CASE). Omit for all types.",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "direction": {
+                "type": "string",
+                "description": "Direction: outgoing, incoming, or both (default: both)"
+              },
+              "limit": {
+                "type": "integer",
+                "description": "Max results (default: 100, max: 1000)"
+              },
+              "environment": {
+                "type": "string",
+                "description": "Environment: staging or production (default: staging)"
+              }
+            },
+            "required": [
+              "project_id",
+              "start_entity_type",
+              "start_entity_id"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "get_graph_statistics",
+          "title": "Get Graph Statistics",
+          "description": "Get statistics about a deployed graph: total node count, total relationship count, counts per entity type, counts per relationship type. Essential for understanding the current state of a knowledge graph before adding more data.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "project_id": {
+                "type": "string",
+                "description": "Project ID (UUID)"
+              },
+              "environment": {
+                "type": "string",
+                "description": "Environment: staging or production (default: staging)"
+              }
+            },
+            "required": [
+              "project_id"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "get_graph_data_schema",
+          "title": "Get Graph Data Schema",
+          "description": "Get the runtime schema of a DEPLOYED graph project — shows the actual entity types and relationship types available for data operations.\n\nReturns: Available entity keys (for create_graph_node, list_graph_nodes, etc.) and relationship keys (for create_graph_relationship, etc.).\n\n⭐ USE THIS FIRST before creating nodes/relationships to know what entity_type and rel_type values are valid.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "project_id": {
+                "type": "string",
+                "description": "Project ID (UUID)"
+              },
+              "environment": {
+                "type": "string",
+                "description": "Environment: staging or production (default: staging)"
+              }
+            },
+            "required": [
+              "project_id"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        }
+      ],
+      "python_sdk_url": "https://mcp.rationalbloks.com/mcp",
+      "python_sdk_config": "{\"debug\": false}"
+    },
+    "source_filename": "0015.RationalBloks_labeled.json",
+    "processed_timestamp": 1772871481,
+    "processing_mode": "gateway",
+    "rank": 16
+  }
+}

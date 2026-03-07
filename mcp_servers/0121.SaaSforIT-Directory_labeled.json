@@ -1,0 +1,343 @@
+{
+  "labels": {
+    "analysis": "The MCP Server \"SaaSforIT Directory\" provides 7 tools for web search & research tasks.",
+    "reasoning": "Primary label \"Web Search & Research\" assigned based on tool names and descriptions.",
+    "primary_label": "Web Search & Research",
+    "secondary_labels": [
+      "Browser Automation",
+      "Data Analysis & Processing",
+      "Development Tools"
+    ],
+    "custom_label": "Web Search & Research - SaaSforIT Directory",
+    "is_connected": true,
+    "is_remote_tool_valid": true,
+    "featured_server": true
+  },
+  "metadata": {
+    "server_id": 121,
+    "server_name": "SaaSforIT Directory",
+    "rank_by_usage": 122,
+    "usage_count": "100",
+    "original_file": "tools.json#121",
+    "mode": "gateway",
+    "timestamp": 1772871481,
+    "remote_server_response": {
+      "url": "https://fuechvghummojkgliyha.supabase.co/functions/v1/mcp",
+      "is_success": true,
+      "error": null,
+      "tools": [
+        {
+          "name": "search_saas",
+          "description": "Search the SaaS directory by query, category, or keywords. Returns matching tools with descriptions, pricing, and features.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "query": {
+                "type": "string",
+                "description": "Search query (e.g., 'project management', 'email marketing', 'CRM')",
+                "maxLength": 200
+              },
+              "category": {
+                "type": "string",
+                "description": "Filter by category (e.g., 'Project Management', 'Marketing & SEO')",
+                "maxLength": 100
+              },
+              "pricing": {
+                "type": "string",
+                "enum": [
+                  "free",
+                  "freemium",
+                  "paid",
+                  "enterprise"
+                ],
+                "description": "Filter by pricing model"
+              },
+              "limit": {
+                "type": "number",
+                "description": "Maximum results (default: 10, max: 50)",
+                "minimum": 1,
+                "maximum": 50
+              }
+            }
+          }
+        },
+        {
+          "name": "get_recommendations",
+          "description": "Get personalized SaaS recommendations based on role, business type, or specific needs.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "description": {
+                "type": "string",
+                "description": "Describe your role, business, or needs",
+                "minLength": 3,
+                "maxLength": 500
+              },
+              "budget": {
+                "type": "string",
+                "enum": [
+                  "free",
+                  "freemium",
+                  "paid",
+                  "any"
+                ],
+                "description": "Budget preference"
+              },
+              "limit": {
+                "type": "number",
+                "description": "Maximum recommendations (default: 10, max: 50)",
+                "minimum": 1,
+                "maximum": 50
+              }
+            },
+            "required": [
+              "description"
+            ]
+          }
+        },
+        {
+          "name": "get_saas_details",
+          "description": "Get detailed information about a specific SaaS tool including full description, features, and pricing.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "description": "The SaaS tool ID (e.g., 'slack', 'notion')",
+                "maxLength": 100
+              },
+              "name": {
+                "type": "string",
+                "description": "Alternatively, the tool name to look up",
+                "maxLength": 100
+              }
+            }
+          }
+        },
+        {
+          "name": "list_categories",
+          "description": "Get all available SaaS categories in the directory with tool counts.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {}
+          }
+        },
+        {
+          "name": "get_blog_posts",
+          "description": "Get blog posts and guides about SaaS tools. Filter by tool ID or search by topic.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "saas_id": {
+                "type": "string",
+                "description": "Filter posts about a specific SaaS tool",
+                "maxLength": 100
+              },
+              "query": {
+                "type": "string",
+                "description": "Search posts by topic or keyword",
+                "maxLength": 200
+              },
+              "limit": {
+                "type": "number",
+                "description": "Maximum posts (default: 10, max: 50)",
+                "minimum": 1,
+                "maximum": 50
+              }
+            }
+          }
+        },
+        {
+          "name": "get_all_saas",
+          "description": "Get the complete list of all SaaS tools in the directory.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {}
+          }
+        },
+        {
+          "name": "get_directory_stats",
+          "description": "Get statistics about the directory (total tools, categories, etc.).",
+          "inputSchema": {
+            "type": "object",
+            "properties": {}
+          }
+        }
+      ],
+      "tool_count": 7,
+      "tool_names": [
+        "search_saas",
+        "get_recommendations",
+        "get_saas_details",
+        "list_categories",
+        "get_blog_posts",
+        "get_all_saas",
+        "get_directory_stats"
+      ]
+    },
+    "server_info_crawled": {
+      "id": 121,
+      "name": "SaaSforIT Directory",
+      "author": "",
+      "overview": "SaaSforIT Directory - Web Search & Research MCP server with 7 tools.",
+      "repository_url": "",
+      "homepage": "https://fuechvghummojkgliyha.supabase.co/functions/v1/mcp",
+      "remote_or_local": "Remote",
+      "license": "",
+      "usage_count": "100",
+      "success_rate": "100%",
+      "tags": [
+        "web-search-research"
+      ],
+      "categories": [
+        "web search & research"
+      ],
+      "tools_count": 7,
+      "tools": [
+        {
+          "name": "search_saas",
+          "description": "Search the SaaS directory by query, category, or keywords. Returns matching tools with descriptions, pricing, and features.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "query": {
+                "type": "string",
+                "description": "Search query (e.g., 'project management', 'email marketing', 'CRM')",
+                "maxLength": 200
+              },
+              "category": {
+                "type": "string",
+                "description": "Filter by category (e.g., 'Project Management', 'Marketing & SEO')",
+                "maxLength": 100
+              },
+              "pricing": {
+                "type": "string",
+                "enum": [
+                  "free",
+                  "freemium",
+                  "paid",
+                  "enterprise"
+                ],
+                "description": "Filter by pricing model"
+              },
+              "limit": {
+                "type": "number",
+                "description": "Maximum results (default: 10, max: 50)",
+                "minimum": 1,
+                "maximum": 50
+              }
+            }
+          }
+        },
+        {
+          "name": "get_recommendations",
+          "description": "Get personalized SaaS recommendations based on role, business type, or specific needs.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "description": {
+                "type": "string",
+                "description": "Describe your role, business, or needs",
+                "minLength": 3,
+                "maxLength": 500
+              },
+              "budget": {
+                "type": "string",
+                "enum": [
+                  "free",
+                  "freemium",
+                  "paid",
+                  "any"
+                ],
+                "description": "Budget preference"
+              },
+              "limit": {
+                "type": "number",
+                "description": "Maximum recommendations (default: 10, max: 50)",
+                "minimum": 1,
+                "maximum": 50
+              }
+            },
+            "required": [
+              "description"
+            ]
+          }
+        },
+        {
+          "name": "get_saas_details",
+          "description": "Get detailed information about a specific SaaS tool including full description, features, and pricing.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "description": "The SaaS tool ID (e.g., 'slack', 'notion')",
+                "maxLength": 100
+              },
+              "name": {
+                "type": "string",
+                "description": "Alternatively, the tool name to look up",
+                "maxLength": 100
+              }
+            }
+          }
+        },
+        {
+          "name": "list_categories",
+          "description": "Get all available SaaS categories in the directory with tool counts.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {}
+          }
+        },
+        {
+          "name": "get_blog_posts",
+          "description": "Get blog posts and guides about SaaS tools. Filter by tool ID or search by topic.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "saas_id": {
+                "type": "string",
+                "description": "Filter posts about a specific SaaS tool",
+                "maxLength": 100
+              },
+              "query": {
+                "type": "string",
+                "description": "Search posts by topic or keyword",
+                "maxLength": 200
+              },
+              "limit": {
+                "type": "number",
+                "description": "Maximum posts (default: 10, max: 50)",
+                "minimum": 1,
+                "maximum": 50
+              }
+            }
+          }
+        },
+        {
+          "name": "get_all_saas",
+          "description": "Get the complete list of all SaaS tools in the directory.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {}
+          }
+        },
+        {
+          "name": "get_directory_stats",
+          "description": "Get statistics about the directory (total tools, categories, etc.).",
+          "inputSchema": {
+            "type": "object",
+            "properties": {}
+          }
+        }
+      ],
+      "python_sdk_url": "https://fuechvghummojkgliyha.supabase.co/functions/v1/mcp",
+      "python_sdk_config": "{\"debug\": false}"
+    },
+    "source_filename": "0121.SaaSforIT-Directory_labeled.json",
+    "processed_timestamp": 1772871481,
+    "processing_mode": "gateway",
+    "rank": 122
+  }
+}

@@ -1,0 +1,1035 @@
+{
+  "labels": {
+    "analysis": "The MCP Server \"PartsTable\" provides 9 tools for dns & networking tasks.",
+    "reasoning": "Primary label \"DNS & Networking\" assigned based on tool names and descriptions.",
+    "primary_label": "DNS & Networking",
+    "secondary_labels": [
+      "Security & Authentication",
+      "Development Tools",
+      "Web Search & Research"
+    ],
+    "custom_label": "DNS & Networking - PartsTable",
+    "is_connected": true,
+    "is_remote_tool_valid": true,
+    "featured_server": true
+  },
+  "metadata": {
+    "server_id": 94,
+    "server_name": "PartsTable",
+    "rank_by_usage": 95,
+    "usage_count": "120",
+    "original_file": "tools.json#94",
+    "mode": "gateway",
+    "timestamp": 1772871481,
+    "remote_server_response": {
+      "url": "https://mcp.partstable.com/mcp",
+      "is_success": true,
+      "error": null,
+      "tools": [
+        {
+          "name": "normalize-pn",
+          "description": "Normalize an IT hardware part number into its canonical form. Handles HPE (B21/001/spare), Dell (400-XXXX, DP/N), and IBM/Lenovo (FRU/CCIN) formats. Critical for deduplication and accurate lookups in the TPM market.",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {
+              "partNumber": {
+                "type": "string",
+                "minLength": 1,
+                "description": "Part number is required"
+              },
+              "manufacturer": {
+                "description": "Manufacturer hint",
+                "type": "string"
+              }
+            },
+            "required": [
+              "partNumber"
+            ]
+          },
+          "annotations": {
+            "title": "Normalize Part Number",
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "validate-pn",
+          "description": "Validate a part number against known manufacturer format rules. Returns structural validity, matched format rule, and warnings. IMPORTANT: Format validation only - does not confirm the part exists.",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {
+              "partNumber": {
+                "type": "string",
+                "description": "The part number to validate"
+              },
+              "manufacturer": {
+                "description": "Expected manufacturer, or omit to auto-detect",
+                "type": "string"
+              }
+            },
+            "required": [
+              "partNumber"
+            ]
+          },
+          "annotations": {
+            "title": "Validate Part Number",
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "search-parts",
+          "description": "Search for IT hardware parts on eBay using the Browse API. Automatically normalizes the part number before searching. Requires EBAY_CLIENT_ID and EBAY_CLIENT_SECRET environment variables. Returns prices, conditions, sellers, and item URLs.",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {
+              "partNumber": {
+                "type": "string",
+                "description": "IT hardware part number to search for"
+              },
+              "manufacturer": {
+                "default": "auto",
+                "description": "Manufacturer hint for better results",
+                "type": "string",
+                "enum": [
+                  "HPE",
+                  "Dell",
+                  "IBM",
+                  "Lenovo",
+                  "auto"
+                ]
+              },
+              "limit": {
+                "default": 10,
+                "description": "Max results to return (1-50)",
+                "type": "number",
+                "minimum": 1,
+                "maximum": 50
+              },
+              "condition": {
+                "default": "any",
+                "description": "Filter by item condition",
+                "type": "string",
+                "enum": [
+                  "NEW",
+                  "USED",
+                  "REFURBISHED",
+                  "any"
+                ]
+              }
+            },
+            "required": [
+              "partNumber"
+            ]
+          },
+          "annotations": {
+            "title": "Search Parts",
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": false,
+            "openWorldHint": true
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "get-substitutes",
+          "description": "Find substitute, equivalent, or cross-referenced part numbers. Queries PartsIQ database (34K+ cross-references from IQreseller) with static fallback. Covers HPE option/spare mappings, generation cross-refs, and Dell SKU/DP/N equivalents.",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {
+              "partNumber": {
+                "type": "string",
+                "description": "Part number to find substitutes/equivalents for"
+              },
+              "manufacturer": {
+                "default": "auto",
+                "description": "Manufacturer hint",
+                "type": "string",
+                "enum": [
+                  "HPE",
+                  "Dell",
+                  "IBM",
+                  "Lenovo",
+                  "auto"
+                ]
+              }
+            },
+            "required": [
+              "partNumber"
+            ]
+          },
+          "annotations": {
+            "title": "Get Substitute Parts",
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "get-vendor-trust",
+          "description": "Look up vendor/seller trust information from IQreseller purchase history. Returns trust tier (preferred/neutral/avoid), transaction count, total spend, and satisfaction score. Use '*' as vendor name to get summary statistics. Essential for evaluating eBay sellers before purchasing.",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {
+              "vendorName": {
+                "type": "string",
+                "description": "Vendor or eBay seller name to look up trust info for. Use '*' to get summary stats."
+              }
+            },
+            "required": [
+              "vendorName"
+            ]
+          },
+          "annotations": {
+            "title": "Get Vendor Trust Score",
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "score-listing",
+          "description": "Score and rank eBay listings using PartsTable's 5-factor composite scoring engine. Factors: Price (30%), Vendor Trust (25%), Distance (20%), Condition (15%), Quantity (10%). Vendor trust scores are looked up from IQreseller purchase history (435 vendors). Distance is calculated from warehouse ZIP to seller location using haversine formula. Condition signals are extracted from listing text (warranty, tested, ships today). Returns items sorted by composite score (0-100) with full factor breakdown.",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {
+              "listings": {
+                "minItems": 1,
+                "maxItems": 200,
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "itemId": {
+                      "type": "string",
+                      "description": "eBay item ID"
+                    },
+                    "title": {
+                      "type": "string",
+                      "description": "Listing title"
+                    },
+                    "price": {
+                      "type": "object",
+                      "properties": {
+                        "value": {
+                          "type": "string",
+                          "description": "Price as string, e.g. '29.99'"
+                        },
+                        "currency": {
+                          "default": "USD",
+                          "description": "Currency code",
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "value"
+                      ],
+                      "description": "Item price"
+                    },
+                    "shippingCost": {
+                      "description": "Shipping cost if available",
+                      "type": "object",
+                      "properties": {
+                        "value": {
+                          "type": "string"
+                        },
+                        "currency": {
+                          "default": "USD",
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "value"
+                      ]
+                    },
+                    "condition": {
+                      "description": "Item condition (NEW, USED, etc.)",
+                      "type": "string"
+                    },
+                    "seller": {
+                      "type": "object",
+                      "properties": {
+                        "username": {
+                          "type": "string",
+                          "description": "eBay seller username"
+                        },
+                        "feedbackPercentage": {
+                          "default": "0",
+                          "description": "Seller feedback %",
+                          "type": "string"
+                        },
+                        "feedbackScore": {
+                          "default": 0,
+                          "description": "Seller feedback score",
+                          "type": "number"
+                        }
+                      },
+                      "required": [
+                        "username"
+                      ],
+                      "description": "Seller information"
+                    },
+                    "itemLocation": {
+                      "default": {
+                        "country": "US"
+                      },
+                      "description": "Item location",
+                      "type": "object",
+                      "properties": {
+                        "country": {
+                          "default": "US",
+                          "type": "string"
+                        },
+                        "stateOrProvince": {
+                          "type": "string"
+                        },
+                        "city": {
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "itemWebUrl": {
+                      "description": "Item URL on eBay",
+                      "type": "string"
+                    },
+                    "imageUrl": {
+                      "description": "Item image URL",
+                      "type": "string"
+                    },
+                    "quantityAvailable": {
+                      "description": "Available quantity",
+                      "type": "number"
+                    }
+                  },
+                  "required": [
+                    "itemId",
+                    "title",
+                    "price",
+                    "seller"
+                  ]
+                },
+                "description": "Array of eBay listing objects to score (1-200 items)"
+              },
+              "warehouseZip": {
+                "default": "07054",
+                "description": "5-digit US ZIP code for distance calculation (default: 07054 Parsippany NJ)",
+                "type": "string",
+                "pattern": "^\\d{5}$"
+              },
+              "weights": {
+                "description": "Custom scoring weights (must sum to 1.0). Omit to use defaults: price=0.30, vendorTrust=0.25, distance=0.20, condition=0.15, quantity=0.10",
+                "type": "object",
+                "properties": {
+                  "price": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 1
+                  },
+                  "vendorTrust": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 1
+                  },
+                  "distance": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 1
+                  },
+                  "condition": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 1
+                  },
+                  "quantity": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 1
+                  }
+                }
+              }
+            },
+            "required": [
+              "listings"
+            ]
+          },
+          "annotations": {
+            "title": "Score Listing",
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "fetch-page",
+          "description": "Fetch a web page and return its content as text, Markdown, or HTML. Includes rate limiting (2s per domain, max 10 req/min) for legal compliance. Automatically handles HTML-to-text conversion. Max response size: 1MB. Use for OEM verification and manufacturer website scraping.",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {
+              "url": {
+                "type": "string",
+                "format": "uri",
+                "description": "URL to fetch"
+              },
+              "format": {
+                "description": "Output format (text, markdown, or html)",
+                "type": "string",
+                "enum": [
+                  "text",
+                  "markdown",
+                  "html"
+                ]
+              },
+              "headers": {
+                "description": "Custom HTTP headers",
+                "type": "object",
+                "propertyNames": {
+                  "type": "string"
+                },
+                "additionalProperties": {
+                  "type": "string"
+                }
+              }
+            },
+            "required": [
+              "url"
+            ]
+          },
+          "annotations": {
+            "title": "Fetch Web Page",
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": false,
+            "openWorldHint": true
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "verify-pn-oem",
+          "description": "Verify a part number against OEM manufacturer websites for maximum confidence (1.0). Checks HPE PartSurfer, Dell Support, and Lenovo Parts Lookup. Returns verification status, OEM data, and confidence boost (+0.2 from DB level). Critical for achieving 100% PN confidence before quoting. Rate-limited for legal compliance (2s per domain, max 10 req/min).",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {
+              "partNumber": {
+                "type": "string",
+                "minLength": 1,
+                "description": "Part number to verify"
+              },
+              "manufacturer": {
+                "description": "Force specific manufacturer (hpe, dell, or lenovo)",
+                "type": "string",
+                "enum": [
+                  "hpe",
+                  "dell",
+                  "lenovo"
+                ]
+              }
+            },
+            "required": [
+              "partNumber"
+            ]
+          },
+          "annotations": {
+            "title": "Verify PN with OEM",
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": false,
+            "openWorldHint": true
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "get-price-history",
+          "description": "Get purchase price history for a part number. Returns individual transactions with dates, prices, conditions, quantities, and vendor IDs, plus summary statistics (average, min, max, median, trend direction). Trend analysis compares recent vs older purchases (rising/falling/stable). Essential for fair market value assessment and negotiation.",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {
+              "partNumber": {
+                "type": "string",
+                "pattern": "^[a-zA-Z0-9\\s\\-\\.\\/\\#]+$",
+                "description": "Part number to get price history for"
+              },
+              "limit": {
+                "default": 50,
+                "description": "Maximum number of transactions to return (default: 50, max: 200)",
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 200
+              }
+            },
+            "required": [
+              "partNumber"
+            ]
+          },
+          "annotations": {
+            "title": "Get Price History",
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        }
+      ],
+      "tool_count": 9,
+      "tool_names": [
+        "normalize-pn",
+        "validate-pn",
+        "search-parts",
+        "get-substitutes",
+        "get-vendor-trust",
+        "score-listing",
+        "fetch-page",
+        "verify-pn-oem",
+        "get-price-history"
+      ]
+    },
+    "server_info_crawled": {
+      "id": 94,
+      "name": "PartsTable",
+      "author": "",
+      "overview": "PartsTable - DNS & Networking MCP server with 9 tools.",
+      "repository_url": "",
+      "homepage": "https://mcp.partstable.com/mcp",
+      "remote_or_local": "Remote",
+      "license": "",
+      "usage_count": "120",
+      "success_rate": "100%",
+      "tags": [
+        "dns-networking"
+      ],
+      "categories": [
+        "dns & networking"
+      ],
+      "tools_count": 9,
+      "tools": [
+        {
+          "name": "normalize-pn",
+          "description": "Normalize an IT hardware part number into its canonical form. Handles HPE (B21/001/spare), Dell (400-XXXX, DP/N), and IBM/Lenovo (FRU/CCIN) formats. Critical for deduplication and accurate lookups in the TPM market.",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {
+              "partNumber": {
+                "type": "string",
+                "minLength": 1,
+                "description": "Part number is required"
+              },
+              "manufacturer": {
+                "description": "Manufacturer hint",
+                "type": "string"
+              }
+            },
+            "required": [
+              "partNumber"
+            ]
+          },
+          "annotations": {
+            "title": "Normalize Part Number",
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "validate-pn",
+          "description": "Validate a part number against known manufacturer format rules. Returns structural validity, matched format rule, and warnings. IMPORTANT: Format validation only - does not confirm the part exists.",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {
+              "partNumber": {
+                "type": "string",
+                "description": "The part number to validate"
+              },
+              "manufacturer": {
+                "description": "Expected manufacturer, or omit to auto-detect",
+                "type": "string"
+              }
+            },
+            "required": [
+              "partNumber"
+            ]
+          },
+          "annotations": {
+            "title": "Validate Part Number",
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "search-parts",
+          "description": "Search for IT hardware parts on eBay using the Browse API. Automatically normalizes the part number before searching. Requires EBAY_CLIENT_ID and EBAY_CLIENT_SECRET environment variables. Returns prices, conditions, sellers, and item URLs.",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {
+              "partNumber": {
+                "type": "string",
+                "description": "IT hardware part number to search for"
+              },
+              "manufacturer": {
+                "default": "auto",
+                "description": "Manufacturer hint for better results",
+                "type": "string",
+                "enum": [
+                  "HPE",
+                  "Dell",
+                  "IBM",
+                  "Lenovo",
+                  "auto"
+                ]
+              },
+              "limit": {
+                "default": 10,
+                "description": "Max results to return (1-50)",
+                "type": "number",
+                "minimum": 1,
+                "maximum": 50
+              },
+              "condition": {
+                "default": "any",
+                "description": "Filter by item condition",
+                "type": "string",
+                "enum": [
+                  "NEW",
+                  "USED",
+                  "REFURBISHED",
+                  "any"
+                ]
+              }
+            },
+            "required": [
+              "partNumber"
+            ]
+          },
+          "annotations": {
+            "title": "Search Parts",
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": false,
+            "openWorldHint": true
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "get-substitutes",
+          "description": "Find substitute, equivalent, or cross-referenced part numbers. Queries PartsIQ database (34K+ cross-references from IQreseller) with static fallback. Covers HPE option/spare mappings, generation cross-refs, and Dell SKU/DP/N equivalents.",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {
+              "partNumber": {
+                "type": "string",
+                "description": "Part number to find substitutes/equivalents for"
+              },
+              "manufacturer": {
+                "default": "auto",
+                "description": "Manufacturer hint",
+                "type": "string",
+                "enum": [
+                  "HPE",
+                  "Dell",
+                  "IBM",
+                  "Lenovo",
+                  "auto"
+                ]
+              }
+            },
+            "required": [
+              "partNumber"
+            ]
+          },
+          "annotations": {
+            "title": "Get Substitute Parts",
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "get-vendor-trust",
+          "description": "Look up vendor/seller trust information from IQreseller purchase history. Returns trust tier (preferred/neutral/avoid), transaction count, total spend, and satisfaction score. Use '*' as vendor name to get summary statistics. Essential for evaluating eBay sellers before purchasing.",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {
+              "vendorName": {
+                "type": "string",
+                "description": "Vendor or eBay seller name to look up trust info for. Use '*' to get summary stats."
+              }
+            },
+            "required": [
+              "vendorName"
+            ]
+          },
+          "annotations": {
+            "title": "Get Vendor Trust Score",
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "score-listing",
+          "description": "Score and rank eBay listings using PartsTable's 5-factor composite scoring engine. Factors: Price (30%), Vendor Trust (25%), Distance (20%), Condition (15%), Quantity (10%). Vendor trust scores are looked up from IQreseller purchase history (435 vendors). Distance is calculated from warehouse ZIP to seller location using haversine formula. Condition signals are extracted from listing text (warranty, tested, ships today). Returns items sorted by composite score (0-100) with full factor breakdown.",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {
+              "listings": {
+                "minItems": 1,
+                "maxItems": 200,
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "itemId": {
+                      "type": "string",
+                      "description": "eBay item ID"
+                    },
+                    "title": {
+                      "type": "string",
+                      "description": "Listing title"
+                    },
+                    "price": {
+                      "type": "object",
+                      "properties": {
+                        "value": {
+                          "type": "string",
+                          "description": "Price as string, e.g. '29.99'"
+                        },
+                        "currency": {
+                          "default": "USD",
+                          "description": "Currency code",
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "value"
+                      ],
+                      "description": "Item price"
+                    },
+                    "shippingCost": {
+                      "description": "Shipping cost if available",
+                      "type": "object",
+                      "properties": {
+                        "value": {
+                          "type": "string"
+                        },
+                        "currency": {
+                          "default": "USD",
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "value"
+                      ]
+                    },
+                    "condition": {
+                      "description": "Item condition (NEW, USED, etc.)",
+                      "type": "string"
+                    },
+                    "seller": {
+                      "type": "object",
+                      "properties": {
+                        "username": {
+                          "type": "string",
+                          "description": "eBay seller username"
+                        },
+                        "feedbackPercentage": {
+                          "default": "0",
+                          "description": "Seller feedback %",
+                          "type": "string"
+                        },
+                        "feedbackScore": {
+                          "default": 0,
+                          "description": "Seller feedback score",
+                          "type": "number"
+                        }
+                      },
+                      "required": [
+                        "username"
+                      ],
+                      "description": "Seller information"
+                    },
+                    "itemLocation": {
+                      "default": {
+                        "country": "US"
+                      },
+                      "description": "Item location",
+                      "type": "object",
+                      "properties": {
+                        "country": {
+                          "default": "US",
+                          "type": "string"
+                        },
+                        "stateOrProvince": {
+                          "type": "string"
+                        },
+                        "city": {
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "itemWebUrl": {
+                      "description": "Item URL on eBay",
+                      "type": "string"
+                    },
+                    "imageUrl": {
+                      "description": "Item image URL",
+                      "type": "string"
+                    },
+                    "quantityAvailable": {
+                      "description": "Available quantity",
+                      "type": "number"
+                    }
+                  },
+                  "required": [
+                    "itemId",
+                    "title",
+                    "price",
+                    "seller"
+                  ]
+                },
+                "description": "Array of eBay listing objects to score (1-200 items)"
+              },
+              "warehouseZip": {
+                "default": "07054",
+                "description": "5-digit US ZIP code for distance calculation (default: 07054 Parsippany NJ)",
+                "type": "string",
+                "pattern": "^\\d{5}$"
+              },
+              "weights": {
+                "description": "Custom scoring weights (must sum to 1.0). Omit to use defaults: price=0.30, vendorTrust=0.25, distance=0.20, condition=0.15, quantity=0.10",
+                "type": "object",
+                "properties": {
+                  "price": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 1
+                  },
+                  "vendorTrust": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 1
+                  },
+                  "distance": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 1
+                  },
+                  "condition": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 1
+                  },
+                  "quantity": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 1
+                  }
+                }
+              }
+            },
+            "required": [
+              "listings"
+            ]
+          },
+          "annotations": {
+            "title": "Score Listing",
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "fetch-page",
+          "description": "Fetch a web page and return its content as text, Markdown, or HTML. Includes rate limiting (2s per domain, max 10 req/min) for legal compliance. Automatically handles HTML-to-text conversion. Max response size: 1MB. Use for OEM verification and manufacturer website scraping.",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {
+              "url": {
+                "type": "string",
+                "format": "uri",
+                "description": "URL to fetch"
+              },
+              "format": {
+                "description": "Output format (text, markdown, or html)",
+                "type": "string",
+                "enum": [
+                  "text",
+                  "markdown",
+                  "html"
+                ]
+              },
+              "headers": {
+                "description": "Custom HTTP headers",
+                "type": "object",
+                "propertyNames": {
+                  "type": "string"
+                },
+                "additionalProperties": {
+                  "type": "string"
+                }
+              }
+            },
+            "required": [
+              "url"
+            ]
+          },
+          "annotations": {
+            "title": "Fetch Web Page",
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": false,
+            "openWorldHint": true
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "verify-pn-oem",
+          "description": "Verify a part number against OEM manufacturer websites for maximum confidence (1.0). Checks HPE PartSurfer, Dell Support, and Lenovo Parts Lookup. Returns verification status, OEM data, and confidence boost (+0.2 from DB level). Critical for achieving 100% PN confidence before quoting. Rate-limited for legal compliance (2s per domain, max 10 req/min).",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {
+              "partNumber": {
+                "type": "string",
+                "minLength": 1,
+                "description": "Part number to verify"
+              },
+              "manufacturer": {
+                "description": "Force specific manufacturer (hpe, dell, or lenovo)",
+                "type": "string",
+                "enum": [
+                  "hpe",
+                  "dell",
+                  "lenovo"
+                ]
+              }
+            },
+            "required": [
+              "partNumber"
+            ]
+          },
+          "annotations": {
+            "title": "Verify PN with OEM",
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": false,
+            "openWorldHint": true
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "get-price-history",
+          "description": "Get purchase price history for a part number. Returns individual transactions with dates, prices, conditions, quantities, and vendor IDs, plus summary statistics (average, min, max, median, trend direction). Trend analysis compares recent vs older purchases (rising/falling/stable). Essential for fair market value assessment and negotiation.",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {
+              "partNumber": {
+                "type": "string",
+                "pattern": "^[a-zA-Z0-9\\s\\-\\.\\/\\#]+$",
+                "description": "Part number to get price history for"
+              },
+              "limit": {
+                "default": 50,
+                "description": "Maximum number of transactions to return (default: 50, max: 200)",
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 200
+              }
+            },
+            "required": [
+              "partNumber"
+            ]
+          },
+          "annotations": {
+            "title": "Get Price History",
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        }
+      ],
+      "python_sdk_url": "https://mcp.partstable.com/mcp",
+      "python_sdk_config": "{\"debug\": false}"
+    },
+    "source_filename": "0094.PartsTable_labeled.json",
+    "processed_timestamp": 1772871481,
+    "processing_mode": "gateway",
+    "rank": 95
+  }
+}

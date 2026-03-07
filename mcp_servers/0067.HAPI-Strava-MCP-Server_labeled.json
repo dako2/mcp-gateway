@@ -1,0 +1,698 @@
+{
+  "labels": {
+    "analysis": "The MCP Server \"HAPI Strava MCP Server\" provides 13 tools for development tools tasks.",
+    "reasoning": "Primary label \"Development Tools\" assigned based on tool names and descriptions.",
+    "primary_label": "Development Tools",
+    "secondary_labels": [
+      "API Integration",
+      "DevOps",
+      "Data Analysis & Processing",
+      "DNS & Networking"
+    ],
+    "custom_label": "Development Tools - HAPI Strava MCP Server",
+    "is_connected": true,
+    "is_remote_tool_valid": true,
+    "featured_server": true
+  },
+  "metadata": {
+    "server_id": 67,
+    "server_name": "HAPI Strava MCP Server",
+    "rank_by_usage": 68,
+    "usage_count": "660",
+    "original_file": "tools.json#67",
+    "mode": "gateway",
+    "timestamp": 1772871481,
+    "remote_server_response": {
+      "url": "https://strava.run.mcp.com.ai/mcp",
+      "is_success": true,
+      "error": null,
+      "tools": [
+        {
+          "name": "getStats",
+          "title": "Get Athlete Stats",
+          "description": "Get Athlete Stats - Returns the activity stats of an athlete. Only includes data from activities set to Everyone visibilty.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "integer",
+                "format": "int64"
+              }
+            },
+            "required": [
+              "id"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false
+          }
+        },
+        {
+          "name": "getLoggedInAthlete",
+          "title": "Get Authenticated Athlete",
+          "description": "Get Authenticated Athlete - Returns the currently authenticated athlete. Tokens with profile:read_all scope will receive a detailed athlete representation; all others will receive a summary representation.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {}
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false
+          }
+        },
+        {
+          "name": "getLoggedInAthleteStarredSegments",
+          "title": "List Starred Segments",
+          "description": "List Starred Segments - List of the authenticated athlete's starred segments. Private segments are filtered out unless requested by a token with read_all scope.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "page": {
+                "type": "integer"
+              },
+              "per_page": {
+                "type": "integer"
+              }
+            }
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false
+          }
+        },
+        {
+          "name": "getEffortsBySegmentId",
+          "title": "List Segment Efforts",
+          "description": "List Segment Efforts - Returns a set of the authenticated athlete's segment efforts for a given segment.  Requires subscription.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "segment_id": {
+                "type": "integer"
+              },
+              "start_date_local": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "end_date_local": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "per_page": {
+                "type": "integer"
+              }
+            },
+            "required": [
+              "segment_id"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false
+          }
+        },
+        {
+          "name": "exploreSegments",
+          "title": "Explore segments",
+          "description": "Explore segments - Returns the top 10 segments matching a specified query.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "bounds": {
+                "type": "array",
+                "items": {
+                  "type": "number",
+                  "format": "float"
+                },
+                "minItems": 4,
+                "maxItems": 4
+              },
+              "activity_type": {
+                "type": "string",
+                "enum": [
+                  "running",
+                  "riding"
+                ]
+              },
+              "min_cat": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 5
+              },
+              "max_cat": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 5
+              }
+            },
+            "required": [
+              "bounds"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false
+          }
+        },
+        {
+          "name": "getSegmentEffortById",
+          "title": "Get Segment Effort",
+          "description": "Get Segment Effort - Returns a segment effort from an activity that is owned by the authenticated athlete. Requires subscription.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "integer",
+                "format": "int64"
+              }
+            },
+            "required": [
+              "id"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false
+          }
+        },
+        {
+          "name": "getClubById",
+          "title": "Get Club",
+          "description": "Get Club - Returns a given club using its identifier.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "integer",
+                "format": "int64"
+              }
+            },
+            "required": [
+              "id"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false
+          }
+        },
+        {
+          "name": "getClubMembersById",
+          "title": "List Club Members",
+          "description": "List Club Members - Returns a list of the athletes who are members of a given club.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "integer",
+                "format": "int64"
+              },
+              "page": {
+                "type": "integer"
+              },
+              "per_page": {
+                "type": "integer"
+              }
+            },
+            "required": [
+              "id"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false
+          }
+        },
+        {
+          "name": "getClubAdminsById",
+          "title": "List Club Administrators",
+          "description": "List Club Administrators - Returns a list of the administrators of a given club.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "integer",
+                "format": "int64"
+              },
+              "page": {
+                "type": "integer"
+              },
+              "per_page": {
+                "type": "integer"
+              }
+            },
+            "required": [
+              "id"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false
+          }
+        },
+        {
+          "name": "getClubActivitiesById",
+          "title": "List Club Activities",
+          "description": "List Club Activities - Retrieve recent activities from members of a specific club. The authenticated athlete must belong to the requested club in order to hit this endpoint. Pagination is supported. Athlete profile visibility is respected for all activities.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "integer",
+                "format": "int64"
+              },
+              "page": {
+                "type": "integer"
+              },
+              "per_page": {
+                "type": "integer"
+              }
+            },
+            "required": [
+              "id"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false
+          }
+        },
+        {
+          "name": "getLoggedInAthleteClubs",
+          "title": "List Athlete Clubs",
+          "description": "List Athlete Clubs - Returns a list of the clubs whose membership includes the authenticated athlete.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "page": {
+                "type": "integer"
+              },
+              "per_page": {
+                "type": "integer"
+              }
+            }
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false
+          }
+        },
+        {
+          "name": "getGearById",
+          "title": "Get Equipment",
+          "description": "Get Equipment - Returns an equipment using its identifier.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "id"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false
+          }
+        },
+        {
+          "name": "getRoutesByAthleteId",
+          "title": "List Athlete Routes",
+          "description": "List Athlete Routes - Returns a list of the routes created by the authenticated athlete. Private routes are filtered out unless requested by a token with read_all scope.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "page": {
+                "type": "integer"
+              },
+              "per_page": {
+                "type": "integer"
+              }
+            }
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false
+          }
+        }
+      ],
+      "tool_count": 13,
+      "tool_names": [
+        "getStats",
+        "getLoggedInAthlete",
+        "getLoggedInAthleteStarredSegments",
+        "getEffortsBySegmentId",
+        "exploreSegments",
+        "getSegmentEffortById",
+        "getClubById",
+        "getClubMembersById",
+        "getClubAdminsById",
+        "getClubActivitiesById",
+        "getLoggedInAthleteClubs",
+        "getGearById",
+        "getRoutesByAthleteId"
+      ]
+    },
+    "server_info_crawled": {
+      "id": 67,
+      "name": "HAPI Strava MCP Server",
+      "author": "",
+      "overview": "HAPI Strava MCP Server - Development Tools MCP server with 13 tools.",
+      "repository_url": "",
+      "homepage": "https://strava.run.mcp.com.ai/mcp",
+      "remote_or_local": "Remote",
+      "license": "",
+      "usage_count": "660",
+      "success_rate": "100%",
+      "tags": [
+        "development-tools"
+      ],
+      "categories": [
+        "development tools"
+      ],
+      "tools_count": 13,
+      "tools": [
+        {
+          "name": "getStats",
+          "title": "Get Athlete Stats",
+          "description": "Get Athlete Stats - Returns the activity stats of an athlete. Only includes data from activities set to Everyone visibilty.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "integer",
+                "format": "int64"
+              }
+            },
+            "required": [
+              "id"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false
+          }
+        },
+        {
+          "name": "getLoggedInAthlete",
+          "title": "Get Authenticated Athlete",
+          "description": "Get Authenticated Athlete - Returns the currently authenticated athlete. Tokens with profile:read_all scope will receive a detailed athlete representation; all others will receive a summary representation.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {}
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false
+          }
+        },
+        {
+          "name": "getLoggedInAthleteStarredSegments",
+          "title": "List Starred Segments",
+          "description": "List Starred Segments - List of the authenticated athlete's starred segments. Private segments are filtered out unless requested by a token with read_all scope.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "page": {
+                "type": "integer"
+              },
+              "per_page": {
+                "type": "integer"
+              }
+            }
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false
+          }
+        },
+        {
+          "name": "getEffortsBySegmentId",
+          "title": "List Segment Efforts",
+          "description": "List Segment Efforts - Returns a set of the authenticated athlete's segment efforts for a given segment.  Requires subscription.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "segment_id": {
+                "type": "integer"
+              },
+              "start_date_local": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "end_date_local": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "per_page": {
+                "type": "integer"
+              }
+            },
+            "required": [
+              "segment_id"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false
+          }
+        },
+        {
+          "name": "exploreSegments",
+          "title": "Explore segments",
+          "description": "Explore segments - Returns the top 10 segments matching a specified query.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "bounds": {
+                "type": "array",
+                "items": {
+                  "type": "number",
+                  "format": "float"
+                },
+                "minItems": 4,
+                "maxItems": 4
+              },
+              "activity_type": {
+                "type": "string",
+                "enum": [
+                  "running",
+                  "riding"
+                ]
+              },
+              "min_cat": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 5
+              },
+              "max_cat": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 5
+              }
+            },
+            "required": [
+              "bounds"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false
+          }
+        },
+        {
+          "name": "getSegmentEffortById",
+          "title": "Get Segment Effort",
+          "description": "Get Segment Effort - Returns a segment effort from an activity that is owned by the authenticated athlete. Requires subscription.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "integer",
+                "format": "int64"
+              }
+            },
+            "required": [
+              "id"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false
+          }
+        },
+        {
+          "name": "getClubById",
+          "title": "Get Club",
+          "description": "Get Club - Returns a given club using its identifier.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "integer",
+                "format": "int64"
+              }
+            },
+            "required": [
+              "id"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false
+          }
+        },
+        {
+          "name": "getClubMembersById",
+          "title": "List Club Members",
+          "description": "List Club Members - Returns a list of the athletes who are members of a given club.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "integer",
+                "format": "int64"
+              },
+              "page": {
+                "type": "integer"
+              },
+              "per_page": {
+                "type": "integer"
+              }
+            },
+            "required": [
+              "id"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false
+          }
+        },
+        {
+          "name": "getClubAdminsById",
+          "title": "List Club Administrators",
+          "description": "List Club Administrators - Returns a list of the administrators of a given club.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "integer",
+                "format": "int64"
+              },
+              "page": {
+                "type": "integer"
+              },
+              "per_page": {
+                "type": "integer"
+              }
+            },
+            "required": [
+              "id"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false
+          }
+        },
+        {
+          "name": "getClubActivitiesById",
+          "title": "List Club Activities",
+          "description": "List Club Activities - Retrieve recent activities from members of a specific club. The authenticated athlete must belong to the requested club in order to hit this endpoint. Pagination is supported. Athlete profile visibility is respected for all activities.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "integer",
+                "format": "int64"
+              },
+              "page": {
+                "type": "integer"
+              },
+              "per_page": {
+                "type": "integer"
+              }
+            },
+            "required": [
+              "id"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false
+          }
+        },
+        {
+          "name": "getLoggedInAthleteClubs",
+          "title": "List Athlete Clubs",
+          "description": "List Athlete Clubs - Returns a list of the clubs whose membership includes the authenticated athlete.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "page": {
+                "type": "integer"
+              },
+              "per_page": {
+                "type": "integer"
+              }
+            }
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false
+          }
+        },
+        {
+          "name": "getGearById",
+          "title": "Get Equipment",
+          "description": "Get Equipment - Returns an equipment using its identifier.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "id"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false
+          }
+        },
+        {
+          "name": "getRoutesByAthleteId",
+          "title": "List Athlete Routes",
+          "description": "List Athlete Routes - Returns a list of the routes created by the authenticated athlete. Private routes are filtered out unless requested by a token with read_all scope.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "page": {
+                "type": "integer"
+              },
+              "per_page": {
+                "type": "integer"
+              }
+            }
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false
+          }
+        }
+      ],
+      "python_sdk_url": "https://strava.run.mcp.com.ai/mcp",
+      "python_sdk_config": "{\"debug\": false}"
+    },
+    "source_filename": "0067.HAPI-Strava-MCP-Server_labeled.json",
+    "processed_timestamp": 1772871481,
+    "processing_mode": "gateway",
+    "rank": 68
+  }
+}

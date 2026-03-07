@@ -1,0 +1,600 @@
+{
+  "labels": {
+    "analysis": "The MCP Server \"Lenny Rachitsky Podcast Transcripts MCP Server\" provides 8 tools for ai/ml tools tasks.",
+    "reasoning": "Primary label \"AI/ML Tools\" assigned based on tool names and descriptions.",
+    "primary_label": "AI/ML Tools",
+    "secondary_labels": [
+      "Content Creation",
+      "Web Search & Research",
+      "Data Analysis & Processing"
+    ],
+    "custom_label": "AI/ML Tools - Lenny Rachitsky Podcast Transcripts MCP Server",
+    "is_connected": true,
+    "is_remote_tool_valid": true,
+    "featured_server": true
+  },
+  "metadata": {
+    "server_id": 104,
+    "server_name": "Lenny Rachitsky Podcast Transcripts MCP Server",
+    "rank_by_usage": 105,
+    "usage_count": "100",
+    "original_file": "tools.json#104",
+    "mode": "gateway",
+    "timestamp": 1772871481,
+    "remote_server_response": {
+      "url": "https://lenny-rachitsky.run.mcp.com.ai/mcp",
+      "is_success": true,
+      "error": null,
+      "tools": [
+        {
+          "name": "getEpisodes",
+          "description": "List episodes - Lists episodes with parsed frontmatter (guest, title, duration, youtube_url, etc.) and their canonical resource URIs.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "limit": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 200
+              },
+              "cursor": {
+                "type": "string",
+                "description": "Opaque pagination cursor"
+              },
+              "sort": {
+                "type": "string",
+                "enum": [
+                  "recent",
+                  "views",
+                  "title"
+                ]
+              },
+              "x-hapi-auth-state": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        {
+          "name": "getEpisodesGuest",
+          "description": "Get an episode card (metadata + key URIs)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "guest": {
+                "type": "string"
+              },
+              "x-hapi-auth-state": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "guest"
+            ]
+          }
+        },
+        {
+          "name": "getEpisodesGuestMetadatajson",
+          "description": "Get episode metadata as JSON (frontmatter)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "guest": {
+                "type": "string"
+              },
+              "x-hapi-auth-state": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "guest"
+            ]
+          }
+        },
+        {
+          "name": "getEpisodesGuestTranscriptformat",
+          "description": "Get transcript in a specific format - Returns the transcript in the requested format: - md: markdown (may include or exclude frontmatter based on include_frontmatter) - txt: clean text (best for LLM ingestion) - json: structured form (metadata + transcript text)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "guest": {
+                "type": "string"
+              },
+              "format": {
+                "type": "string",
+                "enum": [
+                  "md",
+                  "txt",
+                  "json"
+                ]
+              },
+              "include_frontmatter": {
+                "type": "boolean"
+              },
+              "x-hapi-auth-state": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "guest",
+              "format"
+            ]
+          }
+        },
+        {
+          "name": "getEpisodesGuestChunks",
+          "description": "List chunk descriptors for an episode - Returns chunk boundaries and URIs for chunk retrieval. Chunks may be computed on-demand using size/overlap parameters.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "guest": {
+                "type": "string"
+              },
+              "size": {
+                "type": "integer",
+                "minimum": 200,
+                "maximum": 20000
+              },
+              "overlap": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 5000
+              },
+              "x-hapi-auth-state": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "guest"
+            ]
+          }
+        },
+        {
+          "name": "getEpisodesGuestChunksChunkIdtxt",
+          "description": "Get a specific transcript chunk as plain text",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "guest": {
+                "type": "string"
+              },
+              "chunkId": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "x-hapi-auth-state": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "guest",
+              "chunkId"
+            ]
+          }
+        },
+        {
+          "name": "getSearch",
+          "description": "Search episodes and transcripts - Searches across metadata (D1) and transcript text (Vectorize). Returns matches as resources, including per-hit URIs pointing to episode cards and transcript chunks. Note: pagination cursor applies to metadata search only. Example (vector search with filters):\n\n  GET /search?q=pricing&mode=vector&guest=Marty%20Cagan&keywords=pricing,monetization&top_k=5",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "q": {
+                "type": "string"
+              },
+              "mode": {
+                "type": "string",
+                "enum": [
+                  "metadata",
+                  "transcript",
+                  "vector",
+                  "both"
+                ]
+              },
+              "episode_slug": {
+                "type": "string"
+              },
+              "guest": {
+                "type": "string"
+              },
+              "title": {
+                "type": "string"
+              },
+              "keywords": {
+                "type": "string"
+              },
+              "namespace": {
+                "type": "string"
+              },
+              "top_k": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 200
+              },
+              "limit": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 200
+              },
+              "cursor": {
+                "type": "string",
+                "description": "Opaque pagination cursor"
+              },
+              "x-hapi-auth-state": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "q"
+            ]
+          }
+        },
+        {
+          "name": "postSearch",
+          "description": "Search episodes and transcripts (POST body) - Same search as GET /search, but parameters are provided in the request body. This is useful for longer filter payloads.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "undefinedBody": {
+                "type": "object",
+                "properties": {
+                  "q": {
+                    "type": "string"
+                  },
+                  "mode": {
+                    "type": "string",
+                    "enum": [
+                      "metadata",
+                      "transcript",
+                      "vector",
+                      "both"
+                    ]
+                  },
+                  "episode_slug": {
+                    "type": "string"
+                  },
+                  "guest": {
+                    "type": "string"
+                  },
+                  "title": {
+                    "type": "string"
+                  },
+                  "keywords": {
+                    "type": "string"
+                  },
+                  "namespace": {
+                    "type": "string"
+                  },
+                  "top_k": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 200
+                  },
+                  "limit": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 200
+                  },
+                  "cursor": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "q"
+                ]
+              },
+              "x-hapi-auth-state": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "undefinedBody"
+            ]
+          }
+        }
+      ],
+      "tool_count": 8,
+      "tool_names": [
+        "getEpisodes",
+        "getEpisodesGuest",
+        "getEpisodesGuestMetadatajson",
+        "getEpisodesGuestTranscriptformat",
+        "getEpisodesGuestChunks",
+        "getEpisodesGuestChunksChunkIdtxt",
+        "getSearch",
+        "postSearch"
+      ]
+    },
+    "server_info_crawled": {
+      "id": 104,
+      "name": "Lenny Rachitsky Podcast Transcripts MCP Server",
+      "author": "",
+      "overview": "Lenny Rachitsky Podcast Transcripts MCP Server - AI/ML Tools MCP server with 8 tools.",
+      "repository_url": "",
+      "homepage": "https://lenny-rachitsky.run.mcp.com.ai/mcp",
+      "remote_or_local": "Remote",
+      "license": "",
+      "usage_count": "100",
+      "success_rate": "100%",
+      "tags": [
+        "ai/ml-tools"
+      ],
+      "categories": [
+        "ai/ml tools"
+      ],
+      "tools_count": 8,
+      "tools": [
+        {
+          "name": "getEpisodes",
+          "description": "List episodes - Lists episodes with parsed frontmatter (guest, title, duration, youtube_url, etc.) and their canonical resource URIs.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "limit": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 200
+              },
+              "cursor": {
+                "type": "string",
+                "description": "Opaque pagination cursor"
+              },
+              "sort": {
+                "type": "string",
+                "enum": [
+                  "recent",
+                  "views",
+                  "title"
+                ]
+              },
+              "x-hapi-auth-state": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        {
+          "name": "getEpisodesGuest",
+          "description": "Get an episode card (metadata + key URIs)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "guest": {
+                "type": "string"
+              },
+              "x-hapi-auth-state": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "guest"
+            ]
+          }
+        },
+        {
+          "name": "getEpisodesGuestMetadatajson",
+          "description": "Get episode metadata as JSON (frontmatter)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "guest": {
+                "type": "string"
+              },
+              "x-hapi-auth-state": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "guest"
+            ]
+          }
+        },
+        {
+          "name": "getEpisodesGuestTranscriptformat",
+          "description": "Get transcript in a specific format - Returns the transcript in the requested format: - md: markdown (may include or exclude frontmatter based on include_frontmatter) - txt: clean text (best for LLM ingestion) - json: structured form (metadata + transcript text)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "guest": {
+                "type": "string"
+              },
+              "format": {
+                "type": "string",
+                "enum": [
+                  "md",
+                  "txt",
+                  "json"
+                ]
+              },
+              "include_frontmatter": {
+                "type": "boolean"
+              },
+              "x-hapi-auth-state": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "guest",
+              "format"
+            ]
+          }
+        },
+        {
+          "name": "getEpisodesGuestChunks",
+          "description": "List chunk descriptors for an episode - Returns chunk boundaries and URIs for chunk retrieval. Chunks may be computed on-demand using size/overlap parameters.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "guest": {
+                "type": "string"
+              },
+              "size": {
+                "type": "integer",
+                "minimum": 200,
+                "maximum": 20000
+              },
+              "overlap": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 5000
+              },
+              "x-hapi-auth-state": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "guest"
+            ]
+          }
+        },
+        {
+          "name": "getEpisodesGuestChunksChunkIdtxt",
+          "description": "Get a specific transcript chunk as plain text",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "guest": {
+                "type": "string"
+              },
+              "chunkId": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "x-hapi-auth-state": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "guest",
+              "chunkId"
+            ]
+          }
+        },
+        {
+          "name": "getSearch",
+          "description": "Search episodes and transcripts - Searches across metadata (D1) and transcript text (Vectorize). Returns matches as resources, including per-hit URIs pointing to episode cards and transcript chunks. Note: pagination cursor applies to metadata search only. Example (vector search with filters):\n\n  GET /search?q=pricing&mode=vector&guest=Marty%20Cagan&keywords=pricing,monetization&top_k=5",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "q": {
+                "type": "string"
+              },
+              "mode": {
+                "type": "string",
+                "enum": [
+                  "metadata",
+                  "transcript",
+                  "vector",
+                  "both"
+                ]
+              },
+              "episode_slug": {
+                "type": "string"
+              },
+              "guest": {
+                "type": "string"
+              },
+              "title": {
+                "type": "string"
+              },
+              "keywords": {
+                "type": "string"
+              },
+              "namespace": {
+                "type": "string"
+              },
+              "top_k": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 200
+              },
+              "limit": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 200
+              },
+              "cursor": {
+                "type": "string",
+                "description": "Opaque pagination cursor"
+              },
+              "x-hapi-auth-state": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "q"
+            ]
+          }
+        },
+        {
+          "name": "postSearch",
+          "description": "Search episodes and transcripts (POST body) - Same search as GET /search, but parameters are provided in the request body. This is useful for longer filter payloads.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "undefinedBody": {
+                "type": "object",
+                "properties": {
+                  "q": {
+                    "type": "string"
+                  },
+                  "mode": {
+                    "type": "string",
+                    "enum": [
+                      "metadata",
+                      "transcript",
+                      "vector",
+                      "both"
+                    ]
+                  },
+                  "episode_slug": {
+                    "type": "string"
+                  },
+                  "guest": {
+                    "type": "string"
+                  },
+                  "title": {
+                    "type": "string"
+                  },
+                  "keywords": {
+                    "type": "string"
+                  },
+                  "namespace": {
+                    "type": "string"
+                  },
+                  "top_k": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 200
+                  },
+                  "limit": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 200
+                  },
+                  "cursor": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "q"
+                ]
+              },
+              "x-hapi-auth-state": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "undefinedBody"
+            ]
+          }
+        }
+      ],
+      "python_sdk_url": "https://lenny-rachitsky.run.mcp.com.ai/mcp",
+      "python_sdk_config": "{\"debug\": false}"
+    },
+    "source_filename": "0104.Lenny-Rachitsky-Podcast-Transcripts-MCP-Server_labeled.json",
+    "processed_timestamp": 1772871481,
+    "processing_mode": "gateway",
+    "rank": 105
+  }
+}

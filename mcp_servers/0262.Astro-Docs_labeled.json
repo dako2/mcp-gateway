@@ -1,0 +1,101 @@
+{
+  "labels": {
+    "analysis": "The MCP Server \"Astro Docs\" provides 1 tools for development tools tasks.",
+    "reasoning": "Primary label \"Development Tools\" assigned based on tool names and descriptions.",
+    "primary_label": "Development Tools",
+    "secondary_labels": [
+      "API Integration",
+      "DevOps",
+      "Web Search & Research"
+    ],
+    "custom_label": "Development Tools - Astro Docs",
+    "is_connected": true,
+    "is_remote_tool_valid": true,
+    "featured_server": false
+  },
+  "metadata": {
+    "server_id": 262,
+    "server_name": "Astro Docs",
+    "rank_by_usage": 263,
+    "usage_count": "10",
+    "original_file": "tools.json#262",
+    "mode": "gateway",
+    "timestamp": 1772871482,
+    "remote_server_response": {
+      "url": "https://mcp.docs.astro.build/mcp",
+      "is_success": true,
+      "error": null,
+      "tools": [
+        {
+          "name": "search_astro_docs",
+          "title": "Search Astro Docs",
+          "description": "Search the official Astro framework docs",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "query": {
+                "type": "string",
+                "description": "Search query"
+              }
+            },
+            "required": [
+              "query"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          }
+        }
+      ],
+      "tool_count": 1,
+      "tool_names": [
+        "search_astro_docs"
+      ]
+    },
+    "server_info_crawled": {
+      "id": 262,
+      "name": "Astro Docs",
+      "author": "",
+      "overview": "Astro Docs - Development Tools MCP server with 1 tools.",
+      "repository_url": "",
+      "homepage": "https://mcp.docs.astro.build/mcp",
+      "remote_or_local": "Remote",
+      "license": "",
+      "usage_count": "10",
+      "success_rate": "100%",
+      "tags": [
+        "development-tools"
+      ],
+      "categories": [
+        "development tools"
+      ],
+      "tools_count": 1,
+      "tools": [
+        {
+          "name": "search_astro_docs",
+          "title": "Search Astro Docs",
+          "description": "Search the official Astro framework docs",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "query": {
+                "type": "string",
+                "description": "Search query"
+              }
+            },
+            "required": [
+              "query"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          }
+        }
+      ],
+      "python_sdk_url": "https://mcp.docs.astro.build/mcp",
+      "python_sdk_config": "{\"debug\": false}"
+    },
+    "source_filename": "0262.Astro-Docs_labeled.json",
+    "processed_timestamp": 1772871482,
+    "processing_mode": "gateway",
+    "rank": 263
+  }
+}

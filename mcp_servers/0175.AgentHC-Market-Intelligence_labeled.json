@@ -1,0 +1,260 @@
+{
+  "labels": {
+    "analysis": "The MCP Server \"AgentHC Market Intelligence\" provides 4 tools for financial services tasks.",
+    "reasoning": "Primary label \"Financial Services\" assigned based on tool names and descriptions.",
+    "primary_label": "Financial Services",
+    "secondary_labels": [
+      "E-Commerce",
+      "Productivity",
+      "Development Tools"
+    ],
+    "custom_label": "Financial Services - AgentHC Market Intelligence",
+    "is_connected": true,
+    "is_remote_tool_valid": true,
+    "featured_server": false
+  },
+  "metadata": {
+    "server_id": 175,
+    "server_name": "AgentHC Market Intelligence",
+    "rank_by_usage": 176,
+    "usage_count": "10",
+    "original_file": "tools.json#175",
+    "mode": "gateway",
+    "timestamp": 1772871482,
+    "remote_server_response": {
+      "url": "https://api.traderhc.com/mcp",
+      "is_success": true,
+      "error": null,
+      "tools": [
+        {
+          "name": "get_market_snapshot",
+          "description": "Real-time market snapshot: indices, volatility, yields, commodities, crypto, sentiment, and market regime.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "include_prompt": {
+                "type": "boolean",
+                "description": "Include formatted text for LLM prompt injection",
+                "default": false
+              },
+              "format": {
+                "type": "string",
+                "enum": [
+                  "full",
+                  "compact",
+                  "prompt",
+                  "agent"
+                ],
+                "description": "Response format. 'agent' returns actionable signals, urgency, delta tracking, and suggested follow-ups.",
+                "default": "full"
+              }
+            }
+          }
+        },
+        {
+          "name": "get_crypto_data",
+          "description": "Crypto market data: prices, dominance, sentiment, and cycle analysis.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "include_prompt": {
+                "type": "boolean",
+                "default": false
+              },
+              "format": {
+                "type": "string",
+                "enum": [
+                  "full",
+                  "compact",
+                  "prompt",
+                  "agent"
+                ],
+                "description": "Response format. 'agent' returns actionable signals, urgency, delta tracking, and suggested follow-ups.",
+                "default": "full"
+              }
+            }
+          }
+        },
+        {
+          "name": "get_news_sentiment",
+          "description": "Market news sentiment analysis with breaking news detection.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "include_prompt": {
+                "type": "boolean",
+                "default": false
+              },
+              "format": {
+                "type": "string",
+                "enum": [
+                  "full",
+                  "compact",
+                  "prompt",
+                  "agent"
+                ],
+                "description": "Response format. 'agent' returns actionable signals, urgency, delta tracking, and suggested follow-ups.",
+                "default": "full"
+              }
+            }
+          }
+        },
+        {
+          "name": "get_economic_calendar",
+          "description": "Economic event calendar with upcoming releases and data analysis.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "include_prompt": {
+                "type": "boolean",
+                "default": false
+              },
+              "format": {
+                "type": "string",
+                "enum": [
+                  "full",
+                  "compact",
+                  "prompt",
+                  "agent"
+                ],
+                "description": "Response format. 'agent' returns actionable signals, urgency, delta tracking, and suggested follow-ups.",
+                "default": "full"
+              }
+            }
+          }
+        }
+      ],
+      "tool_count": 4,
+      "tool_names": [
+        "get_market_snapshot",
+        "get_crypto_data",
+        "get_news_sentiment",
+        "get_economic_calendar"
+      ]
+    },
+    "server_info_crawled": {
+      "id": 175,
+      "name": "AgentHC Market Intelligence",
+      "author": "",
+      "overview": "AgentHC Market Intelligence - Financial Services MCP server with 4 tools.",
+      "repository_url": "",
+      "homepage": "https://api.traderhc.com/mcp",
+      "remote_or_local": "Remote",
+      "license": "",
+      "usage_count": "10",
+      "success_rate": "100%",
+      "tags": [
+        "financial-services"
+      ],
+      "categories": [
+        "financial services"
+      ],
+      "tools_count": 4,
+      "tools": [
+        {
+          "name": "get_market_snapshot",
+          "description": "Real-time market snapshot: indices, volatility, yields, commodities, crypto, sentiment, and market regime.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "include_prompt": {
+                "type": "boolean",
+                "description": "Include formatted text for LLM prompt injection",
+                "default": false
+              },
+              "format": {
+                "type": "string",
+                "enum": [
+                  "full",
+                  "compact",
+                  "prompt",
+                  "agent"
+                ],
+                "description": "Response format. 'agent' returns actionable signals, urgency, delta tracking, and suggested follow-ups.",
+                "default": "full"
+              }
+            }
+          }
+        },
+        {
+          "name": "get_crypto_data",
+          "description": "Crypto market data: prices, dominance, sentiment, and cycle analysis.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "include_prompt": {
+                "type": "boolean",
+                "default": false
+              },
+              "format": {
+                "type": "string",
+                "enum": [
+                  "full",
+                  "compact",
+                  "prompt",
+                  "agent"
+                ],
+                "description": "Response format. 'agent' returns actionable signals, urgency, delta tracking, and suggested follow-ups.",
+                "default": "full"
+              }
+            }
+          }
+        },
+        {
+          "name": "get_news_sentiment",
+          "description": "Market news sentiment analysis with breaking news detection.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "include_prompt": {
+                "type": "boolean",
+                "default": false
+              },
+              "format": {
+                "type": "string",
+                "enum": [
+                  "full",
+                  "compact",
+                  "prompt",
+                  "agent"
+                ],
+                "description": "Response format. 'agent' returns actionable signals, urgency, delta tracking, and suggested follow-ups.",
+                "default": "full"
+              }
+            }
+          }
+        },
+        {
+          "name": "get_economic_calendar",
+          "description": "Economic event calendar with upcoming releases and data analysis.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "include_prompt": {
+                "type": "boolean",
+                "default": false
+              },
+              "format": {
+                "type": "string",
+                "enum": [
+                  "full",
+                  "compact",
+                  "prompt",
+                  "agent"
+                ],
+                "description": "Response format. 'agent' returns actionable signals, urgency, delta tracking, and suggested follow-ups.",
+                "default": "full"
+              }
+            }
+          }
+        }
+      ],
+      "python_sdk_url": "https://api.traderhc.com/mcp",
+      "python_sdk_config": "{\"debug\": false}"
+    },
+    "source_filename": "0175.AgentHC-Market-Intelligence_labeled.json",
+    "processed_timestamp": 1772871482,
+    "processing_mode": "gateway",
+    "rank": 176
+  }
+}

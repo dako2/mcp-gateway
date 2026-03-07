@@ -1,0 +1,2070 @@
+{
+  "labels": {
+    "analysis": "The MCP Server \"PlanExe\" provides 9 tools for development tools tasks.",
+    "reasoning": "Primary label \"Development Tools\" assigned based on tool names and descriptions.",
+    "primary_label": "Development Tools",
+    "secondary_labels": [
+      "API Integration",
+      "DevOps",
+      "Data Analysis & Processing",
+      "AI/ML Tools"
+    ],
+    "custom_label": "Development Tools - PlanExe",
+    "is_connected": true,
+    "is_remote_tool_valid": true,
+    "featured_server": true
+  },
+  "metadata": {
+    "server_id": 93,
+    "server_name": "PlanExe",
+    "rank_by_usage": 94,
+    "usage_count": "140",
+    "original_file": "tools.json#93",
+    "mode": "gateway",
+    "timestamp": 1772871481,
+    "remote_server_response": {
+      "url": "https://mcp.planexe.org/mcp",
+      "is_success": true,
+      "error": null,
+      "tools": [
+        {
+          "name": "example_plans",
+          "description": "Returns a curated list of example plans with download links for reports and zip bundles. Use this to preview what PlanExe output looks like before creating your own plan. Especially useful when the user asks what the output looks like before committing to a plan. No API key required.",
+          "inputSchema": {
+            "properties": {},
+            "title": "example_plansArguments",
+            "type": "object"
+          },
+          "outputSchema": {
+            "$defs": {
+              "ExamplePlanItem": {
+                "properties": {
+                  "title": {
+                    "description": "Short title describing the example plan.",
+                    "title": "Title",
+                    "type": "string"
+                  },
+                  "report_url": {
+                    "description": "URL to the static HTML report for this example plan.",
+                    "title": "Report Url",
+                    "type": "string"
+                  },
+                  "zip_url": {
+                    "description": "URL to the zip bundle for this example plan.",
+                    "title": "Zip Url",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "title",
+                  "report_url",
+                  "zip_url"
+                ],
+                "title": "ExamplePlanItem",
+                "type": "object"
+              }
+            },
+            "properties": {
+              "plans": {
+                "description": "Curated example plans with download links for reports and zip bundles.",
+                "items": {
+                  "$ref": "#/$defs/ExamplePlanItem"
+                },
+                "title": "Plans",
+                "type": "array"
+              },
+              "message": {
+                "title": "Message",
+                "type": "string"
+              }
+            },
+            "required": [
+              "plans",
+              "message"
+            ],
+            "title": "ExamplePlansOutput",
+            "type": "object"
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "example_prompts",
+          "description": "Call this first. Returns example prompts that define what a good prompt looks like. Do NOT call plan_create yet. Optional before plan_create: call model_profiles to choose model_profile. Next is a non-tool step: formulate a detailed prompt (typically ~300-800 words; use examples as a baseline, similar structure) and get user approval. Good prompt shape: objective, scope, constraints, timeline, stakeholders, budget/resources, and success criteria. Write the prompt as flowing prose, not structured markdown with headers or bullet lists. Weave technical specs, constraints, and targets naturally into sentences. Include banned words/approaches and governance preferences inline. The examples demonstrate this prose style — match their tone and density. Then call plan_create. PlanExe is not for tiny one-shot outputs like a 5-point checklist; and it does not support selecting only some internal pipeline steps.",
+          "inputSchema": {
+            "properties": {},
+            "title": "example_promptsArguments",
+            "type": "object"
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "model_profiles",
+          "description": "Optional helper before plan_create. Returns model_profile options with plain-language guidance and currently available models in each profile. If no models are available, returns error code MODEL_PROFILES_UNAVAILABLE.",
+          "inputSchema": {
+            "properties": {},
+            "title": "model_profilesArguments",
+            "type": "object"
+          },
+          "outputSchema": {
+            "$defs": {
+              "ModelProfileInfo": {
+                "properties": {
+                  "profile": {
+                    "description": "Model profile value accepted by plan_create.model_profile.",
+                    "enum": [
+                      "baseline",
+                      "premium",
+                      "frontier",
+                      "custom"
+                    ],
+                    "title": "Profile",
+                    "type": "string"
+                  },
+                  "title": {
+                    "description": "Human-friendly profile label.",
+                    "title": "Title",
+                    "type": "string"
+                  },
+                  "summary": {
+                    "description": "Short profile guidance for callers.",
+                    "title": "Summary",
+                    "type": "string"
+                  },
+                  "model_count": {
+                    "description": "Number of models currently available in this profile.",
+                    "title": "Model Count",
+                    "type": "integer"
+                  },
+                  "models": {
+                    "description": "Models currently available to this profile.",
+                    "items": {
+                      "$ref": "#/$defs/ModelProfileModelEntry"
+                    },
+                    "title": "Models",
+                    "type": "array"
+                  }
+                },
+                "required": [
+                  "profile",
+                  "title",
+                  "summary",
+                  "model_count",
+                  "models"
+                ],
+                "title": "ModelProfileInfo",
+                "type": "object"
+              },
+              "ModelProfileModelEntry": {
+                "properties": {
+                  "key": {
+                    "description": "Model key from llm_config/<profile>.json.",
+                    "title": "Key",
+                    "type": "string"
+                  },
+                  "provider_class": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "description": "Provider class (for example OpenRouter, OpenAI, Ollama).",
+                    "title": "Provider Class"
+                  },
+                  "model": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "description": "Provider model identifier when present.",
+                    "title": "Model"
+                  },
+                  "priority": {
+                    "anyOf": [
+                      {
+                        "type": "integer"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "description": "Priority from config (lower number means earlier in selection order).",
+                    "title": "Priority"
+                  }
+                },
+                "required": [
+                  "key"
+                ],
+                "title": "ModelProfileModelEntry",
+                "type": "object"
+              }
+            },
+            "properties": {
+              "default_profile": {
+                "description": "Default model profile used when plan_create.model_profile is omitted/invalid.",
+                "enum": [
+                  "baseline",
+                  "premium",
+                  "frontier",
+                  "custom"
+                ],
+                "title": "Default Profile",
+                "type": "string"
+              },
+              "profiles": {
+                "description": "Available profile options and their model inventory.",
+                "items": {
+                  "$ref": "#/$defs/ModelProfileInfo"
+                },
+                "title": "Profiles",
+                "type": "array"
+              },
+              "message": {
+                "description": "Caller guidance for selecting plan_create.model_profile.",
+                "title": "Message",
+                "type": "string"
+              }
+            },
+            "required": [
+              "default_profile",
+              "profiles",
+              "message"
+            ],
+            "title": "ModelProfilesOutput",
+            "type": "object"
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "plan_create",
+          "description": "Call only after example_prompts and after you have completed prompt drafting/approval (non-tool step). PlanExe turns the approved prompt into a strategic project-plan draft (20+ sections) in ~10-20 min. Sections include: executive summary, interactive Gantt charts, investor pitch, project plan with SMART criteria, strategic decision analysis, scenario comparison, assumptions with expert review, governance structure, SWOT analysis, team role profiles, simulated expert criticism, work breakdown structure, plan review (critical issues, KPIs, financial strategy, automation opportunities), Q&A, premortem with failure scenarios, self-audit checklist, and adversarial premise attacks that argue against the project. The adversarial sections (premortem, self-audit, premise attacks) surface risks and questions the prompter may not have considered. Returns plan_id (UUID) and sse_url; use plan_id for plan_status, plan_stop, plan_retry, and plan_file_info. sse_url is a GET endpoint (text/event-stream) for real-time progress — e.g. `curl -N <sse_url>` in a background shell. The stream emits status/complete events and auto-closes on terminal state. Polling plan_status also works. If you lose a plan_id, call plan_list to recover it. Each plan_create call creates a new plan_id (no server-side dedup). If you are unsure which model_profile to choose, call model_profiles first. If your deployment uses credits, include user_api_key to charge the correct account. Common error codes: INVALID_USER_API_KEY, USER_API_KEY_REQUIRED, INSUFFICIENT_CREDITS.",
+          "inputSchema": {
+            "properties": {
+              "prompt": {
+                "title": "Prompt",
+                "type": "string"
+              },
+              "model_profile": {
+                "default": "baseline",
+                "description": "Model profile: baseline, premium, frontier, custom. Call model_profiles to inspect options.",
+                "enum": [
+                  "baseline",
+                  "premium",
+                  "frontier",
+                  "custom"
+                ],
+                "title": "Model Profile",
+                "type": "string"
+              }
+            },
+            "required": [
+              "prompt"
+            ],
+            "title": "plan_createArguments",
+            "type": "object"
+          },
+          "outputSchema": {
+            "properties": {
+              "plan_id": {
+                "description": "Plan UUID returned by plan_create. Stable across plan_status/plan_stop/plan_file_info.",
+                "title": "Plan Id",
+                "type": "string"
+              },
+              "created_at": {
+                "title": "Created At",
+                "type": "string"
+              },
+              "sse_url": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "description": "GET endpoint returning text/event-stream with real-time plan progress. No API key required — the plan_id UUID serves as the access token. Usage: `curl -N <sse_url>`. Emits 'status' events on progress changes, 'heartbeat' every ~20 s, and a final 'complete' event (state completed/failed) then auto-closes. Alternative to polling plan_status.",
+                "title": "Sse Url"
+              }
+            },
+            "required": [
+              "plan_id",
+              "created_at"
+            ],
+            "title": "PlanCreateOutput",
+            "type": "object"
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": false,
+            "idempotentHint": false,
+            "openWorldHint": true
+          }
+        },
+        {
+          "name": "plan_status",
+          "description": "Returns status and progress of the plan currently being created. Poll at reasonable intervals only (e.g. every 5 minutes): plan generation typically takes 10-20 minutes (baseline profile) and may take longer on higher-quality profiles. Alternative to polling: the response includes sse_url (when not terminal) — a GET endpoint streaming real-time events; see plan_create description or server instructions for usage. State contract: pending/processing => keep polling; completed => download is ready; failed => terminal error. progress_percentage is 0-100 (integer-like float); 100 when completed. files lists intermediate outputs produced so far; use their updated_at timestamps to detect stalls. Unknown plan_id returns error code PLAN_NOT_FOUND. Troubleshooting: pending for >5 minutes likely means queued but not picked up by a worker. processing with no file-output changes for >20 minutes likely means failed/stalled. Report these issues to https://github.com/PlanExeOrg/PlanExe/issues .",
+          "inputSchema": {
+            "properties": {
+              "plan_id": {
+                "description": "Plan UUID returned by plan_create.",
+                "title": "Plan Id",
+                "type": "string"
+              }
+            },
+            "required": [
+              "plan_id"
+            ],
+            "title": "plan_statusArguments",
+            "type": "object"
+          },
+          "outputSchema": {
+            "$defs": {
+              "ErrorDetail": {
+                "properties": {
+                  "code": {
+                    "title": "Code",
+                    "type": "string"
+                  },
+                  "message": {
+                    "title": "Message",
+                    "type": "string"
+                  },
+                  "details": {
+                    "anyOf": [
+                      {
+                        "additionalProperties": true,
+                        "type": "object"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "title": "Details"
+                  }
+                },
+                "required": [
+                  "code",
+                  "message"
+                ],
+                "title": "ErrorDetail",
+                "type": "object"
+              },
+              "PlanStatusFile": {
+                "properties": {
+                  "path": {
+                    "title": "Path",
+                    "type": "string"
+                  },
+                  "updated_at": {
+                    "title": "Updated At",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "path",
+                  "updated_at"
+                ],
+                "title": "PlanStatusFile",
+                "type": "object"
+              },
+              "PlanStatusTiming": {
+                "properties": {
+                  "started_at": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "title": "Started At"
+                  },
+                  "elapsed_sec": {
+                    "title": "Elapsed Sec",
+                    "type": "number"
+                  }
+                },
+                "required": [
+                  "started_at",
+                  "elapsed_sec"
+                ],
+                "title": "PlanStatusTiming",
+                "type": "object"
+              }
+            },
+            "properties": {
+              "plan_id": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "description": "Plan UUID returned by plan_create.",
+                "title": "Plan Id"
+              },
+              "state": {
+                "anyOf": [
+                  {
+                    "enum": [
+                      "pending",
+                      "processing",
+                      "completed",
+                      "failed"
+                    ],
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "description": "Caller contract: pending/processing => keep polling; completed => download is ready; failed => terminal error.",
+                "title": "State"
+              },
+              "progress_percentage": {
+                "anyOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "description": "Completion progress from 0 to 100. Monotonically increasing; 100 when state is completed.",
+                "title": "Progress Percentage"
+              },
+              "timing": {
+                "anyOf": [
+                  {
+                    "$ref": "#/$defs/PlanStatusTiming"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "files": {
+                "anyOf": [
+                  {
+                    "items": {
+                      "$ref": "#/$defs/PlanStatusFile"
+                    },
+                    "type": "array"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "description": "Intermediate output files produced so far. Use updated_at timestamps to detect stalls. These files are included in the zip artifact when the plan completes.",
+                "title": "Files"
+              },
+              "sse_url": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "description": "GET endpoint (text/event-stream) for real-time progress. Available when plan is not in a terminal state. See plan_create sse_url description for usage.",
+                "title": "Sse Url"
+              },
+              "error": {
+                "anyOf": [
+                  {
+                    "$ref": "#/$defs/ErrorDetail"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              }
+            },
+            "title": "PlanStatusOutput",
+            "type": "object"
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "plan_stop",
+          "description": "Request the plan generation to stop. Pass the plan_id (the UUID returned by plan_create). Stopping is asynchronous: the stop flag is set immediately but the plan may continue briefly before halting. A stopped plan will eventually transition to the failed state. If the plan is already completed or failed, stop_requested returns false (the plan already finished). Unknown plan_id returns error code PLAN_NOT_FOUND.",
+          "inputSchema": {
+            "properties": {
+              "plan_id": {
+                "description": "Plan UUID returned by plan_create. Use it to stop the plan creation.",
+                "title": "Plan Id",
+                "type": "string"
+              }
+            },
+            "required": [
+              "plan_id"
+            ],
+            "title": "plan_stopArguments",
+            "type": "object"
+          },
+          "outputSchema": {
+            "$defs": {
+              "ErrorDetail": {
+                "properties": {
+                  "code": {
+                    "title": "Code",
+                    "type": "string"
+                  },
+                  "message": {
+                    "title": "Message",
+                    "type": "string"
+                  },
+                  "details": {
+                    "anyOf": [
+                      {
+                        "additionalProperties": true,
+                        "type": "object"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "title": "Details"
+                  }
+                },
+                "required": [
+                  "code",
+                  "message"
+                ],
+                "title": "ErrorDetail",
+                "type": "object"
+              }
+            },
+            "properties": {
+              "state": {
+                "anyOf": [
+                  {
+                    "enum": [
+                      "pending",
+                      "processing",
+                      "completed",
+                      "failed"
+                    ],
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "description": "Current plan state after stop request.",
+                "title": "State"
+              },
+              "stop_requested": {
+                "anyOf": [
+                  {
+                    "type": "boolean"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "description": "True when stop request flag was set for a pending/processing task.",
+                "title": "Stop Requested"
+              },
+              "error": {
+                "anyOf": [
+                  {
+                    "$ref": "#/$defs/ErrorDetail"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              }
+            },
+            "title": "PlanStopOutput",
+            "type": "object"
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": true,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "plan_retry",
+          "description": "Retry a plan that is currently in failed state. Pass the failed plan_id and optionally model_profile (defaults to baseline). The plan is reset to pending, prior artifacts are cleared, and the same plan_id is requeued for processing. Returns PLAN_NOT_FOUND when plan_id is unknown and PLAN_NOT_FAILED when the plan is not in failed state.",
+          "inputSchema": {
+            "properties": {
+              "plan_id": {
+                "description": "UUID of the failed plan to retry.",
+                "title": "Plan Id",
+                "type": "string"
+              },
+              "model_profile": {
+                "default": "baseline",
+                "description": "Model profile used for retry. Defaults to baseline.",
+                "enum": [
+                  "baseline",
+                  "premium",
+                  "frontier",
+                  "custom"
+                ],
+                "title": "Model Profile",
+                "type": "string"
+              }
+            },
+            "required": [
+              "plan_id"
+            ],
+            "title": "plan_retryArguments",
+            "type": "object"
+          },
+          "outputSchema": {
+            "$defs": {
+              "ErrorDetail": {
+                "properties": {
+                  "code": {
+                    "title": "Code",
+                    "type": "string"
+                  },
+                  "message": {
+                    "title": "Message",
+                    "type": "string"
+                  },
+                  "details": {
+                    "anyOf": [
+                      {
+                        "additionalProperties": true,
+                        "type": "object"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "title": "Details"
+                  }
+                },
+                "required": [
+                  "code",
+                  "message"
+                ],
+                "title": "ErrorDetail",
+                "type": "object"
+              }
+            },
+            "properties": {
+              "plan_id": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "description": "Plan UUID that was retried (same ID as the failed plan).",
+                "title": "Plan Id"
+              },
+              "state": {
+                "anyOf": [
+                  {
+                    "enum": [
+                      "pending",
+                      "processing",
+                      "completed",
+                      "failed"
+                    ],
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "description": "Current plan state after retry request.",
+                "title": "State"
+              },
+              "model_profile": {
+                "anyOf": [
+                  {
+                    "enum": [
+                      "baseline",
+                      "premium",
+                      "frontier",
+                      "custom"
+                    ],
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "description": "Model profile assigned to the retry request.",
+                "title": "Model Profile"
+              },
+              "retried_at": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "description": "UTC timestamp when the retry request was accepted.",
+                "title": "Retried At"
+              },
+              "sse_url": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "description": "GET endpoint returning text/event-stream with real-time plan progress. No API key required — the plan_id UUID serves as the access token. Usage: `curl -N <sse_url>`. Emits 'status' events on progress changes, 'heartbeat' every ~20 s, and a final 'complete' event (state completed/failed) then auto-closes. Alternative to polling plan_status.",
+                "title": "Sse Url"
+              },
+              "error": {
+                "anyOf": [
+                  {
+                    "$ref": "#/$defs/ErrorDetail"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              }
+            },
+            "title": "PlanRetryOutput",
+            "type": "object"
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": false,
+            "idempotentHint": false,
+            "openWorldHint": true
+          }
+        },
+        {
+          "name": "plan_file_info",
+          "description": "Returns file metadata (content_type, download_url, download_size) for the report or zip artifact. Use artifact='report' (default) for the interactive HTML report (~700KB, self-contained with embedded JS for collapsible sections and interactive Gantt charts — open in a browser). Use artifact='zip' for the full pipeline output bundle (md, json, csv intermediary files that fed the report). While the task is still pending or processing, returns {ready:false,reason:\"processing\"}. Check readiness by testing whether download_url is present in the response. Once ready, present download_url to the user or fetch and save the file locally. If your client exposes plan_download (e.g. mcp_local), prefer that to save the file locally. Terminal error codes: generation_failed (plan failed), content_unavailable (artifact missing). Unknown plan_id returns error code PLAN_NOT_FOUND.",
+          "inputSchema": {
+            "properties": {
+              "plan_id": {
+                "description": "Plan UUID returned by plan_create. Use it to download the created plan.",
+                "title": "Plan Id",
+                "type": "string"
+              },
+              "artifact": {
+                "default": "report",
+                "description": "Download artifact type: report or zip.",
+                "enum": [
+                  "report",
+                  "zip"
+                ],
+                "title": "Artifact",
+                "type": "string"
+              }
+            },
+            "required": [
+              "plan_id"
+            ],
+            "title": "plan_file_infoArguments",
+            "type": "object"
+          },
+          "outputSchema": {
+            "$defs": {
+              "ErrorDetail": {
+                "properties": {
+                  "code": {
+                    "title": "Code",
+                    "type": "string"
+                  },
+                  "message": {
+                    "title": "Message",
+                    "type": "string"
+                  },
+                  "details": {
+                    "anyOf": [
+                      {
+                        "additionalProperties": true,
+                        "type": "object"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "title": "Details"
+                  }
+                },
+                "required": [
+                  "code",
+                  "message"
+                ],
+                "title": "ErrorDetail",
+                "type": "object"
+              }
+            },
+            "properties": {
+              "content_type": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "description": "Artifact content type.",
+                "title": "Content Type"
+              },
+              "sha256": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "description": "SHA-256 hash of artifact bytes.",
+                "title": "Sha256"
+              },
+              "download_size": {
+                "anyOf": [
+                  {
+                    "type": "integer"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "description": "Artifact size in bytes.",
+                "title": "Download Size"
+              },
+              "download_url": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "description": "Absolute URL where the requested artifact can be downloaded.",
+                "title": "Download Url"
+              },
+              "error": {
+                "anyOf": [
+                  {
+                    "$ref": "#/$defs/ErrorDetail"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              }
+            },
+            "title": "PlanFileInfoOutput",
+            "type": "object"
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "plan_list",
+          "description": "List the most recent plans for an authenticated user. Returns up to `limit` plans (default 10, max 50) newest-first, each with plan_id, state, progress_percentage, created_at (ISO 8601), and a prompt_excerpt (first 100 chars). Use this to recover a lost plan_id or to review recent activity.",
+          "inputSchema": {
+            "properties": {
+              "limit": {
+                "default": 10,
+                "description": "Maximum number of plans to return (1–50). Newest plans are returned first.",
+                "maximum": 50,
+                "minimum": 1,
+                "title": "Limit",
+                "type": "integer"
+              }
+            },
+            "title": "plan_listArguments",
+            "type": "object"
+          },
+          "outputSchema": {
+            "$defs": {
+              "PlanListItem": {
+                "properties": {
+                  "plan_id": {
+                    "description": "Plan UUID.",
+                    "title": "Plan Id",
+                    "type": "string"
+                  },
+                  "state": {
+                    "description": "Current plan state.",
+                    "enum": [
+                      "pending",
+                      "processing",
+                      "completed",
+                      "failed"
+                    ],
+                    "title": "State",
+                    "type": "string"
+                  },
+                  "progress_percentage": {
+                    "description": "Progress from 0 to 100.",
+                    "title": "Progress Percentage",
+                    "type": "number"
+                  },
+                  "created_at": {
+                    "description": "UTC creation timestamp (ISO 8601).",
+                    "title": "Created At",
+                    "type": "string"
+                  },
+                  "prompt_excerpt": {
+                    "description": "First 100 characters of the prompt.",
+                    "title": "Prompt Excerpt",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "plan_id",
+                  "state",
+                  "progress_percentage",
+                  "created_at",
+                  "prompt_excerpt"
+                ],
+                "title": "PlanListItem",
+                "type": "object"
+              }
+            },
+            "properties": {
+              "plans": {
+                "description": "Plans for the authenticated user, newest first.",
+                "items": {
+                  "$ref": "#/$defs/PlanListItem"
+                },
+                "title": "Plans",
+                "type": "array"
+              },
+              "message": {
+                "description": "Human-readable summary (e.g. how many plans were returned).",
+                "title": "Message",
+                "type": "string"
+              }
+            },
+            "required": [
+              "plans",
+              "message"
+            ],
+            "title": "PlanListOutput",
+            "type": "object"
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        }
+      ],
+      "tool_count": 9,
+      "tool_names": [
+        "example_plans",
+        "example_prompts",
+        "model_profiles",
+        "plan_create",
+        "plan_status",
+        "plan_stop",
+        "plan_retry",
+        "plan_file_info",
+        "plan_list"
+      ]
+    },
+    "server_info_crawled": {
+      "id": 93,
+      "name": "PlanExe",
+      "author": "",
+      "overview": "PlanExe - Development Tools MCP server with 9 tools.",
+      "repository_url": "",
+      "homepage": "https://mcp.planexe.org/mcp",
+      "remote_or_local": "Remote",
+      "license": "",
+      "usage_count": "140",
+      "success_rate": "100%",
+      "tags": [
+        "development-tools"
+      ],
+      "categories": [
+        "development tools"
+      ],
+      "tools_count": 9,
+      "tools": [
+        {
+          "name": "example_plans",
+          "description": "Returns a curated list of example plans with download links for reports and zip bundles. Use this to preview what PlanExe output looks like before creating your own plan. Especially useful when the user asks what the output looks like before committing to a plan. No API key required.",
+          "inputSchema": {
+            "properties": {},
+            "title": "example_plansArguments",
+            "type": "object"
+          },
+          "outputSchema": {
+            "$defs": {
+              "ExamplePlanItem": {
+                "properties": {
+                  "title": {
+                    "description": "Short title describing the example plan.",
+                    "title": "Title",
+                    "type": "string"
+                  },
+                  "report_url": {
+                    "description": "URL to the static HTML report for this example plan.",
+                    "title": "Report Url",
+                    "type": "string"
+                  },
+                  "zip_url": {
+                    "description": "URL to the zip bundle for this example plan.",
+                    "title": "Zip Url",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "title",
+                  "report_url",
+                  "zip_url"
+                ],
+                "title": "ExamplePlanItem",
+                "type": "object"
+              }
+            },
+            "properties": {
+              "plans": {
+                "description": "Curated example plans with download links for reports and zip bundles.",
+                "items": {
+                  "$ref": "#/$defs/ExamplePlanItem"
+                },
+                "title": "Plans",
+                "type": "array"
+              },
+              "message": {
+                "title": "Message",
+                "type": "string"
+              }
+            },
+            "required": [
+              "plans",
+              "message"
+            ],
+            "title": "ExamplePlansOutput",
+            "type": "object"
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "example_prompts",
+          "description": "Call this first. Returns example prompts that define what a good prompt looks like. Do NOT call plan_create yet. Optional before plan_create: call model_profiles to choose model_profile. Next is a non-tool step: formulate a detailed prompt (typically ~300-800 words; use examples as a baseline, similar structure) and get user approval. Good prompt shape: objective, scope, constraints, timeline, stakeholders, budget/resources, and success criteria. Write the prompt as flowing prose, not structured markdown with headers or bullet lists. Weave technical specs, constraints, and targets naturally into sentences. Include banned words/approaches and governance preferences inline. The examples demonstrate this prose style — match their tone and density. Then call plan_create. PlanExe is not for tiny one-shot outputs like a 5-point checklist; and it does not support selecting only some internal pipeline steps.",
+          "inputSchema": {
+            "properties": {},
+            "title": "example_promptsArguments",
+            "type": "object"
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "model_profiles",
+          "description": "Optional helper before plan_create. Returns model_profile options with plain-language guidance and currently available models in each profile. If no models are available, returns error code MODEL_PROFILES_UNAVAILABLE.",
+          "inputSchema": {
+            "properties": {},
+            "title": "model_profilesArguments",
+            "type": "object"
+          },
+          "outputSchema": {
+            "$defs": {
+              "ModelProfileInfo": {
+                "properties": {
+                  "profile": {
+                    "description": "Model profile value accepted by plan_create.model_profile.",
+                    "enum": [
+                      "baseline",
+                      "premium",
+                      "frontier",
+                      "custom"
+                    ],
+                    "title": "Profile",
+                    "type": "string"
+                  },
+                  "title": {
+                    "description": "Human-friendly profile label.",
+                    "title": "Title",
+                    "type": "string"
+                  },
+                  "summary": {
+                    "description": "Short profile guidance for callers.",
+                    "title": "Summary",
+                    "type": "string"
+                  },
+                  "model_count": {
+                    "description": "Number of models currently available in this profile.",
+                    "title": "Model Count",
+                    "type": "integer"
+                  },
+                  "models": {
+                    "description": "Models currently available to this profile.",
+                    "items": {
+                      "$ref": "#/$defs/ModelProfileModelEntry"
+                    },
+                    "title": "Models",
+                    "type": "array"
+                  }
+                },
+                "required": [
+                  "profile",
+                  "title",
+                  "summary",
+                  "model_count",
+                  "models"
+                ],
+                "title": "ModelProfileInfo",
+                "type": "object"
+              },
+              "ModelProfileModelEntry": {
+                "properties": {
+                  "key": {
+                    "description": "Model key from llm_config/<profile>.json.",
+                    "title": "Key",
+                    "type": "string"
+                  },
+                  "provider_class": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "description": "Provider class (for example OpenRouter, OpenAI, Ollama).",
+                    "title": "Provider Class"
+                  },
+                  "model": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "description": "Provider model identifier when present.",
+                    "title": "Model"
+                  },
+                  "priority": {
+                    "anyOf": [
+                      {
+                        "type": "integer"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "description": "Priority from config (lower number means earlier in selection order).",
+                    "title": "Priority"
+                  }
+                },
+                "required": [
+                  "key"
+                ],
+                "title": "ModelProfileModelEntry",
+                "type": "object"
+              }
+            },
+            "properties": {
+              "default_profile": {
+                "description": "Default model profile used when plan_create.model_profile is omitted/invalid.",
+                "enum": [
+                  "baseline",
+                  "premium",
+                  "frontier",
+                  "custom"
+                ],
+                "title": "Default Profile",
+                "type": "string"
+              },
+              "profiles": {
+                "description": "Available profile options and their model inventory.",
+                "items": {
+                  "$ref": "#/$defs/ModelProfileInfo"
+                },
+                "title": "Profiles",
+                "type": "array"
+              },
+              "message": {
+                "description": "Caller guidance for selecting plan_create.model_profile.",
+                "title": "Message",
+                "type": "string"
+              }
+            },
+            "required": [
+              "default_profile",
+              "profiles",
+              "message"
+            ],
+            "title": "ModelProfilesOutput",
+            "type": "object"
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "plan_create",
+          "description": "Call only after example_prompts and after you have completed prompt drafting/approval (non-tool step). PlanExe turns the approved prompt into a strategic project-plan draft (20+ sections) in ~10-20 min. Sections include: executive summary, interactive Gantt charts, investor pitch, project plan with SMART criteria, strategic decision analysis, scenario comparison, assumptions with expert review, governance structure, SWOT analysis, team role profiles, simulated expert criticism, work breakdown structure, plan review (critical issues, KPIs, financial strategy, automation opportunities), Q&A, premortem with failure scenarios, self-audit checklist, and adversarial premise attacks that argue against the project. The adversarial sections (premortem, self-audit, premise attacks) surface risks and questions the prompter may not have considered. Returns plan_id (UUID) and sse_url; use plan_id for plan_status, plan_stop, plan_retry, and plan_file_info. sse_url is a GET endpoint (text/event-stream) for real-time progress — e.g. `curl -N <sse_url>` in a background shell. The stream emits status/complete events and auto-closes on terminal state. Polling plan_status also works. If you lose a plan_id, call plan_list to recover it. Each plan_create call creates a new plan_id (no server-side dedup). If you are unsure which model_profile to choose, call model_profiles first. If your deployment uses credits, include user_api_key to charge the correct account. Common error codes: INVALID_USER_API_KEY, USER_API_KEY_REQUIRED, INSUFFICIENT_CREDITS.",
+          "inputSchema": {
+            "properties": {
+              "prompt": {
+                "title": "Prompt",
+                "type": "string"
+              },
+              "model_profile": {
+                "default": "baseline",
+                "description": "Model profile: baseline, premium, frontier, custom. Call model_profiles to inspect options.",
+                "enum": [
+                  "baseline",
+                  "premium",
+                  "frontier",
+                  "custom"
+                ],
+                "title": "Model Profile",
+                "type": "string"
+              }
+            },
+            "required": [
+              "prompt"
+            ],
+            "title": "plan_createArguments",
+            "type": "object"
+          },
+          "outputSchema": {
+            "properties": {
+              "plan_id": {
+                "description": "Plan UUID returned by plan_create. Stable across plan_status/plan_stop/plan_file_info.",
+                "title": "Plan Id",
+                "type": "string"
+              },
+              "created_at": {
+                "title": "Created At",
+                "type": "string"
+              },
+              "sse_url": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "description": "GET endpoint returning text/event-stream with real-time plan progress. No API key required — the plan_id UUID serves as the access token. Usage: `curl -N <sse_url>`. Emits 'status' events on progress changes, 'heartbeat' every ~20 s, and a final 'complete' event (state completed/failed) then auto-closes. Alternative to polling plan_status.",
+                "title": "Sse Url"
+              }
+            },
+            "required": [
+              "plan_id",
+              "created_at"
+            ],
+            "title": "PlanCreateOutput",
+            "type": "object"
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": false,
+            "idempotentHint": false,
+            "openWorldHint": true
+          }
+        },
+        {
+          "name": "plan_status",
+          "description": "Returns status and progress of the plan currently being created. Poll at reasonable intervals only (e.g. every 5 minutes): plan generation typically takes 10-20 minutes (baseline profile) and may take longer on higher-quality profiles. Alternative to polling: the response includes sse_url (when not terminal) — a GET endpoint streaming real-time events; see plan_create description or server instructions for usage. State contract: pending/processing => keep polling; completed => download is ready; failed => terminal error. progress_percentage is 0-100 (integer-like float); 100 when completed. files lists intermediate outputs produced so far; use their updated_at timestamps to detect stalls. Unknown plan_id returns error code PLAN_NOT_FOUND. Troubleshooting: pending for >5 minutes likely means queued but not picked up by a worker. processing with no file-output changes for >20 minutes likely means failed/stalled. Report these issues to https://github.com/PlanExeOrg/PlanExe/issues .",
+          "inputSchema": {
+            "properties": {
+              "plan_id": {
+                "description": "Plan UUID returned by plan_create.",
+                "title": "Plan Id",
+                "type": "string"
+              }
+            },
+            "required": [
+              "plan_id"
+            ],
+            "title": "plan_statusArguments",
+            "type": "object"
+          },
+          "outputSchema": {
+            "$defs": {
+              "ErrorDetail": {
+                "properties": {
+                  "code": {
+                    "title": "Code",
+                    "type": "string"
+                  },
+                  "message": {
+                    "title": "Message",
+                    "type": "string"
+                  },
+                  "details": {
+                    "anyOf": [
+                      {
+                        "additionalProperties": true,
+                        "type": "object"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "title": "Details"
+                  }
+                },
+                "required": [
+                  "code",
+                  "message"
+                ],
+                "title": "ErrorDetail",
+                "type": "object"
+              },
+              "PlanStatusFile": {
+                "properties": {
+                  "path": {
+                    "title": "Path",
+                    "type": "string"
+                  },
+                  "updated_at": {
+                    "title": "Updated At",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "path",
+                  "updated_at"
+                ],
+                "title": "PlanStatusFile",
+                "type": "object"
+              },
+              "PlanStatusTiming": {
+                "properties": {
+                  "started_at": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "title": "Started At"
+                  },
+                  "elapsed_sec": {
+                    "title": "Elapsed Sec",
+                    "type": "number"
+                  }
+                },
+                "required": [
+                  "started_at",
+                  "elapsed_sec"
+                ],
+                "title": "PlanStatusTiming",
+                "type": "object"
+              }
+            },
+            "properties": {
+              "plan_id": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "description": "Plan UUID returned by plan_create.",
+                "title": "Plan Id"
+              },
+              "state": {
+                "anyOf": [
+                  {
+                    "enum": [
+                      "pending",
+                      "processing",
+                      "completed",
+                      "failed"
+                    ],
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "description": "Caller contract: pending/processing => keep polling; completed => download is ready; failed => terminal error.",
+                "title": "State"
+              },
+              "progress_percentage": {
+                "anyOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "description": "Completion progress from 0 to 100. Monotonically increasing; 100 when state is completed.",
+                "title": "Progress Percentage"
+              },
+              "timing": {
+                "anyOf": [
+                  {
+                    "$ref": "#/$defs/PlanStatusTiming"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "files": {
+                "anyOf": [
+                  {
+                    "items": {
+                      "$ref": "#/$defs/PlanStatusFile"
+                    },
+                    "type": "array"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "description": "Intermediate output files produced so far. Use updated_at timestamps to detect stalls. These files are included in the zip artifact when the plan completes.",
+                "title": "Files"
+              },
+              "sse_url": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "description": "GET endpoint (text/event-stream) for real-time progress. Available when plan is not in a terminal state. See plan_create sse_url description for usage.",
+                "title": "Sse Url"
+              },
+              "error": {
+                "anyOf": [
+                  {
+                    "$ref": "#/$defs/ErrorDetail"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              }
+            },
+            "title": "PlanStatusOutput",
+            "type": "object"
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "plan_stop",
+          "description": "Request the plan generation to stop. Pass the plan_id (the UUID returned by plan_create). Stopping is asynchronous: the stop flag is set immediately but the plan may continue briefly before halting. A stopped plan will eventually transition to the failed state. If the plan is already completed or failed, stop_requested returns false (the plan already finished). Unknown plan_id returns error code PLAN_NOT_FOUND.",
+          "inputSchema": {
+            "properties": {
+              "plan_id": {
+                "description": "Plan UUID returned by plan_create. Use it to stop the plan creation.",
+                "title": "Plan Id",
+                "type": "string"
+              }
+            },
+            "required": [
+              "plan_id"
+            ],
+            "title": "plan_stopArguments",
+            "type": "object"
+          },
+          "outputSchema": {
+            "$defs": {
+              "ErrorDetail": {
+                "properties": {
+                  "code": {
+                    "title": "Code",
+                    "type": "string"
+                  },
+                  "message": {
+                    "title": "Message",
+                    "type": "string"
+                  },
+                  "details": {
+                    "anyOf": [
+                      {
+                        "additionalProperties": true,
+                        "type": "object"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "title": "Details"
+                  }
+                },
+                "required": [
+                  "code",
+                  "message"
+                ],
+                "title": "ErrorDetail",
+                "type": "object"
+              }
+            },
+            "properties": {
+              "state": {
+                "anyOf": [
+                  {
+                    "enum": [
+                      "pending",
+                      "processing",
+                      "completed",
+                      "failed"
+                    ],
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "description": "Current plan state after stop request.",
+                "title": "State"
+              },
+              "stop_requested": {
+                "anyOf": [
+                  {
+                    "type": "boolean"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "description": "True when stop request flag was set for a pending/processing task.",
+                "title": "Stop Requested"
+              },
+              "error": {
+                "anyOf": [
+                  {
+                    "$ref": "#/$defs/ErrorDetail"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              }
+            },
+            "title": "PlanStopOutput",
+            "type": "object"
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": true,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "plan_retry",
+          "description": "Retry a plan that is currently in failed state. Pass the failed plan_id and optionally model_profile (defaults to baseline). The plan is reset to pending, prior artifacts are cleared, and the same plan_id is requeued for processing. Returns PLAN_NOT_FOUND when plan_id is unknown and PLAN_NOT_FAILED when the plan is not in failed state.",
+          "inputSchema": {
+            "properties": {
+              "plan_id": {
+                "description": "UUID of the failed plan to retry.",
+                "title": "Plan Id",
+                "type": "string"
+              },
+              "model_profile": {
+                "default": "baseline",
+                "description": "Model profile used for retry. Defaults to baseline.",
+                "enum": [
+                  "baseline",
+                  "premium",
+                  "frontier",
+                  "custom"
+                ],
+                "title": "Model Profile",
+                "type": "string"
+              }
+            },
+            "required": [
+              "plan_id"
+            ],
+            "title": "plan_retryArguments",
+            "type": "object"
+          },
+          "outputSchema": {
+            "$defs": {
+              "ErrorDetail": {
+                "properties": {
+                  "code": {
+                    "title": "Code",
+                    "type": "string"
+                  },
+                  "message": {
+                    "title": "Message",
+                    "type": "string"
+                  },
+                  "details": {
+                    "anyOf": [
+                      {
+                        "additionalProperties": true,
+                        "type": "object"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "title": "Details"
+                  }
+                },
+                "required": [
+                  "code",
+                  "message"
+                ],
+                "title": "ErrorDetail",
+                "type": "object"
+              }
+            },
+            "properties": {
+              "plan_id": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "description": "Plan UUID that was retried (same ID as the failed plan).",
+                "title": "Plan Id"
+              },
+              "state": {
+                "anyOf": [
+                  {
+                    "enum": [
+                      "pending",
+                      "processing",
+                      "completed",
+                      "failed"
+                    ],
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "description": "Current plan state after retry request.",
+                "title": "State"
+              },
+              "model_profile": {
+                "anyOf": [
+                  {
+                    "enum": [
+                      "baseline",
+                      "premium",
+                      "frontier",
+                      "custom"
+                    ],
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "description": "Model profile assigned to the retry request.",
+                "title": "Model Profile"
+              },
+              "retried_at": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "description": "UTC timestamp when the retry request was accepted.",
+                "title": "Retried At"
+              },
+              "sse_url": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "description": "GET endpoint returning text/event-stream with real-time plan progress. No API key required — the plan_id UUID serves as the access token. Usage: `curl -N <sse_url>`. Emits 'status' events on progress changes, 'heartbeat' every ~20 s, and a final 'complete' event (state completed/failed) then auto-closes. Alternative to polling plan_status.",
+                "title": "Sse Url"
+              },
+              "error": {
+                "anyOf": [
+                  {
+                    "$ref": "#/$defs/ErrorDetail"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              }
+            },
+            "title": "PlanRetryOutput",
+            "type": "object"
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": false,
+            "idempotentHint": false,
+            "openWorldHint": true
+          }
+        },
+        {
+          "name": "plan_file_info",
+          "description": "Returns file metadata (content_type, download_url, download_size) for the report or zip artifact. Use artifact='report' (default) for the interactive HTML report (~700KB, self-contained with embedded JS for collapsible sections and interactive Gantt charts — open in a browser). Use artifact='zip' for the full pipeline output bundle (md, json, csv intermediary files that fed the report). While the task is still pending or processing, returns {ready:false,reason:\"processing\"}. Check readiness by testing whether download_url is present in the response. Once ready, present download_url to the user or fetch and save the file locally. If your client exposes plan_download (e.g. mcp_local), prefer that to save the file locally. Terminal error codes: generation_failed (plan failed), content_unavailable (artifact missing). Unknown plan_id returns error code PLAN_NOT_FOUND.",
+          "inputSchema": {
+            "properties": {
+              "plan_id": {
+                "description": "Plan UUID returned by plan_create. Use it to download the created plan.",
+                "title": "Plan Id",
+                "type": "string"
+              },
+              "artifact": {
+                "default": "report",
+                "description": "Download artifact type: report or zip.",
+                "enum": [
+                  "report",
+                  "zip"
+                ],
+                "title": "Artifact",
+                "type": "string"
+              }
+            },
+            "required": [
+              "plan_id"
+            ],
+            "title": "plan_file_infoArguments",
+            "type": "object"
+          },
+          "outputSchema": {
+            "$defs": {
+              "ErrorDetail": {
+                "properties": {
+                  "code": {
+                    "title": "Code",
+                    "type": "string"
+                  },
+                  "message": {
+                    "title": "Message",
+                    "type": "string"
+                  },
+                  "details": {
+                    "anyOf": [
+                      {
+                        "additionalProperties": true,
+                        "type": "object"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "title": "Details"
+                  }
+                },
+                "required": [
+                  "code",
+                  "message"
+                ],
+                "title": "ErrorDetail",
+                "type": "object"
+              }
+            },
+            "properties": {
+              "content_type": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "description": "Artifact content type.",
+                "title": "Content Type"
+              },
+              "sha256": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "description": "SHA-256 hash of artifact bytes.",
+                "title": "Sha256"
+              },
+              "download_size": {
+                "anyOf": [
+                  {
+                    "type": "integer"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "description": "Artifact size in bytes.",
+                "title": "Download Size"
+              },
+              "download_url": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "description": "Absolute URL where the requested artifact can be downloaded.",
+                "title": "Download Url"
+              },
+              "error": {
+                "anyOf": [
+                  {
+                    "$ref": "#/$defs/ErrorDetail"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              }
+            },
+            "title": "PlanFileInfoOutput",
+            "type": "object"
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "plan_list",
+          "description": "List the most recent plans for an authenticated user. Returns up to `limit` plans (default 10, max 50) newest-first, each with plan_id, state, progress_percentage, created_at (ISO 8601), and a prompt_excerpt (first 100 chars). Use this to recover a lost plan_id or to review recent activity.",
+          "inputSchema": {
+            "properties": {
+              "limit": {
+                "default": 10,
+                "description": "Maximum number of plans to return (1–50). Newest plans are returned first.",
+                "maximum": 50,
+                "minimum": 1,
+                "title": "Limit",
+                "type": "integer"
+              }
+            },
+            "title": "plan_listArguments",
+            "type": "object"
+          },
+          "outputSchema": {
+            "$defs": {
+              "PlanListItem": {
+                "properties": {
+                  "plan_id": {
+                    "description": "Plan UUID.",
+                    "title": "Plan Id",
+                    "type": "string"
+                  },
+                  "state": {
+                    "description": "Current plan state.",
+                    "enum": [
+                      "pending",
+                      "processing",
+                      "completed",
+                      "failed"
+                    ],
+                    "title": "State",
+                    "type": "string"
+                  },
+                  "progress_percentage": {
+                    "description": "Progress from 0 to 100.",
+                    "title": "Progress Percentage",
+                    "type": "number"
+                  },
+                  "created_at": {
+                    "description": "UTC creation timestamp (ISO 8601).",
+                    "title": "Created At",
+                    "type": "string"
+                  },
+                  "prompt_excerpt": {
+                    "description": "First 100 characters of the prompt.",
+                    "title": "Prompt Excerpt",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "plan_id",
+                  "state",
+                  "progress_percentage",
+                  "created_at",
+                  "prompt_excerpt"
+                ],
+                "title": "PlanListItem",
+                "type": "object"
+              }
+            },
+            "properties": {
+              "plans": {
+                "description": "Plans for the authenticated user, newest first.",
+                "items": {
+                  "$ref": "#/$defs/PlanListItem"
+                },
+                "title": "Plans",
+                "type": "array"
+              },
+              "message": {
+                "description": "Human-readable summary (e.g. how many plans were returned).",
+                "title": "Message",
+                "type": "string"
+              }
+            },
+            "required": [
+              "plans",
+              "message"
+            ],
+            "title": "PlanListOutput",
+            "type": "object"
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        }
+      ],
+      "python_sdk_url": "https://mcp.planexe.org/mcp",
+      "python_sdk_config": "{\"debug\": false}"
+    },
+    "source_filename": "0093.PlanExe_labeled.json",
+    "processed_timestamp": 1772871481,
+    "processing_mode": "gateway",
+    "rank": 94
+  }
+}

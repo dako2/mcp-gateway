@@ -1,0 +1,676 @@
+{
+  "labels": {
+    "analysis": "The MCP Server \"ai.filegraph/document-processing\" provides 8 tools for file management tasks.",
+    "reasoning": "Primary label \"File Management\" assigned based on tool names and descriptions.",
+    "primary_label": "File Management",
+    "secondary_labels": [
+      "Cloud Storage",
+      "AI/ML Tools",
+      "Security & Authentication"
+    ],
+    "custom_label": "File Management - ai.filegraph/document-processing",
+    "is_connected": true,
+    "is_remote_tool_valid": true,
+    "featured_server": true
+  },
+  "metadata": {
+    "server_id": 98,
+    "server_name": "ai.filegraph/document-processing",
+    "rank_by_usage": 99,
+    "usage_count": "100",
+    "original_file": "tools.json#98",
+    "mode": "gateway",
+    "timestamp": 1772871481,
+    "remote_server_response": {
+      "url": "https://api.filegraph.ai/mcp",
+      "is_success": true,
+      "error": null,
+      "tools": [
+        {
+          "name": "filegraph_api_overview",
+          "description": "API overview: authentication, rate limits, errors, and available endpoint groups.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {},
+            "required": []
+          },
+          "_meta": {
+            "_fastmcp": {
+              "tags": [
+                "Context"
+              ]
+            }
+          }
+        },
+        {
+          "name": "filegraph_text_extraction_docs",
+          "description": "Docs for /any/to-text, /any/info, /any/to-struct — extract text with smart format detection and ocr, analyze file metadata, extract structured data with LLM.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "language": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Language",
+                "description": "Language for code examples (e.g. 'go_native', 'shell_curl'). Defaults to Python HTTPX."
+              },
+              "endpoint": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Endpoint",
+                "description": "Get docs for a single endpoint only (reduces response size). Valid values: /any/to-text, /any/info, /any/to-struct"
+              }
+            },
+            "required": []
+          },
+          "_meta": {
+            "_fastmcp": {
+              "tags": [
+                "Context"
+              ]
+            }
+          }
+        },
+        {
+          "name": "filegraph_pdf_operations_docs",
+          "description": "Docs for /pdf/to-text, /pdf/to-docx, /pdf/to-image, /pdf/merge, /pdf/split, /pdf/compress, /pdf/rotate, /pdf/encrypt, /pdf/decrypt — extract text with ocr, convert to docx/images, merge, split, compress, rotate, encrypt/decrypt.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "language": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Language",
+                "description": "Language for code examples (e.g. 'go_native', 'shell_curl'). Defaults to Python HTTPX."
+              },
+              "endpoint": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Endpoint",
+                "description": "Get docs for a single endpoint only (reduces response size). Valid values: /pdf/to-text, /pdf/to-docx, /pdf/to-image, /pdf/merge, /pdf/split, /pdf/compress, /pdf/rotate, /pdf/encrypt, /pdf/decrypt"
+              }
+            },
+            "required": []
+          },
+          "_meta": {
+            "_fastmcp": {
+              "tags": [
+                "Context"
+              ]
+            }
+          }
+        },
+        {
+          "name": "filegraph_image_processing_docs",
+          "description": "Docs for /image/to-text, /image/to-pdf, /image/resize — extract text via ocr, convert images to pdf, resize images.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "language": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Language",
+                "description": "Language for code examples (e.g. 'go_native', 'shell_curl'). Defaults to Python HTTPX."
+              },
+              "endpoint": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Endpoint",
+                "description": "Get docs for a single endpoint only (reduces response size). Valid values: /image/to-text, /image/to-pdf, /image/resize"
+              }
+            },
+            "required": []
+          },
+          "_meta": {
+            "_fastmcp": {
+              "tags": [
+                "Context"
+              ]
+            }
+          }
+        },
+        {
+          "name": "filegraph_audio_transcription_docs",
+          "description": "Docs for /audio/to-text — transcribe audio to text, detect language, apply smart formatting.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "language": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Language",
+                "description": "Language for code examples (e.g. 'go_native', 'shell_curl'). Defaults to Python HTTPX."
+              },
+              "endpoint": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Endpoint",
+                "description": "Get docs for a single endpoint only (reduces response size). Valid values: /audio/to-text"
+              }
+            },
+            "required": []
+          },
+          "_meta": {
+            "_fastmcp": {
+              "tags": [
+                "Context"
+              ]
+            }
+          }
+        },
+        {
+          "name": "filegraph_office_documents_docs",
+          "description": "Docs for /docx/to-text, /docx/to-pdf, /xlsx/to-text, /xlsx/to-pdf, /xlsx/to-csv, /pptx/to-text, /pptx/to-pdf, /pptx/to-images — extract text/data, convert word/excel/powerpoint to pdf/csv/images.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "language": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Language",
+                "description": "Language for code examples (e.g. 'go_native', 'shell_curl'). Defaults to Python HTTPX."
+              },
+              "endpoint": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Endpoint",
+                "description": "Get docs for a single endpoint only (reduces response size). Valid values: /docx/to-text, /docx/to-pdf, /xlsx/to-text, /xlsx/to-pdf, /xlsx/to-csv, /pptx/to-text, /pptx/to-pdf, /pptx/to-images"
+              }
+            },
+            "required": []
+          },
+          "_meta": {
+            "_fastmcp": {
+              "tags": [
+                "Context"
+              ]
+            }
+          }
+        },
+        {
+          "name": "filegraph_html_processing_docs",
+          "description": "Docs for /html/to-text, /html/to-pdf, /html/to-image — extract html text, render to pdf, capture html screenshots.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "language": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Language",
+                "description": "Language for code examples (e.g. 'go_native', 'shell_curl'). Defaults to Python HTTPX."
+              },
+              "endpoint": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Endpoint",
+                "description": "Get docs for a single endpoint only (reduces response size). Valid values: /html/to-text, /html/to-pdf, /html/to-image"
+              }
+            },
+            "required": []
+          },
+          "_meta": {
+            "_fastmcp": {
+              "tags": [
+                "Context"
+              ]
+            }
+          }
+        },
+        {
+          "name": "filegraph_security_docs",
+          "description": "Docs for /security/pdf/redact, /security/text/redact, /security/pdf/lock, /security/pdf/unlock, /security/detect-tracking — redact sensitive pdf content, redact PII from extracted text, lock/unlock pdfs, detect/remove tracking pixels.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "language": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Language",
+                "description": "Language for code examples (e.g. 'go_native', 'shell_curl'). Defaults to Python HTTPX."
+              },
+              "endpoint": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Endpoint",
+                "description": "Get docs for a single endpoint only (reduces response size). Valid values: /security/pdf/redact, /security/text/redact, /security/pdf/lock, /security/pdf/unlock, /security/detect-tracking"
+              }
+            },
+            "required": []
+          },
+          "_meta": {
+            "_fastmcp": {
+              "tags": [
+                "Context"
+              ]
+            }
+          }
+        }
+      ],
+      "tool_count": 8,
+      "tool_names": [
+        "filegraph_api_overview",
+        "filegraph_text_extraction_docs",
+        "filegraph_pdf_operations_docs",
+        "filegraph_image_processing_docs",
+        "filegraph_audio_transcription_docs",
+        "filegraph_office_documents_docs",
+        "filegraph_html_processing_docs",
+        "filegraph_security_docs"
+      ]
+    },
+    "server_info_crawled": {
+      "id": 98,
+      "name": "ai.filegraph/document-processing",
+      "author": "",
+      "overview": "ai.filegraph/document-processing - File Management MCP server with 8 tools.",
+      "repository_url": "",
+      "homepage": "https://api.filegraph.ai/mcp",
+      "remote_or_local": "Remote",
+      "license": "",
+      "usage_count": "100",
+      "success_rate": "100%",
+      "tags": [
+        "file-management"
+      ],
+      "categories": [
+        "file management"
+      ],
+      "tools_count": 8,
+      "tools": [
+        {
+          "name": "filegraph_api_overview",
+          "description": "API overview: authentication, rate limits, errors, and available endpoint groups.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {},
+            "required": []
+          },
+          "_meta": {
+            "_fastmcp": {
+              "tags": [
+                "Context"
+              ]
+            }
+          }
+        },
+        {
+          "name": "filegraph_text_extraction_docs",
+          "description": "Docs for /any/to-text, /any/info, /any/to-struct — extract text with smart format detection and ocr, analyze file metadata, extract structured data with LLM.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "language": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Language",
+                "description": "Language for code examples (e.g. 'go_native', 'shell_curl'). Defaults to Python HTTPX."
+              },
+              "endpoint": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Endpoint",
+                "description": "Get docs for a single endpoint only (reduces response size). Valid values: /any/to-text, /any/info, /any/to-struct"
+              }
+            },
+            "required": []
+          },
+          "_meta": {
+            "_fastmcp": {
+              "tags": [
+                "Context"
+              ]
+            }
+          }
+        },
+        {
+          "name": "filegraph_pdf_operations_docs",
+          "description": "Docs for /pdf/to-text, /pdf/to-docx, /pdf/to-image, /pdf/merge, /pdf/split, /pdf/compress, /pdf/rotate, /pdf/encrypt, /pdf/decrypt — extract text with ocr, convert to docx/images, merge, split, compress, rotate, encrypt/decrypt.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "language": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Language",
+                "description": "Language for code examples (e.g. 'go_native', 'shell_curl'). Defaults to Python HTTPX."
+              },
+              "endpoint": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Endpoint",
+                "description": "Get docs for a single endpoint only (reduces response size). Valid values: /pdf/to-text, /pdf/to-docx, /pdf/to-image, /pdf/merge, /pdf/split, /pdf/compress, /pdf/rotate, /pdf/encrypt, /pdf/decrypt"
+              }
+            },
+            "required": []
+          },
+          "_meta": {
+            "_fastmcp": {
+              "tags": [
+                "Context"
+              ]
+            }
+          }
+        },
+        {
+          "name": "filegraph_image_processing_docs",
+          "description": "Docs for /image/to-text, /image/to-pdf, /image/resize — extract text via ocr, convert images to pdf, resize images.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "language": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Language",
+                "description": "Language for code examples (e.g. 'go_native', 'shell_curl'). Defaults to Python HTTPX."
+              },
+              "endpoint": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Endpoint",
+                "description": "Get docs for a single endpoint only (reduces response size). Valid values: /image/to-text, /image/to-pdf, /image/resize"
+              }
+            },
+            "required": []
+          },
+          "_meta": {
+            "_fastmcp": {
+              "tags": [
+                "Context"
+              ]
+            }
+          }
+        },
+        {
+          "name": "filegraph_audio_transcription_docs",
+          "description": "Docs for /audio/to-text — transcribe audio to text, detect language, apply smart formatting.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "language": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Language",
+                "description": "Language for code examples (e.g. 'go_native', 'shell_curl'). Defaults to Python HTTPX."
+              },
+              "endpoint": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Endpoint",
+                "description": "Get docs for a single endpoint only (reduces response size). Valid values: /audio/to-text"
+              }
+            },
+            "required": []
+          },
+          "_meta": {
+            "_fastmcp": {
+              "tags": [
+                "Context"
+              ]
+            }
+          }
+        },
+        {
+          "name": "filegraph_office_documents_docs",
+          "description": "Docs for /docx/to-text, /docx/to-pdf, /xlsx/to-text, /xlsx/to-pdf, /xlsx/to-csv, /pptx/to-text, /pptx/to-pdf, /pptx/to-images — extract text/data, convert word/excel/powerpoint to pdf/csv/images.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "language": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Language",
+                "description": "Language for code examples (e.g. 'go_native', 'shell_curl'). Defaults to Python HTTPX."
+              },
+              "endpoint": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Endpoint",
+                "description": "Get docs for a single endpoint only (reduces response size). Valid values: /docx/to-text, /docx/to-pdf, /xlsx/to-text, /xlsx/to-pdf, /xlsx/to-csv, /pptx/to-text, /pptx/to-pdf, /pptx/to-images"
+              }
+            },
+            "required": []
+          },
+          "_meta": {
+            "_fastmcp": {
+              "tags": [
+                "Context"
+              ]
+            }
+          }
+        },
+        {
+          "name": "filegraph_html_processing_docs",
+          "description": "Docs for /html/to-text, /html/to-pdf, /html/to-image — extract html text, render to pdf, capture html screenshots.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "language": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Language",
+                "description": "Language for code examples (e.g. 'go_native', 'shell_curl'). Defaults to Python HTTPX."
+              },
+              "endpoint": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Endpoint",
+                "description": "Get docs for a single endpoint only (reduces response size). Valid values: /html/to-text, /html/to-pdf, /html/to-image"
+              }
+            },
+            "required": []
+          },
+          "_meta": {
+            "_fastmcp": {
+              "tags": [
+                "Context"
+              ]
+            }
+          }
+        },
+        {
+          "name": "filegraph_security_docs",
+          "description": "Docs for /security/pdf/redact, /security/text/redact, /security/pdf/lock, /security/pdf/unlock, /security/detect-tracking — redact sensitive pdf content, redact PII from extracted text, lock/unlock pdfs, detect/remove tracking pixels.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "language": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Language",
+                "description": "Language for code examples (e.g. 'go_native', 'shell_curl'). Defaults to Python HTTPX."
+              },
+              "endpoint": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Endpoint",
+                "description": "Get docs for a single endpoint only (reduces response size). Valid values: /security/pdf/redact, /security/text/redact, /security/pdf/lock, /security/pdf/unlock, /security/detect-tracking"
+              }
+            },
+            "required": []
+          },
+          "_meta": {
+            "_fastmcp": {
+              "tags": [
+                "Context"
+              ]
+            }
+          }
+        }
+      ],
+      "python_sdk_url": "https://api.filegraph.ai/mcp",
+      "python_sdk_config": "{\"debug\": false}"
+    },
+    "source_filename": "0098.aifilegraphdocument-processing_labeled.json",
+    "processed_timestamp": 1772871481,
+    "processing_mode": "gateway",
+    "rank": 99
+  }
+}

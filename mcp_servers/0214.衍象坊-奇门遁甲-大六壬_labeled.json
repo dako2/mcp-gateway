@@ -1,0 +1,211 @@
+{
+  "labels": {
+    "analysis": "The MCP Server \"衍象坊 · 奇门遁甲 & 大六壬\" provides 2 tools for development tools tasks.",
+    "reasoning": "Primary label \"Development Tools\" assigned based on tool names and descriptions.",
+    "primary_label": "Development Tools",
+    "secondary_labels": [
+      "API Integration",
+      "DevOps"
+    ],
+    "custom_label": "Development Tools - 衍象坊 · 奇门遁甲 & 大六壬",
+    "is_connected": true,
+    "is_remote_tool_valid": true,
+    "featured_server": false
+  },
+  "metadata": {
+    "server_id": 214,
+    "server_name": "衍象坊 · 奇门遁甲 & 大六壬",
+    "rank_by_usage": 215,
+    "usage_count": "10",
+    "original_file": "tools.json#214",
+    "mode": "gateway",
+    "timestamp": 1772871482,
+    "remote_server_response": {
+      "url": "https://profound.fate-craft.com/api/mcp",
+      "is_success": true,
+      "error": null,
+      "tools": [
+        {
+          "name": "qimen_dunjia_calculate",
+          "title": "奇门遁甲排盘",
+          "description": "奇门遁甲（Qimen Dunjia）是中国古代三式之一，被称为\"帝王之学\"。通过天时、地利、人和三维度分析时空能量场。\n\n## 核心概念\n- **九宫**：坎(1)、坤(2)、震(3)、巽(4)、中(5)、乾(6)、兑(7)、艮(8)、离(9)，对应八方和五行\n- **天盘/地盘**：天干在九宫中的分布，天盘为动态，地盘为静态\n- **九星**：天蓬、天芮、天冲、天辅、天禽、天心、天柱、天任、天英\n- **八门**：休门、生门、伤门、杜门、景门、死门、惊门、开门\n- **八神**：值符、腾蛇、太阴、六合、白虎、玄武、九地、九天\n- **值符/值使**：当前时刻的主星和主门，是判断吉凶的核心\n\n## 解读要点\n1. **看值符值使**：值符星和值使门的状态决定总体吉凶\n2. **看用神宫位**：根据用途找到对应宫位（如求财看生门所在宫）\n3. **看三奇六仪**：乙丙丁为三奇（吉），戊己庚辛壬癸为六仪\n4. **看格局**：天盘与地盘天干组合形成吉格（如龙遁、虎遁）或凶格（如击刑、入墓）\n5. **看空亡**：落入空亡的宫位力量减弱\n\n## 常见用途\n- 求财：重点看生门、戊\n- 事业：重点看开门、值使\n- 感情：重点看六合、天后\n- 出行：重点看三奇得使、门迫否",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {
+              "time": {
+                "description": "时间字符串，格式 YYYY-MM-DD HH:mm:ss。不传则默认使用当前北京时间",
+                "type": "string"
+              },
+              "method": {
+                "description": "排盘方法，默认\"时家\"。可选值：时家",
+                "type": "string"
+              },
+              "purpose": {
+                "description": "用途/问题，默认\"综合\"。如：求财、事业、婚姻、出行、考试、官司等",
+                "type": "string"
+              },
+              "locale": {
+                "description": "语言代码，默认\"zh\"（中文）。可选值：zh, en",
+                "type": "string"
+              }
+            }
+          },
+          "annotations": {
+            "title": "奇门遁甲排盘 (Qimen Dunjia Calculation)",
+            "readOnlyHint": true,
+            "openWorldHint": false
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "da_liu_ren_calculate",
+          "title": "大六壬排盘",
+          "description": "大六壬（Da Liu Ren）是中国古代三式之一，以人事预测见长，擅长判断日常生活中的人事问题。\n\n## 核心概念\n- **四课**：由日干、日支加上天地盘推演出的四个课位，反映事物的基本结构\n- **三传**：初传（发用）、中传、末传，反映事态发展的过程（起始→发展→结局）\n- **十二天将**：贵人、腾蛇、朱雀、六合、勾陈、青龙、天空、白虎、太常、玄武、太阴、天后\n- **月将**：太阳所在的黄道位置，加于时支之上布天盘\n- **课体**：根据四课的推导方式命名（如元首课、重审课、涉害课、遥克课等）\n- **六亲**：父母、兄弟、子孙、妻财、官鬼——反映事物之间的生克关系\n- **神煞**：驿马、桃花、华盖、天德、月德、旬空等辅助判断\n\n## 解读要点\n1. **看课体**：课体决定了取传方法，不同课体暗示事物的性质\n   - 元首课：事情自上而下，领导之象\n   - 重审课：需要反复斟酌\n   - 涉害课：牵涉面广，事多阻碍\n   - 遥克课：远方来事，需等待\n2. **看三传**：\n   - 初传（发用）：事情的起因和开端\n   - 中传：事情的发展过程\n   - 末传：事情的最终结局\n   - 三传递生为吉，递克为凶\n3. **看天将**：\n   - 青龙主吉庆、贵人主贵助\n   - 白虎主凶险、玄武主暗昧\n4. **看日干旺衰**：日干代表求测人，旺则有力，衰则无力\n5. **看空亡**：旬空之支所临之神/将力量减弱\n\n## 常见用途\n- 求财：看妻财爻、青龙、生门\n- 求官：看官鬼爻、朱雀、贵人\n- 婚姻：看天后、六合、妻财爻\n- 疾病：看天医、白虎、病符\n- 出行：看驿马、太冲、天马",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {
+              "time": {
+                "description": "时间字符串，格式 YYYY-MM-DD HH:mm:ss。不传则默认使用当前北京时间",
+                "type": "string"
+              },
+              "purpose": {
+                "description": "用途/问题，默认\"综合\"。如：求财、婚姻、官司、疾病、出行等",
+                "type": "string"
+              },
+              "trueSolarHour": {
+                "description": "真太阳时小时数（0-23），用于更精确的时辰判断",
+                "type": "number"
+              },
+              "forceDayNight": {
+                "description": "强制指定昼夜：day（昼贵）或 night（夜贵），影响贵人的顺逆",
+                "type": "string",
+                "enum": [
+                  "day",
+                  "night"
+                ]
+              }
+            }
+          },
+          "annotations": {
+            "title": "大六壬排盘 (Da Liu Ren Calculation)",
+            "readOnlyHint": true,
+            "openWorldHint": false
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        }
+      ],
+      "tool_count": 2,
+      "tool_names": [
+        "qimen_dunjia_calculate",
+        "da_liu_ren_calculate"
+      ]
+    },
+    "server_info_crawled": {
+      "id": 214,
+      "name": "衍象坊 · 奇门遁甲 & 大六壬",
+      "author": "",
+      "overview": "衍象坊 · 奇门遁甲 & 大六壬 - Development Tools MCP server with 2 tools.",
+      "repository_url": "",
+      "homepage": "https://profound.fate-craft.com/api/mcp",
+      "remote_or_local": "Remote",
+      "license": "",
+      "usage_count": "10",
+      "success_rate": "100%",
+      "tags": [
+        "development-tools"
+      ],
+      "categories": [
+        "development tools"
+      ],
+      "tools_count": 2,
+      "tools": [
+        {
+          "name": "qimen_dunjia_calculate",
+          "title": "奇门遁甲排盘",
+          "description": "奇门遁甲（Qimen Dunjia）是中国古代三式之一，被称为\"帝王之学\"。通过天时、地利、人和三维度分析时空能量场。\n\n## 核心概念\n- **九宫**：坎(1)、坤(2)、震(3)、巽(4)、中(5)、乾(6)、兑(7)、艮(8)、离(9)，对应八方和五行\n- **天盘/地盘**：天干在九宫中的分布，天盘为动态，地盘为静态\n- **九星**：天蓬、天芮、天冲、天辅、天禽、天心、天柱、天任、天英\n- **八门**：休门、生门、伤门、杜门、景门、死门、惊门、开门\n- **八神**：值符、腾蛇、太阴、六合、白虎、玄武、九地、九天\n- **值符/值使**：当前时刻的主星和主门，是判断吉凶的核心\n\n## 解读要点\n1. **看值符值使**：值符星和值使门的状态决定总体吉凶\n2. **看用神宫位**：根据用途找到对应宫位（如求财看生门所在宫）\n3. **看三奇六仪**：乙丙丁为三奇（吉），戊己庚辛壬癸为六仪\n4. **看格局**：天盘与地盘天干组合形成吉格（如龙遁、虎遁）或凶格（如击刑、入墓）\n5. **看空亡**：落入空亡的宫位力量减弱\n\n## 常见用途\n- 求财：重点看生门、戊\n- 事业：重点看开门、值使\n- 感情：重点看六合、天后\n- 出行：重点看三奇得使、门迫否",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {
+              "time": {
+                "description": "时间字符串，格式 YYYY-MM-DD HH:mm:ss。不传则默认使用当前北京时间",
+                "type": "string"
+              },
+              "method": {
+                "description": "排盘方法，默认\"时家\"。可选值：时家",
+                "type": "string"
+              },
+              "purpose": {
+                "description": "用途/问题，默认\"综合\"。如：求财、事业、婚姻、出行、考试、官司等",
+                "type": "string"
+              },
+              "locale": {
+                "description": "语言代码，默认\"zh\"（中文）。可选值：zh, en",
+                "type": "string"
+              }
+            }
+          },
+          "annotations": {
+            "title": "奇门遁甲排盘 (Qimen Dunjia Calculation)",
+            "readOnlyHint": true,
+            "openWorldHint": false
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "da_liu_ren_calculate",
+          "title": "大六壬排盘",
+          "description": "大六壬（Da Liu Ren）是中国古代三式之一，以人事预测见长，擅长判断日常生活中的人事问题。\n\n## 核心概念\n- **四课**：由日干、日支加上天地盘推演出的四个课位，反映事物的基本结构\n- **三传**：初传（发用）、中传、末传，反映事态发展的过程（起始→发展→结局）\n- **十二天将**：贵人、腾蛇、朱雀、六合、勾陈、青龙、天空、白虎、太常、玄武、太阴、天后\n- **月将**：太阳所在的黄道位置，加于时支之上布天盘\n- **课体**：根据四课的推导方式命名（如元首课、重审课、涉害课、遥克课等）\n- **六亲**：父母、兄弟、子孙、妻财、官鬼——反映事物之间的生克关系\n- **神煞**：驿马、桃花、华盖、天德、月德、旬空等辅助判断\n\n## 解读要点\n1. **看课体**：课体决定了取传方法，不同课体暗示事物的性质\n   - 元首课：事情自上而下，领导之象\n   - 重审课：需要反复斟酌\n   - 涉害课：牵涉面广，事多阻碍\n   - 遥克课：远方来事，需等待\n2. **看三传**：\n   - 初传（发用）：事情的起因和开端\n   - 中传：事情的发展过程\n   - 末传：事情的最终结局\n   - 三传递生为吉，递克为凶\n3. **看天将**：\n   - 青龙主吉庆、贵人主贵助\n   - 白虎主凶险、玄武主暗昧\n4. **看日干旺衰**：日干代表求测人，旺则有力，衰则无力\n5. **看空亡**：旬空之支所临之神/将力量减弱\n\n## 常见用途\n- 求财：看妻财爻、青龙、生门\n- 求官：看官鬼爻、朱雀、贵人\n- 婚姻：看天后、六合、妻财爻\n- 疾病：看天医、白虎、病符\n- 出行：看驿马、太冲、天马",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {
+              "time": {
+                "description": "时间字符串，格式 YYYY-MM-DD HH:mm:ss。不传则默认使用当前北京时间",
+                "type": "string"
+              },
+              "purpose": {
+                "description": "用途/问题，默认\"综合\"。如：求财、婚姻、官司、疾病、出行等",
+                "type": "string"
+              },
+              "trueSolarHour": {
+                "description": "真太阳时小时数（0-23），用于更精确的时辰判断",
+                "type": "number"
+              },
+              "forceDayNight": {
+                "description": "强制指定昼夜：day（昼贵）或 night（夜贵），影响贵人的顺逆",
+                "type": "string",
+                "enum": [
+                  "day",
+                  "night"
+                ]
+              }
+            }
+          },
+          "annotations": {
+            "title": "大六壬排盘 (Da Liu Ren Calculation)",
+            "readOnlyHint": true,
+            "openWorldHint": false
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        }
+      ],
+      "python_sdk_url": "https://profound.fate-craft.com/api/mcp",
+      "python_sdk_config": "{\"debug\": false}"
+    },
+    "source_filename": "0214.衍象坊-奇门遁甲-大六壬_labeled.json",
+    "processed_timestamp": 1772871482,
+    "processing_mode": "gateway",
+    "rank": 215
+  }
+}

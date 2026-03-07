@@ -1,0 +1,261 @@
+{
+  "labels": {
+    "analysis": "The MCP Server \"io.github.reitsmasieto-wq/overcome-stress\" provides 5 tools for financial services tasks.",
+    "reasoning": "Primary label \"Financial Services\" assigned based on tool names and descriptions.",
+    "primary_label": "Financial Services",
+    "secondary_labels": [
+      "E-Commerce",
+      "Development Tools",
+      "Web Search & Research"
+    ],
+    "custom_label": "Financial Services - io.github.reitsmasieto-wq/overcome-stress",
+    "is_connected": true,
+    "is_remote_tool_valid": true,
+    "featured_server": true
+  },
+  "metadata": {
+    "server_id": 149,
+    "server_name": "io.github.reitsmasieto-wq/overcome-stress",
+    "rank_by_usage": 150,
+    "usage_count": "100",
+    "original_file": "tools.json#149",
+    "mode": "gateway",
+    "timestamp": 1772871481,
+    "remote_server_response": {
+      "url": "https://mcp.overcomestress.io/mcp",
+      "is_success": true,
+      "error": null,
+      "tools": [
+        {
+          "name": "catalog",
+          "annotations": {
+            "readOnlyHint": true,
+            "idempotentHint": true
+          },
+          "description": "Browse the complete Corpus Systemics therapy content catalog. Returns available skills (25-100 sats) and 12-week recovery trajectories (150 sats) for post-concussion, post-COVID, burnout and chronic stress.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "category": {
+                "type": "string",
+                "description": "Filter by category: 'skills' for individual exercises or 'trajectories' for 12-week programs."
+              }
+            }
+          }
+        },
+        {
+          "name": "assess",
+          "annotations": {
+            "readOnlyHint": true,
+            "idempotentHint": true
+          },
+          "description": "Assess client symptoms and recommend Corpus Systemics therapy content for post-concussion, post-COVID, burnout or chronic stress.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "symptoms": {
+                "type": "string",
+                "description": "Description of client symptoms, e.g. 'headaches, fatigue, brain fog, difficulty concentrating, anxiety after concussion or burnout."
+              }
+            },
+            "required": [
+              "symptoms"
+            ]
+          }
+        },
+        {
+          "name": "preview",
+          "annotations": {
+            "readOnlyHint": true,
+            "idempotentHint": true
+          },
+          "description": "Retrieve a free preview of a therapy trajectory before purchase. Returns first session content and expected outcomes.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "trajectory_id": {
+                "type": "string",
+                "description": "Trajectory identifier from catalog, e.g. 'T1' for post-concussion, 'T2' for burnout, 'T3' for post-COVID."
+              }
+            },
+            "required": [
+              "trajectory_id"
+            ]
+          }
+        },
+        {
+          "name": "buy_skill",
+          "annotations": {
+            "destructiveHint": false,
+            "idempotentHint": false
+          },
+          "description": "Purchase a single therapy skill via Bitcoin Lightning Network (25-100 satoshis). Returns a Lightning invoice for immediate payment.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "skill_id": {
+                "type": "string",
+                "description": "Skill identifier from catalog, e.g. 'K01' for stress basics, 'K02' for autonomic nervous system regulation."
+              }
+            },
+            "required": [
+              "skill_id"
+            ]
+          }
+        },
+        {
+          "name": "buy_trajectory",
+          "annotations": {
+            "destructiveHint": false,
+            "idempotentHint": false
+          },
+          "description": "Purchase a complete 12-week Corpus Systemics recovery trajectory via Bitcoin Lightning Network (150 satoshis). Returns a Lightning invoice.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "trajectory_id": {
+                "type": "string",
+                "description": "Trajectory identifier from catalog, e.g. 'T1' for post-concussion recovery, 'T2' for burnout, 'T3' for post-COVID."
+              }
+            },
+            "required": [
+              "trajectory_id"
+            ]
+          }
+        }
+      ],
+      "tool_count": 5,
+      "tool_names": [
+        "catalog",
+        "assess",
+        "preview",
+        "buy_skill",
+        "buy_trajectory"
+      ]
+    },
+    "server_info_crawled": {
+      "id": 149,
+      "name": "io.github.reitsmasieto-wq/overcome-stress",
+      "author": "",
+      "overview": "io.github.reitsmasieto-wq/overcome-stress - Financial Services MCP server with 5 tools.",
+      "repository_url": "",
+      "homepage": "https://mcp.overcomestress.io/mcp",
+      "remote_or_local": "Remote",
+      "license": "",
+      "usage_count": "100",
+      "success_rate": "100%",
+      "tags": [
+        "financial-services"
+      ],
+      "categories": [
+        "financial services"
+      ],
+      "tools_count": 5,
+      "tools": [
+        {
+          "name": "catalog",
+          "annotations": {
+            "readOnlyHint": true,
+            "idempotentHint": true
+          },
+          "description": "Browse the complete Corpus Systemics therapy content catalog. Returns available skills (25-100 sats) and 12-week recovery trajectories (150 sats) for post-concussion, post-COVID, burnout and chronic stress.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "category": {
+                "type": "string",
+                "description": "Filter by category: 'skills' for individual exercises or 'trajectories' for 12-week programs."
+              }
+            }
+          }
+        },
+        {
+          "name": "assess",
+          "annotations": {
+            "readOnlyHint": true,
+            "idempotentHint": true
+          },
+          "description": "Assess client symptoms and recommend Corpus Systemics therapy content for post-concussion, post-COVID, burnout or chronic stress.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "symptoms": {
+                "type": "string",
+                "description": "Description of client symptoms, e.g. 'headaches, fatigue, brain fog, difficulty concentrating, anxiety after concussion or burnout."
+              }
+            },
+            "required": [
+              "symptoms"
+            ]
+          }
+        },
+        {
+          "name": "preview",
+          "annotations": {
+            "readOnlyHint": true,
+            "idempotentHint": true
+          },
+          "description": "Retrieve a free preview of a therapy trajectory before purchase. Returns first session content and expected outcomes.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "trajectory_id": {
+                "type": "string",
+                "description": "Trajectory identifier from catalog, e.g. 'T1' for post-concussion, 'T2' for burnout, 'T3' for post-COVID."
+              }
+            },
+            "required": [
+              "trajectory_id"
+            ]
+          }
+        },
+        {
+          "name": "buy_skill",
+          "annotations": {
+            "destructiveHint": false,
+            "idempotentHint": false
+          },
+          "description": "Purchase a single therapy skill via Bitcoin Lightning Network (25-100 satoshis). Returns a Lightning invoice for immediate payment.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "skill_id": {
+                "type": "string",
+                "description": "Skill identifier from catalog, e.g. 'K01' for stress basics, 'K02' for autonomic nervous system regulation."
+              }
+            },
+            "required": [
+              "skill_id"
+            ]
+          }
+        },
+        {
+          "name": "buy_trajectory",
+          "annotations": {
+            "destructiveHint": false,
+            "idempotentHint": false
+          },
+          "description": "Purchase a complete 12-week Corpus Systemics recovery trajectory via Bitcoin Lightning Network (150 satoshis). Returns a Lightning invoice.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "trajectory_id": {
+                "type": "string",
+                "description": "Trajectory identifier from catalog, e.g. 'T1' for post-concussion recovery, 'T2' for burnout, 'T3' for post-COVID."
+              }
+            },
+            "required": [
+              "trajectory_id"
+            ]
+          }
+        }
+      ],
+      "python_sdk_url": "https://mcp.overcomestress.io/mcp",
+      "python_sdk_config": "{\"debug\": false}"
+    },
+    "source_filename": "0149.iogithubreitsmasieto-wqovercome-stress_labeled.json",
+    "processed_timestamp": 1772871481,
+    "processing_mode": "gateway",
+    "rank": 150
+  }
+}

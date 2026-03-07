@@ -1,0 +1,1898 @@
+{
+  "labels": {
+    "analysis": "The MCP Server \"Dice MCP\" provides 1 tools for development tools tasks.",
+    "reasoning": "Primary label \"Development Tools\" assigned based on tool names and descriptions.",
+    "primary_label": "Development Tools",
+    "secondary_labels": [
+      "API Integration",
+      "DevOps",
+      "Web Search & Research",
+      "AI/ML Tools"
+    ],
+    "custom_label": "Development Tools - Dice MCP",
+    "is_connected": true,
+    "is_remote_tool_valid": true,
+    "featured_server": false
+  },
+  "metadata": {
+    "server_id": 253,
+    "server_name": "Dice MCP",
+    "rank_by_usage": 254,
+    "usage_count": "10",
+    "original_file": "tools.json#253",
+    "mode": "gateway",
+    "timestamp": 1772871482,
+    "remote_server_response": {
+      "url": "https://mcp.dice.com/mcp",
+      "is_success": true,
+      "error": null,
+      "tools": [
+        {
+          "name": "search_jobs",
+          "title": "Job Search",
+          "description": "Search for job listings by keyword, location, and filters. Returns job details, company info, and application links.\n\nUse this tool when users want to find jobs, search employment opportunities, or explore job openings.\nDO NOT use for: applying to jobs, submitting applications, or making employment decisions.\n\nLLM USAGE INSTRUCTIONS:\n- ALWAYS provide the keyword parameter (required)\n- When presenting results to users, include BOTH the job details URL (detailsPageUrl)\n  AND the company page URL (companyPageUrl) for each job\n- Use location to find geographically relevant positions\n- Combine filters to refine searches (e.g., workplace_types=['Remote'] for remote work)\n- Use posted_date to find recent openings ('ONE'=1 day, 'THREE'=3 days, 'SEVEN'=7 days)\n- Default jobs_per_page is reasonable, increase for comprehensive searches\n\nIMPORTANT - AI DISCLOSURE REQUIREMENT:\nWhen presenting job search results to users, you MUST include an appropriate disclosure\nthat these results were retrieved using AI assistance. Example disclosure language:\n\"These job listings were found using AI-powered search. Please review all job details\ncarefully and verify information directly with employers before applying.\"\n\nThis tool provides job listing data only. Final employment decisions should always\ninvolve human judgment and direct review of complete job postings.\n\nArgs:\n    keyword: The job keyword or title to search for (required)\n    location: Geographic location for the job search (city, state, country)\n    radius: Search radius from the specified location (minimum 1.0)\n    radius_unit: Unit for search radius. Options: 'mi', 'km', 'miles', 'kilometers'\n    jobs_per_page: Number of jobs to return per page (1-100, default handled by API)\n    page_number: Page number for pagination (1-based, default is 1)\n    posted_date: Filter by posting date. Options: 'ONE' (1 day), 'THREE' (3 days), 'SEVEN' (7 days)\n    workplace_types: Workplace arrangements. Options: 'Remote', 'On-Site', 'Hybrid'\n    employment_types: Employment types. Options: 'FULLTIME', 'CONTRACTS', 'PARTTIME', 'THIRD_PARTY'\n    employer_types: Employer types. Options: 'Direct Hire', 'Recruiter', 'Other'\n    willing_to_sponsor: Filter for employers willing to sponsor work authorization (boolean)\n    easy_apply: Filter for jobs with easy application process (boolean)\n    fields: Specific fields to include in response (optional, returns all fields by default)\n\nReturns:\n    JobSearchResult: Contains:\n        - data: List of JobDisplayFields with job details including:\n          * detailsPageUrl: Direct link to full job posting\n          * companyPageUrl: Link to company profile page\n          * title, summary, salary, location, employmentType, etc.\n        - meta: Search metadata with pagination info and facet results\n        - _links: Pagination navigation links\n\nRaises:\n    Exception: If API call fails or input validation errors occur\n",
+          "inputSchema": {
+            "properties": {
+              "keyword": {
+                "type": "string"
+              },
+              "location": {
+                "default": null,
+                "type": "string"
+              },
+              "radius": {
+                "default": null,
+                "type": "number"
+              },
+              "radius_unit": {
+                "default": null,
+                "type": "string"
+              },
+              "jobs_per_page": {
+                "default": null,
+                "type": "integer"
+              },
+              "page_number": {
+                "default": null,
+                "type": "integer"
+              },
+              "posted_date": {
+                "default": null,
+                "type": "string"
+              },
+              "workplace_types": {
+                "default": null,
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              "employment_types": {
+                "default": null,
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              "employer_types": {
+                "default": null,
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              "willing_to_sponsor": {
+                "default": null,
+                "type": "boolean"
+              },
+              "easy_apply": {
+                "default": null,
+                "type": "boolean"
+              },
+              "fields": {
+                "default": null,
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              }
+            },
+            "required": [
+              "keyword"
+            ],
+            "type": "object"
+          },
+          "outputSchema": {
+            "$defs": {
+              "FacetQueryResult": {
+                "description": "Facet results for filtering.",
+                "properties": {
+                  "displayName": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "description": "Human-readable facet name"
+                  },
+                  "facetName": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "description": "System facet name"
+                  },
+                  "facetResults": {
+                    "anyOf": [
+                      {
+                        "items": {
+                          "$ref": "#/$defs/FacetResultItem"
+                        },
+                        "type": "array"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "description": "Individual facet result items"
+                  }
+                },
+                "type": "object"
+              },
+              "FacetResultItem": {
+                "description": "Individual facet result item.",
+                "properties": {
+                  "count": {
+                    "anyOf": [
+                      {
+                        "type": "integer"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "description": "Number of jobs matching this facet value"
+                  },
+                  "displayValue": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "description": "Human-readable facet value"
+                  },
+                  "value": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "boolean"
+                      },
+                      {
+                        "type": "integer"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "description": "System facet value"
+                  }
+                },
+                "type": "object"
+              },
+              "JobDisplayFields": {
+                "description": "Job listing information with all possible fields.",
+                "properties": {
+                  "id": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "description": "Unique job identifier"
+                  },
+                  "jobId": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "description": "Job ID from the source system"
+                  },
+                  "guid": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "description": "Global unique identifier for the job"
+                  },
+                  "title": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "description": "Job title"
+                  },
+                  "summary": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "description": "Brief job description"
+                  },
+                  "postedDate": {
+                    "anyOf": [
+                      {
+                        "format": "date-time",
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "description": "Date when the job was posted"
+                  },
+                  "modifiedDate": {
+                    "anyOf": [
+                      {
+                        "format": "date-time",
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "description": "Date when the job was last modified"
+                  },
+                  "jobLocation": {
+                    "anyOf": [
+                      {
+                        "$ref": "#/$defs/JobLocation"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "description": "Job location information"
+                  },
+                  "detailsPageUrl": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "description": "URL to the full job details page"
+                  },
+                  "salary": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "description": "Salary information if available"
+                  },
+                  "clientBrandId": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "description": "Client brand identifier"
+                  },
+                  "companyPageUrl": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "description": "URL to the company page"
+                  },
+                  "companyLogoUrl": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "description": "URL to the company logo"
+                  },
+                  "companyLogoUrlOptimized": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "description": "URL to the optimized company logo"
+                  },
+                  "positionId": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "description": "Position identifier"
+                  },
+                  "companyName": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "description": "Name of the hiring company"
+                  },
+                  "employmentType": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "description": "Type of employment"
+                  },
+                  "isHighlighted": {
+                    "anyOf": [
+                      {
+                        "type": "boolean"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "description": "Whether the job is highlighted/featured"
+                  },
+                  "score": {
+                    "anyOf": [
+                      {
+                        "type": "number"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "description": "Relevance score for the job match"
+                  },
+                  "easyApply": {
+                    "anyOf": [
+                      {
+                        "type": "boolean"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "description": "Whether the job offers easy application"
+                  },
+                  "employerType": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "description": "Type of employer"
+                  },
+                  "workFromHomeAvailability": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "description": "Work from home options"
+                  },
+                  "workplaceTypes": {
+                    "anyOf": [
+                      {
+                        "items": {
+                          "type": "string"
+                        },
+                        "type": "array"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "description": "Available workplace types"
+                  },
+                  "isRemote": {
+                    "anyOf": [
+                      {
+                        "type": "boolean"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "description": "Whether the job is fully remote"
+                  },
+                  "debug": {
+                    "anyOf": [
+                      {
+                        "additionalProperties": true,
+                        "type": "object"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "description": "Debug information (development only)"
+                  },
+                  "jobMetadata": {
+                    "anyOf": [
+                      {
+                        "additionalProperties": true,
+                        "type": "object"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "description": "Additional job metadata"
+                  },
+                  "willingToSponsor": {
+                    "anyOf": [
+                      {
+                        "type": "boolean"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "description": "Whether employer is willing to sponsor work authorization"
+                  }
+                },
+                "type": "object"
+              },
+              "JobLocation": {
+                "description": "Job location information.",
+                "properties": {
+                  "displayName": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "description": "Human-readable location name"
+                  }
+                },
+                "type": "object"
+              },
+              "JobSearchMeta": {
+                "description": "Metadata about the search results and pagination.",
+                "properties": {
+                  "currentPage": {
+                    "description": "Current page number (1-based)",
+                    "minimum": 1,
+                    "type": "integer"
+                  },
+                  "pageCount": {
+                    "description": "Total number of pages available",
+                    "minimum": 0,
+                    "type": "integer"
+                  },
+                  "pageSize": {
+                    "description": "Number of results per page",
+                    "minimum": 1,
+                    "type": "integer"
+                  },
+                  "totalResults": {
+                    "description": "Total number of jobs matching the search criteria",
+                    "minimum": 0,
+                    "type": "integer"
+                  },
+                  "facetQueryResults": {
+                    "anyOf": [
+                      {
+                        "items": {
+                          "$ref": "#/$defs/FacetQueryResult"
+                        },
+                        "type": "array"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "description": "Facet results for filtering options"
+                  },
+                  "includeRemote": {
+                    "anyOf": [
+                      {
+                        "type": "boolean"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "description": "Whether remote jobs are included in results"
+                  },
+                  "recommendedSearches": {
+                    "anyOf": [
+                      {
+                        "additionalProperties": true,
+                        "type": "object"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "description": "Recommended related searches"
+                  },
+                  "searchId": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "description": "Unique identifier for this search"
+                  },
+                  "searchedLocation": {
+                    "anyOf": [
+                      {
+                        "$ref": "#/$defs/SearchedLocation"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "description": "Information about the searched location"
+                  },
+                  "selectedFilters": {
+                    "anyOf": [
+                      {
+                        "items": {
+                          "$ref": "#/$defs/SelectedFilter"
+                        },
+                        "type": "array"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "description": "Currently applied filters"
+                  },
+                  "sortBy": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "description": "Current sort order"
+                  },
+                  "totalJobCount": {
+                    "anyOf": [
+                      {
+                        "type": "integer"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "description": "Total job count across all sources"
+                  }
+                },
+                "required": [
+                  "currentPage",
+                  "pageCount",
+                  "pageSize",
+                  "totalResults"
+                ],
+                "type": "object"
+              },
+              "PaginationLink": {
+                "description": "Pagination link.",
+                "properties": {
+                  "href": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "description": "URL for the pagination link"
+                  }
+                },
+                "type": "object"
+              },
+              "PaginationLinks": {
+                "description": "Pagination navigation links.",
+                "properties": {
+                  "first": {
+                    "anyOf": [
+                      {
+                        "$ref": "#/$defs/PaginationLink"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "description": "Link to first page"
+                  },
+                  "last": {
+                    "anyOf": [
+                      {
+                        "$ref": "#/$defs/PaginationLink"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "description": "Link to last page"
+                  },
+                  "next": {
+                    "anyOf": [
+                      {
+                        "$ref": "#/$defs/PaginationLink"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "description": "Link to next page"
+                  },
+                  "prev": {
+                    "anyOf": [
+                      {
+                        "$ref": "#/$defs/PaginationLink"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "description": "Link to previous page"
+                  },
+                  "self": {
+                    "anyOf": [
+                      {
+                        "$ref": "#/$defs/PaginationLink"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "description": "Link to current page"
+                  }
+                },
+                "type": "object"
+              },
+              "SearchedLocation": {
+                "description": "Information about the searched location.",
+                "properties": {
+                  "countryCode2": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "description": "Two-letter country code"
+                  },
+                  "radius": {
+                    "anyOf": [
+                      {
+                        "type": "number"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "description": "Search radius used"
+                  },
+                  "radiusUnit": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "description": "Unit for the search radius"
+                  }
+                },
+                "type": "object"
+              },
+              "SelectedFilter": {
+                "description": "Currently applied filter.",
+                "properties": {
+                  "displayName": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "description": "Human-readable filter name"
+                  },
+                  "filterName": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "description": "System filter name"
+                  },
+                  "selectedItems": {
+                    "anyOf": [
+                      {
+                        "items": {
+                          "$ref": "#/$defs/SelectedFilterItem"
+                        },
+                        "type": "array"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "description": "Selected filter items"
+                  }
+                },
+                "type": "object"
+              },
+              "SelectedFilterItem": {
+                "description": "Individual selected filter item.",
+                "properties": {
+                  "displayValue": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "description": "Human-readable selected value"
+                  },
+                  "value": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "description": "System selected value"
+                  }
+                },
+                "type": "object"
+              }
+            },
+            "description": "Job search results with pagination metadata.",
+            "properties": {
+              "_links": {
+                "anyOf": [
+                  {
+                    "$ref": "#/$defs/PaginationLinks"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "description": "Pagination navigation links"
+              },
+              "data": {
+                "anyOf": [
+                  {
+                    "items": {
+                      "$ref": "#/$defs/JobDisplayFields"
+                    },
+                    "type": "array"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "description": "Array of job listings matching the search criteria"
+              },
+              "meta": {
+                "anyOf": [
+                  {
+                    "$ref": "#/$defs/JobSearchMeta"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "description": "Metadata about the search results and pagination"
+              }
+            },
+            "type": "object"
+          },
+          "annotations": {
+            "title": "Job Search",
+            "readOnlyHint": true,
+            "destructiveHint": false
+          },
+          "_meta": {
+            "_fastmcp": {
+              "tags": []
+            }
+          }
+        }
+      ],
+      "tool_count": 1,
+      "tool_names": [
+        "search_jobs"
+      ]
+    },
+    "server_info_crawled": {
+      "id": 253,
+      "name": "Dice MCP",
+      "author": "",
+      "overview": "Dice MCP - Development Tools MCP server with 1 tools.",
+      "repository_url": "",
+      "homepage": "https://mcp.dice.com/mcp",
+      "remote_or_local": "Remote",
+      "license": "",
+      "usage_count": "10",
+      "success_rate": "100%",
+      "tags": [
+        "development-tools"
+      ],
+      "categories": [
+        "development tools"
+      ],
+      "tools_count": 1,
+      "tools": [
+        {
+          "name": "search_jobs",
+          "title": "Job Search",
+          "description": "Search for job listings by keyword, location, and filters. Returns job details, company info, and application links.\n\nUse this tool when users want to find jobs, search employment opportunities, or explore job openings.\nDO NOT use for: applying to jobs, submitting applications, or making employment decisions.\n\nLLM USAGE INSTRUCTIONS:\n- ALWAYS provide the keyword parameter (required)\n- When presenting results to users, include BOTH the job details URL (detailsPageUrl)\n  AND the company page URL (companyPageUrl) for each job\n- Use location to find geographically relevant positions\n- Combine filters to refine searches (e.g., workplace_types=['Remote'] for remote work)\n- Use posted_date to find recent openings ('ONE'=1 day, 'THREE'=3 days, 'SEVEN'=7 days)\n- Default jobs_per_page is reasonable, increase for comprehensive searches\n\nIMPORTANT - AI DISCLOSURE REQUIREMENT:\nWhen presenting job search results to users, you MUST include an appropriate disclosure\nthat these results were retrieved using AI assistance. Example disclosure language:\n\"These job listings were found using AI-powered search. Please review all job details\ncarefully and verify information directly with employers before applying.\"\n\nThis tool provides job listing data only. Final employment decisions should always\ninvolve human judgment and direct review of complete job postings.\n\nArgs:\n    keyword: The job keyword or title to search for (required)\n    location: Geographic location for the job search (city, state, country)\n    radius: Search radius from the specified location (minimum 1.0)\n    radius_unit: Unit for search radius. Options: 'mi', 'km', 'miles', 'kilometers'\n    jobs_per_page: Number of jobs to return per page (1-100, default handled by API)\n    page_number: Page number for pagination (1-based, default is 1)\n    posted_date: Filter by posting date. Options: 'ONE' (1 day), 'THREE' (3 days), 'SEVEN' (7 days)\n    workplace_types: Workplace arrangements. Options: 'Remote', 'On-Site', 'Hybrid'\n    employment_types: Employment types. Options: 'FULLTIME', 'CONTRACTS', 'PARTTIME', 'THIRD_PARTY'\n    employer_types: Employer types. Options: 'Direct Hire', 'Recruiter', 'Other'\n    willing_to_sponsor: Filter for employers willing to sponsor work authorization (boolean)\n    easy_apply: Filter for jobs with easy application process (boolean)\n    fields: Specific fields to include in response (optional, returns all fields by default)\n\nReturns:\n    JobSearchResult: Contains:\n        - data: List of JobDisplayFields with job details including:\n          * detailsPageUrl: Direct link to full job posting\n          * companyPageUrl: Link to company profile page\n          * title, summary, salary, location, employmentType, etc.\n        - meta: Search metadata with pagination info and facet results\n        - _links: Pagination navigation links\n\nRaises:\n    Exception: If API call fails or input validation errors occur\n",
+          "inputSchema": {
+            "properties": {
+              "keyword": {
+                "type": "string"
+              },
+              "location": {
+                "default": null,
+                "type": "string"
+              },
+              "radius": {
+                "default": null,
+                "type": "number"
+              },
+              "radius_unit": {
+                "default": null,
+                "type": "string"
+              },
+              "jobs_per_page": {
+                "default": null,
+                "type": "integer"
+              },
+              "page_number": {
+                "default": null,
+                "type": "integer"
+              },
+              "posted_date": {
+                "default": null,
+                "type": "string"
+              },
+              "workplace_types": {
+                "default": null,
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              "employment_types": {
+                "default": null,
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              "employer_types": {
+                "default": null,
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              "willing_to_sponsor": {
+                "default": null,
+                "type": "boolean"
+              },
+              "easy_apply": {
+                "default": null,
+                "type": "boolean"
+              },
+              "fields": {
+                "default": null,
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              }
+            },
+            "required": [
+              "keyword"
+            ],
+            "type": "object"
+          },
+          "outputSchema": {
+            "$defs": {
+              "FacetQueryResult": {
+                "description": "Facet results for filtering.",
+                "properties": {
+                  "displayName": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "description": "Human-readable facet name"
+                  },
+                  "facetName": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "description": "System facet name"
+                  },
+                  "facetResults": {
+                    "anyOf": [
+                      {
+                        "items": {
+                          "$ref": "#/$defs/FacetResultItem"
+                        },
+                        "type": "array"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "description": "Individual facet result items"
+                  }
+                },
+                "type": "object"
+              },
+              "FacetResultItem": {
+                "description": "Individual facet result item.",
+                "properties": {
+                  "count": {
+                    "anyOf": [
+                      {
+                        "type": "integer"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "description": "Number of jobs matching this facet value"
+                  },
+                  "displayValue": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "description": "Human-readable facet value"
+                  },
+                  "value": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "boolean"
+                      },
+                      {
+                        "type": "integer"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "description": "System facet value"
+                  }
+                },
+                "type": "object"
+              },
+              "JobDisplayFields": {
+                "description": "Job listing information with all possible fields.",
+                "properties": {
+                  "id": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "description": "Unique job identifier"
+                  },
+                  "jobId": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "description": "Job ID from the source system"
+                  },
+                  "guid": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "description": "Global unique identifier for the job"
+                  },
+                  "title": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "description": "Job title"
+                  },
+                  "summary": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "description": "Brief job description"
+                  },
+                  "postedDate": {
+                    "anyOf": [
+                      {
+                        "format": "date-time",
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "description": "Date when the job was posted"
+                  },
+                  "modifiedDate": {
+                    "anyOf": [
+                      {
+                        "format": "date-time",
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "description": "Date when the job was last modified"
+                  },
+                  "jobLocation": {
+                    "anyOf": [
+                      {
+                        "$ref": "#/$defs/JobLocation"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "description": "Job location information"
+                  },
+                  "detailsPageUrl": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "description": "URL to the full job details page"
+                  },
+                  "salary": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "description": "Salary information if available"
+                  },
+                  "clientBrandId": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "description": "Client brand identifier"
+                  },
+                  "companyPageUrl": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "description": "URL to the company page"
+                  },
+                  "companyLogoUrl": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "description": "URL to the company logo"
+                  },
+                  "companyLogoUrlOptimized": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "description": "URL to the optimized company logo"
+                  },
+                  "positionId": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "description": "Position identifier"
+                  },
+                  "companyName": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "description": "Name of the hiring company"
+                  },
+                  "employmentType": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "description": "Type of employment"
+                  },
+                  "isHighlighted": {
+                    "anyOf": [
+                      {
+                        "type": "boolean"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "description": "Whether the job is highlighted/featured"
+                  },
+                  "score": {
+                    "anyOf": [
+                      {
+                        "type": "number"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "description": "Relevance score for the job match"
+                  },
+                  "easyApply": {
+                    "anyOf": [
+                      {
+                        "type": "boolean"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "description": "Whether the job offers easy application"
+                  },
+                  "employerType": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "description": "Type of employer"
+                  },
+                  "workFromHomeAvailability": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "description": "Work from home options"
+                  },
+                  "workplaceTypes": {
+                    "anyOf": [
+                      {
+                        "items": {
+                          "type": "string"
+                        },
+                        "type": "array"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "description": "Available workplace types"
+                  },
+                  "isRemote": {
+                    "anyOf": [
+                      {
+                        "type": "boolean"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "description": "Whether the job is fully remote"
+                  },
+                  "debug": {
+                    "anyOf": [
+                      {
+                        "additionalProperties": true,
+                        "type": "object"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "description": "Debug information (development only)"
+                  },
+                  "jobMetadata": {
+                    "anyOf": [
+                      {
+                        "additionalProperties": true,
+                        "type": "object"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "description": "Additional job metadata"
+                  },
+                  "willingToSponsor": {
+                    "anyOf": [
+                      {
+                        "type": "boolean"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "description": "Whether employer is willing to sponsor work authorization"
+                  }
+                },
+                "type": "object"
+              },
+              "JobLocation": {
+                "description": "Job location information.",
+                "properties": {
+                  "displayName": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "description": "Human-readable location name"
+                  }
+                },
+                "type": "object"
+              },
+              "JobSearchMeta": {
+                "description": "Metadata about the search results and pagination.",
+                "properties": {
+                  "currentPage": {
+                    "description": "Current page number (1-based)",
+                    "minimum": 1,
+                    "type": "integer"
+                  },
+                  "pageCount": {
+                    "description": "Total number of pages available",
+                    "minimum": 0,
+                    "type": "integer"
+                  },
+                  "pageSize": {
+                    "description": "Number of results per page",
+                    "minimum": 1,
+                    "type": "integer"
+                  },
+                  "totalResults": {
+                    "description": "Total number of jobs matching the search criteria",
+                    "minimum": 0,
+                    "type": "integer"
+                  },
+                  "facetQueryResults": {
+                    "anyOf": [
+                      {
+                        "items": {
+                          "$ref": "#/$defs/FacetQueryResult"
+                        },
+                        "type": "array"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "description": "Facet results for filtering options"
+                  },
+                  "includeRemote": {
+                    "anyOf": [
+                      {
+                        "type": "boolean"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "description": "Whether remote jobs are included in results"
+                  },
+                  "recommendedSearches": {
+                    "anyOf": [
+                      {
+                        "additionalProperties": true,
+                        "type": "object"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "description": "Recommended related searches"
+                  },
+                  "searchId": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "description": "Unique identifier for this search"
+                  },
+                  "searchedLocation": {
+                    "anyOf": [
+                      {
+                        "$ref": "#/$defs/SearchedLocation"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "description": "Information about the searched location"
+                  },
+                  "selectedFilters": {
+                    "anyOf": [
+                      {
+                        "items": {
+                          "$ref": "#/$defs/SelectedFilter"
+                        },
+                        "type": "array"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "description": "Currently applied filters"
+                  },
+                  "sortBy": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "description": "Current sort order"
+                  },
+                  "totalJobCount": {
+                    "anyOf": [
+                      {
+                        "type": "integer"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "description": "Total job count across all sources"
+                  }
+                },
+                "required": [
+                  "currentPage",
+                  "pageCount",
+                  "pageSize",
+                  "totalResults"
+                ],
+                "type": "object"
+              },
+              "PaginationLink": {
+                "description": "Pagination link.",
+                "properties": {
+                  "href": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "description": "URL for the pagination link"
+                  }
+                },
+                "type": "object"
+              },
+              "PaginationLinks": {
+                "description": "Pagination navigation links.",
+                "properties": {
+                  "first": {
+                    "anyOf": [
+                      {
+                        "$ref": "#/$defs/PaginationLink"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "description": "Link to first page"
+                  },
+                  "last": {
+                    "anyOf": [
+                      {
+                        "$ref": "#/$defs/PaginationLink"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "description": "Link to last page"
+                  },
+                  "next": {
+                    "anyOf": [
+                      {
+                        "$ref": "#/$defs/PaginationLink"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "description": "Link to next page"
+                  },
+                  "prev": {
+                    "anyOf": [
+                      {
+                        "$ref": "#/$defs/PaginationLink"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "description": "Link to previous page"
+                  },
+                  "self": {
+                    "anyOf": [
+                      {
+                        "$ref": "#/$defs/PaginationLink"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "description": "Link to current page"
+                  }
+                },
+                "type": "object"
+              },
+              "SearchedLocation": {
+                "description": "Information about the searched location.",
+                "properties": {
+                  "countryCode2": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "description": "Two-letter country code"
+                  },
+                  "radius": {
+                    "anyOf": [
+                      {
+                        "type": "number"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "description": "Search radius used"
+                  },
+                  "radiusUnit": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "description": "Unit for the search radius"
+                  }
+                },
+                "type": "object"
+              },
+              "SelectedFilter": {
+                "description": "Currently applied filter.",
+                "properties": {
+                  "displayName": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "description": "Human-readable filter name"
+                  },
+                  "filterName": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "description": "System filter name"
+                  },
+                  "selectedItems": {
+                    "anyOf": [
+                      {
+                        "items": {
+                          "$ref": "#/$defs/SelectedFilterItem"
+                        },
+                        "type": "array"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "description": "Selected filter items"
+                  }
+                },
+                "type": "object"
+              },
+              "SelectedFilterItem": {
+                "description": "Individual selected filter item.",
+                "properties": {
+                  "displayValue": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "description": "Human-readable selected value"
+                  },
+                  "value": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "description": "System selected value"
+                  }
+                },
+                "type": "object"
+              }
+            },
+            "description": "Job search results with pagination metadata.",
+            "properties": {
+              "_links": {
+                "anyOf": [
+                  {
+                    "$ref": "#/$defs/PaginationLinks"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "description": "Pagination navigation links"
+              },
+              "data": {
+                "anyOf": [
+                  {
+                    "items": {
+                      "$ref": "#/$defs/JobDisplayFields"
+                    },
+                    "type": "array"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "description": "Array of job listings matching the search criteria"
+              },
+              "meta": {
+                "anyOf": [
+                  {
+                    "$ref": "#/$defs/JobSearchMeta"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "description": "Metadata about the search results and pagination"
+              }
+            },
+            "type": "object"
+          },
+          "annotations": {
+            "title": "Job Search",
+            "readOnlyHint": true,
+            "destructiveHint": false
+          },
+          "_meta": {
+            "_fastmcp": {
+              "tags": []
+            }
+          }
+        }
+      ],
+      "python_sdk_url": "https://mcp.dice.com/mcp",
+      "python_sdk_config": "{\"debug\": false}"
+    },
+    "source_filename": "0253.Dice-MCP_labeled.json",
+    "processed_timestamp": 1772871482,
+    "processing_mode": "gateway",
+    "rank": 254
+  }
+}

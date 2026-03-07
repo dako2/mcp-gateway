@@ -1,0 +1,143 @@
+{
+  "labels": {
+    "analysis": "The MCP Server \"com.cloudflare.mcp/mcp\" provides 2 tools for web search & research tasks.",
+    "reasoning": "Primary label \"Web Search & Research\" assigned based on tool names and descriptions.",
+    "primary_label": "Web Search & Research",
+    "secondary_labels": [
+      "Browser Automation",
+      "Data Analysis & Processing",
+      "AI/ML Tools",
+      "Productivity"
+    ],
+    "custom_label": "Web Search & Research - com.cloudflare.mcp/mcp",
+    "is_connected": true,
+    "is_remote_tool_valid": true,
+    "featured_server": false
+  },
+  "metadata": {
+    "server_id": 235,
+    "server_name": "com.cloudflare.mcp/mcp",
+    "rank_by_usage": 236,
+    "usage_count": "10",
+    "original_file": "tools.json#235",
+    "mode": "gateway",
+    "timestamp": 1772871482,
+    "remote_server_response": {
+      "url": "https://docs.mcp.cloudflare.com/mcp",
+      "is_success": true,
+      "error": null,
+      "tools": [
+        {
+          "name": "search_cloudflare_documentation",
+          "description": "Search the Cloudflare documentation.\n\n\t\tThis tool should be used to answer any question about Cloudflare products or features, including:\n\t\t- Workers, Pages, R2, Images, Stream, D1, Durable Objects, KV, Workflows, Hyperdrive, Queues\n\t\t- AI Search, Workers AI, Vectorize, AI Gateway, Browser Rendering\n\t\t- Zero Trust, Access, Tunnel, Gateway, Browser Isolation, WARP, DDOS, Magic Transit, Magic WAN\n\t\t- CDN, Cache, DNS, Zaraz, Argo, Rulesets, Terraform, Account and Billing\n\n\t\tResults are returned as semantically similar chunks to the query.\n\t\t",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "query": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "query"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "annotations": {
+            "title": "Search Cloudflare docs",
+            "annotations": {
+              "readOnlyHint": true
+            }
+          }
+        },
+        {
+          "name": "migrate_pages_to_workers_guide",
+          "description": "ALWAYS read this guide before migrating Pages projects to Workers.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {},
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "annotations": {
+            "title": "Get Pages migration guide",
+            "annotations": {
+              "readOnlyHint": true
+            }
+          }
+        }
+      ],
+      "tool_count": 2,
+      "tool_names": [
+        "search_cloudflare_documentation",
+        "migrate_pages_to_workers_guide"
+      ]
+    },
+    "server_info_crawled": {
+      "id": 235,
+      "name": "com.cloudflare.mcp/mcp",
+      "author": "",
+      "overview": "com.cloudflare.mcp/mcp - Web Search & Research MCP server with 2 tools.",
+      "repository_url": "",
+      "homepage": "https://docs.mcp.cloudflare.com/mcp",
+      "remote_or_local": "Remote",
+      "license": "",
+      "usage_count": "10",
+      "success_rate": "100%",
+      "tags": [
+        "web-search-research"
+      ],
+      "categories": [
+        "web search & research"
+      ],
+      "tools_count": 2,
+      "tools": [
+        {
+          "name": "search_cloudflare_documentation",
+          "description": "Search the Cloudflare documentation.\n\n\t\tThis tool should be used to answer any question about Cloudflare products or features, including:\n\t\t- Workers, Pages, R2, Images, Stream, D1, Durable Objects, KV, Workflows, Hyperdrive, Queues\n\t\t- AI Search, Workers AI, Vectorize, AI Gateway, Browser Rendering\n\t\t- Zero Trust, Access, Tunnel, Gateway, Browser Isolation, WARP, DDOS, Magic Transit, Magic WAN\n\t\t- CDN, Cache, DNS, Zaraz, Argo, Rulesets, Terraform, Account and Billing\n\n\t\tResults are returned as semantically similar chunks to the query.\n\t\t",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "query": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "query"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "annotations": {
+            "title": "Search Cloudflare docs",
+            "annotations": {
+              "readOnlyHint": true
+            }
+          }
+        },
+        {
+          "name": "migrate_pages_to_workers_guide",
+          "description": "ALWAYS read this guide before migrating Pages projects to Workers.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {},
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "annotations": {
+            "title": "Get Pages migration guide",
+            "annotations": {
+              "readOnlyHint": true
+            }
+          }
+        }
+      ],
+      "python_sdk_url": "https://docs.mcp.cloudflare.com/mcp",
+      "python_sdk_config": "{\"debug\": false}"
+    },
+    "source_filename": "0235.comcloudflaremcpmcp_labeled.json",
+    "processed_timestamp": 1772871482,
+    "processing_mode": "gateway",
+    "rank": 236
+  }
+}

@@ -1,0 +1,281 @@
+{
+  "labels": {
+    "analysis": "The MCP Server \"CleanSlice\" provides 4 tools for development tools tasks.",
+    "reasoning": "Primary label \"Development Tools\" assigned based on tool names and descriptions.",
+    "primary_label": "Development Tools",
+    "secondary_labels": [
+      "API Integration",
+      "DevOps",
+      "Web Search & Research",
+      "DNS & Networking"
+    ],
+    "custom_label": "Development Tools - CleanSlice",
+    "is_connected": true,
+    "is_remote_tool_valid": true,
+    "featured_server": false
+  },
+  "metadata": {
+    "server_id": 176,
+    "server_name": "CleanSlice",
+    "rank_by_usage": 177,
+    "usage_count": "10",
+    "original_file": "tools.json#176",
+    "mode": "gateway",
+    "timestamp": 1772871482,
+    "remote_server_response": {
+      "url": "https://mcp.cleanslice.org/mcp",
+      "is_success": true,
+      "error": null,
+      "tools": [
+        {
+          "name": "get-started",
+          "description": "⚠️ CRITICAL: request this tool first before creating any code! Returns essential slice creation rules. READ THIS FIRST before creating any slices! Contains the MOST IMPORTANT naming rule: ALWAYS use SINGULAR names (user/ not users/).",
+          "inputSchema": {
+            "type": "object",
+            "properties": {},
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          }
+        },
+        {
+          "name": "list-categories",
+          "description": "List all available documentation categories. Use this to discover what categories are available before searching.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {},
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          }
+        },
+        {
+          "name": "search",
+          "description": "Search for relevant documentation. Use `list-categories` first to see available categories. Filter by query text, framework, phase, feature, category, or tags. Returns documents sorted by relevance.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "query": {
+                "type": "string",
+                "description": "Search query text (searches in document names, descriptions, and keywords)"
+              },
+              "framework": {
+                "type": "string",
+                "description": "Framework identifier (e.g., nestjs, nuxt)"
+              },
+              "sliceName": {
+                "type": "string",
+                "description": "Name of the slice to find documentation for"
+              },
+              "phase": {
+                "type": "string",
+                "enum": [
+                  "initialization",
+                  "setup",
+                  "implementation",
+                  "testing",
+                  "deployment"
+                ],
+                "description": "Development phase to filter by"
+              },
+              "feature": {
+                "type": "string",
+                "description": "Feature name (e.g., authentication, user-management, file-upload)"
+              },
+              "workingOn": {
+                "type": "string",
+                "enum": [
+                  "api",
+                  "app",
+                  "admin",
+                  "full-stack"
+                ],
+                "description": "Which application you are currently working on"
+              },
+              "category": {
+                "type": "string",
+                "description": "Category filter (e.g., quickstart, pattern, best-practices)"
+              },
+              "tags": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "Array of tags to filter by"
+              },
+              "limit": {
+                "type": "integer",
+                "exclusiveMinimum": 0,
+                "description": "Max results to return (default: 5)"
+              },
+              "offset": {
+                "type": "integer",
+                "minimum": 0,
+                "description": "Number of results to skip for pagination (default: 0)"
+              }
+            },
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          }
+        },
+        {
+          "name": "read-doc",
+          "description": "Read the full content of a specific document by path. Use this after `search` to get the complete document when snippets are not enough.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "path": {
+                "type": "string",
+                "description": "Document path from search results"
+              }
+            },
+            "required": [
+              "path"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          }
+        }
+      ],
+      "tool_count": 4,
+      "tool_names": [
+        "get-started",
+        "list-categories",
+        "search",
+        "read-doc"
+      ]
+    },
+    "server_info_crawled": {
+      "id": 176,
+      "name": "CleanSlice",
+      "author": "",
+      "overview": "CleanSlice - Development Tools MCP server with 4 tools.",
+      "repository_url": "",
+      "homepage": "https://mcp.cleanslice.org/mcp",
+      "remote_or_local": "Remote",
+      "license": "",
+      "usage_count": "10",
+      "success_rate": "100%",
+      "tags": [
+        "development-tools"
+      ],
+      "categories": [
+        "development tools"
+      ],
+      "tools_count": 4,
+      "tools": [
+        {
+          "name": "get-started",
+          "description": "⚠️ CRITICAL: request this tool first before creating any code! Returns essential slice creation rules. READ THIS FIRST before creating any slices! Contains the MOST IMPORTANT naming rule: ALWAYS use SINGULAR names (user/ not users/).",
+          "inputSchema": {
+            "type": "object",
+            "properties": {},
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          }
+        },
+        {
+          "name": "list-categories",
+          "description": "List all available documentation categories. Use this to discover what categories are available before searching.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {},
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          }
+        },
+        {
+          "name": "search",
+          "description": "Search for relevant documentation. Use `list-categories` first to see available categories. Filter by query text, framework, phase, feature, category, or tags. Returns documents sorted by relevance.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "query": {
+                "type": "string",
+                "description": "Search query text (searches in document names, descriptions, and keywords)"
+              },
+              "framework": {
+                "type": "string",
+                "description": "Framework identifier (e.g., nestjs, nuxt)"
+              },
+              "sliceName": {
+                "type": "string",
+                "description": "Name of the slice to find documentation for"
+              },
+              "phase": {
+                "type": "string",
+                "enum": [
+                  "initialization",
+                  "setup",
+                  "implementation",
+                  "testing",
+                  "deployment"
+                ],
+                "description": "Development phase to filter by"
+              },
+              "feature": {
+                "type": "string",
+                "description": "Feature name (e.g., authentication, user-management, file-upload)"
+              },
+              "workingOn": {
+                "type": "string",
+                "enum": [
+                  "api",
+                  "app",
+                  "admin",
+                  "full-stack"
+                ],
+                "description": "Which application you are currently working on"
+              },
+              "category": {
+                "type": "string",
+                "description": "Category filter (e.g., quickstart, pattern, best-practices)"
+              },
+              "tags": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "Array of tags to filter by"
+              },
+              "limit": {
+                "type": "integer",
+                "exclusiveMinimum": 0,
+                "description": "Max results to return (default: 5)"
+              },
+              "offset": {
+                "type": "integer",
+                "minimum": 0,
+                "description": "Number of results to skip for pagination (default: 0)"
+              }
+            },
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          }
+        },
+        {
+          "name": "read-doc",
+          "description": "Read the full content of a specific document by path. Use this after `search` to get the complete document when snippets are not enough.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "path": {
+                "type": "string",
+                "description": "Document path from search results"
+              }
+            },
+            "required": [
+              "path"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          }
+        }
+      ],
+      "python_sdk_url": "https://mcp.cleanslice.org/mcp",
+      "python_sdk_config": "{\"debug\": false}"
+    },
+    "source_filename": "0176.CleanSlice_labeled.json",
+    "processed_timestamp": 1772871482,
+    "processing_mode": "gateway",
+    "rank": 177
+  }
+}

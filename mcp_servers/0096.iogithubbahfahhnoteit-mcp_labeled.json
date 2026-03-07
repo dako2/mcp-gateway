@@ -1,0 +1,647 @@
+{
+  "labels": {
+    "analysis": "The MCP Server \"io.github.bahfahh/noteit-mcp\" provides 8 tools for development tools tasks.",
+    "reasoning": "Primary label \"Development Tools\" assigned based on tool names and descriptions.",
+    "primary_label": "Development Tools",
+    "secondary_labels": [
+      "API Integration",
+      "DevOps",
+      "Data Analysis & Processing",
+      "Productivity"
+    ],
+    "custom_label": "Development Tools - io.github.bahfahh/noteit-mcp",
+    "is_connected": true,
+    "is_remote_tool_valid": true,
+    "featured_server": true
+  },
+  "metadata": {
+    "server_id": 96,
+    "server_name": "io.github.bahfahh/noteit-mcp",
+    "rank_by_usage": 97,
+    "usage_count": "100",
+    "original_file": "tools.json#96",
+    "mode": "gateway",
+    "timestamp": 1772871481,
+    "remote_server_response": {
+      "url": "https://www.noteit-mcp.com/api/mcp",
+      "is_success": true,
+      "error": null,
+      "tools": [
+        {
+          "name": "noteit_profiles_list",
+          "description": "List user agent profiles - configuration sets for AI behavior. When using profiles with personas, adopt their characteristics and follow any instructions provided.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "tags": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "Filter by tags"
+              },
+              "limit": {
+                "type": "number",
+                "default": 10,
+                "description": "Maximum number of results"
+              }
+            }
+          }
+        },
+        {
+          "name": "noteit_profiles_getConfig",
+          "description": "GET AGENT CONFIGURATION: Retrieve a composable AI agent configuration profile containing personas, instructions, rules, and documents. When a profile contains persona settings, adopt that persona and follow its behavioral patterns. When it contains instructions, execute those instructions as requested. Use this to get configuration settings that define how you should behave and respond for specific tasks or roles.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "profileId": {
+                "type": "string",
+                "description": "Profile ID"
+              },
+              "profileName": {
+                "type": "string",
+                "description": "Profile name"
+              },
+              "format": {
+                "type": "string",
+                "enum": [
+                  "text",
+                  "xml"
+                ],
+                "default": "text",
+                "description": "Output format"
+              }
+            }
+          }
+        },
+        {
+          "name": "noteit_profiles_generate",
+          "description": "CREATE AGENT CONFIGURATION COMPONENTS: Generate and save individual configuration components (persona, rule, document, instruction) that can be assembled into agent profiles. Use 'content' parameter with YOUR generated content. This is for building configuration sets, not for note-taking.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "resourceType": {
+                "type": "string",
+                "enum": [
+                  "persona",
+                  "rule",
+                  "document",
+                  "instruction"
+                ],
+                "description": "Type of resource to save"
+              },
+              "name": {
+                "type": "string",
+                "description": "Name for the new resource"
+              },
+              "content": {
+                "type": "string",
+                "description": "The content YOU generated (preferred)"
+              },
+              "prompt": {
+                "type": "string",
+                "description": "Legacy: prompt for template generation (fallback)"
+              },
+              "tags": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "Tags for the resource. Default to ['AI-generated'] unless user specifies otherwise."
+              },
+              "profileId": {
+                "type": "string",
+                "description": "Profile ID to link to (optional)"
+              },
+              "profileName": {
+                "type": "string",
+                "description": "Profile name to link to (optional)"
+              },
+              "addToProfile": {
+                "type": "boolean",
+                "default": true,
+                "description": "Whether to link to profile"
+              }
+            },
+            "required": [
+              "resourceType",
+              "name"
+            ]
+          }
+        },
+        {
+          "name": "noteit_notes_create",
+          "description": "Create notes with Mermaid diagram support. IMPORTANT: title ≠ projectName. title = specific note title/name, projectName = actual repository/project name the user is currently working on (e.g., 'my-ecommerce-site', 'data-analyzer', 'mobile-app'). CRITICAL: Ask user for their current project name if not specified, or infer from current working directory/context. DO NOT make up project names based on note titles. VISUAL STRATEGY BY RECORD TYPE: note(general)=balanced text+diagrams, task(todo)=primarily text-based, why(explanation)=emphasize visual diagrams for clarity, issue(problem)=diagrams when helpful for analysis. ENCOURAGE using Mermaid diagrams when appropriate - especially for database structures (erDiagram), workflows (flowchart), system architecture (graph), API sequences (sequenceDiagram). For class relationships, use SIMPLE classDiagram syntax only. Supports 4 record types (note/task/why/issue). Required: title, content, projectName. SMART TAG LOGIC: IF content is tech-related (programming, development, tools), provide exactly ONE relevant tag from: frontend, backend, database, bug-fix, feature, documentation, testing, refactor, config, api, ui, performance, security. IF content is personal/life notes (weather, diary, random thoughts), provide NO tags. IF user specifies tags, use exactly what user provides. Only provide multiple tags if user explicitly requests 'multiple tags'. Mermaid v11.10.0 COMPATIBLE types: graph TD/LR, flowchart TD/LR, sequenceDiagram, erDiagram, gantt, pie, stateDiagram, stateDiagram-v2. For classDiagram: ONLY use basic syntax (class ClassName { +field: type +method() }, inheritance with <|--). AVOID: complex classDiagram features, interfaces, annotations, multiplicity. MERMAID SAFETY CHECKLIST: use ASCII arrows (`-->`), quote labels containing spaces/CJK/special characters, avoid gitgraph, and when you define multiple `subgraph` blocks, connect them with at least one edge so clusters stay linked and render at normal scale. NOTE: This is for note-taking, separate from agent profile configuration.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "title": {
+                "type": "string",
+                "description": "Specific note title/name (required)"
+              },
+              "content": {
+                "type": "string",
+                "description": "Note content with Markdown and Mermaid support (required). Use ```mermaid blocks for diagrams."
+              },
+              "projectName": {
+                "type": "string",
+                "description": "Determine the project name as follows: 1. If the project name is already known, use it directly. 2. Otherwise, use the basename of the current working directory. 3. If that is unknown, try `git rev-parse --show-toplevel | xargs basename`. 4. If neither method works, fall back to the current directory's basename as a temporary project name (required)"
+              },
+              "recordType": {
+                "type": "string",
+                "enum": [
+                  "note",
+                  "task",
+                  "why",
+                  "issue"
+                ],
+                "description": "Record type (optional): note(general)/task(todo)/why(explanation)/issue(problem). All types support Mermaid diagrams."
+              },
+              "tags": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "SMART TAG LOGIC: IF content is tech-related (programming, development, tools), provide exactly ONE tag from: frontend, backend, database, bug-fix, feature, documentation, testing, refactor, config, api, ui, performance, security. IF content is personal/life notes (weather, diary, random thoughts), provide NO tags. IF user specifies tags, use exactly what user provides. Only provide multiple tags if user explicitly requests 'multiple tags'."
+              },
+              "templateId": {
+                "type": "string",
+                "description": "Template ID (optional)"
+              },
+              "project_name": {
+                "type": "string",
+                "description": "Determine the project name as follows: 1. If the project name is already known, use it directly. 2. Otherwise, use the basename of the current working directory. 3. If that is unknown, try `git rev-parse --show-toplevel | xargs basename`. 4. If neither method works, fall back to the current directory's basename as a temporary project name (compatibility format, optional)"
+              }
+            },
+            "required": [
+              "title",
+              "content",
+              "projectName"
+            ]
+          }
+        },
+        {
+          "name": "noteit_notes_read",
+          "description": "Read a specific note by ID",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "noteId": {
+                "type": "string",
+                "description": "Note ID"
+              }
+            },
+            "required": [
+              "noteId"
+            ]
+          }
+        },
+        {
+          "name": "noteit_notes_list",
+          "description": "List user notes with optional tag and project filtering. Use 'projectName' to filter by project, or omit for cross-project search. Results show project name for context. NOTE: This is for note-taking, separate from agent profile configuration.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "tags": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "Filter by tags"
+              },
+              "projectName": {
+                "type": "string",
+                "description": "Filter notes by project name. Use this to find notes specific to the current project."
+              },
+              "project_name": {
+                "type": "string",
+                "description": "Compatibility alias for projectName"
+              },
+              "limit": {
+                "type": "number",
+                "default": 10,
+                "description": "Maximum number of results"
+              }
+            }
+          }
+        },
+        {
+          "name": "noteit_web_create",
+          "description": "Generate interactive HTML notes to help developers UNDERSTAND complex concepts, processes, or technical details. This is a NOTE-TAKING tool (like Markdown notes, but richer HTML format) — NOT for building websites. Creates self-contained, single-file HTML explanations stored in database (private, noindex). LAYOUT SELECTION (choose based on content): (1) CENTERED NAVIGATION: Use when steps ≤ 5 OR content is simple/focused (quick tutorials, concept explanations, bug fixes). Features: pure black background, horizontal step indicators, center content. (2) SIDEBAR NAVIGATION: Use when steps ≥ 6 OR content is comprehensive (long docs, complete workflows, architecture deep-dives). Features: dark slate background, fixed left sidebar navigation. VISUAL BASELINE: Tailwind CSS (CDN), Inter/JetBrains Mono fonts, dark theme, responsive design. ENCOURAGE: animations, step indicators, code comparisons (before/after), interactive demos, smooth transitions, keyboard navigation. FOR SIDEBAR LAYOUTS: Prefer using 'App Shell' pattern (flex h-screen overflow-hidden) over 'position: fixed' to ensure stability in sandboxed environments. MERMAID DIAGRAMS (Target: Mermaid v10.9.5): Load mermaid via <script src=\"https://cdn.jsdelivr.net/npm/mermaid@10.9.5/dist/mermaid.min.js\"></script>. Write in <div class=\"mermaid\">sequenceDiagram...</div> (NO code blocks). Use dark theme - ensure text/line colors are visible on dark background. CRITICAL: participants must be ACTIVE entities (services/users) that send/receive messages - NOT passive data (Params/Payload/Config). ALWAYS quote participant aliases with spaces/CJK (participant A as \"Display Name\"). Quote labels with spaces/CJK. Do NOT use <br> or \\n in labels. Match diagram complexity to text focus. Connect multiple subgraphs with edges. CODE FORMATTING (CRITICAL): For ANY multi-line code (Python/JS/TypeScript/etc), file trees, directory structures, ALWAYS use <pre><code> tags together OR add style=\"white-space: pre-wrap; display: block;\" to <code>. Plain <code> alone compresses whitespace and newlines causing code to display as single line. ANCHOR NAVIGATION (CRITICAL for SPA): MUST add JavaScript at end of <body>: capture all anchor clicks with preventDefault/stopPropagation, use element.scrollIntoView({behavior:'smooth'}), update URL with history.replaceState. Add scroll-margin-top to sections. Implement active state switching on nav links. Use when explaining: OAuth flows, rendering pipelines, architecture, API workflows, algorithm logic. Required: title, html_content (complete <!DOCTYPE html>), projectName. Optional: description, tags, icon_name.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "title": {
+                "type": "string",
+                "description": "Specific web page title/name (required)"
+              },
+              "description": {
+                "type": "string",
+                "description": "Brief description of the web page content (optional, recommended for SEO)"
+              },
+              "html_content": {
+                "type": "string",
+                "description": "REQUIRED: Complete HTML document with <!DOCTYPE html>, <html>, <head>, and <body> tags. You MUST provide this parameter. If your IDE truncates output, retry with: Tailwind CDN, Mermaid.js for diagrams (not SVG), keep under 15KB."
+              },
+              "projectName": {
+                "type": "string",
+                "description": "Actual repository/project name the user is currently working on (required). Ask user if not specified, or infer from working directory. DO NOT make up project names."
+              },
+              "tags": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "SMART TAG LOGIC: Provide exactly ONE relevant tag from: tutorial, deployment, security, architecture, api, oauth, database, performance, guide, reference. IF user specifies tags in their message, use exactly what user provides. Only provide multiple tags if user explicitly requests 'multiple tags'. If no clear category, omit this parameter."
+              },
+              "icon_name": {
+                "type": "string",
+                "description": "Icon name from lucide-react library (e.g., 'Code', 'Database', 'Lock'). Optional."
+              },
+              "project_name": {
+                "type": "string",
+                "description": "Same as projectName (compatibility format)"
+              }
+            },
+            "required": [
+              "title",
+              "projectName"
+            ]
+          }
+        },
+        {
+          "name": "noteit_flow_create",
+          "description": "Create visual flow diagrams with NESTED DATA SUPPORT for ANY technical process visualization. Use this for: debugging flows, architecture diagrams, deployment pipelines, API workflows, algorithm steps, system interactions, or any step-by-step process. The flow is rendered as an interactive React Flow diagram with automatic layout and CHILD NODES for nested data. FLEXIBLE STRUCTURE: Design your own JSON structure - just include an array of items (steps/workflow/pipeline/scenarios). NESTED DATA: Each item can include child data (config objects, commands arrays, steps arrays, resources, metrics, etc.) which will be rendered as separate child nodes connected with dashed lines. Common patterns: {steps: [{id, label, type, detail}]} for simple linear flows, {workflow: [{id, label, type, detail, config: {...}, commands: [...], steps: [...], resources: [...]}]} for complex flows with nested metadata. Required: title, template_id (any string for categorization), explanation (detailed context explaining both main flow and nested data), flow_data (your custom JSON with at least one array field). Optional fields per item: 'type' for styling (input/process/output/error/warning/success/source/result), 'detail' for description, plus NESTED DATA FIELDS: 'config' (object), 'commands' (array of {cmd, result}), 'steps' (array of strings), 'resources' (array of objects), 'records' (array), 'metrics' (array), 'summary' (object). The renderer automatically creates child nodes for nested data and connects them with dashed lines to parent nodes. The flow appears in dashboard alongside notes.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "title": {
+                "type": "string",
+                "description": "Flow title (e.g., 'OAuth Login Flow', 'Database Migration Process')"
+              },
+              "description": {
+                "type": "string",
+                "description": "Brief summary of the flow purpose"
+              },
+              "template_id": {
+                "type": "string",
+                "description": "Template identifier for categorization. Common values: 'debug-trace', 'api-flow', 'deployment', 'architecture', 'algorithm', 'system-design', or any custom string."
+              },
+              "explanation": {
+                "type": "string",
+                "description": "Detailed explanation displayed in the left panel. Describe: What problem does this solve? What's the context? Key insights? If using nested data, explain what each child node represents."
+              },
+              "flow_data": {
+                "type": "object",
+                "description": "FLEXIBLE JSON structure for your flow with NESTED DATA SUPPORT. Must contain at least ONE array field with flow items (steps/workflow/pipeline/scenarios). Each item should have: 'id', 'label', 'type' (optional), 'detail' (optional), plus nested data fields like 'config', 'commands', 'steps', 'resources', 'records', 'metrics', 'summary'."
+              },
+              "tags": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "SMART TAG LOGIC: Provide exactly ONE relevant tag from: debug, bug-fix, architecture, testing, deployment, api, database, performance, security, workflow, algorithm, system-design. IF user specifies tags in their message, use exactly what user provides. Only provide multiple tags if user explicitly requests 'multiple tags'. If no clear category, omit this parameter."
+              },
+              "project_name": {
+                "type": "string",
+                "description": "Project name for organization (defaults to 'default')"
+              }
+            },
+            "required": [
+              "title",
+              "template_id",
+              "explanation",
+              "flow_data"
+            ]
+          }
+        }
+      ],
+      "tool_count": 8,
+      "tool_names": [
+        "noteit_profiles_list",
+        "noteit_profiles_getConfig",
+        "noteit_profiles_generate",
+        "noteit_notes_create",
+        "noteit_notes_read",
+        "noteit_notes_list",
+        "noteit_web_create",
+        "noteit_flow_create"
+      ]
+    },
+    "server_info_crawled": {
+      "id": 96,
+      "name": "io.github.bahfahh/noteit-mcp",
+      "author": "",
+      "overview": "io.github.bahfahh/noteit-mcp - Development Tools MCP server with 8 tools.",
+      "repository_url": "",
+      "homepage": "https://www.noteit-mcp.com/api/mcp",
+      "remote_or_local": "Remote",
+      "license": "",
+      "usage_count": "100",
+      "success_rate": "100%",
+      "tags": [
+        "development-tools"
+      ],
+      "categories": [
+        "development tools"
+      ],
+      "tools_count": 8,
+      "tools": [
+        {
+          "name": "noteit_profiles_list",
+          "description": "List user agent profiles - configuration sets for AI behavior. When using profiles with personas, adopt their characteristics and follow any instructions provided.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "tags": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "Filter by tags"
+              },
+              "limit": {
+                "type": "number",
+                "default": 10,
+                "description": "Maximum number of results"
+              }
+            }
+          }
+        },
+        {
+          "name": "noteit_profiles_getConfig",
+          "description": "GET AGENT CONFIGURATION: Retrieve a composable AI agent configuration profile containing personas, instructions, rules, and documents. When a profile contains persona settings, adopt that persona and follow its behavioral patterns. When it contains instructions, execute those instructions as requested. Use this to get configuration settings that define how you should behave and respond for specific tasks or roles.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "profileId": {
+                "type": "string",
+                "description": "Profile ID"
+              },
+              "profileName": {
+                "type": "string",
+                "description": "Profile name"
+              },
+              "format": {
+                "type": "string",
+                "enum": [
+                  "text",
+                  "xml"
+                ],
+                "default": "text",
+                "description": "Output format"
+              }
+            }
+          }
+        },
+        {
+          "name": "noteit_profiles_generate",
+          "description": "CREATE AGENT CONFIGURATION COMPONENTS: Generate and save individual configuration components (persona, rule, document, instruction) that can be assembled into agent profiles. Use 'content' parameter with YOUR generated content. This is for building configuration sets, not for note-taking.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "resourceType": {
+                "type": "string",
+                "enum": [
+                  "persona",
+                  "rule",
+                  "document",
+                  "instruction"
+                ],
+                "description": "Type of resource to save"
+              },
+              "name": {
+                "type": "string",
+                "description": "Name for the new resource"
+              },
+              "content": {
+                "type": "string",
+                "description": "The content YOU generated (preferred)"
+              },
+              "prompt": {
+                "type": "string",
+                "description": "Legacy: prompt for template generation (fallback)"
+              },
+              "tags": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "Tags for the resource. Default to ['AI-generated'] unless user specifies otherwise."
+              },
+              "profileId": {
+                "type": "string",
+                "description": "Profile ID to link to (optional)"
+              },
+              "profileName": {
+                "type": "string",
+                "description": "Profile name to link to (optional)"
+              },
+              "addToProfile": {
+                "type": "boolean",
+                "default": true,
+                "description": "Whether to link to profile"
+              }
+            },
+            "required": [
+              "resourceType",
+              "name"
+            ]
+          }
+        },
+        {
+          "name": "noteit_notes_create",
+          "description": "Create notes with Mermaid diagram support. IMPORTANT: title ≠ projectName. title = specific note title/name, projectName = actual repository/project name the user is currently working on (e.g., 'my-ecommerce-site', 'data-analyzer', 'mobile-app'). CRITICAL: Ask user for their current project name if not specified, or infer from current working directory/context. DO NOT make up project names based on note titles. VISUAL STRATEGY BY RECORD TYPE: note(general)=balanced text+diagrams, task(todo)=primarily text-based, why(explanation)=emphasize visual diagrams for clarity, issue(problem)=diagrams when helpful for analysis. ENCOURAGE using Mermaid diagrams when appropriate - especially for database structures (erDiagram), workflows (flowchart), system architecture (graph), API sequences (sequenceDiagram). For class relationships, use SIMPLE classDiagram syntax only. Supports 4 record types (note/task/why/issue). Required: title, content, projectName. SMART TAG LOGIC: IF content is tech-related (programming, development, tools), provide exactly ONE relevant tag from: frontend, backend, database, bug-fix, feature, documentation, testing, refactor, config, api, ui, performance, security. IF content is personal/life notes (weather, diary, random thoughts), provide NO tags. IF user specifies tags, use exactly what user provides. Only provide multiple tags if user explicitly requests 'multiple tags'. Mermaid v11.10.0 COMPATIBLE types: graph TD/LR, flowchart TD/LR, sequenceDiagram, erDiagram, gantt, pie, stateDiagram, stateDiagram-v2. For classDiagram: ONLY use basic syntax (class ClassName { +field: type +method() }, inheritance with <|--). AVOID: complex classDiagram features, interfaces, annotations, multiplicity. MERMAID SAFETY CHECKLIST: use ASCII arrows (`-->`), quote labels containing spaces/CJK/special characters, avoid gitgraph, and when you define multiple `subgraph` blocks, connect them with at least one edge so clusters stay linked and render at normal scale. NOTE: This is for note-taking, separate from agent profile configuration.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "title": {
+                "type": "string",
+                "description": "Specific note title/name (required)"
+              },
+              "content": {
+                "type": "string",
+                "description": "Note content with Markdown and Mermaid support (required). Use ```mermaid blocks for diagrams."
+              },
+              "projectName": {
+                "type": "string",
+                "description": "Determine the project name as follows: 1. If the project name is already known, use it directly. 2. Otherwise, use the basename of the current working directory. 3. If that is unknown, try `git rev-parse --show-toplevel | xargs basename`. 4. If neither method works, fall back to the current directory's basename as a temporary project name (required)"
+              },
+              "recordType": {
+                "type": "string",
+                "enum": [
+                  "note",
+                  "task",
+                  "why",
+                  "issue"
+                ],
+                "description": "Record type (optional): note(general)/task(todo)/why(explanation)/issue(problem). All types support Mermaid diagrams."
+              },
+              "tags": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "SMART TAG LOGIC: IF content is tech-related (programming, development, tools), provide exactly ONE tag from: frontend, backend, database, bug-fix, feature, documentation, testing, refactor, config, api, ui, performance, security. IF content is personal/life notes (weather, diary, random thoughts), provide NO tags. IF user specifies tags, use exactly what user provides. Only provide multiple tags if user explicitly requests 'multiple tags'."
+              },
+              "templateId": {
+                "type": "string",
+                "description": "Template ID (optional)"
+              },
+              "project_name": {
+                "type": "string",
+                "description": "Determine the project name as follows: 1. If the project name is already known, use it directly. 2. Otherwise, use the basename of the current working directory. 3. If that is unknown, try `git rev-parse --show-toplevel | xargs basename`. 4. If neither method works, fall back to the current directory's basename as a temporary project name (compatibility format, optional)"
+              }
+            },
+            "required": [
+              "title",
+              "content",
+              "projectName"
+            ]
+          }
+        },
+        {
+          "name": "noteit_notes_read",
+          "description": "Read a specific note by ID",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "noteId": {
+                "type": "string",
+                "description": "Note ID"
+              }
+            },
+            "required": [
+              "noteId"
+            ]
+          }
+        },
+        {
+          "name": "noteit_notes_list",
+          "description": "List user notes with optional tag and project filtering. Use 'projectName' to filter by project, or omit for cross-project search. Results show project name for context. NOTE: This is for note-taking, separate from agent profile configuration.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "tags": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "Filter by tags"
+              },
+              "projectName": {
+                "type": "string",
+                "description": "Filter notes by project name. Use this to find notes specific to the current project."
+              },
+              "project_name": {
+                "type": "string",
+                "description": "Compatibility alias for projectName"
+              },
+              "limit": {
+                "type": "number",
+                "default": 10,
+                "description": "Maximum number of results"
+              }
+            }
+          }
+        },
+        {
+          "name": "noteit_web_create",
+          "description": "Generate interactive HTML notes to help developers UNDERSTAND complex concepts, processes, or technical details. This is a NOTE-TAKING tool (like Markdown notes, but richer HTML format) — NOT for building websites. Creates self-contained, single-file HTML explanations stored in database (private, noindex). LAYOUT SELECTION (choose based on content): (1) CENTERED NAVIGATION: Use when steps ≤ 5 OR content is simple/focused (quick tutorials, concept explanations, bug fixes). Features: pure black background, horizontal step indicators, center content. (2) SIDEBAR NAVIGATION: Use when steps ≥ 6 OR content is comprehensive (long docs, complete workflows, architecture deep-dives). Features: dark slate background, fixed left sidebar navigation. VISUAL BASELINE: Tailwind CSS (CDN), Inter/JetBrains Mono fonts, dark theme, responsive design. ENCOURAGE: animations, step indicators, code comparisons (before/after), interactive demos, smooth transitions, keyboard navigation. FOR SIDEBAR LAYOUTS: Prefer using 'App Shell' pattern (flex h-screen overflow-hidden) over 'position: fixed' to ensure stability in sandboxed environments. MERMAID DIAGRAMS (Target: Mermaid v10.9.5): Load mermaid via <script src=\"https://cdn.jsdelivr.net/npm/mermaid@10.9.5/dist/mermaid.min.js\"></script>. Write in <div class=\"mermaid\">sequenceDiagram...</div> (NO code blocks). Use dark theme - ensure text/line colors are visible on dark background. CRITICAL: participants must be ACTIVE entities (services/users) that send/receive messages - NOT passive data (Params/Payload/Config). ALWAYS quote participant aliases with spaces/CJK (participant A as \"Display Name\"). Quote labels with spaces/CJK. Do NOT use <br> or \\n in labels. Match diagram complexity to text focus. Connect multiple subgraphs with edges. CODE FORMATTING (CRITICAL): For ANY multi-line code (Python/JS/TypeScript/etc), file trees, directory structures, ALWAYS use <pre><code> tags together OR add style=\"white-space: pre-wrap; display: block;\" to <code>. Plain <code> alone compresses whitespace and newlines causing code to display as single line. ANCHOR NAVIGATION (CRITICAL for SPA): MUST add JavaScript at end of <body>: capture all anchor clicks with preventDefault/stopPropagation, use element.scrollIntoView({behavior:'smooth'}), update URL with history.replaceState. Add scroll-margin-top to sections. Implement active state switching on nav links. Use when explaining: OAuth flows, rendering pipelines, architecture, API workflows, algorithm logic. Required: title, html_content (complete <!DOCTYPE html>), projectName. Optional: description, tags, icon_name.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "title": {
+                "type": "string",
+                "description": "Specific web page title/name (required)"
+              },
+              "description": {
+                "type": "string",
+                "description": "Brief description of the web page content (optional, recommended for SEO)"
+              },
+              "html_content": {
+                "type": "string",
+                "description": "REQUIRED: Complete HTML document with <!DOCTYPE html>, <html>, <head>, and <body> tags. You MUST provide this parameter. If your IDE truncates output, retry with: Tailwind CDN, Mermaid.js for diagrams (not SVG), keep under 15KB."
+              },
+              "projectName": {
+                "type": "string",
+                "description": "Actual repository/project name the user is currently working on (required). Ask user if not specified, or infer from working directory. DO NOT make up project names."
+              },
+              "tags": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "SMART TAG LOGIC: Provide exactly ONE relevant tag from: tutorial, deployment, security, architecture, api, oauth, database, performance, guide, reference. IF user specifies tags in their message, use exactly what user provides. Only provide multiple tags if user explicitly requests 'multiple tags'. If no clear category, omit this parameter."
+              },
+              "icon_name": {
+                "type": "string",
+                "description": "Icon name from lucide-react library (e.g., 'Code', 'Database', 'Lock'). Optional."
+              },
+              "project_name": {
+                "type": "string",
+                "description": "Same as projectName (compatibility format)"
+              }
+            },
+            "required": [
+              "title",
+              "projectName"
+            ]
+          }
+        },
+        {
+          "name": "noteit_flow_create",
+          "description": "Create visual flow diagrams with NESTED DATA SUPPORT for ANY technical process visualization. Use this for: debugging flows, architecture diagrams, deployment pipelines, API workflows, algorithm steps, system interactions, or any step-by-step process. The flow is rendered as an interactive React Flow diagram with automatic layout and CHILD NODES for nested data. FLEXIBLE STRUCTURE: Design your own JSON structure - just include an array of items (steps/workflow/pipeline/scenarios). NESTED DATA: Each item can include child data (config objects, commands arrays, steps arrays, resources, metrics, etc.) which will be rendered as separate child nodes connected with dashed lines. Common patterns: {steps: [{id, label, type, detail}]} for simple linear flows, {workflow: [{id, label, type, detail, config: {...}, commands: [...], steps: [...], resources: [...]}]} for complex flows with nested metadata. Required: title, template_id (any string for categorization), explanation (detailed context explaining both main flow and nested data), flow_data (your custom JSON with at least one array field). Optional fields per item: 'type' for styling (input/process/output/error/warning/success/source/result), 'detail' for description, plus NESTED DATA FIELDS: 'config' (object), 'commands' (array of {cmd, result}), 'steps' (array of strings), 'resources' (array of objects), 'records' (array), 'metrics' (array), 'summary' (object). The renderer automatically creates child nodes for nested data and connects them with dashed lines to parent nodes. The flow appears in dashboard alongside notes.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "title": {
+                "type": "string",
+                "description": "Flow title (e.g., 'OAuth Login Flow', 'Database Migration Process')"
+              },
+              "description": {
+                "type": "string",
+                "description": "Brief summary of the flow purpose"
+              },
+              "template_id": {
+                "type": "string",
+                "description": "Template identifier for categorization. Common values: 'debug-trace', 'api-flow', 'deployment', 'architecture', 'algorithm', 'system-design', or any custom string."
+              },
+              "explanation": {
+                "type": "string",
+                "description": "Detailed explanation displayed in the left panel. Describe: What problem does this solve? What's the context? Key insights? If using nested data, explain what each child node represents."
+              },
+              "flow_data": {
+                "type": "object",
+                "description": "FLEXIBLE JSON structure for your flow with NESTED DATA SUPPORT. Must contain at least ONE array field with flow items (steps/workflow/pipeline/scenarios). Each item should have: 'id', 'label', 'type' (optional), 'detail' (optional), plus nested data fields like 'config', 'commands', 'steps', 'resources', 'records', 'metrics', 'summary'."
+              },
+              "tags": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "SMART TAG LOGIC: Provide exactly ONE relevant tag from: debug, bug-fix, architecture, testing, deployment, api, database, performance, security, workflow, algorithm, system-design. IF user specifies tags in their message, use exactly what user provides. Only provide multiple tags if user explicitly requests 'multiple tags'. If no clear category, omit this parameter."
+              },
+              "project_name": {
+                "type": "string",
+                "description": "Project name for organization (defaults to 'default')"
+              }
+            },
+            "required": [
+              "title",
+              "template_id",
+              "explanation",
+              "flow_data"
+            ]
+          }
+        }
+      ],
+      "python_sdk_url": "https://www.noteit-mcp.com/api/mcp",
+      "python_sdk_config": "{\"debug\": false}"
+    },
+    "source_filename": "0096.iogithubbahfahhnoteit-mcp_labeled.json",
+    "processed_timestamp": 1772871481,
+    "processing_mode": "gateway",
+    "rank": 97
+  }
+}

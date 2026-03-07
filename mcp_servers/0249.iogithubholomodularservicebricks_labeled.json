@@ -1,0 +1,242 @@
+{
+  "labels": {
+    "analysis": "The MCP Server \"io.github.holomodular/servicebricks\" provides 1 tools for development tools tasks.",
+    "reasoning": "Primary label \"Development Tools\" assigned based on tool names and descriptions.",
+    "primary_label": "Development Tools",
+    "secondary_labels": [
+      "API Integration",
+      "DevOps",
+      "AI/ML Tools",
+      "File Management"
+    ],
+    "custom_label": "Development Tools - io.github.holomodular/servicebricks",
+    "is_connected": true,
+    "is_remote_tool_valid": true,
+    "featured_server": false
+  },
+  "metadata": {
+    "server_id": 249,
+    "server_name": "io.github.holomodular/servicebricks",
+    "rank_by_usage": 250,
+    "usage_count": "10",
+    "original_file": "tools.json#249",
+    "mode": "gateway",
+    "timestamp": 1772871482,
+    "remote_server_response": {
+      "url": "https://servicebricks.com/api/mcp",
+      "is_success": true,
+      "error": null,
+      "tools": [
+        {
+          "name": "generate_microservice_zip",
+          "description": "Generates a ServiceBricks C# microservice as a ZIP file.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "prompt": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "prompt"
+            ]
+          },
+          "outputSchema": {
+            "type": "object",
+            "properties": {
+              "content": {
+                "type": "array",
+                "items": {}
+              },
+              "structuredContent": true,
+              "isError": {
+                "type": [
+                  "boolean",
+                  "null"
+                ]
+              },
+              "task": {
+                "type": [
+                  "object",
+                  "null"
+                ],
+                "properties": {
+                  "taskId": {
+                    "type": "string"
+                  },
+                  "status": {
+                    "type": "string",
+                    "enum": [
+                      "working",
+                      "input_required",
+                      "completed",
+                      "failed",
+                      "cancelled"
+                    ]
+                  },
+                  "statusMessage": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "createdAt": {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  "lastUpdatedAt": {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  "ttl": true,
+                  "pollInterval": true
+                },
+                "required": [
+                  "taskId",
+                  "status",
+                  "createdAt",
+                  "lastUpdatedAt"
+                ]
+              },
+              "_meta": {
+                "type": [
+                  "object",
+                  "null"
+                ]
+              }
+            }
+          },
+          "annotations": {
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false,
+            "readOnlyHint": true
+          },
+          "execution": {
+            "taskSupport": "optional"
+          }
+        }
+      ],
+      "tool_count": 1,
+      "tool_names": [
+        "generate_microservice_zip"
+      ]
+    },
+    "server_info_crawled": {
+      "id": 249,
+      "name": "io.github.holomodular/servicebricks",
+      "author": "",
+      "overview": "io.github.holomodular/servicebricks - Development Tools MCP server with 1 tools.",
+      "repository_url": "",
+      "homepage": "https://servicebricks.com/api/mcp",
+      "remote_or_local": "Remote",
+      "license": "",
+      "usage_count": "10",
+      "success_rate": "100%",
+      "tags": [
+        "development-tools"
+      ],
+      "categories": [
+        "development tools"
+      ],
+      "tools_count": 1,
+      "tools": [
+        {
+          "name": "generate_microservice_zip",
+          "description": "Generates a ServiceBricks C# microservice as a ZIP file.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "prompt": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "prompt"
+            ]
+          },
+          "outputSchema": {
+            "type": "object",
+            "properties": {
+              "content": {
+                "type": "array",
+                "items": {}
+              },
+              "structuredContent": true,
+              "isError": {
+                "type": [
+                  "boolean",
+                  "null"
+                ]
+              },
+              "task": {
+                "type": [
+                  "object",
+                  "null"
+                ],
+                "properties": {
+                  "taskId": {
+                    "type": "string"
+                  },
+                  "status": {
+                    "type": "string",
+                    "enum": [
+                      "working",
+                      "input_required",
+                      "completed",
+                      "failed",
+                      "cancelled"
+                    ]
+                  },
+                  "statusMessage": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "createdAt": {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  "lastUpdatedAt": {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  "ttl": true,
+                  "pollInterval": true
+                },
+                "required": [
+                  "taskId",
+                  "status",
+                  "createdAt",
+                  "lastUpdatedAt"
+                ]
+              },
+              "_meta": {
+                "type": [
+                  "object",
+                  "null"
+                ]
+              }
+            }
+          },
+          "annotations": {
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false,
+            "readOnlyHint": true
+          },
+          "execution": {
+            "taskSupport": "optional"
+          }
+        }
+      ],
+      "python_sdk_url": "https://servicebricks.com/api/mcp",
+      "python_sdk_config": "{\"debug\": false}"
+    },
+    "source_filename": "0249.iogithubholomodularservicebricks_labeled.json",
+    "processed_timestamp": 1772871482,
+    "processing_mode": "gateway",
+    "rank": 250
+  }
+}

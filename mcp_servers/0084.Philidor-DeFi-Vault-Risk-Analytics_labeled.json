@@ -1,0 +1,589 @@
+{
+  "labels": {
+    "analysis": "The MCP Server \"Philidor DeFi Vault Risk Analytics\" provides 10 tools for development tools tasks.",
+    "reasoning": "Primary label \"Development Tools\" assigned based on tool names and descriptions.",
+    "primary_label": "Development Tools",
+    "secondary_labels": [
+      "API Integration",
+      "DevOps",
+      "Data Analysis & Processing",
+      "AI/ML Tools"
+    ],
+    "custom_label": "Development Tools - Philidor DeFi Vault Risk Analytics",
+    "is_connected": true,
+    "is_remote_tool_valid": true,
+    "featured_server": true
+  },
+  "metadata": {
+    "server_id": 84,
+    "server_name": "Philidor DeFi Vault Risk Analytics",
+    "rank_by_usage": 85,
+    "usage_count": "480",
+    "original_file": "tools.json#84",
+    "mode": "gateway",
+    "timestamp": 1772871481,
+    "remote_server_response": {
+      "url": "https://mcp.philidor.io/api/mcp",
+      "is_success": true,
+      "error": null,
+      "tools": [
+        {
+          "name": "search_vaults",
+          "description": "Search and filter DeFi vaults by chain, protocol, asset, risk tier, TVL, and more. Returns a paginated list with risk scores and APR.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "query": {
+                "type": "string",
+                "description": "Search by vault name, symbol, asset, protocol, or curator"
+              },
+              "chain": {
+                "type": "string",
+                "description": "Filter by chain name (e.g. Ethereum, Base, Arbitrum)"
+              },
+              "protocol": {
+                "type": "string",
+                "description": "Filter by protocol ID (e.g. morpho, aave-v3, yearn-v3)"
+              },
+              "asset": {
+                "type": "string",
+                "description": "Filter by asset symbol (e.g. USDC, WETH)"
+              },
+              "riskTier": {
+                "type": "string",
+                "description": "Filter by risk tier: Prime, Core, or Edge"
+              },
+              "minTvl": {
+                "type": "number",
+                "description": "Minimum TVL in USD"
+              },
+              "sortBy": {
+                "type": "string",
+                "description": "Sort field: tvl_usd, apr_net, name, last_synced_at"
+              },
+              "sortOrder": {
+                "type": "string",
+                "description": "Sort order: asc or desc"
+              },
+              "limit": {
+                "type": "number",
+                "description": "Max results (default 10, max 50)"
+              }
+            },
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "get_vault",
+          "description": "Get detailed information about a specific DeFi vault including risk breakdown, recent events, and historical snapshots. Lookup by ID or by network + address.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "description": "Vault ID (e.g. morpho-ethereum-0x...)"
+              },
+              "network": {
+                "type": "string",
+                "description": "Network slug (e.g. ethereum, base, arbitrum)"
+              },
+              "address": {
+                "type": "string",
+                "description": "Vault contract address (0x...)"
+              }
+            },
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "get_vault_risk_breakdown",
+          "description": "Get a detailed breakdown of a vault's risk vectors: Asset Composition, Platform Code, and Governance scores with sub-metrics.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "network": {
+                "type": "string",
+                "description": "Network slug (e.g. ethereum, base, arbitrum)"
+              },
+              "address": {
+                "type": "string",
+                "description": "Vault contract address (0x...)"
+              }
+            },
+            "required": [
+              "network",
+              "address"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "compare_vaults",
+          "description": "Compare 2-3 DeFi vaults side-by-side on TVL, APR, risk score, risk tier, audited status, and more.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "vaults": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "network": {
+                      "type": "string",
+                      "description": "Network slug (e.g. ethereum, base)"
+                    },
+                    "address": {
+                      "type": "string",
+                      "description": "Vault contract address (0x...)"
+                    }
+                  },
+                  "required": [
+                    "network",
+                    "address"
+                  ],
+                  "additionalProperties": false
+                },
+                "minItems": 2,
+                "maxItems": 3,
+                "description": "Array of 2-3 vaults to compare"
+              }
+            },
+            "required": [
+              "vaults"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "find_safest_vaults",
+          "description": "Find the safest (highest risk-scored) DeFi vaults, optionally filtered by asset, chain, or minimum TVL. Returns top 10 audited, high-confidence vaults sorted by risk score.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "asset": {
+                "type": "string",
+                "description": "Filter by asset symbol (e.g. USDC, WETH)"
+              },
+              "chain": {
+                "type": "string",
+                "description": "Filter by chain name (e.g. Ethereum, Base)"
+              },
+              "minTvl": {
+                "type": "number",
+                "description": "Minimum TVL in USD"
+              }
+            },
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "get_protocol_info",
+          "description": "Get detailed information about a DeFi protocol including TVL, vault count, versions, auditors, and security incidents.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "protocolId": {
+                "type": "string",
+                "description": "Protocol ID (e.g. morpho, aave-v3, yearn-v3, beefy)"
+              }
+            },
+            "required": [
+              "protocolId"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "get_curator_info",
+          "description": "Get detailed information about a vault curator including their managed vaults, TVL, chain distribution, and performance.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "curatorId": {
+                "type": "string",
+                "description": "Curator ID"
+              }
+            },
+            "required": [
+              "curatorId"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "get_market_overview",
+          "description": "Get a high-level overview of the DeFi vault market: total TVL, vault count, risk distribution, and TVL by protocol.",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {}
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "explain_risk_score",
+          "description": "Explain what a Philidor risk score means, including the tier (Prime/Core/Edge), how it is calculated, and what the thresholds are.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "score": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 10,
+                "description": "Risk score (0-10) to explain"
+              }
+            },
+            "required": [
+              "score"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "list_vaults_with_incidents",
+          "description": "List all vaults that had a recent critical incident (last 365 days). Critical = severity Critical or incident_severity major. Results are sorted by TVL descending, then by time since event ascending (most recent first).",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {}
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        }
+      ],
+      "tool_count": 10,
+      "tool_names": [
+        "search_vaults",
+        "get_vault",
+        "get_vault_risk_breakdown",
+        "compare_vaults",
+        "find_safest_vaults",
+        "get_protocol_info",
+        "get_curator_info",
+        "get_market_overview",
+        "explain_risk_score",
+        "list_vaults_with_incidents"
+      ]
+    },
+    "server_info_crawled": {
+      "id": 84,
+      "name": "Philidor DeFi Vault Risk Analytics",
+      "author": "",
+      "overview": "Philidor DeFi Vault Risk Analytics - Development Tools MCP server with 10 tools.",
+      "repository_url": "",
+      "homepage": "https://mcp.philidor.io/api/mcp",
+      "remote_or_local": "Remote",
+      "license": "",
+      "usage_count": "480",
+      "success_rate": "100%",
+      "tags": [
+        "development-tools"
+      ],
+      "categories": [
+        "development tools"
+      ],
+      "tools_count": 10,
+      "tools": [
+        {
+          "name": "search_vaults",
+          "description": "Search and filter DeFi vaults by chain, protocol, asset, risk tier, TVL, and more. Returns a paginated list with risk scores and APR.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "query": {
+                "type": "string",
+                "description": "Search by vault name, symbol, asset, protocol, or curator"
+              },
+              "chain": {
+                "type": "string",
+                "description": "Filter by chain name (e.g. Ethereum, Base, Arbitrum)"
+              },
+              "protocol": {
+                "type": "string",
+                "description": "Filter by protocol ID (e.g. morpho, aave-v3, yearn-v3)"
+              },
+              "asset": {
+                "type": "string",
+                "description": "Filter by asset symbol (e.g. USDC, WETH)"
+              },
+              "riskTier": {
+                "type": "string",
+                "description": "Filter by risk tier: Prime, Core, or Edge"
+              },
+              "minTvl": {
+                "type": "number",
+                "description": "Minimum TVL in USD"
+              },
+              "sortBy": {
+                "type": "string",
+                "description": "Sort field: tvl_usd, apr_net, name, last_synced_at"
+              },
+              "sortOrder": {
+                "type": "string",
+                "description": "Sort order: asc or desc"
+              },
+              "limit": {
+                "type": "number",
+                "description": "Max results (default 10, max 50)"
+              }
+            },
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "get_vault",
+          "description": "Get detailed information about a specific DeFi vault including risk breakdown, recent events, and historical snapshots. Lookup by ID or by network + address.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "description": "Vault ID (e.g. morpho-ethereum-0x...)"
+              },
+              "network": {
+                "type": "string",
+                "description": "Network slug (e.g. ethereum, base, arbitrum)"
+              },
+              "address": {
+                "type": "string",
+                "description": "Vault contract address (0x...)"
+              }
+            },
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "get_vault_risk_breakdown",
+          "description": "Get a detailed breakdown of a vault's risk vectors: Asset Composition, Platform Code, and Governance scores with sub-metrics.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "network": {
+                "type": "string",
+                "description": "Network slug (e.g. ethereum, base, arbitrum)"
+              },
+              "address": {
+                "type": "string",
+                "description": "Vault contract address (0x...)"
+              }
+            },
+            "required": [
+              "network",
+              "address"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "compare_vaults",
+          "description": "Compare 2-3 DeFi vaults side-by-side on TVL, APR, risk score, risk tier, audited status, and more.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "vaults": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "network": {
+                      "type": "string",
+                      "description": "Network slug (e.g. ethereum, base)"
+                    },
+                    "address": {
+                      "type": "string",
+                      "description": "Vault contract address (0x...)"
+                    }
+                  },
+                  "required": [
+                    "network",
+                    "address"
+                  ],
+                  "additionalProperties": false
+                },
+                "minItems": 2,
+                "maxItems": 3,
+                "description": "Array of 2-3 vaults to compare"
+              }
+            },
+            "required": [
+              "vaults"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "find_safest_vaults",
+          "description": "Find the safest (highest risk-scored) DeFi vaults, optionally filtered by asset, chain, or minimum TVL. Returns top 10 audited, high-confidence vaults sorted by risk score.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "asset": {
+                "type": "string",
+                "description": "Filter by asset symbol (e.g. USDC, WETH)"
+              },
+              "chain": {
+                "type": "string",
+                "description": "Filter by chain name (e.g. Ethereum, Base)"
+              },
+              "minTvl": {
+                "type": "number",
+                "description": "Minimum TVL in USD"
+              }
+            },
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "get_protocol_info",
+          "description": "Get detailed information about a DeFi protocol including TVL, vault count, versions, auditors, and security incidents.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "protocolId": {
+                "type": "string",
+                "description": "Protocol ID (e.g. morpho, aave-v3, yearn-v3, beefy)"
+              }
+            },
+            "required": [
+              "protocolId"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "get_curator_info",
+          "description": "Get detailed information about a vault curator including their managed vaults, TVL, chain distribution, and performance.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "curatorId": {
+                "type": "string",
+                "description": "Curator ID"
+              }
+            },
+            "required": [
+              "curatorId"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "get_market_overview",
+          "description": "Get a high-level overview of the DeFi vault market: total TVL, vault count, risk distribution, and TVL by protocol.",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {}
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "explain_risk_score",
+          "description": "Explain what a Philidor risk score means, including the tier (Prime/Core/Edge), how it is calculated, and what the thresholds are.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "score": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 10,
+                "description": "Risk score (0-10) to explain"
+              }
+            },
+            "required": [
+              "score"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "list_vaults_with_incidents",
+          "description": "List all vaults that had a recent critical incident (last 365 days). Critical = severity Critical or incident_severity major. Results are sorted by TVL descending, then by time since event ascending (most recent first).",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {}
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        }
+      ],
+      "python_sdk_url": "https://mcp.philidor.io/api/mcp",
+      "python_sdk_config": "{\"debug\": false}"
+    },
+    "source_filename": "0084.Philidor-DeFi-Vault-Risk-Analytics_labeled.json",
+    "processed_timestamp": 1772871481,
+    "processing_mode": "gateway",
+    "rank": 85
+  }
+}

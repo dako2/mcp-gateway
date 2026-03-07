@@ -1,0 +1,264 @@
+{
+  "labels": {
+    "analysis": "The MCP Server \"Iskra Solana Reputation\" provides 3 tools for web search & research tasks.",
+    "reasoning": "Primary label \"Web Search & Research\" assigned based on tool names and descriptions.",
+    "primary_label": "Web Search & Research",
+    "secondary_labels": [
+      "Browser Automation",
+      "Data Analysis & Processing",
+      "Cryptocurrency & Blockchain",
+      "Development Tools"
+    ],
+    "custom_label": "Web Search & Research - Iskra Solana Reputation",
+    "is_connected": true,
+    "is_remote_tool_valid": true,
+    "featured_server": false
+  },
+  "metadata": {
+    "server_id": 192,
+    "server_name": "Iskra Solana Reputation",
+    "rank_by_usage": 193,
+    "usage_count": "10",
+    "original_file": "tools.json#192",
+    "mode": "gateway",
+    "timestamp": 1772871482,
+    "remote_server_response": {
+      "url": "https://api.iskra-bot.xyz/mcp",
+      "is_success": true,
+      "error": null,
+      "tools": [
+        {
+          "name": "create_job",
+          "description": "Hire Iskra for a task. Returns job_id and SOL price. Tasks: reputation (0.0001 SOL), batch_reputation (0.0005 SOL), research (0.0001 SOL), token_safety (0.0002 SOL), tx_safety (0.0002 SOL).",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "task": {
+                "type": "string",
+                "enum": [
+                  "reputation",
+                  "batch_reputation",
+                  "research",
+                  "token_safety",
+                  "tx_safety",
+                  "escrow_verify"
+                ],
+                "description": "Task type. escrow_verify is FREE."
+              },
+              "address": {
+                "type": "string",
+                "description": "Solana wallet address (reputation task)"
+              },
+              "addresses": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "Up to 10 addresses (batch_reputation)"
+              },
+              "query": {
+                "type": "string",
+                "description": "Search query (research task)"
+              },
+              "mint": {
+                "type": "string",
+                "description": "Token mint address (token_safety task)"
+              },
+              "signature": {
+                "type": "string",
+                "description": "Transaction signature to analyze (tx_safety task)"
+              },
+              "instructions": {
+                "type": "array",
+                "description": "Decoded instructions array (tx_safety task)"
+              },
+              "programs": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "Program IDs list (tx_safety quick check)"
+              }
+            },
+            "required": [
+              "task"
+            ]
+          }
+        },
+        {
+          "name": "deliver_job",
+          "description": "Submit payment tx for a job and receive result. Send required SOL to CnNWvxmanXLeKZwSLANEnrCoyoHgyvv9MwUiQZCwHRAq, then call this with the job_id and tx signature.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "job_id": {
+                "type": "string",
+                "description": "Job ID from create_job"
+              },
+              "payment_tx": {
+                "type": "string",
+                "description": "Solana transaction signature of your SOL payment"
+              }
+            },
+            "required": [
+              "job_id",
+              "payment_tx"
+            ]
+          }
+        },
+        {
+          "name": "solana_reputation",
+          "description": "[Legacy] Direct reputation check with payment tx. Prefer create_job + deliver_job. Price: 0.0001 SOL OR 0.01 USDC.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "address": {
+                "type": "string"
+              },
+              "payment_tx": {
+                "type": "string",
+                "description": "Tx hash of 0.0001 SOL or 0.01 USDC payment to CnNWvxmanXLeKZwSLANEnrCoyoHgyvv9MwUiQZCwHRAq"
+              }
+            },
+            "required": [
+              "address",
+              "payment_tx"
+            ]
+          }
+        }
+      ],
+      "tool_count": 3,
+      "tool_names": [
+        "create_job",
+        "deliver_job",
+        "solana_reputation"
+      ]
+    },
+    "server_info_crawled": {
+      "id": 192,
+      "name": "Iskra Solana Reputation",
+      "author": "",
+      "overview": "Iskra Solana Reputation - Web Search & Research MCP server with 3 tools.",
+      "repository_url": "",
+      "homepage": "https://api.iskra-bot.xyz/mcp",
+      "remote_or_local": "Remote",
+      "license": "",
+      "usage_count": "10",
+      "success_rate": "100%",
+      "tags": [
+        "web-search-research"
+      ],
+      "categories": [
+        "web search & research"
+      ],
+      "tools_count": 3,
+      "tools": [
+        {
+          "name": "create_job",
+          "description": "Hire Iskra for a task. Returns job_id and SOL price. Tasks: reputation (0.0001 SOL), batch_reputation (0.0005 SOL), research (0.0001 SOL), token_safety (0.0002 SOL), tx_safety (0.0002 SOL).",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "task": {
+                "type": "string",
+                "enum": [
+                  "reputation",
+                  "batch_reputation",
+                  "research",
+                  "token_safety",
+                  "tx_safety",
+                  "escrow_verify"
+                ],
+                "description": "Task type. escrow_verify is FREE."
+              },
+              "address": {
+                "type": "string",
+                "description": "Solana wallet address (reputation task)"
+              },
+              "addresses": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "Up to 10 addresses (batch_reputation)"
+              },
+              "query": {
+                "type": "string",
+                "description": "Search query (research task)"
+              },
+              "mint": {
+                "type": "string",
+                "description": "Token mint address (token_safety task)"
+              },
+              "signature": {
+                "type": "string",
+                "description": "Transaction signature to analyze (tx_safety task)"
+              },
+              "instructions": {
+                "type": "array",
+                "description": "Decoded instructions array (tx_safety task)"
+              },
+              "programs": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "Program IDs list (tx_safety quick check)"
+              }
+            },
+            "required": [
+              "task"
+            ]
+          }
+        },
+        {
+          "name": "deliver_job",
+          "description": "Submit payment tx for a job and receive result. Send required SOL to CnNWvxmanXLeKZwSLANEnrCoyoHgyvv9MwUiQZCwHRAq, then call this with the job_id and tx signature.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "job_id": {
+                "type": "string",
+                "description": "Job ID from create_job"
+              },
+              "payment_tx": {
+                "type": "string",
+                "description": "Solana transaction signature of your SOL payment"
+              }
+            },
+            "required": [
+              "job_id",
+              "payment_tx"
+            ]
+          }
+        },
+        {
+          "name": "solana_reputation",
+          "description": "[Legacy] Direct reputation check with payment tx. Prefer create_job + deliver_job. Price: 0.0001 SOL OR 0.01 USDC.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "address": {
+                "type": "string"
+              },
+              "payment_tx": {
+                "type": "string",
+                "description": "Tx hash of 0.0001 SOL or 0.01 USDC payment to CnNWvxmanXLeKZwSLANEnrCoyoHgyvv9MwUiQZCwHRAq"
+              }
+            },
+            "required": [
+              "address",
+              "payment_tx"
+            ]
+          }
+        }
+      ],
+      "python_sdk_url": "https://api.iskra-bot.xyz/mcp",
+      "python_sdk_config": "{\"debug\": false}"
+    },
+    "source_filename": "0192.Iskra-Solana-Reputation_labeled.json",
+    "processed_timestamp": 1772871482,
+    "processing_mode": "gateway",
+    "rank": 193
+  }
+}

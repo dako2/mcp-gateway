@@ -1,0 +1,1106 @@
+{
+  "labels": {
+    "analysis": "The MCP Server \"Senzing\" provides 13 tools for development tools tasks.",
+    "reasoning": "Primary label \"Development Tools\" assigned based on tool names and descriptions.",
+    "primary_label": "Development Tools",
+    "secondary_labels": [
+      "API Integration",
+      "DevOps",
+      "Data Analysis & Processing",
+      "Web Search & Research"
+    ],
+    "custom_label": "Development Tools - Senzing",
+    "is_connected": true,
+    "is_remote_tool_valid": true,
+    "featured_server": true
+  },
+  "metadata": {
+    "server_id": 69,
+    "server_name": "Senzing",
+    "rank_by_usage": 70,
+    "usage_count": "620",
+    "original_file": "tools.json#69",
+    "mode": "gateway",
+    "timestamp": 1772871481,
+    "remote_server_response": {
+      "url": "https://mcp.senzing.com/mcp",
+      "is_success": true,
+      "error": null,
+      "tools": [
+        {
+          "name": "sdk_guide",
+          "description": "Guided Senzing SDK setup across 5 platforms (linux_apt, linux_yum, macos_arm, windows, docker) and 4 languages (Python, Java, C#, Rust). Two use cases: (1) Quick test load — install Senzing locally, load mapped data into SQLite, and verify entity resolution results. No external database needed. (2) Build your own pipeline — get platform-specific install commands, SDK configuration code, record loading templates, and export patterns for production use. Topics: install, configure, load, export, full_pipeline. Returns decision trees when platform/language not specified.",
+          "inputSchema": {
+            "$schema": "https://json-schema.org/draft/2020-12/schema",
+            "properties": {
+              "data_sources": {
+                "default": null,
+                "description": "Data sources to register (for configure topic)",
+                "items": {
+                  "type": "string"
+                },
+                "nullable": true,
+                "type": "array"
+              },
+              "input_file": {
+                "default": null,
+                "description": "Input file path (for load topic)",
+                "nullable": true,
+                "type": "string"
+              },
+              "language": {
+                "default": null,
+                "description": "Programming language. Omit to get the language decision tree.",
+                "nullable": true,
+                "type": "string"
+              },
+              "max_records": {
+                "default": null,
+                "description": "Explicit record cap",
+                "format": "uint64",
+                "minimum": 0,
+                "nullable": true,
+                "type": "integer"
+              },
+              "platform": {
+                "default": null,
+                "description": "Target platform. Omit to get the platform decision tree.",
+                "nullable": true,
+                "type": "string"
+              },
+              "record_count": {
+                "default": null,
+                "description": "Number of records to load",
+                "format": "uint64",
+                "minimum": 0,
+                "nullable": true,
+                "type": "integer"
+              },
+              "sample_only": {
+                "default": null,
+                "description": "Cap loading at DEFAULT_LICENSE_LIMIT (500)",
+                "nullable": true,
+                "type": "boolean"
+              },
+              "topic": {
+                "description": "Topic: \"install\", \"configure\", \"load\", \"export\", or \"full_pipeline\"",
+                "type": "string"
+              },
+              "version": {
+                "default": "current",
+                "description": "Senzing version (default \"current\")",
+                "type": "string"
+              }
+            },
+            "required": [
+              "topic"
+            ],
+            "title": "SdkGuideRequest",
+            "type": "object"
+          },
+          "annotations": {
+            "title": "SDK Setup Guide",
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "submit_feedback",
+          "description": "Submit feedback about the Senzing MCP server. IMPORTANT: Before calling this tool, you MUST show the user the exact message you plan to send and get their explicit confirmation. Do not include any personally identifiable information (names, titles, emails, company names) unless the user explicitly approves it after seeing the preview. Feedback is reviewed by the Senzing team. Feedback is not anonymous — submissions are logged and reviewed",
+          "inputSchema": {
+            "$schema": "https://json-schema.org/draft/2020-12/schema",
+            "description": "Request to submit feedback about the Senzing MCP server",
+            "properties": {
+              "category": {
+                "default": null,
+                "description": "Category of feedback: bug, feature, question, or general (defaults to general)",
+                "nullable": true,
+                "type": "string"
+              },
+              "message": {
+                "description": "Feedback message to send to the maintainer",
+                "type": "string"
+              }
+            },
+            "required": [
+              "message"
+            ],
+            "title": "SubmitFeedbackRequest",
+            "type": "object"
+          },
+          "annotations": {
+            "title": "Submit Feedback",
+            "readOnlyHint": false,
+            "destructiveHint": true,
+            "idempotentHint": false,
+            "openWorldHint": true
+          }
+        },
+        {
+          "name": "generate_scaffold",
+          "description": "Generate SDK scaffold code for common workflows. Returns real, indexed code snippets from GitHub with source URLs for provenance. Languages: python, java, csharp, rust. Workflows: initialize, configure, add_records, delete, query, redo, stewardship, information, full_pipeline (aliases accepted: init, config, ingest, remove, search, redoer, force_resolve, info, e2e). V3 supports Python and Java only.",
+          "inputSchema": {
+            "$schema": "https://json-schema.org/draft/2020-12/schema",
+            "description": "Request to generate scaffold code",
+            "properties": {
+              "language": {
+                "description": "Programming language: python, java, csharp (or c#, cs, dotnet), rust (or rs)",
+                "type": "string"
+              },
+              "version": {
+                "description": "Senzing version: \"4.0\", \"current\", or \"3.x\". V3 supports Python and Java only",
+                "type": "string"
+              },
+              "workflow": {
+                "description": "Workflow to scaffold: initialize, configure, add_records, delete, query, redo, stewardship, information, full_pipeline. Aliases accepted (e.g. init, config, ingest, remove, search, redoer, force_resolve, info, e2e)",
+                "type": "string"
+              }
+            },
+            "required": [
+              "language",
+              "workflow",
+              "version"
+            ],
+            "title": "GenerateScaffoldRequest",
+            "type": "object"
+          },
+          "annotations": {
+            "title": "Generate SDK Scaffold",
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "mapping_workflow",
+          "description": "Map source data to Senzing entity resolution format through a guided multi-step workflow. Transforms source fields into validated Senzing JSON with profiling, entity planning, field mapping, code generation, and QA validation. Use this when you have source data files to prepare for Senzing ingestion. Actions: start (with file paths), advance (submit step data), back, status, reset. State is client-side — return the state object from each response in the next request.",
+          "inputSchema": {
+            "$schema": "https://json-schema.org/draft/2020-12/schema",
+            "description": "MCP tool request for mapping_workflow.\n\nUses flat types (String, Value) instead of enums/structs for the JSON Schema\nso LLM clients see a simple schema without `$ref`/`$defs`/`anyOf`. The server\nparses and validates these into typed values in the handler.",
+            "properties": {
+              "action": {
+                "default": null,
+                "description": "Action to perform: start, advance, back, status, reset."
+              },
+              "data": {
+                "default": null,
+                "description": "Step-specific data (for \"advance\" action)."
+              },
+              "file_paths": {
+                "default": null,
+                "description": "Source file paths (required for \"start\" action).",
+                "items": {
+                  "type": "string"
+                },
+                "nullable": true,
+                "type": "array"
+              },
+              "state": {
+                "default": null,
+                "description": "Workflow state from previous response (required for all actions except \"start\")."
+              },
+              "version": {
+                "default": "current",
+                "description": "Senzing version (default: \"current\").",
+                "type": "string"
+              }
+            },
+            "title": "MappingWorkflowRequest",
+            "type": "object"
+          },
+          "annotations": {
+            "title": "Data Mapping Workflow",
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": false,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "lint_record",
+          "description": "Get the Senzing JSON linter script and commands to validate mapped data files client-side. Returns the Python linter script (no dependencies) with instructions. No source data is sent to the server — the LLM runs the linter locally against your files. Use this when you have pre-mapped Senzing JSON/JSONL files to validate outside of the mapping workflow.",
+          "inputSchema": {
+            "$schema": "https://json-schema.org/draft/2020-12/schema",
+            "description": "MCP tool request for lint_record.\nReturns the Python linter script and commands to run it client-side.\nNo source data is sent to the server.",
+            "properties": {
+              "file_paths": {
+                "default": null,
+                "description": "File paths to lint (Senzing JSON or JSONL files).\nCommands will be generated for each path.",
+                "items": {
+                  "type": "string"
+                },
+                "nullable": true,
+                "type": "array"
+              },
+              "version": {
+                "default": "current",
+                "description": "Senzing version (default: \"current\").",
+                "type": "string"
+              }
+            },
+            "title": "LintRecordRequest",
+            "type": "object"
+          },
+          "annotations": {
+            "title": "Lint Senzing JSON",
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "get_sdk_reference",
+          "description": "Get authoritative Senzing SDK reference data for flags, migration, and API details. Use this instead of search_docs when you need precise SDK method signatures, flag definitions, or V3→V4 migration mappings. Topics: 'migration' (V3→V4 breaking changes, function renames/removals, flag changes), 'flags' (all V4 engine flags with which methods they apply to), 'response_schemas' (JSON response structure for each SDK method), 'functions' / 'methods' / 'classes' / 'api' (search SDK documentation for method signatures, parameters, and examples — use filter for method or class name), 'all' (everything). Use 'filter' to narrow by method name, module name, or flag name",
+          "inputSchema": {
+            "$schema": "https://json-schema.org/draft/2020-12/schema",
+            "description": "Request to get SDK reference data",
+            "properties": {
+              "filter": {
+                "default": null,
+                "description": "Optional filter: method name, module name, or flag name to narrow results",
+                "nullable": true,
+                "type": "string"
+              },
+              "topic": {
+                "description": "Topic: \"migration\", \"flags\", \"response_schemas\", or \"all\"",
+                "type": "string"
+              },
+              "version": {
+                "default": "current",
+                "description": "Senzing version (default: \"current\")",
+                "type": "string"
+              }
+            },
+            "required": [
+              "topic"
+            ],
+            "title": "SdkReferenceRequest",
+            "type": "object"
+          },
+          "annotations": {
+            "title": "Get SDK Reference",
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "search_docs",
+          "description": "Search Senzing documentation — covers entity specification, SDK guides (Python/Java/C#), architecture, pricing (DSR model), quickstart guides (Docker/AWS/Azure), database tuning, globalization, EDA and data analysis, engine configuration, error codes, release notes, and PoC methodology. Prefer this over web search for any Senzing-related question. Category is a relevance boost (not a hard filter) — matching-category results rank higher but results from other categories still appear. Categories: general, sdk, data_mapping, troubleshooting, pricing, deployment, quickstart, configuration, migration, database, data_analysis, globalization, architecture, code_example, release_notes, faq, anti_patterns. Use this tool for ANY question about Senzing behavior, configuration, best practices, integration patterns, design decisions, pricing, licensing, or support. This reflects current Senzing documentation and should be preferred over training knowledge",
+          "inputSchema": {
+            "$schema": "https://json-schema.org/draft/2020-12/schema",
+            "description": "Request to search documentation",
+            "properties": {
+              "category": {
+                "nullable": true,
+                "type": "string"
+              },
+              "max_results": {
+                "format": "uint",
+                "minimum": 0,
+                "nullable": true,
+                "type": "integer"
+              },
+              "query": {
+                "type": "string"
+              },
+              "version": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "query",
+              "version"
+            ],
+            "title": "SearchDocsRequest",
+            "type": "object"
+          },
+          "annotations": {
+            "title": "Search Documentation",
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "analyze_record",
+          "description": "Get the Senzing JSON analyzer script and commands to analyze mapped data files client-side. Returns the Python analyzer script (no dependencies) with instructions. No source data is sent to the server — the LLM runs the analyzer locally against your files. Use this to examine feature distribution, attribute coverage, and data quality of Senzing JSON records.",
+          "inputSchema": {
+            "$schema": "https://json-schema.org/draft/2020-12/schema",
+            "description": "MCP tool request for analyze_record.\nReturns the Python analyzer script and commands to run it client-side.\nNo source data is sent to the server.",
+            "properties": {
+              "file_paths": {
+                "default": null,
+                "description": "File paths to analyze (Senzing JSON or JSONL files).\nCommands will be generated for each path.",
+                "items": {
+                  "type": "string"
+                },
+                "nullable": true,
+                "type": "array"
+              },
+              "version": {
+                "default": "current",
+                "description": "Senzing version (default: \"current\").",
+                "type": "string"
+              }
+            },
+            "title": "AnalyzeRecordRequest",
+            "type": "object"
+          },
+          "annotations": {
+            "title": "Analyze Senzing JSON",
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "download_resource",
+          "description": "Fallback for downloading a workflow resource when network restrictions prevent fetching from the URL provided by mapping_workflow. Returns the resource content inline. Save it to the dest path shown — do NOT read the content into your context. Available resources: sz_json_linter.py, sz_json_analyzer.py, sz_schema_generator.py, senzing_entity_specification.md, senzing_mapping_examples.md, identifier_crosswalk.json",
+          "inputSchema": {
+            "$schema": "https://json-schema.org/draft/2020-12/schema",
+            "description": "MCP tool request for download_resource.\nReturns inline content for a named workflow resource. Use this ONLY when\nnetwork restrictions prevent downloading from the URL provided in the\nmapping_workflow response. Save the content to the dest path — do NOT\nread it into your context.",
+            "properties": {
+              "filename": {
+                "description": "Resource filename to retrieve (e.g. \"sz_json_linter.py\",\n\"senzing_entity_specification.md\").",
+                "type": "string"
+              },
+              "version": {
+                "default": "current",
+                "description": "Senzing version (default: \"current\").",
+                "type": "string"
+              }
+            },
+            "required": [
+              "filename"
+            ],
+            "title": "DownloadResourceRequest",
+            "type": "object"
+          },
+          "annotations": {
+            "title": "Download Resource",
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "explain_error_code",
+          "description": "Explain a Senzing error code with causes and resolution steps. Accepts formats: SENZ0005, SENZ-0005, 0005, or just 5. Returns error class, common causes, and specific resolution guidance",
+          "inputSchema": {
+            "$schema": "https://json-schema.org/draft/2020-12/schema",
+            "description": "Request to explain an error code",
+            "properties": {
+              "error_code": {
+                "type": "string"
+              },
+              "version": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "error_code",
+              "version"
+            ],
+            "title": "ExplainErrorCodeRequest",
+            "type": "object"
+          },
+          "annotations": {
+            "title": "Explain Error Code",
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "get_sample_data",
+          "description": "Get real sample data from CORD (Collections Of Relatable Data) datasets. Use dataset='list' to discover available datasets, source='list' to see vendors within a dataset.\n\nIMPORTANT: CORD data is REAL (not synthetic) — historical snapshots for evaluation only, not operational use. Always inform the user of this.\n\nWhen records are returned, a 'download_url' in the citation provides a direct JSONL download link. Always present this download_url to the user. Do NOT download it yourself or dump raw records into the conversation — the inline records are a small preview of the data shape.",
+          "inputSchema": {
+            "$schema": "https://json-schema.org/draft/2020-12/schema",
+            "description": "Request to get sample data from CORD datasets",
+            "properties": {
+              "dataset": {
+                "description": "Dataset name (e.g., \"las-vegas\", \"london\", \"moscow\").\nOmit or use \"list\" to discover available datasets and their sources.",
+                "type": "string"
+              },
+              "limit": {
+                "format": "uint",
+                "minimum": 0,
+                "nullable": true,
+                "type": "integer"
+              },
+              "offset": {
+                "format": "uint",
+                "minimum": 0,
+                "nullable": true,
+                "type": "integer"
+              },
+              "source": {
+                "description": "Filter by data source/vendor within a dataset (e.g., \"safegraph\", \"whisard\").\nOmit to see all sources. Use \"list\" to list available sources.",
+                "nullable": true,
+                "type": "string"
+              }
+            },
+            "required": [
+              "dataset"
+            ],
+            "title": "GetSampleDataRequest",
+            "type": "object"
+          },
+          "annotations": {
+            "title": "Get Sample Data",
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "find_examples",
+          "description": "Find working code examples from 27 indexed Senzing GitHub repositories. Covers Python, Java, C#, and Rust SDK usage patterns including initialization, record ingestion, entity search, redo processing, and configuration. Also includes message queue consumers, REST API examples, and performance testing. Supports three modes: (1) Search: query for examples across all repos, (2) File listing: set repo and list_files=true to see all files in a repo, (3) File retrieval: set repo and file_path to get full file content. Use max_lines to limit large files.",
+          "inputSchema": {
+            "$schema": "https://json-schema.org/draft/2020-12/schema",
+            "description": "Request to find examples",
+            "properties": {
+              "file_path": {
+                "description": "Return full content of a specific file in the repo (requires repo parameter)",
+                "nullable": true,
+                "type": "string"
+              },
+              "language": {
+                "description": "Filter results by programming language (e.g. \"python\", \"java\", \"csharp\", \"rust\")",
+                "nullable": true,
+                "type": "string"
+              },
+              "list_files": {
+                "default": null,
+                "description": "Return the file listing for a repo instead of searching (requires repo parameter)",
+                "nullable": true,
+                "type": "boolean"
+              },
+              "max_lines": {
+                "description": "Maximum lines to return for file content (default: unlimited). Useful for large files.",
+                "format": "uint",
+                "minimum": 0,
+                "nullable": true,
+                "type": "integer"
+              },
+              "query": {
+                "default": null,
+                "description": "Search query (required for search mode, optional when using repo+file_path or repo+list_files)",
+                "nullable": true,
+                "type": "string"
+              },
+              "repo": {
+                "description": "Filter to a specific indexed repo (e.g. \"brianmacy/sz_mem-v4\"). When combined with\nfile_path, returns full file content. When combined with list_files, returns file listing.",
+                "nullable": true,
+                "type": "string"
+              }
+            },
+            "title": "FindExamplesRequest",
+            "type": "object"
+          },
+          "annotations": {
+            "title": "Find Code Examples",
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "get_capabilities",
+          "description": "Get server version, capabilities overview, available tools, suggested workflows, and getting started guidance. Returns server_info with name, version, and Senzing version. Call this first when working with Senzing entity resolution",
+          "inputSchema": {
+            "$schema": "https://json-schema.org/draft/2020-12/schema",
+            "description": "Request to get capabilities overview",
+            "properties": {
+              "version": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "version"
+            ],
+            "title": "GetCapabilitiesRequest",
+            "type": "object"
+          },
+          "annotations": {
+            "title": "Get Server Capabilities",
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        }
+      ],
+      "tool_count": 13,
+      "tool_names": [
+        "sdk_guide",
+        "submit_feedback",
+        "generate_scaffold",
+        "mapping_workflow",
+        "lint_record",
+        "get_sdk_reference",
+        "search_docs",
+        "analyze_record",
+        "download_resource",
+        "explain_error_code",
+        "get_sample_data",
+        "find_examples",
+        "get_capabilities"
+      ]
+    },
+    "server_info_crawled": {
+      "id": 69,
+      "name": "Senzing",
+      "author": "",
+      "overview": "Senzing - Development Tools MCP server with 13 tools.",
+      "repository_url": "",
+      "homepage": "https://mcp.senzing.com/mcp",
+      "remote_or_local": "Remote",
+      "license": "",
+      "usage_count": "620",
+      "success_rate": "100%",
+      "tags": [
+        "development-tools"
+      ],
+      "categories": [
+        "development tools"
+      ],
+      "tools_count": 13,
+      "tools": [
+        {
+          "name": "sdk_guide",
+          "description": "Guided Senzing SDK setup across 5 platforms (linux_apt, linux_yum, macos_arm, windows, docker) and 4 languages (Python, Java, C#, Rust). Two use cases: (1) Quick test load — install Senzing locally, load mapped data into SQLite, and verify entity resolution results. No external database needed. (2) Build your own pipeline — get platform-specific install commands, SDK configuration code, record loading templates, and export patterns for production use. Topics: install, configure, load, export, full_pipeline. Returns decision trees when platform/language not specified.",
+          "inputSchema": {
+            "$schema": "https://json-schema.org/draft/2020-12/schema",
+            "properties": {
+              "data_sources": {
+                "default": null,
+                "description": "Data sources to register (for configure topic)",
+                "items": {
+                  "type": "string"
+                },
+                "nullable": true,
+                "type": "array"
+              },
+              "input_file": {
+                "default": null,
+                "description": "Input file path (for load topic)",
+                "nullable": true,
+                "type": "string"
+              },
+              "language": {
+                "default": null,
+                "description": "Programming language. Omit to get the language decision tree.",
+                "nullable": true,
+                "type": "string"
+              },
+              "max_records": {
+                "default": null,
+                "description": "Explicit record cap",
+                "format": "uint64",
+                "minimum": 0,
+                "nullable": true,
+                "type": "integer"
+              },
+              "platform": {
+                "default": null,
+                "description": "Target platform. Omit to get the platform decision tree.",
+                "nullable": true,
+                "type": "string"
+              },
+              "record_count": {
+                "default": null,
+                "description": "Number of records to load",
+                "format": "uint64",
+                "minimum": 0,
+                "nullable": true,
+                "type": "integer"
+              },
+              "sample_only": {
+                "default": null,
+                "description": "Cap loading at DEFAULT_LICENSE_LIMIT (500)",
+                "nullable": true,
+                "type": "boolean"
+              },
+              "topic": {
+                "description": "Topic: \"install\", \"configure\", \"load\", \"export\", or \"full_pipeline\"",
+                "type": "string"
+              },
+              "version": {
+                "default": "current",
+                "description": "Senzing version (default \"current\")",
+                "type": "string"
+              }
+            },
+            "required": [
+              "topic"
+            ],
+            "title": "SdkGuideRequest",
+            "type": "object"
+          },
+          "annotations": {
+            "title": "SDK Setup Guide",
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "submit_feedback",
+          "description": "Submit feedback about the Senzing MCP server. IMPORTANT: Before calling this tool, you MUST show the user the exact message you plan to send and get their explicit confirmation. Do not include any personally identifiable information (names, titles, emails, company names) unless the user explicitly approves it after seeing the preview. Feedback is reviewed by the Senzing team. Feedback is not anonymous — submissions are logged and reviewed",
+          "inputSchema": {
+            "$schema": "https://json-schema.org/draft/2020-12/schema",
+            "description": "Request to submit feedback about the Senzing MCP server",
+            "properties": {
+              "category": {
+                "default": null,
+                "description": "Category of feedback: bug, feature, question, or general (defaults to general)",
+                "nullable": true,
+                "type": "string"
+              },
+              "message": {
+                "description": "Feedback message to send to the maintainer",
+                "type": "string"
+              }
+            },
+            "required": [
+              "message"
+            ],
+            "title": "SubmitFeedbackRequest",
+            "type": "object"
+          },
+          "annotations": {
+            "title": "Submit Feedback",
+            "readOnlyHint": false,
+            "destructiveHint": true,
+            "idempotentHint": false,
+            "openWorldHint": true
+          }
+        },
+        {
+          "name": "generate_scaffold",
+          "description": "Generate SDK scaffold code for common workflows. Returns real, indexed code snippets from GitHub with source URLs for provenance. Languages: python, java, csharp, rust. Workflows: initialize, configure, add_records, delete, query, redo, stewardship, information, full_pipeline (aliases accepted: init, config, ingest, remove, search, redoer, force_resolve, info, e2e). V3 supports Python and Java only.",
+          "inputSchema": {
+            "$schema": "https://json-schema.org/draft/2020-12/schema",
+            "description": "Request to generate scaffold code",
+            "properties": {
+              "language": {
+                "description": "Programming language: python, java, csharp (or c#, cs, dotnet), rust (or rs)",
+                "type": "string"
+              },
+              "version": {
+                "description": "Senzing version: \"4.0\", \"current\", or \"3.x\". V3 supports Python and Java only",
+                "type": "string"
+              },
+              "workflow": {
+                "description": "Workflow to scaffold: initialize, configure, add_records, delete, query, redo, stewardship, information, full_pipeline. Aliases accepted (e.g. init, config, ingest, remove, search, redoer, force_resolve, info, e2e)",
+                "type": "string"
+              }
+            },
+            "required": [
+              "language",
+              "workflow",
+              "version"
+            ],
+            "title": "GenerateScaffoldRequest",
+            "type": "object"
+          },
+          "annotations": {
+            "title": "Generate SDK Scaffold",
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "mapping_workflow",
+          "description": "Map source data to Senzing entity resolution format through a guided multi-step workflow. Transforms source fields into validated Senzing JSON with profiling, entity planning, field mapping, code generation, and QA validation. Use this when you have source data files to prepare for Senzing ingestion. Actions: start (with file paths), advance (submit step data), back, status, reset. State is client-side — return the state object from each response in the next request.",
+          "inputSchema": {
+            "$schema": "https://json-schema.org/draft/2020-12/schema",
+            "description": "MCP tool request for mapping_workflow.\n\nUses flat types (String, Value) instead of enums/structs for the JSON Schema\nso LLM clients see a simple schema without `$ref`/`$defs`/`anyOf`. The server\nparses and validates these into typed values in the handler.",
+            "properties": {
+              "action": {
+                "default": null,
+                "description": "Action to perform: start, advance, back, status, reset."
+              },
+              "data": {
+                "default": null,
+                "description": "Step-specific data (for \"advance\" action)."
+              },
+              "file_paths": {
+                "default": null,
+                "description": "Source file paths (required for \"start\" action).",
+                "items": {
+                  "type": "string"
+                },
+                "nullable": true,
+                "type": "array"
+              },
+              "state": {
+                "default": null,
+                "description": "Workflow state from previous response (required for all actions except \"start\")."
+              },
+              "version": {
+                "default": "current",
+                "description": "Senzing version (default: \"current\").",
+                "type": "string"
+              }
+            },
+            "title": "MappingWorkflowRequest",
+            "type": "object"
+          },
+          "annotations": {
+            "title": "Data Mapping Workflow",
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": false,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "lint_record",
+          "description": "Get the Senzing JSON linter script and commands to validate mapped data files client-side. Returns the Python linter script (no dependencies) with instructions. No source data is sent to the server — the LLM runs the linter locally against your files. Use this when you have pre-mapped Senzing JSON/JSONL files to validate outside of the mapping workflow.",
+          "inputSchema": {
+            "$schema": "https://json-schema.org/draft/2020-12/schema",
+            "description": "MCP tool request for lint_record.\nReturns the Python linter script and commands to run it client-side.\nNo source data is sent to the server.",
+            "properties": {
+              "file_paths": {
+                "default": null,
+                "description": "File paths to lint (Senzing JSON or JSONL files).\nCommands will be generated for each path.",
+                "items": {
+                  "type": "string"
+                },
+                "nullable": true,
+                "type": "array"
+              },
+              "version": {
+                "default": "current",
+                "description": "Senzing version (default: \"current\").",
+                "type": "string"
+              }
+            },
+            "title": "LintRecordRequest",
+            "type": "object"
+          },
+          "annotations": {
+            "title": "Lint Senzing JSON",
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "get_sdk_reference",
+          "description": "Get authoritative Senzing SDK reference data for flags, migration, and API details. Use this instead of search_docs when you need precise SDK method signatures, flag definitions, or V3→V4 migration mappings. Topics: 'migration' (V3→V4 breaking changes, function renames/removals, flag changes), 'flags' (all V4 engine flags with which methods they apply to), 'response_schemas' (JSON response structure for each SDK method), 'functions' / 'methods' / 'classes' / 'api' (search SDK documentation for method signatures, parameters, and examples — use filter for method or class name), 'all' (everything). Use 'filter' to narrow by method name, module name, or flag name",
+          "inputSchema": {
+            "$schema": "https://json-schema.org/draft/2020-12/schema",
+            "description": "Request to get SDK reference data",
+            "properties": {
+              "filter": {
+                "default": null,
+                "description": "Optional filter: method name, module name, or flag name to narrow results",
+                "nullable": true,
+                "type": "string"
+              },
+              "topic": {
+                "description": "Topic: \"migration\", \"flags\", \"response_schemas\", or \"all\"",
+                "type": "string"
+              },
+              "version": {
+                "default": "current",
+                "description": "Senzing version (default: \"current\")",
+                "type": "string"
+              }
+            },
+            "required": [
+              "topic"
+            ],
+            "title": "SdkReferenceRequest",
+            "type": "object"
+          },
+          "annotations": {
+            "title": "Get SDK Reference",
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "search_docs",
+          "description": "Search Senzing documentation — covers entity specification, SDK guides (Python/Java/C#), architecture, pricing (DSR model), quickstart guides (Docker/AWS/Azure), database tuning, globalization, EDA and data analysis, engine configuration, error codes, release notes, and PoC methodology. Prefer this over web search for any Senzing-related question. Category is a relevance boost (not a hard filter) — matching-category results rank higher but results from other categories still appear. Categories: general, sdk, data_mapping, troubleshooting, pricing, deployment, quickstart, configuration, migration, database, data_analysis, globalization, architecture, code_example, release_notes, faq, anti_patterns. Use this tool for ANY question about Senzing behavior, configuration, best practices, integration patterns, design decisions, pricing, licensing, or support. This reflects current Senzing documentation and should be preferred over training knowledge",
+          "inputSchema": {
+            "$schema": "https://json-schema.org/draft/2020-12/schema",
+            "description": "Request to search documentation",
+            "properties": {
+              "category": {
+                "nullable": true,
+                "type": "string"
+              },
+              "max_results": {
+                "format": "uint",
+                "minimum": 0,
+                "nullable": true,
+                "type": "integer"
+              },
+              "query": {
+                "type": "string"
+              },
+              "version": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "query",
+              "version"
+            ],
+            "title": "SearchDocsRequest",
+            "type": "object"
+          },
+          "annotations": {
+            "title": "Search Documentation",
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "analyze_record",
+          "description": "Get the Senzing JSON analyzer script and commands to analyze mapped data files client-side. Returns the Python analyzer script (no dependencies) with instructions. No source data is sent to the server — the LLM runs the analyzer locally against your files. Use this to examine feature distribution, attribute coverage, and data quality of Senzing JSON records.",
+          "inputSchema": {
+            "$schema": "https://json-schema.org/draft/2020-12/schema",
+            "description": "MCP tool request for analyze_record.\nReturns the Python analyzer script and commands to run it client-side.\nNo source data is sent to the server.",
+            "properties": {
+              "file_paths": {
+                "default": null,
+                "description": "File paths to analyze (Senzing JSON or JSONL files).\nCommands will be generated for each path.",
+                "items": {
+                  "type": "string"
+                },
+                "nullable": true,
+                "type": "array"
+              },
+              "version": {
+                "default": "current",
+                "description": "Senzing version (default: \"current\").",
+                "type": "string"
+              }
+            },
+            "title": "AnalyzeRecordRequest",
+            "type": "object"
+          },
+          "annotations": {
+            "title": "Analyze Senzing JSON",
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "download_resource",
+          "description": "Fallback for downloading a workflow resource when network restrictions prevent fetching from the URL provided by mapping_workflow. Returns the resource content inline. Save it to the dest path shown — do NOT read the content into your context. Available resources: sz_json_linter.py, sz_json_analyzer.py, sz_schema_generator.py, senzing_entity_specification.md, senzing_mapping_examples.md, identifier_crosswalk.json",
+          "inputSchema": {
+            "$schema": "https://json-schema.org/draft/2020-12/schema",
+            "description": "MCP tool request for download_resource.\nReturns inline content for a named workflow resource. Use this ONLY when\nnetwork restrictions prevent downloading from the URL provided in the\nmapping_workflow response. Save the content to the dest path — do NOT\nread it into your context.",
+            "properties": {
+              "filename": {
+                "description": "Resource filename to retrieve (e.g. \"sz_json_linter.py\",\n\"senzing_entity_specification.md\").",
+                "type": "string"
+              },
+              "version": {
+                "default": "current",
+                "description": "Senzing version (default: \"current\").",
+                "type": "string"
+              }
+            },
+            "required": [
+              "filename"
+            ],
+            "title": "DownloadResourceRequest",
+            "type": "object"
+          },
+          "annotations": {
+            "title": "Download Resource",
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "explain_error_code",
+          "description": "Explain a Senzing error code with causes and resolution steps. Accepts formats: SENZ0005, SENZ-0005, 0005, or just 5. Returns error class, common causes, and specific resolution guidance",
+          "inputSchema": {
+            "$schema": "https://json-schema.org/draft/2020-12/schema",
+            "description": "Request to explain an error code",
+            "properties": {
+              "error_code": {
+                "type": "string"
+              },
+              "version": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "error_code",
+              "version"
+            ],
+            "title": "ExplainErrorCodeRequest",
+            "type": "object"
+          },
+          "annotations": {
+            "title": "Explain Error Code",
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "get_sample_data",
+          "description": "Get real sample data from CORD (Collections Of Relatable Data) datasets. Use dataset='list' to discover available datasets, source='list' to see vendors within a dataset.\n\nIMPORTANT: CORD data is REAL (not synthetic) — historical snapshots for evaluation only, not operational use. Always inform the user of this.\n\nWhen records are returned, a 'download_url' in the citation provides a direct JSONL download link. Always present this download_url to the user. Do NOT download it yourself or dump raw records into the conversation — the inline records are a small preview of the data shape.",
+          "inputSchema": {
+            "$schema": "https://json-schema.org/draft/2020-12/schema",
+            "description": "Request to get sample data from CORD datasets",
+            "properties": {
+              "dataset": {
+                "description": "Dataset name (e.g., \"las-vegas\", \"london\", \"moscow\").\nOmit or use \"list\" to discover available datasets and their sources.",
+                "type": "string"
+              },
+              "limit": {
+                "format": "uint",
+                "minimum": 0,
+                "nullable": true,
+                "type": "integer"
+              },
+              "offset": {
+                "format": "uint",
+                "minimum": 0,
+                "nullable": true,
+                "type": "integer"
+              },
+              "source": {
+                "description": "Filter by data source/vendor within a dataset (e.g., \"safegraph\", \"whisard\").\nOmit to see all sources. Use \"list\" to list available sources.",
+                "nullable": true,
+                "type": "string"
+              }
+            },
+            "required": [
+              "dataset"
+            ],
+            "title": "GetSampleDataRequest",
+            "type": "object"
+          },
+          "annotations": {
+            "title": "Get Sample Data",
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "find_examples",
+          "description": "Find working code examples from 27 indexed Senzing GitHub repositories. Covers Python, Java, C#, and Rust SDK usage patterns including initialization, record ingestion, entity search, redo processing, and configuration. Also includes message queue consumers, REST API examples, and performance testing. Supports three modes: (1) Search: query for examples across all repos, (2) File listing: set repo and list_files=true to see all files in a repo, (3) File retrieval: set repo and file_path to get full file content. Use max_lines to limit large files.",
+          "inputSchema": {
+            "$schema": "https://json-schema.org/draft/2020-12/schema",
+            "description": "Request to find examples",
+            "properties": {
+              "file_path": {
+                "description": "Return full content of a specific file in the repo (requires repo parameter)",
+                "nullable": true,
+                "type": "string"
+              },
+              "language": {
+                "description": "Filter results by programming language (e.g. \"python\", \"java\", \"csharp\", \"rust\")",
+                "nullable": true,
+                "type": "string"
+              },
+              "list_files": {
+                "default": null,
+                "description": "Return the file listing for a repo instead of searching (requires repo parameter)",
+                "nullable": true,
+                "type": "boolean"
+              },
+              "max_lines": {
+                "description": "Maximum lines to return for file content (default: unlimited). Useful for large files.",
+                "format": "uint",
+                "minimum": 0,
+                "nullable": true,
+                "type": "integer"
+              },
+              "query": {
+                "default": null,
+                "description": "Search query (required for search mode, optional when using repo+file_path or repo+list_files)",
+                "nullable": true,
+                "type": "string"
+              },
+              "repo": {
+                "description": "Filter to a specific indexed repo (e.g. \"brianmacy/sz_mem-v4\"). When combined with\nfile_path, returns full file content. When combined with list_files, returns file listing.",
+                "nullable": true,
+                "type": "string"
+              }
+            },
+            "title": "FindExamplesRequest",
+            "type": "object"
+          },
+          "annotations": {
+            "title": "Find Code Examples",
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "get_capabilities",
+          "description": "Get server version, capabilities overview, available tools, suggested workflows, and getting started guidance. Returns server_info with name, version, and Senzing version. Call this first when working with Senzing entity resolution",
+          "inputSchema": {
+            "$schema": "https://json-schema.org/draft/2020-12/schema",
+            "description": "Request to get capabilities overview",
+            "properties": {
+              "version": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "version"
+            ],
+            "title": "GetCapabilitiesRequest",
+            "type": "object"
+          },
+          "annotations": {
+            "title": "Get Server Capabilities",
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        }
+      ],
+      "python_sdk_url": "https://mcp.senzing.com/mcp",
+      "python_sdk_config": "{\"debug\": false}"
+    },
+    "source_filename": "0069.Senzing_labeled.json",
+    "processed_timestamp": 1772871481,
+    "processing_mode": "gateway",
+    "rank": 70
+  }
+}

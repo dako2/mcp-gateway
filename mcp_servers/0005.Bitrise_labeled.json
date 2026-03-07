@@ -1,0 +1,4810 @@
+{
+  "labels": {
+    "analysis": "The MCP Server \"Bitrise\" provides 67 tools for development tools tasks.",
+    "reasoning": "Primary label \"Development Tools\" assigned based on tool names and descriptions.",
+    "primary_label": "Development Tools",
+    "secondary_labels": [
+      "API Integration",
+      "DevOps",
+      "Communication Tools",
+      "Data Analysis & Processing"
+    ],
+    "custom_label": "Development Tools - Bitrise",
+    "is_connected": true,
+    "is_remote_tool_valid": true,
+    "featured_server": true
+  },
+  "metadata": {
+    "server_id": 5,
+    "server_name": "Bitrise",
+    "rank_by_usage": 6,
+    "usage_count": "49,500",
+    "original_file": "tools.json#5",
+    "mode": "gateway",
+    "timestamp": 1772871481,
+    "remote_server_response": {
+      "url": "https://mcp.bitrise.io",
+      "is_success": true,
+      "error": null,
+      "tools": [
+        {
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": true,
+            "idempotentHint": true,
+            "openWorldHint": true
+          },
+          "description": "Abort a specific build.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "abort_reason": {
+                "description": "Reason for aborting the build",
+                "type": "string"
+              },
+              "abort_with_success": {
+                "default": false,
+                "description": "If set to true, the aborted build will be marked as successful",
+                "type": "boolean"
+              },
+              "app_slug": {
+                "description": "Identifier of the Bitrise app",
+                "type": "string"
+              },
+              "build_slug": {
+                "description": "Identifier of the build",
+                "type": "string"
+              },
+              "skip_git_status_report": {
+                "default": false,
+                "description": "If set to true, skip sending git status report",
+                "type": "boolean"
+              },
+              "skip_notifications": {
+                "default": false,
+                "description": "If set to true, skip sending notifications",
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "app_slug",
+              "build_slug"
+            ]
+          },
+          "name": "abort_build"
+        },
+        {
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": true,
+            "idempotentHint": true,
+            "openWorldHint": true
+          },
+          "description": "Abort a pipeline.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "abort_reason": {
+                "description": "Reason for aborting the pipeline",
+                "type": "string"
+              },
+              "abort_with_success": {
+                "default": false,
+                "description": "If set to true, the aborted pipeline will be marked as successful",
+                "type": "boolean"
+              },
+              "app_slug": {
+                "description": "Identifier of the Bitrise app",
+                "type": "string"
+              },
+              "pipeline_id": {
+                "description": "Identifier of the pipeline",
+                "type": "string"
+              },
+              "skip_notifications": {
+                "default": false,
+                "description": "If set to true, skip sending notifications",
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "app_slug",
+              "pipeline_id"
+            ]
+          },
+          "name": "abort_pipeline"
+        },
+        {
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": true,
+            "idempotentHint": false,
+            "openWorldHint": true
+          },
+          "description": "Add a member to a group.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "group_slug": {
+                "description": "Slug of the group",
+                "type": "string"
+              },
+              "user_slug": {
+                "description": "Slug of the user",
+                "type": "string"
+              }
+            },
+            "required": [
+              "group_slug",
+              "user_slug"
+            ]
+          },
+          "name": "add_member_to_group"
+        },
+        {
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": false,
+            "idempotentHint": false,
+            "openWorldHint": true
+          },
+          "description": "Adds testers to a tester group of a connected app.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "connected_app_id": {
+                "description": "The uuidV4 identifier of the related Release Management connected app.",
+                "type": "string"
+              },
+              "id": {
+                "description": "The uuidV4 identifier of the tester group to which testers will be added.",
+                "type": "string"
+              },
+              "user_slugs": {
+                "description": "The list of users identified by slugs that will be added to the tester group.",
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              }
+            },
+            "required": [
+              "connected_app_id",
+              "id",
+              "user_slugs"
+            ]
+          },
+          "name": "add_testers_to_tester_group"
+        },
+        {
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": false,
+            "idempotentHint": false,
+            "openWorldHint": true
+          },
+          "description": "Add a new Release Management connected app to Bitrise.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "description": "An uuidV4 identifier for your new connected app. If it is not given, one will be generated.",
+                "type": "string"
+              },
+              "manual_connection": {
+                "default": false,
+                "description": "If set to true it indicates a manual connection (bypassing using store api keys) and requires giving 'store_app_name' as well.",
+                "type": "boolean"
+              },
+              "platform": {
+                "description": "The mobile platform for the connected app. Available values are 'ios' and 'android'.",
+                "enum": [
+                  "ios",
+                  "android"
+                ],
+                "type": "string"
+              },
+              "project_id": {
+                "description": "Specifies which Bitrise Project you want to get the connected app to be associated with. If this field is not given a new project will be created alongside with the connected app.",
+                "type": "string"
+              },
+              "store_app_id": {
+                "description": "The app store identifier for the connected app. In case of 'ios' platform it is the bundle id from App Store Connect. In case of Android platform it is the package name.",
+                "type": "string"
+              },
+              "store_app_name": {
+                "description": "If you have no active app store API keys added on Bitrise, you can decide to add your app manually by giving the app's name as well while indicating manual connection.",
+                "type": "string"
+              },
+              "store_credential_id": {
+                "description": "If you have credentials added on Bitrise, you can decide to select one for your app. In case of ios platform it will be an Apple API credential id. In case of android platform it will be a Google Service credential id.",
+                "type": "string"
+              },
+              "workspace_slug": {
+                "description": "Identifier of the Bitrise workspace for the Release Management connected app. This field is mandatory.",
+                "type": "string"
+              }
+            },
+            "required": [
+              "platform",
+              "store_app_id",
+              "workspace_slug"
+            ]
+          },
+          "name": "create_connected_app"
+        },
+        {
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": false,
+            "idempotentHint": false,
+            "openWorldHint": true
+          },
+          "description": "Create an outgoing webhook for an app.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "app_slug": {
+                "description": "Identifier of the Bitrise app",
+                "type": "string"
+              },
+              "events": {
+                "description": "List of events to trigger the webhook",
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              "headers": {
+                "description": "Headers to be sent with the webhook",
+                "properties": {},
+                "type": "object"
+              },
+              "secret": {
+                "description": "Secret for webhook signature verification",
+                "type": "string"
+              },
+              "url": {
+                "description": "URL of the webhook",
+                "type": "string"
+              }
+            },
+            "required": [
+              "app_slug",
+              "events",
+              "url"
+            ]
+          },
+          "name": "create_outgoing_webhook"
+        },
+        {
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": false,
+            "idempotentHint": false,
+            "openWorldHint": true
+          },
+          "description": "Creates a tester group for a Release Management connected app. Tester groups can be used to distribute installable artifacts to testers automatically. When a new installable artifact is available, the tester groups can either automatically or manually be notified via email. The notification email will contain a link to the installable artifact page for the artifact within Bitrise Release Management. A Release Management connected app can have multiple tester groups. Project team members of the connected app can be selected to be testers and added to the tester group. This endpoint has an elevated access level requirement. Only the owner of the related Bitrise Workspace, a workspace manager or the related project's admin can manage tester groups.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "auto_notify": {
+                "default": false,
+                "description": "If set to true it indicates that the tester group will receive notifications automatically.",
+                "type": "boolean"
+              },
+              "connected_app_id": {
+                "description": "The uuidV4 identifier of the related Release Management connected app.",
+                "type": "string"
+              },
+              "name": {
+                "description": "The name for the new tester group. Must be unique in the scope of the connected app.",
+                "type": "string"
+              }
+            },
+            "required": [
+              "connected_app_id",
+              "name"
+            ]
+          },
+          "name": "create_tester_group"
+        },
+        {
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": false,
+            "idempotentHint": false,
+            "openWorldHint": true
+          },
+          "description": "Create a new group in a workspace.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "group_name": {
+                "description": "Name of the group",
+                "type": "string"
+              },
+              "workspace_slug": {
+                "description": "Slug of the Bitrise workspace",
+                "type": "string"
+              }
+            },
+            "required": [
+              "workspace_slug",
+              "group_name"
+            ]
+          },
+          "name": "create_workspace_group"
+        },
+        {
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": true,
+            "idempotentHint": true,
+            "openWorldHint": true
+          },
+          "description": "Delete all key-value cache items belonging to an app.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "app_slug": {
+                "description": "Identifier of the Bitrise app",
+                "type": "string"
+              }
+            },
+            "required": [
+              "app_slug"
+            ]
+          },
+          "name": "delete_all_cache_items"
+        },
+        {
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": true,
+            "idempotentHint": true,
+            "openWorldHint": true
+          },
+          "description": "Delete an app from Bitrise. When deleting apps belonging to multiple workspaces always confirm that which workspaces' apps the user wants to delete.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "app_slug": {
+                "description": "Identifier of the Bitrise app",
+                "type": "string"
+              }
+            },
+            "required": [
+              "app_slug"
+            ]
+          },
+          "name": "delete_app"
+        },
+        {
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": true,
+            "idempotentHint": true,
+            "openWorldHint": true
+          },
+          "description": "Delete a build artifact.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "app_slug": {
+                "description": "Identifier of the Bitrise app",
+                "type": "string"
+              },
+              "artifact_slug": {
+                "description": "Identifier of the artifact",
+                "type": "string"
+              },
+              "build_slug": {
+                "description": "Identifier of the build",
+                "type": "string"
+              }
+            },
+            "required": [
+              "app_slug",
+              "build_slug",
+              "artifact_slug"
+            ]
+          },
+          "name": "delete_artifact"
+        },
+        {
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": true,
+            "idempotentHint": true,
+            "openWorldHint": true
+          },
+          "description": "Delete a key-value cache item.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "app_slug": {
+                "description": "Identifier of the Bitrise app",
+                "type": "string"
+              },
+              "cache_item_id": {
+                "description": "Key of the cache item",
+                "type": "string"
+              }
+            },
+            "required": [
+              "app_slug",
+              "cache_item_id"
+            ]
+          },
+          "name": "delete_cache_item"
+        },
+        {
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": true,
+            "idempotentHint": true,
+            "openWorldHint": true
+          },
+          "description": "Delete the outgoing webhook of an app.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "app_slug": {
+                "description": "Identifier of the Bitrise app",
+                "type": "string"
+              },
+              "webhook_slug": {
+                "description": "Identifier of the webhook",
+                "type": "string"
+              }
+            },
+            "required": [
+              "app_slug",
+              "webhook_slug"
+            ]
+          },
+          "name": "delete_outgoing_webhook"
+        },
+        {
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": true,
+            "idempotentHint": false,
+            "openWorldHint": true
+          },
+          "description": "Finish the setup of a Bitrise app. If this is successful, a build can be triggered via trigger_bitrise_build. If you have access to the repository, decide the project type, the stack ID, and the config to use, based on https://stacks.bitrise.io/, and the config should be also based on the project type.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "app_slug": {
+                "description": "The slug of the Bitrise app to finish setup for.",
+                "type": "string"
+              },
+              "config": {
+                "default": "other-config",
+                "description": "The configuration preset to use for the app.",
+                "enum": [
+                  "default-android-config",
+                  "default-android-config-kts",
+                  "default-cordova-config",
+                  "default-fastlane-android-config",
+                  "default-fastlane-ios-config",
+                  "flutter-config-test-android-2",
+                  "flutter-config-test-both-0",
+                  "flutter-config-test-ios-1",
+                  "default-ionic-config",
+                  "default-ios-config",
+                  "default-java-gradle-config",
+                  "default-java-maven-config",
+                  "default-kotlin-multiplatform-config",
+                  "default-kotlin-multiplatform-config-ios",
+                  "default-kotlin-multiplatform-config-android",
+                  "default-kotlin-multiplatform-config-android-ios",
+                  "default-macos-config",
+                  "default-node-js-npm-config",
+                  "default-node-js-yarn-config",
+                  "default-react-native-config",
+                  "default-react-native-expo-config"
+                ],
+                "type": "string"
+              },
+              "project_type": {
+                "default": "other",
+                "description": "The type of project",
+                "enum": [
+                  "android",
+                  "cordova",
+                  "fastlane",
+                  "flutter",
+                  "ios",
+                  "ionic",
+                  "java",
+                  "kotlin-multiplatform",
+                  "macos",
+                  "node-js",
+                  "react-native",
+                  "other"
+                ],
+                "type": "string"
+              },
+              "stack_id": {
+                "default": "linux-docker-android-22.04",
+                "description": "The stack ID to use for the app.",
+                "type": "string"
+              }
+            },
+            "required": [
+              "app_slug",
+              "project_type",
+              "stack_id"
+            ]
+          },
+          "name": "finish_bitrise_app"
+        },
+        {
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": false,
+            "openWorldHint": true
+          },
+          "description": "Generates a signed upload url valid for 1 hour for an installable artifact to be uploaded to Bitrise Release Management. The response will contain an url that can be used to upload an artifact to Bitrise Release Management using a simple curl request with the file data that should be uploaded. The necessary headers and http method will also be in the response. This artifact will need to be processed after upload to be usable. The status of processing can be checked by making another request to a different url giving back the processed status of an installable artifact.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "branch": {
+                "description": "Optionally you can add the name of the CI branch the installable artifact has been generated on.",
+                "type": "string"
+              },
+              "connected_app_id": {
+                "description": "Identifier of the Release Management connected app for the installable artifact. This field is mandatory.",
+                "type": "string"
+              },
+              "file_name": {
+                "description": "The name of the installable artifact file (with extension) to be uploaded to Bitrise. This field is mandatory.",
+                "type": "string"
+              },
+              "file_size_bytes": {
+                "description": "The byte size of the installable artifact file to be uploaded.",
+                "type": "string"
+              },
+              "installable_artifact_id": {
+                "description": "An uuidv4 identifier generated on the client side for the installable artifact. This field is mandatory.",
+                "type": "string"
+              },
+              "with_public_page": {
+                "default": false,
+                "description": "Optionally, you can enable public install page for your artifact. This can only be enabled by Bitrise Project Admins, Bitrise Project Owners and Bitrise Workspace Admins. Changing this value without proper permissions will result in an error. The default value is false.",
+                "type": "boolean"
+              },
+              "workflow": {
+                "description": "Optionally you can add the name of the CI workflow this installable artifact has been generated by.",
+                "type": "string"
+              }
+            },
+            "required": [
+              "connected_app_id",
+              "installable_artifact_id",
+              "file_name",
+              "file_size_bytes"
+            ]
+          },
+          "name": "generate_installable_artifact_upload_url"
+        },
+        {
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": true
+          },
+          "description": "Get the details of a specific app.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "app_slug": {
+                "description": "Identifier of the Bitrise app",
+                "type": "string"
+              }
+            },
+            "required": [
+              "app_slug"
+            ]
+          },
+          "name": "get_app"
+        },
+        {
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": true
+          },
+          "description": "Get a specific build artifact.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "app_slug": {
+                "description": "Identifier of the Bitrise app",
+                "type": "string"
+              },
+              "artifact_slug": {
+                "description": "Identifier of the artifact",
+                "type": "string"
+              },
+              "build_slug": {
+                "description": "Identifier of the build",
+                "type": "string"
+              }
+            },
+            "required": [
+              "app_slug",
+              "build_slug",
+              "artifact_slug"
+            ]
+          },
+          "name": "get_artifact"
+        },
+        {
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": true
+          },
+          "description": "Get the current Bitrise YML config file of a specified Bitrise app.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "app_slug": {
+                "description": "Identifier of the Bitrise app (e.g., \"d8db74e2675d54c4\" or \"8eb495d0-f653-4eed-910b-8d6b56cc0ec7\")",
+                "type": "string"
+              }
+            },
+            "required": [
+              "app_slug"
+            ]
+          },
+          "name": "get_bitrise_yml"
+        },
+        {
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": true
+          },
+          "description": "Get a specific build of a given app.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "app_slug": {
+                "description": "Identifier of the Bitrise app",
+                "type": "string"
+              },
+              "build_slug": {
+                "description": "Identifier of the build",
+                "type": "string"
+              }
+            },
+            "required": [
+              "app_slug",
+              "build_slug"
+            ]
+          },
+          "name": "get_build"
+        },
+        {
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": true
+          },
+          "description": "Get the bitrise.yml of a build.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "app_slug": {
+                "description": "Identifier of the Bitrise app",
+                "type": "string"
+              },
+              "build_slug": {
+                "description": "Identifier of the build",
+                "type": "string"
+              }
+            },
+            "required": [
+              "app_slug",
+              "build_slug"
+            ]
+          },
+          "name": "get_build_bitrise_yml"
+        },
+        {
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": true
+          },
+          "description": "Get the build log of a specified build of a Bitrise app.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "app_slug": {
+                "description": "Identifier of the Bitrise app (e.g., \"d8db74e2675d54c4\" or \"8eb495d0-f653-4eed-910b-8d6b56cc0ec7\")",
+                "type": "string"
+              },
+              "build_slug": {
+                "description": "Identifier of the Bitrise build",
+                "type": "string"
+              },
+              "limit": {
+                "default": 2000,
+                "description": "The number of lines to read. Defaults to 2000. Set to a high value to read the entire log.",
+                "type": "number"
+              },
+              "offset": {
+                "default": 0,
+                "description": "The line number to start reading from. Defaults to 0. Set -1 to read from the end of the log. Failures are usually at the end of the log.",
+                "type": "number"
+              },
+              "step_uuid": {
+                "description": "UUID of the step to get the log for. If not provided, the full build log is returned. Always provide this value whenever possible to avoid large log responses and running out of the LLM context window.",
+                "type": "string"
+              }
+            },
+            "required": [
+              "app_slug",
+              "build_slug"
+            ]
+          },
+          "name": "get_build_log",
+          "outputSchema": {
+            "type": "object",
+            "properties": {
+              "log_lines": {
+                "description": "The requested lines of the build log.",
+                "type": "string"
+              },
+              "next_offset": {
+                "description": "The offset to use to read the next portion of the log, if any.",
+                "type": "integer"
+              },
+              "total_lines": {
+                "description": "The total number of lines in the build log.",
+                "type": "integer"
+              }
+            },
+            "required": [
+              "log_lines",
+              "total_lines"
+            ]
+          }
+        },
+        {
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": true
+          },
+          "description": "Get step statuses of a specific build of a given app.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "app_slug": {
+                "description": "Identifier of the Bitrise app",
+                "type": "string"
+              },
+              "build_slug": {
+                "description": "Identifier of the build",
+                "type": "string"
+              }
+            },
+            "required": [
+              "app_slug",
+              "build_slug"
+            ]
+          },
+          "name": "get_build_steps"
+        },
+        {
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": true
+          },
+          "description": "Get the download URL for a cache item.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "app_slug": {
+                "description": "Identifier of the Bitrise app",
+                "type": "string"
+              },
+              "cache_item_id": {
+                "description": "Key of the cache item",
+                "type": "string"
+              }
+            },
+            "required": [
+              "app_slug",
+              "cache_item_id"
+            ]
+          },
+          "name": "get_cache_item_download_url"
+        },
+        {
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": true
+          },
+          "description": "Gives back a Release Management connected app for the authenticated account.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "description": "Identifier of the Release Management connected app",
+                "type": "string"
+              }
+            },
+            "required": [
+              "id"
+            ]
+          },
+          "name": "get_connected_app"
+        },
+        {
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": true
+          },
+          "description": "Gets the processing and upload status of an installable artifact. An artifact will need to be processed after upload to be usable. This endpoint helps understanding when an uploaded installable artifacts becomes usable for later purposes.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "connected_app_id": {
+                "description": "Identifier of the Release Management connected app for the installable artifact. This field is mandatory.",
+                "type": "string"
+              },
+              "installable_artifact_id": {
+                "description": "The uuidv4 identifier for the installable artifact. This field is mandatory.",
+                "type": "string"
+              }
+            },
+            "required": [
+              "connected_app_id",
+              "installable_artifact_id"
+            ]
+          },
+          "name": "get_installable_artifact_upload_and_proc_status"
+        },
+        {
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": true
+          },
+          "description": "Get a pipeline of a given app.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "app_slug": {
+                "description": "Identifier of the Bitrise app",
+                "type": "string"
+              },
+              "pipeline_id": {
+                "description": "Identifier of the pipeline",
+                "type": "string"
+              }
+            },
+            "required": [
+              "app_slug",
+              "pipeline_id"
+            ]
+          },
+          "name": "get_pipeline"
+        },
+        {
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": true
+          },
+          "description": "Gets a list of potential testers whom can be added as testers to a specific tester group. The list consists of Bitrise users having access to the related Release Management connected app.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "connected_app_id": {
+                "description": "The uuidV4 identifier of the app the tester group is connected to. This field is mandatory.",
+                "type": "string"
+              },
+              "id": {
+                "description": "The uuidV4 identifier of the tester group. This field is mandatory.",
+                "type": "string"
+              },
+              "items_per_page": {
+                "default": 10,
+                "description": "Specifies the maximum number of potential testers to return having access to a specific connected app. Default value is 10.",
+                "type": "number"
+              },
+              "page": {
+                "default": 1,
+                "description": "Specifies which page should be returned from the whole result set in a paginated scenario. Default value is 1.",
+                "type": "number"
+              },
+              "search": {
+                "description": "Searches for potential testers based on email or username using a case-insensitive approach.",
+                "type": "string"
+              }
+            },
+            "required": [
+              "connected_app_id",
+              "id"
+            ]
+          },
+          "name": "get_potential_testers"
+        },
+        {
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": true
+          },
+          "description": "Gives back the details of the selected tester group.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "connected_app_id": {
+                "description": "The uuidV4 identifier of the app the tester group is connected to. This field is mandatory.",
+                "type": "string"
+              },
+              "id": {
+                "description": "The uuidV4 identifier of the tester group. This field is mandatory.",
+                "type": "string"
+              }
+            },
+            "required": [
+              "connected_app_id",
+              "id"
+            ]
+          },
+          "name": "get_tester_group"
+        },
+        {
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": true
+          },
+          "description": "Gives back a list of testers that has been associated with a tester group related to a specific connected app.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "connected_app_id": {
+                "description": "The uuidV4 identifier of the app the tester group is connected to. This field is mandatory.",
+                "type": "string"
+              },
+              "items_per_page": {
+                "default": 10,
+                "description": "Specifies the maximum number of testers to be returned that have been added to a tester group related to the specific connected app. Default value is 10.",
+                "type": "number"
+              },
+              "page": {
+                "default": 1,
+                "description": "Specifies which page should be returned from the whole result set in a paginated scenario. Default value is 1.",
+                "type": "number"
+              },
+              "tester_group_id": {
+                "description": "The uuidV4 identifier of a tester group. If given, only testers within this specific tester group will be returned.",
+                "type": "string"
+              }
+            },
+            "required": [
+              "connected_app_id"
+            ]
+          },
+          "name": "get_testers"
+        },
+        {
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": true
+          },
+          "description": "Get details for one workspace",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "workspace_slug": {
+                "description": "Slug of the Bitrise workspace",
+                "type": "string"
+              }
+            },
+            "required": [
+              "workspace_slug"
+            ]
+          },
+          "name": "get_workspace"
+        },
+        {
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": true
+          },
+          "description": "Get the groups in a workspace",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "workspace_slug": {
+                "description": "Slug of the Bitrise workspace",
+                "type": "string"
+              }
+            },
+            "required": [
+              "workspace_slug"
+            ]
+          },
+          "name": "get_workspace_groups"
+        },
+        {
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": true
+          },
+          "description": "Get the members of a workspace",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "workspace_slug": {
+                "description": "Slug of the Bitrise workspace",
+                "type": "string"
+              }
+            },
+            "required": [
+              "workspace_slug"
+            ]
+          },
+          "name": "get_workspace_members"
+        },
+        {
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": false,
+            "idempotentHint": false,
+            "openWorldHint": true
+          },
+          "description": "Invite new Bitrise users to a workspace.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "email": {
+                "description": "Email address of the user",
+                "type": "string"
+              },
+              "workspace_slug": {
+                "description": "Slug of the Bitrise workspace",
+                "type": "string"
+              }
+            },
+            "required": [
+              "workspace_slug",
+              "email"
+            ]
+          },
+          "name": "invite_member_to_workspace"
+        },
+        {
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": true
+          },
+          "description": "List all apps for the currently authenticated user account",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "limit": {
+                "default": 50,
+                "description": "Max number of elements per page (default: 50)",
+                "type": "number"
+              },
+              "next": {
+                "description": "Slug of the first app in the response",
+                "type": "string"
+              },
+              "project_type": {
+                "description": "Filter apps by project type (e.g., 'ios', 'android')",
+                "type": "string"
+              },
+              "sort_by": {
+                "default": "last_build_at",
+                "description": "Order of the apps. If set, you should accept the response as sorted",
+                "enum": [
+                  "last_build_at",
+                  "created_at"
+                ],
+                "type": "string"
+              },
+              "title": {
+                "description": "Filter apps by title",
+                "type": "string"
+              }
+            }
+          },
+          "name": "list_apps"
+        },
+        {
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": true
+          },
+          "description": "Get a list of all build artifacts.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "app_slug": {
+                "description": "Identifier of the Bitrise app",
+                "type": "string"
+              },
+              "build_slug": {
+                "description": "Identifier of the build",
+                "type": "string"
+              },
+              "limit": {
+                "description": "Max number of elements per page (default: 50)",
+                "type": "number"
+              },
+              "next": {
+                "description": "Slug of the first artifact in the response",
+                "type": "string"
+              }
+            },
+            "required": [
+              "app_slug",
+              "build_slug"
+            ]
+          },
+          "name": "list_artifacts"
+        },
+        {
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": true
+          },
+          "description": "List available stacks with their machine configurations and version information. When a workspace_slug is provided, returns stacks available for that workspace including any custom stacks. When omitted, returns globally available stacks.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "workspace_slug": {
+                "description": "Slug of the Bitrise workspace. When provided, lists stacks available for that workspace (including custom stacks). When omitted, lists globally available stacks.",
+                "type": "string"
+              }
+            }
+          },
+          "name": "list_available_stacks"
+        },
+        {
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": true
+          },
+          "description": "List the branches with existing builds of an app's repository.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "app_slug": {
+                "description": "Identifier of the Bitrise app",
+                "type": "string"
+              }
+            },
+            "required": [
+              "app_slug"
+            ]
+          },
+          "name": "list_branches"
+        },
+        {
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": true
+          },
+          "description": "Gives back a list of test builds for the given build distribution version.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "connected_app_id": {
+                "description": "The uuidV4 identifier of the app the build distribution is connected to. This field is mandatory.",
+                "type": "string"
+              },
+              "items_per_page": {
+                "default": 10,
+                "description": "Specifies the maximum number of test builds to return for a build distribution version per page. Default value is 10.",
+                "type": "number"
+              },
+              "page": {
+                "default": 1,
+                "description": "Specifies which page should be returned from the whole result set in a paginated scenario. Default value is 1.",
+                "type": "number"
+              },
+              "version": {
+                "description": "The version of the build distribution. This field is mandatory.",
+                "type": "string"
+              }
+            },
+            "required": [
+              "connected_app_id",
+              "version"
+            ]
+          },
+          "name": "list_build_distribution_version_test_builds"
+        },
+        {
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": true
+          },
+          "description": "Lists Build Distribution versions. Release Management offers a convenient, secure solution to distribute the builds of your mobile apps to testers without having to engage with either TestFlight or Google Play. Once you have installable artifacts, Bitrise can generate both private and public install links that testers or other stakeholders can use to install the app on real devices via over-the-air installation. Build distribution allows you to define tester groups that can receive notifications about installable artifacts. The email takes the notified testers to the test build page, from where they can install the app on their own device. Build distribution versions are the app versions available for testers.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "connected_app_id": {
+                "description": "The uuidV4 identifier of the app the build distribution is connected to. This field is mandatory.",
+                "type": "string"
+              },
+              "items_per_page": {
+                "default": 10,
+                "description": "Specifies the maximum number of build distribution versions returned per page. Default value is 10.",
+                "type": "number"
+              },
+              "page": {
+                "default": 1,
+                "description": "Specifies which page should be returned from the whole result set in a paginated scenario. Default value is 1.",
+                "type": "number"
+              }
+            },
+            "required": [
+              "connected_app_id"
+            ]
+          },
+          "name": "list_build_distribution_versions"
+        },
+        {
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": true
+          },
+          "description": "List the workflows of an app.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "app_slug": {
+                "description": "Identifier of the Bitrise app",
+                "type": "string"
+              }
+            },
+            "required": [
+              "app_slug"
+            ]
+          },
+          "name": "list_build_workflows"
+        },
+        {
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": true
+          },
+          "description": "List all the builds of a specified Bitrise app or all accessible builds.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "app_slug": {
+                "description": "Identifier of the Bitrise app",
+                "type": "string"
+              },
+              "branch": {
+                "description": "Filter builds by branch",
+                "type": "string"
+              },
+              "limit": {
+                "description": "Max number of elements per page (default: 50)",
+                "type": "number"
+              },
+              "next": {
+                "description": "Slug of the first build in the response",
+                "type": "string"
+              },
+              "sort_by": {
+                "default": "created_at",
+                "description": "Order of builds: created_at (default), running_first",
+                "enum": [
+                  "created_at",
+                  "running_first"
+                ],
+                "type": "string"
+              },
+              "status": {
+                "description": "Filter builds by status (0: not finished, 1: successful, 2: failed, 3: aborted, 4: in-progress)",
+                "enum": [
+                  "0",
+                  "1",
+                  "2",
+                  "3",
+                  "4"
+                ],
+                "type": "number"
+              },
+              "workflow": {
+                "description": "Filter builds by workflow",
+                "type": "string"
+              }
+            }
+          },
+          "name": "list_builds"
+        },
+        {
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": true
+          },
+          "description": "List the key-value cache items belonging to an app.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "app_slug": {
+                "description": "Identifier of the Bitrise app",
+                "type": "string"
+              },
+              "limit": {
+                "default": 100,
+                "description": "Max number of elements per page (default: 100)",
+                "type": "number"
+              },
+              "next": {
+                "description": "Getting cache items created before the given parameter (RFC3339 time format)",
+                "type": "string"
+              }
+            },
+            "required": [
+              "app_slug"
+            ]
+          },
+          "name": "list_cache_items"
+        },
+        {
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": true
+          },
+          "description": "List Release Management connected apps available for the authenticated account within a workspace.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "items_per_page": {
+                "default": 10,
+                "description": "Specifies the maximum number of connected apps returned per page. Default value is 10.",
+                "type": "number"
+              },
+              "page": {
+                "default": 1,
+                "description": "Specifies which page should be returned from the whole result set in a paginated scenario. Default value is 1.",
+                "type": "number"
+              },
+              "platform": {
+                "description": "Filters for a specific mobile platform for the list of connected apps. Available values are: 'ios' and 'android'.",
+                "enum": [
+                  "ios",
+                  "android"
+                ],
+                "type": "string"
+              },
+              "project_id": {
+                "description": "Specifies which Bitrise Project you want to get associated connected apps for",
+                "type": "string"
+              },
+              "search": {
+                "description": "Search by bundle ID (for ios), package name (for android), or app title (for both platforms). The filter is case-sensitive.",
+                "type": "string"
+              },
+              "workspace_slug": {
+                "description": "Identifier of the Bitrise workspace for the Release Management connected apps. This field is mandatory.",
+                "type": "string"
+              }
+            },
+            "required": [
+              "workspace_slug"
+            ]
+          },
+          "name": "list_connected_apps"
+        },
+        {
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": true
+          },
+          "description": "List group roles for an app",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "app_slug": {
+                "description": "Identifier of the Bitrise app",
+                "type": "string"
+              },
+              "role_name": {
+                "description": "Name of the role",
+                "type": "string"
+              }
+            },
+            "required": [
+              "app_slug",
+              "role_name"
+            ]
+          },
+          "name": "list_group_roles"
+        },
+        {
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": true
+          },
+          "description": "List Release Management installable artifacts of a connected app available for the authenticated account.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "after_date": {
+                "description": "A date in ISO 8601 string format specifying the start of the interval when the installable artifact to be returned was created or uploaded. This value will be defaulted to 1 month ago if distribution_ready filter is not set or set to false.",
+                "type": "string"
+              },
+              "artifact_type": {
+                "description": "Filters for a specific artifact type or file extension for the list of installable artifacts. Available values are: 'aab' and 'apk' for android artifacts and 'ipa' for ios artifacts.",
+                "enum": [
+                  "aab",
+                  "apk",
+                  "ipa"
+                ],
+                "type": "string"
+              },
+              "before_date": {
+                "description": "A date in ISO 8601 string format specifying the end of the interval when the installable artifact to be returned was created or uploaded. This value will be defaulted to the current time if distribution_ready filter is not set or set to false.",
+                "type": "string"
+              },
+              "branch": {
+                "description": "Filters for the Bitrise CI branch of the installable artifact on which it has been generated on.",
+                "type": "string"
+              },
+              "connected_app_id": {
+                "description": "Identifier of the Release Management connected app for the installable artifacts. This field is mandatory.",
+                "type": "string"
+              },
+              "distribution_ready": {
+                "description": "Filters for distribution ready installable artifacts. This means .apk and .ipa (with distribution type ad-hoc, development, or enterprise) installable artifacts.",
+                "type": "boolean"
+              },
+              "items_per_page": {
+                "default": 10,
+                "description": "Specifies the maximum number of installable artifacts to be returned per page. Default value is 10.",
+                "type": "number"
+              },
+              "page": {
+                "default": 1,
+                "description": "Specifies which page should be returned from the whole result set in a paginated scenario. Default value is 1.",
+                "type": "number"
+              },
+              "platform": {
+                "description": "Filters for a specific mobile platform for the list of installable artifacts. Available values are: 'ios' and 'android'.",
+                "enum": [
+                  "ios",
+                  "android"
+                ],
+                "type": "string"
+              },
+              "search": {
+                "description": "Search by version, filename or build number (Bitrise CI). The filter is case-sensitive.",
+                "type": "string"
+              },
+              "source": {
+                "description": "Filters for the source of installable artifacts to be returned. Available values are 'api' and 'ci'.",
+                "enum": [
+                  "api",
+                  "ci"
+                ],
+                "type": "string"
+              },
+              "store_signed": {
+                "description": "Filters for store ready installable artifacts. This means signed .aab and .ipa (with distribution type app-store) installable artifacts.",
+                "type": "boolean"
+              },
+              "version": {
+                "description": "Filters for the version this installable artifact was created for. This field is required if the distribution_ready filter is set to true.",
+                "type": "string"
+              },
+              "workflow": {
+                "description": "Filters for the Bitrise CI workflow of the installable artifact it has been generated by.",
+                "type": "string"
+              }
+            },
+            "required": [
+              "connected_app_id"
+            ]
+          },
+          "name": "list_installable_artifacts"
+        },
+        {
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": true
+          },
+          "description": "List the outgoing webhooks of an app.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "app_slug": {
+                "description": "Identifier of the Bitrise app",
+                "type": "string"
+              },
+              "limit": {
+                "description": "Max number of elements per page (default: 50)",
+                "type": "number"
+              },
+              "next": {
+                "description": "Slug of the first outgoing webhook in the response",
+                "type": "string"
+              }
+            },
+            "required": [
+              "app_slug"
+            ]
+          },
+          "name": "list_outgoing_webhooks"
+        },
+        {
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": true
+          },
+          "description": "List all pipelines and standalone builds of an app.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "after": {
+                "description": "List pipelines/standalone builds run after a given date (RFC3339 time format)",
+                "type": "string"
+              },
+              "app_slug": {
+                "description": "Identifier of the Bitrise app",
+                "type": "string"
+              },
+              "before": {
+                "description": "List pipelines/standalone builds run before a given date (RFC3339 time format)",
+                "type": "string"
+              },
+              "branch": {
+                "description": "Filter by the branch which was built",
+                "type": "string"
+              },
+              "build_number": {
+                "description": "Filter by the pipeline/standalone build number",
+                "type": "number"
+              },
+              "commit_message": {
+                "description": "Filter by the commit message of the pipeline/standalone build",
+                "type": "string"
+              },
+              "limit": {
+                "description": "Max number of elements per page (default: 10)",
+                "type": "number"
+              },
+              "pipeline": {
+                "description": "Filter by the name of the pipeline",
+                "type": "string"
+              },
+              "status": {
+                "description": "Filter by the status of the pipeline/standalone build",
+                "enum": [
+                  "on_hold",
+                  "running",
+                  "succeeded",
+                  "failed",
+                  "aborted",
+                  "succeeded_with_abort"
+                ],
+                "type": "string"
+              },
+              "trigger_event_type": {
+                "description": "Filter by the event that triggered the pipeline/standalone build",
+                "enum": [
+                  "push",
+                  "pull-request",
+                  "tag"
+                ],
+                "type": "string"
+              },
+              "workflow": {
+                "description": "Filter by the name of the workflow used for the pipeline/standalone build",
+                "type": "string"
+              }
+            },
+            "required": [
+              "app_slug"
+            ]
+          },
+          "name": "list_pipelines"
+        },
+        {
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": true
+          },
+          "description": "Gives back a list of tester groups related to a specific Release Management connected app.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "connected_app_id": {
+                "description": "The uuidV4 identifier of the app the tester group is connected to. This field is mandatory.",
+                "type": "string"
+              },
+              "items_per_page": {
+                "default": 10,
+                "description": "Specifies the maximum number of tester groups to return related to a specific connected app. Default value is 10.",
+                "type": "number"
+              },
+              "page": {
+                "default": 1,
+                "description": "Specifies which page should be returned from the whole result set in a paginated scenario. Default value is 1.",
+                "type": "number"
+              }
+            },
+            "required": [
+              "connected_app_id"
+            ]
+          },
+          "name": "list_tester_groups"
+        },
+        {
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": true
+          },
+          "description": "List the workspaces the user has access to",
+          "inputSchema": {
+            "type": "object"
+          },
+          "name": "list_workspaces"
+        },
+        {
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": true
+          },
+          "description": "Get user info for the currently authenticated user account",
+          "inputSchema": {
+            "type": "object"
+          },
+          "name": "me"
+        },
+        {
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": false,
+            "idempotentHint": false,
+            "openWorldHint": true
+          },
+          "description": "Notifies a tester group about a new test build.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "connected_app_id": {
+                "description": "The uuidV4 identifier of the related Release Management connected app.",
+                "type": "string"
+              },
+              "id": {
+                "description": "The uuidV4 identifier of the tester group whose members will be notified about the test build.",
+                "type": "string"
+              },
+              "test_build_id": {
+                "description": "The unique identifier of the test build what will be sent in the notification of the tester group.",
+                "type": "string"
+              }
+            },
+            "required": [
+              "connected_app_id",
+              "id",
+              "test_build_id"
+            ]
+          },
+          "name": "notify_tester_group"
+        },
+        {
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": true,
+            "idempotentHint": false,
+            "openWorldHint": true
+          },
+          "description": "Rebuild a pipeline.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "app_slug": {
+                "description": "Identifier of the Bitrise app",
+                "type": "string"
+              },
+              "partial": {
+                "default": false,
+                "description": "Whether to rebuild only unsuccessful workflows and their dependents",
+                "type": "boolean"
+              },
+              "pipeline_id": {
+                "description": "Identifier of the pipeline",
+                "type": "string"
+              },
+              "triggered_by": {
+                "description": "Who triggered the rebuild",
+                "type": "string"
+              }
+            },
+            "required": [
+              "app_slug",
+              "pipeline_id"
+            ]
+          },
+          "name": "rebuild_pipeline"
+        },
+        {
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": false,
+            "idempotentHint": false,
+            "openWorldHint": true
+          },
+          "description": "Add a new app to Bitrise. After this app should be finished on order to be registered completely on Bitrise (via the finish_bitrise_app tool). Before doing this step, try understanding the repository details from the repository URL. This is a two-step process. First, you register the app with the Bitrise API, and then you finish the setup. The first step creates a new app in Bitrise, and the second step configures it with the necessary settings. If the user has multiple workspaces, always prompt the user to choose which one you should use. Don't prompt the user for finishing the app, just do it automatically.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "default_branch_name": {
+                "default": "master",
+                "description": "The default branch of the repository. Verify this branch exists in the remote repository.",
+                "type": "string"
+              },
+              "is_public": {
+                "description": "Whether the app's builds visibility is \"public\"",
+                "type": "boolean"
+              },
+              "manual_approval_enabled": {
+                "default": true,
+                "description": "Toggles whether manual approval should be enabled for the app's builds",
+                "type": "boolean"
+              },
+              "organization_slug": {
+                "description": "The organization (aka workspace) the app to add to",
+                "type": "string"
+              },
+              "provider": {
+                "default": "github",
+                "description": "The git provider of the repository",
+                "enum": [
+                  "bitbucket",
+                  "bitbucket-server",
+                  "custom",
+                  "github",
+                  "github-app",
+                  "github-self-hosted",
+                  "gitlab",
+                  "gitlab-self-hosted"
+                ],
+                "type": "string"
+              },
+              "repo_url": {
+                "description": "Repository URL",
+                "type": "string"
+              },
+              "title": {
+                "description": "The title of the application (if not specified, will use the git repository's name)",
+                "type": "string"
+              }
+            },
+            "required": [
+              "repo_url",
+              "is_public",
+              "organization_slug"
+            ]
+          },
+          "name": "register_app"
+        },
+        {
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": true,
+            "idempotentHint": false,
+            "openWorldHint": true
+          },
+          "description": "Add an SSH-key to a specific app.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "app_slug": {
+                "description": "Identifier of the Bitrise app",
+                "type": "string"
+              },
+              "auth_ssh_private_key": {
+                "description": "Private SSH key",
+                "type": "string"
+              },
+              "auth_ssh_public_key": {
+                "description": "Public SSH key",
+                "type": "string"
+              },
+              "is_register_key_into_provider_service": {
+                "description": "Register the key in the provider service",
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "app_slug",
+              "auth_ssh_private_key",
+              "auth_ssh_public_key"
+            ]
+          },
+          "name": "register_ssh_key"
+        },
+        {
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": false,
+            "idempotentHint": false,
+            "openWorldHint": true
+          },
+          "description": "Register an incoming webhook for a specific application.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "app_slug": {
+                "description": "Identifier of the Bitrise app",
+                "type": "string"
+              }
+            },
+            "required": [
+              "app_slug"
+            ]
+          },
+          "name": "register_webhook"
+        },
+        {
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": true,
+            "idempotentHint": true,
+            "openWorldHint": true
+          },
+          "description": "Replace group roles for an app.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "app_slug": {
+                "description": "Identifier of the Bitrise app",
+                "type": "string"
+              },
+              "group_slugs": {
+                "description": "List of group slugs",
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              "role_name": {
+                "description": "Name of the role",
+                "type": "string"
+              }
+            },
+            "required": [
+              "app_slug",
+              "role_name",
+              "group_slugs"
+            ]
+          },
+          "name": "replace_group_roles"
+        },
+        {
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": true,
+            "idempotentHint": false,
+            "openWorldHint": true
+          },
+          "description": "Changes whether public install page should be available for the installable artifact or not.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "connected_app_id": {
+                "description": "Identifier of the Release Management connected app for the installable artifact. This field is mandatory.",
+                "type": "string"
+              },
+              "installable_artifact_id": {
+                "description": "The uuidv4 identifier for the installable artifact. This field is mandatory.",
+                "type": "string"
+              },
+              "with_public_page": {
+                "description": "Boolean flag for enabling/disabling public install page for the installable artifact. This field is mandatory.",
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "connected_app_id",
+              "installable_artifact_id",
+              "with_public_page"
+            ]
+          },
+          "name": "set_installable_artifact_public_install_page"
+        },
+        {
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": true
+          },
+          "description": "List inputs of a step with their defaults, allowed values etc.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "step_ref": {
+                "description": "Step reference formatted as `step_lib_source::step_id@version`. `step_id` and an exact `version` are required, `step_lib_source` is only necessary for custom step sources.",
+                "type": "string"
+              }
+            },
+            "required": [
+              "step_ref"
+            ]
+          },
+          "name": "step_inputs"
+        },
+        {
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": true
+          },
+          "description": "Find steps for building workflows or step bundles in a Bitrise YML config file. Finds steps based on name, description, tags or maintainers.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "categories": {
+                "description": "Categories to filter steps.",
+                "items": {
+                  "enum": [
+                    "build",
+                    "code-sign",
+                    "test",
+                    "deploy",
+                    "notification",
+                    "access-control",
+                    "artifact-info",
+                    "installer",
+                    "dependency",
+                    "utility"
+                  ],
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              "maintainers": {
+                "description": "Filter steps by maintainers. Use `bitrise` to only look for official steps.",
+                "items": {
+                  "enum": [
+                    "bitrise",
+                    "verified",
+                    "community"
+                  ],
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              "query": {
+                "description": "The phrase to search steps for like `clone`, `npm`, `deploy` etc.",
+                "type": "string"
+              }
+            },
+            "required": [
+              "query"
+            ]
+          },
+          "name": "step_search"
+        },
+        {
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": false,
+            "idempotentHint": false,
+            "openWorldHint": true
+          },
+          "description": "Trigger a new build/pipeline for a specified Bitrise app",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "app_slug": {
+                "description": "Identifier of the Bitrise app (e.g., \"d8db74e2675d54c4\" or \"8eb495d0-f653-4eed-910b-8d6b56cc0ec7\")",
+                "type": "string"
+              },
+              "branch": {
+                "default": "main",
+                "description": "The branch to build",
+                "type": "string"
+              },
+              "commit_hash": {
+                "description": "The commit hash for the build",
+                "type": "string"
+              },
+              "commit_message": {
+                "description": "The commit message for the build",
+                "type": "string"
+              },
+              "environments": {
+                "description": "Custom environment variables for the build.",
+                "items": {
+                  "properties": {
+                    "is_expand": {
+                      "description": "Whether to expand environment variable references in the value",
+                      "type": "boolean"
+                    },
+                    "mapped_to": {
+                      "description": "The name of the environment variable",
+                      "type": "string"
+                    },
+                    "value": {
+                      "description": "The value of the environment variable",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "mapped_to",
+                    "value"
+                  ],
+                  "type": "object"
+                },
+                "type": "array"
+              },
+              "pipeline_id": {
+                "description": "The pipeline to build",
+                "type": "string"
+              },
+              "workflow_id": {
+                "description": "The workflow to build",
+                "type": "string"
+              }
+            },
+            "required": [
+              "app_slug"
+            ]
+          },
+          "name": "trigger_bitrise_build"
+        },
+        {
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": true,
+            "idempotentHint": true,
+            "openWorldHint": true
+          },
+          "description": "Update an app. Only app_slug is required, add only fields you wish to update",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "app_slug": {
+                "description": "Identifier of the Bitrise app",
+                "type": "string"
+              },
+              "default_branch": {
+                "description": "The new default branch for the application",
+                "type": "string"
+              },
+              "repository_url": {
+                "description": "The new repository URL for the application",
+                "type": "string"
+              },
+              "title": {
+                "description": "The new title of the application",
+                "type": "string"
+              }
+            },
+            "required": [
+              "app_slug"
+            ]
+          },
+          "name": "update_app"
+        },
+        {
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": true,
+            "idempotentHint": true,
+            "openWorldHint": true
+          },
+          "description": "Update a build artifact.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "app_slug": {
+                "description": "Identifier of the Bitrise app",
+                "type": "string"
+              },
+              "artifact_slug": {
+                "description": "Identifier of the artifact",
+                "type": "string"
+              },
+              "build_slug": {
+                "description": "Identifier of the build",
+                "type": "string"
+              },
+              "is_public_page_enabled": {
+                "description": "Enable public page for the artifact",
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "app_slug",
+              "build_slug",
+              "artifact_slug",
+              "is_public_page_enabled"
+            ]
+          },
+          "name": "update_artifact"
+        },
+        {
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": true,
+            "idempotentHint": true,
+            "openWorldHint": true
+          },
+          "description": "Update the Bitrise YML config stored on Bitrise. This has no effect if it is stored in the repository.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "app_slug": {
+                "description": "Identifier of the Bitrise app (e.g., \"d8db74e2675d54c4\" or \"8eb495d0-f653-4eed-910b-8d6b56cc0ec7\")",
+                "type": "string"
+              },
+              "bitrise_yml_as_json": {
+                "description": "The new Bitrise YML config file content to be updated. It must be a string. Important: these configs are large files, so get these by running: cat <filepath> via the Bash tool.",
+                "type": "string"
+              }
+            },
+            "required": [
+              "app_slug",
+              "bitrise_yml_as_json"
+            ]
+          },
+          "name": "update_bitrise_yml"
+        },
+        {
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": true,
+            "idempotentHint": false,
+            "openWorldHint": true
+          },
+          "description": "Updates a connected app.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "connect_to_store": {
+                "default": false,
+                "description": "If true, will check connected app validity against the Apple App Store or Google Play Store (dependent on the platform of your connected app). This means, that the already set or just given store_app_id will be validated against the Store, using the already set or just given store credential id.",
+                "type": "boolean"
+              },
+              "connected_app_id": {
+                "description": "The uuidV4 identifier for your connected app.",
+                "type": "string"
+              },
+              "store_app_id": {
+                "description": "The store identifier for your app. You can change the previously set store_app_id to match the one in the App Store or Google Play depending on the app platform. This is especially useful if you want to connect your app with the store as the system will validate the given store_app_id against the Store. In case of iOS platform it is the bundle id. In case of Android platform it is the package name.",
+                "type": "string"
+              },
+              "store_credential_id": {
+                "description": "If you have credentials added on Bitrise, you can decide to select one for your app. In case of ios platform it will be an Apple API credential id. In case of android platform it will be a Google Service credential id.",
+                "type": "string"
+              }
+            },
+            "required": [
+              "connected_app_id"
+            ]
+          },
+          "name": "update_connected_app"
+        },
+        {
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": true,
+            "idempotentHint": true,
+            "openWorldHint": true
+          },
+          "description": "Update an outgoing webhook for an app. Even if you do not want to change one of the parameters, you still have to provide that parameter as well: simply use its existing value.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "app_slug": {
+                "description": "Identifier of the Bitrise app",
+                "type": "string"
+              },
+              "events": {
+                "description": "List of events to trigger the webhook",
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              "headers": {
+                "description": "Headers to be sent with the webhook",
+                "properties": {},
+                "type": "object"
+              },
+              "url": {
+                "description": "URL of the webhook",
+                "type": "string"
+              },
+              "webhook_slug": {
+                "description": "Identifier of the webhook",
+                "type": "string"
+              }
+            },
+            "required": [
+              "app_slug",
+              "webhook_slug"
+            ]
+          },
+          "name": "update_outgoing_webhook"
+        },
+        {
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": true,
+            "idempotentHint": false,
+            "openWorldHint": true
+          },
+          "description": "Updates the given tester group. The name and the auto notification setting can be updated optionally.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "auto_notify": {
+                "default": false,
+                "description": "If set to true it indicates the tester group will receive email notifications automatically from now on about new installable builds.",
+                "type": "boolean"
+              },
+              "connected_app_id": {
+                "description": "The uuidV4 identifier of the related Release Management connected app.",
+                "type": "string"
+              },
+              "id": {
+                "description": "The uuidV4 identifier of the tester group to which testers will be added.",
+                "type": "string"
+              },
+              "name": {
+                "description": "The new name for the tester group. Must be unique in the scope of the related connected app.",
+                "type": "string"
+              }
+            },
+            "required": [
+              "connected_app_id",
+              "id"
+            ]
+          },
+          "name": "update_tester_group"
+        },
+        {
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": true
+          },
+          "description": "Validate a Bitrise YML config file. Use this tool to verify any changes made in bitrise.yml.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "app_slug": {
+                "description": "Slug of a Bitrise app (as returned by the list_apps tool). Specifying this value allows for validating the YML against workspace-specific settings like available stacks, machine types, license pools etc.",
+                "type": "string"
+              },
+              "bitrise_yml": {
+                "description": "The Bitrise YML config file content to be validated. It must be a string. Important: these configs are large files, so get these by running: cat <filepath> via the Bash tool.",
+                "type": "string"
+              }
+            },
+            "required": [
+              "bitrise_yml"
+            ]
+          },
+          "name": "validate_bitrise_yml"
+        }
+      ],
+      "tool_count": 67,
+      "tool_names": [
+        "abort_build",
+        "abort_pipeline",
+        "add_member_to_group",
+        "add_testers_to_tester_group",
+        "create_connected_app",
+        "create_outgoing_webhook",
+        "create_tester_group",
+        "create_workspace_group",
+        "delete_all_cache_items",
+        "delete_app",
+        "delete_artifact",
+        "delete_cache_item",
+        "delete_outgoing_webhook",
+        "finish_bitrise_app",
+        "generate_installable_artifact_upload_url",
+        "get_app",
+        "get_artifact",
+        "get_bitrise_yml",
+        "get_build",
+        "get_build_bitrise_yml",
+        "get_build_log",
+        "get_build_steps",
+        "get_cache_item_download_url",
+        "get_connected_app",
+        "get_installable_artifact_upload_and_proc_status",
+        "get_pipeline",
+        "get_potential_testers",
+        "get_tester_group",
+        "get_testers",
+        "get_workspace",
+        "get_workspace_groups",
+        "get_workspace_members",
+        "invite_member_to_workspace",
+        "list_apps",
+        "list_artifacts",
+        "list_available_stacks",
+        "list_branches",
+        "list_build_distribution_version_test_builds",
+        "list_build_distribution_versions",
+        "list_build_workflows",
+        "list_builds",
+        "list_cache_items",
+        "list_connected_apps",
+        "list_group_roles",
+        "list_installable_artifacts",
+        "list_outgoing_webhooks",
+        "list_pipelines",
+        "list_tester_groups",
+        "list_workspaces",
+        "me",
+        "notify_tester_group",
+        "rebuild_pipeline",
+        "register_app",
+        "register_ssh_key",
+        "register_webhook",
+        "replace_group_roles",
+        "set_installable_artifact_public_install_page",
+        "step_inputs",
+        "step_search",
+        "trigger_bitrise_build",
+        "update_app",
+        "update_artifact",
+        "update_bitrise_yml",
+        "update_connected_app",
+        "update_outgoing_webhook",
+        "update_tester_group",
+        "validate_bitrise_yml"
+      ]
+    },
+    "server_info_crawled": {
+      "id": 5,
+      "name": "Bitrise",
+      "author": "",
+      "overview": "Bitrise - Development Tools MCP server with 67 tools.",
+      "repository_url": "",
+      "homepage": "https://mcp.bitrise.io",
+      "remote_or_local": "Remote",
+      "license": "",
+      "usage_count": "49,500",
+      "success_rate": "100%",
+      "tags": [
+        "development-tools"
+      ],
+      "categories": [
+        "development tools"
+      ],
+      "tools_count": 67,
+      "tools": [
+        {
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": true,
+            "idempotentHint": true,
+            "openWorldHint": true
+          },
+          "description": "Abort a specific build.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "abort_reason": {
+                "description": "Reason for aborting the build",
+                "type": "string"
+              },
+              "abort_with_success": {
+                "default": false,
+                "description": "If set to true, the aborted build will be marked as successful",
+                "type": "boolean"
+              },
+              "app_slug": {
+                "description": "Identifier of the Bitrise app",
+                "type": "string"
+              },
+              "build_slug": {
+                "description": "Identifier of the build",
+                "type": "string"
+              },
+              "skip_git_status_report": {
+                "default": false,
+                "description": "If set to true, skip sending git status report",
+                "type": "boolean"
+              },
+              "skip_notifications": {
+                "default": false,
+                "description": "If set to true, skip sending notifications",
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "app_slug",
+              "build_slug"
+            ]
+          },
+          "name": "abort_build"
+        },
+        {
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": true,
+            "idempotentHint": true,
+            "openWorldHint": true
+          },
+          "description": "Abort a pipeline.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "abort_reason": {
+                "description": "Reason for aborting the pipeline",
+                "type": "string"
+              },
+              "abort_with_success": {
+                "default": false,
+                "description": "If set to true, the aborted pipeline will be marked as successful",
+                "type": "boolean"
+              },
+              "app_slug": {
+                "description": "Identifier of the Bitrise app",
+                "type": "string"
+              },
+              "pipeline_id": {
+                "description": "Identifier of the pipeline",
+                "type": "string"
+              },
+              "skip_notifications": {
+                "default": false,
+                "description": "If set to true, skip sending notifications",
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "app_slug",
+              "pipeline_id"
+            ]
+          },
+          "name": "abort_pipeline"
+        },
+        {
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": true,
+            "idempotentHint": false,
+            "openWorldHint": true
+          },
+          "description": "Add a member to a group.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "group_slug": {
+                "description": "Slug of the group",
+                "type": "string"
+              },
+              "user_slug": {
+                "description": "Slug of the user",
+                "type": "string"
+              }
+            },
+            "required": [
+              "group_slug",
+              "user_slug"
+            ]
+          },
+          "name": "add_member_to_group"
+        },
+        {
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": false,
+            "idempotentHint": false,
+            "openWorldHint": true
+          },
+          "description": "Adds testers to a tester group of a connected app.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "connected_app_id": {
+                "description": "The uuidV4 identifier of the related Release Management connected app.",
+                "type": "string"
+              },
+              "id": {
+                "description": "The uuidV4 identifier of the tester group to which testers will be added.",
+                "type": "string"
+              },
+              "user_slugs": {
+                "description": "The list of users identified by slugs that will be added to the tester group.",
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              }
+            },
+            "required": [
+              "connected_app_id",
+              "id",
+              "user_slugs"
+            ]
+          },
+          "name": "add_testers_to_tester_group"
+        },
+        {
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": false,
+            "idempotentHint": false,
+            "openWorldHint": true
+          },
+          "description": "Add a new Release Management connected app to Bitrise.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "description": "An uuidV4 identifier for your new connected app. If it is not given, one will be generated.",
+                "type": "string"
+              },
+              "manual_connection": {
+                "default": false,
+                "description": "If set to true it indicates a manual connection (bypassing using store api keys) and requires giving 'store_app_name' as well.",
+                "type": "boolean"
+              },
+              "platform": {
+                "description": "The mobile platform for the connected app. Available values are 'ios' and 'android'.",
+                "enum": [
+                  "ios",
+                  "android"
+                ],
+                "type": "string"
+              },
+              "project_id": {
+                "description": "Specifies which Bitrise Project you want to get the connected app to be associated with. If this field is not given a new project will be created alongside with the connected app.",
+                "type": "string"
+              },
+              "store_app_id": {
+                "description": "The app store identifier for the connected app. In case of 'ios' platform it is the bundle id from App Store Connect. In case of Android platform it is the package name.",
+                "type": "string"
+              },
+              "store_app_name": {
+                "description": "If you have no active app store API keys added on Bitrise, you can decide to add your app manually by giving the app's name as well while indicating manual connection.",
+                "type": "string"
+              },
+              "store_credential_id": {
+                "description": "If you have credentials added on Bitrise, you can decide to select one for your app. In case of ios platform it will be an Apple API credential id. In case of android platform it will be a Google Service credential id.",
+                "type": "string"
+              },
+              "workspace_slug": {
+                "description": "Identifier of the Bitrise workspace for the Release Management connected app. This field is mandatory.",
+                "type": "string"
+              }
+            },
+            "required": [
+              "platform",
+              "store_app_id",
+              "workspace_slug"
+            ]
+          },
+          "name": "create_connected_app"
+        },
+        {
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": false,
+            "idempotentHint": false,
+            "openWorldHint": true
+          },
+          "description": "Create an outgoing webhook for an app.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "app_slug": {
+                "description": "Identifier of the Bitrise app",
+                "type": "string"
+              },
+              "events": {
+                "description": "List of events to trigger the webhook",
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              "headers": {
+                "description": "Headers to be sent with the webhook",
+                "properties": {},
+                "type": "object"
+              },
+              "secret": {
+                "description": "Secret for webhook signature verification",
+                "type": "string"
+              },
+              "url": {
+                "description": "URL of the webhook",
+                "type": "string"
+              }
+            },
+            "required": [
+              "app_slug",
+              "events",
+              "url"
+            ]
+          },
+          "name": "create_outgoing_webhook"
+        },
+        {
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": false,
+            "idempotentHint": false,
+            "openWorldHint": true
+          },
+          "description": "Creates a tester group for a Release Management connected app. Tester groups can be used to distribute installable artifacts to testers automatically. When a new installable artifact is available, the tester groups can either automatically or manually be notified via email. The notification email will contain a link to the installable artifact page for the artifact within Bitrise Release Management. A Release Management connected app can have multiple tester groups. Project team members of the connected app can be selected to be testers and added to the tester group. This endpoint has an elevated access level requirement. Only the owner of the related Bitrise Workspace, a workspace manager or the related project's admin can manage tester groups.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "auto_notify": {
+                "default": false,
+                "description": "If set to true it indicates that the tester group will receive notifications automatically.",
+                "type": "boolean"
+              },
+              "connected_app_id": {
+                "description": "The uuidV4 identifier of the related Release Management connected app.",
+                "type": "string"
+              },
+              "name": {
+                "description": "The name for the new tester group. Must be unique in the scope of the connected app.",
+                "type": "string"
+              }
+            },
+            "required": [
+              "connected_app_id",
+              "name"
+            ]
+          },
+          "name": "create_tester_group"
+        },
+        {
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": false,
+            "idempotentHint": false,
+            "openWorldHint": true
+          },
+          "description": "Create a new group in a workspace.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "group_name": {
+                "description": "Name of the group",
+                "type": "string"
+              },
+              "workspace_slug": {
+                "description": "Slug of the Bitrise workspace",
+                "type": "string"
+              }
+            },
+            "required": [
+              "workspace_slug",
+              "group_name"
+            ]
+          },
+          "name": "create_workspace_group"
+        },
+        {
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": true,
+            "idempotentHint": true,
+            "openWorldHint": true
+          },
+          "description": "Delete all key-value cache items belonging to an app.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "app_slug": {
+                "description": "Identifier of the Bitrise app",
+                "type": "string"
+              }
+            },
+            "required": [
+              "app_slug"
+            ]
+          },
+          "name": "delete_all_cache_items"
+        },
+        {
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": true,
+            "idempotentHint": true,
+            "openWorldHint": true
+          },
+          "description": "Delete an app from Bitrise. When deleting apps belonging to multiple workspaces always confirm that which workspaces' apps the user wants to delete.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "app_slug": {
+                "description": "Identifier of the Bitrise app",
+                "type": "string"
+              }
+            },
+            "required": [
+              "app_slug"
+            ]
+          },
+          "name": "delete_app"
+        },
+        {
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": true,
+            "idempotentHint": true,
+            "openWorldHint": true
+          },
+          "description": "Delete a build artifact.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "app_slug": {
+                "description": "Identifier of the Bitrise app",
+                "type": "string"
+              },
+              "artifact_slug": {
+                "description": "Identifier of the artifact",
+                "type": "string"
+              },
+              "build_slug": {
+                "description": "Identifier of the build",
+                "type": "string"
+              }
+            },
+            "required": [
+              "app_slug",
+              "build_slug",
+              "artifact_slug"
+            ]
+          },
+          "name": "delete_artifact"
+        },
+        {
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": true,
+            "idempotentHint": true,
+            "openWorldHint": true
+          },
+          "description": "Delete a key-value cache item.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "app_slug": {
+                "description": "Identifier of the Bitrise app",
+                "type": "string"
+              },
+              "cache_item_id": {
+                "description": "Key of the cache item",
+                "type": "string"
+              }
+            },
+            "required": [
+              "app_slug",
+              "cache_item_id"
+            ]
+          },
+          "name": "delete_cache_item"
+        },
+        {
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": true,
+            "idempotentHint": true,
+            "openWorldHint": true
+          },
+          "description": "Delete the outgoing webhook of an app.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "app_slug": {
+                "description": "Identifier of the Bitrise app",
+                "type": "string"
+              },
+              "webhook_slug": {
+                "description": "Identifier of the webhook",
+                "type": "string"
+              }
+            },
+            "required": [
+              "app_slug",
+              "webhook_slug"
+            ]
+          },
+          "name": "delete_outgoing_webhook"
+        },
+        {
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": true,
+            "idempotentHint": false,
+            "openWorldHint": true
+          },
+          "description": "Finish the setup of a Bitrise app. If this is successful, a build can be triggered via trigger_bitrise_build. If you have access to the repository, decide the project type, the stack ID, and the config to use, based on https://stacks.bitrise.io/, and the config should be also based on the project type.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "app_slug": {
+                "description": "The slug of the Bitrise app to finish setup for.",
+                "type": "string"
+              },
+              "config": {
+                "default": "other-config",
+                "description": "The configuration preset to use for the app.",
+                "enum": [
+                  "default-android-config",
+                  "default-android-config-kts",
+                  "default-cordova-config",
+                  "default-fastlane-android-config",
+                  "default-fastlane-ios-config",
+                  "flutter-config-test-android-2",
+                  "flutter-config-test-both-0",
+                  "flutter-config-test-ios-1",
+                  "default-ionic-config",
+                  "default-ios-config",
+                  "default-java-gradle-config",
+                  "default-java-maven-config",
+                  "default-kotlin-multiplatform-config",
+                  "default-kotlin-multiplatform-config-ios",
+                  "default-kotlin-multiplatform-config-android",
+                  "default-kotlin-multiplatform-config-android-ios",
+                  "default-macos-config",
+                  "default-node-js-npm-config",
+                  "default-node-js-yarn-config",
+                  "default-react-native-config",
+                  "default-react-native-expo-config"
+                ],
+                "type": "string"
+              },
+              "project_type": {
+                "default": "other",
+                "description": "The type of project",
+                "enum": [
+                  "android",
+                  "cordova",
+                  "fastlane",
+                  "flutter",
+                  "ios",
+                  "ionic",
+                  "java",
+                  "kotlin-multiplatform",
+                  "macos",
+                  "node-js",
+                  "react-native",
+                  "other"
+                ],
+                "type": "string"
+              },
+              "stack_id": {
+                "default": "linux-docker-android-22.04",
+                "description": "The stack ID to use for the app.",
+                "type": "string"
+              }
+            },
+            "required": [
+              "app_slug",
+              "project_type",
+              "stack_id"
+            ]
+          },
+          "name": "finish_bitrise_app"
+        },
+        {
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": false,
+            "openWorldHint": true
+          },
+          "description": "Generates a signed upload url valid for 1 hour for an installable artifact to be uploaded to Bitrise Release Management. The response will contain an url that can be used to upload an artifact to Bitrise Release Management using a simple curl request with the file data that should be uploaded. The necessary headers and http method will also be in the response. This artifact will need to be processed after upload to be usable. The status of processing can be checked by making another request to a different url giving back the processed status of an installable artifact.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "branch": {
+                "description": "Optionally you can add the name of the CI branch the installable artifact has been generated on.",
+                "type": "string"
+              },
+              "connected_app_id": {
+                "description": "Identifier of the Release Management connected app for the installable artifact. This field is mandatory.",
+                "type": "string"
+              },
+              "file_name": {
+                "description": "The name of the installable artifact file (with extension) to be uploaded to Bitrise. This field is mandatory.",
+                "type": "string"
+              },
+              "file_size_bytes": {
+                "description": "The byte size of the installable artifact file to be uploaded.",
+                "type": "string"
+              },
+              "installable_artifact_id": {
+                "description": "An uuidv4 identifier generated on the client side for the installable artifact. This field is mandatory.",
+                "type": "string"
+              },
+              "with_public_page": {
+                "default": false,
+                "description": "Optionally, you can enable public install page for your artifact. This can only be enabled by Bitrise Project Admins, Bitrise Project Owners and Bitrise Workspace Admins. Changing this value without proper permissions will result in an error. The default value is false.",
+                "type": "boolean"
+              },
+              "workflow": {
+                "description": "Optionally you can add the name of the CI workflow this installable artifact has been generated by.",
+                "type": "string"
+              }
+            },
+            "required": [
+              "connected_app_id",
+              "installable_artifact_id",
+              "file_name",
+              "file_size_bytes"
+            ]
+          },
+          "name": "generate_installable_artifact_upload_url"
+        },
+        {
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": true
+          },
+          "description": "Get the details of a specific app.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "app_slug": {
+                "description": "Identifier of the Bitrise app",
+                "type": "string"
+              }
+            },
+            "required": [
+              "app_slug"
+            ]
+          },
+          "name": "get_app"
+        },
+        {
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": true
+          },
+          "description": "Get a specific build artifact.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "app_slug": {
+                "description": "Identifier of the Bitrise app",
+                "type": "string"
+              },
+              "artifact_slug": {
+                "description": "Identifier of the artifact",
+                "type": "string"
+              },
+              "build_slug": {
+                "description": "Identifier of the build",
+                "type": "string"
+              }
+            },
+            "required": [
+              "app_slug",
+              "build_slug",
+              "artifact_slug"
+            ]
+          },
+          "name": "get_artifact"
+        },
+        {
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": true
+          },
+          "description": "Get the current Bitrise YML config file of a specified Bitrise app.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "app_slug": {
+                "description": "Identifier of the Bitrise app (e.g., \"d8db74e2675d54c4\" or \"8eb495d0-f653-4eed-910b-8d6b56cc0ec7\")",
+                "type": "string"
+              }
+            },
+            "required": [
+              "app_slug"
+            ]
+          },
+          "name": "get_bitrise_yml"
+        },
+        {
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": true
+          },
+          "description": "Get a specific build of a given app.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "app_slug": {
+                "description": "Identifier of the Bitrise app",
+                "type": "string"
+              },
+              "build_slug": {
+                "description": "Identifier of the build",
+                "type": "string"
+              }
+            },
+            "required": [
+              "app_slug",
+              "build_slug"
+            ]
+          },
+          "name": "get_build"
+        },
+        {
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": true
+          },
+          "description": "Get the bitrise.yml of a build.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "app_slug": {
+                "description": "Identifier of the Bitrise app",
+                "type": "string"
+              },
+              "build_slug": {
+                "description": "Identifier of the build",
+                "type": "string"
+              }
+            },
+            "required": [
+              "app_slug",
+              "build_slug"
+            ]
+          },
+          "name": "get_build_bitrise_yml"
+        },
+        {
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": true
+          },
+          "description": "Get the build log of a specified build of a Bitrise app.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "app_slug": {
+                "description": "Identifier of the Bitrise app (e.g., \"d8db74e2675d54c4\" or \"8eb495d0-f653-4eed-910b-8d6b56cc0ec7\")",
+                "type": "string"
+              },
+              "build_slug": {
+                "description": "Identifier of the Bitrise build",
+                "type": "string"
+              },
+              "limit": {
+                "default": 2000,
+                "description": "The number of lines to read. Defaults to 2000. Set to a high value to read the entire log.",
+                "type": "number"
+              },
+              "offset": {
+                "default": 0,
+                "description": "The line number to start reading from. Defaults to 0. Set -1 to read from the end of the log. Failures are usually at the end of the log.",
+                "type": "number"
+              },
+              "step_uuid": {
+                "description": "UUID of the step to get the log for. If not provided, the full build log is returned. Always provide this value whenever possible to avoid large log responses and running out of the LLM context window.",
+                "type": "string"
+              }
+            },
+            "required": [
+              "app_slug",
+              "build_slug"
+            ]
+          },
+          "name": "get_build_log",
+          "outputSchema": {
+            "type": "object",
+            "properties": {
+              "log_lines": {
+                "description": "The requested lines of the build log.",
+                "type": "string"
+              },
+              "next_offset": {
+                "description": "The offset to use to read the next portion of the log, if any.",
+                "type": "integer"
+              },
+              "total_lines": {
+                "description": "The total number of lines in the build log.",
+                "type": "integer"
+              }
+            },
+            "required": [
+              "log_lines",
+              "total_lines"
+            ]
+          }
+        },
+        {
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": true
+          },
+          "description": "Get step statuses of a specific build of a given app.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "app_slug": {
+                "description": "Identifier of the Bitrise app",
+                "type": "string"
+              },
+              "build_slug": {
+                "description": "Identifier of the build",
+                "type": "string"
+              }
+            },
+            "required": [
+              "app_slug",
+              "build_slug"
+            ]
+          },
+          "name": "get_build_steps"
+        },
+        {
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": true
+          },
+          "description": "Get the download URL for a cache item.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "app_slug": {
+                "description": "Identifier of the Bitrise app",
+                "type": "string"
+              },
+              "cache_item_id": {
+                "description": "Key of the cache item",
+                "type": "string"
+              }
+            },
+            "required": [
+              "app_slug",
+              "cache_item_id"
+            ]
+          },
+          "name": "get_cache_item_download_url"
+        },
+        {
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": true
+          },
+          "description": "Gives back a Release Management connected app for the authenticated account.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "description": "Identifier of the Release Management connected app",
+                "type": "string"
+              }
+            },
+            "required": [
+              "id"
+            ]
+          },
+          "name": "get_connected_app"
+        },
+        {
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": true
+          },
+          "description": "Gets the processing and upload status of an installable artifact. An artifact will need to be processed after upload to be usable. This endpoint helps understanding when an uploaded installable artifacts becomes usable for later purposes.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "connected_app_id": {
+                "description": "Identifier of the Release Management connected app for the installable artifact. This field is mandatory.",
+                "type": "string"
+              },
+              "installable_artifact_id": {
+                "description": "The uuidv4 identifier for the installable artifact. This field is mandatory.",
+                "type": "string"
+              }
+            },
+            "required": [
+              "connected_app_id",
+              "installable_artifact_id"
+            ]
+          },
+          "name": "get_installable_artifact_upload_and_proc_status"
+        },
+        {
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": true
+          },
+          "description": "Get a pipeline of a given app.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "app_slug": {
+                "description": "Identifier of the Bitrise app",
+                "type": "string"
+              },
+              "pipeline_id": {
+                "description": "Identifier of the pipeline",
+                "type": "string"
+              }
+            },
+            "required": [
+              "app_slug",
+              "pipeline_id"
+            ]
+          },
+          "name": "get_pipeline"
+        },
+        {
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": true
+          },
+          "description": "Gets a list of potential testers whom can be added as testers to a specific tester group. The list consists of Bitrise users having access to the related Release Management connected app.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "connected_app_id": {
+                "description": "The uuidV4 identifier of the app the tester group is connected to. This field is mandatory.",
+                "type": "string"
+              },
+              "id": {
+                "description": "The uuidV4 identifier of the tester group. This field is mandatory.",
+                "type": "string"
+              },
+              "items_per_page": {
+                "default": 10,
+                "description": "Specifies the maximum number of potential testers to return having access to a specific connected app. Default value is 10.",
+                "type": "number"
+              },
+              "page": {
+                "default": 1,
+                "description": "Specifies which page should be returned from the whole result set in a paginated scenario. Default value is 1.",
+                "type": "number"
+              },
+              "search": {
+                "description": "Searches for potential testers based on email or username using a case-insensitive approach.",
+                "type": "string"
+              }
+            },
+            "required": [
+              "connected_app_id",
+              "id"
+            ]
+          },
+          "name": "get_potential_testers"
+        },
+        {
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": true
+          },
+          "description": "Gives back the details of the selected tester group.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "connected_app_id": {
+                "description": "The uuidV4 identifier of the app the tester group is connected to. This field is mandatory.",
+                "type": "string"
+              },
+              "id": {
+                "description": "The uuidV4 identifier of the tester group. This field is mandatory.",
+                "type": "string"
+              }
+            },
+            "required": [
+              "connected_app_id",
+              "id"
+            ]
+          },
+          "name": "get_tester_group"
+        },
+        {
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": true
+          },
+          "description": "Gives back a list of testers that has been associated with a tester group related to a specific connected app.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "connected_app_id": {
+                "description": "The uuidV4 identifier of the app the tester group is connected to. This field is mandatory.",
+                "type": "string"
+              },
+              "items_per_page": {
+                "default": 10,
+                "description": "Specifies the maximum number of testers to be returned that have been added to a tester group related to the specific connected app. Default value is 10.",
+                "type": "number"
+              },
+              "page": {
+                "default": 1,
+                "description": "Specifies which page should be returned from the whole result set in a paginated scenario. Default value is 1.",
+                "type": "number"
+              },
+              "tester_group_id": {
+                "description": "The uuidV4 identifier of a tester group. If given, only testers within this specific tester group will be returned.",
+                "type": "string"
+              }
+            },
+            "required": [
+              "connected_app_id"
+            ]
+          },
+          "name": "get_testers"
+        },
+        {
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": true
+          },
+          "description": "Get details for one workspace",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "workspace_slug": {
+                "description": "Slug of the Bitrise workspace",
+                "type": "string"
+              }
+            },
+            "required": [
+              "workspace_slug"
+            ]
+          },
+          "name": "get_workspace"
+        },
+        {
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": true
+          },
+          "description": "Get the groups in a workspace",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "workspace_slug": {
+                "description": "Slug of the Bitrise workspace",
+                "type": "string"
+              }
+            },
+            "required": [
+              "workspace_slug"
+            ]
+          },
+          "name": "get_workspace_groups"
+        },
+        {
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": true
+          },
+          "description": "Get the members of a workspace",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "workspace_slug": {
+                "description": "Slug of the Bitrise workspace",
+                "type": "string"
+              }
+            },
+            "required": [
+              "workspace_slug"
+            ]
+          },
+          "name": "get_workspace_members"
+        },
+        {
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": false,
+            "idempotentHint": false,
+            "openWorldHint": true
+          },
+          "description": "Invite new Bitrise users to a workspace.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "email": {
+                "description": "Email address of the user",
+                "type": "string"
+              },
+              "workspace_slug": {
+                "description": "Slug of the Bitrise workspace",
+                "type": "string"
+              }
+            },
+            "required": [
+              "workspace_slug",
+              "email"
+            ]
+          },
+          "name": "invite_member_to_workspace"
+        },
+        {
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": true
+          },
+          "description": "List all apps for the currently authenticated user account",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "limit": {
+                "default": 50,
+                "description": "Max number of elements per page (default: 50)",
+                "type": "number"
+              },
+              "next": {
+                "description": "Slug of the first app in the response",
+                "type": "string"
+              },
+              "project_type": {
+                "description": "Filter apps by project type (e.g., 'ios', 'android')",
+                "type": "string"
+              },
+              "sort_by": {
+                "default": "last_build_at",
+                "description": "Order of the apps. If set, you should accept the response as sorted",
+                "enum": [
+                  "last_build_at",
+                  "created_at"
+                ],
+                "type": "string"
+              },
+              "title": {
+                "description": "Filter apps by title",
+                "type": "string"
+              }
+            }
+          },
+          "name": "list_apps"
+        },
+        {
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": true
+          },
+          "description": "Get a list of all build artifacts.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "app_slug": {
+                "description": "Identifier of the Bitrise app",
+                "type": "string"
+              },
+              "build_slug": {
+                "description": "Identifier of the build",
+                "type": "string"
+              },
+              "limit": {
+                "description": "Max number of elements per page (default: 50)",
+                "type": "number"
+              },
+              "next": {
+                "description": "Slug of the first artifact in the response",
+                "type": "string"
+              }
+            },
+            "required": [
+              "app_slug",
+              "build_slug"
+            ]
+          },
+          "name": "list_artifacts"
+        },
+        {
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": true
+          },
+          "description": "List available stacks with their machine configurations and version information. When a workspace_slug is provided, returns stacks available for that workspace including any custom stacks. When omitted, returns globally available stacks.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "workspace_slug": {
+                "description": "Slug of the Bitrise workspace. When provided, lists stacks available for that workspace (including custom stacks). When omitted, lists globally available stacks.",
+                "type": "string"
+              }
+            }
+          },
+          "name": "list_available_stacks"
+        },
+        {
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": true
+          },
+          "description": "List the branches with existing builds of an app's repository.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "app_slug": {
+                "description": "Identifier of the Bitrise app",
+                "type": "string"
+              }
+            },
+            "required": [
+              "app_slug"
+            ]
+          },
+          "name": "list_branches"
+        },
+        {
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": true
+          },
+          "description": "Gives back a list of test builds for the given build distribution version.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "connected_app_id": {
+                "description": "The uuidV4 identifier of the app the build distribution is connected to. This field is mandatory.",
+                "type": "string"
+              },
+              "items_per_page": {
+                "default": 10,
+                "description": "Specifies the maximum number of test builds to return for a build distribution version per page. Default value is 10.",
+                "type": "number"
+              },
+              "page": {
+                "default": 1,
+                "description": "Specifies which page should be returned from the whole result set in a paginated scenario. Default value is 1.",
+                "type": "number"
+              },
+              "version": {
+                "description": "The version of the build distribution. This field is mandatory.",
+                "type": "string"
+              }
+            },
+            "required": [
+              "connected_app_id",
+              "version"
+            ]
+          },
+          "name": "list_build_distribution_version_test_builds"
+        },
+        {
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": true
+          },
+          "description": "Lists Build Distribution versions. Release Management offers a convenient, secure solution to distribute the builds of your mobile apps to testers without having to engage with either TestFlight or Google Play. Once you have installable artifacts, Bitrise can generate both private and public install links that testers or other stakeholders can use to install the app on real devices via over-the-air installation. Build distribution allows you to define tester groups that can receive notifications about installable artifacts. The email takes the notified testers to the test build page, from where they can install the app on their own device. Build distribution versions are the app versions available for testers.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "connected_app_id": {
+                "description": "The uuidV4 identifier of the app the build distribution is connected to. This field is mandatory.",
+                "type": "string"
+              },
+              "items_per_page": {
+                "default": 10,
+                "description": "Specifies the maximum number of build distribution versions returned per page. Default value is 10.",
+                "type": "number"
+              },
+              "page": {
+                "default": 1,
+                "description": "Specifies which page should be returned from the whole result set in a paginated scenario. Default value is 1.",
+                "type": "number"
+              }
+            },
+            "required": [
+              "connected_app_id"
+            ]
+          },
+          "name": "list_build_distribution_versions"
+        },
+        {
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": true
+          },
+          "description": "List the workflows of an app.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "app_slug": {
+                "description": "Identifier of the Bitrise app",
+                "type": "string"
+              }
+            },
+            "required": [
+              "app_slug"
+            ]
+          },
+          "name": "list_build_workflows"
+        },
+        {
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": true
+          },
+          "description": "List all the builds of a specified Bitrise app or all accessible builds.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "app_slug": {
+                "description": "Identifier of the Bitrise app",
+                "type": "string"
+              },
+              "branch": {
+                "description": "Filter builds by branch",
+                "type": "string"
+              },
+              "limit": {
+                "description": "Max number of elements per page (default: 50)",
+                "type": "number"
+              },
+              "next": {
+                "description": "Slug of the first build in the response",
+                "type": "string"
+              },
+              "sort_by": {
+                "default": "created_at",
+                "description": "Order of builds: created_at (default), running_first",
+                "enum": [
+                  "created_at",
+                  "running_first"
+                ],
+                "type": "string"
+              },
+              "status": {
+                "description": "Filter builds by status (0: not finished, 1: successful, 2: failed, 3: aborted, 4: in-progress)",
+                "enum": [
+                  "0",
+                  "1",
+                  "2",
+                  "3",
+                  "4"
+                ],
+                "type": "number"
+              },
+              "workflow": {
+                "description": "Filter builds by workflow",
+                "type": "string"
+              }
+            }
+          },
+          "name": "list_builds"
+        },
+        {
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": true
+          },
+          "description": "List the key-value cache items belonging to an app.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "app_slug": {
+                "description": "Identifier of the Bitrise app",
+                "type": "string"
+              },
+              "limit": {
+                "default": 100,
+                "description": "Max number of elements per page (default: 100)",
+                "type": "number"
+              },
+              "next": {
+                "description": "Getting cache items created before the given parameter (RFC3339 time format)",
+                "type": "string"
+              }
+            },
+            "required": [
+              "app_slug"
+            ]
+          },
+          "name": "list_cache_items"
+        },
+        {
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": true
+          },
+          "description": "List Release Management connected apps available for the authenticated account within a workspace.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "items_per_page": {
+                "default": 10,
+                "description": "Specifies the maximum number of connected apps returned per page. Default value is 10.",
+                "type": "number"
+              },
+              "page": {
+                "default": 1,
+                "description": "Specifies which page should be returned from the whole result set in a paginated scenario. Default value is 1.",
+                "type": "number"
+              },
+              "platform": {
+                "description": "Filters for a specific mobile platform for the list of connected apps. Available values are: 'ios' and 'android'.",
+                "enum": [
+                  "ios",
+                  "android"
+                ],
+                "type": "string"
+              },
+              "project_id": {
+                "description": "Specifies which Bitrise Project you want to get associated connected apps for",
+                "type": "string"
+              },
+              "search": {
+                "description": "Search by bundle ID (for ios), package name (for android), or app title (for both platforms). The filter is case-sensitive.",
+                "type": "string"
+              },
+              "workspace_slug": {
+                "description": "Identifier of the Bitrise workspace for the Release Management connected apps. This field is mandatory.",
+                "type": "string"
+              }
+            },
+            "required": [
+              "workspace_slug"
+            ]
+          },
+          "name": "list_connected_apps"
+        },
+        {
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": true
+          },
+          "description": "List group roles for an app",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "app_slug": {
+                "description": "Identifier of the Bitrise app",
+                "type": "string"
+              },
+              "role_name": {
+                "description": "Name of the role",
+                "type": "string"
+              }
+            },
+            "required": [
+              "app_slug",
+              "role_name"
+            ]
+          },
+          "name": "list_group_roles"
+        },
+        {
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": true
+          },
+          "description": "List Release Management installable artifacts of a connected app available for the authenticated account.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "after_date": {
+                "description": "A date in ISO 8601 string format specifying the start of the interval when the installable artifact to be returned was created or uploaded. This value will be defaulted to 1 month ago if distribution_ready filter is not set or set to false.",
+                "type": "string"
+              },
+              "artifact_type": {
+                "description": "Filters for a specific artifact type or file extension for the list of installable artifacts. Available values are: 'aab' and 'apk' for android artifacts and 'ipa' for ios artifacts.",
+                "enum": [
+                  "aab",
+                  "apk",
+                  "ipa"
+                ],
+                "type": "string"
+              },
+              "before_date": {
+                "description": "A date in ISO 8601 string format specifying the end of the interval when the installable artifact to be returned was created or uploaded. This value will be defaulted to the current time if distribution_ready filter is not set or set to false.",
+                "type": "string"
+              },
+              "branch": {
+                "description": "Filters for the Bitrise CI branch of the installable artifact on which it has been generated on.",
+                "type": "string"
+              },
+              "connected_app_id": {
+                "description": "Identifier of the Release Management connected app for the installable artifacts. This field is mandatory.",
+                "type": "string"
+              },
+              "distribution_ready": {
+                "description": "Filters for distribution ready installable artifacts. This means .apk and .ipa (with distribution type ad-hoc, development, or enterprise) installable artifacts.",
+                "type": "boolean"
+              },
+              "items_per_page": {
+                "default": 10,
+                "description": "Specifies the maximum number of installable artifacts to be returned per page. Default value is 10.",
+                "type": "number"
+              },
+              "page": {
+                "default": 1,
+                "description": "Specifies which page should be returned from the whole result set in a paginated scenario. Default value is 1.",
+                "type": "number"
+              },
+              "platform": {
+                "description": "Filters for a specific mobile platform for the list of installable artifacts. Available values are: 'ios' and 'android'.",
+                "enum": [
+                  "ios",
+                  "android"
+                ],
+                "type": "string"
+              },
+              "search": {
+                "description": "Search by version, filename or build number (Bitrise CI). The filter is case-sensitive.",
+                "type": "string"
+              },
+              "source": {
+                "description": "Filters for the source of installable artifacts to be returned. Available values are 'api' and 'ci'.",
+                "enum": [
+                  "api",
+                  "ci"
+                ],
+                "type": "string"
+              },
+              "store_signed": {
+                "description": "Filters for store ready installable artifacts. This means signed .aab and .ipa (with distribution type app-store) installable artifacts.",
+                "type": "boolean"
+              },
+              "version": {
+                "description": "Filters for the version this installable artifact was created for. This field is required if the distribution_ready filter is set to true.",
+                "type": "string"
+              },
+              "workflow": {
+                "description": "Filters for the Bitrise CI workflow of the installable artifact it has been generated by.",
+                "type": "string"
+              }
+            },
+            "required": [
+              "connected_app_id"
+            ]
+          },
+          "name": "list_installable_artifacts"
+        },
+        {
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": true
+          },
+          "description": "List the outgoing webhooks of an app.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "app_slug": {
+                "description": "Identifier of the Bitrise app",
+                "type": "string"
+              },
+              "limit": {
+                "description": "Max number of elements per page (default: 50)",
+                "type": "number"
+              },
+              "next": {
+                "description": "Slug of the first outgoing webhook in the response",
+                "type": "string"
+              }
+            },
+            "required": [
+              "app_slug"
+            ]
+          },
+          "name": "list_outgoing_webhooks"
+        },
+        {
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": true
+          },
+          "description": "List all pipelines and standalone builds of an app.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "after": {
+                "description": "List pipelines/standalone builds run after a given date (RFC3339 time format)",
+                "type": "string"
+              },
+              "app_slug": {
+                "description": "Identifier of the Bitrise app",
+                "type": "string"
+              },
+              "before": {
+                "description": "List pipelines/standalone builds run before a given date (RFC3339 time format)",
+                "type": "string"
+              },
+              "branch": {
+                "description": "Filter by the branch which was built",
+                "type": "string"
+              },
+              "build_number": {
+                "description": "Filter by the pipeline/standalone build number",
+                "type": "number"
+              },
+              "commit_message": {
+                "description": "Filter by the commit message of the pipeline/standalone build",
+                "type": "string"
+              },
+              "limit": {
+                "description": "Max number of elements per page (default: 10)",
+                "type": "number"
+              },
+              "pipeline": {
+                "description": "Filter by the name of the pipeline",
+                "type": "string"
+              },
+              "status": {
+                "description": "Filter by the status of the pipeline/standalone build",
+                "enum": [
+                  "on_hold",
+                  "running",
+                  "succeeded",
+                  "failed",
+                  "aborted",
+                  "succeeded_with_abort"
+                ],
+                "type": "string"
+              },
+              "trigger_event_type": {
+                "description": "Filter by the event that triggered the pipeline/standalone build",
+                "enum": [
+                  "push",
+                  "pull-request",
+                  "tag"
+                ],
+                "type": "string"
+              },
+              "workflow": {
+                "description": "Filter by the name of the workflow used for the pipeline/standalone build",
+                "type": "string"
+              }
+            },
+            "required": [
+              "app_slug"
+            ]
+          },
+          "name": "list_pipelines"
+        },
+        {
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": true
+          },
+          "description": "Gives back a list of tester groups related to a specific Release Management connected app.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "connected_app_id": {
+                "description": "The uuidV4 identifier of the app the tester group is connected to. This field is mandatory.",
+                "type": "string"
+              },
+              "items_per_page": {
+                "default": 10,
+                "description": "Specifies the maximum number of tester groups to return related to a specific connected app. Default value is 10.",
+                "type": "number"
+              },
+              "page": {
+                "default": 1,
+                "description": "Specifies which page should be returned from the whole result set in a paginated scenario. Default value is 1.",
+                "type": "number"
+              }
+            },
+            "required": [
+              "connected_app_id"
+            ]
+          },
+          "name": "list_tester_groups"
+        },
+        {
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": true
+          },
+          "description": "List the workspaces the user has access to",
+          "inputSchema": {
+            "type": "object"
+          },
+          "name": "list_workspaces"
+        },
+        {
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": true
+          },
+          "description": "Get user info for the currently authenticated user account",
+          "inputSchema": {
+            "type": "object"
+          },
+          "name": "me"
+        },
+        {
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": false,
+            "idempotentHint": false,
+            "openWorldHint": true
+          },
+          "description": "Notifies a tester group about a new test build.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "connected_app_id": {
+                "description": "The uuidV4 identifier of the related Release Management connected app.",
+                "type": "string"
+              },
+              "id": {
+                "description": "The uuidV4 identifier of the tester group whose members will be notified about the test build.",
+                "type": "string"
+              },
+              "test_build_id": {
+                "description": "The unique identifier of the test build what will be sent in the notification of the tester group.",
+                "type": "string"
+              }
+            },
+            "required": [
+              "connected_app_id",
+              "id",
+              "test_build_id"
+            ]
+          },
+          "name": "notify_tester_group"
+        },
+        {
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": true,
+            "idempotentHint": false,
+            "openWorldHint": true
+          },
+          "description": "Rebuild a pipeline.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "app_slug": {
+                "description": "Identifier of the Bitrise app",
+                "type": "string"
+              },
+              "partial": {
+                "default": false,
+                "description": "Whether to rebuild only unsuccessful workflows and their dependents",
+                "type": "boolean"
+              },
+              "pipeline_id": {
+                "description": "Identifier of the pipeline",
+                "type": "string"
+              },
+              "triggered_by": {
+                "description": "Who triggered the rebuild",
+                "type": "string"
+              }
+            },
+            "required": [
+              "app_slug",
+              "pipeline_id"
+            ]
+          },
+          "name": "rebuild_pipeline"
+        },
+        {
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": false,
+            "idempotentHint": false,
+            "openWorldHint": true
+          },
+          "description": "Add a new app to Bitrise. After this app should be finished on order to be registered completely on Bitrise (via the finish_bitrise_app tool). Before doing this step, try understanding the repository details from the repository URL. This is a two-step process. First, you register the app with the Bitrise API, and then you finish the setup. The first step creates a new app in Bitrise, and the second step configures it with the necessary settings. If the user has multiple workspaces, always prompt the user to choose which one you should use. Don't prompt the user for finishing the app, just do it automatically.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "default_branch_name": {
+                "default": "master",
+                "description": "The default branch of the repository. Verify this branch exists in the remote repository.",
+                "type": "string"
+              },
+              "is_public": {
+                "description": "Whether the app's builds visibility is \"public\"",
+                "type": "boolean"
+              },
+              "manual_approval_enabled": {
+                "default": true,
+                "description": "Toggles whether manual approval should be enabled for the app's builds",
+                "type": "boolean"
+              },
+              "organization_slug": {
+                "description": "The organization (aka workspace) the app to add to",
+                "type": "string"
+              },
+              "provider": {
+                "default": "github",
+                "description": "The git provider of the repository",
+                "enum": [
+                  "bitbucket",
+                  "bitbucket-server",
+                  "custom",
+                  "github",
+                  "github-app",
+                  "github-self-hosted",
+                  "gitlab",
+                  "gitlab-self-hosted"
+                ],
+                "type": "string"
+              },
+              "repo_url": {
+                "description": "Repository URL",
+                "type": "string"
+              },
+              "title": {
+                "description": "The title of the application (if not specified, will use the git repository's name)",
+                "type": "string"
+              }
+            },
+            "required": [
+              "repo_url",
+              "is_public",
+              "organization_slug"
+            ]
+          },
+          "name": "register_app"
+        },
+        {
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": true,
+            "idempotentHint": false,
+            "openWorldHint": true
+          },
+          "description": "Add an SSH-key to a specific app.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "app_slug": {
+                "description": "Identifier of the Bitrise app",
+                "type": "string"
+              },
+              "auth_ssh_private_key": {
+                "description": "Private SSH key",
+                "type": "string"
+              },
+              "auth_ssh_public_key": {
+                "description": "Public SSH key",
+                "type": "string"
+              },
+              "is_register_key_into_provider_service": {
+                "description": "Register the key in the provider service",
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "app_slug",
+              "auth_ssh_private_key",
+              "auth_ssh_public_key"
+            ]
+          },
+          "name": "register_ssh_key"
+        },
+        {
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": false,
+            "idempotentHint": false,
+            "openWorldHint": true
+          },
+          "description": "Register an incoming webhook for a specific application.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "app_slug": {
+                "description": "Identifier of the Bitrise app",
+                "type": "string"
+              }
+            },
+            "required": [
+              "app_slug"
+            ]
+          },
+          "name": "register_webhook"
+        },
+        {
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": true,
+            "idempotentHint": true,
+            "openWorldHint": true
+          },
+          "description": "Replace group roles for an app.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "app_slug": {
+                "description": "Identifier of the Bitrise app",
+                "type": "string"
+              },
+              "group_slugs": {
+                "description": "List of group slugs",
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              "role_name": {
+                "description": "Name of the role",
+                "type": "string"
+              }
+            },
+            "required": [
+              "app_slug",
+              "role_name",
+              "group_slugs"
+            ]
+          },
+          "name": "replace_group_roles"
+        },
+        {
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": true,
+            "idempotentHint": false,
+            "openWorldHint": true
+          },
+          "description": "Changes whether public install page should be available for the installable artifact or not.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "connected_app_id": {
+                "description": "Identifier of the Release Management connected app for the installable artifact. This field is mandatory.",
+                "type": "string"
+              },
+              "installable_artifact_id": {
+                "description": "The uuidv4 identifier for the installable artifact. This field is mandatory.",
+                "type": "string"
+              },
+              "with_public_page": {
+                "description": "Boolean flag for enabling/disabling public install page for the installable artifact. This field is mandatory.",
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "connected_app_id",
+              "installable_artifact_id",
+              "with_public_page"
+            ]
+          },
+          "name": "set_installable_artifact_public_install_page"
+        },
+        {
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": true
+          },
+          "description": "List inputs of a step with their defaults, allowed values etc.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "step_ref": {
+                "description": "Step reference formatted as `step_lib_source::step_id@version`. `step_id` and an exact `version` are required, `step_lib_source` is only necessary for custom step sources.",
+                "type": "string"
+              }
+            },
+            "required": [
+              "step_ref"
+            ]
+          },
+          "name": "step_inputs"
+        },
+        {
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": true
+          },
+          "description": "Find steps for building workflows or step bundles in a Bitrise YML config file. Finds steps based on name, description, tags or maintainers.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "categories": {
+                "description": "Categories to filter steps.",
+                "items": {
+                  "enum": [
+                    "build",
+                    "code-sign",
+                    "test",
+                    "deploy",
+                    "notification",
+                    "access-control",
+                    "artifact-info",
+                    "installer",
+                    "dependency",
+                    "utility"
+                  ],
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              "maintainers": {
+                "description": "Filter steps by maintainers. Use `bitrise` to only look for official steps.",
+                "items": {
+                  "enum": [
+                    "bitrise",
+                    "verified",
+                    "community"
+                  ],
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              "query": {
+                "description": "The phrase to search steps for like `clone`, `npm`, `deploy` etc.",
+                "type": "string"
+              }
+            },
+            "required": [
+              "query"
+            ]
+          },
+          "name": "step_search"
+        },
+        {
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": false,
+            "idempotentHint": false,
+            "openWorldHint": true
+          },
+          "description": "Trigger a new build/pipeline for a specified Bitrise app",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "app_slug": {
+                "description": "Identifier of the Bitrise app (e.g., \"d8db74e2675d54c4\" or \"8eb495d0-f653-4eed-910b-8d6b56cc0ec7\")",
+                "type": "string"
+              },
+              "branch": {
+                "default": "main",
+                "description": "The branch to build",
+                "type": "string"
+              },
+              "commit_hash": {
+                "description": "The commit hash for the build",
+                "type": "string"
+              },
+              "commit_message": {
+                "description": "The commit message for the build",
+                "type": "string"
+              },
+              "environments": {
+                "description": "Custom environment variables for the build.",
+                "items": {
+                  "properties": {
+                    "is_expand": {
+                      "description": "Whether to expand environment variable references in the value",
+                      "type": "boolean"
+                    },
+                    "mapped_to": {
+                      "description": "The name of the environment variable",
+                      "type": "string"
+                    },
+                    "value": {
+                      "description": "The value of the environment variable",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "mapped_to",
+                    "value"
+                  ],
+                  "type": "object"
+                },
+                "type": "array"
+              },
+              "pipeline_id": {
+                "description": "The pipeline to build",
+                "type": "string"
+              },
+              "workflow_id": {
+                "description": "The workflow to build",
+                "type": "string"
+              }
+            },
+            "required": [
+              "app_slug"
+            ]
+          },
+          "name": "trigger_bitrise_build"
+        },
+        {
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": true,
+            "idempotentHint": true,
+            "openWorldHint": true
+          },
+          "description": "Update an app. Only app_slug is required, add only fields you wish to update",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "app_slug": {
+                "description": "Identifier of the Bitrise app",
+                "type": "string"
+              },
+              "default_branch": {
+                "description": "The new default branch for the application",
+                "type": "string"
+              },
+              "repository_url": {
+                "description": "The new repository URL for the application",
+                "type": "string"
+              },
+              "title": {
+                "description": "The new title of the application",
+                "type": "string"
+              }
+            },
+            "required": [
+              "app_slug"
+            ]
+          },
+          "name": "update_app"
+        },
+        {
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": true,
+            "idempotentHint": true,
+            "openWorldHint": true
+          },
+          "description": "Update a build artifact.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "app_slug": {
+                "description": "Identifier of the Bitrise app",
+                "type": "string"
+              },
+              "artifact_slug": {
+                "description": "Identifier of the artifact",
+                "type": "string"
+              },
+              "build_slug": {
+                "description": "Identifier of the build",
+                "type": "string"
+              },
+              "is_public_page_enabled": {
+                "description": "Enable public page for the artifact",
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "app_slug",
+              "build_slug",
+              "artifact_slug",
+              "is_public_page_enabled"
+            ]
+          },
+          "name": "update_artifact"
+        },
+        {
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": true,
+            "idempotentHint": true,
+            "openWorldHint": true
+          },
+          "description": "Update the Bitrise YML config stored on Bitrise. This has no effect if it is stored in the repository.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "app_slug": {
+                "description": "Identifier of the Bitrise app (e.g., \"d8db74e2675d54c4\" or \"8eb495d0-f653-4eed-910b-8d6b56cc0ec7\")",
+                "type": "string"
+              },
+              "bitrise_yml_as_json": {
+                "description": "The new Bitrise YML config file content to be updated. It must be a string. Important: these configs are large files, so get these by running: cat <filepath> via the Bash tool.",
+                "type": "string"
+              }
+            },
+            "required": [
+              "app_slug",
+              "bitrise_yml_as_json"
+            ]
+          },
+          "name": "update_bitrise_yml"
+        },
+        {
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": true,
+            "idempotentHint": false,
+            "openWorldHint": true
+          },
+          "description": "Updates a connected app.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "connect_to_store": {
+                "default": false,
+                "description": "If true, will check connected app validity against the Apple App Store or Google Play Store (dependent on the platform of your connected app). This means, that the already set or just given store_app_id will be validated against the Store, using the already set or just given store credential id.",
+                "type": "boolean"
+              },
+              "connected_app_id": {
+                "description": "The uuidV4 identifier for your connected app.",
+                "type": "string"
+              },
+              "store_app_id": {
+                "description": "The store identifier for your app. You can change the previously set store_app_id to match the one in the App Store or Google Play depending on the app platform. This is especially useful if you want to connect your app with the store as the system will validate the given store_app_id against the Store. In case of iOS platform it is the bundle id. In case of Android platform it is the package name.",
+                "type": "string"
+              },
+              "store_credential_id": {
+                "description": "If you have credentials added on Bitrise, you can decide to select one for your app. In case of ios platform it will be an Apple API credential id. In case of android platform it will be a Google Service credential id.",
+                "type": "string"
+              }
+            },
+            "required": [
+              "connected_app_id"
+            ]
+          },
+          "name": "update_connected_app"
+        },
+        {
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": true,
+            "idempotentHint": true,
+            "openWorldHint": true
+          },
+          "description": "Update an outgoing webhook for an app. Even if you do not want to change one of the parameters, you still have to provide that parameter as well: simply use its existing value.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "app_slug": {
+                "description": "Identifier of the Bitrise app",
+                "type": "string"
+              },
+              "events": {
+                "description": "List of events to trigger the webhook",
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              "headers": {
+                "description": "Headers to be sent with the webhook",
+                "properties": {},
+                "type": "object"
+              },
+              "url": {
+                "description": "URL of the webhook",
+                "type": "string"
+              },
+              "webhook_slug": {
+                "description": "Identifier of the webhook",
+                "type": "string"
+              }
+            },
+            "required": [
+              "app_slug",
+              "webhook_slug"
+            ]
+          },
+          "name": "update_outgoing_webhook"
+        },
+        {
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": true,
+            "idempotentHint": false,
+            "openWorldHint": true
+          },
+          "description": "Updates the given tester group. The name and the auto notification setting can be updated optionally.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "auto_notify": {
+                "default": false,
+                "description": "If set to true it indicates the tester group will receive email notifications automatically from now on about new installable builds.",
+                "type": "boolean"
+              },
+              "connected_app_id": {
+                "description": "The uuidV4 identifier of the related Release Management connected app.",
+                "type": "string"
+              },
+              "id": {
+                "description": "The uuidV4 identifier of the tester group to which testers will be added.",
+                "type": "string"
+              },
+              "name": {
+                "description": "The new name for the tester group. Must be unique in the scope of the related connected app.",
+                "type": "string"
+              }
+            },
+            "required": [
+              "connected_app_id",
+              "id"
+            ]
+          },
+          "name": "update_tester_group"
+        },
+        {
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": true
+          },
+          "description": "Validate a Bitrise YML config file. Use this tool to verify any changes made in bitrise.yml.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "app_slug": {
+                "description": "Slug of a Bitrise app (as returned by the list_apps tool). Specifying this value allows for validating the YML against workspace-specific settings like available stacks, machine types, license pools etc.",
+                "type": "string"
+              },
+              "bitrise_yml": {
+                "description": "The Bitrise YML config file content to be validated. It must be a string. Important: these configs are large files, so get these by running: cat <filepath> via the Bash tool.",
+                "type": "string"
+              }
+            },
+            "required": [
+              "bitrise_yml"
+            ]
+          },
+          "name": "validate_bitrise_yml"
+        }
+      ],
+      "python_sdk_url": "https://mcp.bitrise.io",
+      "python_sdk_config": "{\"debug\": false}"
+    },
+    "source_filename": "0005.Bitrise_labeled.json",
+    "processed_timestamp": 1772871481,
+    "processing_mode": "gateway",
+    "rank": 6
+  }
+}

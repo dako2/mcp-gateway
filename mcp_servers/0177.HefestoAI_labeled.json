@@ -1,0 +1,169 @@
+{
+  "labels": {
+    "analysis": "The MCP Server \"HefestoAI\" provides 4 tools for development tools tasks.",
+    "reasoning": "Primary label \"Development Tools\" assigned based on tool names and descriptions.",
+    "primary_label": "Development Tools",
+    "secondary_labels": [
+      "API Integration",
+      "DevOps",
+      "AI/ML Tools",
+      "DNS & Networking"
+    ],
+    "custom_label": "Development Tools - HefestoAI",
+    "is_connected": true,
+    "is_remote_tool_valid": true,
+    "featured_server": false
+  },
+  "metadata": {
+    "server_id": 177,
+    "server_name": "HefestoAI",
+    "rank_by_usage": 178,
+    "usage_count": "10",
+    "original_file": "tools.json#177",
+    "mode": "gateway",
+    "timestamp": 1772871482,
+    "remote_server_response": {
+      "url": "https://hefestoai.narapallc.com/api/mcp-protocol",
+      "is_success": true,
+      "error": null,
+      "tools": [
+        {
+          "name": "pricing",
+          "description": "Get HefestoAI pricing information",
+          "inputSchema": {
+            "type": "object",
+            "properties": {},
+            "required": []
+          }
+        },
+        {
+          "name": "install",
+          "description": "Get installation instructions for HefestoAI",
+          "inputSchema": {
+            "type": "object",
+            "properties": {},
+            "required": []
+          }
+        },
+        {
+          "name": "compare",
+          "description": "Compare HefestoAI with other code quality tools",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "tool": {
+                "type": "string",
+                "description": "Tool to compare with (sonarqube, snyk, github-advanced-security, semgrep, claude-code-security)"
+              }
+            }
+          }
+        },
+        {
+          "name": "analyze",
+          "description": "Analyze a code snippet for quality issues and semantic drift",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "code": {
+                "type": "string",
+                "description": "Code snippet to analyze"
+              },
+              "language": {
+                "type": "string",
+                "description": "Programming language (python, javascript, etc)"
+              }
+            },
+            "required": [
+              "code"
+            ]
+          }
+        }
+      ],
+      "tool_count": 4,
+      "tool_names": [
+        "pricing",
+        "install",
+        "compare",
+        "analyze"
+      ]
+    },
+    "server_info_crawled": {
+      "id": 177,
+      "name": "HefestoAI",
+      "author": "",
+      "overview": "HefestoAI - Development Tools MCP server with 4 tools.",
+      "repository_url": "",
+      "homepage": "https://hefestoai.narapallc.com/api/mcp-protocol",
+      "remote_or_local": "Remote",
+      "license": "",
+      "usage_count": "10",
+      "success_rate": "100%",
+      "tags": [
+        "development-tools"
+      ],
+      "categories": [
+        "development tools"
+      ],
+      "tools_count": 4,
+      "tools": [
+        {
+          "name": "pricing",
+          "description": "Get HefestoAI pricing information",
+          "inputSchema": {
+            "type": "object",
+            "properties": {},
+            "required": []
+          }
+        },
+        {
+          "name": "install",
+          "description": "Get installation instructions for HefestoAI",
+          "inputSchema": {
+            "type": "object",
+            "properties": {},
+            "required": []
+          }
+        },
+        {
+          "name": "compare",
+          "description": "Compare HefestoAI with other code quality tools",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "tool": {
+                "type": "string",
+                "description": "Tool to compare with (sonarqube, snyk, github-advanced-security, semgrep, claude-code-security)"
+              }
+            }
+          }
+        },
+        {
+          "name": "analyze",
+          "description": "Analyze a code snippet for quality issues and semantic drift",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "code": {
+                "type": "string",
+                "description": "Code snippet to analyze"
+              },
+              "language": {
+                "type": "string",
+                "description": "Programming language (python, javascript, etc)"
+              }
+            },
+            "required": [
+              "code"
+            ]
+          }
+        }
+      ],
+      "python_sdk_url": "https://hefestoai.narapallc.com/api/mcp-protocol",
+      "python_sdk_config": "{\"debug\": false}"
+    },
+    "source_filename": "0177.HefestoAI_labeled.json",
+    "processed_timestamp": 1772871482,
+    "processing_mode": "gateway",
+    "rank": 178
+  }
+}

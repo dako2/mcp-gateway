@@ -1,0 +1,218 @@
+{
+  "labels": {
+    "analysis": "The MCP Server \"MCP Registry Server\" provides 3 tools for development tools tasks.",
+    "reasoning": "Primary label \"Development Tools\" assigned based on tool names and descriptions.",
+    "primary_label": "Development Tools",
+    "secondary_labels": [
+      "API Integration",
+      "DevOps",
+      "AI/ML Tools",
+      "E-Commerce"
+    ],
+    "custom_label": "Development Tools - MCP Registry Server",
+    "is_connected": true,
+    "is_remote_tool_valid": true,
+    "featured_server": false
+  },
+  "metadata": {
+    "server_id": 203,
+    "server_name": "MCP Registry Server",
+    "rank_by_usage": 204,
+    "usage_count": "10",
+    "original_file": "tools.json#203",
+    "mode": "gateway",
+    "timestamp": 1772871482,
+    "remote_server_response": {
+      "url": "https://registry.run.mcp.com.ai/mcp",
+      "is_success": true,
+      "error": null,
+      "tools": [
+        {
+          "name": "getV01Servers",
+          "title": "List MCP servers",
+          "description": "List MCP servers - Returns a list of all registered MCP servers",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "cursor": {
+                "type": "string"
+              },
+              "limit": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 100
+              },
+              "search": {
+                "type": "string"
+              },
+              "updated_since": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "version": {
+                "type": "string"
+              }
+            }
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false
+          }
+        },
+        {
+          "name": "getV01ServersServerNameVersions",
+          "title": "List all versions of an MCP server",
+          "description": "List all versions of an MCP server - Returns all available versions for a specific MCP server, ordered by publication date (newest first)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "serverName": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "serverName"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false
+          }
+        },
+        {
+          "name": "getV01ServersServerNameVersionsVersion",
+          "title": "Get specific MCP server version",
+          "description": "Get specific MCP server version - Returns detailed information about a specific version of an MCP server. Use the special version `latest` to get the latest version.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "serverName": {
+                "type": "string"
+              },
+              "version": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "serverName",
+              "version"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false
+          }
+        }
+      ],
+      "tool_count": 3,
+      "tool_names": [
+        "getV01Servers",
+        "getV01ServersServerNameVersions",
+        "getV01ServersServerNameVersionsVersion"
+      ]
+    },
+    "server_info_crawled": {
+      "id": 203,
+      "name": "MCP Registry Server",
+      "author": "",
+      "overview": "MCP Registry Server - Development Tools MCP server with 3 tools.",
+      "repository_url": "",
+      "homepage": "https://registry.run.mcp.com.ai/mcp",
+      "remote_or_local": "Remote",
+      "license": "",
+      "usage_count": "10",
+      "success_rate": "100%",
+      "tags": [
+        "development-tools"
+      ],
+      "categories": [
+        "development tools"
+      ],
+      "tools_count": 3,
+      "tools": [
+        {
+          "name": "getV01Servers",
+          "title": "List MCP servers",
+          "description": "List MCP servers - Returns a list of all registered MCP servers",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "cursor": {
+                "type": "string"
+              },
+              "limit": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 100
+              },
+              "search": {
+                "type": "string"
+              },
+              "updated_since": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "version": {
+                "type": "string"
+              }
+            }
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false
+          }
+        },
+        {
+          "name": "getV01ServersServerNameVersions",
+          "title": "List all versions of an MCP server",
+          "description": "List all versions of an MCP server - Returns all available versions for a specific MCP server, ordered by publication date (newest first)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "serverName": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "serverName"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false
+          }
+        },
+        {
+          "name": "getV01ServersServerNameVersionsVersion",
+          "title": "Get specific MCP server version",
+          "description": "Get specific MCP server version - Returns detailed information about a specific version of an MCP server. Use the special version `latest` to get the latest version.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "serverName": {
+                "type": "string"
+              },
+              "version": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "serverName",
+              "version"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false
+          }
+        }
+      ],
+      "python_sdk_url": "https://registry.run.mcp.com.ai/mcp",
+      "python_sdk_config": "{\"debug\": false}"
+    },
+    "source_filename": "0203.MCP-Registry-Server_labeled.json",
+    "processed_timestamp": 1772871482,
+    "processing_mode": "gateway",
+    "rank": 204
+  }
+}

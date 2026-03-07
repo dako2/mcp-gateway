@@ -1,0 +1,4007 @@
+{
+  "labels": {
+    "analysis": "The MCP Server \"Pantry Persona\" provides 19 tools for e-commerce tasks.",
+    "reasoning": "Primary label \"E-Commerce\" assigned based on tool names and descriptions.",
+    "primary_label": "E-Commerce",
+    "secondary_labels": [
+      "Financial Services",
+      "AI/ML Tools",
+      "DNS & Networking"
+    ],
+    "custom_label": "E-Commerce - Pantry Persona",
+    "is_connected": true,
+    "is_remote_tool_valid": true,
+    "featured_server": true
+  },
+  "metadata": {
+    "server_id": 44,
+    "server_name": "Pantry Persona",
+    "rank_by_usage": 45,
+    "usage_count": "1,120",
+    "original_file": "tools.json#44",
+    "mode": "gateway",
+    "timestamp": 1772871481,
+    "remote_server_response": {
+      "url": "https://www.pantrypersona.com/api/mcp",
+      "is_success": true,
+      "error": null,
+      "tools": [
+        {
+          "name": "manage_shopping",
+          "title": "Manage shopping list",
+          "description": "Add, remove, check, or clear shopping list items, manage stores, and set staple items. Mutates the shopping list but does not display results — show_shopping renders the list. Handles multiple items in one call. Use show_shopping after to display updated list.",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {
+              "action": {
+                "type": "string",
+                "enum": [
+                  "add",
+                  "remove",
+                  "update",
+                  "check",
+                  "uncheck",
+                  "clear",
+                  "create_store",
+                  "update_store",
+                  "delete_store",
+                  "add_staple",
+                  "remove_staple",
+                  "pause_staple",
+                  "resume_staple"
+                ],
+                "description": "Action: add, remove, update, check, uncheck, clear, create_store, update_store, delete_store, add_staple, remove_staple, pause_staple, or resume_staple"
+              },
+              "items": {
+                "description": "Items to operate on (not needed for clear, store, or staple actions)",
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "description": "Item name (e.g., \"milk\", \"apples\", \"bread\") - required for add, optional for remove by ID",
+                      "type": "string"
+                    },
+                    "quantity": {
+                      "description": "Quantity (default: 1)",
+                      "type": "number"
+                    },
+                    "unit": {
+                      "description": "Unit (e.g., \"gallon\", \"lb\", \"bunch\")",
+                      "type": "string"
+                    },
+                    "category": {
+                      "description": "REQUIRED - use ONLY these exact IDs: produce, dairy, meat, seafood, deli, bakery, frozen, pantry, snacks, beverages, household, pet, other",
+                      "type": "string"
+                    },
+                    "brand": {
+                      "description": "Preferred brand if any",
+                      "type": "string"
+                    },
+                    "id": {
+                      "description": "Item ID (for update/remove)",
+                      "type": "string"
+                    }
+                  }
+                }
+              },
+              "storeId": {
+                "description": "Target store ID",
+                "type": "string"
+              },
+              "storeName": {
+                "description": "Target store name (or current name for update_store/delete_store)",
+                "type": "string"
+              },
+              "clearAll": {
+                "description": "For clear: true = ALL items, false = only checked (default)",
+                "type": "boolean"
+              },
+              "allStores": {
+                "description": "For clear: true = clear ALL stores at once",
+                "type": "boolean"
+              },
+              "newStoreName": {
+                "description": "New store name (for create_store or rename via update_store)",
+                "type": "string"
+              },
+              "categories": {
+                "description": "Store aisle categories in walk order",
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "defaultCategory": {
+                "description": "Default category for uncategorized items",
+                "type": "string"
+              },
+              "stapleId": {
+                "description": "Staple ID (for remove/pause/resume by ID)",
+                "type": "string"
+              },
+              "forProfile": {
+                "description": "Which profile this staple is for (e.g., \"kids\", \"Sarah\")",
+                "type": "string"
+              },
+              "autoAdd": {
+                "description": "Whether staple auto-re-adds when cleared (default: true)",
+                "type": "boolean"
+              },
+              "stapleNotes": {
+                "description": "Notes for the staple item",
+                "type": "string"
+              }
+            },
+            "required": [
+              "action"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": true,
+            "idempotentHint": true,
+            "openWorldHint": false
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "manage_pantry",
+          "title": "Manage pantry inventory",
+          "description": "Add, remove, update, or consume pantry items. Handles multiple items in one call. Use add_leftover for cooked food, add for store-bought. Use recategorize to auto-fix items stuck in Other category. Use show_pantry after to display updated inventory.",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {
+              "action": {
+                "type": "string",
+                "enum": [
+                  "add",
+                  "remove",
+                  "update",
+                  "consume",
+                  "clear_expired",
+                  "add_leftover",
+                  "recategorize"
+                ],
+                "description": "Action: add, remove, update, consume, clear_expired, add_leftover, or recategorize"
+              },
+              "items": {
+                "description": "Items to operate on (max 100, not needed for clear_expired or add_leftover)",
+                "maxItems": 100,
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "description": "Item name (e.g., \"salmon\", \"asparagus\", \"milk\")"
+                    },
+                    "id": {
+                      "description": "Item ID (for update/remove)",
+                      "type": "string"
+                    },
+                    "quantity": {
+                      "description": "Quantity (default: 1)",
+                      "type": "number"
+                    },
+                    "unit": {
+                      "description": "Unit (e.g., \"lb\", \"bunch\", \"gallon\")",
+                      "type": "string"
+                    },
+                    "category": {
+                      "description": "REQUIRED - use ONLY these exact IDs: fruits, vegetables, dairy, meat, seafood, deli, meat_alternatives, bread, pasta_rice_cereal, canned, frozen, snacks, beverages, condiments_spices, baking, household, pet, leftovers, other",
+                      "type": "string"
+                    },
+                    "expiresAt": {
+                      "description": "Expiration date ISO string",
+                      "type": "string"
+                    },
+                    "brand": {
+                      "description": "Brand name (e.g., \"Johnsonville\", \"Kraft\")",
+                      "type": "string"
+                    },
+                    "location": {
+                      "description": "Storage location (e.g., \"Fridge\", \"Pantry\") — accepted but not persisted",
+                      "type": "string"
+                    },
+                    "isLeftover": {
+                      "description": "True if this is leftover food",
+                      "type": "boolean"
+                    },
+                    "sourceMeal": {
+                      "description": "Source meal for leftovers",
+                      "type": "string"
+                    },
+                    "consumeAll": {
+                      "description": "For consume action: consume the entire quantity of this item regardless of amount. Use when user says \"use all\", \"finished the\", \"used up all the\".",
+                      "type": "boolean"
+                    }
+                  },
+                  "required": [
+                    "name"
+                  ]
+                }
+              },
+              "leftovers": {
+                "description": "Leftover items (max 50, only for add_leftover action)",
+                "maxItems": 50,
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "description": "Leftover food name (e.g., \"chicken stir-fry\", \"pasta carbonara\")"
+                    },
+                    "quantity": {
+                      "description": "Number of portions/containers (default: 1)",
+                      "type": "number"
+                    },
+                    "unit": {
+                      "description": "Unit (e.g., \"container\", \"portion\", \"bowl\")",
+                      "type": "string"
+                    },
+                    "expiresInDays": {
+                      "description": "Days until expiry (default: 7)",
+                      "type": "integer",
+                      "minimum": 1,
+                      "maximum": 30
+                    },
+                    "sourceMeal": {
+                      "description": "Meal this came from (e.g., \"Tuesday dinner\")",
+                      "type": "string"
+                    },
+                    "sourceRecipe": {
+                      "description": "Recipe name this was made from",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "name"
+                  ]
+                }
+              }
+            },
+            "required": [
+              "action"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": true,
+            "idempotentHint": true,
+            "openWorldHint": false
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "manage_meal_plan",
+          "title": "Manage meal plan",
+          "description": "Set meals, plan the week, clear, or move meals on the calendar. Use this when the user agrees to a plan — unsaved plans are lost. Use show_meal_plan after to display updated calendar. shop_for_meal_plan can check pantry coverage.",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {
+              "action": {
+                "type": "string",
+                "enum": [
+                  "set",
+                  "set_week",
+                  "clear",
+                  "move"
+                ],
+                "description": "Action: set (single day), set_week (batch), clear, or move"
+              },
+              "date": {
+                "description": "Date for set action (YYYY-MM-DD)",
+                "type": "string"
+              },
+              "meals": {
+                "description": "Meal slots for set action",
+                "type": "object",
+                "properties": {
+                  "breakfast": {
+                    "description": "Breakfast meal name",
+                    "type": "string"
+                  },
+                  "lunch": {
+                    "description": "Lunch meal name",
+                    "type": "string"
+                  },
+                  "dinner": {
+                    "description": "Dinner meal name",
+                    "type": "string"
+                  },
+                  "snack": {
+                    "description": "Snack name",
+                    "type": "string"
+                  },
+                  "breakfastRecipeId": {
+                    "description": "Saved recipe ID for breakfast",
+                    "type": "string"
+                  },
+                  "lunchRecipeId": {
+                    "description": "Saved recipe ID for lunch",
+                    "type": "string"
+                  },
+                  "dinnerRecipeId": {
+                    "description": "Saved recipe ID for dinner",
+                    "type": "string"
+                  },
+                  "snackRecipeId": {
+                    "description": "Saved recipe ID for snack",
+                    "type": "string"
+                  }
+                }
+              },
+              "weekStart": {
+                "description": "Week start for set_week action",
+                "type": "string"
+              },
+              "plans": {
+                "description": "Day plans for set_week action",
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "dayOffset": {
+                      "type": "number",
+                      "minimum": 0,
+                      "maximum": 6,
+                      "description": "Day offset (0=Mon, 6=Sun)"
+                    },
+                    "breakfast": {
+                      "description": "Breakfast meal name",
+                      "type": "string"
+                    },
+                    "lunch": {
+                      "description": "Lunch meal name",
+                      "type": "string"
+                    },
+                    "dinner": {
+                      "description": "Dinner meal name",
+                      "type": "string"
+                    },
+                    "snack": {
+                      "description": "Snack name",
+                      "type": "string"
+                    },
+                    "breakfastRecipeId": {
+                      "description": "Saved recipe ID for breakfast",
+                      "type": "string"
+                    },
+                    "lunchRecipeId": {
+                      "description": "Saved recipe ID for lunch",
+                      "type": "string"
+                    },
+                    "dinnerRecipeId": {
+                      "description": "Saved recipe ID for dinner",
+                      "type": "string"
+                    },
+                    "snackRecipeId": {
+                      "description": "Saved recipe ID for snack",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "dayOffset"
+                  ]
+                }
+              },
+              "startDate": {
+                "description": "Start date for clear action",
+                "type": "string"
+              },
+              "endDate": {
+                "description": "End date for clear action",
+                "type": "string"
+              },
+              "mealsToDelete": {
+                "description": "Specific meals to clear",
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "enum": [
+                    "breakfast",
+                    "lunch",
+                    "dinner",
+                    "snack"
+                  ]
+                }
+              },
+              "fromDate": {
+                "description": "Source date for move action",
+                "type": "string"
+              },
+              "toDate": {
+                "description": "Target date for move action",
+                "type": "string"
+              },
+              "mode": {
+                "description": "Move mode: move, swap, or copy",
+                "type": "string",
+                "enum": [
+                  "move",
+                  "swap",
+                  "copy"
+                ]
+              },
+              "mealsToMove": {
+                "description": "Specific meals to move",
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "enum": [
+                    "breakfast",
+                    "lunch",
+                    "dinner",
+                    "snack"
+                  ]
+                }
+              },
+              "profilesConsidered": {
+                "description": "Profile IDs for dietary validation",
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            },
+            "required": [
+              "action"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": true,
+            "idempotentHint": true,
+            "openWorldHint": false
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "find_recipes",
+          "title": "Find recipes",
+          "description": "Search and filter the user's saved recipes by ingredient, dietary need, cuisine, difficulty, or collection. Supports dietary filtering via forAllProfiles parameter when profile data is available.",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {
+              "filter": {
+                "description": "Search and filter options",
+                "type": "object",
+                "properties": {
+                  "query": {
+                    "description": "General search query for name/tags",
+                    "type": "string"
+                  },
+                  "ingredients": {
+                    "description": "Must contain these ingredients",
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "tags": {
+                    "description": "Filter by tags",
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "collection": {
+                    "description": "Filter by collection name or ID",
+                    "type": "string"
+                  },
+                  "maxTotalTime": {
+                    "description": "Max total time in minutes",
+                    "type": "number"
+                  },
+                  "timeOfDay": {
+                    "description": "Filter by time of day",
+                    "type": "string",
+                    "enum": [
+                      "breakfast",
+                      "lunch",
+                      "dinner",
+                      "snack",
+                      "any"
+                    ]
+                  },
+                  "canMakeNow": {
+                    "description": "Only show recipes with all ingredients in pantry",
+                    "type": "boolean"
+                  },
+                  "maxCalories": {
+                    "description": "Max calories per serving",
+                    "type": "number"
+                  },
+                  "minProtein": {
+                    "description": "Min protein grams per serving",
+                    "type": "number"
+                  },
+                  "maxCarbs": {
+                    "description": "Max carbs grams per serving",
+                    "type": "number"
+                  },
+                  "maxFat": {
+                    "description": "Max fat grams per serving",
+                    "type": "number"
+                  },
+                  "difficulty": {
+                    "description": "Recipe difficulty level",
+                    "type": "string",
+                    "enum": [
+                      "Easy",
+                      "Medium",
+                      "Hard"
+                    ]
+                  },
+                  "sortBy": {
+                    "description": "Sort order: relevance (default), quickest, newest, or rating",
+                    "type": "string",
+                    "enum": [
+                      "relevance",
+                      "quickest",
+                      "newest",
+                      "rating"
+                    ]
+                  },
+                  "forAllProfiles": {
+                    "description": "Filter for all household profiles",
+                    "type": "boolean"
+                  },
+                  "forProfiles": {
+                    "description": "Filter for specific profile names",
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "limit": {
+                    "description": "Maximum number of recipes to return",
+                    "type": "number"
+                  },
+                  "cursor": {
+                    "description": "Pagination cursor from previous results",
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "openWorldHint": false,
+            "destructiveHint": false
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "manage_recipes",
+          "title": "Manage recipes",
+          "description": "Save, update, delete, rate, batch-save, or share recipes. Use save for GPT-generated recipes, save_urls for links, batch_save for 4+ at once. Use show_recipes after to display updated collection.",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {
+              "action": {
+                "type": "string",
+                "enum": [
+                  "save",
+                  "save_urls",
+                  "update",
+                  "delete",
+                  "delete_batch",
+                  "batch_save",
+                  "rate",
+                  "share"
+                ],
+                "description": "Action: save, save_urls, update, delete, delete_batch, batch_save, rate, or share"
+              },
+              "recipe": {
+                "description": "Recipe data for save action",
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 200,
+                    "description": "Recipe name"
+                  },
+                  "ingredients": {
+                    "minItems": 1,
+                    "maxItems": 100,
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "name": {
+                          "type": "string",
+                          "minLength": 1,
+                          "maxLength": 200,
+                          "description": "Ingredient name"
+                        },
+                        "quantity": {
+                          "description": "Quantity needed",
+                          "type": "number",
+                          "minimum": 0
+                        },
+                        "unit": {
+                          "description": "Unit of measurement",
+                          "type": "string",
+                          "maxLength": 50
+                        }
+                      },
+                      "required": [
+                        "name"
+                      ]
+                    },
+                    "description": "List of ingredients"
+                  },
+                  "steps": {
+                    "minItems": 1,
+                    "maxItems": 50,
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 1000
+                    },
+                    "description": "Cooking instructions"
+                  },
+                  "servings": {
+                    "description": "Number of servings",
+                    "type": "integer",
+                    "exclusiveMinimum": 0,
+                    "maximum": 100
+                  },
+                  "prepTime": {
+                    "description": "Prep time in minutes",
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 1440
+                  },
+                  "cookTime": {
+                    "description": "Cook time in minutes",
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 1440
+                  },
+                  "tags": {
+                    "description": "Recipe tags",
+                    "maxItems": 30,
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 30
+                    }
+                  },
+                  "difficulty": {
+                    "description": "Recipe difficulty level",
+                    "type": "string",
+                    "enum": [
+                      "Easy",
+                      "Medium",
+                      "Hard"
+                    ]
+                  },
+                  "spiceLevel": {
+                    "description": "Spice/heat level",
+                    "type": "string"
+                  },
+                  "imageUrl": {
+                    "description": "Recipe image URL",
+                    "type": "string",
+                    "maxLength": 2048,
+                    "format": "uri"
+                  },
+                  "imageData": {
+                    "description": "Base64 encoded image data (e.g., from cookbook photo). Format: data:image/jpeg;base64,... or raw base64",
+                    "type": "string"
+                  },
+                  "sourceUrl": {
+                    "description": "Original recipe source URL",
+                    "type": "string",
+                    "format": "uri"
+                  },
+                  "text": {
+                    "description": "Additional recipe notes or description",
+                    "type": "string",
+                    "maxLength": 10000
+                  }
+                },
+                "required": [
+                  "name",
+                  "ingredients",
+                  "steps"
+                ]
+              },
+              "urls": {
+                "description": "Recipe URLs to import (1-20) for save_urls action",
+                "minItems": 1,
+                "maxItems": 20,
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "format": "uri"
+                }
+              },
+              "recipeId": {
+                "description": "Recipe ID (for update, delete, rate, share actions)",
+                "type": "string"
+              },
+              "expected_version": {
+                "description": "Expected updatedAt timestamp for optimistic concurrency (update action)",
+                "type": "string"
+              },
+              "updates": {
+                "description": "Fields to update (for update action)",
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "description": "New recipe name",
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 200
+                  },
+                  "imageUrl": {
+                    "description": "New image URL",
+                    "type": "string",
+                    "maxLength": 2048
+                  },
+                  "imageData": {
+                    "description": "Base64 encoded image data (e.g., from pasted photo). Format: data:image/jpeg;base64,... or raw base64",
+                    "type": "string"
+                  },
+                  "text": {
+                    "description": "Updated recipe notes or description",
+                    "type": "string",
+                    "maxLength": 10000
+                  },
+                  "servings": {
+                    "description": "Updated number of servings",
+                    "type": "integer",
+                    "exclusiveMinimum": 0,
+                    "maximum": 100
+                  },
+                  "prepTime": {
+                    "description": "Updated prep time in minutes",
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 1440
+                  },
+                  "cookTime": {
+                    "description": "Updated cook time in minutes",
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 1440
+                  },
+                  "ingredients": {
+                    "description": "Updated ingredients list",
+                    "maxItems": 100,
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "name": {
+                          "type": "string",
+                          "minLength": 1,
+                          "maxLength": 200,
+                          "description": "Ingredient name"
+                        },
+                        "quantity": {
+                          "description": "Quantity needed",
+                          "type": "number",
+                          "minimum": 0
+                        },
+                        "unit": {
+                          "description": "Unit of measurement",
+                          "type": "string",
+                          "maxLength": 50
+                        }
+                      },
+                      "required": [
+                        "name"
+                      ]
+                    }
+                  },
+                  "steps": {
+                    "description": "Updated cooking instructions",
+                    "maxItems": 50,
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 1000
+                    }
+                  },
+                  "tags": {
+                    "description": "Replace ALL tags (full overwrite)",
+                    "maxItems": 30,
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 30
+                    }
+                  },
+                  "addTags": {
+                    "description": "Tags to ADD to existing tags (merge mode)",
+                    "maxItems": 30,
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 30
+                    }
+                  },
+                  "removeTags": {
+                    "description": "Tags to REMOVE from existing tags",
+                    "maxItems": 30,
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 30
+                    }
+                  },
+                  "difficulty": {
+                    "description": "Updated difficulty level",
+                    "type": "string",
+                    "enum": [
+                      "Easy",
+                      "Medium",
+                      "Hard"
+                    ]
+                  },
+                  "spiceLevel": {
+                    "description": "Updated spice/heat level",
+                    "type": "string"
+                  },
+                  "sourceUrl": {
+                    "description": "Updated source URL",
+                    "type": "string",
+                    "format": "uri"
+                  }
+                }
+              },
+              "recipeName": {
+                "description": "Recipe name for lookup (delete, share actions)",
+                "type": "string"
+              },
+              "recipeIds": {
+                "description": "Array of recipe IDs (for delete_batch action)",
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "deleteAll": {
+                "description": "Delete ALL recipes (for delete_batch action)",
+                "type": "boolean"
+              },
+              "query": {
+                "description": "Search query to find and delete matching recipes (for delete_batch action)",
+                "type": "string"
+              },
+              "recipes": {
+                "description": "Array of recipes (for batch_save action)",
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 200,
+                      "description": "Recipe name"
+                    },
+                    "ingredients": {
+                      "minItems": 1,
+                      "maxItems": 100,
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "name": {
+                            "type": "string",
+                            "minLength": 1,
+                            "maxLength": 200,
+                            "description": "Ingredient name"
+                          },
+                          "quantity": {
+                            "description": "Quantity needed",
+                            "type": "number",
+                            "minimum": 0
+                          },
+                          "unit": {
+                            "description": "Unit of measurement",
+                            "type": "string",
+                            "maxLength": 50
+                          }
+                        },
+                        "required": [
+                          "name"
+                        ]
+                      },
+                      "description": "List of ingredients"
+                    },
+                    "steps": {
+                      "minItems": 1,
+                      "maxItems": 50,
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 1000
+                      },
+                      "description": "Cooking instructions"
+                    },
+                    "servings": {
+                      "description": "Number of servings",
+                      "type": "integer",
+                      "exclusiveMinimum": 0,
+                      "maximum": 100
+                    },
+                    "prepTime": {
+                      "description": "Prep time in minutes",
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 1440
+                    },
+                    "cookTime": {
+                      "description": "Cook time in minutes",
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 1440
+                    },
+                    "tags": {
+                      "description": "Recipe tags",
+                      "maxItems": 30,
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 30
+                      }
+                    },
+                    "difficulty": {
+                      "description": "Recipe difficulty level",
+                      "type": "string",
+                      "enum": [
+                        "Easy",
+                        "Medium",
+                        "Hard"
+                      ]
+                    },
+                    "spiceLevel": {
+                      "description": "Spice/heat level",
+                      "type": "string"
+                    },
+                    "imageUrl": {
+                      "description": "Recipe image URL",
+                      "type": "string",
+                      "maxLength": 2048,
+                      "format": "uri"
+                    },
+                    "imageData": {
+                      "description": "Base64 encoded image data (e.g., from cookbook photo). Format: data:image/jpeg;base64,... or raw base64",
+                      "type": "string"
+                    },
+                    "sourceUrl": {
+                      "description": "Original recipe source URL",
+                      "type": "string",
+                      "format": "uri"
+                    },
+                    "text": {
+                      "description": "Additional recipe notes or description",
+                      "type": "string",
+                      "maxLength": 10000
+                    }
+                  },
+                  "required": [
+                    "name",
+                    "ingredients",
+                    "steps"
+                  ]
+                }
+              },
+              "rating": {
+                "description": "Star rating 1-5 (for rate action)",
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 5
+              }
+            },
+            "required": [
+              "action"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": true,
+            "idempotentHint": true,
+            "openWorldHint": true
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "shop_for_meal_plan",
+          "title": "Shop for meal plan",
+          "description": "Add meal plan ingredients to shopping list in ONE call. Call this after manage_meal_plan to check pantry coverage for a new plan. Also use when the user says 'shop for my meals' or 'what do I need to buy'. Automatically checks pantry and skips items you already have.",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {
+              "startDate": {
+                "description": "Start date (YYYY-MM-DD). Defaults to today.",
+                "type": "string"
+              },
+              "endDate": {
+                "description": "End date (YYYY-MM-DD). Auto-detects if not specified.",
+                "type": "string"
+              },
+              "checkPantry": {
+                "description": "Skip items in pantry (default: true)",
+                "type": "boolean"
+              },
+              "storeId": {
+                "description": "Target store ID",
+                "type": "string"
+              },
+              "storeName": {
+                "description": "Target store name",
+                "type": "string"
+              }
+            }
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "cook_recipe",
+          "title": "Cook recipe",
+          "description": "Start or finish cooking a recipe. Set deductFromPantry:true to auto-remove used ingredients. Use recipeName for cleaner confirmations.",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {
+              "action": {
+                "type": "string",
+                "enum": [
+                  "start",
+                  "finish"
+                ],
+                "description": "Action: start (begin cooking) or finish (deduct ingredients)"
+              },
+              "recipeId": {
+                "description": "Recipe ID (only use if recipeName unavailable)",
+                "type": "string"
+              },
+              "recipeName": {
+                "description": "Recipe name - PREFERRED over recipeId",
+                "type": "string"
+              },
+              "servings": {
+                "description": "Number of servings (scales ingredients)",
+                "type": "number"
+              },
+              "deductFromPantry": {
+                "description": "Remove used ingredients from pantry when finishing. Set true to auto-deduct.",
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "action"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": true,
+            "idempotentHint": true,
+            "openWorldHint": false
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          },
+          "_meta": {
+            "ui": {
+              "resourceUri": "ui://widget/Recipes.html",
+              "resourceUrl": "https://www.pantrypersona.com/widgets/recipes.html",
+              "csp": {
+                "connectDomains": [
+                  "https://www.pantrypersona.com",
+                  "https://pantrypersona.com",
+                  "https://*.supabase.co"
+                ],
+                "resourceDomains": [
+                  "https://www.pantrypersona.com",
+                  "https://pantrypersona.com",
+                  "https://*.supabase.co"
+                ]
+              }
+            },
+            "ui/resourceUri": "ui://widget/Recipes.html",
+            "openai/outputTemplate": "ui://widget/Recipes.html",
+            "openai/widgetAccessible": true,
+            "openai/widgetDescription": "Recipe cooking mode with pantry tracking",
+            "openai/toolInvocation/invoking": "Starting cooking session...",
+            "openai/toolInvocation/invoked": "Cooking started",
+            "openai/widgetCSP": {
+              "connect_domains": [
+                "https://www.pantrypersona.com",
+                "https://pantrypersona.com",
+                "https://*.supabase.co"
+              ],
+              "resource_domains": [
+                "https://www.pantrypersona.com",
+                "https://pantrypersona.com",
+                "https://*.supabase.co"
+              ],
+              "frame_domains": []
+            },
+            "openai/widgetDomain": "https://www.pantrypersona.com"
+          }
+        },
+        {
+          "name": "process_receipt",
+          "title": "Process receipt",
+          "description": "Process receipt items and add to pantry.\n\nTriggers:\n- User uploads a receipt image (read with vision, then call this)\n- User types receipt items: 'milk 3.99, eggs 4.50'\n- User pastes receipt text\n\nInterpret abbreviations into clean names, call once with all items.",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {
+              "items": {
+                "minItems": 1,
+                "maxItems": 100,
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "minLength": 1,
+                      "description": "Clean product name"
+                    },
+                    "quantity": {
+                      "default": 1,
+                      "description": "Quantity (default 1)",
+                      "type": "number"
+                    },
+                    "price": {
+                      "description": "Price paid",
+                      "type": "number"
+                    },
+                    "category": {
+                      "description": "Product category",
+                      "type": "string"
+                    },
+                    "original_text": {
+                      "description": "Original receipt text",
+                      "type": "string"
+                    },
+                    "brand": {
+                      "description": "Brand name if identified (e.g., \"Kerrygold\", \"Kraft\")",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "name"
+                  ]
+                },
+                "description": "Items from receipt(s)"
+              },
+              "store_name": {
+                "description": "Store name",
+                "type": "string"
+              },
+              "receipt_date": {
+                "description": "Date from receipt",
+                "type": "string"
+              }
+            },
+            "required": [
+              "items"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "get_insights",
+          "title": "Get insights",
+          "description": "Get data insights: spending, price history, brand preferences, shopping patterns, restock predictions, or consumption analysis. Use this when the user asks \"what do I need to buy\", \"how much do I spend\", or \"how often do I buy X\".",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": [
+                  "spending",
+                  "price_history",
+                  "brand_preferences",
+                  "shopping_patterns",
+                  "restock_predictions",
+                  "consumption_insight",
+                  "consumption_patterns"
+                ],
+                "description": "Type of insight"
+              },
+              "period": {
+                "description": "Time period for spending (default: month)",
+                "type": "string",
+                "enum": [
+                  "week",
+                  "month",
+                  "quarter",
+                  "year"
+                ]
+              },
+              "compareToLastPeriod": {
+                "description": "Compare to previous period",
+                "type": "boolean"
+              },
+              "item": {
+                "description": "Item name for price_history",
+                "type": "string"
+              },
+              "topN": {
+                "description": "Top N items for patterns (default: 10)",
+                "type": "number"
+              },
+              "daysAhead": {
+                "description": "How many days ahead to predict (default: 14)",
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 30
+              },
+              "limit": {
+                "description": "Max items to return (default: 10)",
+                "type": "number"
+              },
+              "itemName": {
+                "description": "Item name for consumption_insight",
+                "type": "string"
+              },
+              "minPurchases": {
+                "description": "Min purchases to include (default: 3)",
+                "type": "integer",
+                "minimum": 2,
+                "maximum": 10
+              }
+            },
+            "required": [
+              "type"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "openWorldHint": false,
+            "destructiveHint": false
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "manage_profiles",
+          "title": "Manage profiles",
+          "description": "Create, update, or delete household and person profiles with dietary preferences, allergies, and scheduling rules. Check show_profiles first before creating person profiles. Use profileNames array for batch updates across multiple people.",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {
+              "action": {
+                "type": "string",
+                "enum": [
+                  "create",
+                  "update",
+                  "delete"
+                ],
+                "description": "Action to perform"
+              },
+              "profileId": {
+                "description": "Profile ID (for update/delete)",
+                "type": "string"
+              },
+              "profileName": {
+                "description": "Profile name (for lookup or create). Use \"Household\" for household settings.",
+                "type": "string"
+              },
+              "profileNames": {
+                "description": "Multiple profile names for batch update. Apply the same data changes to all listed profiles in one call. Example: [\"Lila\", \"Ben\"] to update both kids at once.",
+                "maxItems": 10,
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "data": {
+                "description": "Profile data (for create/update)",
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "description": "Profile name (required for create). Use \"Household\" for the household settings profile.",
+                    "type": "string",
+                    "maxLength": 100
+                  },
+                  "isHousehold": {
+                    "description": "True for household settings profile (max 1 per account, auto-created). Stores meal rules, schedules, cooking preferences.",
+                    "type": "boolean"
+                  },
+                  "diets": {
+                    "description": "Dietary patterns: 'vegetarian', 'vegan', 'keto', 'paleo' (person profiles)",
+                    "maxItems": 20,
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "maxLength": 50
+                    }
+                  },
+                  "goals": {
+                    "description": "Health goals: 'high protein', 'weight loss', 'muscle gain' (person profiles)",
+                    "maxItems": 20,
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "maxLength": 100
+                    }
+                  },
+                  "exclusions": {
+                    "description": "Food exclusions: 'dairy', 'shellfish', 'casseroles' (both profile types)",
+                    "maxItems": 100,
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "maxLength": 50
+                    }
+                  },
+                  "likes": {
+                    "description": "Foods they like: 'spicy food', 'Italian', 'sushi' (person profiles)",
+                    "maxItems": 20,
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "maxLength": 50
+                    }
+                  },
+                  "dislikes": {
+                    "description": "Foods they dislike: 'cilantro', 'olives' (person profiles)",
+                    "maxItems": 20,
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "maxLength": 50
+                    }
+                  },
+                  "schedulingRules": {
+                    "description": "Day-of-week rules (household only): { monday: \"quick meals (gymnastics)\", wednesday: \"Grandparent Night\" }",
+                    "type": "object",
+                    "propertyNames": {
+                      "type": "string",
+                      "enum": [
+                        "monday",
+                        "tuesday",
+                        "wednesday",
+                        "thursday",
+                        "friday",
+                        "saturday",
+                        "sunday"
+                      ]
+                    },
+                    "additionalProperties": {
+                      "type": "string",
+                      "maxLength": 200
+                    },
+                    "required": [
+                      "monday",
+                      "tuesday",
+                      "wednesday",
+                      "thursday",
+                      "friday",
+                      "saturday",
+                      "sunday"
+                    ]
+                  },
+                  "notes": {
+                    "description": "Free-form notes. Household: 2000 chars for meal rules, schedules, preferences. Person: 1000 chars.",
+                    "type": "string",
+                    "maxLength": 2000
+                  }
+                }
+              },
+              "confirmDelete": {
+                "description": "Set true to confirm deletion (person profiles only)",
+                "type": "boolean"
+              },
+              "replaceNotes": {
+                "description": "If true, completely replace notes instead of merging with existing. Use when fixing corrupted/duplicated data.",
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "action"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": true,
+            "idempotentHint": true,
+            "openWorldHint": false
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "manage_collections",
+          "title": "Manage collections",
+          "description": "Create, rename, delete recipe collections or add/remove recipes from them. Use this when the user associates a recipe with a person (\"this is a dad recipe\") or occasion (\"weeknight dinner\"). Auto-creates collections if they don't exist.",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {
+              "action": {
+                "type": "string",
+                "enum": [
+                  "create",
+                  "update",
+                  "delete",
+                  "add_recipes",
+                  "remove_recipes",
+                  "list"
+                ],
+                "description": "Action to perform"
+              },
+              "collectionId": {
+                "description": "Collection ID",
+                "type": "string"
+              },
+              "collectionName": {
+                "description": "Collection name (for lookup or create)",
+                "type": "string"
+              },
+              "name": {
+                "description": "New name for collection",
+                "type": "string",
+                "maxLength": 100
+              },
+              "description": {
+                "description": "Collection description",
+                "type": "string",
+                "maxLength": 500
+              },
+              "emoji": {
+                "description": "Emoji icon",
+                "type": "string",
+                "maxLength": 10
+              },
+              "color": {
+                "description": "Color code",
+                "type": "string",
+                "maxLength": 20
+              },
+              "recipeIds": {
+                "description": "Recipe IDs to add/remove",
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "recipeNames": {
+                "description": "Recipe names to add/remove",
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            },
+            "required": [
+              "action"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": true,
+            "idempotentHint": true,
+            "openWorldHint": false
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "manage_preferences",
+          "title": "Manage preferences",
+          "description": "Manage product brand preferences - set, clear, or list.\n\nTRIGGERS:\n- SET: 'I prefer [brand] for [item]', 'use [brand] butter'\n- CLEAR: 'forget my [item] preference'\n- LIST: 'what are my brand preferences'",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {
+              "action": {
+                "type": "string",
+                "enum": [
+                  "set",
+                  "clear",
+                  "list",
+                  "reset_all"
+                ],
+                "description": "Action to perform"
+              },
+              "itemName": {
+                "description": "Item name",
+                "type": "string"
+              },
+              "brand": {
+                "description": "Preferred brand",
+                "type": "string"
+              },
+              "size": {
+                "description": "Preferred size",
+                "type": "string"
+              },
+              "variant": {
+                "description": "Preferred variant",
+                "type": "string"
+              },
+              "unit": {
+                "description": "Preferred unit",
+                "type": "string"
+              },
+              "upc": {
+                "description": "UPC code",
+                "type": "string"
+              },
+              "category": {
+                "description": "Preferred category for this item",
+                "type": "string"
+              },
+              "minConfidence": {
+                "description": "Filter by minimum confidence",
+                "type": "number"
+              },
+              "limit": {
+                "description": "Max preferences to return",
+                "type": "number"
+              }
+            },
+            "required": [
+              "action"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": true,
+            "idempotentHint": true,
+            "openWorldHint": false
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "get_user_context",
+          "title": "Get kitchen snapshot",
+          "description": "Get a snapshot of the user's kitchen: dietary profiles, pantry highlights (including expiring items), today's meal plan, and shopping list status. Use this when the user says hello, asks about their kitchen or fridge, or starts any food conversation. One call replaces show_profiles + show_pantry + show_meal_plan.",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {}
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "openWorldHint": false,
+            "destructiveHint": false
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "show_shopping",
+          "title": "Show shopping list",
+          "description": "Display the user's shopping list as an interactive widget. Use this when the user asks about their list, says \"going shopping\", \"heading to [store]\", \"what do I need\", or \"what's on my list\". Also useful after manage_shopping to display updated results.",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {
+              "storeId": {
+                "description": "Filter by specific store ID",
+                "type": "string"
+              },
+              "storeName": {
+                "description": "Filter by store name",
+                "type": "string"
+              }
+            }
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "openWorldHint": false,
+            "destructiveHint": false
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          },
+          "_meta": {
+            "ui": {
+              "resourceUri": "ui://widget/ShoppingList.html",
+              "resourceUrl": "https://www.pantrypersona.com/widgets/shopping.html",
+              "csp": {
+                "connectDomains": [
+                  "https://www.pantrypersona.com",
+                  "https://pantrypersona.com",
+                  "https://*.supabase.co"
+                ],
+                "resourceDomains": [
+                  "https://www.pantrypersona.com",
+                  "https://pantrypersona.com",
+                  "https://*.supabase.co"
+                ]
+              }
+            },
+            "ui/resourceUri": "ui://widget/ShoppingList.html",
+            "openai/outputTemplate": "ui://widget/ShoppingList.html",
+            "openai/widgetAccessible": true,
+            "openai/widgetDescription": "Shopping list with swipe-to-check functionality",
+            "openai/toolInvocation/invoking": "Loading your list...",
+            "openai/toolInvocation/invoked": "List ready",
+            "openai/widgetCSP": {
+              "connect_domains": [
+                "https://www.pantrypersona.com",
+                "https://pantrypersona.com",
+                "https://*.supabase.co"
+              ],
+              "resource_domains": [
+                "https://www.pantrypersona.com",
+                "https://pantrypersona.com",
+                "https://*.supabase.co"
+              ],
+              "frame_domains": []
+            },
+            "openai/widgetDomain": "https://www.pantrypersona.com"
+          }
+        },
+        {
+          "name": "show_pantry",
+          "title": "Show pantry",
+          "description": "Display the user's pantry inventory as an interactive widget. Use this when the user asks what ingredients they have, or after any manage_pantry call to display updated inventory.",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {
+              "category": {
+                "description": "Filter by category",
+                "type": "string"
+              },
+              "searchTerm": {
+                "description": "Search by item name",
+                "type": "string"
+              },
+              "expiringSoon": {
+                "description": "Show only items expiring within 7 days",
+                "type": "boolean"
+              },
+              "expiringWithinDays": {
+                "description": "Show items expiring within N days",
+                "type": "number"
+              }
+            }
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "openWorldHint": false,
+            "destructiveHint": false
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          },
+          "_meta": {
+            "ui": {
+              "resourceUri": "ui://widget/Pantry.html",
+              "resourceUrl": "https://www.pantrypersona.com/widgets/pantry.html",
+              "csp": {
+                "connectDomains": [
+                  "https://www.pantrypersona.com",
+                  "https://pantrypersona.com",
+                  "https://*.supabase.co"
+                ],
+                "resourceDomains": [
+                  "https://www.pantrypersona.com",
+                  "https://pantrypersona.com",
+                  "https://*.supabase.co"
+                ]
+              }
+            },
+            "ui/resourceUri": "ui://widget/Pantry.html",
+            "openai/outputTemplate": "ui://widget/Pantry.html",
+            "openai/widgetAccessible": true,
+            "openai/widgetDescription": "Pantry inventory with expiration tracking",
+            "openai/toolInvocation/invoking": "Loading your pantry...",
+            "openai/toolInvocation/invoked": "Pantry ready",
+            "openai/widgetCSP": {
+              "connect_domains": [
+                "https://www.pantrypersona.com",
+                "https://pantrypersona.com",
+                "https://*.supabase.co"
+              ],
+              "resource_domains": [
+                "https://www.pantrypersona.com",
+                "https://pantrypersona.com",
+                "https://*.supabase.co"
+              ],
+              "frame_domains": []
+            },
+            "openai/widgetDomain": "https://www.pantrypersona.com"
+          }
+        },
+        {
+          "name": "show_recipes",
+          "title": "Show recipes",
+          "description": "Display the user's saved recipe collection as a browsable widget. Use this when the user says \"my recipes\", \"my saved recipes\", or \"show my cookbook\". For searching/filtering by ingredient or tag, use find_recipes instead.",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {
+              "query": {
+                "description": "Search by recipe name",
+                "type": "string"
+              },
+              "tags": {
+                "description": "Filter by tags",
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "limit": {
+                "description": "Maximum recipes to return",
+                "type": "number"
+              },
+              "offset": {
+                "description": "Number of recipes to skip (for pagination)",
+                "type": "number"
+              }
+            }
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "openWorldHint": false,
+            "destructiveHint": false
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          },
+          "_meta": {
+            "ui": {
+              "resourceUri": "ui://widget/Recipes.html",
+              "resourceUrl": "https://www.pantrypersona.com/widgets/recipes.html",
+              "csp": {
+                "connectDomains": [
+                  "https://www.pantrypersona.com",
+                  "https://pantrypersona.com",
+                  "https://*.supabase.co"
+                ],
+                "resourceDomains": [
+                  "https://www.pantrypersona.com",
+                  "https://pantrypersona.com",
+                  "https://*.supabase.co"
+                ]
+              }
+            },
+            "ui/resourceUri": "ui://widget/Recipes.html",
+            "openai/outputTemplate": "ui://widget/Recipes.html",
+            "openai/widgetAccessible": true,
+            "openai/widgetDescription": "Recipe collection with filtering and search",
+            "openai/toolInvocation/invoking": "Loading your recipes...",
+            "openai/toolInvocation/invoked": "Recipes ready",
+            "openai/widgetCSP": {
+              "connect_domains": [
+                "https://www.pantrypersona.com",
+                "https://pantrypersona.com",
+                "https://*.supabase.co"
+              ],
+              "resource_domains": [
+                "https://www.pantrypersona.com",
+                "https://pantrypersona.com",
+                "https://*.supabase.co"
+              ],
+              "frame_domains": []
+            },
+            "openai/widgetDomain": "https://www.pantrypersona.com"
+          }
+        },
+        {
+          "name": "show_meal_plan",
+          "title": "Show meal plan",
+          "description": "Display the user's weekly meal plan as a calendar widget. Use this when the user asks \"what's for dinner\", \"what's planned\", or after any manage_meal_plan call to display updated calendar.",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {
+              "date": {
+                "description": "Focus on specific day",
+                "type": "string",
+                "enum": [
+                  "today",
+                  "tomorrow",
+                  "week"
+                ]
+              },
+              "startDate": {
+                "description": "Week start date (YYYY-MM-DD)",
+                "type": "string"
+              }
+            }
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "openWorldHint": false,
+            "destructiveHint": false
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          },
+          "_meta": {
+            "ui": {
+              "resourceUri": "ui://widget/MealPlan.html",
+              "resourceUrl": "https://www.pantrypersona.com/widgets/meal-plan.html",
+              "csp": {
+                "connectDomains": [
+                  "https://www.pantrypersona.com",
+                  "https://pantrypersona.com",
+                  "https://*.supabase.co"
+                ],
+                "resourceDomains": [
+                  "https://www.pantrypersona.com",
+                  "https://pantrypersona.com",
+                  "https://*.supabase.co"
+                ]
+              }
+            },
+            "ui/resourceUri": "ui://widget/MealPlan.html",
+            "openai/outputTemplate": "ui://widget/MealPlan.html",
+            "openai/widgetAccessible": true,
+            "openai/widgetDescription": "Weekly meal planning calendar",
+            "openai/toolInvocation/invoking": "Loading your meal plan...",
+            "openai/toolInvocation/invoked": "Meal plan ready",
+            "openai/widgetCSP": {
+              "connect_domains": [
+                "https://www.pantrypersona.com",
+                "https://pantrypersona.com",
+                "https://*.supabase.co"
+              ],
+              "resource_domains": [
+                "https://www.pantrypersona.com",
+                "https://pantrypersona.com",
+                "https://*.supabase.co"
+              ],
+              "frame_domains": []
+            },
+            "openai/widgetDomain": "https://www.pantrypersona.com"
+          }
+        },
+        {
+          "name": "show_profiles",
+          "title": "Show household profiles",
+          "description": "Display household dietary profiles including allergies, diets, and food preferences. Also useful after manage_profiles to display updated profiles.",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {}
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "openWorldHint": false,
+            "destructiveHint": false
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          },
+          "_meta": {
+            "ui": {
+              "resourceUri": "ui://widget/Profiles.html",
+              "resourceUrl": "https://www.pantrypersona.com/widgets/profiles.html",
+              "csp": {
+                "connectDomains": [
+                  "https://www.pantrypersona.com",
+                  "https://pantrypersona.com",
+                  "https://*.supabase.co"
+                ],
+                "resourceDomains": [
+                  "https://www.pantrypersona.com",
+                  "https://pantrypersona.com",
+                  "https://*.supabase.co"
+                ]
+              }
+            },
+            "ui/resourceUri": "ui://widget/Profiles.html",
+            "openai/outputTemplate": "ui://widget/Profiles.html",
+            "openai/widgetAccessible": true,
+            "openai/widgetDescription": "Household profiles and dietary preferences",
+            "openai/toolInvocation/invoking": "Loading profiles...",
+            "openai/toolInvocation/invoked": "Profiles ready",
+            "openai/widgetCSP": {
+              "connect_domains": [
+                "https://www.pantrypersona.com",
+                "https://pantrypersona.com",
+                "https://*.supabase.co"
+              ],
+              "resource_domains": [
+                "https://www.pantrypersona.com",
+                "https://pantrypersona.com",
+                "https://*.supabase.co"
+              ],
+              "frame_domains": []
+            },
+            "openai/widgetDomain": "https://www.pantrypersona.com"
+          }
+        },
+        {
+          "name": "get_next_steps",
+          "title": "Get personalized next steps",
+          "description": "Get the user's feature adoption status and personalized onboarding guidance. Use this when the user says hello, asks \"what can I do\", or seems unsure how to use the app.",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {}
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "openWorldHint": false,
+            "destructiveHint": false
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          },
+          "_meta": {
+            "openai/widgetAccessible": true,
+            "openai/toolInvocation/invoking": "Checking your setup...",
+            "openai/toolInvocation/invoked": "Here's what to do next"
+          }
+        }
+      ],
+      "tool_count": 19,
+      "tool_names": [
+        "manage_shopping",
+        "manage_pantry",
+        "manage_meal_plan",
+        "find_recipes",
+        "manage_recipes",
+        "shop_for_meal_plan",
+        "cook_recipe",
+        "process_receipt",
+        "get_insights",
+        "manage_profiles",
+        "manage_collections",
+        "manage_preferences",
+        "get_user_context",
+        "show_shopping",
+        "show_pantry",
+        "show_recipes",
+        "show_meal_plan",
+        "show_profiles",
+        "get_next_steps"
+      ]
+    },
+    "server_info_crawled": {
+      "id": 44,
+      "name": "Pantry Persona",
+      "author": "",
+      "overview": "Pantry Persona - E-Commerce MCP server with 19 tools.",
+      "repository_url": "",
+      "homepage": "https://www.pantrypersona.com/api/mcp",
+      "remote_or_local": "Remote",
+      "license": "",
+      "usage_count": "1,120",
+      "success_rate": "100%",
+      "tags": [
+        "e-commerce"
+      ],
+      "categories": [
+        "e-commerce"
+      ],
+      "tools_count": 19,
+      "tools": [
+        {
+          "name": "manage_shopping",
+          "title": "Manage shopping list",
+          "description": "Add, remove, check, or clear shopping list items, manage stores, and set staple items. Mutates the shopping list but does not display results — show_shopping renders the list. Handles multiple items in one call. Use show_shopping after to display updated list.",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {
+              "action": {
+                "type": "string",
+                "enum": [
+                  "add",
+                  "remove",
+                  "update",
+                  "check",
+                  "uncheck",
+                  "clear",
+                  "create_store",
+                  "update_store",
+                  "delete_store",
+                  "add_staple",
+                  "remove_staple",
+                  "pause_staple",
+                  "resume_staple"
+                ],
+                "description": "Action: add, remove, update, check, uncheck, clear, create_store, update_store, delete_store, add_staple, remove_staple, pause_staple, or resume_staple"
+              },
+              "items": {
+                "description": "Items to operate on (not needed for clear, store, or staple actions)",
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "description": "Item name (e.g., \"milk\", \"apples\", \"bread\") - required for add, optional for remove by ID",
+                      "type": "string"
+                    },
+                    "quantity": {
+                      "description": "Quantity (default: 1)",
+                      "type": "number"
+                    },
+                    "unit": {
+                      "description": "Unit (e.g., \"gallon\", \"lb\", \"bunch\")",
+                      "type": "string"
+                    },
+                    "category": {
+                      "description": "REQUIRED - use ONLY these exact IDs: produce, dairy, meat, seafood, deli, bakery, frozen, pantry, snacks, beverages, household, pet, other",
+                      "type": "string"
+                    },
+                    "brand": {
+                      "description": "Preferred brand if any",
+                      "type": "string"
+                    },
+                    "id": {
+                      "description": "Item ID (for update/remove)",
+                      "type": "string"
+                    }
+                  }
+                }
+              },
+              "storeId": {
+                "description": "Target store ID",
+                "type": "string"
+              },
+              "storeName": {
+                "description": "Target store name (or current name for update_store/delete_store)",
+                "type": "string"
+              },
+              "clearAll": {
+                "description": "For clear: true = ALL items, false = only checked (default)",
+                "type": "boolean"
+              },
+              "allStores": {
+                "description": "For clear: true = clear ALL stores at once",
+                "type": "boolean"
+              },
+              "newStoreName": {
+                "description": "New store name (for create_store or rename via update_store)",
+                "type": "string"
+              },
+              "categories": {
+                "description": "Store aisle categories in walk order",
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "defaultCategory": {
+                "description": "Default category for uncategorized items",
+                "type": "string"
+              },
+              "stapleId": {
+                "description": "Staple ID (for remove/pause/resume by ID)",
+                "type": "string"
+              },
+              "forProfile": {
+                "description": "Which profile this staple is for (e.g., \"kids\", \"Sarah\")",
+                "type": "string"
+              },
+              "autoAdd": {
+                "description": "Whether staple auto-re-adds when cleared (default: true)",
+                "type": "boolean"
+              },
+              "stapleNotes": {
+                "description": "Notes for the staple item",
+                "type": "string"
+              }
+            },
+            "required": [
+              "action"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": true,
+            "idempotentHint": true,
+            "openWorldHint": false
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "manage_pantry",
+          "title": "Manage pantry inventory",
+          "description": "Add, remove, update, or consume pantry items. Handles multiple items in one call. Use add_leftover for cooked food, add for store-bought. Use recategorize to auto-fix items stuck in Other category. Use show_pantry after to display updated inventory.",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {
+              "action": {
+                "type": "string",
+                "enum": [
+                  "add",
+                  "remove",
+                  "update",
+                  "consume",
+                  "clear_expired",
+                  "add_leftover",
+                  "recategorize"
+                ],
+                "description": "Action: add, remove, update, consume, clear_expired, add_leftover, or recategorize"
+              },
+              "items": {
+                "description": "Items to operate on (max 100, not needed for clear_expired or add_leftover)",
+                "maxItems": 100,
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "description": "Item name (e.g., \"salmon\", \"asparagus\", \"milk\")"
+                    },
+                    "id": {
+                      "description": "Item ID (for update/remove)",
+                      "type": "string"
+                    },
+                    "quantity": {
+                      "description": "Quantity (default: 1)",
+                      "type": "number"
+                    },
+                    "unit": {
+                      "description": "Unit (e.g., \"lb\", \"bunch\", \"gallon\")",
+                      "type": "string"
+                    },
+                    "category": {
+                      "description": "REQUIRED - use ONLY these exact IDs: fruits, vegetables, dairy, meat, seafood, deli, meat_alternatives, bread, pasta_rice_cereal, canned, frozen, snacks, beverages, condiments_spices, baking, household, pet, leftovers, other",
+                      "type": "string"
+                    },
+                    "expiresAt": {
+                      "description": "Expiration date ISO string",
+                      "type": "string"
+                    },
+                    "brand": {
+                      "description": "Brand name (e.g., \"Johnsonville\", \"Kraft\")",
+                      "type": "string"
+                    },
+                    "location": {
+                      "description": "Storage location (e.g., \"Fridge\", \"Pantry\") — accepted but not persisted",
+                      "type": "string"
+                    },
+                    "isLeftover": {
+                      "description": "True if this is leftover food",
+                      "type": "boolean"
+                    },
+                    "sourceMeal": {
+                      "description": "Source meal for leftovers",
+                      "type": "string"
+                    },
+                    "consumeAll": {
+                      "description": "For consume action: consume the entire quantity of this item regardless of amount. Use when user says \"use all\", \"finished the\", \"used up all the\".",
+                      "type": "boolean"
+                    }
+                  },
+                  "required": [
+                    "name"
+                  ]
+                }
+              },
+              "leftovers": {
+                "description": "Leftover items (max 50, only for add_leftover action)",
+                "maxItems": 50,
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "description": "Leftover food name (e.g., \"chicken stir-fry\", \"pasta carbonara\")"
+                    },
+                    "quantity": {
+                      "description": "Number of portions/containers (default: 1)",
+                      "type": "number"
+                    },
+                    "unit": {
+                      "description": "Unit (e.g., \"container\", \"portion\", \"bowl\")",
+                      "type": "string"
+                    },
+                    "expiresInDays": {
+                      "description": "Days until expiry (default: 7)",
+                      "type": "integer",
+                      "minimum": 1,
+                      "maximum": 30
+                    },
+                    "sourceMeal": {
+                      "description": "Meal this came from (e.g., \"Tuesday dinner\")",
+                      "type": "string"
+                    },
+                    "sourceRecipe": {
+                      "description": "Recipe name this was made from",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "name"
+                  ]
+                }
+              }
+            },
+            "required": [
+              "action"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": true,
+            "idempotentHint": true,
+            "openWorldHint": false
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "manage_meal_plan",
+          "title": "Manage meal plan",
+          "description": "Set meals, plan the week, clear, or move meals on the calendar. Use this when the user agrees to a plan — unsaved plans are lost. Use show_meal_plan after to display updated calendar. shop_for_meal_plan can check pantry coverage.",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {
+              "action": {
+                "type": "string",
+                "enum": [
+                  "set",
+                  "set_week",
+                  "clear",
+                  "move"
+                ],
+                "description": "Action: set (single day), set_week (batch), clear, or move"
+              },
+              "date": {
+                "description": "Date for set action (YYYY-MM-DD)",
+                "type": "string"
+              },
+              "meals": {
+                "description": "Meal slots for set action",
+                "type": "object",
+                "properties": {
+                  "breakfast": {
+                    "description": "Breakfast meal name",
+                    "type": "string"
+                  },
+                  "lunch": {
+                    "description": "Lunch meal name",
+                    "type": "string"
+                  },
+                  "dinner": {
+                    "description": "Dinner meal name",
+                    "type": "string"
+                  },
+                  "snack": {
+                    "description": "Snack name",
+                    "type": "string"
+                  },
+                  "breakfastRecipeId": {
+                    "description": "Saved recipe ID for breakfast",
+                    "type": "string"
+                  },
+                  "lunchRecipeId": {
+                    "description": "Saved recipe ID for lunch",
+                    "type": "string"
+                  },
+                  "dinnerRecipeId": {
+                    "description": "Saved recipe ID for dinner",
+                    "type": "string"
+                  },
+                  "snackRecipeId": {
+                    "description": "Saved recipe ID for snack",
+                    "type": "string"
+                  }
+                }
+              },
+              "weekStart": {
+                "description": "Week start for set_week action",
+                "type": "string"
+              },
+              "plans": {
+                "description": "Day plans for set_week action",
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "dayOffset": {
+                      "type": "number",
+                      "minimum": 0,
+                      "maximum": 6,
+                      "description": "Day offset (0=Mon, 6=Sun)"
+                    },
+                    "breakfast": {
+                      "description": "Breakfast meal name",
+                      "type": "string"
+                    },
+                    "lunch": {
+                      "description": "Lunch meal name",
+                      "type": "string"
+                    },
+                    "dinner": {
+                      "description": "Dinner meal name",
+                      "type": "string"
+                    },
+                    "snack": {
+                      "description": "Snack name",
+                      "type": "string"
+                    },
+                    "breakfastRecipeId": {
+                      "description": "Saved recipe ID for breakfast",
+                      "type": "string"
+                    },
+                    "lunchRecipeId": {
+                      "description": "Saved recipe ID for lunch",
+                      "type": "string"
+                    },
+                    "dinnerRecipeId": {
+                      "description": "Saved recipe ID for dinner",
+                      "type": "string"
+                    },
+                    "snackRecipeId": {
+                      "description": "Saved recipe ID for snack",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "dayOffset"
+                  ]
+                }
+              },
+              "startDate": {
+                "description": "Start date for clear action",
+                "type": "string"
+              },
+              "endDate": {
+                "description": "End date for clear action",
+                "type": "string"
+              },
+              "mealsToDelete": {
+                "description": "Specific meals to clear",
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "enum": [
+                    "breakfast",
+                    "lunch",
+                    "dinner",
+                    "snack"
+                  ]
+                }
+              },
+              "fromDate": {
+                "description": "Source date for move action",
+                "type": "string"
+              },
+              "toDate": {
+                "description": "Target date for move action",
+                "type": "string"
+              },
+              "mode": {
+                "description": "Move mode: move, swap, or copy",
+                "type": "string",
+                "enum": [
+                  "move",
+                  "swap",
+                  "copy"
+                ]
+              },
+              "mealsToMove": {
+                "description": "Specific meals to move",
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "enum": [
+                    "breakfast",
+                    "lunch",
+                    "dinner",
+                    "snack"
+                  ]
+                }
+              },
+              "profilesConsidered": {
+                "description": "Profile IDs for dietary validation",
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            },
+            "required": [
+              "action"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": true,
+            "idempotentHint": true,
+            "openWorldHint": false
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "find_recipes",
+          "title": "Find recipes",
+          "description": "Search and filter the user's saved recipes by ingredient, dietary need, cuisine, difficulty, or collection. Supports dietary filtering via forAllProfiles parameter when profile data is available.",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {
+              "filter": {
+                "description": "Search and filter options",
+                "type": "object",
+                "properties": {
+                  "query": {
+                    "description": "General search query for name/tags",
+                    "type": "string"
+                  },
+                  "ingredients": {
+                    "description": "Must contain these ingredients",
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "tags": {
+                    "description": "Filter by tags",
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "collection": {
+                    "description": "Filter by collection name or ID",
+                    "type": "string"
+                  },
+                  "maxTotalTime": {
+                    "description": "Max total time in minutes",
+                    "type": "number"
+                  },
+                  "timeOfDay": {
+                    "description": "Filter by time of day",
+                    "type": "string",
+                    "enum": [
+                      "breakfast",
+                      "lunch",
+                      "dinner",
+                      "snack",
+                      "any"
+                    ]
+                  },
+                  "canMakeNow": {
+                    "description": "Only show recipes with all ingredients in pantry",
+                    "type": "boolean"
+                  },
+                  "maxCalories": {
+                    "description": "Max calories per serving",
+                    "type": "number"
+                  },
+                  "minProtein": {
+                    "description": "Min protein grams per serving",
+                    "type": "number"
+                  },
+                  "maxCarbs": {
+                    "description": "Max carbs grams per serving",
+                    "type": "number"
+                  },
+                  "maxFat": {
+                    "description": "Max fat grams per serving",
+                    "type": "number"
+                  },
+                  "difficulty": {
+                    "description": "Recipe difficulty level",
+                    "type": "string",
+                    "enum": [
+                      "Easy",
+                      "Medium",
+                      "Hard"
+                    ]
+                  },
+                  "sortBy": {
+                    "description": "Sort order: relevance (default), quickest, newest, or rating",
+                    "type": "string",
+                    "enum": [
+                      "relevance",
+                      "quickest",
+                      "newest",
+                      "rating"
+                    ]
+                  },
+                  "forAllProfiles": {
+                    "description": "Filter for all household profiles",
+                    "type": "boolean"
+                  },
+                  "forProfiles": {
+                    "description": "Filter for specific profile names",
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "limit": {
+                    "description": "Maximum number of recipes to return",
+                    "type": "number"
+                  },
+                  "cursor": {
+                    "description": "Pagination cursor from previous results",
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "openWorldHint": false,
+            "destructiveHint": false
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "manage_recipes",
+          "title": "Manage recipes",
+          "description": "Save, update, delete, rate, batch-save, or share recipes. Use save for GPT-generated recipes, save_urls for links, batch_save for 4+ at once. Use show_recipes after to display updated collection.",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {
+              "action": {
+                "type": "string",
+                "enum": [
+                  "save",
+                  "save_urls",
+                  "update",
+                  "delete",
+                  "delete_batch",
+                  "batch_save",
+                  "rate",
+                  "share"
+                ],
+                "description": "Action: save, save_urls, update, delete, delete_batch, batch_save, rate, or share"
+              },
+              "recipe": {
+                "description": "Recipe data for save action",
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 200,
+                    "description": "Recipe name"
+                  },
+                  "ingredients": {
+                    "minItems": 1,
+                    "maxItems": 100,
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "name": {
+                          "type": "string",
+                          "minLength": 1,
+                          "maxLength": 200,
+                          "description": "Ingredient name"
+                        },
+                        "quantity": {
+                          "description": "Quantity needed",
+                          "type": "number",
+                          "minimum": 0
+                        },
+                        "unit": {
+                          "description": "Unit of measurement",
+                          "type": "string",
+                          "maxLength": 50
+                        }
+                      },
+                      "required": [
+                        "name"
+                      ]
+                    },
+                    "description": "List of ingredients"
+                  },
+                  "steps": {
+                    "minItems": 1,
+                    "maxItems": 50,
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 1000
+                    },
+                    "description": "Cooking instructions"
+                  },
+                  "servings": {
+                    "description": "Number of servings",
+                    "type": "integer",
+                    "exclusiveMinimum": 0,
+                    "maximum": 100
+                  },
+                  "prepTime": {
+                    "description": "Prep time in minutes",
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 1440
+                  },
+                  "cookTime": {
+                    "description": "Cook time in minutes",
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 1440
+                  },
+                  "tags": {
+                    "description": "Recipe tags",
+                    "maxItems": 30,
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 30
+                    }
+                  },
+                  "difficulty": {
+                    "description": "Recipe difficulty level",
+                    "type": "string",
+                    "enum": [
+                      "Easy",
+                      "Medium",
+                      "Hard"
+                    ]
+                  },
+                  "spiceLevel": {
+                    "description": "Spice/heat level",
+                    "type": "string"
+                  },
+                  "imageUrl": {
+                    "description": "Recipe image URL",
+                    "type": "string",
+                    "maxLength": 2048,
+                    "format": "uri"
+                  },
+                  "imageData": {
+                    "description": "Base64 encoded image data (e.g., from cookbook photo). Format: data:image/jpeg;base64,... or raw base64",
+                    "type": "string"
+                  },
+                  "sourceUrl": {
+                    "description": "Original recipe source URL",
+                    "type": "string",
+                    "format": "uri"
+                  },
+                  "text": {
+                    "description": "Additional recipe notes or description",
+                    "type": "string",
+                    "maxLength": 10000
+                  }
+                },
+                "required": [
+                  "name",
+                  "ingredients",
+                  "steps"
+                ]
+              },
+              "urls": {
+                "description": "Recipe URLs to import (1-20) for save_urls action",
+                "minItems": 1,
+                "maxItems": 20,
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "format": "uri"
+                }
+              },
+              "recipeId": {
+                "description": "Recipe ID (for update, delete, rate, share actions)",
+                "type": "string"
+              },
+              "expected_version": {
+                "description": "Expected updatedAt timestamp for optimistic concurrency (update action)",
+                "type": "string"
+              },
+              "updates": {
+                "description": "Fields to update (for update action)",
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "description": "New recipe name",
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 200
+                  },
+                  "imageUrl": {
+                    "description": "New image URL",
+                    "type": "string",
+                    "maxLength": 2048
+                  },
+                  "imageData": {
+                    "description": "Base64 encoded image data (e.g., from pasted photo). Format: data:image/jpeg;base64,... or raw base64",
+                    "type": "string"
+                  },
+                  "text": {
+                    "description": "Updated recipe notes or description",
+                    "type": "string",
+                    "maxLength": 10000
+                  },
+                  "servings": {
+                    "description": "Updated number of servings",
+                    "type": "integer",
+                    "exclusiveMinimum": 0,
+                    "maximum": 100
+                  },
+                  "prepTime": {
+                    "description": "Updated prep time in minutes",
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 1440
+                  },
+                  "cookTime": {
+                    "description": "Updated cook time in minutes",
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 1440
+                  },
+                  "ingredients": {
+                    "description": "Updated ingredients list",
+                    "maxItems": 100,
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "name": {
+                          "type": "string",
+                          "minLength": 1,
+                          "maxLength": 200,
+                          "description": "Ingredient name"
+                        },
+                        "quantity": {
+                          "description": "Quantity needed",
+                          "type": "number",
+                          "minimum": 0
+                        },
+                        "unit": {
+                          "description": "Unit of measurement",
+                          "type": "string",
+                          "maxLength": 50
+                        }
+                      },
+                      "required": [
+                        "name"
+                      ]
+                    }
+                  },
+                  "steps": {
+                    "description": "Updated cooking instructions",
+                    "maxItems": 50,
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 1000
+                    }
+                  },
+                  "tags": {
+                    "description": "Replace ALL tags (full overwrite)",
+                    "maxItems": 30,
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 30
+                    }
+                  },
+                  "addTags": {
+                    "description": "Tags to ADD to existing tags (merge mode)",
+                    "maxItems": 30,
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 30
+                    }
+                  },
+                  "removeTags": {
+                    "description": "Tags to REMOVE from existing tags",
+                    "maxItems": 30,
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 30
+                    }
+                  },
+                  "difficulty": {
+                    "description": "Updated difficulty level",
+                    "type": "string",
+                    "enum": [
+                      "Easy",
+                      "Medium",
+                      "Hard"
+                    ]
+                  },
+                  "spiceLevel": {
+                    "description": "Updated spice/heat level",
+                    "type": "string"
+                  },
+                  "sourceUrl": {
+                    "description": "Updated source URL",
+                    "type": "string",
+                    "format": "uri"
+                  }
+                }
+              },
+              "recipeName": {
+                "description": "Recipe name for lookup (delete, share actions)",
+                "type": "string"
+              },
+              "recipeIds": {
+                "description": "Array of recipe IDs (for delete_batch action)",
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "deleteAll": {
+                "description": "Delete ALL recipes (for delete_batch action)",
+                "type": "boolean"
+              },
+              "query": {
+                "description": "Search query to find and delete matching recipes (for delete_batch action)",
+                "type": "string"
+              },
+              "recipes": {
+                "description": "Array of recipes (for batch_save action)",
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 200,
+                      "description": "Recipe name"
+                    },
+                    "ingredients": {
+                      "minItems": 1,
+                      "maxItems": 100,
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "name": {
+                            "type": "string",
+                            "minLength": 1,
+                            "maxLength": 200,
+                            "description": "Ingredient name"
+                          },
+                          "quantity": {
+                            "description": "Quantity needed",
+                            "type": "number",
+                            "minimum": 0
+                          },
+                          "unit": {
+                            "description": "Unit of measurement",
+                            "type": "string",
+                            "maxLength": 50
+                          }
+                        },
+                        "required": [
+                          "name"
+                        ]
+                      },
+                      "description": "List of ingredients"
+                    },
+                    "steps": {
+                      "minItems": 1,
+                      "maxItems": 50,
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 1000
+                      },
+                      "description": "Cooking instructions"
+                    },
+                    "servings": {
+                      "description": "Number of servings",
+                      "type": "integer",
+                      "exclusiveMinimum": 0,
+                      "maximum": 100
+                    },
+                    "prepTime": {
+                      "description": "Prep time in minutes",
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 1440
+                    },
+                    "cookTime": {
+                      "description": "Cook time in minutes",
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 1440
+                    },
+                    "tags": {
+                      "description": "Recipe tags",
+                      "maxItems": 30,
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 30
+                      }
+                    },
+                    "difficulty": {
+                      "description": "Recipe difficulty level",
+                      "type": "string",
+                      "enum": [
+                        "Easy",
+                        "Medium",
+                        "Hard"
+                      ]
+                    },
+                    "spiceLevel": {
+                      "description": "Spice/heat level",
+                      "type": "string"
+                    },
+                    "imageUrl": {
+                      "description": "Recipe image URL",
+                      "type": "string",
+                      "maxLength": 2048,
+                      "format": "uri"
+                    },
+                    "imageData": {
+                      "description": "Base64 encoded image data (e.g., from cookbook photo). Format: data:image/jpeg;base64,... or raw base64",
+                      "type": "string"
+                    },
+                    "sourceUrl": {
+                      "description": "Original recipe source URL",
+                      "type": "string",
+                      "format": "uri"
+                    },
+                    "text": {
+                      "description": "Additional recipe notes or description",
+                      "type": "string",
+                      "maxLength": 10000
+                    }
+                  },
+                  "required": [
+                    "name",
+                    "ingredients",
+                    "steps"
+                  ]
+                }
+              },
+              "rating": {
+                "description": "Star rating 1-5 (for rate action)",
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 5
+              }
+            },
+            "required": [
+              "action"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": true,
+            "idempotentHint": true,
+            "openWorldHint": true
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "shop_for_meal_plan",
+          "title": "Shop for meal plan",
+          "description": "Add meal plan ingredients to shopping list in ONE call. Call this after manage_meal_plan to check pantry coverage for a new plan. Also use when the user says 'shop for my meals' or 'what do I need to buy'. Automatically checks pantry and skips items you already have.",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {
+              "startDate": {
+                "description": "Start date (YYYY-MM-DD). Defaults to today.",
+                "type": "string"
+              },
+              "endDate": {
+                "description": "End date (YYYY-MM-DD). Auto-detects if not specified.",
+                "type": "string"
+              },
+              "checkPantry": {
+                "description": "Skip items in pantry (default: true)",
+                "type": "boolean"
+              },
+              "storeId": {
+                "description": "Target store ID",
+                "type": "string"
+              },
+              "storeName": {
+                "description": "Target store name",
+                "type": "string"
+              }
+            }
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "cook_recipe",
+          "title": "Cook recipe",
+          "description": "Start or finish cooking a recipe. Set deductFromPantry:true to auto-remove used ingredients. Use recipeName for cleaner confirmations.",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {
+              "action": {
+                "type": "string",
+                "enum": [
+                  "start",
+                  "finish"
+                ],
+                "description": "Action: start (begin cooking) or finish (deduct ingredients)"
+              },
+              "recipeId": {
+                "description": "Recipe ID (only use if recipeName unavailable)",
+                "type": "string"
+              },
+              "recipeName": {
+                "description": "Recipe name - PREFERRED over recipeId",
+                "type": "string"
+              },
+              "servings": {
+                "description": "Number of servings (scales ingredients)",
+                "type": "number"
+              },
+              "deductFromPantry": {
+                "description": "Remove used ingredients from pantry when finishing. Set true to auto-deduct.",
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "action"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": true,
+            "idempotentHint": true,
+            "openWorldHint": false
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          },
+          "_meta": {
+            "ui": {
+              "resourceUri": "ui://widget/Recipes.html",
+              "resourceUrl": "https://www.pantrypersona.com/widgets/recipes.html",
+              "csp": {
+                "connectDomains": [
+                  "https://www.pantrypersona.com",
+                  "https://pantrypersona.com",
+                  "https://*.supabase.co"
+                ],
+                "resourceDomains": [
+                  "https://www.pantrypersona.com",
+                  "https://pantrypersona.com",
+                  "https://*.supabase.co"
+                ]
+              }
+            },
+            "ui/resourceUri": "ui://widget/Recipes.html",
+            "openai/outputTemplate": "ui://widget/Recipes.html",
+            "openai/widgetAccessible": true,
+            "openai/widgetDescription": "Recipe cooking mode with pantry tracking",
+            "openai/toolInvocation/invoking": "Starting cooking session...",
+            "openai/toolInvocation/invoked": "Cooking started",
+            "openai/widgetCSP": {
+              "connect_domains": [
+                "https://www.pantrypersona.com",
+                "https://pantrypersona.com",
+                "https://*.supabase.co"
+              ],
+              "resource_domains": [
+                "https://www.pantrypersona.com",
+                "https://pantrypersona.com",
+                "https://*.supabase.co"
+              ],
+              "frame_domains": []
+            },
+            "openai/widgetDomain": "https://www.pantrypersona.com"
+          }
+        },
+        {
+          "name": "process_receipt",
+          "title": "Process receipt",
+          "description": "Process receipt items and add to pantry.\n\nTriggers:\n- User uploads a receipt image (read with vision, then call this)\n- User types receipt items: 'milk 3.99, eggs 4.50'\n- User pastes receipt text\n\nInterpret abbreviations into clean names, call once with all items.",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {
+              "items": {
+                "minItems": 1,
+                "maxItems": 100,
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "minLength": 1,
+                      "description": "Clean product name"
+                    },
+                    "quantity": {
+                      "default": 1,
+                      "description": "Quantity (default 1)",
+                      "type": "number"
+                    },
+                    "price": {
+                      "description": "Price paid",
+                      "type": "number"
+                    },
+                    "category": {
+                      "description": "Product category",
+                      "type": "string"
+                    },
+                    "original_text": {
+                      "description": "Original receipt text",
+                      "type": "string"
+                    },
+                    "brand": {
+                      "description": "Brand name if identified (e.g., \"Kerrygold\", \"Kraft\")",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "name"
+                  ]
+                },
+                "description": "Items from receipt(s)"
+              },
+              "store_name": {
+                "description": "Store name",
+                "type": "string"
+              },
+              "receipt_date": {
+                "description": "Date from receipt",
+                "type": "string"
+              }
+            },
+            "required": [
+              "items"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "get_insights",
+          "title": "Get insights",
+          "description": "Get data insights: spending, price history, brand preferences, shopping patterns, restock predictions, or consumption analysis. Use this when the user asks \"what do I need to buy\", \"how much do I spend\", or \"how often do I buy X\".",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": [
+                  "spending",
+                  "price_history",
+                  "brand_preferences",
+                  "shopping_patterns",
+                  "restock_predictions",
+                  "consumption_insight",
+                  "consumption_patterns"
+                ],
+                "description": "Type of insight"
+              },
+              "period": {
+                "description": "Time period for spending (default: month)",
+                "type": "string",
+                "enum": [
+                  "week",
+                  "month",
+                  "quarter",
+                  "year"
+                ]
+              },
+              "compareToLastPeriod": {
+                "description": "Compare to previous period",
+                "type": "boolean"
+              },
+              "item": {
+                "description": "Item name for price_history",
+                "type": "string"
+              },
+              "topN": {
+                "description": "Top N items for patterns (default: 10)",
+                "type": "number"
+              },
+              "daysAhead": {
+                "description": "How many days ahead to predict (default: 14)",
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 30
+              },
+              "limit": {
+                "description": "Max items to return (default: 10)",
+                "type": "number"
+              },
+              "itemName": {
+                "description": "Item name for consumption_insight",
+                "type": "string"
+              },
+              "minPurchases": {
+                "description": "Min purchases to include (default: 3)",
+                "type": "integer",
+                "minimum": 2,
+                "maximum": 10
+              }
+            },
+            "required": [
+              "type"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "openWorldHint": false,
+            "destructiveHint": false
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "manage_profiles",
+          "title": "Manage profiles",
+          "description": "Create, update, or delete household and person profiles with dietary preferences, allergies, and scheduling rules. Check show_profiles first before creating person profiles. Use profileNames array for batch updates across multiple people.",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {
+              "action": {
+                "type": "string",
+                "enum": [
+                  "create",
+                  "update",
+                  "delete"
+                ],
+                "description": "Action to perform"
+              },
+              "profileId": {
+                "description": "Profile ID (for update/delete)",
+                "type": "string"
+              },
+              "profileName": {
+                "description": "Profile name (for lookup or create). Use \"Household\" for household settings.",
+                "type": "string"
+              },
+              "profileNames": {
+                "description": "Multiple profile names for batch update. Apply the same data changes to all listed profiles in one call. Example: [\"Lila\", \"Ben\"] to update both kids at once.",
+                "maxItems": 10,
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "data": {
+                "description": "Profile data (for create/update)",
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "description": "Profile name (required for create). Use \"Household\" for the household settings profile.",
+                    "type": "string",
+                    "maxLength": 100
+                  },
+                  "isHousehold": {
+                    "description": "True for household settings profile (max 1 per account, auto-created). Stores meal rules, schedules, cooking preferences.",
+                    "type": "boolean"
+                  },
+                  "diets": {
+                    "description": "Dietary patterns: 'vegetarian', 'vegan', 'keto', 'paleo' (person profiles)",
+                    "maxItems": 20,
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "maxLength": 50
+                    }
+                  },
+                  "goals": {
+                    "description": "Health goals: 'high protein', 'weight loss', 'muscle gain' (person profiles)",
+                    "maxItems": 20,
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "maxLength": 100
+                    }
+                  },
+                  "exclusions": {
+                    "description": "Food exclusions: 'dairy', 'shellfish', 'casseroles' (both profile types)",
+                    "maxItems": 100,
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "maxLength": 50
+                    }
+                  },
+                  "likes": {
+                    "description": "Foods they like: 'spicy food', 'Italian', 'sushi' (person profiles)",
+                    "maxItems": 20,
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "maxLength": 50
+                    }
+                  },
+                  "dislikes": {
+                    "description": "Foods they dislike: 'cilantro', 'olives' (person profiles)",
+                    "maxItems": 20,
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "maxLength": 50
+                    }
+                  },
+                  "schedulingRules": {
+                    "description": "Day-of-week rules (household only): { monday: \"quick meals (gymnastics)\", wednesday: \"Grandparent Night\" }",
+                    "type": "object",
+                    "propertyNames": {
+                      "type": "string",
+                      "enum": [
+                        "monday",
+                        "tuesday",
+                        "wednesday",
+                        "thursday",
+                        "friday",
+                        "saturday",
+                        "sunday"
+                      ]
+                    },
+                    "additionalProperties": {
+                      "type": "string",
+                      "maxLength": 200
+                    },
+                    "required": [
+                      "monday",
+                      "tuesday",
+                      "wednesday",
+                      "thursday",
+                      "friday",
+                      "saturday",
+                      "sunday"
+                    ]
+                  },
+                  "notes": {
+                    "description": "Free-form notes. Household: 2000 chars for meal rules, schedules, preferences. Person: 1000 chars.",
+                    "type": "string",
+                    "maxLength": 2000
+                  }
+                }
+              },
+              "confirmDelete": {
+                "description": "Set true to confirm deletion (person profiles only)",
+                "type": "boolean"
+              },
+              "replaceNotes": {
+                "description": "If true, completely replace notes instead of merging with existing. Use when fixing corrupted/duplicated data.",
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "action"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": true,
+            "idempotentHint": true,
+            "openWorldHint": false
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "manage_collections",
+          "title": "Manage collections",
+          "description": "Create, rename, delete recipe collections or add/remove recipes from them. Use this when the user associates a recipe with a person (\"this is a dad recipe\") or occasion (\"weeknight dinner\"). Auto-creates collections if they don't exist.",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {
+              "action": {
+                "type": "string",
+                "enum": [
+                  "create",
+                  "update",
+                  "delete",
+                  "add_recipes",
+                  "remove_recipes",
+                  "list"
+                ],
+                "description": "Action to perform"
+              },
+              "collectionId": {
+                "description": "Collection ID",
+                "type": "string"
+              },
+              "collectionName": {
+                "description": "Collection name (for lookup or create)",
+                "type": "string"
+              },
+              "name": {
+                "description": "New name for collection",
+                "type": "string",
+                "maxLength": 100
+              },
+              "description": {
+                "description": "Collection description",
+                "type": "string",
+                "maxLength": 500
+              },
+              "emoji": {
+                "description": "Emoji icon",
+                "type": "string",
+                "maxLength": 10
+              },
+              "color": {
+                "description": "Color code",
+                "type": "string",
+                "maxLength": 20
+              },
+              "recipeIds": {
+                "description": "Recipe IDs to add/remove",
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "recipeNames": {
+                "description": "Recipe names to add/remove",
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            },
+            "required": [
+              "action"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": true,
+            "idempotentHint": true,
+            "openWorldHint": false
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "manage_preferences",
+          "title": "Manage preferences",
+          "description": "Manage product brand preferences - set, clear, or list.\n\nTRIGGERS:\n- SET: 'I prefer [brand] for [item]', 'use [brand] butter'\n- CLEAR: 'forget my [item] preference'\n- LIST: 'what are my brand preferences'",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {
+              "action": {
+                "type": "string",
+                "enum": [
+                  "set",
+                  "clear",
+                  "list",
+                  "reset_all"
+                ],
+                "description": "Action to perform"
+              },
+              "itemName": {
+                "description": "Item name",
+                "type": "string"
+              },
+              "brand": {
+                "description": "Preferred brand",
+                "type": "string"
+              },
+              "size": {
+                "description": "Preferred size",
+                "type": "string"
+              },
+              "variant": {
+                "description": "Preferred variant",
+                "type": "string"
+              },
+              "unit": {
+                "description": "Preferred unit",
+                "type": "string"
+              },
+              "upc": {
+                "description": "UPC code",
+                "type": "string"
+              },
+              "category": {
+                "description": "Preferred category for this item",
+                "type": "string"
+              },
+              "minConfidence": {
+                "description": "Filter by minimum confidence",
+                "type": "number"
+              },
+              "limit": {
+                "description": "Max preferences to return",
+                "type": "number"
+              }
+            },
+            "required": [
+              "action"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": true,
+            "idempotentHint": true,
+            "openWorldHint": false
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "get_user_context",
+          "title": "Get kitchen snapshot",
+          "description": "Get a snapshot of the user's kitchen: dietary profiles, pantry highlights (including expiring items), today's meal plan, and shopping list status. Use this when the user says hello, asks about their kitchen or fridge, or starts any food conversation. One call replaces show_profiles + show_pantry + show_meal_plan.",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {}
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "openWorldHint": false,
+            "destructiveHint": false
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "show_shopping",
+          "title": "Show shopping list",
+          "description": "Display the user's shopping list as an interactive widget. Use this when the user asks about their list, says \"going shopping\", \"heading to [store]\", \"what do I need\", or \"what's on my list\". Also useful after manage_shopping to display updated results.",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {
+              "storeId": {
+                "description": "Filter by specific store ID",
+                "type": "string"
+              },
+              "storeName": {
+                "description": "Filter by store name",
+                "type": "string"
+              }
+            }
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "openWorldHint": false,
+            "destructiveHint": false
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          },
+          "_meta": {
+            "ui": {
+              "resourceUri": "ui://widget/ShoppingList.html",
+              "resourceUrl": "https://www.pantrypersona.com/widgets/shopping.html",
+              "csp": {
+                "connectDomains": [
+                  "https://www.pantrypersona.com",
+                  "https://pantrypersona.com",
+                  "https://*.supabase.co"
+                ],
+                "resourceDomains": [
+                  "https://www.pantrypersona.com",
+                  "https://pantrypersona.com",
+                  "https://*.supabase.co"
+                ]
+              }
+            },
+            "ui/resourceUri": "ui://widget/ShoppingList.html",
+            "openai/outputTemplate": "ui://widget/ShoppingList.html",
+            "openai/widgetAccessible": true,
+            "openai/widgetDescription": "Shopping list with swipe-to-check functionality",
+            "openai/toolInvocation/invoking": "Loading your list...",
+            "openai/toolInvocation/invoked": "List ready",
+            "openai/widgetCSP": {
+              "connect_domains": [
+                "https://www.pantrypersona.com",
+                "https://pantrypersona.com",
+                "https://*.supabase.co"
+              ],
+              "resource_domains": [
+                "https://www.pantrypersona.com",
+                "https://pantrypersona.com",
+                "https://*.supabase.co"
+              ],
+              "frame_domains": []
+            },
+            "openai/widgetDomain": "https://www.pantrypersona.com"
+          }
+        },
+        {
+          "name": "show_pantry",
+          "title": "Show pantry",
+          "description": "Display the user's pantry inventory as an interactive widget. Use this when the user asks what ingredients they have, or after any manage_pantry call to display updated inventory.",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {
+              "category": {
+                "description": "Filter by category",
+                "type": "string"
+              },
+              "searchTerm": {
+                "description": "Search by item name",
+                "type": "string"
+              },
+              "expiringSoon": {
+                "description": "Show only items expiring within 7 days",
+                "type": "boolean"
+              },
+              "expiringWithinDays": {
+                "description": "Show items expiring within N days",
+                "type": "number"
+              }
+            }
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "openWorldHint": false,
+            "destructiveHint": false
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          },
+          "_meta": {
+            "ui": {
+              "resourceUri": "ui://widget/Pantry.html",
+              "resourceUrl": "https://www.pantrypersona.com/widgets/pantry.html",
+              "csp": {
+                "connectDomains": [
+                  "https://www.pantrypersona.com",
+                  "https://pantrypersona.com",
+                  "https://*.supabase.co"
+                ],
+                "resourceDomains": [
+                  "https://www.pantrypersona.com",
+                  "https://pantrypersona.com",
+                  "https://*.supabase.co"
+                ]
+              }
+            },
+            "ui/resourceUri": "ui://widget/Pantry.html",
+            "openai/outputTemplate": "ui://widget/Pantry.html",
+            "openai/widgetAccessible": true,
+            "openai/widgetDescription": "Pantry inventory with expiration tracking",
+            "openai/toolInvocation/invoking": "Loading your pantry...",
+            "openai/toolInvocation/invoked": "Pantry ready",
+            "openai/widgetCSP": {
+              "connect_domains": [
+                "https://www.pantrypersona.com",
+                "https://pantrypersona.com",
+                "https://*.supabase.co"
+              ],
+              "resource_domains": [
+                "https://www.pantrypersona.com",
+                "https://pantrypersona.com",
+                "https://*.supabase.co"
+              ],
+              "frame_domains": []
+            },
+            "openai/widgetDomain": "https://www.pantrypersona.com"
+          }
+        },
+        {
+          "name": "show_recipes",
+          "title": "Show recipes",
+          "description": "Display the user's saved recipe collection as a browsable widget. Use this when the user says \"my recipes\", \"my saved recipes\", or \"show my cookbook\". For searching/filtering by ingredient or tag, use find_recipes instead.",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {
+              "query": {
+                "description": "Search by recipe name",
+                "type": "string"
+              },
+              "tags": {
+                "description": "Filter by tags",
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "limit": {
+                "description": "Maximum recipes to return",
+                "type": "number"
+              },
+              "offset": {
+                "description": "Number of recipes to skip (for pagination)",
+                "type": "number"
+              }
+            }
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "openWorldHint": false,
+            "destructiveHint": false
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          },
+          "_meta": {
+            "ui": {
+              "resourceUri": "ui://widget/Recipes.html",
+              "resourceUrl": "https://www.pantrypersona.com/widgets/recipes.html",
+              "csp": {
+                "connectDomains": [
+                  "https://www.pantrypersona.com",
+                  "https://pantrypersona.com",
+                  "https://*.supabase.co"
+                ],
+                "resourceDomains": [
+                  "https://www.pantrypersona.com",
+                  "https://pantrypersona.com",
+                  "https://*.supabase.co"
+                ]
+              }
+            },
+            "ui/resourceUri": "ui://widget/Recipes.html",
+            "openai/outputTemplate": "ui://widget/Recipes.html",
+            "openai/widgetAccessible": true,
+            "openai/widgetDescription": "Recipe collection with filtering and search",
+            "openai/toolInvocation/invoking": "Loading your recipes...",
+            "openai/toolInvocation/invoked": "Recipes ready",
+            "openai/widgetCSP": {
+              "connect_domains": [
+                "https://www.pantrypersona.com",
+                "https://pantrypersona.com",
+                "https://*.supabase.co"
+              ],
+              "resource_domains": [
+                "https://www.pantrypersona.com",
+                "https://pantrypersona.com",
+                "https://*.supabase.co"
+              ],
+              "frame_domains": []
+            },
+            "openai/widgetDomain": "https://www.pantrypersona.com"
+          }
+        },
+        {
+          "name": "show_meal_plan",
+          "title": "Show meal plan",
+          "description": "Display the user's weekly meal plan as a calendar widget. Use this when the user asks \"what's for dinner\", \"what's planned\", or after any manage_meal_plan call to display updated calendar.",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {
+              "date": {
+                "description": "Focus on specific day",
+                "type": "string",
+                "enum": [
+                  "today",
+                  "tomorrow",
+                  "week"
+                ]
+              },
+              "startDate": {
+                "description": "Week start date (YYYY-MM-DD)",
+                "type": "string"
+              }
+            }
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "openWorldHint": false,
+            "destructiveHint": false
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          },
+          "_meta": {
+            "ui": {
+              "resourceUri": "ui://widget/MealPlan.html",
+              "resourceUrl": "https://www.pantrypersona.com/widgets/meal-plan.html",
+              "csp": {
+                "connectDomains": [
+                  "https://www.pantrypersona.com",
+                  "https://pantrypersona.com",
+                  "https://*.supabase.co"
+                ],
+                "resourceDomains": [
+                  "https://www.pantrypersona.com",
+                  "https://pantrypersona.com",
+                  "https://*.supabase.co"
+                ]
+              }
+            },
+            "ui/resourceUri": "ui://widget/MealPlan.html",
+            "openai/outputTemplate": "ui://widget/MealPlan.html",
+            "openai/widgetAccessible": true,
+            "openai/widgetDescription": "Weekly meal planning calendar",
+            "openai/toolInvocation/invoking": "Loading your meal plan...",
+            "openai/toolInvocation/invoked": "Meal plan ready",
+            "openai/widgetCSP": {
+              "connect_domains": [
+                "https://www.pantrypersona.com",
+                "https://pantrypersona.com",
+                "https://*.supabase.co"
+              ],
+              "resource_domains": [
+                "https://www.pantrypersona.com",
+                "https://pantrypersona.com",
+                "https://*.supabase.co"
+              ],
+              "frame_domains": []
+            },
+            "openai/widgetDomain": "https://www.pantrypersona.com"
+          }
+        },
+        {
+          "name": "show_profiles",
+          "title": "Show household profiles",
+          "description": "Display household dietary profiles including allergies, diets, and food preferences. Also useful after manage_profiles to display updated profiles.",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {}
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "openWorldHint": false,
+            "destructiveHint": false
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          },
+          "_meta": {
+            "ui": {
+              "resourceUri": "ui://widget/Profiles.html",
+              "resourceUrl": "https://www.pantrypersona.com/widgets/profiles.html",
+              "csp": {
+                "connectDomains": [
+                  "https://www.pantrypersona.com",
+                  "https://pantrypersona.com",
+                  "https://*.supabase.co"
+                ],
+                "resourceDomains": [
+                  "https://www.pantrypersona.com",
+                  "https://pantrypersona.com",
+                  "https://*.supabase.co"
+                ]
+              }
+            },
+            "ui/resourceUri": "ui://widget/Profiles.html",
+            "openai/outputTemplate": "ui://widget/Profiles.html",
+            "openai/widgetAccessible": true,
+            "openai/widgetDescription": "Household profiles and dietary preferences",
+            "openai/toolInvocation/invoking": "Loading profiles...",
+            "openai/toolInvocation/invoked": "Profiles ready",
+            "openai/widgetCSP": {
+              "connect_domains": [
+                "https://www.pantrypersona.com",
+                "https://pantrypersona.com",
+                "https://*.supabase.co"
+              ],
+              "resource_domains": [
+                "https://www.pantrypersona.com",
+                "https://pantrypersona.com",
+                "https://*.supabase.co"
+              ],
+              "frame_domains": []
+            },
+            "openai/widgetDomain": "https://www.pantrypersona.com"
+          }
+        },
+        {
+          "name": "get_next_steps",
+          "title": "Get personalized next steps",
+          "description": "Get the user's feature adoption status and personalized onboarding guidance. Use this when the user says hello, asks \"what can I do\", or seems unsure how to use the app.",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {}
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "openWorldHint": false,
+            "destructiveHint": false
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          },
+          "_meta": {
+            "openai/widgetAccessible": true,
+            "openai/toolInvocation/invoking": "Checking your setup...",
+            "openai/toolInvocation/invoked": "Here's what to do next"
+          }
+        }
+      ],
+      "python_sdk_url": "https://www.pantrypersona.com/api/mcp",
+      "python_sdk_config": "{\"debug\": false}"
+    },
+    "source_filename": "0044.Pantry-Persona_labeled.json",
+    "processed_timestamp": 1772871481,
+    "processing_mode": "gateway",
+    "rank": 45
+  }
+}

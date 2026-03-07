@@ -1,0 +1,452 @@
+{
+  "labels": {
+    "analysis": "The MCP Server \"Sentient Brain Multi-Agent System\" provides 5 tools for development tools tasks.",
+    "reasoning": "Primary label \"Development Tools\" assigned based on tool names and descriptions.",
+    "primary_label": "Development Tools",
+    "secondary_labels": [
+      "API Integration",
+      "DevOps",
+      "Web Search & Research",
+      "Productivity"
+    ],
+    "custom_label": "Development Tools - Sentient Brain Multi-Agent System",
+    "is_connected": true,
+    "is_remote_tool_valid": true,
+    "featured_server": true
+  },
+  "metadata": {
+    "server_id": 165,
+    "server_name": "Sentient Brain Multi-Agent System",
+    "rank_by_usage": 166,
+    "usage_count": "100",
+    "original_file": "tools.json#165",
+    "mode": "gateway",
+    "timestamp": 1772871481,
+    "remote_server_response": {
+      "url": "https://server.smithery.ai/@mbpfws/sentient-brain-smithery/mcp",
+      "is_success": true,
+      "error": null,
+      "tools": [
+        {
+          "name": "sentient-brain/orchestrate",
+          "description": "Ultra Orchestrator - Master agent for coordinating multi-agent workflows",
+          "inputSchema": {
+            "properties": {
+              "query": {
+                "description": "User query or task description",
+                "title": "Query",
+                "type": "string"
+              },
+              "context": {
+                "anyOf": [
+                  {
+                    "additionalProperties": true,
+                    "type": "object"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "description": "Additional context",
+                "title": "Context"
+              },
+              "priority": {
+                "default": "medium",
+                "description": "Task priority",
+                "pattern": "^(low|medium|high)$",
+                "title": "Priority",
+                "type": "string"
+              }
+            },
+            "required": [
+              "query"
+            ],
+            "title": "OrchestrateInput",
+            "type": "object"
+          }
+        },
+        {
+          "name": "sentient-brain/architect",
+          "description": "Architect Agent - Design and plan software projects",
+          "inputSchema": {
+            "properties": {
+              "project_type": {
+                "description": "Type of project to architect",
+                "title": "Project Type",
+                "type": "string"
+              },
+              "requirements": {
+                "description": "Project requirements",
+                "title": "Requirements",
+                "type": "string"
+              },
+              "tech_stack": {
+                "anyOf": [
+                  {
+                    "items": {
+                      "type": "string"
+                    },
+                    "type": "array"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "description": "Proposed tech stack",
+                "title": "Tech Stack"
+              }
+            },
+            "required": [
+              "project_type",
+              "requirements"
+            ],
+            "title": "ArchitectInput",
+            "type": "object"
+          }
+        },
+        {
+          "name": "sentient-brain/analyze-code",
+          "description": "Code Analysis - Deep code understanding and indexing",
+          "inputSchema": {
+            "properties": {
+              "code": {
+                "description": "Code to analyze",
+                "title": "Code",
+                "type": "string"
+              },
+              "language": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "description": "Programming language of the code",
+                "title": "Language"
+              },
+              "analysis_type": {
+                "default": "structure",
+                "description": "Type of analysis",
+                "pattern": "^(structure|quality|dependencies)$",
+                "title": "Analysis Type",
+                "type": "string"
+              }
+            },
+            "required": [
+              "code"
+            ],
+            "title": "AnalyzeCodeInput",
+            "type": "object"
+          }
+        },
+        {
+          "name": "sentient-brain/search-knowledge",
+          "description": "Knowledge Graph Search - Semantic search across project knowledge",
+          "inputSchema": {
+            "properties": {
+              "query": {
+                "description": "Search query",
+                "title": "Query",
+                "type": "string"
+              },
+              "node_type": {
+                "anyOf": [
+                  {
+                    "pattern": "^(code_chunk|task|document|concept)$",
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": "code_chunk",
+                "description": "Type of node to search for",
+                "title": "Node Type"
+              },
+              "limit": {
+                "default": 10,
+                "description": "Maximum number of results to return",
+                "title": "Limit",
+                "type": "integer"
+              }
+            },
+            "required": [
+              "query"
+            ],
+            "title": "SearchKnowledgeInput",
+            "type": "object"
+          }
+        },
+        {
+          "name": "sentient-brain/debug-assist",
+          "description": "Debug & Refactor Agent - Code debugging and improvement",
+          "inputSchema": {
+            "properties": {
+              "code": {
+                "description": "Code containing issues",
+                "title": "Code",
+                "type": "string"
+              },
+              "error_message": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "description": "Associated error message, if any",
+                "title": "Error Message"
+              },
+              "debug_type": {
+                "default": "fix",
+                "description": "Type of debugging action",
+                "pattern": "^(fix|optimize|refactor)$",
+                "title": "Debug Type",
+                "type": "string"
+              }
+            },
+            "required": [
+              "code"
+            ],
+            "title": "DebugAssistInput",
+            "type": "object"
+          }
+        }
+      ],
+      "tool_count": 5,
+      "tool_names": [
+        "sentient-brain/orchestrate",
+        "sentient-brain/architect",
+        "sentient-brain/analyze-code",
+        "sentient-brain/search-knowledge",
+        "sentient-brain/debug-assist"
+      ]
+    },
+    "server_info_crawled": {
+      "id": 165,
+      "name": "Sentient Brain Multi-Agent System",
+      "author": "",
+      "overview": "Sentient Brain Multi-Agent System - Development Tools MCP server with 5 tools.",
+      "repository_url": "",
+      "homepage": "https://server.smithery.ai/@mbpfws/sentient-brain-smithery/mcp",
+      "remote_or_local": "Remote",
+      "license": "",
+      "usage_count": "100",
+      "success_rate": "100%",
+      "tags": [
+        "development-tools"
+      ],
+      "categories": [
+        "development tools"
+      ],
+      "tools_count": 5,
+      "tools": [
+        {
+          "name": "sentient-brain/orchestrate",
+          "description": "Ultra Orchestrator - Master agent for coordinating multi-agent workflows",
+          "inputSchema": {
+            "properties": {
+              "query": {
+                "description": "User query or task description",
+                "title": "Query",
+                "type": "string"
+              },
+              "context": {
+                "anyOf": [
+                  {
+                    "additionalProperties": true,
+                    "type": "object"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "description": "Additional context",
+                "title": "Context"
+              },
+              "priority": {
+                "default": "medium",
+                "description": "Task priority",
+                "pattern": "^(low|medium|high)$",
+                "title": "Priority",
+                "type": "string"
+              }
+            },
+            "required": [
+              "query"
+            ],
+            "title": "OrchestrateInput",
+            "type": "object"
+          }
+        },
+        {
+          "name": "sentient-brain/architect",
+          "description": "Architect Agent - Design and plan software projects",
+          "inputSchema": {
+            "properties": {
+              "project_type": {
+                "description": "Type of project to architect",
+                "title": "Project Type",
+                "type": "string"
+              },
+              "requirements": {
+                "description": "Project requirements",
+                "title": "Requirements",
+                "type": "string"
+              },
+              "tech_stack": {
+                "anyOf": [
+                  {
+                    "items": {
+                      "type": "string"
+                    },
+                    "type": "array"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "description": "Proposed tech stack",
+                "title": "Tech Stack"
+              }
+            },
+            "required": [
+              "project_type",
+              "requirements"
+            ],
+            "title": "ArchitectInput",
+            "type": "object"
+          }
+        },
+        {
+          "name": "sentient-brain/analyze-code",
+          "description": "Code Analysis - Deep code understanding and indexing",
+          "inputSchema": {
+            "properties": {
+              "code": {
+                "description": "Code to analyze",
+                "title": "Code",
+                "type": "string"
+              },
+              "language": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "description": "Programming language of the code",
+                "title": "Language"
+              },
+              "analysis_type": {
+                "default": "structure",
+                "description": "Type of analysis",
+                "pattern": "^(structure|quality|dependencies)$",
+                "title": "Analysis Type",
+                "type": "string"
+              }
+            },
+            "required": [
+              "code"
+            ],
+            "title": "AnalyzeCodeInput",
+            "type": "object"
+          }
+        },
+        {
+          "name": "sentient-brain/search-knowledge",
+          "description": "Knowledge Graph Search - Semantic search across project knowledge",
+          "inputSchema": {
+            "properties": {
+              "query": {
+                "description": "Search query",
+                "title": "Query",
+                "type": "string"
+              },
+              "node_type": {
+                "anyOf": [
+                  {
+                    "pattern": "^(code_chunk|task|document|concept)$",
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": "code_chunk",
+                "description": "Type of node to search for",
+                "title": "Node Type"
+              },
+              "limit": {
+                "default": 10,
+                "description": "Maximum number of results to return",
+                "title": "Limit",
+                "type": "integer"
+              }
+            },
+            "required": [
+              "query"
+            ],
+            "title": "SearchKnowledgeInput",
+            "type": "object"
+          }
+        },
+        {
+          "name": "sentient-brain/debug-assist",
+          "description": "Debug & Refactor Agent - Code debugging and improvement",
+          "inputSchema": {
+            "properties": {
+              "code": {
+                "description": "Code containing issues",
+                "title": "Code",
+                "type": "string"
+              },
+              "error_message": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "description": "Associated error message, if any",
+                "title": "Error Message"
+              },
+              "debug_type": {
+                "default": "fix",
+                "description": "Type of debugging action",
+                "pattern": "^(fix|optimize|refactor)$",
+                "title": "Debug Type",
+                "type": "string"
+              }
+            },
+            "required": [
+              "code"
+            ],
+            "title": "DebugAssistInput",
+            "type": "object"
+          }
+        }
+      ],
+      "python_sdk_url": "https://server.smithery.ai/@mbpfws/sentient-brain-smithery/mcp",
+      "python_sdk_config": "{\"debug\": false}"
+    },
+    "source_filename": "0165.Sentient-Brain-Multi-Agent-System_labeled.json",
+    "processed_timestamp": 1772871481,
+    "processing_mode": "gateway",
+    "rank": 166
+  }
+}

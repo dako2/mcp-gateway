@@ -1,0 +1,200 @@
+{
+  "labels": {
+    "analysis": "The MCP Server \"dropbin.org\" provides 3 tools for development tools tasks.",
+    "reasoning": "Primary label \"Development Tools\" assigned based on tool names and descriptions.",
+    "primary_label": "Development Tools",
+    "secondary_labels": [
+      "API Integration",
+      "DevOps",
+      "AI/ML Tools",
+      "Web Search & Research"
+    ],
+    "custom_label": "Development Tools - dropbin.org",
+    "is_connected": true,
+    "is_remote_tool_valid": true,
+    "featured_server": false
+  },
+  "metadata": {
+    "server_id": 204,
+    "server_name": "dropbin.org",
+    "rank_by_usage": 205,
+    "usage_count": "10",
+    "original_file": "tools.json#204",
+    "mode": "gateway",
+    "timestamp": 1772871482,
+    "remote_server_response": {
+      "url": "https://dropbin.org/mcp",
+      "is_success": true,
+      "error": null,
+      "tools": [
+        {
+          "name": "mcp_dropbin_create_webpage",
+          "description": "Create a shareable webpage or website by uploading HTML content to DropBin. Use when you need to host web content, create a demo page, build a website, share formatted content, or publish temporary HTML for others to view in a browser. Perfect for creating websites, landing pages, portfolios, or any web-based content. Returns a public URL that can be accessed by anyone.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "content": {
+                "type": "string",
+                "description": "The HTML content to upload. Include full markup like <html><body>...</body></html>."
+              },
+              "type": {
+                "type": "string",
+                "enum": [
+                  "html"
+                ],
+                "description": "Content type - 'html' for HTML documents"
+              },
+              "expires_in_days": {
+                "type": "number",
+                "default": 7,
+                "minimum": 1,
+                "maximum": 30,
+                "description": "Number of days until the content automatically expires and is deleted (default: 7 days)"
+              },
+              "title": {
+                "type": "string",
+                "description": "Optional descriptive title for the content (helps with organization and identification)"
+              }
+            },
+            "required": [
+              "content",
+              "type"
+            ]
+          }
+        },
+        {
+          "name": "mcp_dropbin_delete_content",
+          "description": "Delete previously uploaded content from DropBin before it expires naturally. Use when you need to remove content early, clean up test uploads, or ensure sensitive content is no longer accessible. This immediately removes both the content and its public URL.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "description": "Unique identifier of the content to delete (returned when content was originally uploaded)"
+              }
+            },
+            "required": [
+              "id"
+            ]
+          }
+        },
+        {
+          "name": "mcp_dropbin_get_content_info",
+          "description": "Get detailed information about previously uploaded content including metadata, expiration time, and public URL. Use when you need to check if content still exists, see when it expires, or retrieve the sharing URL for existing content.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "description": "Unique identifier of the content to retrieve information about"
+              }
+            },
+            "required": [
+              "id"
+            ]
+          }
+        }
+      ],
+      "tool_count": 3,
+      "tool_names": [
+        "mcp_dropbin_create_webpage",
+        "mcp_dropbin_delete_content",
+        "mcp_dropbin_get_content_info"
+      ]
+    },
+    "server_info_crawled": {
+      "id": 204,
+      "name": "dropbin.org",
+      "author": "",
+      "overview": "dropbin.org - Development Tools MCP server with 3 tools.",
+      "repository_url": "",
+      "homepage": "https://dropbin.org/mcp",
+      "remote_or_local": "Remote",
+      "license": "",
+      "usage_count": "10",
+      "success_rate": "100%",
+      "tags": [
+        "development-tools"
+      ],
+      "categories": [
+        "development tools"
+      ],
+      "tools_count": 3,
+      "tools": [
+        {
+          "name": "mcp_dropbin_create_webpage",
+          "description": "Create a shareable webpage or website by uploading HTML content to DropBin. Use when you need to host web content, create a demo page, build a website, share formatted content, or publish temporary HTML for others to view in a browser. Perfect for creating websites, landing pages, portfolios, or any web-based content. Returns a public URL that can be accessed by anyone.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "content": {
+                "type": "string",
+                "description": "The HTML content to upload. Include full markup like <html><body>...</body></html>."
+              },
+              "type": {
+                "type": "string",
+                "enum": [
+                  "html"
+                ],
+                "description": "Content type - 'html' for HTML documents"
+              },
+              "expires_in_days": {
+                "type": "number",
+                "default": 7,
+                "minimum": 1,
+                "maximum": 30,
+                "description": "Number of days until the content automatically expires and is deleted (default: 7 days)"
+              },
+              "title": {
+                "type": "string",
+                "description": "Optional descriptive title for the content (helps with organization and identification)"
+              }
+            },
+            "required": [
+              "content",
+              "type"
+            ]
+          }
+        },
+        {
+          "name": "mcp_dropbin_delete_content",
+          "description": "Delete previously uploaded content from DropBin before it expires naturally. Use when you need to remove content early, clean up test uploads, or ensure sensitive content is no longer accessible. This immediately removes both the content and its public URL.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "description": "Unique identifier of the content to delete (returned when content was originally uploaded)"
+              }
+            },
+            "required": [
+              "id"
+            ]
+          }
+        },
+        {
+          "name": "mcp_dropbin_get_content_info",
+          "description": "Get detailed information about previously uploaded content including metadata, expiration time, and public URL. Use when you need to check if content still exists, see when it expires, or retrieve the sharing URL for existing content.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "description": "Unique identifier of the content to retrieve information about"
+              }
+            },
+            "required": [
+              "id"
+            ]
+          }
+        }
+      ],
+      "python_sdk_url": "https://dropbin.org/mcp",
+      "python_sdk_config": "{\"debug\": false}"
+    },
+    "source_filename": "0204.dropbinorg_labeled.json",
+    "processed_timestamp": 1772871482,
+    "processing_mode": "gateway",
+    "rank": 205
+  }
+}

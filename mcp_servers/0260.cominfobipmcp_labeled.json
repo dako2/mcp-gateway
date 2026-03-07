@@ -1,0 +1,114 @@
+{
+  "labels": {
+    "analysis": "The MCP Server \"com.infobip/mcp\" provides 1 tools for web search & research tasks.",
+    "reasoning": "Primary label \"Web Search & Research\" assigned based on tool names and descriptions.",
+    "primary_label": "Web Search & Research",
+    "secondary_labels": [
+      "Browser Automation",
+      "Data Analysis & Processing",
+      "E-Commerce",
+      "File Management"
+    ],
+    "custom_label": "Web Search & Research - com.infobip/mcp",
+    "is_connected": true,
+    "is_remote_tool_valid": true,
+    "featured_server": false
+  },
+  "metadata": {
+    "server_id": 260,
+    "server_name": "com.infobip/mcp",
+    "rank_by_usage": 261,
+    "usage_count": "10",
+    "original_file": "tools.json#260",
+    "mode": "gateway",
+    "timestamp": 1772871482,
+    "remote_server_response": {
+      "url": "https://mcp.infobip.com/search",
+      "is_success": true,
+      "error": null,
+      "tools": [
+        {
+          "name": "explore",
+          "title": "Explore Infobip Documentation",
+          "description": "# Explore Infobip Documentation\n\nUse semantic search to explore the [Infobip documentation hub](https://www.infobip.com/docs), a comprehensive collection of product documentation, practical use cases, and general platform information designed to help both new and advanced users find resources and inspiration for interacting with end-users.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "query": {
+                "type": "string",
+                "description": "Text query to search through Infobip documentation pages.",
+                "example": "How to send an SMS?",
+                "maxLength": 500,
+                "minLength": 1
+              },
+              "fuzziness": {
+                "type": "boolean",
+                "description": "Disable fuzzy matching for more precise search results. When set to true only exact matches will be returned.",
+                "example": false
+              }
+            },
+            "required": [
+              "query"
+            ]
+          }
+        }
+      ],
+      "tool_count": 1,
+      "tool_names": [
+        "explore"
+      ]
+    },
+    "server_info_crawled": {
+      "id": 260,
+      "name": "com.infobip/mcp",
+      "author": "",
+      "overview": "com.infobip/mcp - Web Search & Research MCP server with 1 tools.",
+      "repository_url": "",
+      "homepage": "https://mcp.infobip.com/search",
+      "remote_or_local": "Remote",
+      "license": "",
+      "usage_count": "10",
+      "success_rate": "100%",
+      "tags": [
+        "web-search-research"
+      ],
+      "categories": [
+        "web search & research"
+      ],
+      "tools_count": 1,
+      "tools": [
+        {
+          "name": "explore",
+          "title": "Explore Infobip Documentation",
+          "description": "# Explore Infobip Documentation\n\nUse semantic search to explore the [Infobip documentation hub](https://www.infobip.com/docs), a comprehensive collection of product documentation, practical use cases, and general platform information designed to help both new and advanced users find resources and inspiration for interacting with end-users.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "query": {
+                "type": "string",
+                "description": "Text query to search through Infobip documentation pages.",
+                "example": "How to send an SMS?",
+                "maxLength": 500,
+                "minLength": 1
+              },
+              "fuzziness": {
+                "type": "boolean",
+                "description": "Disable fuzzy matching for more precise search results. When set to true only exact matches will be returned.",
+                "example": false
+              }
+            },
+            "required": [
+              "query"
+            ]
+          }
+        }
+      ],
+      "python_sdk_url": "https://mcp.infobip.com/search",
+      "python_sdk_config": "{\"debug\": false}"
+    },
+    "source_filename": "0260.cominfobipmcp_labeled.json",
+    "processed_timestamp": 1772871482,
+    "processing_mode": "gateway",
+    "rank": 261
+  }
+}

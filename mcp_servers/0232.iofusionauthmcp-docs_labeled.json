@@ -1,0 +1,141 @@
+{
+  "labels": {
+    "analysis": "The MCP Server \"io.fusionauth/mcp-docs\" provides 2 tools for web search & research tasks.",
+    "reasoning": "Primary label \"Web Search & Research\" assigned based on tool names and descriptions.",
+    "primary_label": "Web Search & Research",
+    "secondary_labels": [
+      "Browser Automation",
+      "Data Analysis & Processing",
+      "AI/ML Tools",
+      "Security & Authentication"
+    ],
+    "custom_label": "Web Search & Research - io.fusionauth/mcp-docs",
+    "is_connected": true,
+    "is_remote_tool_valid": true,
+    "featured_server": false
+  },
+  "metadata": {
+    "server_id": 232,
+    "server_name": "io.fusionauth/mcp-docs",
+    "rank_by_usage": 233,
+    "usage_count": "10",
+    "original_file": "tools.json#232",
+    "mode": "gateway",
+    "timestamp": 1772871482,
+    "remote_server_response": {
+      "url": "https://ai.fusionauth.dev/mcp/docs",
+      "is_success": true,
+      "error": null,
+      "tools": [
+        {
+          "name": "ask_fusionauth_question",
+          "title": "Ask FusionAuth question",
+          "description": "Ask technical questions about FusionAuth.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "query": {
+                "type": "string",
+                "description": "The question about FusionAuth to ask"
+              }
+            },
+            "required": [
+              "query"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          }
+        },
+        {
+          "name": "search_fusionauth_sources",
+          "title": "Search FusionAuth sources",
+          "description": "Search FusionAuth documentation sources.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "query": {
+                "type": "string",
+                "description": "The search query to find relevant FusionAuth documentation"
+              }
+            },
+            "required": [
+              "query"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          }
+        }
+      ],
+      "tool_count": 2,
+      "tool_names": [
+        "ask_fusionauth_question",
+        "search_fusionauth_sources"
+      ]
+    },
+    "server_info_crawled": {
+      "id": 232,
+      "name": "io.fusionauth/mcp-docs",
+      "author": "",
+      "overview": "io.fusionauth/mcp-docs - Web Search & Research MCP server with 2 tools.",
+      "repository_url": "",
+      "homepage": "https://ai.fusionauth.dev/mcp/docs",
+      "remote_or_local": "Remote",
+      "license": "",
+      "usage_count": "10",
+      "success_rate": "100%",
+      "tags": [
+        "web-search-research"
+      ],
+      "categories": [
+        "web search & research"
+      ],
+      "tools_count": 2,
+      "tools": [
+        {
+          "name": "ask_fusionauth_question",
+          "title": "Ask FusionAuth question",
+          "description": "Ask technical questions about FusionAuth.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "query": {
+                "type": "string",
+                "description": "The question about FusionAuth to ask"
+              }
+            },
+            "required": [
+              "query"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          }
+        },
+        {
+          "name": "search_fusionauth_sources",
+          "title": "Search FusionAuth sources",
+          "description": "Search FusionAuth documentation sources.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "query": {
+                "type": "string",
+                "description": "The search query to find relevant FusionAuth documentation"
+              }
+            },
+            "required": [
+              "query"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          }
+        }
+      ],
+      "python_sdk_url": "https://ai.fusionauth.dev/mcp/docs",
+      "python_sdk_config": "{\"debug\": false}"
+    },
+    "source_filename": "0232.iofusionauthmcp-docs_labeled.json",
+    "processed_timestamp": 1772871482,
+    "processing_mode": "gateway",
+    "rank": 233
+  }
+}

@@ -1,0 +1,859 @@
+{
+  "labels": {
+    "analysis": "The MCP Server \"com.mcpcalc/calculator\" provides 10 tools for development tools tasks.",
+    "reasoning": "Primary label \"Development Tools\" assigned based on tool names and descriptions.",
+    "primary_label": "Development Tools",
+    "secondary_labels": [
+      "API Integration",
+      "DevOps",
+      "AI/ML Tools",
+      "DNS & Networking"
+    ],
+    "custom_label": "Development Tools - com.mcpcalc/calculator",
+    "is_connected": true,
+    "is_remote_tool_valid": true,
+    "featured_server": true
+  },
+  "metadata": {
+    "server_id": 77,
+    "server_name": "com.mcpcalc/calculator",
+    "rank_by_usage": 78,
+    "usage_count": "460",
+    "original_file": "tools.json#77",
+    "mode": "gateway",
+    "timestamp": 1772871481,
+    "remote_server_response": {
+      "url": "https://mcpcalc.com/api/v1/mcp",
+      "is_success": true,
+      "error": null,
+      "tools": [
+        {
+          "name": "list_calculators",
+          "description": "List available calculators, optionally filtered by category",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "category": {
+                "type": "string",
+                "description": "Filter by category (e.g., 'finance', 'math')"
+              }
+            }
+          }
+        },
+        {
+          "name": "get_calculator_schema",
+          "description": "Get the input schema for a specific calculator",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "calculator": {
+                "type": "string",
+                "description": "Calculator slug"
+              }
+            },
+            "required": [
+              "calculator"
+            ]
+          }
+        },
+        {
+          "name": "calculate",
+          "description": "Run a calculation and get results + prefilled URL",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "calculator": {
+                "type": "string",
+                "description": "Calculator slug"
+              },
+              "inputs": {
+                "type": "object",
+                "description": "Calculator input values"
+              },
+              "strict": {
+                "type": "boolean",
+                "description": "If true, reject invalid or unknown input fields instead of dropping them"
+              }
+            },
+            "required": [
+              "calculator",
+              "inputs"
+            ]
+          }
+        },
+        {
+          "name": "generate_prefilled_url",
+          "description": "Generate a prefilled URL without running calculation",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "calculator": {
+                "type": "string",
+                "description": "Calculator slug"
+              },
+              "inputs": {
+                "type": "object",
+                "description": "Input values for URL"
+              },
+              "strict": {
+                "type": "boolean",
+                "description": "If true, reject invalid or unknown input fields instead of dropping them"
+              }
+            },
+            "required": [
+              "calculator",
+              "inputs"
+            ]
+          }
+        },
+        {
+          "name": "calculate_cas",
+          "description": "Evaluate one or more headless CAS expressions server-side (MCP-only numeric mode). Unsupported expressions return a GUI handoff link.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "expression": {
+                "type": "string",
+                "description": "Single CAS expression to evaluate"
+              },
+              "expressions": {
+                "type": "array",
+                "description": "Optional ordered list of CAS expressions to evaluate in one isolated context (supports assignments across the batch)",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "strict": {
+                "type": "boolean",
+                "description": "If true, reject unknown fields and malformed expressions instead of dropping them"
+              }
+            }
+          }
+        },
+        {
+          "name": "calculate_cas_headless",
+          "description": "Alias of calculate_cas. Headless MCP-only CAS evaluator; if unsupported features are requested, returns GUI handoff details.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "expression": {
+                "type": "string",
+                "description": "Single CAS expression to evaluate"
+              },
+              "expressions": {
+                "type": "array",
+                "description": "Optional ordered list of CAS expressions to evaluate in one isolated context (supports assignments across the batch)",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "strict": {
+                "type": "boolean",
+                "description": "If true, reject unknown fields and malformed expressions instead of dropping them"
+              }
+            }
+          }
+        },
+        {
+          "name": "create_session",
+          "description": "Create a new interactive session for any calculator and return the session URL",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "calculator": {
+                "type": "string",
+                "description": "Calculator slug"
+              },
+              "metadata": {
+                "type": "object",
+                "description": "Optional session metadata"
+              }
+            },
+            "required": [
+              "calculator"
+            ]
+          }
+        },
+        {
+          "name": "get_session_state",
+          "description": "Retrieve the current field values, computation transcript, and pending message queue for an active session",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "session_id": {
+                "type": "string",
+                "description": "Session UUID"
+              }
+            },
+            "required": [
+              "session_id"
+            ]
+          }
+        },
+        {
+          "name": "push_session_action",
+          "description": "Push actions into a session's message queue (set fields, submit computation, trigger plot, etc.)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "session_id": {
+                "type": "string",
+                "description": "Session UUID"
+              },
+              "actions": {
+                "type": "array",
+                "description": "Array of SessionAction objects to push to the browser",
+                "items": {
+                  "type": "object",
+                  "description": "A session action. Supports CAS actions, form field updates, and spreadsheet actions like set_cells/get_cells/load_csv/export_csv/set_column_format.",
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "enum": [
+                        "submit_expression",
+                        "set_fields",
+                        "plot",
+                        "assign_variable",
+                        "insert_markdown",
+                        "clear_transcript",
+                        "set_mode",
+                        "set_cells",
+                        "get_cells",
+                        "clear_cells",
+                        "load_csv",
+                        "export_csv",
+                        "set_column_format",
+                        "rpn_keypress",
+                        "rpn_key_sequence",
+                        "rpn_execute_command",
+                        "rpn_set_stack",
+                        "rpn_set_registers",
+                        "rpn_load_program",
+                        "rpn_run_program",
+                        "rpn_reset",
+                        "proof_set_document_meta",
+                        "proof_insert_line",
+                        "proof_update_line",
+                        "proof_delete_line",
+                        "proof_move_line",
+                        "proof_indent_line",
+                        "proof_apply_template",
+                        "proof_replace_document"
+                      ],
+                      "description": "The action type"
+                    },
+                    "expression": {
+                      "type": "string",
+                      "description": "Math expression (for submit_expression and plot actions)"
+                    },
+                    "fields": {
+                      "type": "object",
+                      "description": "Key-value pairs of field names to values (for set_fields action on form calculators)"
+                    },
+                    "cells": {
+                      "type": "object",
+                      "description": "Cell raw values keyed by A1 refs (for set_cells on spreadsheet)"
+                    },
+                    "ranges": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      },
+                      "description": "A1 ranges or single refs (for get_cells and clear_cells)"
+                    },
+                    "csv": {
+                      "type": "string",
+                      "description": "CSV/TSV payload for load_csv"
+                    },
+                    "target": {
+                      "type": "string",
+                      "description": "Target cell for load_csv (defaults to A1)"
+                    },
+                    "delimiter": {
+                      "type": "string",
+                      "description": "Optional delimiter for load_csv (e.g. ',', '\\t')"
+                    },
+                    "formats": {
+                      "type": "object",
+                      "description": "Column display formats keyed by column letter (for set_column_format)"
+                    },
+                    "name": {
+                      "type": "string",
+                      "description": "Variable name (for assign_variable action)"
+                    },
+                    "markdown": {
+                      "type": "string",
+                      "description": "Markdown text for a static commentary block (links/code are sanitized)"
+                    },
+                    "range": {
+                      "anyOf": [
+                        {
+                          "type": "array",
+                          "items": {
+                            "type": "number"
+                          }
+                        },
+                        {
+                          "type": "string"
+                        }
+                      ],
+                      "description": "Plot range as [min, max] for 'plot', or A1 range string for 'export_csv'"
+                    },
+                    "mode": {
+                      "type": "string",
+                      "enum": [
+                        "symbolic",
+                        "numeric"
+                      ],
+                      "description": "Evaluation mode (for set_mode action)"
+                    },
+                    "key": {
+                      "type": "string",
+                      "description": "Single RPN key or token (for rpn_keypress)"
+                    },
+                    "keys": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      },
+                      "description": "Ordered list of RPN keys or commands (for rpn_key_sequence)"
+                    },
+                    "command": {
+                      "type": "string",
+                      "description": "RPN command name (for rpn_execute_command)"
+                    },
+                    "args": {
+                      "type": "array",
+                      "items": {},
+                      "description": "Optional command arguments (for rpn_execute_command)"
+                    },
+                    "stack": {
+                      "type": "object",
+                      "description": "Partial T/Z/Y/X stack payload (for rpn_set_stack)"
+                    },
+                    "registers": {
+                      "type": "object",
+                      "description": "Register map for RPN memory updates"
+                    },
+                    "source": {
+                      "type": "string",
+                      "description": "Line-based program source (for rpn_load_program)"
+                    },
+                    "preservePrograms": {
+                      "type": "boolean",
+                      "description": "Preserve stored RPN programs when resetting"
+                    },
+                    "id": {
+                      "type": "string",
+                      "description": "Proof line id for update/delete/move/indent actions"
+                    },
+                    "toIndex": {
+                      "type": "number",
+                      "description": "Target line index for proof_move_line"
+                    },
+                    "delta": {
+                      "type": "number",
+                      "description": "Indent delta for proof_indent_line"
+                    },
+                    "patch": {
+                      "type": "object",
+                      "description": "Proof line patch payload for proof_update_line"
+                    },
+                    "templateId": {
+                      "type": "string",
+                      "description": "Template id for proof_apply_template"
+                    },
+                    "index": {
+                      "type": "number",
+                      "description": "Optional insertion index for proof_insert_line/proof_apply_template"
+                    },
+                    "line": {
+                      "type": "object",
+                      "description": "Optional line payload for proof_insert_line"
+                    },
+                    "document": {
+                      "type": "object",
+                      "description": "Full proof document payload for proof_replace_document"
+                    },
+                    "title": {
+                      "type": "string",
+                      "description": "Proof title for proof_set_document_meta"
+                    },
+                    "theorem": {
+                      "type": "string",
+                      "description": "Theorem statement for proof_set_document_meta"
+                    },
+                    "assumptions": {
+                      "type": "string",
+                      "description": "Assumptions block for proof_set_document_meta"
+                    },
+                    "goal": {
+                      "type": "string",
+                      "description": "Goal statement for proof_set_document_meta"
+                    }
+                  },
+                  "required": [
+                    "type"
+                  ]
+                }
+              }
+            },
+            "required": [
+              "session_id",
+              "actions"
+            ]
+          }
+        },
+        {
+          "name": "close_session",
+          "description": "Close a session and optionally persist a snapshot of its final state",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "session_id": {
+                "type": "string",
+                "description": "Session UUID"
+              }
+            },
+            "required": [
+              "session_id"
+            ]
+          }
+        }
+      ],
+      "tool_count": 10,
+      "tool_names": [
+        "list_calculators",
+        "get_calculator_schema",
+        "calculate",
+        "generate_prefilled_url",
+        "calculate_cas",
+        "calculate_cas_headless",
+        "create_session",
+        "get_session_state",
+        "push_session_action",
+        "close_session"
+      ]
+    },
+    "server_info_crawled": {
+      "id": 77,
+      "name": "com.mcpcalc/calculator",
+      "author": "",
+      "overview": "com.mcpcalc/calculator - Development Tools MCP server with 10 tools.",
+      "repository_url": "",
+      "homepage": "https://mcpcalc.com/api/v1/mcp",
+      "remote_or_local": "Remote",
+      "license": "",
+      "usage_count": "460",
+      "success_rate": "100%",
+      "tags": [
+        "development-tools"
+      ],
+      "categories": [
+        "development tools"
+      ],
+      "tools_count": 10,
+      "tools": [
+        {
+          "name": "list_calculators",
+          "description": "List available calculators, optionally filtered by category",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "category": {
+                "type": "string",
+                "description": "Filter by category (e.g., 'finance', 'math')"
+              }
+            }
+          }
+        },
+        {
+          "name": "get_calculator_schema",
+          "description": "Get the input schema for a specific calculator",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "calculator": {
+                "type": "string",
+                "description": "Calculator slug"
+              }
+            },
+            "required": [
+              "calculator"
+            ]
+          }
+        },
+        {
+          "name": "calculate",
+          "description": "Run a calculation and get results + prefilled URL",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "calculator": {
+                "type": "string",
+                "description": "Calculator slug"
+              },
+              "inputs": {
+                "type": "object",
+                "description": "Calculator input values"
+              },
+              "strict": {
+                "type": "boolean",
+                "description": "If true, reject invalid or unknown input fields instead of dropping them"
+              }
+            },
+            "required": [
+              "calculator",
+              "inputs"
+            ]
+          }
+        },
+        {
+          "name": "generate_prefilled_url",
+          "description": "Generate a prefilled URL without running calculation",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "calculator": {
+                "type": "string",
+                "description": "Calculator slug"
+              },
+              "inputs": {
+                "type": "object",
+                "description": "Input values for URL"
+              },
+              "strict": {
+                "type": "boolean",
+                "description": "If true, reject invalid or unknown input fields instead of dropping them"
+              }
+            },
+            "required": [
+              "calculator",
+              "inputs"
+            ]
+          }
+        },
+        {
+          "name": "calculate_cas",
+          "description": "Evaluate one or more headless CAS expressions server-side (MCP-only numeric mode). Unsupported expressions return a GUI handoff link.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "expression": {
+                "type": "string",
+                "description": "Single CAS expression to evaluate"
+              },
+              "expressions": {
+                "type": "array",
+                "description": "Optional ordered list of CAS expressions to evaluate in one isolated context (supports assignments across the batch)",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "strict": {
+                "type": "boolean",
+                "description": "If true, reject unknown fields and malformed expressions instead of dropping them"
+              }
+            }
+          }
+        },
+        {
+          "name": "calculate_cas_headless",
+          "description": "Alias of calculate_cas. Headless MCP-only CAS evaluator; if unsupported features are requested, returns GUI handoff details.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "expression": {
+                "type": "string",
+                "description": "Single CAS expression to evaluate"
+              },
+              "expressions": {
+                "type": "array",
+                "description": "Optional ordered list of CAS expressions to evaluate in one isolated context (supports assignments across the batch)",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "strict": {
+                "type": "boolean",
+                "description": "If true, reject unknown fields and malformed expressions instead of dropping them"
+              }
+            }
+          }
+        },
+        {
+          "name": "create_session",
+          "description": "Create a new interactive session for any calculator and return the session URL",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "calculator": {
+                "type": "string",
+                "description": "Calculator slug"
+              },
+              "metadata": {
+                "type": "object",
+                "description": "Optional session metadata"
+              }
+            },
+            "required": [
+              "calculator"
+            ]
+          }
+        },
+        {
+          "name": "get_session_state",
+          "description": "Retrieve the current field values, computation transcript, and pending message queue for an active session",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "session_id": {
+                "type": "string",
+                "description": "Session UUID"
+              }
+            },
+            "required": [
+              "session_id"
+            ]
+          }
+        },
+        {
+          "name": "push_session_action",
+          "description": "Push actions into a session's message queue (set fields, submit computation, trigger plot, etc.)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "session_id": {
+                "type": "string",
+                "description": "Session UUID"
+              },
+              "actions": {
+                "type": "array",
+                "description": "Array of SessionAction objects to push to the browser",
+                "items": {
+                  "type": "object",
+                  "description": "A session action. Supports CAS actions, form field updates, and spreadsheet actions like set_cells/get_cells/load_csv/export_csv/set_column_format.",
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "enum": [
+                        "submit_expression",
+                        "set_fields",
+                        "plot",
+                        "assign_variable",
+                        "insert_markdown",
+                        "clear_transcript",
+                        "set_mode",
+                        "set_cells",
+                        "get_cells",
+                        "clear_cells",
+                        "load_csv",
+                        "export_csv",
+                        "set_column_format",
+                        "rpn_keypress",
+                        "rpn_key_sequence",
+                        "rpn_execute_command",
+                        "rpn_set_stack",
+                        "rpn_set_registers",
+                        "rpn_load_program",
+                        "rpn_run_program",
+                        "rpn_reset",
+                        "proof_set_document_meta",
+                        "proof_insert_line",
+                        "proof_update_line",
+                        "proof_delete_line",
+                        "proof_move_line",
+                        "proof_indent_line",
+                        "proof_apply_template",
+                        "proof_replace_document"
+                      ],
+                      "description": "The action type"
+                    },
+                    "expression": {
+                      "type": "string",
+                      "description": "Math expression (for submit_expression and plot actions)"
+                    },
+                    "fields": {
+                      "type": "object",
+                      "description": "Key-value pairs of field names to values (for set_fields action on form calculators)"
+                    },
+                    "cells": {
+                      "type": "object",
+                      "description": "Cell raw values keyed by A1 refs (for set_cells on spreadsheet)"
+                    },
+                    "ranges": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      },
+                      "description": "A1 ranges or single refs (for get_cells and clear_cells)"
+                    },
+                    "csv": {
+                      "type": "string",
+                      "description": "CSV/TSV payload for load_csv"
+                    },
+                    "target": {
+                      "type": "string",
+                      "description": "Target cell for load_csv (defaults to A1)"
+                    },
+                    "delimiter": {
+                      "type": "string",
+                      "description": "Optional delimiter for load_csv (e.g. ',', '\\t')"
+                    },
+                    "formats": {
+                      "type": "object",
+                      "description": "Column display formats keyed by column letter (for set_column_format)"
+                    },
+                    "name": {
+                      "type": "string",
+                      "description": "Variable name (for assign_variable action)"
+                    },
+                    "markdown": {
+                      "type": "string",
+                      "description": "Markdown text for a static commentary block (links/code are sanitized)"
+                    },
+                    "range": {
+                      "anyOf": [
+                        {
+                          "type": "array",
+                          "items": {
+                            "type": "number"
+                          }
+                        },
+                        {
+                          "type": "string"
+                        }
+                      ],
+                      "description": "Plot range as [min, max] for 'plot', or A1 range string for 'export_csv'"
+                    },
+                    "mode": {
+                      "type": "string",
+                      "enum": [
+                        "symbolic",
+                        "numeric"
+                      ],
+                      "description": "Evaluation mode (for set_mode action)"
+                    },
+                    "key": {
+                      "type": "string",
+                      "description": "Single RPN key or token (for rpn_keypress)"
+                    },
+                    "keys": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      },
+                      "description": "Ordered list of RPN keys or commands (for rpn_key_sequence)"
+                    },
+                    "command": {
+                      "type": "string",
+                      "description": "RPN command name (for rpn_execute_command)"
+                    },
+                    "args": {
+                      "type": "array",
+                      "items": {},
+                      "description": "Optional command arguments (for rpn_execute_command)"
+                    },
+                    "stack": {
+                      "type": "object",
+                      "description": "Partial T/Z/Y/X stack payload (for rpn_set_stack)"
+                    },
+                    "registers": {
+                      "type": "object",
+                      "description": "Register map for RPN memory updates"
+                    },
+                    "source": {
+                      "type": "string",
+                      "description": "Line-based program source (for rpn_load_program)"
+                    },
+                    "preservePrograms": {
+                      "type": "boolean",
+                      "description": "Preserve stored RPN programs when resetting"
+                    },
+                    "id": {
+                      "type": "string",
+                      "description": "Proof line id for update/delete/move/indent actions"
+                    },
+                    "toIndex": {
+                      "type": "number",
+                      "description": "Target line index for proof_move_line"
+                    },
+                    "delta": {
+                      "type": "number",
+                      "description": "Indent delta for proof_indent_line"
+                    },
+                    "patch": {
+                      "type": "object",
+                      "description": "Proof line patch payload for proof_update_line"
+                    },
+                    "templateId": {
+                      "type": "string",
+                      "description": "Template id for proof_apply_template"
+                    },
+                    "index": {
+                      "type": "number",
+                      "description": "Optional insertion index for proof_insert_line/proof_apply_template"
+                    },
+                    "line": {
+                      "type": "object",
+                      "description": "Optional line payload for proof_insert_line"
+                    },
+                    "document": {
+                      "type": "object",
+                      "description": "Full proof document payload for proof_replace_document"
+                    },
+                    "title": {
+                      "type": "string",
+                      "description": "Proof title for proof_set_document_meta"
+                    },
+                    "theorem": {
+                      "type": "string",
+                      "description": "Theorem statement for proof_set_document_meta"
+                    },
+                    "assumptions": {
+                      "type": "string",
+                      "description": "Assumptions block for proof_set_document_meta"
+                    },
+                    "goal": {
+                      "type": "string",
+                      "description": "Goal statement for proof_set_document_meta"
+                    }
+                  },
+                  "required": [
+                    "type"
+                  ]
+                }
+              }
+            },
+            "required": [
+              "session_id",
+              "actions"
+            ]
+          }
+        },
+        {
+          "name": "close_session",
+          "description": "Close a session and optionally persist a snapshot of its final state",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "session_id": {
+                "type": "string",
+                "description": "Session UUID"
+              }
+            },
+            "required": [
+              "session_id"
+            ]
+          }
+        }
+      ],
+      "python_sdk_url": "https://mcpcalc.com/api/v1/mcp",
+      "python_sdk_config": "{\"debug\": false}"
+    },
+    "source_filename": "0077.commcpcalccalculator_labeled.json",
+    "processed_timestamp": 1772871481,
+    "processing_mode": "gateway",
+    "rank": 78
+  }
+}

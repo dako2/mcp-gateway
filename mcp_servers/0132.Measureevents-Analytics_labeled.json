@@ -1,0 +1,384 @@
+{
+  "labels": {
+    "analysis": "The MCP Server \"Measure.events Analytics\" provides 6 tools for data analysis & processing tasks.",
+    "reasoning": "Primary label \"Data Analysis & Processing\" assigned based on tool names and descriptions.",
+    "primary_label": "Data Analysis & Processing",
+    "secondary_labels": [
+      "Database Operations",
+      "Development Tools",
+      "File Management"
+    ],
+    "custom_label": "Data Analysis & Processing - Measure.events Analytics",
+    "is_connected": true,
+    "is_remote_tool_valid": true,
+    "featured_server": true
+  },
+  "metadata": {
+    "server_id": 132,
+    "server_name": "Measure.events Analytics",
+    "rank_by_usage": 133,
+    "usage_count": "100",
+    "original_file": "tools.json#132",
+    "mode": "gateway",
+    "timestamp": 1772871481,
+    "remote_server_response": {
+      "url": "https://lets.measure.events/mcp",
+      "is_success": true,
+      "error": null,
+      "tools": [
+        {
+          "name": "get_site_analytics",
+          "description": "Get analytics data for a Measure.events site. Returns pageviews, top pages, and referrers for a given period.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "site_key": {
+                "type": "string",
+                "description": "The site's tracking ID (site_key)"
+              },
+              "period": {
+                "type": "string",
+                "enum": [
+                  "day",
+                  "week",
+                  "month",
+                  "year"
+                ],
+                "description": "Time period (default: month)"
+              },
+              "from": {
+                "type": "string",
+                "description": "Start date YYYY-MM-DD (for custom range)"
+              },
+              "to": {
+                "type": "string",
+                "description": "End date YYYY-MM-DD (for custom range)"
+              }
+            },
+            "required": [
+              "site_key"
+            ]
+          }
+        },
+        {
+          "name": "get_site_summary",
+          "description": "Get a natural language summary of site analytics for the last 7 days, including week-over-week trends.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "site_key": {
+                "type": "string",
+                "description": "The site's tracking ID"
+              }
+            },
+            "required": [
+              "site_key"
+            ]
+          }
+        },
+        {
+          "name": "get_insights",
+          "description": "Get proactive insights and anomaly detection for a site — traffic spikes, drops, new referrers.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "site_key": {
+                "type": "string",
+                "description": "The site's tracking ID"
+              }
+            },
+            "required": [
+              "site_key"
+            ]
+          }
+        },
+        {
+          "name": "track_event",
+          "description": "Track a pageview or event on a site. Use this to instrument agent-driven page visits or actions.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "site_key": {
+                "type": "string",
+                "description": "The site's tracking ID"
+              },
+              "path": {
+                "type": "string",
+                "description": "Page path (e.g. /about)"
+              },
+              "referrer": {
+                "type": "string",
+                "description": "Referring URL"
+              },
+              "agent": {
+                "type": "string",
+                "description": "Agent name for attribution"
+              },
+              "utm_source": {
+                "type": "string"
+              },
+              "utm_medium": {
+                "type": "string"
+              },
+              "utm_campaign": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "site_key",
+              "path"
+            ]
+          }
+        },
+        {
+          "name": "create_site",
+          "description": "Create a new site in Measure.events. Returns the site_key needed for tracking.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "domain": {
+                "type": "string",
+                "description": "The site's domain (e.g. example.com)"
+              },
+              "name": {
+                "type": "string",
+                "description": "Human-readable site name"
+              }
+            },
+            "required": [
+              "domain",
+              "name"
+            ]
+          }
+        },
+        {
+          "name": "log_checkin",
+          "description": "Log agent activity to a site's analytics. Use this to record deployments, content updates, or any agent action on the site.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "site_key": {
+                "type": "string",
+                "description": "The site's tracking ID"
+              },
+              "agent": {
+                "type": "string",
+                "description": "Agent name"
+              },
+              "action": {
+                "type": "string",
+                "description": "What the agent did (e.g. 'published article')"
+              },
+              "note": {
+                "type": "string",
+                "description": "Additional context"
+              },
+              "timestamp": {
+                "type": "string",
+                "description": "ISO8601 timestamp (defaults to now)"
+              }
+            },
+            "required": [
+              "site_key",
+              "action"
+            ]
+          }
+        }
+      ],
+      "tool_count": 6,
+      "tool_names": [
+        "get_site_analytics",
+        "get_site_summary",
+        "get_insights",
+        "track_event",
+        "create_site",
+        "log_checkin"
+      ]
+    },
+    "server_info_crawled": {
+      "id": 132,
+      "name": "Measure.events Analytics",
+      "author": "",
+      "overview": "Measure.events Analytics - Data Analysis & Processing MCP server with 6 tools.",
+      "repository_url": "",
+      "homepage": "https://lets.measure.events/mcp",
+      "remote_or_local": "Remote",
+      "license": "",
+      "usage_count": "100",
+      "success_rate": "100%",
+      "tags": [
+        "data-analysis-processing"
+      ],
+      "categories": [
+        "data analysis & processing"
+      ],
+      "tools_count": 6,
+      "tools": [
+        {
+          "name": "get_site_analytics",
+          "description": "Get analytics data for a Measure.events site. Returns pageviews, top pages, and referrers for a given period.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "site_key": {
+                "type": "string",
+                "description": "The site's tracking ID (site_key)"
+              },
+              "period": {
+                "type": "string",
+                "enum": [
+                  "day",
+                  "week",
+                  "month",
+                  "year"
+                ],
+                "description": "Time period (default: month)"
+              },
+              "from": {
+                "type": "string",
+                "description": "Start date YYYY-MM-DD (for custom range)"
+              },
+              "to": {
+                "type": "string",
+                "description": "End date YYYY-MM-DD (for custom range)"
+              }
+            },
+            "required": [
+              "site_key"
+            ]
+          }
+        },
+        {
+          "name": "get_site_summary",
+          "description": "Get a natural language summary of site analytics for the last 7 days, including week-over-week trends.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "site_key": {
+                "type": "string",
+                "description": "The site's tracking ID"
+              }
+            },
+            "required": [
+              "site_key"
+            ]
+          }
+        },
+        {
+          "name": "get_insights",
+          "description": "Get proactive insights and anomaly detection for a site — traffic spikes, drops, new referrers.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "site_key": {
+                "type": "string",
+                "description": "The site's tracking ID"
+              }
+            },
+            "required": [
+              "site_key"
+            ]
+          }
+        },
+        {
+          "name": "track_event",
+          "description": "Track a pageview or event on a site. Use this to instrument agent-driven page visits or actions.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "site_key": {
+                "type": "string",
+                "description": "The site's tracking ID"
+              },
+              "path": {
+                "type": "string",
+                "description": "Page path (e.g. /about)"
+              },
+              "referrer": {
+                "type": "string",
+                "description": "Referring URL"
+              },
+              "agent": {
+                "type": "string",
+                "description": "Agent name for attribution"
+              },
+              "utm_source": {
+                "type": "string"
+              },
+              "utm_medium": {
+                "type": "string"
+              },
+              "utm_campaign": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "site_key",
+              "path"
+            ]
+          }
+        },
+        {
+          "name": "create_site",
+          "description": "Create a new site in Measure.events. Returns the site_key needed for tracking.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "domain": {
+                "type": "string",
+                "description": "The site's domain (e.g. example.com)"
+              },
+              "name": {
+                "type": "string",
+                "description": "Human-readable site name"
+              }
+            },
+            "required": [
+              "domain",
+              "name"
+            ]
+          }
+        },
+        {
+          "name": "log_checkin",
+          "description": "Log agent activity to a site's analytics. Use this to record deployments, content updates, or any agent action on the site.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "site_key": {
+                "type": "string",
+                "description": "The site's tracking ID"
+              },
+              "agent": {
+                "type": "string",
+                "description": "Agent name"
+              },
+              "action": {
+                "type": "string",
+                "description": "What the agent did (e.g. 'published article')"
+              },
+              "note": {
+                "type": "string",
+                "description": "Additional context"
+              },
+              "timestamp": {
+                "type": "string",
+                "description": "ISO8601 timestamp (defaults to now)"
+              }
+            },
+            "required": [
+              "site_key",
+              "action"
+            ]
+          }
+        }
+      ],
+      "python_sdk_url": "https://lets.measure.events/mcp",
+      "python_sdk_config": "{\"debug\": false}"
+    },
+    "source_filename": "0132.Measureevents-Analytics_labeled.json",
+    "processed_timestamp": 1772871481,
+    "processing_mode": "gateway",
+    "rank": 133
+  }
+}

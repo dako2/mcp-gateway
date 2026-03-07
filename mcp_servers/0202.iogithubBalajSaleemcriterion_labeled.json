@@ -1,0 +1,258 @@
+{
+  "labels": {
+    "analysis": "The MCP Server \"io.github.BalajSaleem/criterion\" provides 3 tools for development tools tasks.",
+    "reasoning": "Primary label \"Development Tools\" assigned based on tool names and descriptions.",
+    "primary_label": "Development Tools",
+    "secondary_labels": [
+      "API Integration",
+      "DevOps",
+      "Web Search & Research",
+      "Security & Authentication"
+    ],
+    "custom_label": "Development Tools - io.github.BalajSaleem/criterion",
+    "is_connected": true,
+    "is_remote_tool_valid": true,
+    "featured_server": false
+  },
+  "metadata": {
+    "server_id": 202,
+    "server_name": "io.github.BalajSaleem/criterion",
+    "rank_by_usage": 203,
+    "usage_count": "10",
+    "original_file": "tools.json#202",
+    "mode": "gateway",
+    "timestamp": 1772871482,
+    "remote_server_response": {
+      "url": "https://criterion.life/api/mcp",
+      "is_success": true,
+      "error": null,
+      "tools": [
+        {
+          "name": "search_quran",
+          "description": "Search 6,236 Quran verses using semantic similarity. Returns verses with ±2 surrounding verses for context. Use this for questions about Quranic guidance, themes, or specific topics.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "query": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 500,
+                "description": "Search query for Quran verses (e.g., \"patience in hardship\")"
+              },
+              "limit": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 20,
+                "default": 7,
+                "description": "Number of results to return (1-20, default: 7)"
+              }
+            },
+            "required": [
+              "query"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "search_hadith",
+          "description": "Search 21,641 authentic Hadith narrations from 6 major collections: Sahih Bukhari, Sahih Muslim, Jami` at-Tirmidhi, Sunan Abi Dawud, 40 Hadith Nawawi, and Riyad as-Salihin. Filter by collection and authenticity grade. Use this for questions about Prophet Muhammad's teachings and practices.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "query": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 500,
+                "description": "Search query for Hadith (e.g., \"charity and good deeds\")"
+              },
+              "collections": {
+                "type": "string",
+                "description": "Comma-separated collection names: bukhari, muslim, tirmidhi, abudawud, nawawi40, riyadussalihin (leave empty for all)"
+              },
+              "grade": {
+                "type": "string",
+                "enum": [
+                  "sahih-only",
+                  "sahih-and-hasan",
+                  "all"
+                ],
+                "default": "sahih-only",
+                "description": "Authenticity filter: sahih-only (most authentic), sahih-and-hasan (authentic + good), or all"
+              },
+              "limit": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 15,
+                "default": 5,
+                "description": "Number of results to return (1-15, default: 5)"
+              }
+            },
+            "required": [
+              "query"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "get_verse",
+          "description": "Retrieve a specific Quran verse by reference. Use this when you need an exact verse (e.g., Ayat al-Kursi is 2:255).",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "reference": {
+                "type": "string",
+                "pattern": "^\\d+:\\d+$",
+                "description": "Verse reference in format \"surah:ayah\" (e.g., \"2:255\", \"18:10\")"
+              }
+            },
+            "required": [
+              "reference"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        }
+      ],
+      "tool_count": 3,
+      "tool_names": [
+        "search_quran",
+        "search_hadith",
+        "get_verse"
+      ]
+    },
+    "server_info_crawled": {
+      "id": 202,
+      "name": "io.github.BalajSaleem/criterion",
+      "author": "",
+      "overview": "io.github.BalajSaleem/criterion - Development Tools MCP server with 3 tools.",
+      "repository_url": "",
+      "homepage": "https://criterion.life/api/mcp",
+      "remote_or_local": "Remote",
+      "license": "",
+      "usage_count": "10",
+      "success_rate": "100%",
+      "tags": [
+        "development-tools"
+      ],
+      "categories": [
+        "development tools"
+      ],
+      "tools_count": 3,
+      "tools": [
+        {
+          "name": "search_quran",
+          "description": "Search 6,236 Quran verses using semantic similarity. Returns verses with ±2 surrounding verses for context. Use this for questions about Quranic guidance, themes, or specific topics.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "query": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 500,
+                "description": "Search query for Quran verses (e.g., \"patience in hardship\")"
+              },
+              "limit": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 20,
+                "default": 7,
+                "description": "Number of results to return (1-20, default: 7)"
+              }
+            },
+            "required": [
+              "query"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "search_hadith",
+          "description": "Search 21,641 authentic Hadith narrations from 6 major collections: Sahih Bukhari, Sahih Muslim, Jami` at-Tirmidhi, Sunan Abi Dawud, 40 Hadith Nawawi, and Riyad as-Salihin. Filter by collection and authenticity grade. Use this for questions about Prophet Muhammad's teachings and practices.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "query": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 500,
+                "description": "Search query for Hadith (e.g., \"charity and good deeds\")"
+              },
+              "collections": {
+                "type": "string",
+                "description": "Comma-separated collection names: bukhari, muslim, tirmidhi, abudawud, nawawi40, riyadussalihin (leave empty for all)"
+              },
+              "grade": {
+                "type": "string",
+                "enum": [
+                  "sahih-only",
+                  "sahih-and-hasan",
+                  "all"
+                ],
+                "default": "sahih-only",
+                "description": "Authenticity filter: sahih-only (most authentic), sahih-and-hasan (authentic + good), or all"
+              },
+              "limit": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 15,
+                "default": 5,
+                "description": "Number of results to return (1-15, default: 5)"
+              }
+            },
+            "required": [
+              "query"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "get_verse",
+          "description": "Retrieve a specific Quran verse by reference. Use this when you need an exact verse (e.g., Ayat al-Kursi is 2:255).",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "reference": {
+                "type": "string",
+                "pattern": "^\\d+:\\d+$",
+                "description": "Verse reference in format \"surah:ayah\" (e.g., \"2:255\", \"18:10\")"
+              }
+            },
+            "required": [
+              "reference"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        }
+      ],
+      "python_sdk_url": "https://criterion.life/api/mcp",
+      "python_sdk_config": "{\"debug\": false}"
+    },
+    "source_filename": "0202.iogithubBalajSaleemcriterion_labeled.json",
+    "processed_timestamp": 1772871482,
+    "processing_mode": "gateway",
+    "rank": 203
+  }
+}

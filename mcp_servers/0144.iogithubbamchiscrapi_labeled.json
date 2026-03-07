@@ -1,0 +1,320 @@
+{
+  "labels": {
+    "analysis": "The MCP Server \"io.github.bamchi/scrapi\" provides 5 tools for development tools tasks.",
+    "reasoning": "Primary label \"Development Tools\" assigned based on tool names and descriptions.",
+    "primary_label": "Development Tools",
+    "secondary_labels": [
+      "API Integration",
+      "DevOps",
+      "Web Search & Research",
+      "AI/ML Tools"
+    ],
+    "custom_label": "Development Tools - io.github.bamchi/scrapi",
+    "is_connected": true,
+    "is_remote_tool_valid": true,
+    "featured_server": true
+  },
+  "metadata": {
+    "server_id": 144,
+    "server_name": "io.github.bamchi/scrapi",
+    "rank_by_usage": 145,
+    "usage_count": "100",
+    "original_file": "tools.json#144",
+    "mode": "gateway",
+    "timestamp": 1772871481,
+    "remote_server_response": {
+      "url": "https://scrapi.ai/mcp",
+      "is_success": true,
+      "error": null,
+      "tools": [
+        {
+          "name": "scrape_url",
+          "description": "Scrapes a webpage and returns the content in AI-readable Markdown format. Can access blocked sites through browser rendering.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "url": {
+                "type": "string",
+                "format": "uri",
+                "description": "The URL of the webpage to scrape"
+              },
+              "format": {
+                "type": "string",
+                "enum": [
+                  "markdown",
+                  "text"
+                ],
+                "default": "markdown",
+                "description": "Output format: markdown (default) or text"
+              }
+            },
+            "required": [
+              "url"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "scrape_urls",
+          "description": "Scrapes multiple webpages in parallel and returns the content in AI-readable Markdown format. Can access blocked sites through browser rendering.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "urls": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "format": "uri"
+                },
+                "minItems": 1,
+                "maxItems": 10,
+                "description": "URLs to scrape (max 10)"
+              },
+              "format": {
+                "type": "string",
+                "enum": [
+                  "markdown",
+                  "text"
+                ],
+                "default": "markdown",
+                "description": "Output format: markdown (default) or text"
+              }
+            },
+            "required": [
+              "urls"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "get_usage",
+          "description": "Check API usage and remaining credits. Returns current plan, subscription credits, purchased credits, and total remaining credits.",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {}
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "scraper_server_status",
+          "description": "Check the status of all ScraperServer instances. Shows server health, circuit breaker state, failure counts, and last success/failure times.",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {}
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "get_billing",
+          "description": "Retrieve MCP billing information: subscription details, available plans, daily usage history, or spending limits.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "action": {
+                "type": "string",
+                "enum": [
+                  "subscription",
+                  "plans",
+                  "daily_usage",
+                  "spending_limits"
+                ],
+                "description": "What billing info to retrieve: subscription (current plan details), plans (available plans), daily_usage (credit usage history), spending_limits (daily spend limit status)"
+              },
+              "start_date": {
+                "type": "string",
+                "description": "Start date for daily_usage (YYYY-MM-DD). Default: 30 days ago"
+              },
+              "end_date": {
+                "type": "string",
+                "description": "End date for daily_usage (YYYY-MM-DD). Default: today"
+              }
+            },
+            "required": [
+              "action"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        }
+      ],
+      "tool_count": 5,
+      "tool_names": [
+        "scrape_url",
+        "scrape_urls",
+        "get_usage",
+        "scraper_server_status",
+        "get_billing"
+      ]
+    },
+    "server_info_crawled": {
+      "id": 144,
+      "name": "io.github.bamchi/scrapi",
+      "author": "",
+      "overview": "io.github.bamchi/scrapi - Development Tools MCP server with 5 tools.",
+      "repository_url": "",
+      "homepage": "https://scrapi.ai/mcp",
+      "remote_or_local": "Remote",
+      "license": "",
+      "usage_count": "100",
+      "success_rate": "100%",
+      "tags": [
+        "development-tools"
+      ],
+      "categories": [
+        "development tools"
+      ],
+      "tools_count": 5,
+      "tools": [
+        {
+          "name": "scrape_url",
+          "description": "Scrapes a webpage and returns the content in AI-readable Markdown format. Can access blocked sites through browser rendering.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "url": {
+                "type": "string",
+                "format": "uri",
+                "description": "The URL of the webpage to scrape"
+              },
+              "format": {
+                "type": "string",
+                "enum": [
+                  "markdown",
+                  "text"
+                ],
+                "default": "markdown",
+                "description": "Output format: markdown (default) or text"
+              }
+            },
+            "required": [
+              "url"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "scrape_urls",
+          "description": "Scrapes multiple webpages in parallel and returns the content in AI-readable Markdown format. Can access blocked sites through browser rendering.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "urls": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "format": "uri"
+                },
+                "minItems": 1,
+                "maxItems": 10,
+                "description": "URLs to scrape (max 10)"
+              },
+              "format": {
+                "type": "string",
+                "enum": [
+                  "markdown",
+                  "text"
+                ],
+                "default": "markdown",
+                "description": "Output format: markdown (default) or text"
+              }
+            },
+            "required": [
+              "urls"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "get_usage",
+          "description": "Check API usage and remaining credits. Returns current plan, subscription credits, purchased credits, and total remaining credits.",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {}
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "scraper_server_status",
+          "description": "Check the status of all ScraperServer instances. Shows server health, circuit breaker state, failure counts, and last success/failure times.",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {}
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "get_billing",
+          "description": "Retrieve MCP billing information: subscription details, available plans, daily usage history, or spending limits.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "action": {
+                "type": "string",
+                "enum": [
+                  "subscription",
+                  "plans",
+                  "daily_usage",
+                  "spending_limits"
+                ],
+                "description": "What billing info to retrieve: subscription (current plan details), plans (available plans), daily_usage (credit usage history), spending_limits (daily spend limit status)"
+              },
+              "start_date": {
+                "type": "string",
+                "description": "Start date for daily_usage (YYYY-MM-DD). Default: 30 days ago"
+              },
+              "end_date": {
+                "type": "string",
+                "description": "End date for daily_usage (YYYY-MM-DD). Default: today"
+              }
+            },
+            "required": [
+              "action"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        }
+      ],
+      "python_sdk_url": "https://scrapi.ai/mcp",
+      "python_sdk_config": "{\"debug\": false}"
+    },
+    "source_filename": "0144.iogithubbamchiscrapi_labeled.json",
+    "processed_timestamp": 1772871481,
+    "processing_mode": "gateway",
+    "rank": 145
+  }
+}

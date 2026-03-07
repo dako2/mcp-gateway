@@ -1,0 +1,2540 @@
+{
+  "labels": {
+    "analysis": "The MCP Server \"Math MCP Learning\" provides 17 tools for development tools tasks.",
+    "reasoning": "Primary label \"Development Tools\" assigned based on tool names and descriptions.",
+    "primary_label": "Development Tools",
+    "secondary_labels": [
+      "API Integration",
+      "DevOps",
+      "Data Analysis & Processing",
+      "AI/ML Tools"
+    ],
+    "custom_label": "Development Tools - Math MCP Learning",
+    "is_connected": true,
+    "is_remote_tool_valid": true,
+    "featured_server": true
+  },
+  "metadata": {
+    "server_id": 50,
+    "server_name": "Math MCP Learning",
+    "rank_by_usage": 51,
+    "usage_count": "1,000",
+    "original_file": "tools.json#50",
+    "mode": "gateway",
+    "timestamp": 1772871481,
+    "remote_server_response": {
+      "url": "https://math-mcp.fastmcp.app/mcp",
+      "is_success": true,
+      "error": null,
+      "tools": [
+        {
+          "name": "calculate",
+          "title": "Mathematical Calculator",
+          "description": "Safely evaluate mathematical expressions with support for basic operations and math functions.\n\nSupported operations: +, -, *, /, **, ()\nSupported functions: sin, cos, tan, log, sqrt, abs, pow\n\nExamples:\n- \"2 + 3 * 4\" → 14\n- \"sqrt(16)\" → 4.0\n- \"sin(3.14159/2)\" → 1.0",
+          "inputSchema": {
+            "additionalProperties": false,
+            "properties": {
+              "expression": {
+                "maxLength": 500,
+                "type": "string"
+              }
+            },
+            "required": [
+              "expression"
+            ],
+            "type": "object"
+          },
+          "outputSchema": {
+            "description": "Result of a mathematical expression evaluation.",
+            "properties": {
+              "expression": {
+                "type": "string"
+              },
+              "result": {
+                "type": "number"
+              },
+              "difficulty": {
+                "type": "string"
+              },
+              "topic": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "expression",
+              "result",
+              "difficulty",
+              "topic"
+            ],
+            "type": "object"
+          },
+          "annotations": {
+            "title": "Mathematical Calculator",
+            "readOnlyHint": false,
+            "openWorldHint": true
+          },
+          "_meta": {
+            "fastmcp": {
+              "tags": []
+            }
+          }
+        },
+        {
+          "name": "statistics",
+          "title": "Statistical Analysis",
+          "description": "Perform statistical calculations on a list of numbers.\n\nAvailable operations: mean, median, mode, std_dev, variance",
+          "inputSchema": {
+            "additionalProperties": false,
+            "properties": {
+              "numbers": {
+                "items": {
+                  "type": "number"
+                },
+                "maxItems": 10000,
+                "type": "array"
+              },
+              "operation": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "numbers",
+              "operation"
+            ],
+            "type": "object"
+          },
+          "outputSchema": {
+            "description": "Result of statistical calculation.",
+            "properties": {
+              "operation": {
+                "type": "string"
+              },
+              "result": {
+                "type": "number"
+              },
+              "sample_size": {
+                "type": "integer"
+              },
+              "difficulty": {
+                "type": "string"
+              },
+              "topic": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "operation",
+              "result",
+              "sample_size",
+              "difficulty",
+              "topic"
+            ],
+            "type": "object"
+          },
+          "annotations": {
+            "title": "Statistical Analysis",
+            "readOnlyHint": true,
+            "openWorldHint": false
+          },
+          "_meta": {
+            "fastmcp": {
+              "tags": []
+            }
+          }
+        },
+        {
+          "name": "compound_interest",
+          "description": "Calculate compound interest for investments.\n\nFormula: A = P(1 + r/n)^(nt)\nWhere:\n- P = principal amount\n- r = annual interest rate (as decimal)\n- n = number of times interest compounds per year\n- t = time in years",
+          "inputSchema": {
+            "additionalProperties": false,
+            "properties": {
+              "principal": {
+                "type": "number"
+              },
+              "rate": {
+                "type": "number"
+              },
+              "time": {
+                "type": "number"
+              },
+              "compounds_per_year": {
+                "default": 1,
+                "type": "integer"
+              }
+            },
+            "required": [
+              "principal",
+              "rate",
+              "time"
+            ],
+            "type": "object"
+          },
+          "outputSchema": {
+            "description": "Result of compound interest calculation.",
+            "properties": {
+              "principal": {
+                "type": "number"
+              },
+              "final_amount": {
+                "type": "number"
+              },
+              "total_interest": {
+                "type": "number"
+              },
+              "rate": {
+                "type": "number"
+              },
+              "time": {
+                "type": "number"
+              },
+              "compounds_per_year": {
+                "type": "integer"
+              },
+              "difficulty": {
+                "type": "string"
+              },
+              "topic": {
+                "type": "string"
+              },
+              "formula": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "principal",
+              "final_amount",
+              "total_interest",
+              "rate",
+              "time",
+              "compounds_per_year",
+              "difficulty",
+              "topic",
+              "formula"
+            ],
+            "type": "object"
+          },
+          "_meta": {
+            "fastmcp": {
+              "tags": []
+            }
+          }
+        },
+        {
+          "name": "convert_units",
+          "description": "Convert between different units of measurement.\n\nSupported unit types:\n- length: mm, cm, m, km, in, ft, yd, mi\n- weight: g, kg, oz, lb\n- temperature: c, f, k (Celsius, Fahrenheit, Kelvin)",
+          "inputSchema": {
+            "additionalProperties": false,
+            "properties": {
+              "value": {
+                "type": "number"
+              },
+              "from_unit": {
+                "type": "string"
+              },
+              "to_unit": {
+                "type": "string"
+              },
+              "unit_type": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "value",
+              "from_unit",
+              "to_unit",
+              "unit_type"
+            ],
+            "type": "object"
+          },
+          "outputSchema": {
+            "description": "Result of unit conversion.",
+            "properties": {
+              "value": {
+                "type": "number"
+              },
+              "from_unit": {
+                "type": "string"
+              },
+              "to_unit": {
+                "type": "string"
+              },
+              "converted_value": {
+                "type": "number"
+              },
+              "unit_type": {
+                "type": "string"
+              },
+              "difficulty": {
+                "type": "string"
+              },
+              "topic": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "value",
+              "from_unit",
+              "to_unit",
+              "converted_value",
+              "unit_type",
+              "difficulty",
+              "topic"
+            ],
+            "type": "object"
+          },
+          "_meta": {
+            "fastmcp": {
+              "tags": []
+            }
+          }
+        },
+        {
+          "name": "matrix_multiply",
+          "title": "Matrix Multiplication",
+          "description": "Multiply two matrices (A × B).\n\nArgs:\n    matrix_a: First matrix (m x n)\n    matrix_b: Second matrix (n x p)\n\nReturns:\n    Result matrix (m x p)\n\nExamples:\n    matrix_multiply([[1, 2], [3, 4]], [[5, 6], [7, 8]])\n    matrix_multiply([[1, 2, 3]], [[1], [2], [3]])",
+          "inputSchema": {
+            "additionalProperties": false,
+            "properties": {
+              "matrix_a": {
+                "items": {
+                  "items": {
+                    "type": "number"
+                  },
+                  "type": "array"
+                },
+                "maxItems": 10000,
+                "type": "array"
+              },
+              "matrix_b": {
+                "items": {
+                  "items": {
+                    "type": "number"
+                  },
+                  "type": "array"
+                },
+                "maxItems": 10000,
+                "type": "array"
+              }
+            },
+            "required": [
+              "matrix_a",
+              "matrix_b"
+            ],
+            "type": "object"
+          },
+          "outputSchema": {
+            "description": "Result of matrix multiplication operation.",
+            "properties": {
+              "rows_a": {
+                "type": "integer"
+              },
+              "cols_a": {
+                "type": "integer"
+              },
+              "rows_b": {
+                "type": "integer"
+              },
+              "cols_b": {
+                "type": "integer"
+              },
+              "result_matrix": {
+                "items": {
+                  "items": {
+                    "type": "number"
+                  },
+                  "type": "array"
+                },
+                "type": "array"
+              },
+              "difficulty": {
+                "type": "string"
+              },
+              "topic": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "rows_a",
+              "cols_a",
+              "rows_b",
+              "cols_b",
+              "result_matrix",
+              "difficulty",
+              "topic"
+            ],
+            "type": "object"
+          },
+          "annotations": {
+            "title": "Matrix Multiplication",
+            "readOnlyHint": false,
+            "openWorldHint": false
+          },
+          "_meta": {
+            "fastmcp": {
+              "tags": []
+            }
+          }
+        },
+        {
+          "name": "matrix_transpose",
+          "title": "Matrix Transpose",
+          "description": "Transpose a matrix (swap rows and columns).\n\nArgs:\n    matrix: Input matrix (m x n)\n\nReturns:\n    Transposed matrix (n x m)\n\nExamples:\n    matrix_transpose([[1, 2, 3], [4, 5, 6]])\n    matrix_transpose([[1], [2], [3]])",
+          "inputSchema": {
+            "additionalProperties": false,
+            "properties": {
+              "matrix": {
+                "items": {
+                  "items": {
+                    "type": "number"
+                  },
+                  "type": "array"
+                },
+                "maxItems": 10000,
+                "type": "array"
+              }
+            },
+            "required": [
+              "matrix"
+            ],
+            "type": "object"
+          },
+          "outputSchema": {
+            "description": "Result of matrix transpose operation.",
+            "properties": {
+              "original_rows": {
+                "type": "integer"
+              },
+              "original_cols": {
+                "type": "integer"
+              },
+              "result_matrix": {
+                "items": {
+                  "items": {
+                    "type": "number"
+                  },
+                  "type": "array"
+                },
+                "type": "array"
+              },
+              "difficulty": {
+                "type": "string"
+              },
+              "topic": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "original_rows",
+              "original_cols",
+              "result_matrix",
+              "difficulty",
+              "topic"
+            ],
+            "type": "object"
+          },
+          "annotations": {
+            "title": "Matrix Transpose",
+            "readOnlyHint": false,
+            "openWorldHint": false
+          },
+          "_meta": {
+            "fastmcp": {
+              "tags": []
+            }
+          }
+        },
+        {
+          "name": "matrix_determinant",
+          "title": "Matrix Determinant",
+          "description": "Calculate the determinant of a square matrix.\n\nArgs:\n    matrix: Square matrix (n x n)\n\nReturns:\n    Determinant value (scalar)\n\nExamples:\n    matrix_determinant([[1, 2], [3, 4]])\n    matrix_determinant([[1, 0, 0], [0, 1, 0], [0, 0, 1]])  # Identity matrix",
+          "inputSchema": {
+            "additionalProperties": false,
+            "properties": {
+              "matrix": {
+                "items": {
+                  "items": {
+                    "type": "number"
+                  },
+                  "type": "array"
+                },
+                "maxItems": 10000,
+                "type": "array"
+              }
+            },
+            "required": [
+              "matrix"
+            ],
+            "type": "object"
+          },
+          "outputSchema": {
+            "description": "Result of matrix determinant calculation.",
+            "properties": {
+              "size": {
+                "type": "integer"
+              },
+              "determinant": {
+                "type": "number"
+              },
+              "difficulty": {
+                "type": "string"
+              },
+              "topic": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "size",
+              "determinant",
+              "difficulty",
+              "topic"
+            ],
+            "type": "object"
+          },
+          "annotations": {
+            "title": "Matrix Determinant",
+            "readOnlyHint": false,
+            "openWorldHint": false
+          },
+          "_meta": {
+            "fastmcp": {
+              "tags": []
+            }
+          }
+        },
+        {
+          "name": "matrix_inverse",
+          "title": "Matrix Inverse",
+          "description": "Calculate the inverse of a square matrix.\n\nArgs:\n    matrix: Square matrix (n x n)\n\nReturns:\n    Inverse matrix (n x n)\n\nExamples:\n    matrix_inverse([[1, 2], [3, 4]])\n    matrix_inverse([[2, 0], [0, 2]])  # Diagonal matrix",
+          "inputSchema": {
+            "additionalProperties": false,
+            "properties": {
+              "matrix": {
+                "items": {
+                  "items": {
+                    "type": "number"
+                  },
+                  "type": "array"
+                },
+                "maxItems": 10000,
+                "type": "array"
+              }
+            },
+            "required": [
+              "matrix"
+            ],
+            "type": "object"
+          },
+          "outputSchema": {
+            "description": "Result of matrix inverse calculation.",
+            "properties": {
+              "size": {
+                "type": "integer"
+              },
+              "success": {
+                "type": "boolean"
+              },
+              "result_matrix": {
+                "anyOf": [
+                  {
+                    "items": {
+                      "items": {
+                        "type": "number"
+                      },
+                      "type": "array"
+                    },
+                    "type": "array"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "error": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "difficulty": {
+                "type": "string"
+              },
+              "topic": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "size",
+              "success",
+              "difficulty",
+              "topic"
+            ],
+            "type": "object"
+          },
+          "annotations": {
+            "title": "Matrix Inverse",
+            "readOnlyHint": false,
+            "openWorldHint": false
+          },
+          "_meta": {
+            "fastmcp": {
+              "tags": []
+            }
+          }
+        },
+        {
+          "name": "matrix_eigenvalues",
+          "title": "Matrix Eigenvalues",
+          "description": "Calculate the eigenvalues of a square matrix.\n\nArgs:\n    matrix: Square matrix (n x n)\n\nReturns:\n    List of eigenvalues (may be complex numbers)\n\nExamples:\n    matrix_eigenvalues([[4, 2], [1, 3]])\n    matrix_eigenvalues([[3, 0, 0], [0, 5, 0], [0, 0, 7]])  # Diagonal matrix",
+          "inputSchema": {
+            "additionalProperties": false,
+            "properties": {
+              "matrix": {
+                "items": {
+                  "items": {
+                    "type": "number"
+                  },
+                  "type": "array"
+                },
+                "maxItems": 10000,
+                "type": "array"
+              }
+            },
+            "required": [
+              "matrix"
+            ],
+            "type": "object"
+          },
+          "outputSchema": {
+            "description": "Result of matrix eigenvalues calculation.",
+            "properties": {
+              "size": {
+                "type": "integer"
+              },
+              "success": {
+                "type": "boolean"
+              },
+              "eigenvalues": {
+                "anyOf": [
+                  {
+                    "items": {
+                      "type": "number"
+                    },
+                    "type": "array"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "eigenvectors": {
+                "anyOf": [
+                  {
+                    "items": {
+                      "items": {
+                        "type": "number"
+                      },
+                      "type": "array"
+                    },
+                    "type": "array"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "error": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "difficulty": {
+                "type": "string"
+              },
+              "topic": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "size",
+              "success",
+              "difficulty",
+              "topic"
+            ],
+            "type": "object"
+          },
+          "annotations": {
+            "title": "Matrix Eigenvalues",
+            "readOnlyHint": false,
+            "openWorldHint": false
+          },
+          "_meta": {
+            "fastmcp": {
+              "tags": []
+            }
+          }
+        },
+        {
+          "name": "save_calculation",
+          "title": "Save Calculation to Workspace",
+          "description": "Save calculation to persistent workspace (survives restarts).\n\nArgs:\n    name: Variable name to save under\n    expression: The mathematical expression\n    result: The calculated result\n\nExamples:\n    save_calculation(\"portfolio_return\", \"10000 * 1.07^5\", 14025.52)\n    save_calculation(\"circle_area\", \"pi * 5^2\", 78.54)",
+          "inputSchema": {
+            "additionalProperties": false,
+            "properties": {
+              "name": {
+                "maxLength": 50,
+                "type": "string"
+              },
+              "expression": {
+                "maxLength": 500,
+                "type": "string"
+              },
+              "result": {
+                "type": "number"
+              }
+            },
+            "required": [
+              "name",
+              "expression",
+              "result"
+            ],
+            "type": "object"
+          },
+          "outputSchema": {
+            "description": "Result of saving a calculation to the workspace.",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "expression": {
+                "type": "string"
+              },
+              "result": {
+                "type": "number"
+              },
+              "success": {
+                "type": "boolean"
+              },
+              "is_new": {
+                "type": "boolean"
+              },
+              "total_variables": {
+                "type": "integer"
+              },
+              "difficulty": {
+                "type": "string"
+              },
+              "topic": {
+                "type": "string"
+              },
+              "session_id": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "action": {
+                "default": "save_calculation",
+                "type": "string"
+              }
+            },
+            "required": [
+              "name",
+              "expression",
+              "result",
+              "success",
+              "is_new",
+              "total_variables",
+              "difficulty",
+              "topic"
+            ],
+            "type": "object"
+          },
+          "annotations": {
+            "title": "Save Calculation to Workspace",
+            "readOnlyHint": false,
+            "openWorldHint": false
+          },
+          "_meta": {
+            "fastmcp": {
+              "tags": []
+            }
+          }
+        },
+        {
+          "name": "load_variable",
+          "description": "Load previously saved calculation result from workspace.\n\nArgs:\n    name: Variable name to load\n\nExamples:\n    load_variable(\"portfolio_return\")  # Returns saved calculation\n    load_variable(\"circle_area\")       # Access across sessions",
+          "inputSchema": {
+            "additionalProperties": false,
+            "properties": {
+              "name": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "name"
+            ],
+            "type": "object"
+          },
+          "outputSchema": {
+            "description": "Result of loading a variable from the workspace.",
+            "properties": {
+              "success": {
+                "type": "boolean"
+              },
+              "name": {
+                "type": "string"
+              },
+              "action": {
+                "type": "string"
+              },
+              "result": {
+                "anyOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "expression": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "timestamp": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "error": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "available_variables": {
+                "anyOf": [
+                  {
+                    "items": {
+                      "type": "string"
+                    },
+                    "type": "array"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "difficulty": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "topic": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "session_id": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              }
+            },
+            "required": [
+              "success",
+              "name",
+              "action"
+            ],
+            "type": "object"
+          },
+          "_meta": {
+            "fastmcp": {
+              "tags": []
+            }
+          }
+        },
+        {
+          "name": "plot_function",
+          "title": "Function Plotter",
+          "description": "Generate mathematical function plots (requires matplotlib).\n\nArgs:\n    expression: Mathematical expression to plot (e.g., \"x**2\", \"sin(x)\")\n    x_range: Tuple of (min, max) for x-axis range\n    num_points: Number of points to plot (default: 100)\n    ctx: FastMCP context for logging\n\nReturns:\n    Image object with PNG data or VisualizationError on failure\n\nExamples:\n    plot_function(\"x**2\", (-5, 5))\n    plot_function(\"sin(x)\", (-3.14, 3.14))",
+          "inputSchema": {
+            "additionalProperties": false,
+            "properties": {
+              "expression": {
+                "maxLength": 500,
+                "type": "string"
+              },
+              "x_range": {
+                "maxItems": 2,
+                "minItems": 2,
+                "prefixItems": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "number"
+                  }
+                ],
+                "type": "array"
+              },
+              "num_points": {
+                "default": 100,
+                "maximum": 10000,
+                "minimum": 2,
+                "type": "integer"
+              }
+            },
+            "required": [
+              "expression",
+              "x_range"
+            ],
+            "type": "object"
+          },
+          "annotations": {
+            "title": "Function Plotter",
+            "readOnlyHint": false,
+            "openWorldHint": false
+          },
+          "_meta": {
+            "fastmcp": {
+              "tags": []
+            }
+          }
+        },
+        {
+          "name": "create_histogram",
+          "title": "Statistical Histogram",
+          "description": "Create statistical histograms (requires matplotlib).\n\nArgs:\n    data: List of numerical values\n    bins: Number of histogram bins (default: 20)\n    title: Chart title\n    ctx: FastMCP context for logging\n\nReturns:\n    Dict with base64-encoded PNG image or error message\n\nExamples:\n    create_histogram([1.0, 2.0, 2.5, 3.0, 3.5, 4.0, 5.0])\n    create_histogram([10, 20, 30, 40, 50], bins=5, title=\"Test Scores\")",
+          "inputSchema": {
+            "additionalProperties": false,
+            "properties": {
+              "data": {
+                "items": {
+                  "type": "number"
+                },
+                "maxItems": 10000,
+                "type": "array"
+              },
+              "bins": {
+                "default": 20,
+                "type": "integer"
+              },
+              "title": {
+                "default": "Data Distribution",
+                "maxLength": 100,
+                "type": "string"
+              }
+            },
+            "required": [
+              "data"
+            ],
+            "type": "object"
+          },
+          "annotations": {
+            "title": "Statistical Histogram",
+            "readOnlyHint": false,
+            "openWorldHint": false
+          },
+          "_meta": {
+            "fastmcp": {
+              "tags": []
+            }
+          }
+        },
+        {
+          "name": "plot_line_chart",
+          "title": "Line Chart",
+          "description": "Create a line chart from data points (requires matplotlib).\n\nArgs:\n    x_data: X-axis data points\n    y_data: Y-axis data points\n    title: Chart title\n    x_label: X-axis label\n    y_label: Y-axis label\n    color: Line color (name or hex code, e.g., 'blue', '#2E86AB')\n    show_grid: Whether to show grid lines\n    ctx: FastMCP context for logging\n\nReturns:\n    Dict with base64-encoded PNG image or error message\n\nExamples:\n    plot_line_chart([1, 2, 3, 4], [1, 4, 9, 16], title=\"Squares\")\n    plot_line_chart([0, 1, 2], [0, 1, 4], color='red', x_label='Time', y_label='Distance')",
+          "inputSchema": {
+            "additionalProperties": false,
+            "properties": {
+              "x_data": {
+                "items": {
+                  "type": "number"
+                },
+                "maxItems": 10000,
+                "type": "array"
+              },
+              "y_data": {
+                "items": {
+                  "type": "number"
+                },
+                "maxItems": 10000,
+                "type": "array"
+              },
+              "title": {
+                "default": "Line Chart",
+                "maxLength": 100,
+                "type": "string"
+              },
+              "x_label": {
+                "default": "X",
+                "maxLength": 100,
+                "type": "string"
+              },
+              "y_label": {
+                "default": "Y",
+                "maxLength": 100,
+                "type": "string"
+              },
+              "color": {
+                "anyOf": [
+                  {
+                    "maxLength": 100,
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "show_grid": {
+                "default": true,
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "x_data",
+              "y_data"
+            ],
+            "type": "object"
+          },
+          "annotations": {
+            "title": "Line Chart",
+            "readOnlyHint": false,
+            "openWorldHint": false
+          },
+          "_meta": {
+            "fastmcp": {
+              "tags": []
+            }
+          }
+        },
+        {
+          "name": "plot_scatter_chart",
+          "title": "Scatter Plot",
+          "description": "Create a scatter plot from data points (requires matplotlib).\n\nArgs:\n    x_data: X-axis data points\n    y_data: Y-axis data points\n    title: Chart title\n    x_label: X-axis label\n    y_label: Y-axis label\n    color: Point color (name or hex code, e.g., 'blue', '#2E86AB')\n    point_size: Size of scatter points (default: 50)\n    ctx: FastMCP context for logging\n\nReturns:\n    Dict with base64-encoded PNG image or error message\n\nExamples:\n    plot_scatter_chart([1, 2, 3, 4], [1, 4, 9, 16], title=\"Correlation Study\")\n    plot_scatter_chart([1, 2, 3], [2, 4, 5], color='purple', point_size=100)",
+          "inputSchema": {
+            "additionalProperties": false,
+            "properties": {
+              "x_data": {
+                "items": {
+                  "type": "number"
+                },
+                "maxItems": 10000,
+                "type": "array"
+              },
+              "y_data": {
+                "items": {
+                  "type": "number"
+                },
+                "maxItems": 10000,
+                "type": "array"
+              },
+              "title": {
+                "default": "Scatter Plot",
+                "maxLength": 100,
+                "type": "string"
+              },
+              "x_label": {
+                "default": "X",
+                "maxLength": 100,
+                "type": "string"
+              },
+              "y_label": {
+                "default": "Y",
+                "maxLength": 100,
+                "type": "string"
+              },
+              "color": {
+                "anyOf": [
+                  {
+                    "maxLength": 100,
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "point_size": {
+                "default": 50,
+                "type": "integer"
+              }
+            },
+            "required": [
+              "x_data",
+              "y_data"
+            ],
+            "type": "object"
+          },
+          "annotations": {
+            "title": "Scatter Plot",
+            "readOnlyHint": false,
+            "openWorldHint": false
+          },
+          "_meta": {
+            "fastmcp": {
+              "tags": []
+            }
+          }
+        },
+        {
+          "name": "plot_box_plot",
+          "title": "Box Plot",
+          "description": "Create a box plot for comparing distributions (requires matplotlib).\n\nArgs:\n    data_groups: List of data groups to compare\n    group_labels: Optional labels for each group\n    title: Chart title\n    y_label: Y-axis label\n    color: Box color (name or hex code, e.g., 'blue', '#2E86AB')\n    ctx: FastMCP context for logging\n\nReturns:\n    Dict with base64-encoded PNG image or error message\n\nExamples:\n    plot_box_plot([[1, 2, 3, 4, 5], [2, 4, 6, 8, 10]], group_labels=[\"A\", \"B\"])\n    plot_box_plot([[10, 20, 30], [15, 25, 35], [5, 15, 25]], title=\"Comparison\")",
+          "inputSchema": {
+            "additionalProperties": false,
+            "properties": {
+              "data_groups": {
+                "items": {
+                  "items": {
+                    "type": "number"
+                  },
+                  "type": "array"
+                },
+                "maxItems": 100,
+                "type": "array"
+              },
+              "group_labels": {
+                "anyOf": [
+                  {
+                    "items": {
+                      "type": "string"
+                    },
+                    "maxItems": 100,
+                    "type": "array"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "title": {
+                "default": "Box Plot",
+                "maxLength": 100,
+                "type": "string"
+              },
+              "y_label": {
+                "default": "Values",
+                "maxLength": 100,
+                "type": "string"
+              },
+              "color": {
+                "anyOf": [
+                  {
+                    "maxLength": 100,
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              }
+            },
+            "required": [
+              "data_groups"
+            ],
+            "type": "object"
+          },
+          "annotations": {
+            "title": "Box Plot",
+            "readOnlyHint": false,
+            "openWorldHint": false
+          },
+          "_meta": {
+            "fastmcp": {
+              "tags": []
+            }
+          }
+        },
+        {
+          "name": "plot_financial_line",
+          "title": "Financial Line Chart",
+          "description": "Generate and plot synthetic financial price data (requires matplotlib).\n\nCreates realistic price movement patterns for educational purposes.\nDoes not use real market data.\n\nArgs:\n    days: Number of days to generate (default: 30)\n    trend: Market trend ('bullish', 'bearish', or 'volatile')\n    start_price: Starting price value (default: 100.0)\n    color: Line color (name or hex code, e.g., 'blue', '#2E86AB')\n    ctx: FastMCP context for logging\n\nReturns:\n    Dict with base64-encoded PNG image or error message\n\nExamples:\n    plot_financial_line(days=60, trend='bullish')\n    plot_financial_line(days=90, trend='volatile', start_price=150.0, color='orange')",
+          "inputSchema": {
+            "additionalProperties": false,
+            "properties": {
+              "days": {
+                "default": 30,
+                "maximum": 1000,
+                "minimum": 2,
+                "type": "integer"
+              },
+              "trend": {
+                "default": "bullish",
+                "type": "string"
+              },
+              "start_price": {
+                "default": 100.0,
+                "type": "number"
+              },
+              "color": {
+                "anyOf": [
+                  {
+                    "maxLength": 100,
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              }
+            },
+            "type": "object"
+          },
+          "annotations": {
+            "title": "Financial Line Chart",
+            "readOnlyHint": false,
+            "openWorldHint": false
+          },
+          "_meta": {
+            "fastmcp": {
+              "tags": []
+            }
+          }
+        }
+      ],
+      "tool_count": 17,
+      "tool_names": [
+        "calculate",
+        "statistics",
+        "compound_interest",
+        "convert_units",
+        "matrix_multiply",
+        "matrix_transpose",
+        "matrix_determinant",
+        "matrix_inverse",
+        "matrix_eigenvalues",
+        "save_calculation",
+        "load_variable",
+        "plot_function",
+        "create_histogram",
+        "plot_line_chart",
+        "plot_scatter_chart",
+        "plot_box_plot",
+        "plot_financial_line"
+      ]
+    },
+    "server_info_crawled": {
+      "id": 50,
+      "name": "Math MCP Learning",
+      "author": "",
+      "overview": "Math MCP Learning - Development Tools MCP server with 17 tools.",
+      "repository_url": "",
+      "homepage": "https://math-mcp.fastmcp.app/mcp",
+      "remote_or_local": "Remote",
+      "license": "",
+      "usage_count": "1,000",
+      "success_rate": "100%",
+      "tags": [
+        "development-tools"
+      ],
+      "categories": [
+        "development tools"
+      ],
+      "tools_count": 17,
+      "tools": [
+        {
+          "name": "calculate",
+          "title": "Mathematical Calculator",
+          "description": "Safely evaluate mathematical expressions with support for basic operations and math functions.\n\nSupported operations: +, -, *, /, **, ()\nSupported functions: sin, cos, tan, log, sqrt, abs, pow\n\nExamples:\n- \"2 + 3 * 4\" → 14\n- \"sqrt(16)\" → 4.0\n- \"sin(3.14159/2)\" → 1.0",
+          "inputSchema": {
+            "additionalProperties": false,
+            "properties": {
+              "expression": {
+                "maxLength": 500,
+                "type": "string"
+              }
+            },
+            "required": [
+              "expression"
+            ],
+            "type": "object"
+          },
+          "outputSchema": {
+            "description": "Result of a mathematical expression evaluation.",
+            "properties": {
+              "expression": {
+                "type": "string"
+              },
+              "result": {
+                "type": "number"
+              },
+              "difficulty": {
+                "type": "string"
+              },
+              "topic": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "expression",
+              "result",
+              "difficulty",
+              "topic"
+            ],
+            "type": "object"
+          },
+          "annotations": {
+            "title": "Mathematical Calculator",
+            "readOnlyHint": false,
+            "openWorldHint": true
+          },
+          "_meta": {
+            "fastmcp": {
+              "tags": []
+            }
+          }
+        },
+        {
+          "name": "statistics",
+          "title": "Statistical Analysis",
+          "description": "Perform statistical calculations on a list of numbers.\n\nAvailable operations: mean, median, mode, std_dev, variance",
+          "inputSchema": {
+            "additionalProperties": false,
+            "properties": {
+              "numbers": {
+                "items": {
+                  "type": "number"
+                },
+                "maxItems": 10000,
+                "type": "array"
+              },
+              "operation": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "numbers",
+              "operation"
+            ],
+            "type": "object"
+          },
+          "outputSchema": {
+            "description": "Result of statistical calculation.",
+            "properties": {
+              "operation": {
+                "type": "string"
+              },
+              "result": {
+                "type": "number"
+              },
+              "sample_size": {
+                "type": "integer"
+              },
+              "difficulty": {
+                "type": "string"
+              },
+              "topic": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "operation",
+              "result",
+              "sample_size",
+              "difficulty",
+              "topic"
+            ],
+            "type": "object"
+          },
+          "annotations": {
+            "title": "Statistical Analysis",
+            "readOnlyHint": true,
+            "openWorldHint": false
+          },
+          "_meta": {
+            "fastmcp": {
+              "tags": []
+            }
+          }
+        },
+        {
+          "name": "compound_interest",
+          "description": "Calculate compound interest for investments.\n\nFormula: A = P(1 + r/n)^(nt)\nWhere:\n- P = principal amount\n- r = annual interest rate (as decimal)\n- n = number of times interest compounds per year\n- t = time in years",
+          "inputSchema": {
+            "additionalProperties": false,
+            "properties": {
+              "principal": {
+                "type": "number"
+              },
+              "rate": {
+                "type": "number"
+              },
+              "time": {
+                "type": "number"
+              },
+              "compounds_per_year": {
+                "default": 1,
+                "type": "integer"
+              }
+            },
+            "required": [
+              "principal",
+              "rate",
+              "time"
+            ],
+            "type": "object"
+          },
+          "outputSchema": {
+            "description": "Result of compound interest calculation.",
+            "properties": {
+              "principal": {
+                "type": "number"
+              },
+              "final_amount": {
+                "type": "number"
+              },
+              "total_interest": {
+                "type": "number"
+              },
+              "rate": {
+                "type": "number"
+              },
+              "time": {
+                "type": "number"
+              },
+              "compounds_per_year": {
+                "type": "integer"
+              },
+              "difficulty": {
+                "type": "string"
+              },
+              "topic": {
+                "type": "string"
+              },
+              "formula": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "principal",
+              "final_amount",
+              "total_interest",
+              "rate",
+              "time",
+              "compounds_per_year",
+              "difficulty",
+              "topic",
+              "formula"
+            ],
+            "type": "object"
+          },
+          "_meta": {
+            "fastmcp": {
+              "tags": []
+            }
+          }
+        },
+        {
+          "name": "convert_units",
+          "description": "Convert between different units of measurement.\n\nSupported unit types:\n- length: mm, cm, m, km, in, ft, yd, mi\n- weight: g, kg, oz, lb\n- temperature: c, f, k (Celsius, Fahrenheit, Kelvin)",
+          "inputSchema": {
+            "additionalProperties": false,
+            "properties": {
+              "value": {
+                "type": "number"
+              },
+              "from_unit": {
+                "type": "string"
+              },
+              "to_unit": {
+                "type": "string"
+              },
+              "unit_type": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "value",
+              "from_unit",
+              "to_unit",
+              "unit_type"
+            ],
+            "type": "object"
+          },
+          "outputSchema": {
+            "description": "Result of unit conversion.",
+            "properties": {
+              "value": {
+                "type": "number"
+              },
+              "from_unit": {
+                "type": "string"
+              },
+              "to_unit": {
+                "type": "string"
+              },
+              "converted_value": {
+                "type": "number"
+              },
+              "unit_type": {
+                "type": "string"
+              },
+              "difficulty": {
+                "type": "string"
+              },
+              "topic": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "value",
+              "from_unit",
+              "to_unit",
+              "converted_value",
+              "unit_type",
+              "difficulty",
+              "topic"
+            ],
+            "type": "object"
+          },
+          "_meta": {
+            "fastmcp": {
+              "tags": []
+            }
+          }
+        },
+        {
+          "name": "matrix_multiply",
+          "title": "Matrix Multiplication",
+          "description": "Multiply two matrices (A × B).\n\nArgs:\n    matrix_a: First matrix (m x n)\n    matrix_b: Second matrix (n x p)\n\nReturns:\n    Result matrix (m x p)\n\nExamples:\n    matrix_multiply([[1, 2], [3, 4]], [[5, 6], [7, 8]])\n    matrix_multiply([[1, 2, 3]], [[1], [2], [3]])",
+          "inputSchema": {
+            "additionalProperties": false,
+            "properties": {
+              "matrix_a": {
+                "items": {
+                  "items": {
+                    "type": "number"
+                  },
+                  "type": "array"
+                },
+                "maxItems": 10000,
+                "type": "array"
+              },
+              "matrix_b": {
+                "items": {
+                  "items": {
+                    "type": "number"
+                  },
+                  "type": "array"
+                },
+                "maxItems": 10000,
+                "type": "array"
+              }
+            },
+            "required": [
+              "matrix_a",
+              "matrix_b"
+            ],
+            "type": "object"
+          },
+          "outputSchema": {
+            "description": "Result of matrix multiplication operation.",
+            "properties": {
+              "rows_a": {
+                "type": "integer"
+              },
+              "cols_a": {
+                "type": "integer"
+              },
+              "rows_b": {
+                "type": "integer"
+              },
+              "cols_b": {
+                "type": "integer"
+              },
+              "result_matrix": {
+                "items": {
+                  "items": {
+                    "type": "number"
+                  },
+                  "type": "array"
+                },
+                "type": "array"
+              },
+              "difficulty": {
+                "type": "string"
+              },
+              "topic": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "rows_a",
+              "cols_a",
+              "rows_b",
+              "cols_b",
+              "result_matrix",
+              "difficulty",
+              "topic"
+            ],
+            "type": "object"
+          },
+          "annotations": {
+            "title": "Matrix Multiplication",
+            "readOnlyHint": false,
+            "openWorldHint": false
+          },
+          "_meta": {
+            "fastmcp": {
+              "tags": []
+            }
+          }
+        },
+        {
+          "name": "matrix_transpose",
+          "title": "Matrix Transpose",
+          "description": "Transpose a matrix (swap rows and columns).\n\nArgs:\n    matrix: Input matrix (m x n)\n\nReturns:\n    Transposed matrix (n x m)\n\nExamples:\n    matrix_transpose([[1, 2, 3], [4, 5, 6]])\n    matrix_transpose([[1], [2], [3]])",
+          "inputSchema": {
+            "additionalProperties": false,
+            "properties": {
+              "matrix": {
+                "items": {
+                  "items": {
+                    "type": "number"
+                  },
+                  "type": "array"
+                },
+                "maxItems": 10000,
+                "type": "array"
+              }
+            },
+            "required": [
+              "matrix"
+            ],
+            "type": "object"
+          },
+          "outputSchema": {
+            "description": "Result of matrix transpose operation.",
+            "properties": {
+              "original_rows": {
+                "type": "integer"
+              },
+              "original_cols": {
+                "type": "integer"
+              },
+              "result_matrix": {
+                "items": {
+                  "items": {
+                    "type": "number"
+                  },
+                  "type": "array"
+                },
+                "type": "array"
+              },
+              "difficulty": {
+                "type": "string"
+              },
+              "topic": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "original_rows",
+              "original_cols",
+              "result_matrix",
+              "difficulty",
+              "topic"
+            ],
+            "type": "object"
+          },
+          "annotations": {
+            "title": "Matrix Transpose",
+            "readOnlyHint": false,
+            "openWorldHint": false
+          },
+          "_meta": {
+            "fastmcp": {
+              "tags": []
+            }
+          }
+        },
+        {
+          "name": "matrix_determinant",
+          "title": "Matrix Determinant",
+          "description": "Calculate the determinant of a square matrix.\n\nArgs:\n    matrix: Square matrix (n x n)\n\nReturns:\n    Determinant value (scalar)\n\nExamples:\n    matrix_determinant([[1, 2], [3, 4]])\n    matrix_determinant([[1, 0, 0], [0, 1, 0], [0, 0, 1]])  # Identity matrix",
+          "inputSchema": {
+            "additionalProperties": false,
+            "properties": {
+              "matrix": {
+                "items": {
+                  "items": {
+                    "type": "number"
+                  },
+                  "type": "array"
+                },
+                "maxItems": 10000,
+                "type": "array"
+              }
+            },
+            "required": [
+              "matrix"
+            ],
+            "type": "object"
+          },
+          "outputSchema": {
+            "description": "Result of matrix determinant calculation.",
+            "properties": {
+              "size": {
+                "type": "integer"
+              },
+              "determinant": {
+                "type": "number"
+              },
+              "difficulty": {
+                "type": "string"
+              },
+              "topic": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "size",
+              "determinant",
+              "difficulty",
+              "topic"
+            ],
+            "type": "object"
+          },
+          "annotations": {
+            "title": "Matrix Determinant",
+            "readOnlyHint": false,
+            "openWorldHint": false
+          },
+          "_meta": {
+            "fastmcp": {
+              "tags": []
+            }
+          }
+        },
+        {
+          "name": "matrix_inverse",
+          "title": "Matrix Inverse",
+          "description": "Calculate the inverse of a square matrix.\n\nArgs:\n    matrix: Square matrix (n x n)\n\nReturns:\n    Inverse matrix (n x n)\n\nExamples:\n    matrix_inverse([[1, 2], [3, 4]])\n    matrix_inverse([[2, 0], [0, 2]])  # Diagonal matrix",
+          "inputSchema": {
+            "additionalProperties": false,
+            "properties": {
+              "matrix": {
+                "items": {
+                  "items": {
+                    "type": "number"
+                  },
+                  "type": "array"
+                },
+                "maxItems": 10000,
+                "type": "array"
+              }
+            },
+            "required": [
+              "matrix"
+            ],
+            "type": "object"
+          },
+          "outputSchema": {
+            "description": "Result of matrix inverse calculation.",
+            "properties": {
+              "size": {
+                "type": "integer"
+              },
+              "success": {
+                "type": "boolean"
+              },
+              "result_matrix": {
+                "anyOf": [
+                  {
+                    "items": {
+                      "items": {
+                        "type": "number"
+                      },
+                      "type": "array"
+                    },
+                    "type": "array"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "error": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "difficulty": {
+                "type": "string"
+              },
+              "topic": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "size",
+              "success",
+              "difficulty",
+              "topic"
+            ],
+            "type": "object"
+          },
+          "annotations": {
+            "title": "Matrix Inverse",
+            "readOnlyHint": false,
+            "openWorldHint": false
+          },
+          "_meta": {
+            "fastmcp": {
+              "tags": []
+            }
+          }
+        },
+        {
+          "name": "matrix_eigenvalues",
+          "title": "Matrix Eigenvalues",
+          "description": "Calculate the eigenvalues of a square matrix.\n\nArgs:\n    matrix: Square matrix (n x n)\n\nReturns:\n    List of eigenvalues (may be complex numbers)\n\nExamples:\n    matrix_eigenvalues([[4, 2], [1, 3]])\n    matrix_eigenvalues([[3, 0, 0], [0, 5, 0], [0, 0, 7]])  # Diagonal matrix",
+          "inputSchema": {
+            "additionalProperties": false,
+            "properties": {
+              "matrix": {
+                "items": {
+                  "items": {
+                    "type": "number"
+                  },
+                  "type": "array"
+                },
+                "maxItems": 10000,
+                "type": "array"
+              }
+            },
+            "required": [
+              "matrix"
+            ],
+            "type": "object"
+          },
+          "outputSchema": {
+            "description": "Result of matrix eigenvalues calculation.",
+            "properties": {
+              "size": {
+                "type": "integer"
+              },
+              "success": {
+                "type": "boolean"
+              },
+              "eigenvalues": {
+                "anyOf": [
+                  {
+                    "items": {
+                      "type": "number"
+                    },
+                    "type": "array"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "eigenvectors": {
+                "anyOf": [
+                  {
+                    "items": {
+                      "items": {
+                        "type": "number"
+                      },
+                      "type": "array"
+                    },
+                    "type": "array"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "error": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "difficulty": {
+                "type": "string"
+              },
+              "topic": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "size",
+              "success",
+              "difficulty",
+              "topic"
+            ],
+            "type": "object"
+          },
+          "annotations": {
+            "title": "Matrix Eigenvalues",
+            "readOnlyHint": false,
+            "openWorldHint": false
+          },
+          "_meta": {
+            "fastmcp": {
+              "tags": []
+            }
+          }
+        },
+        {
+          "name": "save_calculation",
+          "title": "Save Calculation to Workspace",
+          "description": "Save calculation to persistent workspace (survives restarts).\n\nArgs:\n    name: Variable name to save under\n    expression: The mathematical expression\n    result: The calculated result\n\nExamples:\n    save_calculation(\"portfolio_return\", \"10000 * 1.07^5\", 14025.52)\n    save_calculation(\"circle_area\", \"pi * 5^2\", 78.54)",
+          "inputSchema": {
+            "additionalProperties": false,
+            "properties": {
+              "name": {
+                "maxLength": 50,
+                "type": "string"
+              },
+              "expression": {
+                "maxLength": 500,
+                "type": "string"
+              },
+              "result": {
+                "type": "number"
+              }
+            },
+            "required": [
+              "name",
+              "expression",
+              "result"
+            ],
+            "type": "object"
+          },
+          "outputSchema": {
+            "description": "Result of saving a calculation to the workspace.",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "expression": {
+                "type": "string"
+              },
+              "result": {
+                "type": "number"
+              },
+              "success": {
+                "type": "boolean"
+              },
+              "is_new": {
+                "type": "boolean"
+              },
+              "total_variables": {
+                "type": "integer"
+              },
+              "difficulty": {
+                "type": "string"
+              },
+              "topic": {
+                "type": "string"
+              },
+              "session_id": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "action": {
+                "default": "save_calculation",
+                "type": "string"
+              }
+            },
+            "required": [
+              "name",
+              "expression",
+              "result",
+              "success",
+              "is_new",
+              "total_variables",
+              "difficulty",
+              "topic"
+            ],
+            "type": "object"
+          },
+          "annotations": {
+            "title": "Save Calculation to Workspace",
+            "readOnlyHint": false,
+            "openWorldHint": false
+          },
+          "_meta": {
+            "fastmcp": {
+              "tags": []
+            }
+          }
+        },
+        {
+          "name": "load_variable",
+          "description": "Load previously saved calculation result from workspace.\n\nArgs:\n    name: Variable name to load\n\nExamples:\n    load_variable(\"portfolio_return\")  # Returns saved calculation\n    load_variable(\"circle_area\")       # Access across sessions",
+          "inputSchema": {
+            "additionalProperties": false,
+            "properties": {
+              "name": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "name"
+            ],
+            "type": "object"
+          },
+          "outputSchema": {
+            "description": "Result of loading a variable from the workspace.",
+            "properties": {
+              "success": {
+                "type": "boolean"
+              },
+              "name": {
+                "type": "string"
+              },
+              "action": {
+                "type": "string"
+              },
+              "result": {
+                "anyOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "expression": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "timestamp": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "error": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "available_variables": {
+                "anyOf": [
+                  {
+                    "items": {
+                      "type": "string"
+                    },
+                    "type": "array"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "difficulty": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "topic": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "session_id": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              }
+            },
+            "required": [
+              "success",
+              "name",
+              "action"
+            ],
+            "type": "object"
+          },
+          "_meta": {
+            "fastmcp": {
+              "tags": []
+            }
+          }
+        },
+        {
+          "name": "plot_function",
+          "title": "Function Plotter",
+          "description": "Generate mathematical function plots (requires matplotlib).\n\nArgs:\n    expression: Mathematical expression to plot (e.g., \"x**2\", \"sin(x)\")\n    x_range: Tuple of (min, max) for x-axis range\n    num_points: Number of points to plot (default: 100)\n    ctx: FastMCP context for logging\n\nReturns:\n    Image object with PNG data or VisualizationError on failure\n\nExamples:\n    plot_function(\"x**2\", (-5, 5))\n    plot_function(\"sin(x)\", (-3.14, 3.14))",
+          "inputSchema": {
+            "additionalProperties": false,
+            "properties": {
+              "expression": {
+                "maxLength": 500,
+                "type": "string"
+              },
+              "x_range": {
+                "maxItems": 2,
+                "minItems": 2,
+                "prefixItems": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "number"
+                  }
+                ],
+                "type": "array"
+              },
+              "num_points": {
+                "default": 100,
+                "maximum": 10000,
+                "minimum": 2,
+                "type": "integer"
+              }
+            },
+            "required": [
+              "expression",
+              "x_range"
+            ],
+            "type": "object"
+          },
+          "annotations": {
+            "title": "Function Plotter",
+            "readOnlyHint": false,
+            "openWorldHint": false
+          },
+          "_meta": {
+            "fastmcp": {
+              "tags": []
+            }
+          }
+        },
+        {
+          "name": "create_histogram",
+          "title": "Statistical Histogram",
+          "description": "Create statistical histograms (requires matplotlib).\n\nArgs:\n    data: List of numerical values\n    bins: Number of histogram bins (default: 20)\n    title: Chart title\n    ctx: FastMCP context for logging\n\nReturns:\n    Dict with base64-encoded PNG image or error message\n\nExamples:\n    create_histogram([1.0, 2.0, 2.5, 3.0, 3.5, 4.0, 5.0])\n    create_histogram([10, 20, 30, 40, 50], bins=5, title=\"Test Scores\")",
+          "inputSchema": {
+            "additionalProperties": false,
+            "properties": {
+              "data": {
+                "items": {
+                  "type": "number"
+                },
+                "maxItems": 10000,
+                "type": "array"
+              },
+              "bins": {
+                "default": 20,
+                "type": "integer"
+              },
+              "title": {
+                "default": "Data Distribution",
+                "maxLength": 100,
+                "type": "string"
+              }
+            },
+            "required": [
+              "data"
+            ],
+            "type": "object"
+          },
+          "annotations": {
+            "title": "Statistical Histogram",
+            "readOnlyHint": false,
+            "openWorldHint": false
+          },
+          "_meta": {
+            "fastmcp": {
+              "tags": []
+            }
+          }
+        },
+        {
+          "name": "plot_line_chart",
+          "title": "Line Chart",
+          "description": "Create a line chart from data points (requires matplotlib).\n\nArgs:\n    x_data: X-axis data points\n    y_data: Y-axis data points\n    title: Chart title\n    x_label: X-axis label\n    y_label: Y-axis label\n    color: Line color (name or hex code, e.g., 'blue', '#2E86AB')\n    show_grid: Whether to show grid lines\n    ctx: FastMCP context for logging\n\nReturns:\n    Dict with base64-encoded PNG image or error message\n\nExamples:\n    plot_line_chart([1, 2, 3, 4], [1, 4, 9, 16], title=\"Squares\")\n    plot_line_chart([0, 1, 2], [0, 1, 4], color='red', x_label='Time', y_label='Distance')",
+          "inputSchema": {
+            "additionalProperties": false,
+            "properties": {
+              "x_data": {
+                "items": {
+                  "type": "number"
+                },
+                "maxItems": 10000,
+                "type": "array"
+              },
+              "y_data": {
+                "items": {
+                  "type": "number"
+                },
+                "maxItems": 10000,
+                "type": "array"
+              },
+              "title": {
+                "default": "Line Chart",
+                "maxLength": 100,
+                "type": "string"
+              },
+              "x_label": {
+                "default": "X",
+                "maxLength": 100,
+                "type": "string"
+              },
+              "y_label": {
+                "default": "Y",
+                "maxLength": 100,
+                "type": "string"
+              },
+              "color": {
+                "anyOf": [
+                  {
+                    "maxLength": 100,
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "show_grid": {
+                "default": true,
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "x_data",
+              "y_data"
+            ],
+            "type": "object"
+          },
+          "annotations": {
+            "title": "Line Chart",
+            "readOnlyHint": false,
+            "openWorldHint": false
+          },
+          "_meta": {
+            "fastmcp": {
+              "tags": []
+            }
+          }
+        },
+        {
+          "name": "plot_scatter_chart",
+          "title": "Scatter Plot",
+          "description": "Create a scatter plot from data points (requires matplotlib).\n\nArgs:\n    x_data: X-axis data points\n    y_data: Y-axis data points\n    title: Chart title\n    x_label: X-axis label\n    y_label: Y-axis label\n    color: Point color (name or hex code, e.g., 'blue', '#2E86AB')\n    point_size: Size of scatter points (default: 50)\n    ctx: FastMCP context for logging\n\nReturns:\n    Dict with base64-encoded PNG image or error message\n\nExamples:\n    plot_scatter_chart([1, 2, 3, 4], [1, 4, 9, 16], title=\"Correlation Study\")\n    plot_scatter_chart([1, 2, 3], [2, 4, 5], color='purple', point_size=100)",
+          "inputSchema": {
+            "additionalProperties": false,
+            "properties": {
+              "x_data": {
+                "items": {
+                  "type": "number"
+                },
+                "maxItems": 10000,
+                "type": "array"
+              },
+              "y_data": {
+                "items": {
+                  "type": "number"
+                },
+                "maxItems": 10000,
+                "type": "array"
+              },
+              "title": {
+                "default": "Scatter Plot",
+                "maxLength": 100,
+                "type": "string"
+              },
+              "x_label": {
+                "default": "X",
+                "maxLength": 100,
+                "type": "string"
+              },
+              "y_label": {
+                "default": "Y",
+                "maxLength": 100,
+                "type": "string"
+              },
+              "color": {
+                "anyOf": [
+                  {
+                    "maxLength": 100,
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "point_size": {
+                "default": 50,
+                "type": "integer"
+              }
+            },
+            "required": [
+              "x_data",
+              "y_data"
+            ],
+            "type": "object"
+          },
+          "annotations": {
+            "title": "Scatter Plot",
+            "readOnlyHint": false,
+            "openWorldHint": false
+          },
+          "_meta": {
+            "fastmcp": {
+              "tags": []
+            }
+          }
+        },
+        {
+          "name": "plot_box_plot",
+          "title": "Box Plot",
+          "description": "Create a box plot for comparing distributions (requires matplotlib).\n\nArgs:\n    data_groups: List of data groups to compare\n    group_labels: Optional labels for each group\n    title: Chart title\n    y_label: Y-axis label\n    color: Box color (name or hex code, e.g., 'blue', '#2E86AB')\n    ctx: FastMCP context for logging\n\nReturns:\n    Dict with base64-encoded PNG image or error message\n\nExamples:\n    plot_box_plot([[1, 2, 3, 4, 5], [2, 4, 6, 8, 10]], group_labels=[\"A\", \"B\"])\n    plot_box_plot([[10, 20, 30], [15, 25, 35], [5, 15, 25]], title=\"Comparison\")",
+          "inputSchema": {
+            "additionalProperties": false,
+            "properties": {
+              "data_groups": {
+                "items": {
+                  "items": {
+                    "type": "number"
+                  },
+                  "type": "array"
+                },
+                "maxItems": 100,
+                "type": "array"
+              },
+              "group_labels": {
+                "anyOf": [
+                  {
+                    "items": {
+                      "type": "string"
+                    },
+                    "maxItems": 100,
+                    "type": "array"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "title": {
+                "default": "Box Plot",
+                "maxLength": 100,
+                "type": "string"
+              },
+              "y_label": {
+                "default": "Values",
+                "maxLength": 100,
+                "type": "string"
+              },
+              "color": {
+                "anyOf": [
+                  {
+                    "maxLength": 100,
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              }
+            },
+            "required": [
+              "data_groups"
+            ],
+            "type": "object"
+          },
+          "annotations": {
+            "title": "Box Plot",
+            "readOnlyHint": false,
+            "openWorldHint": false
+          },
+          "_meta": {
+            "fastmcp": {
+              "tags": []
+            }
+          }
+        },
+        {
+          "name": "plot_financial_line",
+          "title": "Financial Line Chart",
+          "description": "Generate and plot synthetic financial price data (requires matplotlib).\n\nCreates realistic price movement patterns for educational purposes.\nDoes not use real market data.\n\nArgs:\n    days: Number of days to generate (default: 30)\n    trend: Market trend ('bullish', 'bearish', or 'volatile')\n    start_price: Starting price value (default: 100.0)\n    color: Line color (name or hex code, e.g., 'blue', '#2E86AB')\n    ctx: FastMCP context for logging\n\nReturns:\n    Dict with base64-encoded PNG image or error message\n\nExamples:\n    plot_financial_line(days=60, trend='bullish')\n    plot_financial_line(days=90, trend='volatile', start_price=150.0, color='orange')",
+          "inputSchema": {
+            "additionalProperties": false,
+            "properties": {
+              "days": {
+                "default": 30,
+                "maximum": 1000,
+                "minimum": 2,
+                "type": "integer"
+              },
+              "trend": {
+                "default": "bullish",
+                "type": "string"
+              },
+              "start_price": {
+                "default": 100.0,
+                "type": "number"
+              },
+              "color": {
+                "anyOf": [
+                  {
+                    "maxLength": 100,
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              }
+            },
+            "type": "object"
+          },
+          "annotations": {
+            "title": "Financial Line Chart",
+            "readOnlyHint": false,
+            "openWorldHint": false
+          },
+          "_meta": {
+            "fastmcp": {
+              "tags": []
+            }
+          }
+        }
+      ],
+      "python_sdk_url": "https://math-mcp.fastmcp.app/mcp",
+      "python_sdk_config": "{\"debug\": false}"
+    },
+    "source_filename": "0050.Math-MCP-Learning_labeled.json",
+    "processed_timestamp": 1772871481,
+    "processing_mode": "gateway",
+    "rank": 51
+  }
+}

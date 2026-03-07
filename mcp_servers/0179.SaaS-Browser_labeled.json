@@ -1,0 +1,564 @@
+{
+  "labels": {
+    "analysis": "The MCP Server \"SaaS Browser\" provides 4 tools for web search & research tasks.",
+    "reasoning": "Primary label \"Web Search & Research\" assigned based on tool names and descriptions.",
+    "primary_label": "Web Search & Research",
+    "secondary_labels": [
+      "Browser Automation",
+      "Data Analysis & Processing",
+      "Development Tools"
+    ],
+    "custom_label": "Web Search & Research - SaaS Browser",
+    "is_connected": true,
+    "is_remote_tool_valid": true,
+    "featured_server": false
+  },
+  "metadata": {
+    "server_id": 179,
+    "server_name": "SaaS Browser",
+    "rank_by_usage": 180,
+    "usage_count": "15",
+    "original_file": "tools.json#179",
+    "mode": "gateway",
+    "timestamp": 1772871482,
+    "remote_server_response": {
+      "url": "https://saasbrowser.com/mcp",
+      "is_success": true,
+      "error": null,
+      "tools": [
+        {
+          "name": "SearchSaasTool",
+          "description": "Search the SaaS Browser database of 400k+ SaaS companies. Filter by category, technology, country, pricing, traffic, employees, age, and more. Returns up to 25 results with profile URLs.",
+          "inputSchema": {
+            "properties": {
+              "q": {
+                "type": "string",
+                "description": "Search query"
+              },
+              "category_ids": {
+                "type": "string",
+                "description": "Pipe-separated category IDs. Use saas://categories for valid IDs."
+              },
+              "technology_ids": {
+                "type": "string",
+                "description": "Pipe-separated technology UUIDs. Use saas://technologies for valid IDs."
+              },
+              "technology_logic": {
+                "type": "string",
+                "description": "\"all\" (AND) or \"any\" (OR)"
+              },
+              "countries": {
+                "type": "string",
+                "description": "Pipe-separated 2-letter ISO codes. Use saas://countries for valid codes."
+              },
+              "uses_ai": {
+                "type": "string",
+                "description": "\"true\" or \"false\""
+              },
+              "has_affiliate_program": {
+                "type": "string",
+                "description": "\"true\" or \"false\""
+              },
+              "has_api_access": {
+                "type": "string",
+                "description": "\"true\" or \"false\""
+              },
+              "has_chrome_extension": {
+                "type": "string",
+                "description": "\"true\" or \"false\""
+              },
+              "has_firefox_extension": {
+                "type": "string",
+                "description": "\"true\" or \"false\""
+              },
+              "consumer_types": {
+                "type": "string",
+                "description": "Pipe-separated: personal, business, both"
+              },
+              "growth_models": {
+                "type": "string",
+                "description": "Pipe-separated: product_led, sales_led, both"
+              },
+              "price_low": {
+                "type": "string",
+                "description": "Minimum monthly price"
+              },
+              "price_high": {
+                "type": "string",
+                "description": "Maximum monthly price"
+              },
+              "price_currency_code": {
+                "type": "string",
+                "description": "Pipe-separated 3-letter codes"
+              },
+              "domain_rank_gte": {
+                "type": "string",
+                "description": "Min Serpstat domain rank"
+              },
+              "domain_rank_lte": {
+                "type": "string",
+                "description": "Max Serpstat domain rank"
+              },
+              "employees_gte": {
+                "type": "string",
+                "description": "Min employee count"
+              },
+              "employees_lte": {
+                "type": "string",
+                "description": "Max employee count"
+              },
+              "age_years_min": {
+                "type": "string",
+                "description": "Min company age in years"
+              },
+              "age_years_max": {
+                "type": "string",
+                "description": "Max company age in years"
+              },
+              "traff_min": {
+                "type": "string",
+                "description": "Min monthly traffic"
+              },
+              "traff_max": {
+                "type": "string",
+                "description": "Max monthly traffic"
+              },
+              "monthly_change_traff_min": {
+                "type": "string",
+                "description": "Min traffic change %"
+              },
+              "monthly_change_traff_max": {
+                "type": "string",
+                "description": "Max traffic change %"
+              },
+              "ad_keywords_min": {
+                "type": "string",
+                "description": "Min ad keywords"
+              },
+              "ad_keywords_max": {
+                "type": "string",
+                "description": "Max ad keywords"
+              },
+              "monthly_change_ad_keywords_min": {
+                "type": "string",
+                "description": "Min ad keywords change %"
+              },
+              "monthly_change_ad_keywords_max": {
+                "type": "string",
+                "description": "Max ad keywords change %"
+              },
+              "ads_min": {
+                "type": "string",
+                "description": "Min ads count"
+              },
+              "ads_max": {
+                "type": "string",
+                "description": "Max ads count"
+              },
+              "monthly_change_ads_min": {
+                "type": "string",
+                "description": "Min ads change %"
+              },
+              "monthly_change_ads_max": {
+                "type": "string",
+                "description": "Max ads change %"
+              },
+              "referring_domains_min": {
+                "type": "string",
+                "description": "Min referring domains"
+              },
+              "referring_domains_max": {
+                "type": "string",
+                "description": "Max referring domains"
+              },
+              "referring_domains_growth_min": {
+                "type": "string",
+                "description": "Min referring domains change %"
+              },
+              "referring_domains_growth_max": {
+                "type": "string",
+                "description": "Max referring domains change %"
+              },
+              "published_at_from": {
+                "type": "string",
+                "description": "Published after (YYYY-MM-DD)"
+              },
+              "published_at_to": {
+                "type": "string",
+                "description": "Published before (YYYY-MM-DD)"
+              },
+              "sitemap_page_count_min": {
+                "type": "string",
+                "description": "Min sitemap pages"
+              },
+              "sitemap_page_count_max": {
+                "type": "string",
+                "description": "Max sitemap pages"
+              },
+              "commission_percentage_min": {
+                "type": "string",
+                "description": "Min affiliate commission %"
+              },
+              "commission_percentage_max": {
+                "type": "string",
+                "description": "Max affiliate commission %"
+              },
+              "affiliate_commission_type": {
+                "type": "string",
+                "description": "Pipe-separated: one_time, recurring"
+              },
+              "cookie_duration_min": {
+                "type": "string",
+                "description": "Min affiliate cookie days"
+              },
+              "cookie_duration_max": {
+                "type": "string",
+                "description": "Max affiliate cookie days"
+              },
+              "sort_by": {
+                "type": "string",
+                "description": "Sort: domain_rank, employees, age, traffic, traffic_growth, ad_keywords, ad_keyword_growth, ads, ads_growth, referring_domains, referring_domains_growth, commission_percentage, published_at, sitemap_page_count"
+              },
+              "sort_direction": {
+                "type": "string",
+                "description": "\"asc\" or \"desc\""
+              }
+            },
+            "type": "object"
+          }
+        },
+        {
+          "name": "SearchCategoriesTool",
+          "description": "Search SaaS Browser categories by name or keyword. Returns matching category IDs for use with the SearchSaasTool category_ids filter.",
+          "inputSchema": {
+            "properties": {
+              "q": {
+                "type": "string",
+                "description": "Search query"
+              }
+            },
+            "required": [
+              "q"
+            ],
+            "type": "object"
+          }
+        },
+        {
+          "name": "SearchTechnologiesTool",
+          "description": "Search SaaS Browser technologies by name or category. Returns matching technology IDs for use with the SearchSaasTool technology_ids filter.",
+          "inputSchema": {
+            "properties": {
+              "q": {
+                "type": "string",
+                "description": "Search query"
+              }
+            },
+            "required": [
+              "q"
+            ],
+            "type": "object"
+          }
+        },
+        {
+          "name": "SearchAlternativesTool",
+          "description": "Find alternative/competing SaaS or software products for a given website host. Returns up to 25 published alternatives with profile URLs, descriptions, and names.",
+          "inputSchema": {
+            "properties": {
+              "host": {
+                "type": "string",
+                "description": "The website host to find alternatives for (e.g. \"slack.com\", \"trello.com\")"
+              }
+            },
+            "required": [
+              "host"
+            ],
+            "type": "object"
+          }
+        }
+      ],
+      "tool_count": 4,
+      "tool_names": [
+        "SearchSaasTool",
+        "SearchCategoriesTool",
+        "SearchTechnologiesTool",
+        "SearchAlternativesTool"
+      ]
+    },
+    "server_info_crawled": {
+      "id": 179,
+      "name": "SaaS Browser",
+      "author": "",
+      "overview": "SaaS Browser - Web Search & Research MCP server with 4 tools.",
+      "repository_url": "",
+      "homepage": "https://saasbrowser.com/mcp",
+      "remote_or_local": "Remote",
+      "license": "",
+      "usage_count": "15",
+      "success_rate": "100%",
+      "tags": [
+        "web-search-research"
+      ],
+      "categories": [
+        "web search & research"
+      ],
+      "tools_count": 4,
+      "tools": [
+        {
+          "name": "SearchSaasTool",
+          "description": "Search the SaaS Browser database of 400k+ SaaS companies. Filter by category, technology, country, pricing, traffic, employees, age, and more. Returns up to 25 results with profile URLs.",
+          "inputSchema": {
+            "properties": {
+              "q": {
+                "type": "string",
+                "description": "Search query"
+              },
+              "category_ids": {
+                "type": "string",
+                "description": "Pipe-separated category IDs. Use saas://categories for valid IDs."
+              },
+              "technology_ids": {
+                "type": "string",
+                "description": "Pipe-separated technology UUIDs. Use saas://technologies for valid IDs."
+              },
+              "technology_logic": {
+                "type": "string",
+                "description": "\"all\" (AND) or \"any\" (OR)"
+              },
+              "countries": {
+                "type": "string",
+                "description": "Pipe-separated 2-letter ISO codes. Use saas://countries for valid codes."
+              },
+              "uses_ai": {
+                "type": "string",
+                "description": "\"true\" or \"false\""
+              },
+              "has_affiliate_program": {
+                "type": "string",
+                "description": "\"true\" or \"false\""
+              },
+              "has_api_access": {
+                "type": "string",
+                "description": "\"true\" or \"false\""
+              },
+              "has_chrome_extension": {
+                "type": "string",
+                "description": "\"true\" or \"false\""
+              },
+              "has_firefox_extension": {
+                "type": "string",
+                "description": "\"true\" or \"false\""
+              },
+              "consumer_types": {
+                "type": "string",
+                "description": "Pipe-separated: personal, business, both"
+              },
+              "growth_models": {
+                "type": "string",
+                "description": "Pipe-separated: product_led, sales_led, both"
+              },
+              "price_low": {
+                "type": "string",
+                "description": "Minimum monthly price"
+              },
+              "price_high": {
+                "type": "string",
+                "description": "Maximum monthly price"
+              },
+              "price_currency_code": {
+                "type": "string",
+                "description": "Pipe-separated 3-letter codes"
+              },
+              "domain_rank_gte": {
+                "type": "string",
+                "description": "Min Serpstat domain rank"
+              },
+              "domain_rank_lte": {
+                "type": "string",
+                "description": "Max Serpstat domain rank"
+              },
+              "employees_gte": {
+                "type": "string",
+                "description": "Min employee count"
+              },
+              "employees_lte": {
+                "type": "string",
+                "description": "Max employee count"
+              },
+              "age_years_min": {
+                "type": "string",
+                "description": "Min company age in years"
+              },
+              "age_years_max": {
+                "type": "string",
+                "description": "Max company age in years"
+              },
+              "traff_min": {
+                "type": "string",
+                "description": "Min monthly traffic"
+              },
+              "traff_max": {
+                "type": "string",
+                "description": "Max monthly traffic"
+              },
+              "monthly_change_traff_min": {
+                "type": "string",
+                "description": "Min traffic change %"
+              },
+              "monthly_change_traff_max": {
+                "type": "string",
+                "description": "Max traffic change %"
+              },
+              "ad_keywords_min": {
+                "type": "string",
+                "description": "Min ad keywords"
+              },
+              "ad_keywords_max": {
+                "type": "string",
+                "description": "Max ad keywords"
+              },
+              "monthly_change_ad_keywords_min": {
+                "type": "string",
+                "description": "Min ad keywords change %"
+              },
+              "monthly_change_ad_keywords_max": {
+                "type": "string",
+                "description": "Max ad keywords change %"
+              },
+              "ads_min": {
+                "type": "string",
+                "description": "Min ads count"
+              },
+              "ads_max": {
+                "type": "string",
+                "description": "Max ads count"
+              },
+              "monthly_change_ads_min": {
+                "type": "string",
+                "description": "Min ads change %"
+              },
+              "monthly_change_ads_max": {
+                "type": "string",
+                "description": "Max ads change %"
+              },
+              "referring_domains_min": {
+                "type": "string",
+                "description": "Min referring domains"
+              },
+              "referring_domains_max": {
+                "type": "string",
+                "description": "Max referring domains"
+              },
+              "referring_domains_growth_min": {
+                "type": "string",
+                "description": "Min referring domains change %"
+              },
+              "referring_domains_growth_max": {
+                "type": "string",
+                "description": "Max referring domains change %"
+              },
+              "published_at_from": {
+                "type": "string",
+                "description": "Published after (YYYY-MM-DD)"
+              },
+              "published_at_to": {
+                "type": "string",
+                "description": "Published before (YYYY-MM-DD)"
+              },
+              "sitemap_page_count_min": {
+                "type": "string",
+                "description": "Min sitemap pages"
+              },
+              "sitemap_page_count_max": {
+                "type": "string",
+                "description": "Max sitemap pages"
+              },
+              "commission_percentage_min": {
+                "type": "string",
+                "description": "Min affiliate commission %"
+              },
+              "commission_percentage_max": {
+                "type": "string",
+                "description": "Max affiliate commission %"
+              },
+              "affiliate_commission_type": {
+                "type": "string",
+                "description": "Pipe-separated: one_time, recurring"
+              },
+              "cookie_duration_min": {
+                "type": "string",
+                "description": "Min affiliate cookie days"
+              },
+              "cookie_duration_max": {
+                "type": "string",
+                "description": "Max affiliate cookie days"
+              },
+              "sort_by": {
+                "type": "string",
+                "description": "Sort: domain_rank, employees, age, traffic, traffic_growth, ad_keywords, ad_keyword_growth, ads, ads_growth, referring_domains, referring_domains_growth, commission_percentage, published_at, sitemap_page_count"
+              },
+              "sort_direction": {
+                "type": "string",
+                "description": "\"asc\" or \"desc\""
+              }
+            },
+            "type": "object"
+          }
+        },
+        {
+          "name": "SearchCategoriesTool",
+          "description": "Search SaaS Browser categories by name or keyword. Returns matching category IDs for use with the SearchSaasTool category_ids filter.",
+          "inputSchema": {
+            "properties": {
+              "q": {
+                "type": "string",
+                "description": "Search query"
+              }
+            },
+            "required": [
+              "q"
+            ],
+            "type": "object"
+          }
+        },
+        {
+          "name": "SearchTechnologiesTool",
+          "description": "Search SaaS Browser technologies by name or category. Returns matching technology IDs for use with the SearchSaasTool technology_ids filter.",
+          "inputSchema": {
+            "properties": {
+              "q": {
+                "type": "string",
+                "description": "Search query"
+              }
+            },
+            "required": [
+              "q"
+            ],
+            "type": "object"
+          }
+        },
+        {
+          "name": "SearchAlternativesTool",
+          "description": "Find alternative/competing SaaS or software products for a given website host. Returns up to 25 published alternatives with profile URLs, descriptions, and names.",
+          "inputSchema": {
+            "properties": {
+              "host": {
+                "type": "string",
+                "description": "The website host to find alternatives for (e.g. \"slack.com\", \"trello.com\")"
+              }
+            },
+            "required": [
+              "host"
+            ],
+            "type": "object"
+          }
+        }
+      ],
+      "python_sdk_url": "https://saasbrowser.com/mcp",
+      "python_sdk_config": "{\"debug\": false}"
+    },
+    "source_filename": "0179.SaaS-Browser_labeled.json",
+    "processed_timestamp": 1772871482,
+    "processing_mode": "gateway",
+    "rank": 180
+  }
+}

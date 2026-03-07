@@ -1,0 +1,723 @@
+{
+  "labels": {
+    "analysis": "The MCP Server \"searchcode\" provides 6 tools for development tools tasks.",
+    "reasoning": "Primary label \"Development Tools\" assigned based on tool names and descriptions.",
+    "primary_label": "Development Tools",
+    "secondary_labels": [
+      "API Integration",
+      "DevOps",
+      "Security & Authentication",
+      "Web Search & Research"
+    ],
+    "custom_label": "Development Tools - searchcode",
+    "is_connected": true,
+    "is_remote_tool_valid": true,
+    "featured_server": true
+  },
+  "metadata": {
+    "server_id": 126,
+    "server_name": "searchcode",
+    "rank_by_usage": 127,
+    "usage_count": "100",
+    "original_file": "tools.json#126",
+    "mode": "gateway",
+    "timestamp": 1772871481,
+    "remote_server_response": {
+      "url": "https://api.searchcode.com/v1/mcp",
+      "is_success": true,
+      "error": null,
+      "tools": [
+        {
+          "name": "searchcode_analyze",
+          "description": "Analyze a remote public git repository: languages, complexity, tech stack, code quality, and credential scanning. The code_quality_summary covers code style, correctness, accessibility, and performance issues only — these are not security findings and should not be interpreted as any indication of security posture. The security_summary performs pattern-based scanning for hardcoded credentials and secrets (AWS keys, API tokens, private keys, etc.). Zero findings means no credential patterns were detected, not that the code is broadly secure — logic-level vulnerabilities (auth bypasses, insecure defaults, misconfigured infrastructure) are not detected by this scan. Use as your first call to understand any remote codebase you don't have locally. Supports language filtering to drill into specific languages. Common dependency/build directories (vendor, node_modules, third_party, target, build, dist, Pods, generated, etc.) are excluded by default. When analysing multiple repositories, call this tool in parallel across repos rather than sequentially. This tool is subject to rate limiting — space out or batch parallel calls rather than retrying immediately on failure.",
+          "inputSchema": {
+            "properties": {
+              "detail_level": {
+                "description": "Controls response verbosity. summary returns top 20 across all languages; full returns top 20 per language. Use summary for portfolio reviews, hiring assessments, and high-level overviews. Use full for deep per-language audits or when you need granular per-file breakdowns within a specific language.",
+                "enum": [
+                  "summary",
+                  "full"
+                ],
+                "type": "string"
+              },
+              "force_refresh": {
+                "default": false,
+                "description": "Force a synchronous git pull before returning data, bypassing the staleness cache. Use when you need the very latest remote commits.",
+                "type": "boolean"
+              },
+              "include_all_dirs": {
+                "default": false,
+                "description": "Include dependency/build/cache directories that are excluded by default (vendor, node_modules, third_party, target, build, dist, Pods, generated, etc.). Set to true if you need to analyze generated/vendored code.",
+                "type": "boolean"
+              },
+              "language": {
+                "description": "Filter results to a specific language (e.g. \"Java\", \"Go\", \"Python\").",
+                "type": "string"
+              },
+              "repository": {
+                "description": "Git URL of a public remote repository",
+                "type": "string"
+              },
+              "scan_test_files": {
+                "default": false,
+                "description": "Include test files in code quality and credential scan results. Test files are excluded by default to reduce false positives (e.g. test credit card numbers, mock credentials). Set to true if you need to audit test code.",
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "repository"
+            ],
+            "type": "object"
+          }
+        },
+        {
+          "name": "searchcode_search",
+          "description": "Search code in a remote public git repository. Boolean queries, regex, fuzzy matching. Filter structurally: only-declarations, only-usages, only-strings, only-comments. Use for remote repos you don't have cloned locally. Common dependency/build directories (vendor, node_modules, third_party, target, build, dist, Pods, generated, etc.) are excluded by default.",
+          "inputSchema": {
+            "properties": {
+              "case_sensitive": {
+                "default": false,
+                "description": "Whether to match case-sensitively.",
+                "type": "boolean"
+              },
+              "code_filter": {
+                "description": "Structural filter to narrow matches to specific code regions.",
+                "enum": [
+                  "only-code",
+                  "only-strings",
+                  "only-comments",
+                  "only-declarations",
+                  "only-usages"
+                ],
+                "type": "string"
+              },
+              "context_lines": {
+                "default": 5,
+                "description": "Lines of context before and after each match.",
+                "maximum": 200,
+                "type": "integer"
+              },
+              "force_refresh": {
+                "default": false,
+                "description": "Force a synchronous git pull before returning data, bypassing the staleness cache. Use when you need the very latest remote commits.",
+                "type": "boolean"
+              },
+              "include_all_dirs": {
+                "default": false,
+                "description": "Include dependency/build/cache directories that are excluded by default (vendor, node_modules, third_party, target, build, dist, Pods, generated, etc.). Set to true if you need to search generated/vendored code.",
+                "type": "boolean"
+              },
+              "max_results": {
+                "default": 20,
+                "description": "Maximum number of results to return (cap: 100).",
+                "maximum": 100,
+                "type": "integer"
+              },
+              "offset": {
+                "default": 0,
+                "description": "Skip this many results before returning. Use for paging.",
+                "type": "integer"
+              },
+              "query": {
+                "description": "⚠️ IMPORTANT: Keywords are ANDed by default — a query like auth login session requires ALL terms to appear together and will likely return zero results. Always use OR explicitly for multi-term searches: auth OR login OR session. When exploring an unfamiliar codebase, prefer single precise terms or short OR queries over multi-keyword phrases. Search query. Keywords ANDed by default; supports OR, NOT, phrases, regex (/pattern/), fuzzy (term~1), file:, path:, lang:, ext: filters.",
+                "type": "string"
+              },
+              "repository": {
+                "description": "Git URL of a public remote repository",
+                "type": "string"
+              },
+              "snippet_mode": {
+                "description": "auto (ranked relevance) or grep (every matching line). Use auto when exploring or discovering where something is used across a codebase (e.g. \"how is authentication handled?\"). Use grep when you know the exact identifier or string you want every occurrence of (e.g. \"find all calls to parseConfig\").",
+                "enum": [
+                  "auto",
+                  "grep"
+                ],
+                "type": "string"
+              }
+            },
+            "required": [
+              "repository",
+              "query"
+            ],
+            "type": "object"
+          }
+        },
+        {
+          "name": "searchcode_get_file",
+          "description": "Get code from a remote public git repository — either a specific function/class by name, a line range, or a full file. PREFERRED WORKFLOW: When search results or findings have already identified a specific function, method, or class, use symbol_name to extract just that declaration. This avoids fetching entire files and keeps context focused. Only fetch full files when you need a broad understanding of a file you haven't seen before. For supported languages (Go, Python, TypeScript, JavaScript, Java, C, C++, C#, Kotlin, Swift, Rust) the response includes a symbols list of declarations with line ranges. This is not a first-call tool — use searchcode_analyze or searchcode_search first to identify targets, then extract precisely what you need.",
+          "inputSchema": {
+            "properties": {
+              "end_line": {
+                "description": "Last line to return (inclusive). If omitted, returns to end of file. Cannot combine with symbol_name.",
+                "type": "integer"
+              },
+              "force_refresh": {
+                "default": false,
+                "description": "Force a synchronous git pull before returning data, bypassing the staleness cache. Use when you need the very latest remote commits.",
+                "type": "boolean"
+              },
+              "include_adjacent_symbols": {
+                "default": false,
+                "description": "When true and symbol_name is set, includes structurally related declarations (nearby siblings) alongside the target symbol.",
+                "type": "boolean"
+              },
+              "max_lines": {
+                "default": 500,
+                "description": "Lines to return (max: 2000). When reading an unfamiliar file for orientation, set this to 2000. When you already know which function or class you need (from search or findings results), prefer symbol_name instead — it returns only the relevant declaration and avoids pulling unnecessary context.",
+                "maximum": 2000,
+                "type": "integer"
+              },
+              "path": {
+                "description": "File path relative to repository root",
+                "type": "string"
+              },
+              "repository": {
+                "description": "Git URL of a public remote repository",
+                "type": "string"
+              },
+              "start_line": {
+                "default": 1,
+                "description": "First line to return (1-based). Cannot combine with symbol_name.",
+                "type": "integer"
+              },
+              "symbol_name": {
+                "description": "PREFERRED for targeted retrieval. Name of a function/method/class to extract — returns only that declaration. Use this when search results or findings have pointed you to a specific symbol, instead of fetching the entire file. Cannot combine with start_line/end_line. Response includes a symbols list for supported languages.",
+                "type": "string"
+              }
+            },
+            "required": [
+              "repository",
+              "path"
+            ],
+            "type": "object"
+          }
+        },
+        {
+          "name": "searchcode_file_tree",
+          "description": "List directory structure of a remote public git repository. Filter by language, path, or depth. Lightweight — no analysis overhead. Use to understand project layout, or browse a specific directory when search fails (e.g. path_filter='pkg/auth/**', max_depth=1). Common dependency/build directories (vendor, node_modules, third_party, target, build, dist, Pods, generated, etc.) are excluded by default.",
+          "inputSchema": {
+            "properties": {
+              "force_refresh": {
+                "default": false,
+                "description": "Force a synchronous git pull before returning data, bypassing the staleness cache. Use when you need the very latest remote commits.",
+                "type": "boolean"
+              },
+              "include_all_dirs": {
+                "default": false,
+                "description": "Include dependency/build/cache directories that are excluded by default (vendor, node_modules, third_party, target, build, dist, Pods, generated, etc.). Set to true if you need to see generated/vendored code in the tree.",
+                "type": "boolean"
+              },
+              "include_stats": {
+                "default": false,
+                "description": "If true, include line count and file size for each file.",
+                "type": "boolean"
+              },
+              "language": {
+                "description": "Filter to only show files of this language (e.g. \"Go\", \"Java\").",
+                "type": "string"
+              },
+              "max_depth": {
+                "description": "Maximum directory depth to return. If omitted, returns full tree.",
+                "type": "integer"
+              },
+              "path_filter": {
+                "description": "Glob pattern to restrict tree to matching paths (e.g. \"pkg/**\", \"src/**/*.java\").",
+                "type": "string"
+              },
+              "repository": {
+                "description": "Git URL of a public remote repository",
+                "type": "string"
+              }
+            },
+            "required": [
+              "repository"
+            ],
+            "type": "object"
+          }
+        },
+        {
+          "name": "searchcode_get_files",
+          "description": "Get contents of multiple files from a remote public git repository in a single call. Reduces round-trips when you need to read several related files. Max 10 files per batch, 5000 total lines budget across all files. Each file supports optional line ranges. Failed files return per-file errors without blocking other files.",
+          "inputSchema": {
+            "properties": {
+              "force_refresh": {
+                "default": false,
+                "description": "Force a synchronous git pull before returning data, bypassing the staleness cache. Use when you need the very latest remote commits.",
+                "type": "boolean"
+              },
+              "max_lines": {
+                "default": 500,
+                "description": "Per-file safety cap on lines returned (cap: 2000).",
+                "maximum": 2000,
+                "type": "integer"
+              },
+              "paths": {
+                "description": "List of files to read. Each entry has a path and optional line range.",
+                "items": {
+                  "properties": {
+                    "end_line": {
+                      "description": "Last line to return (inclusive). If omitted, returns to end of file.",
+                      "type": "integer"
+                    },
+                    "path": {
+                      "description": "File path relative to repository root",
+                      "type": "string"
+                    },
+                    "start_line": {
+                      "default": 1,
+                      "description": "First line to return (1-based).",
+                      "type": "integer"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ],
+                  "type": "object"
+                },
+                "maxItems": 10,
+                "type": "array"
+              },
+              "repository": {
+                "description": "Git URL of a public remote repository",
+                "type": "string"
+              }
+            },
+            "required": [
+              "repository",
+              "paths"
+            ],
+            "type": "object"
+          }
+        },
+        {
+          "name": "searchcode_get_findings",
+          "description": "Get detailed code quality findings from a remote public git repository. Returns rule IDs, line numbers, severity, category, descriptions, and source snippets. Supports filtering by file path, severity (error, warning, info), and category (security, deprecated, safety, correctness, maintainability, accessibility, modernization, performance, concurrency). Use after searchcode_analyze to drill into specific findings. Shares the same analysis cache — no duplicate work if analyze already ran.",
+          "inputSchema": {
+            "properties": {
+              "category": {
+                "description": "Filter findings by category.",
+                "enum": [
+                  "security",
+                  "deprecated",
+                  "safety",
+                  "correctness",
+                  "maintainability",
+                  "accessibility",
+                  "modernization",
+                  "performance",
+                  "concurrency"
+                ],
+                "type": "string"
+              },
+              "force_refresh": {
+                "default": false,
+                "description": "Force a synchronous git pull before returning data, bypassing the staleness cache. Use when you need the very latest remote commits.",
+                "type": "boolean"
+              },
+              "max_results": {
+                "default": 50,
+                "description": "Maximum number of findings to return (cap: 200).",
+                "maximum": 200,
+                "type": "integer"
+              },
+              "offset": {
+                "default": 0,
+                "description": "Skip this many findings before returning. Use for paging.",
+                "type": "integer"
+              },
+              "path": {
+                "description": "Filter findings to files matching this path prefix (e.g. \"pkg/api/\" or \"src/main.go\").",
+                "type": "string"
+              },
+              "repository": {
+                "description": "Git URL of a public remote repository",
+                "type": "string"
+              },
+              "scan_test_files": {
+                "default": false,
+                "description": "Include findings from test files. By default test files are excluded.",
+                "type": "boolean"
+              },
+              "severity": {
+                "description": "Filter findings by severity level.",
+                "enum": [
+                  "error",
+                  "warning",
+                  "info"
+                ],
+                "type": "string"
+              }
+            },
+            "required": [
+              "repository"
+            ],
+            "type": "object"
+          }
+        }
+      ],
+      "tool_count": 6,
+      "tool_names": [
+        "searchcode_analyze",
+        "searchcode_search",
+        "searchcode_get_file",
+        "searchcode_file_tree",
+        "searchcode_get_files",
+        "searchcode_get_findings"
+      ]
+    },
+    "server_info_crawled": {
+      "id": 126,
+      "name": "searchcode",
+      "author": "",
+      "overview": "searchcode - Development Tools MCP server with 6 tools.",
+      "repository_url": "",
+      "homepage": "https://api.searchcode.com/v1/mcp",
+      "remote_or_local": "Remote",
+      "license": "",
+      "usage_count": "100",
+      "success_rate": "100%",
+      "tags": [
+        "development-tools"
+      ],
+      "categories": [
+        "development tools"
+      ],
+      "tools_count": 6,
+      "tools": [
+        {
+          "name": "searchcode_analyze",
+          "description": "Analyze a remote public git repository: languages, complexity, tech stack, code quality, and credential scanning. The code_quality_summary covers code style, correctness, accessibility, and performance issues only — these are not security findings and should not be interpreted as any indication of security posture. The security_summary performs pattern-based scanning for hardcoded credentials and secrets (AWS keys, API tokens, private keys, etc.). Zero findings means no credential patterns were detected, not that the code is broadly secure — logic-level vulnerabilities (auth bypasses, insecure defaults, misconfigured infrastructure) are not detected by this scan. Use as your first call to understand any remote codebase you don't have locally. Supports language filtering to drill into specific languages. Common dependency/build directories (vendor, node_modules, third_party, target, build, dist, Pods, generated, etc.) are excluded by default. When analysing multiple repositories, call this tool in parallel across repos rather than sequentially. This tool is subject to rate limiting — space out or batch parallel calls rather than retrying immediately on failure.",
+          "inputSchema": {
+            "properties": {
+              "detail_level": {
+                "description": "Controls response verbosity. summary returns top 20 across all languages; full returns top 20 per language. Use summary for portfolio reviews, hiring assessments, and high-level overviews. Use full for deep per-language audits or when you need granular per-file breakdowns within a specific language.",
+                "enum": [
+                  "summary",
+                  "full"
+                ],
+                "type": "string"
+              },
+              "force_refresh": {
+                "default": false,
+                "description": "Force a synchronous git pull before returning data, bypassing the staleness cache. Use when you need the very latest remote commits.",
+                "type": "boolean"
+              },
+              "include_all_dirs": {
+                "default": false,
+                "description": "Include dependency/build/cache directories that are excluded by default (vendor, node_modules, third_party, target, build, dist, Pods, generated, etc.). Set to true if you need to analyze generated/vendored code.",
+                "type": "boolean"
+              },
+              "language": {
+                "description": "Filter results to a specific language (e.g. \"Java\", \"Go\", \"Python\").",
+                "type": "string"
+              },
+              "repository": {
+                "description": "Git URL of a public remote repository",
+                "type": "string"
+              },
+              "scan_test_files": {
+                "default": false,
+                "description": "Include test files in code quality and credential scan results. Test files are excluded by default to reduce false positives (e.g. test credit card numbers, mock credentials). Set to true if you need to audit test code.",
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "repository"
+            ],
+            "type": "object"
+          }
+        },
+        {
+          "name": "searchcode_search",
+          "description": "Search code in a remote public git repository. Boolean queries, regex, fuzzy matching. Filter structurally: only-declarations, only-usages, only-strings, only-comments. Use for remote repos you don't have cloned locally. Common dependency/build directories (vendor, node_modules, third_party, target, build, dist, Pods, generated, etc.) are excluded by default.",
+          "inputSchema": {
+            "properties": {
+              "case_sensitive": {
+                "default": false,
+                "description": "Whether to match case-sensitively.",
+                "type": "boolean"
+              },
+              "code_filter": {
+                "description": "Structural filter to narrow matches to specific code regions.",
+                "enum": [
+                  "only-code",
+                  "only-strings",
+                  "only-comments",
+                  "only-declarations",
+                  "only-usages"
+                ],
+                "type": "string"
+              },
+              "context_lines": {
+                "default": 5,
+                "description": "Lines of context before and after each match.",
+                "maximum": 200,
+                "type": "integer"
+              },
+              "force_refresh": {
+                "default": false,
+                "description": "Force a synchronous git pull before returning data, bypassing the staleness cache. Use when you need the very latest remote commits.",
+                "type": "boolean"
+              },
+              "include_all_dirs": {
+                "default": false,
+                "description": "Include dependency/build/cache directories that are excluded by default (vendor, node_modules, third_party, target, build, dist, Pods, generated, etc.). Set to true if you need to search generated/vendored code.",
+                "type": "boolean"
+              },
+              "max_results": {
+                "default": 20,
+                "description": "Maximum number of results to return (cap: 100).",
+                "maximum": 100,
+                "type": "integer"
+              },
+              "offset": {
+                "default": 0,
+                "description": "Skip this many results before returning. Use for paging.",
+                "type": "integer"
+              },
+              "query": {
+                "description": "⚠️ IMPORTANT: Keywords are ANDed by default — a query like auth login session requires ALL terms to appear together and will likely return zero results. Always use OR explicitly for multi-term searches: auth OR login OR session. When exploring an unfamiliar codebase, prefer single precise terms or short OR queries over multi-keyword phrases. Search query. Keywords ANDed by default; supports OR, NOT, phrases, regex (/pattern/), fuzzy (term~1), file:, path:, lang:, ext: filters.",
+                "type": "string"
+              },
+              "repository": {
+                "description": "Git URL of a public remote repository",
+                "type": "string"
+              },
+              "snippet_mode": {
+                "description": "auto (ranked relevance) or grep (every matching line). Use auto when exploring or discovering where something is used across a codebase (e.g. \"how is authentication handled?\"). Use grep when you know the exact identifier or string you want every occurrence of (e.g. \"find all calls to parseConfig\").",
+                "enum": [
+                  "auto",
+                  "grep"
+                ],
+                "type": "string"
+              }
+            },
+            "required": [
+              "repository",
+              "query"
+            ],
+            "type": "object"
+          }
+        },
+        {
+          "name": "searchcode_get_file",
+          "description": "Get code from a remote public git repository — either a specific function/class by name, a line range, or a full file. PREFERRED WORKFLOW: When search results or findings have already identified a specific function, method, or class, use symbol_name to extract just that declaration. This avoids fetching entire files and keeps context focused. Only fetch full files when you need a broad understanding of a file you haven't seen before. For supported languages (Go, Python, TypeScript, JavaScript, Java, C, C++, C#, Kotlin, Swift, Rust) the response includes a symbols list of declarations with line ranges. This is not a first-call tool — use searchcode_analyze or searchcode_search first to identify targets, then extract precisely what you need.",
+          "inputSchema": {
+            "properties": {
+              "end_line": {
+                "description": "Last line to return (inclusive). If omitted, returns to end of file. Cannot combine with symbol_name.",
+                "type": "integer"
+              },
+              "force_refresh": {
+                "default": false,
+                "description": "Force a synchronous git pull before returning data, bypassing the staleness cache. Use when you need the very latest remote commits.",
+                "type": "boolean"
+              },
+              "include_adjacent_symbols": {
+                "default": false,
+                "description": "When true and symbol_name is set, includes structurally related declarations (nearby siblings) alongside the target symbol.",
+                "type": "boolean"
+              },
+              "max_lines": {
+                "default": 500,
+                "description": "Lines to return (max: 2000). When reading an unfamiliar file for orientation, set this to 2000. When you already know which function or class you need (from search or findings results), prefer symbol_name instead — it returns only the relevant declaration and avoids pulling unnecessary context.",
+                "maximum": 2000,
+                "type": "integer"
+              },
+              "path": {
+                "description": "File path relative to repository root",
+                "type": "string"
+              },
+              "repository": {
+                "description": "Git URL of a public remote repository",
+                "type": "string"
+              },
+              "start_line": {
+                "default": 1,
+                "description": "First line to return (1-based). Cannot combine with symbol_name.",
+                "type": "integer"
+              },
+              "symbol_name": {
+                "description": "PREFERRED for targeted retrieval. Name of a function/method/class to extract — returns only that declaration. Use this when search results or findings have pointed you to a specific symbol, instead of fetching the entire file. Cannot combine with start_line/end_line. Response includes a symbols list for supported languages.",
+                "type": "string"
+              }
+            },
+            "required": [
+              "repository",
+              "path"
+            ],
+            "type": "object"
+          }
+        },
+        {
+          "name": "searchcode_file_tree",
+          "description": "List directory structure of a remote public git repository. Filter by language, path, or depth. Lightweight — no analysis overhead. Use to understand project layout, or browse a specific directory when search fails (e.g. path_filter='pkg/auth/**', max_depth=1). Common dependency/build directories (vendor, node_modules, third_party, target, build, dist, Pods, generated, etc.) are excluded by default.",
+          "inputSchema": {
+            "properties": {
+              "force_refresh": {
+                "default": false,
+                "description": "Force a synchronous git pull before returning data, bypassing the staleness cache. Use when you need the very latest remote commits.",
+                "type": "boolean"
+              },
+              "include_all_dirs": {
+                "default": false,
+                "description": "Include dependency/build/cache directories that are excluded by default (vendor, node_modules, third_party, target, build, dist, Pods, generated, etc.). Set to true if you need to see generated/vendored code in the tree.",
+                "type": "boolean"
+              },
+              "include_stats": {
+                "default": false,
+                "description": "If true, include line count and file size for each file.",
+                "type": "boolean"
+              },
+              "language": {
+                "description": "Filter to only show files of this language (e.g. \"Go\", \"Java\").",
+                "type": "string"
+              },
+              "max_depth": {
+                "description": "Maximum directory depth to return. If omitted, returns full tree.",
+                "type": "integer"
+              },
+              "path_filter": {
+                "description": "Glob pattern to restrict tree to matching paths (e.g. \"pkg/**\", \"src/**/*.java\").",
+                "type": "string"
+              },
+              "repository": {
+                "description": "Git URL of a public remote repository",
+                "type": "string"
+              }
+            },
+            "required": [
+              "repository"
+            ],
+            "type": "object"
+          }
+        },
+        {
+          "name": "searchcode_get_files",
+          "description": "Get contents of multiple files from a remote public git repository in a single call. Reduces round-trips when you need to read several related files. Max 10 files per batch, 5000 total lines budget across all files. Each file supports optional line ranges. Failed files return per-file errors without blocking other files.",
+          "inputSchema": {
+            "properties": {
+              "force_refresh": {
+                "default": false,
+                "description": "Force a synchronous git pull before returning data, bypassing the staleness cache. Use when you need the very latest remote commits.",
+                "type": "boolean"
+              },
+              "max_lines": {
+                "default": 500,
+                "description": "Per-file safety cap on lines returned (cap: 2000).",
+                "maximum": 2000,
+                "type": "integer"
+              },
+              "paths": {
+                "description": "List of files to read. Each entry has a path and optional line range.",
+                "items": {
+                  "properties": {
+                    "end_line": {
+                      "description": "Last line to return (inclusive). If omitted, returns to end of file.",
+                      "type": "integer"
+                    },
+                    "path": {
+                      "description": "File path relative to repository root",
+                      "type": "string"
+                    },
+                    "start_line": {
+                      "default": 1,
+                      "description": "First line to return (1-based).",
+                      "type": "integer"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ],
+                  "type": "object"
+                },
+                "maxItems": 10,
+                "type": "array"
+              },
+              "repository": {
+                "description": "Git URL of a public remote repository",
+                "type": "string"
+              }
+            },
+            "required": [
+              "repository",
+              "paths"
+            ],
+            "type": "object"
+          }
+        },
+        {
+          "name": "searchcode_get_findings",
+          "description": "Get detailed code quality findings from a remote public git repository. Returns rule IDs, line numbers, severity, category, descriptions, and source snippets. Supports filtering by file path, severity (error, warning, info), and category (security, deprecated, safety, correctness, maintainability, accessibility, modernization, performance, concurrency). Use after searchcode_analyze to drill into specific findings. Shares the same analysis cache — no duplicate work if analyze already ran.",
+          "inputSchema": {
+            "properties": {
+              "category": {
+                "description": "Filter findings by category.",
+                "enum": [
+                  "security",
+                  "deprecated",
+                  "safety",
+                  "correctness",
+                  "maintainability",
+                  "accessibility",
+                  "modernization",
+                  "performance",
+                  "concurrency"
+                ],
+                "type": "string"
+              },
+              "force_refresh": {
+                "default": false,
+                "description": "Force a synchronous git pull before returning data, bypassing the staleness cache. Use when you need the very latest remote commits.",
+                "type": "boolean"
+              },
+              "max_results": {
+                "default": 50,
+                "description": "Maximum number of findings to return (cap: 200).",
+                "maximum": 200,
+                "type": "integer"
+              },
+              "offset": {
+                "default": 0,
+                "description": "Skip this many findings before returning. Use for paging.",
+                "type": "integer"
+              },
+              "path": {
+                "description": "Filter findings to files matching this path prefix (e.g. \"pkg/api/\" or \"src/main.go\").",
+                "type": "string"
+              },
+              "repository": {
+                "description": "Git URL of a public remote repository",
+                "type": "string"
+              },
+              "scan_test_files": {
+                "default": false,
+                "description": "Include findings from test files. By default test files are excluded.",
+                "type": "boolean"
+              },
+              "severity": {
+                "description": "Filter findings by severity level.",
+                "enum": [
+                  "error",
+                  "warning",
+                  "info"
+                ],
+                "type": "string"
+              }
+            },
+            "required": [
+              "repository"
+            ],
+            "type": "object"
+          }
+        }
+      ],
+      "python_sdk_url": "https://api.searchcode.com/v1/mcp",
+      "python_sdk_config": "{\"debug\": false}"
+    },
+    "source_filename": "0126.searchcode_labeled.json",
+    "processed_timestamp": 1772871481,
+    "processing_mode": "gateway",
+    "rank": 127
+  }
+}

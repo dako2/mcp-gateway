@@ -1,0 +1,126 @@
+{
+  "labels": {
+    "analysis": "The MCP Server \"Gitprism\" provides 1 tools for development tools tasks.",
+    "reasoning": "Primary label \"Development Tools\" assigned based on tool names and descriptions.",
+    "primary_label": "Development Tools",
+    "secondary_labels": [
+      "API Integration",
+      "DevOps",
+      "AI/ML Tools",
+      "File Management"
+    ],
+    "custom_label": "Development Tools - Gitprism",
+    "is_connected": true,
+    "is_remote_tool_valid": true,
+    "featured_server": false
+  },
+  "metadata": {
+    "server_id": 264,
+    "server_name": "Gitprism",
+    "rank_by_usage": 265,
+    "usage_count": "10",
+    "original_file": "tools.json#264",
+    "mode": "gateway",
+    "timestamp": 1772871482,
+    "remote_server_response": {
+      "url": "https://gitprism.cloudemo.org/mcp",
+      "is_success": true,
+      "error": null,
+      "tools": [
+        {
+          "name": "ingest_repo",
+          "description": "Convert a public GitHub repository or subdirectory into LLM-ready Markdown. RECOMMENDED WORKFLOW FOR LARGE REPOS: 1. Call with detail='file-list' to get the directory structure, file sizes, and line counts. 2. Identify the relevant subdirectory from the file-list output. 3. Call again with the subdirectory URL (e.g., 'owner/repo/tree/main/src') and detail='full' to get only the files you need. This two-step approach prevents consuming tens of thousands of tokens when calling detail='full' on an entire repository. Detail levels: 'summary' (repo name, ref, file count), 'structure' (summary + ASCII directory tree), 'file-list' (structure + file paths with sizes and line counts; RECOMMENDED FIRST STEP), 'full' (structure + complete file contents in fenced code blocks; USE ON SUBDIRECTORIES).",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {
+              "url": {
+                "type": "string",
+                "description": "GitHub URL. Examples: 'https://github.com/owner/repo', 'https://github.com/owner/repo/tree/main/src', or shorthand 'owner/repo'."
+              },
+              "detail": {
+                "default": "full",
+                "description": "Level of detail in the output. Defaults to 'full'.",
+                "type": "string",
+                "enum": [
+                  "summary",
+                  "structure",
+                  "file-list",
+                  "full"
+                ]
+              }
+            },
+            "required": [
+              "url"
+            ]
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        }
+      ],
+      "tool_count": 1,
+      "tool_names": [
+        "ingest_repo"
+      ]
+    },
+    "server_info_crawled": {
+      "id": 264,
+      "name": "Gitprism",
+      "author": "",
+      "overview": "Gitprism - Development Tools MCP server with 1 tools.",
+      "repository_url": "",
+      "homepage": "https://gitprism.cloudemo.org/mcp",
+      "remote_or_local": "Remote",
+      "license": "",
+      "usage_count": "10",
+      "success_rate": "100%",
+      "tags": [
+        "development-tools"
+      ],
+      "categories": [
+        "development tools"
+      ],
+      "tools_count": 1,
+      "tools": [
+        {
+          "name": "ingest_repo",
+          "description": "Convert a public GitHub repository or subdirectory into LLM-ready Markdown. RECOMMENDED WORKFLOW FOR LARGE REPOS: 1. Call with detail='file-list' to get the directory structure, file sizes, and line counts. 2. Identify the relevant subdirectory from the file-list output. 3. Call again with the subdirectory URL (e.g., 'owner/repo/tree/main/src') and detail='full' to get only the files you need. This two-step approach prevents consuming tens of thousands of tokens when calling detail='full' on an entire repository. Detail levels: 'summary' (repo name, ref, file count), 'structure' (summary + ASCII directory tree), 'file-list' (structure + file paths with sizes and line counts; RECOMMENDED FIRST STEP), 'full' (structure + complete file contents in fenced code blocks; USE ON SUBDIRECTORIES).",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {
+              "url": {
+                "type": "string",
+                "description": "GitHub URL. Examples: 'https://github.com/owner/repo', 'https://github.com/owner/repo/tree/main/src', or shorthand 'owner/repo'."
+              },
+              "detail": {
+                "default": "full",
+                "description": "Level of detail in the output. Defaults to 'full'.",
+                "type": "string",
+                "enum": [
+                  "summary",
+                  "structure",
+                  "file-list",
+                  "full"
+                ]
+              }
+            },
+            "required": [
+              "url"
+            ]
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        }
+      ],
+      "python_sdk_url": "https://gitprism.cloudemo.org/mcp",
+      "python_sdk_config": "{\"debug\": false}"
+    },
+    "source_filename": "0264.Gitprism_labeled.json",
+    "processed_timestamp": 1772871482,
+    "processing_mode": "gateway",
+    "rank": 265
+  }
+}

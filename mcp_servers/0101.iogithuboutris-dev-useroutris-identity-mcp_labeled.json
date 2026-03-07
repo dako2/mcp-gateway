@@ -1,0 +1,343 @@
+{
+  "labels": {
+    "analysis": "The MCP Server \"io.github.outris-dev-user/outris-identity-mcp\" provides 8 tools for development tools tasks.",
+    "reasoning": "Primary label \"Development Tools\" assigned based on tool names and descriptions.",
+    "primary_label": "Development Tools",
+    "secondary_labels": [
+      "API Integration",
+      "DevOps",
+      "Data Analysis & Processing",
+      "Communication Tools"
+    ],
+    "custom_label": "Development Tools - io.github.outris-dev-user/outris-identity-mcp",
+    "is_connected": true,
+    "is_remote_tool_valid": true,
+    "featured_server": true
+  },
+  "metadata": {
+    "server_id": 101,
+    "server_name": "io.github.outris-dev-user/outris-identity-mcp",
+    "rank_by_usage": 102,
+    "usage_count": "100",
+    "original_file": "tools.json#101",
+    "mode": "gateway",
+    "timestamp": 1772871481,
+    "remote_server_response": {
+      "url": "https://mcp-server.outris.com/http",
+      "is_success": true,
+      "error": null,
+      "tools": [
+        {
+          "name": "check_online_platforms",
+          "description": "\n**What it does:** Checks if a phone number is registered on major global platforms (Amazon, Instagram, Snapchat).\n**Input:** Phone number (with or without country code).\n**Returns:** Registration status (true/false) for each specific platform.\n**Best for:** Digital footprint analysis, verifying if a number is \"real\" and active on social/shopping apps.\n    \nCost: 1 credit",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "phone": {
+                "type": "string",
+                "description": "Phone number (with or without country code)"
+              }
+            },
+            "required": [
+              "phone"
+            ]
+          }
+        },
+        {
+          "name": "check_digital_commerce_activity",
+          "description": "\n**What it does:** Checks if a phone number has been used for any digital commerce activity (ecommerce, travel, quick-commerce).\n**Input:** Phone number (Indian numbers only, add ISD code infront).\n**Returns:** Boolean flags for overall commerce types, activity timeline, and demographics if available.\n**Best for:** Assessing if a phone number belongs to a real, active consumer vs. a throwaway number.\n\nCost: 1 credit",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "phone": {
+                "type": "string",
+                "description": "Phone number (with or without country code)"
+              },
+              "include_demographics": {
+                "type": "boolean",
+                "description": "Include age/gender estimation (default: true)"
+              }
+            },
+            "required": [
+              "phone"
+            ]
+          }
+        },
+        {
+          "name": "get_identity_profile",
+          "description": "\n**What it does:** Comprehensive identity report. Fetches names, emails, addresses, metadata, and risk scores in one go .\n**Input:** Phone number.\n**Returns:** Complete JSON profile containing all linked entities.\n**Best for:** Deep investigations where you need the \"full picture\" immediately. Understand if similar names, addresses appear, then that gives more confidence\n\nCost: 3 credits",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "phone": {
+                "type": "string",
+                "description": "Phone number"
+              }
+            },
+            "required": [
+              "phone"
+            ]
+          }
+        },
+        {
+          "name": "get_name",
+          "description": "\n**What it does:** identifying the owner name of a phone number.\n**Input:** Phone number (with or without country code).\n**Returns:** List of full names linked to this phone with confidence scores.\n**Best for:** KYC verification, caller ID, finding out \"who called me\".\n\nCost: 2 credits",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "phone": {
+                "type": "string",
+                "description": "Phone number"
+              }
+            },
+            "required": [
+              "phone"
+            ]
+          }
+        },
+        {
+          "name": "get_email",
+          "description": "\n**What it does:** Finds email addresses linked to a phone number.\n**Input:** Phone number.\n**Returns:** List of email addresses with confidence scores.\n**Best for:** Digital footprint analysis, finding contact details, or cross-referencing identities.\n\nCost: 2 credits",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "phone": {
+                "type": "string",
+                "description": "Phone number"
+              }
+            },
+            "required": [
+              "phone"
+            ]
+          }
+        },
+        {
+          "name": "get_address",
+          "description": "\n**What it does:** Finds physical addresses associated with a phone number.\n**Input:** Phone number.\n**Returns:** List of addresses with metadata (e.g., \"shipping\", \"billing\", \"home\") and dates.\n**Best for:** Fraud investigation, delivery verification, and location analysis.\n\nCost: 2 credits",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "phone": {
+                "type": "string",
+                "description": "Phone number"
+              }
+            },
+            "required": [
+              "phone"
+            ]
+          }
+        },
+        {
+          "name": "get_alternate_phones",
+          "description": "Get other phone numbers belonging to the same person.\n\nReturns: List of alternate phone numbers linked through shared identities\n(same name, email, or address).\n\nUse when: User wants to find all phones associated with a person.\n\nExample queries:\n- \"What other phones does this person have?\"\n- \"Find alternate numbers for 9876543210\"\n- \"Are there other phones linked to this one?\"\n\nCost: 2 credits",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "phone": {
+                "type": "string",
+                "description": "Phone number"
+              }
+            },
+            "required": [
+              "phone"
+            ]
+          }
+        },
+        {
+          "name": "check_breaches",
+          "description": "\n**What it does:** Checks if a phone number or email has been exposed in known data breaches.\n**Input:** Email address OR Phone number.\n**Returns:** List of breaches (for email) or breach categories (for phone), including dates.\n**Best for:** Security audits, checking if a user's data is compromised (\"Have I Been Pwned\" style checks).\n\nCost: 1 credit",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "identifier": {
+                "type": "string",
+                "description": "Email address or phone number to check"
+              },
+              "identifier_type": {
+                "type": "string",
+                "description": "Type of identifier: 'email' or 'phone' (auto-detected if not specified)"
+              }
+            },
+            "required": [
+              "identifier"
+            ]
+          }
+        }
+      ],
+      "tool_count": 8,
+      "tool_names": [
+        "check_online_platforms",
+        "check_digital_commerce_activity",
+        "get_identity_profile",
+        "get_name",
+        "get_email",
+        "get_address",
+        "get_alternate_phones",
+        "check_breaches"
+      ]
+    },
+    "server_info_crawled": {
+      "id": 101,
+      "name": "io.github.outris-dev-user/outris-identity-mcp",
+      "author": "",
+      "overview": "io.github.outris-dev-user/outris-identity-mcp - Development Tools MCP server with 8 tools.",
+      "repository_url": "",
+      "homepage": "https://mcp-server.outris.com/http",
+      "remote_or_local": "Remote",
+      "license": "",
+      "usage_count": "100",
+      "success_rate": "100%",
+      "tags": [
+        "development-tools"
+      ],
+      "categories": [
+        "development tools"
+      ],
+      "tools_count": 8,
+      "tools": [
+        {
+          "name": "check_online_platforms",
+          "description": "\n**What it does:** Checks if a phone number is registered on major global platforms (Amazon, Instagram, Snapchat).\n**Input:** Phone number (with or without country code).\n**Returns:** Registration status (true/false) for each specific platform.\n**Best for:** Digital footprint analysis, verifying if a number is \"real\" and active on social/shopping apps.\n    \nCost: 1 credit",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "phone": {
+                "type": "string",
+                "description": "Phone number (with or without country code)"
+              }
+            },
+            "required": [
+              "phone"
+            ]
+          }
+        },
+        {
+          "name": "check_digital_commerce_activity",
+          "description": "\n**What it does:** Checks if a phone number has been used for any digital commerce activity (ecommerce, travel, quick-commerce).\n**Input:** Phone number (Indian numbers only, add ISD code infront).\n**Returns:** Boolean flags for overall commerce types, activity timeline, and demographics if available.\n**Best for:** Assessing if a phone number belongs to a real, active consumer vs. a throwaway number.\n\nCost: 1 credit",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "phone": {
+                "type": "string",
+                "description": "Phone number (with or without country code)"
+              },
+              "include_demographics": {
+                "type": "boolean",
+                "description": "Include age/gender estimation (default: true)"
+              }
+            },
+            "required": [
+              "phone"
+            ]
+          }
+        },
+        {
+          "name": "get_identity_profile",
+          "description": "\n**What it does:** Comprehensive identity report. Fetches names, emails, addresses, metadata, and risk scores in one go .\n**Input:** Phone number.\n**Returns:** Complete JSON profile containing all linked entities.\n**Best for:** Deep investigations where you need the \"full picture\" immediately. Understand if similar names, addresses appear, then that gives more confidence\n\nCost: 3 credits",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "phone": {
+                "type": "string",
+                "description": "Phone number"
+              }
+            },
+            "required": [
+              "phone"
+            ]
+          }
+        },
+        {
+          "name": "get_name",
+          "description": "\n**What it does:** identifying the owner name of a phone number.\n**Input:** Phone number (with or without country code).\n**Returns:** List of full names linked to this phone with confidence scores.\n**Best for:** KYC verification, caller ID, finding out \"who called me\".\n\nCost: 2 credits",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "phone": {
+                "type": "string",
+                "description": "Phone number"
+              }
+            },
+            "required": [
+              "phone"
+            ]
+          }
+        },
+        {
+          "name": "get_email",
+          "description": "\n**What it does:** Finds email addresses linked to a phone number.\n**Input:** Phone number.\n**Returns:** List of email addresses with confidence scores.\n**Best for:** Digital footprint analysis, finding contact details, or cross-referencing identities.\n\nCost: 2 credits",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "phone": {
+                "type": "string",
+                "description": "Phone number"
+              }
+            },
+            "required": [
+              "phone"
+            ]
+          }
+        },
+        {
+          "name": "get_address",
+          "description": "\n**What it does:** Finds physical addresses associated with a phone number.\n**Input:** Phone number.\n**Returns:** List of addresses with metadata (e.g., \"shipping\", \"billing\", \"home\") and dates.\n**Best for:** Fraud investigation, delivery verification, and location analysis.\n\nCost: 2 credits",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "phone": {
+                "type": "string",
+                "description": "Phone number"
+              }
+            },
+            "required": [
+              "phone"
+            ]
+          }
+        },
+        {
+          "name": "get_alternate_phones",
+          "description": "Get other phone numbers belonging to the same person.\n\nReturns: List of alternate phone numbers linked through shared identities\n(same name, email, or address).\n\nUse when: User wants to find all phones associated with a person.\n\nExample queries:\n- \"What other phones does this person have?\"\n- \"Find alternate numbers for 9876543210\"\n- \"Are there other phones linked to this one?\"\n\nCost: 2 credits",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "phone": {
+                "type": "string",
+                "description": "Phone number"
+              }
+            },
+            "required": [
+              "phone"
+            ]
+          }
+        },
+        {
+          "name": "check_breaches",
+          "description": "\n**What it does:** Checks if a phone number or email has been exposed in known data breaches.\n**Input:** Email address OR Phone number.\n**Returns:** List of breaches (for email) or breach categories (for phone), including dates.\n**Best for:** Security audits, checking if a user's data is compromised (\"Have I Been Pwned\" style checks).\n\nCost: 1 credit",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "identifier": {
+                "type": "string",
+                "description": "Email address or phone number to check"
+              },
+              "identifier_type": {
+                "type": "string",
+                "description": "Type of identifier: 'email' or 'phone' (auto-detected if not specified)"
+              }
+            },
+            "required": [
+              "identifier"
+            ]
+          }
+        }
+      ],
+      "python_sdk_url": "https://mcp-server.outris.com/http",
+      "python_sdk_config": "{\"debug\": false}"
+    },
+    "source_filename": "0101.iogithuboutris-dev-useroutris-identity-mcp_labeled.json",
+    "processed_timestamp": 1772871481,
+    "processing_mode": "gateway",
+    "rank": 102
+  }
+}

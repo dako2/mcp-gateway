@@ -1,0 +1,1052 @@
+{
+  "labels": {
+    "analysis": "The MCP Server \"io.github.gosodax/builders-mcp\" provides 15 tools for development tools tasks.",
+    "reasoning": "Primary label \"Development Tools\" assigned based on tool names and descriptions.",
+    "primary_label": "Development Tools",
+    "secondary_labels": [
+      "API Integration",
+      "DevOps",
+      "Cryptocurrency & Blockchain",
+      "Web Search & Research"
+    ],
+    "custom_label": "Development Tools - io.github.gosodax/builders-mcp",
+    "is_connected": true,
+    "is_remote_tool_valid": true,
+    "featured_server": true
+  },
+  "metadata": {
+    "server_id": 60,
+    "server_name": "io.github.gosodax/builders-mcp",
+    "rank_by_usage": 61,
+    "usage_count": "800",
+    "original_file": "tools.json#60",
+    "mode": "gateway",
+    "timestamp": 1772871481,
+    "remote_server_response": {
+      "url": "https://builders.sodax.com/mcp",
+      "is_success": true,
+      "error": null,
+      "tools": [
+        {
+          "name": "sodax_get_supported_chains",
+          "description": "List all blockchain networks supported by SODAX for cross-chain swaps and DeFi operations",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "format": {
+                "type": "string",
+                "enum": [
+                  "json",
+                  "markdown"
+                ],
+                "default": "markdown",
+                "description": "Response format: 'json' for raw data or 'markdown' for formatted text"
+              }
+            },
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "openWorldHint": true
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "sodax_get_swap_tokens",
+          "description": "Get available tokens for swapping on SODAX, optionally filtered by chain",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "chainId": {
+                "type": "string",
+                "description": "Filter tokens by chain ID (e.g., 'base', 'ethereum', 'icon')"
+              },
+              "format": {
+                "type": "string",
+                "enum": [
+                  "json",
+                  "markdown"
+                ],
+                "default": "markdown",
+                "description": "Response format: 'json' for raw data or 'markdown' for formatted text"
+              }
+            },
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "openWorldHint": true
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "sodax_get_transaction",
+          "description": "Look up a specific transaction by its hash to see status, amounts, and details",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "txHash": {
+                "type": "string",
+                "description": "The transaction hash to look up (e.g., '0x...')"
+              },
+              "format": {
+                "type": "string",
+                "enum": [
+                  "json",
+                  "markdown"
+                ],
+                "default": "markdown",
+                "description": "Response format: 'json' for raw data or 'markdown' for formatted text"
+              }
+            },
+            "required": [
+              "txHash"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "openWorldHint": true
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "sodax_get_user_transactions",
+          "description": "Get intent/transaction history for a specific wallet address",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "userAddress": {
+                "type": "string",
+                "description": "The wallet address to look up (e.g., '0x...')"
+              },
+              "limit": {
+                "type": "number",
+                "minimum": 1,
+                "maximum": 100,
+                "default": 20,
+                "description": "Maximum number of transactions to return (1-100)"
+              },
+              "offset": {
+                "type": "number",
+                "minimum": 0,
+                "default": 0,
+                "description": "Number of transactions to skip for pagination"
+              },
+              "format": {
+                "type": "string",
+                "enum": [
+                  "json",
+                  "markdown"
+                ],
+                "default": "markdown",
+                "description": "Response format: 'json' for raw data or 'markdown' for formatted text"
+              }
+            },
+            "required": [
+              "userAddress"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "openWorldHint": true
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "sodax_get_volume",
+          "description": "Get solver volume data showing filled intents with filtering and pagination. Requires inputToken and outputToken. Optional filters: chain, solver, block range OR time range (don't mix both).",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "inputToken": {
+                "type": "string",
+                "description": "REQUIRED: Input token address"
+              },
+              "outputToken": {
+                "type": "string",
+                "description": "REQUIRED: Output token address"
+              },
+              "chainId": {
+                "type": "number",
+                "description": "Filter by chain ID (e.g., 146 for Sonic)"
+              },
+              "solver": {
+                "type": "string",
+                "description": "Filter by solver address (0x0...0 for default solver)"
+              },
+              "fromBlock": {
+                "type": "number",
+                "description": "Start block number (don't mix with since/until)"
+              },
+              "toBlock": {
+                "type": "number",
+                "description": "End block number (don't mix with since/until)"
+              },
+              "since": {
+                "type": "string",
+                "description": "Start time ISO format (don't mix with fromBlock/toBlock)"
+              },
+              "until": {
+                "type": "string",
+                "description": "End time ISO format (don't mix with fromBlock/toBlock)"
+              },
+              "sort": {
+                "type": "string",
+                "enum": [
+                  "asc",
+                  "desc"
+                ],
+                "default": "desc",
+                "description": "Sort order by block number"
+              },
+              "limit": {
+                "type": "number",
+                "minimum": 1,
+                "maximum": 100,
+                "default": 50,
+                "description": "Maximum number of filled intents to return (1-100)"
+              },
+              "includeData": {
+                "type": "boolean",
+                "default": false,
+                "description": "Include raw intent data in response"
+              },
+              "cursor": {
+                "type": "string",
+                "description": "Pagination cursor from previous response's nextCursor"
+              },
+              "format": {
+                "type": "string",
+                "enum": [
+                  "json",
+                  "markdown"
+                ],
+                "default": "markdown",
+                "description": "Response format: 'json' for raw data or 'markdown' for formatted text"
+              }
+            },
+            "required": [
+              "inputToken",
+              "outputToken"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "openWorldHint": true
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "sodax_get_orderbook",
+          "description": "Get current orderbook entries showing pending/open intents",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "limit": {
+                "type": "number",
+                "minimum": 1,
+                "maximum": 100,
+                "default": 20,
+                "description": "Maximum number of orders to return (1-100)"
+              },
+              "format": {
+                "type": "string",
+                "enum": [
+                  "json",
+                  "markdown"
+                ],
+                "default": "markdown",
+                "description": "Response format: 'json' for raw data or 'markdown' for formatted text"
+              }
+            },
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "openWorldHint": true
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "sodax_get_money_market_assets",
+          "description": "List all assets available for lending and borrowing in the SODAX money market",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "chainId": {
+                "type": "string",
+                "description": "Filter by chain ID"
+              },
+              "format": {
+                "type": "string",
+                "enum": [
+                  "json",
+                  "markdown"
+                ],
+                "default": "markdown",
+                "description": "Response format: 'json' for raw data or 'markdown' for formatted text"
+              }
+            },
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "openWorldHint": true
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "sodax_get_user_position",
+          "description": "Get a user's lending and borrowing position in the money market",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "userAddress": {
+                "type": "string",
+                "description": "The wallet address to look up"
+              },
+              "chainId": {
+                "type": "string",
+                "description": "Filter by chain ID"
+              },
+              "format": {
+                "type": "string",
+                "enum": [
+                  "json",
+                  "markdown"
+                ],
+                "default": "markdown",
+                "description": "Response format: 'json' for raw data or 'markdown' for formatted text"
+              }
+            },
+            "required": [
+              "userAddress"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "openWorldHint": true
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "sodax_get_partners",
+          "description": "List all SODAX integration partners including wallets, DEXs, and other protocols",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "format": {
+                "type": "string",
+                "enum": [
+                  "json",
+                  "markdown"
+                ],
+                "default": "markdown",
+                "description": "Response format: 'json' for raw data or 'markdown' for formatted text"
+              }
+            },
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "openWorldHint": true
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "sodax_get_token_supply",
+          "description": "Get SODA token supply information including total, circulating, and burned amounts",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "format": {
+                "type": "string",
+                "enum": [
+                  "json",
+                  "markdown"
+                ],
+                "default": "markdown",
+                "description": "Response format: 'json' for raw data or 'markdown' for formatted text"
+              }
+            },
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "openWorldHint": true
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "sodax_refresh_cache",
+          "description": "Clear the cached API data to force fresh fetches on next requests",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {}
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": false,
+            "idempotentHint": true
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "docs_health",
+          "description": "Check SDK documentation availability. Call this first if docs tools seem unavailable.",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {}
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "openWorldHint": true
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "docs_refresh",
+          "description": "Reconnect to SDK documentation and refresh available tools. Use if docs seem stale or unavailable.",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {}
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": false,
+            "idempotentHint": true
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "docs_list_tools",
+          "description": "List all SDK documentation tools with parameters. Essential for discovering what's available.",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {}
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "openWorldHint": true
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "docs_searchDocumentation",
+          "description": "[SDK Docs] Search across the documentation to find relevant information, code examples, API references, and guides. Use this tool when you need to answer questions about Docs, find specific documentation, understand how features work, or locate implementation details. The search returns contextual content with titles and direct links to the documentation pages.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "query": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "query"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "openWorldHint": true
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        }
+      ],
+      "tool_count": 15,
+      "tool_names": [
+        "sodax_get_supported_chains",
+        "sodax_get_swap_tokens",
+        "sodax_get_transaction",
+        "sodax_get_user_transactions",
+        "sodax_get_volume",
+        "sodax_get_orderbook",
+        "sodax_get_money_market_assets",
+        "sodax_get_user_position",
+        "sodax_get_partners",
+        "sodax_get_token_supply",
+        "sodax_refresh_cache",
+        "docs_health",
+        "docs_refresh",
+        "docs_list_tools",
+        "docs_searchDocumentation"
+      ]
+    },
+    "server_info_crawled": {
+      "id": 60,
+      "name": "io.github.gosodax/builders-mcp",
+      "author": "",
+      "overview": "io.github.gosodax/builders-mcp - Development Tools MCP server with 15 tools.",
+      "repository_url": "",
+      "homepage": "https://builders.sodax.com/mcp",
+      "remote_or_local": "Remote",
+      "license": "",
+      "usage_count": "800",
+      "success_rate": "100%",
+      "tags": [
+        "development-tools"
+      ],
+      "categories": [
+        "development tools"
+      ],
+      "tools_count": 15,
+      "tools": [
+        {
+          "name": "sodax_get_supported_chains",
+          "description": "List all blockchain networks supported by SODAX for cross-chain swaps and DeFi operations",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "format": {
+                "type": "string",
+                "enum": [
+                  "json",
+                  "markdown"
+                ],
+                "default": "markdown",
+                "description": "Response format: 'json' for raw data or 'markdown' for formatted text"
+              }
+            },
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "openWorldHint": true
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "sodax_get_swap_tokens",
+          "description": "Get available tokens for swapping on SODAX, optionally filtered by chain",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "chainId": {
+                "type": "string",
+                "description": "Filter tokens by chain ID (e.g., 'base', 'ethereum', 'icon')"
+              },
+              "format": {
+                "type": "string",
+                "enum": [
+                  "json",
+                  "markdown"
+                ],
+                "default": "markdown",
+                "description": "Response format: 'json' for raw data or 'markdown' for formatted text"
+              }
+            },
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "openWorldHint": true
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "sodax_get_transaction",
+          "description": "Look up a specific transaction by its hash to see status, amounts, and details",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "txHash": {
+                "type": "string",
+                "description": "The transaction hash to look up (e.g., '0x...')"
+              },
+              "format": {
+                "type": "string",
+                "enum": [
+                  "json",
+                  "markdown"
+                ],
+                "default": "markdown",
+                "description": "Response format: 'json' for raw data or 'markdown' for formatted text"
+              }
+            },
+            "required": [
+              "txHash"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "openWorldHint": true
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "sodax_get_user_transactions",
+          "description": "Get intent/transaction history for a specific wallet address",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "userAddress": {
+                "type": "string",
+                "description": "The wallet address to look up (e.g., '0x...')"
+              },
+              "limit": {
+                "type": "number",
+                "minimum": 1,
+                "maximum": 100,
+                "default": 20,
+                "description": "Maximum number of transactions to return (1-100)"
+              },
+              "offset": {
+                "type": "number",
+                "minimum": 0,
+                "default": 0,
+                "description": "Number of transactions to skip for pagination"
+              },
+              "format": {
+                "type": "string",
+                "enum": [
+                  "json",
+                  "markdown"
+                ],
+                "default": "markdown",
+                "description": "Response format: 'json' for raw data or 'markdown' for formatted text"
+              }
+            },
+            "required": [
+              "userAddress"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "openWorldHint": true
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "sodax_get_volume",
+          "description": "Get solver volume data showing filled intents with filtering and pagination. Requires inputToken and outputToken. Optional filters: chain, solver, block range OR time range (don't mix both).",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "inputToken": {
+                "type": "string",
+                "description": "REQUIRED: Input token address"
+              },
+              "outputToken": {
+                "type": "string",
+                "description": "REQUIRED: Output token address"
+              },
+              "chainId": {
+                "type": "number",
+                "description": "Filter by chain ID (e.g., 146 for Sonic)"
+              },
+              "solver": {
+                "type": "string",
+                "description": "Filter by solver address (0x0...0 for default solver)"
+              },
+              "fromBlock": {
+                "type": "number",
+                "description": "Start block number (don't mix with since/until)"
+              },
+              "toBlock": {
+                "type": "number",
+                "description": "End block number (don't mix with since/until)"
+              },
+              "since": {
+                "type": "string",
+                "description": "Start time ISO format (don't mix with fromBlock/toBlock)"
+              },
+              "until": {
+                "type": "string",
+                "description": "End time ISO format (don't mix with fromBlock/toBlock)"
+              },
+              "sort": {
+                "type": "string",
+                "enum": [
+                  "asc",
+                  "desc"
+                ],
+                "default": "desc",
+                "description": "Sort order by block number"
+              },
+              "limit": {
+                "type": "number",
+                "minimum": 1,
+                "maximum": 100,
+                "default": 50,
+                "description": "Maximum number of filled intents to return (1-100)"
+              },
+              "includeData": {
+                "type": "boolean",
+                "default": false,
+                "description": "Include raw intent data in response"
+              },
+              "cursor": {
+                "type": "string",
+                "description": "Pagination cursor from previous response's nextCursor"
+              },
+              "format": {
+                "type": "string",
+                "enum": [
+                  "json",
+                  "markdown"
+                ],
+                "default": "markdown",
+                "description": "Response format: 'json' for raw data or 'markdown' for formatted text"
+              }
+            },
+            "required": [
+              "inputToken",
+              "outputToken"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "openWorldHint": true
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "sodax_get_orderbook",
+          "description": "Get current orderbook entries showing pending/open intents",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "limit": {
+                "type": "number",
+                "minimum": 1,
+                "maximum": 100,
+                "default": 20,
+                "description": "Maximum number of orders to return (1-100)"
+              },
+              "format": {
+                "type": "string",
+                "enum": [
+                  "json",
+                  "markdown"
+                ],
+                "default": "markdown",
+                "description": "Response format: 'json' for raw data or 'markdown' for formatted text"
+              }
+            },
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "openWorldHint": true
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "sodax_get_money_market_assets",
+          "description": "List all assets available for lending and borrowing in the SODAX money market",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "chainId": {
+                "type": "string",
+                "description": "Filter by chain ID"
+              },
+              "format": {
+                "type": "string",
+                "enum": [
+                  "json",
+                  "markdown"
+                ],
+                "default": "markdown",
+                "description": "Response format: 'json' for raw data or 'markdown' for formatted text"
+              }
+            },
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "openWorldHint": true
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "sodax_get_user_position",
+          "description": "Get a user's lending and borrowing position in the money market",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "userAddress": {
+                "type": "string",
+                "description": "The wallet address to look up"
+              },
+              "chainId": {
+                "type": "string",
+                "description": "Filter by chain ID"
+              },
+              "format": {
+                "type": "string",
+                "enum": [
+                  "json",
+                  "markdown"
+                ],
+                "default": "markdown",
+                "description": "Response format: 'json' for raw data or 'markdown' for formatted text"
+              }
+            },
+            "required": [
+              "userAddress"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "openWorldHint": true
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "sodax_get_partners",
+          "description": "List all SODAX integration partners including wallets, DEXs, and other protocols",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "format": {
+                "type": "string",
+                "enum": [
+                  "json",
+                  "markdown"
+                ],
+                "default": "markdown",
+                "description": "Response format: 'json' for raw data or 'markdown' for formatted text"
+              }
+            },
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "openWorldHint": true
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "sodax_get_token_supply",
+          "description": "Get SODA token supply information including total, circulating, and burned amounts",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "format": {
+                "type": "string",
+                "enum": [
+                  "json",
+                  "markdown"
+                ],
+                "default": "markdown",
+                "description": "Response format: 'json' for raw data or 'markdown' for formatted text"
+              }
+            },
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "openWorldHint": true
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "sodax_refresh_cache",
+          "description": "Clear the cached API data to force fresh fetches on next requests",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {}
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": false,
+            "idempotentHint": true
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "docs_health",
+          "description": "Check SDK documentation availability. Call this first if docs tools seem unavailable.",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {}
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "openWorldHint": true
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "docs_refresh",
+          "description": "Reconnect to SDK documentation and refresh available tools. Use if docs seem stale or unavailable.",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {}
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": false,
+            "idempotentHint": true
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "docs_list_tools",
+          "description": "List all SDK documentation tools with parameters. Essential for discovering what's available.",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {}
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "openWorldHint": true
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "docs_searchDocumentation",
+          "description": "[SDK Docs] Search across the documentation to find relevant information, code examples, API references, and guides. Use this tool when you need to answer questions about Docs, find specific documentation, understand how features work, or locate implementation details. The search returns contextual content with titles and direct links to the documentation pages.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "query": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "query"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "openWorldHint": true
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        }
+      ],
+      "python_sdk_url": "https://builders.sodax.com/mcp",
+      "python_sdk_config": "{\"debug\": false}"
+    },
+    "source_filename": "0060.iogithubgosodaxbuilders-mcp_labeled.json",
+    "processed_timestamp": 1772871481,
+    "processing_mode": "gateway",
+    "rank": 61
+  }
+}

@@ -1,0 +1,400 @@
+{
+  "labels": {
+    "analysis": "The MCP Server \"Shepherd Bible API\" provides 5 tools for development tools tasks.",
+    "reasoning": "Primary label \"Development Tools\" assigned based on tool names and descriptions.",
+    "primary_label": "Development Tools",
+    "secondary_labels": [
+      "API Integration",
+      "DevOps",
+      "Web Search & Research",
+      "Data Analysis & Processing"
+    ],
+    "custom_label": "Development Tools - Shepherd Bible API",
+    "is_connected": true,
+    "is_remote_tool_valid": true,
+    "featured_server": true
+  },
+  "metadata": {
+    "server_id": 154,
+    "server_name": "Shepherd Bible API",
+    "rank_by_usage": 155,
+    "usage_count": "100",
+    "original_file": "tools.json#154",
+    "mode": "gateway",
+    "timestamp": 1772871481,
+    "remote_server_response": {
+      "url": "https://bible.simplecohortllc.com/mcp",
+      "is_success": true,
+      "error": null,
+      "tools": [
+        {
+          "name": "bible_translations",
+          "title": "List Bible translations",
+          "description": "Return all available Bible translations.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {},
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "bible_books",
+          "title": "List books in a translation",
+          "description": "Return books and chapter counts for a translation.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "translation": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "required": [
+              "translation"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "bible_chapter",
+          "title": "Fetch a chapter",
+          "description": "Return all verses, groupings, and red letter data for a chapter.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "translation": {
+                "type": "string",
+                "minLength": 1
+              },
+              "book": {
+                "type": "string",
+                "minLength": 1
+              },
+              "chapter": {
+                "type": "integer",
+                "exclusiveMinimum": 0
+              }
+            },
+            "required": [
+              "translation",
+              "book",
+              "chapter"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "bible_verse",
+          "title": "Fetch a verse",
+          "description": "Return a specific verse, with red letter data if available.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "translation": {
+                "type": "string",
+                "minLength": 1
+              },
+              "book": {
+                "type": "string",
+                "minLength": 1
+              },
+              "chapter": {
+                "type": "integer",
+                "exclusiveMinimum": 0
+              },
+              "verse": {
+                "type": "integer",
+                "exclusiveMinimum": 0
+              }
+            },
+            "required": [
+              "translation",
+              "book",
+              "chapter",
+              "verse"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "bible_search",
+          "title": "Search Bible verses",
+          "description": "Search for verses by keyword or exact match.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "q": {
+                "type": "string",
+                "minLength": 3,
+                "maxLength": 100
+              },
+              "page": {
+                "type": "integer",
+                "exclusiveMinimum": 0,
+                "default": 1
+              },
+              "type": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "q"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        }
+      ],
+      "tool_count": 5,
+      "tool_names": [
+        "bible_translations",
+        "bible_books",
+        "bible_chapter",
+        "bible_verse",
+        "bible_search"
+      ]
+    },
+    "server_info_crawled": {
+      "id": 154,
+      "name": "Shepherd Bible API",
+      "author": "",
+      "overview": "Shepherd Bible API - Development Tools MCP server with 5 tools.",
+      "repository_url": "",
+      "homepage": "https://bible.simplecohortllc.com/mcp",
+      "remote_or_local": "Remote",
+      "license": "",
+      "usage_count": "100",
+      "success_rate": "100%",
+      "tags": [
+        "development-tools"
+      ],
+      "categories": [
+        "development tools"
+      ],
+      "tools_count": 5,
+      "tools": [
+        {
+          "name": "bible_translations",
+          "title": "List Bible translations",
+          "description": "Return all available Bible translations.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {},
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "bible_books",
+          "title": "List books in a translation",
+          "description": "Return books and chapter counts for a translation.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "translation": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "required": [
+              "translation"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "bible_chapter",
+          "title": "Fetch a chapter",
+          "description": "Return all verses, groupings, and red letter data for a chapter.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "translation": {
+                "type": "string",
+                "minLength": 1
+              },
+              "book": {
+                "type": "string",
+                "minLength": 1
+              },
+              "chapter": {
+                "type": "integer",
+                "exclusiveMinimum": 0
+              }
+            },
+            "required": [
+              "translation",
+              "book",
+              "chapter"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "bible_verse",
+          "title": "Fetch a verse",
+          "description": "Return a specific verse, with red letter data if available.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "translation": {
+                "type": "string",
+                "minLength": 1
+              },
+              "book": {
+                "type": "string",
+                "minLength": 1
+              },
+              "chapter": {
+                "type": "integer",
+                "exclusiveMinimum": 0
+              },
+              "verse": {
+                "type": "integer",
+                "exclusiveMinimum": 0
+              }
+            },
+            "required": [
+              "translation",
+              "book",
+              "chapter",
+              "verse"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "bible_search",
+          "title": "Search Bible verses",
+          "description": "Search for verses by keyword or exact match.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "q": {
+                "type": "string",
+                "minLength": 3,
+                "maxLength": 100
+              },
+              "page": {
+                "type": "integer",
+                "exclusiveMinimum": 0,
+                "default": 1
+              },
+              "type": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "q"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        }
+      ],
+      "python_sdk_url": "https://bible.simplecohortllc.com/mcp",
+      "python_sdk_config": "{\"debug\": false}"
+    },
+    "source_filename": "0154.Shepherd-Bible-API_labeled.json",
+    "processed_timestamp": 1772871481,
+    "processing_mode": "gateway",
+    "rank": 155
+  }
+}

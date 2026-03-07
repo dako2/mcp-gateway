@@ -1,0 +1,899 @@
+{
+  "labels": {
+    "analysis": "The MCP Server \"Indicate MCP\" provides 5 tools for data analysis & processing tasks.",
+    "reasoning": "Primary label \"Data Analysis & Processing\" assigned based on tool names and descriptions.",
+    "primary_label": "Data Analysis & Processing",
+    "secondary_labels": [
+      "Database Operations",
+      "Web Search & Research",
+      "Development Tools"
+    ],
+    "custom_label": "Data Analysis & Processing - Indicate MCP",
+    "is_connected": true,
+    "is_remote_tool_valid": true,
+    "featured_server": true
+  },
+  "metadata": {
+    "server_id": 147,
+    "server_name": "Indicate MCP",
+    "rank_by_usage": 148,
+    "usage_count": "100",
+    "original_file": "tools.json#147",
+    "mode": "gateway",
+    "timestamp": 1772871481,
+    "remote_server_response": {
+      "url": "https://industry.indicate-data.io/agent/semantic/mcp",
+      "is_success": true,
+      "error": null,
+      "tools": [
+        {
+          "name": "list_tenants",
+          "description": "Step 1 — List all tenants the authenticated user can access. (In the Indicate system a tenant is called a 'space'.)\nReturns each tenant's 'id' and 'displayName'.\n→ Pass the chosen tenant 'id' as 'tenant_id' to every subsequent tool call.",
+          "inputSchema": {
+            "properties": {},
+            "title": "list_tenantsArguments",
+            "type": "object"
+          },
+          "outputSchema": {
+            "$defs": {
+              "TenantSummary": {
+                "description": "Lightweight projection of a tenant (space).",
+                "properties": {
+                  "id": {
+                    "title": "Id",
+                    "type": "string"
+                  },
+                  "displayName": {
+                    "title": "Displayname",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "id",
+                  "displayName"
+                ],
+                "title": "TenantSummary",
+                "type": "object"
+              }
+            },
+            "description": "Response wrapper for listing tenants.",
+            "properties": {
+              "tenants": {
+                "items": {
+                  "$ref": "#/$defs/TenantSummary"
+                },
+                "title": "Tenants",
+                "type": "array"
+              }
+            },
+            "title": "TenantsResponse",
+            "type": "object"
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "list_data_sources",
+          "description": "Step 2 — List data sources available within a tenant. (In the Indicate system a data source is called a 'data product'.)\nExamples: Google Analytics, Facebook Ads, vioma, Booking.com.\nReturns each data source's 'id', 'displayName', and 'bounded_context'.\n→ Pass the chosen 'id' as 'data_source_id' and 'bounded_context' to list_metrics.",
+          "inputSchema": {
+            "properties": {
+              "tenant_id": {
+                "description": "Tenant ID obtained from list_tenants.",
+                "title": "Tenant Id",
+                "type": "string"
+              }
+            },
+            "required": [
+              "tenant_id"
+            ],
+            "title": "list_data_sourcesArguments",
+            "type": "object"
+          },
+          "outputSchema": {
+            "$defs": {
+              "DataSourceSummary": {
+                "description": "Lightweight projection of a data source (data product).",
+                "properties": {
+                  "id": {
+                    "title": "Id",
+                    "type": "string"
+                  },
+                  "boundedContext": {
+                    "title": "Boundedcontext",
+                    "type": "string"
+                  },
+                  "displayName": {
+                    "title": "Displayname",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "id",
+                  "boundedContext",
+                  "displayName"
+                ],
+                "title": "DataSourceSummary",
+                "type": "object"
+              }
+            },
+            "description": "Response wrapper for listing data sources.",
+            "properties": {
+              "data_sources": {
+                "items": {
+                  "$ref": "#/$defs/DataSourceSummary"
+                },
+                "title": "Data Sources",
+                "type": "array"
+              }
+            },
+            "title": "DataSourcesResponse",
+            "type": "object"
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "list_metrics",
+          "description": "Step 3 — List metrics and their dimensions for a data source. (In the Indicate system a metric is called a 'data cube'.)\nEach metric includes its dimensions; every dimension has a 'scope' that is either 'perspective' or 'group'.\n→ Pass the metric 'id' as 'metric_id' to query_metric.\n→ Pass dimension IDs with scope='perspective' as 'perspective_dimension_id' and scope='group' as 'group_dimension_id' to query_metric.",
+          "inputSchema": {
+            "properties": {
+              "tenant_id": {
+                "description": "Tenant ID from list_tenants.",
+                "title": "Tenant Id",
+                "type": "string"
+              },
+              "data_source_id": {
+                "description": "Data source ID from list_data_sources.",
+                "title": "Data Source Id",
+                "type": "string"
+              },
+              "bounded_context": {
+                "description": "Bounded context ID from the 'bounded_context' field in the list_data_sources response.",
+                "title": "Bounded Context",
+                "type": "string"
+              }
+            },
+            "required": [
+              "tenant_id",
+              "data_source_id",
+              "bounded_context"
+            ],
+            "title": "list_metricsArguments",
+            "type": "object"
+          },
+          "outputSchema": {
+            "$defs": {
+              "Dimension": {
+                "description": "A dimension that can be applied to a metric.",
+                "properties": {
+                  "id": {
+                    "title": "Id",
+                    "type": "string"
+                  },
+                  "boundedContext": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "title": "Boundedcontext"
+                  },
+                  "displayName": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": "",
+                    "title": "Displayname"
+                  },
+                  "scope": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": "",
+                    "description": "Either 'perspective' or 'group'. Pass perspective-scoped dimension IDs as perspective_dimension_id and group-scoped dimension IDs as group_dimension_id when calling query_metric.",
+                    "title": "Scope"
+                  },
+                  "semanticType": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": "",
+                    "title": "Semantictype"
+                  }
+                },
+                "required": [
+                  "id"
+                ],
+                "title": "Dimension",
+                "type": "object"
+              },
+              "Metric": {
+                "description": "A single metric definition (mapped from API 'data cube').",
+                "properties": {
+                  "id": {
+                    "title": "Id",
+                    "type": "string"
+                  },
+                  "boundedContext": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "title": "Boundedcontext"
+                  },
+                  "displayName": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": "",
+                    "title": "Displayname"
+                  }
+                },
+                "required": [
+                  "id"
+                ],
+                "title": "Metric",
+                "type": "object"
+              },
+              "MetricWithDimensions": {
+                "description": "A metric together with its available dimensions.",
+                "properties": {
+                  "metric": {
+                    "$ref": "#/$defs/Metric"
+                  },
+                  "dimensions": {
+                    "items": {
+                      "$ref": "#/$defs/Dimension"
+                    },
+                    "title": "Dimensions",
+                    "type": "array"
+                  }
+                },
+                "required": [
+                  "metric",
+                  "dimensions"
+                ],
+                "title": "MetricWithDimensions",
+                "type": "object"
+              }
+            },
+            "description": "Response wrapper for listing metrics with dimensions.",
+            "properties": {
+              "metrics": {
+                "items": {
+                  "$ref": "#/$defs/MetricWithDimensions"
+                },
+                "title": "Metrics",
+                "type": "array"
+              }
+            },
+            "title": "MetricsResponse",
+            "type": "object"
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "query_metric",
+          "description": "Step 4 — Fetch time-series data for a specific metric. All IDs are obtained from the previous steps in the workflow.\nOptionally filter by date range (YYYY-MM-DD). Returns daily-granularity data points.",
+          "inputSchema": {
+            "properties": {
+              "tenant_id": {
+                "description": "Tenant ID from list_tenants.",
+                "title": "Tenant Id",
+                "type": "string"
+              },
+              "data_source_id": {
+                "description": "Data source ID from list_data_sources.",
+                "title": "Data Source Id",
+                "type": "string"
+              },
+              "metric_id": {
+                "description": "Metric ID from list_metrics (the 'id' field of a metric object).",
+                "title": "Metric Id",
+                "type": "string"
+              },
+              "perspective_dimension_id": {
+                "description": "Dimension ID where scope='perspective', from the dimensions array in the list_metrics response.",
+                "title": "Perspective Dimension Id",
+                "type": "string"
+              },
+              "group_dimension_id": {
+                "description": "Dimension ID where scope='group', from the dimensions array in the list_metrics response.",
+                "title": "Group Dimension Id",
+                "type": "string"
+              },
+              "start_date": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "description": "Start date in YYYY-MM-DD format. Optional — omit for all available data.",
+                "title": "Start Date"
+              },
+              "end_date": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "description": "End date in YYYY-MM-DD format. Optional — omit for all available data.",
+                "title": "End Date"
+              },
+              "bounded_context": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "description": "Bounded context ID (for reference / logging).",
+                "title": "Bounded Context"
+              }
+            },
+            "required": [
+              "tenant_id",
+              "data_source_id",
+              "metric_id",
+              "perspective_dimension_id",
+              "group_dimension_id"
+            ],
+            "title": "query_metricArguments",
+            "type": "object"
+          },
+          "outputSchema": {
+            "properties": {
+              "result": {
+                "title": "Result",
+                "type": "string"
+              }
+            },
+            "required": [
+              "result"
+            ],
+            "title": "query_metricOutput",
+            "type": "object"
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "health_check",
+          "description": "Check connectivity to the Indicate backend. Returns 'ok' if the server can reach the API, or an error message otherwise. Does not require authentication.",
+          "inputSchema": {
+            "properties": {},
+            "title": "health_checkArguments",
+            "type": "object"
+          },
+          "outputSchema": {
+            "properties": {
+              "result": {
+                "title": "Result",
+                "type": "string"
+              }
+            },
+            "required": [
+              "result"
+            ],
+            "title": "health_checkOutput",
+            "type": "object"
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        }
+      ],
+      "tool_count": 5,
+      "tool_names": [
+        "list_tenants",
+        "list_data_sources",
+        "list_metrics",
+        "query_metric",
+        "health_check"
+      ]
+    },
+    "server_info_crawled": {
+      "id": 147,
+      "name": "Indicate MCP",
+      "author": "",
+      "overview": "Indicate MCP - Data Analysis & Processing MCP server with 5 tools.",
+      "repository_url": "",
+      "homepage": "https://industry.indicate-data.io/agent/semantic/mcp",
+      "remote_or_local": "Remote",
+      "license": "",
+      "usage_count": "100",
+      "success_rate": "100%",
+      "tags": [
+        "data-analysis-processing"
+      ],
+      "categories": [
+        "data analysis & processing"
+      ],
+      "tools_count": 5,
+      "tools": [
+        {
+          "name": "list_tenants",
+          "description": "Step 1 — List all tenants the authenticated user can access. (In the Indicate system a tenant is called a 'space'.)\nReturns each tenant's 'id' and 'displayName'.\n→ Pass the chosen tenant 'id' as 'tenant_id' to every subsequent tool call.",
+          "inputSchema": {
+            "properties": {},
+            "title": "list_tenantsArguments",
+            "type": "object"
+          },
+          "outputSchema": {
+            "$defs": {
+              "TenantSummary": {
+                "description": "Lightweight projection of a tenant (space).",
+                "properties": {
+                  "id": {
+                    "title": "Id",
+                    "type": "string"
+                  },
+                  "displayName": {
+                    "title": "Displayname",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "id",
+                  "displayName"
+                ],
+                "title": "TenantSummary",
+                "type": "object"
+              }
+            },
+            "description": "Response wrapper for listing tenants.",
+            "properties": {
+              "tenants": {
+                "items": {
+                  "$ref": "#/$defs/TenantSummary"
+                },
+                "title": "Tenants",
+                "type": "array"
+              }
+            },
+            "title": "TenantsResponse",
+            "type": "object"
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "list_data_sources",
+          "description": "Step 2 — List data sources available within a tenant. (In the Indicate system a data source is called a 'data product'.)\nExamples: Google Analytics, Facebook Ads, vioma, Booking.com.\nReturns each data source's 'id', 'displayName', and 'bounded_context'.\n→ Pass the chosen 'id' as 'data_source_id' and 'bounded_context' to list_metrics.",
+          "inputSchema": {
+            "properties": {
+              "tenant_id": {
+                "description": "Tenant ID obtained from list_tenants.",
+                "title": "Tenant Id",
+                "type": "string"
+              }
+            },
+            "required": [
+              "tenant_id"
+            ],
+            "title": "list_data_sourcesArguments",
+            "type": "object"
+          },
+          "outputSchema": {
+            "$defs": {
+              "DataSourceSummary": {
+                "description": "Lightweight projection of a data source (data product).",
+                "properties": {
+                  "id": {
+                    "title": "Id",
+                    "type": "string"
+                  },
+                  "boundedContext": {
+                    "title": "Boundedcontext",
+                    "type": "string"
+                  },
+                  "displayName": {
+                    "title": "Displayname",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "id",
+                  "boundedContext",
+                  "displayName"
+                ],
+                "title": "DataSourceSummary",
+                "type": "object"
+              }
+            },
+            "description": "Response wrapper for listing data sources.",
+            "properties": {
+              "data_sources": {
+                "items": {
+                  "$ref": "#/$defs/DataSourceSummary"
+                },
+                "title": "Data Sources",
+                "type": "array"
+              }
+            },
+            "title": "DataSourcesResponse",
+            "type": "object"
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "list_metrics",
+          "description": "Step 3 — List metrics and their dimensions for a data source. (In the Indicate system a metric is called a 'data cube'.)\nEach metric includes its dimensions; every dimension has a 'scope' that is either 'perspective' or 'group'.\n→ Pass the metric 'id' as 'metric_id' to query_metric.\n→ Pass dimension IDs with scope='perspective' as 'perspective_dimension_id' and scope='group' as 'group_dimension_id' to query_metric.",
+          "inputSchema": {
+            "properties": {
+              "tenant_id": {
+                "description": "Tenant ID from list_tenants.",
+                "title": "Tenant Id",
+                "type": "string"
+              },
+              "data_source_id": {
+                "description": "Data source ID from list_data_sources.",
+                "title": "Data Source Id",
+                "type": "string"
+              },
+              "bounded_context": {
+                "description": "Bounded context ID from the 'bounded_context' field in the list_data_sources response.",
+                "title": "Bounded Context",
+                "type": "string"
+              }
+            },
+            "required": [
+              "tenant_id",
+              "data_source_id",
+              "bounded_context"
+            ],
+            "title": "list_metricsArguments",
+            "type": "object"
+          },
+          "outputSchema": {
+            "$defs": {
+              "Dimension": {
+                "description": "A dimension that can be applied to a metric.",
+                "properties": {
+                  "id": {
+                    "title": "Id",
+                    "type": "string"
+                  },
+                  "boundedContext": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "title": "Boundedcontext"
+                  },
+                  "displayName": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": "",
+                    "title": "Displayname"
+                  },
+                  "scope": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": "",
+                    "description": "Either 'perspective' or 'group'. Pass perspective-scoped dimension IDs as perspective_dimension_id and group-scoped dimension IDs as group_dimension_id when calling query_metric.",
+                    "title": "Scope"
+                  },
+                  "semanticType": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": "",
+                    "title": "Semantictype"
+                  }
+                },
+                "required": [
+                  "id"
+                ],
+                "title": "Dimension",
+                "type": "object"
+              },
+              "Metric": {
+                "description": "A single metric definition (mapped from API 'data cube').",
+                "properties": {
+                  "id": {
+                    "title": "Id",
+                    "type": "string"
+                  },
+                  "boundedContext": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "title": "Boundedcontext"
+                  },
+                  "displayName": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": "",
+                    "title": "Displayname"
+                  }
+                },
+                "required": [
+                  "id"
+                ],
+                "title": "Metric",
+                "type": "object"
+              },
+              "MetricWithDimensions": {
+                "description": "A metric together with its available dimensions.",
+                "properties": {
+                  "metric": {
+                    "$ref": "#/$defs/Metric"
+                  },
+                  "dimensions": {
+                    "items": {
+                      "$ref": "#/$defs/Dimension"
+                    },
+                    "title": "Dimensions",
+                    "type": "array"
+                  }
+                },
+                "required": [
+                  "metric",
+                  "dimensions"
+                ],
+                "title": "MetricWithDimensions",
+                "type": "object"
+              }
+            },
+            "description": "Response wrapper for listing metrics with dimensions.",
+            "properties": {
+              "metrics": {
+                "items": {
+                  "$ref": "#/$defs/MetricWithDimensions"
+                },
+                "title": "Metrics",
+                "type": "array"
+              }
+            },
+            "title": "MetricsResponse",
+            "type": "object"
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "query_metric",
+          "description": "Step 4 — Fetch time-series data for a specific metric. All IDs are obtained from the previous steps in the workflow.\nOptionally filter by date range (YYYY-MM-DD). Returns daily-granularity data points.",
+          "inputSchema": {
+            "properties": {
+              "tenant_id": {
+                "description": "Tenant ID from list_tenants.",
+                "title": "Tenant Id",
+                "type": "string"
+              },
+              "data_source_id": {
+                "description": "Data source ID from list_data_sources.",
+                "title": "Data Source Id",
+                "type": "string"
+              },
+              "metric_id": {
+                "description": "Metric ID from list_metrics (the 'id' field of a metric object).",
+                "title": "Metric Id",
+                "type": "string"
+              },
+              "perspective_dimension_id": {
+                "description": "Dimension ID where scope='perspective', from the dimensions array in the list_metrics response.",
+                "title": "Perspective Dimension Id",
+                "type": "string"
+              },
+              "group_dimension_id": {
+                "description": "Dimension ID where scope='group', from the dimensions array in the list_metrics response.",
+                "title": "Group Dimension Id",
+                "type": "string"
+              },
+              "start_date": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "description": "Start date in YYYY-MM-DD format. Optional — omit for all available data.",
+                "title": "Start Date"
+              },
+              "end_date": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "description": "End date in YYYY-MM-DD format. Optional — omit for all available data.",
+                "title": "End Date"
+              },
+              "bounded_context": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "description": "Bounded context ID (for reference / logging).",
+                "title": "Bounded Context"
+              }
+            },
+            "required": [
+              "tenant_id",
+              "data_source_id",
+              "metric_id",
+              "perspective_dimension_id",
+              "group_dimension_id"
+            ],
+            "title": "query_metricArguments",
+            "type": "object"
+          },
+          "outputSchema": {
+            "properties": {
+              "result": {
+                "title": "Result",
+                "type": "string"
+              }
+            },
+            "required": [
+              "result"
+            ],
+            "title": "query_metricOutput",
+            "type": "object"
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "health_check",
+          "description": "Check connectivity to the Indicate backend. Returns 'ok' if the server can reach the API, or an error message otherwise. Does not require authentication.",
+          "inputSchema": {
+            "properties": {},
+            "title": "health_checkArguments",
+            "type": "object"
+          },
+          "outputSchema": {
+            "properties": {
+              "result": {
+                "title": "Result",
+                "type": "string"
+              }
+            },
+            "required": [
+              "result"
+            ],
+            "title": "health_checkOutput",
+            "type": "object"
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        }
+      ],
+      "python_sdk_url": "https://industry.indicate-data.io/agent/semantic/mcp",
+      "python_sdk_config": "{\"debug\": false}"
+    },
+    "source_filename": "0147.Indicate-MCP_labeled.json",
+    "processed_timestamp": 1772871481,
+    "processing_mode": "gateway",
+    "rank": 148
+  }
+}

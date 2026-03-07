@@ -1,0 +1,363 @@
+{
+  "labels": {
+    "analysis": "The MCP Server \"Renzo MCP Server\" provides 9 tools for cryptocurrency & blockchain tasks.",
+    "reasoning": "Primary label \"Cryptocurrency & Blockchain\" assigned based on tool names and descriptions.",
+    "primary_label": "Cryptocurrency & Blockchain",
+    "secondary_labels": [
+      "Financial Services",
+      "Development Tools",
+      "Data Analysis & Processing"
+    ],
+    "custom_label": "Cryptocurrency & Blockchain - Renzo MCP Server",
+    "is_connected": true,
+    "is_remote_tool_valid": true,
+    "featured_server": true
+  },
+  "metadata": {
+    "server_id": 91,
+    "server_name": "Renzo MCP Server",
+    "rank_by_usage": 92,
+    "usage_count": "180",
+    "original_file": "tools.json#91",
+    "mode": "gateway",
+    "timestamp": 1772871481,
+    "remote_server_response": {
+      "url": "https://mcp.renzoprotocol.com/mcp",
+      "is_success": true,
+      "error": null,
+      "tools": [
+        {
+          "name": "get_supported_chains",
+          "description": "List all blockchain networks Renzo operates on, including supported products per chain",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {}
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "get_protocol_stats",
+          "description": "Get aggregate Renzo protocol statistics: total TVL, per-ecosystem TVL, APRs, and supported chain count",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {}
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "get_ezeth_info",
+          "description": "Get current ezETH metrics: APR, total supply, TVL, price, and exchange rate",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {}
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "get_operators",
+          "description": "List Renzo protocol operators, optionally filtered by product (ezETH, pzETH, ezSOL, etc.)",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {
+              "product": {
+                "type": "string"
+              }
+            }
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "get_vaults",
+          "description": "List Renzo vaults with current TVL and APR, optionally filtered by ecosystem (eigenlayer, symbiotic, jito, generic)",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {
+              "ecosystem": {
+                "type": "string"
+              }
+            }
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "get_vault_details",
+          "description": "Get detailed information for a specific Renzo vault, including daily TVL snapshots, operators, and strategy parameters (current LTV, target LTV, max LTV) for reserve vaults. Pass a vault address or symbol (e.g. 'ezREZ', 'ezCompETH1').",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {
+              "vaultId": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "vaultId"
+            ]
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "get_vault_strategy",
+          "description": "Get the strategy and AVS (Actively Validated Service) allocations for an EigenLayer vault. Shows where the vault's capital is deployed, how much is staked in each AVS, and which operators run the infrastructure. Supports ezETH, ezEIGEN, and ezREZ.",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {
+              "vaultId": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "vaultId"
+            ]
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "get_token_balances",
+          "description": "Get a user's Renzo token balances on Ethereum mainnet (ezETH, pzETH, vault LP tokens) with ETH and USD values. Pass an Ethereum address.",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {
+              "address": {
+                "type": "string",
+                "pattern": "^0x[0-9a-fA-F]{40}$"
+              }
+            },
+            "required": [
+              "address"
+            ]
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "get_withdrawal_requests",
+          "description": "Get a user's pending ezETH withdrawal requests from the WithdrawQueue contract, including amounts, claimability status, and time remaining. Pass an Ethereum address.",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {
+              "address": {
+                "type": "string",
+                "pattern": "^0x[0-9a-fA-F]{40}$"
+              }
+            },
+            "required": [
+              "address"
+            ]
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        }
+      ],
+      "tool_count": 9,
+      "tool_names": [
+        "get_supported_chains",
+        "get_protocol_stats",
+        "get_ezeth_info",
+        "get_operators",
+        "get_vaults",
+        "get_vault_details",
+        "get_vault_strategy",
+        "get_token_balances",
+        "get_withdrawal_requests"
+      ]
+    },
+    "server_info_crawled": {
+      "id": 91,
+      "name": "Renzo MCP Server",
+      "author": "",
+      "overview": "Renzo MCP Server - Cryptocurrency & Blockchain MCP server with 9 tools.",
+      "repository_url": "",
+      "homepage": "https://mcp.renzoprotocol.com/mcp",
+      "remote_or_local": "Remote",
+      "license": "",
+      "usage_count": "180",
+      "success_rate": "100%",
+      "tags": [
+        "cryptocurrency-blockchain"
+      ],
+      "categories": [
+        "cryptocurrency & blockchain"
+      ],
+      "tools_count": 9,
+      "tools": [
+        {
+          "name": "get_supported_chains",
+          "description": "List all blockchain networks Renzo operates on, including supported products per chain",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {}
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "get_protocol_stats",
+          "description": "Get aggregate Renzo protocol statistics: total TVL, per-ecosystem TVL, APRs, and supported chain count",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {}
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "get_ezeth_info",
+          "description": "Get current ezETH metrics: APR, total supply, TVL, price, and exchange rate",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {}
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "get_operators",
+          "description": "List Renzo protocol operators, optionally filtered by product (ezETH, pzETH, ezSOL, etc.)",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {
+              "product": {
+                "type": "string"
+              }
+            }
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "get_vaults",
+          "description": "List Renzo vaults with current TVL and APR, optionally filtered by ecosystem (eigenlayer, symbiotic, jito, generic)",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {
+              "ecosystem": {
+                "type": "string"
+              }
+            }
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "get_vault_details",
+          "description": "Get detailed information for a specific Renzo vault, including daily TVL snapshots, operators, and strategy parameters (current LTV, target LTV, max LTV) for reserve vaults. Pass a vault address or symbol (e.g. 'ezREZ', 'ezCompETH1').",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {
+              "vaultId": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "vaultId"
+            ]
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "get_vault_strategy",
+          "description": "Get the strategy and AVS (Actively Validated Service) allocations for an EigenLayer vault. Shows where the vault's capital is deployed, how much is staked in each AVS, and which operators run the infrastructure. Supports ezETH, ezEIGEN, and ezREZ.",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {
+              "vaultId": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "vaultId"
+            ]
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "get_token_balances",
+          "description": "Get a user's Renzo token balances on Ethereum mainnet (ezETH, pzETH, vault LP tokens) with ETH and USD values. Pass an Ethereum address.",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {
+              "address": {
+                "type": "string",
+                "pattern": "^0x[0-9a-fA-F]{40}$"
+              }
+            },
+            "required": [
+              "address"
+            ]
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "get_withdrawal_requests",
+          "description": "Get a user's pending ezETH withdrawal requests from the WithdrawQueue contract, including amounts, claimability status, and time remaining. Pass an Ethereum address.",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {
+              "address": {
+                "type": "string",
+                "pattern": "^0x[0-9a-fA-F]{40}$"
+              }
+            },
+            "required": [
+              "address"
+            ]
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        }
+      ],
+      "python_sdk_url": "https://mcp.renzoprotocol.com/mcp",
+      "python_sdk_config": "{\"debug\": false}"
+    },
+    "source_filename": "0091.Renzo-MCP-Server_labeled.json",
+    "processed_timestamp": 1772871481,
+    "processing_mode": "gateway",
+    "rank": 92
+  }
+}

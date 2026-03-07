@@ -1,0 +1,1280 @@
+{
+  "labels": {
+    "analysis": "The MCP Server \"io.github.cesco345/capital-equipment\" provides 19 tools for web search & research tasks.",
+    "reasoning": "Primary label \"Web Search & Research\" assigned based on tool names and descriptions.",
+    "primary_label": "Web Search & Research",
+    "secondary_labels": [
+      "Browser Automation",
+      "Data Analysis & Processing",
+      "Development Tools",
+      "AI/ML Tools"
+    ],
+    "custom_label": "Web Search & Research - io.github.cesco345/capital-equipment",
+    "is_connected": true,
+    "is_remote_tool_valid": true,
+    "featured_server": true
+  },
+  "metadata": {
+    "server_id": 46,
+    "server_name": "io.github.cesco345/capital-equipment",
+    "rank_by_usage": 47,
+    "usage_count": "1,080",
+    "original_file": "tools.json#46",
+    "mode": "gateway",
+    "timestamp": 1772871481,
+    "remote_server_response": {
+      "url": "https://us-central1-capital-equipment-dev.cloudfunctions.net/mcpServer/mcp",
+      "is_success": true,
+      "error": null,
+      "tools": [
+        {
+          "name": "search_equipment",
+          "description": "Search for scientific instruments and lab equipment using normalized categories and location.",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {
+              "query": {
+                "description": "Equipment type, name, manufacturer, or keyword",
+                "type": "string"
+              },
+              "location": {
+                "description": "City, state, zip, or institution name",
+                "type": "string"
+              },
+              "category": {
+                "description": "Primary normalized category",
+                "type": "string",
+                "enum": [
+                  "Analytical Chemistry",
+                  "Biological Sciences",
+                  "Imaging & Microscopy",
+                  "Material Science",
+                  "Medical & Clinical",
+                  "Electronics & Physics",
+                  "General Lab Equipment",
+                  "Industrial & Manufacturing",
+                  "Computing & Data"
+                ]
+              },
+              "subcategory": {
+                "description": "Specific subcategory (e.g., 'Mass Spectrometry' or 'Confocal Microscopy')",
+                "type": "string"
+              },
+              "radius_miles": {
+                "default": 50,
+                "type": "number",
+                "minimum": 1,
+                "maximum": 500
+              },
+              "status": {
+                "default": "all",
+                "type": "string",
+                "enum": [
+                  "available",
+                  "in-use",
+                  "maintenance",
+                  "all"
+                ]
+              },
+              "limit": {
+                "default": 10,
+                "type": "number",
+                "minimum": 1,
+                "maximum": 50
+              }
+            }
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "get_facility",
+          "description": "Get detailed info about a STEM core facility including equipment, hours, contact, and access policies.",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {
+              "facility_id": {
+                "description": "Specific facility ID",
+                "type": "string"
+              },
+              "institution": {
+                "description": "Institution name",
+                "type": "string"
+              },
+              "facility_type": {
+                "description": "E.g., 'imaging core', 'genomics core'",
+                "type": "string"
+              },
+              "location": {
+                "description": "City/state",
+                "type": "string"
+              },
+              "limit": {
+                "default": 5,
+                "type": "number",
+                "minimum": 1,
+                "maximum": 20
+              }
+            }
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "check_compatibility",
+          "description": "Validate if two or more scientific instruments or components are compatible for a specific workflow.",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {
+              "equipment_ids": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "List of equipment IDs to check"
+              },
+              "workflow_type": {
+                "description": "Optional workflow context (e.g., 'sample prep')",
+                "type": "string"
+              }
+            },
+            "required": [
+              "equipment_ids"
+            ]
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "search_marketplace",
+          "description": "Search the marketplace for surplus, used, and refurbished scientific equipment for purchase.",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {
+              "query": {
+                "type": "string",
+                "description": "Equipment type or keyword"
+              },
+              "min_price": {
+                "description": "Minimum price in USD",
+                "type": "number"
+              },
+              "max_price": {
+                "description": "Maximum price in USD",
+                "type": "number"
+              },
+              "condition": {
+                "type": "string",
+                "enum": [
+                  "new",
+                  "used",
+                  "refurbished",
+                  "as-is"
+                ]
+              },
+              "source": {
+                "type": "string",
+                "enum": [
+                  "labx",
+                  "surplus-solutions",
+                  "institutional"
+                ]
+              },
+              "limit": {
+                "default": 10,
+                "type": "number",
+                "minimum": 1,
+                "maximum": 50
+              }
+            },
+            "required": [
+              "query"
+            ]
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "find_researchers",
+          "description": "Search for researchers by expertise, institution, or equipment experience.",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {
+              "expertise": {
+                "description": "Research area or expertise",
+                "type": "string"
+              },
+              "institution": {
+                "description": "Institution name",
+                "type": "string"
+              },
+              "equipment_experience": {
+                "description": "Equipment type they've used",
+                "type": "string"
+              },
+              "location": {
+                "type": "string"
+              },
+              "role": {
+                "type": "string",
+                "enum": [
+                  "researcher",
+                  "pi",
+                  "postdoc",
+                  "student",
+                  "technician",
+                  "investor"
+                ]
+              },
+              "limit": {
+                "default": 10,
+                "type": "number",
+                "minimum": 1,
+                "maximum": 20
+              }
+            }
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "search_papers",
+          "description": "Search for research papers linked to specific equipment types, instruments, or techniques.",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {
+              "query": {
+                "description": "Search query",
+                "type": "string"
+              },
+              "equipment_type": {
+                "description": "Equipment type mentioned in papers",
+                "type": "string"
+              },
+              "equipment_id": {
+                "description": "Specific equipment ID",
+                "type": "string"
+              },
+              "field": {
+                "description": "Research field",
+                "type": "string"
+              },
+              "year_from": {
+                "description": "Published after this year",
+                "type": "number"
+              },
+              "year_to": {
+                "description": "Published before this year",
+                "type": "number"
+              },
+              "limit": {
+                "default": 10,
+                "type": "number",
+                "minimum": 1,
+                "maximum": 30
+              }
+            }
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "check_availability",
+          "description": "Check real-time availability and booking windows for a specific piece of equipment.",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {
+              "equipment_id": {
+                "type": "string",
+                "description": "Equipment ID to check"
+              },
+              "start_date": {
+                "description": "Start date (ISO format)",
+                "type": "string"
+              },
+              "end_date": {
+                "description": "End date (ISO format)",
+                "type": "string"
+              }
+            },
+            "required": [
+              "equipment_id"
+            ]
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "get_pricing",
+          "description": "Get pricing information for equipment including hourly rates, institutional pricing, and purchase options.",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {
+              "equipment_id": {
+                "type": "string",
+                "description": "Equipment ID"
+              },
+              "pricing_type": {
+                "default": "all",
+                "type": "string",
+                "enum": [
+                  "hourly",
+                  "purchase",
+                  "depreciation",
+                  "all"
+                ]
+              }
+            },
+            "required": [
+              "equipment_id"
+            ]
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "get_compliance_info",
+          "description": "Check IP, safety, and compliance requirements for cross-institutional equipment use.",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {
+              "equipment_id": {
+                "type": "string",
+                "description": "Equipment ID"
+              },
+              "source_institution": {
+                "type": "string",
+                "description": "Your institution"
+              },
+              "target_institution": {
+                "type": "string",
+                "description": "Facility's institution"
+              },
+              "use_type": {
+                "default": "academic-research",
+                "type": "string",
+                "enum": [
+                  "academic-research",
+                  "clinical",
+                  "industry-collaboration",
+                  "government-funded",
+                  "international",
+                  "other"
+                ]
+              }
+            },
+            "required": [
+              "equipment_id",
+              "source_institution",
+              "target_institution"
+            ]
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "create_service_request",
+          "description": "Submit a structured service request for equipment access, training, consultation, or analysis.",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {
+              "service_type": {
+                "type": "string",
+                "enum": [
+                  "equipment-access",
+                  "training",
+                  "consultation",
+                  "sample-analysis",
+                  "method-development",
+                  "equipment-purchase",
+                  "maintenance-repair",
+                  "other"
+                ]
+              },
+              "equipment_id": {
+                "description": "Equipment ID if applicable",
+                "type": "string"
+              },
+              "facility_id": {
+                "description": "Facility ID",
+                "type": "string"
+              },
+              "title": {
+                "type": "string",
+                "description": "Brief title for the request"
+              },
+              "description": {
+                "type": "string",
+                "description": "Detailed description of what you need"
+              },
+              "urgency": {
+                "default": "medium",
+                "type": "string",
+                "enum": [
+                  "low",
+                  "medium",
+                  "high",
+                  "critical"
+                ]
+              },
+              "budget_range": {
+                "description": "Budget range, e.g., '$500-$2000'",
+                "type": "string"
+              },
+              "timeline": {
+                "description": "Desired timeline, e.g., 'within 2 weeks'",
+                "type": "string"
+              }
+            },
+            "required": [
+              "service_type",
+              "title",
+              "description"
+            ]
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "request_booking",
+          "description": "Initiate a booking request for a specific piece of equipment. Returns a confirmation or deep link to complete the booking.",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {
+              "equipment_id": {
+                "type": "string",
+                "description": "Equipment ID to book"
+              },
+              "start_time": {
+                "type": "string",
+                "description": "Desired start time (ISO format)"
+              },
+              "end_time": {
+                "type": "string",
+                "description": "Desired end time (ISO format)"
+              },
+              "purpose": {
+                "type": "string",
+                "description": "Brief description of intended use"
+              },
+              "project_id": {
+                "description": "Associated project ID",
+                "type": "string"
+              }
+            },
+            "required": [
+              "equipment_id",
+              "start_time",
+              "end_time",
+              "purpose"
+            ]
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "connect_account",
+          "description": "Connect your Capital Equipment platform account to enable personalized results, booking, and service requests. The user will need to open a link in their browser to sign in.",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {
+              "callback_url": {
+                "description": "Optional redirect URL after authentication",
+                "type": "string"
+              }
+            }
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "check_connection",
+          "description": "Check if your Capital Equipment account is connected and retrieve your profile info.",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {}
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "disconnect_account",
+          "description": "Disconnect your Capital Equipment account from this AI agent.",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {}
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "get_equipment_categories",
+          "description": "Get the complete equipment taxonomy with parent/child hierarchy, live counts, and average freshness scores per category. Use this to discover what types of equipment are available.",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {}
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "get_equipment_by_category",
+          "description": "List equipment in a specific category ID. Returns up to 50 items sorted by freshness score.",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {
+              "categoryId": {
+                "type": "string",
+                "description": "The ID of the category (e.g., 'imaging_microscopy')"
+              }
+            },
+            "required": [
+              "categoryId"
+            ]
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "get_platform_stats",
+          "description": "Get current platform statistics including equipment counts, category breakdown, and data quality metrics (freshness scores).",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {}
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "get_facility_profile",
+          "description": "Get detailed profile for a STEM facility by its ID.",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {
+              "facilityId": {
+                "type": "string",
+                "description": "The document ID of the facility"
+              }
+            },
+            "required": [
+              "facilityId"
+            ]
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "get_equipment_comparison",
+          "description": "Get a side-by-side comparison matrix for equipment in a specific category. Returns structured specs, pricing, availability status, freshness scores, and linked paper counts. Use this when a researcher needs to decide between instruments.",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {
+              "categoryId": {
+                "type": "string",
+                "description": "Category ID from get_equipment_categories (e.g. 'imaging_microscopy', 'mass_spectrometry')"
+              },
+              "limit": {
+                "default": 10,
+                "description": "Max instruments to compare (default 10)",
+                "type": "number",
+                "minimum": 2,
+                "maximum": 20
+              }
+            },
+            "required": [
+              "categoryId"
+            ]
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        }
+      ],
+      "tool_count": 19,
+      "tool_names": [
+        "search_equipment",
+        "get_facility",
+        "check_compatibility",
+        "search_marketplace",
+        "find_researchers",
+        "search_papers",
+        "check_availability",
+        "get_pricing",
+        "get_compliance_info",
+        "create_service_request",
+        "request_booking",
+        "connect_account",
+        "check_connection",
+        "disconnect_account",
+        "get_equipment_categories",
+        "get_equipment_by_category",
+        "get_platform_stats",
+        "get_facility_profile",
+        "get_equipment_comparison"
+      ]
+    },
+    "server_info_crawled": {
+      "id": 46,
+      "name": "io.github.cesco345/capital-equipment",
+      "author": "",
+      "overview": "io.github.cesco345/capital-equipment - Web Search & Research MCP server with 19 tools.",
+      "repository_url": "",
+      "homepage": "https://us-central1-capital-equipment-dev.cloudfunctions.net/mcpServer/mcp",
+      "remote_or_local": "Remote",
+      "license": "",
+      "usage_count": "1,080",
+      "success_rate": "100%",
+      "tags": [
+        "web-search-research"
+      ],
+      "categories": [
+        "web search & research"
+      ],
+      "tools_count": 19,
+      "tools": [
+        {
+          "name": "search_equipment",
+          "description": "Search for scientific instruments and lab equipment using normalized categories and location.",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {
+              "query": {
+                "description": "Equipment type, name, manufacturer, or keyword",
+                "type": "string"
+              },
+              "location": {
+                "description": "City, state, zip, or institution name",
+                "type": "string"
+              },
+              "category": {
+                "description": "Primary normalized category",
+                "type": "string",
+                "enum": [
+                  "Analytical Chemistry",
+                  "Biological Sciences",
+                  "Imaging & Microscopy",
+                  "Material Science",
+                  "Medical & Clinical",
+                  "Electronics & Physics",
+                  "General Lab Equipment",
+                  "Industrial & Manufacturing",
+                  "Computing & Data"
+                ]
+              },
+              "subcategory": {
+                "description": "Specific subcategory (e.g., 'Mass Spectrometry' or 'Confocal Microscopy')",
+                "type": "string"
+              },
+              "radius_miles": {
+                "default": 50,
+                "type": "number",
+                "minimum": 1,
+                "maximum": 500
+              },
+              "status": {
+                "default": "all",
+                "type": "string",
+                "enum": [
+                  "available",
+                  "in-use",
+                  "maintenance",
+                  "all"
+                ]
+              },
+              "limit": {
+                "default": 10,
+                "type": "number",
+                "minimum": 1,
+                "maximum": 50
+              }
+            }
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "get_facility",
+          "description": "Get detailed info about a STEM core facility including equipment, hours, contact, and access policies.",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {
+              "facility_id": {
+                "description": "Specific facility ID",
+                "type": "string"
+              },
+              "institution": {
+                "description": "Institution name",
+                "type": "string"
+              },
+              "facility_type": {
+                "description": "E.g., 'imaging core', 'genomics core'",
+                "type": "string"
+              },
+              "location": {
+                "description": "City/state",
+                "type": "string"
+              },
+              "limit": {
+                "default": 5,
+                "type": "number",
+                "minimum": 1,
+                "maximum": 20
+              }
+            }
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "check_compatibility",
+          "description": "Validate if two or more scientific instruments or components are compatible for a specific workflow.",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {
+              "equipment_ids": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "List of equipment IDs to check"
+              },
+              "workflow_type": {
+                "description": "Optional workflow context (e.g., 'sample prep')",
+                "type": "string"
+              }
+            },
+            "required": [
+              "equipment_ids"
+            ]
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "search_marketplace",
+          "description": "Search the marketplace for surplus, used, and refurbished scientific equipment for purchase.",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {
+              "query": {
+                "type": "string",
+                "description": "Equipment type or keyword"
+              },
+              "min_price": {
+                "description": "Minimum price in USD",
+                "type": "number"
+              },
+              "max_price": {
+                "description": "Maximum price in USD",
+                "type": "number"
+              },
+              "condition": {
+                "type": "string",
+                "enum": [
+                  "new",
+                  "used",
+                  "refurbished",
+                  "as-is"
+                ]
+              },
+              "source": {
+                "type": "string",
+                "enum": [
+                  "labx",
+                  "surplus-solutions",
+                  "institutional"
+                ]
+              },
+              "limit": {
+                "default": 10,
+                "type": "number",
+                "minimum": 1,
+                "maximum": 50
+              }
+            },
+            "required": [
+              "query"
+            ]
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "find_researchers",
+          "description": "Search for researchers by expertise, institution, or equipment experience.",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {
+              "expertise": {
+                "description": "Research area or expertise",
+                "type": "string"
+              },
+              "institution": {
+                "description": "Institution name",
+                "type": "string"
+              },
+              "equipment_experience": {
+                "description": "Equipment type they've used",
+                "type": "string"
+              },
+              "location": {
+                "type": "string"
+              },
+              "role": {
+                "type": "string",
+                "enum": [
+                  "researcher",
+                  "pi",
+                  "postdoc",
+                  "student",
+                  "technician",
+                  "investor"
+                ]
+              },
+              "limit": {
+                "default": 10,
+                "type": "number",
+                "minimum": 1,
+                "maximum": 20
+              }
+            }
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "search_papers",
+          "description": "Search for research papers linked to specific equipment types, instruments, or techniques.",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {
+              "query": {
+                "description": "Search query",
+                "type": "string"
+              },
+              "equipment_type": {
+                "description": "Equipment type mentioned in papers",
+                "type": "string"
+              },
+              "equipment_id": {
+                "description": "Specific equipment ID",
+                "type": "string"
+              },
+              "field": {
+                "description": "Research field",
+                "type": "string"
+              },
+              "year_from": {
+                "description": "Published after this year",
+                "type": "number"
+              },
+              "year_to": {
+                "description": "Published before this year",
+                "type": "number"
+              },
+              "limit": {
+                "default": 10,
+                "type": "number",
+                "minimum": 1,
+                "maximum": 30
+              }
+            }
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "check_availability",
+          "description": "Check real-time availability and booking windows for a specific piece of equipment.",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {
+              "equipment_id": {
+                "type": "string",
+                "description": "Equipment ID to check"
+              },
+              "start_date": {
+                "description": "Start date (ISO format)",
+                "type": "string"
+              },
+              "end_date": {
+                "description": "End date (ISO format)",
+                "type": "string"
+              }
+            },
+            "required": [
+              "equipment_id"
+            ]
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "get_pricing",
+          "description": "Get pricing information for equipment including hourly rates, institutional pricing, and purchase options.",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {
+              "equipment_id": {
+                "type": "string",
+                "description": "Equipment ID"
+              },
+              "pricing_type": {
+                "default": "all",
+                "type": "string",
+                "enum": [
+                  "hourly",
+                  "purchase",
+                  "depreciation",
+                  "all"
+                ]
+              }
+            },
+            "required": [
+              "equipment_id"
+            ]
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "get_compliance_info",
+          "description": "Check IP, safety, and compliance requirements for cross-institutional equipment use.",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {
+              "equipment_id": {
+                "type": "string",
+                "description": "Equipment ID"
+              },
+              "source_institution": {
+                "type": "string",
+                "description": "Your institution"
+              },
+              "target_institution": {
+                "type": "string",
+                "description": "Facility's institution"
+              },
+              "use_type": {
+                "default": "academic-research",
+                "type": "string",
+                "enum": [
+                  "academic-research",
+                  "clinical",
+                  "industry-collaboration",
+                  "government-funded",
+                  "international",
+                  "other"
+                ]
+              }
+            },
+            "required": [
+              "equipment_id",
+              "source_institution",
+              "target_institution"
+            ]
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "create_service_request",
+          "description": "Submit a structured service request for equipment access, training, consultation, or analysis.",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {
+              "service_type": {
+                "type": "string",
+                "enum": [
+                  "equipment-access",
+                  "training",
+                  "consultation",
+                  "sample-analysis",
+                  "method-development",
+                  "equipment-purchase",
+                  "maintenance-repair",
+                  "other"
+                ]
+              },
+              "equipment_id": {
+                "description": "Equipment ID if applicable",
+                "type": "string"
+              },
+              "facility_id": {
+                "description": "Facility ID",
+                "type": "string"
+              },
+              "title": {
+                "type": "string",
+                "description": "Brief title for the request"
+              },
+              "description": {
+                "type": "string",
+                "description": "Detailed description of what you need"
+              },
+              "urgency": {
+                "default": "medium",
+                "type": "string",
+                "enum": [
+                  "low",
+                  "medium",
+                  "high",
+                  "critical"
+                ]
+              },
+              "budget_range": {
+                "description": "Budget range, e.g., '$500-$2000'",
+                "type": "string"
+              },
+              "timeline": {
+                "description": "Desired timeline, e.g., 'within 2 weeks'",
+                "type": "string"
+              }
+            },
+            "required": [
+              "service_type",
+              "title",
+              "description"
+            ]
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "request_booking",
+          "description": "Initiate a booking request for a specific piece of equipment. Returns a confirmation or deep link to complete the booking.",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {
+              "equipment_id": {
+                "type": "string",
+                "description": "Equipment ID to book"
+              },
+              "start_time": {
+                "type": "string",
+                "description": "Desired start time (ISO format)"
+              },
+              "end_time": {
+                "type": "string",
+                "description": "Desired end time (ISO format)"
+              },
+              "purpose": {
+                "type": "string",
+                "description": "Brief description of intended use"
+              },
+              "project_id": {
+                "description": "Associated project ID",
+                "type": "string"
+              }
+            },
+            "required": [
+              "equipment_id",
+              "start_time",
+              "end_time",
+              "purpose"
+            ]
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "connect_account",
+          "description": "Connect your Capital Equipment platform account to enable personalized results, booking, and service requests. The user will need to open a link in their browser to sign in.",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {
+              "callback_url": {
+                "description": "Optional redirect URL after authentication",
+                "type": "string"
+              }
+            }
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "check_connection",
+          "description": "Check if your Capital Equipment account is connected and retrieve your profile info.",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {}
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "disconnect_account",
+          "description": "Disconnect your Capital Equipment account from this AI agent.",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {}
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "get_equipment_categories",
+          "description": "Get the complete equipment taxonomy with parent/child hierarchy, live counts, and average freshness scores per category. Use this to discover what types of equipment are available.",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {}
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "get_equipment_by_category",
+          "description": "List equipment in a specific category ID. Returns up to 50 items sorted by freshness score.",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {
+              "categoryId": {
+                "type": "string",
+                "description": "The ID of the category (e.g., 'imaging_microscopy')"
+              }
+            },
+            "required": [
+              "categoryId"
+            ]
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "get_platform_stats",
+          "description": "Get current platform statistics including equipment counts, category breakdown, and data quality metrics (freshness scores).",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {}
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "get_facility_profile",
+          "description": "Get detailed profile for a STEM facility by its ID.",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {
+              "facilityId": {
+                "type": "string",
+                "description": "The document ID of the facility"
+              }
+            },
+            "required": [
+              "facilityId"
+            ]
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "get_equipment_comparison",
+          "description": "Get a side-by-side comparison matrix for equipment in a specific category. Returns structured specs, pricing, availability status, freshness scores, and linked paper counts. Use this when a researcher needs to decide between instruments.",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {
+              "categoryId": {
+                "type": "string",
+                "description": "Category ID from get_equipment_categories (e.g. 'imaging_microscopy', 'mass_spectrometry')"
+              },
+              "limit": {
+                "default": 10,
+                "description": "Max instruments to compare (default 10)",
+                "type": "number",
+                "minimum": 2,
+                "maximum": 20
+              }
+            },
+            "required": [
+              "categoryId"
+            ]
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        }
+      ],
+      "python_sdk_url": "https://us-central1-capital-equipment-dev.cloudfunctions.net/mcpServer/mcp",
+      "python_sdk_config": "{\"debug\": false}"
+    },
+    "source_filename": "0046.iogithubcesco345capital-equipment_labeled.json",
+    "processed_timestamp": 1772871481,
+    "processing_mode": "gateway",
+    "rank": 47
+  }
+}

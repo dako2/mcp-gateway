@@ -1,0 +1,1166 @@
+{
+  "labels": {
+    "analysis": "The MCP Server \"Tushare_Finance_Data\" provides 18 tools for financial services tasks.",
+    "reasoning": "Primary label \"Financial Services\" assigned based on tool names and descriptions.",
+    "primary_label": "Financial Services",
+    "secondary_labels": [
+      "E-Commerce",
+      "Development Tools",
+      "Web Search & Research"
+    ],
+    "custom_label": "Financial Services - Tushare_Finance_Data",
+    "is_connected": true,
+    "is_remote_tool_valid": true,
+    "featured_server": true
+  },
+  "metadata": {
+    "server_id": 49,
+    "server_name": "Tushare_Finance_Data",
+    "rank_by_usage": 50,
+    "usage_count": "1,020",
+    "original_file": "tools.json#49",
+    "mode": "gateway",
+    "timestamp": 1772871481,
+    "remote_server_response": {
+      "url": "https://server.smithery.ai/@guangxiangdebizi/FinanceMCP/mcp",
+      "is_success": true,
+      "error": null,
+      "tools": [
+        {
+          "name": "current_timestamp",
+          "description": "获取当前东八区（中国时区）的时间戳，包括年月日时分秒信息",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "format": {
+                "type": "string",
+                "description": "时间格式，可选值：datetime(完整日期时间，默认)、date(仅日期)、time(仅时间)、timestamp(Unix时间戳)、readable(可读格式)"
+              }
+            }
+          }
+        },
+        {
+          "name": "finance_news",
+          "description": "通过真正的搜索API获取主流财经媒体的新闻内容，支持单个或多个关键词智能搜索",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "query": {
+                "type": "string",
+                "description": "搜索关键词，支持单个关键词如'药明康德'、'腾讯'，或多个关键词用空格分开如'美联储 加息'、'比特币 监管'等。系统会智能搜索相关历史新闻"
+              }
+            },
+            "required": [
+              "query"
+            ]
+          }
+        },
+        {
+          "name": "stock_data",
+          "description": "获取指定股票/加密资产的历史行情数据，支持A股、美股、港股、外汇、期货、基金、债券逆回购、可转债、期权、加密货币(通过CoinGecko)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "code": {
+                "type": "string",
+                "description": "股票/合约/加密资产代码。股票示例：'000001.SZ'(A股平安银行)、'AAPL'(美股)、'00700.HK'(港股)、'USDCNH.FXCM'(外汇)、'CU2501.SHF'(期货)、'159919.SZ'(基金)、'204001.SH'(逆回购)、'113008.SH'(可转债)、'10001313.SH'(期权)。加密示例(需 market_type=crypto，Binance)：推荐标准写法 'BTCUSDT'、'ETHUSDT'、'USDCUSDT'、'FDUSDUSDT' 等；也兼容 'BTC-USDT' 或 'BTC/USDT'。常见报价币：USDT、USDC、FDUSD、TUSD、BUSD、BTC、ETH。注意：若写 'USD' 会自动映射为 'USDT'（如 'BTC-USD' → 'BTCUSDT'）。"
+              },
+              "market_type": {
+                "type": "string",
+                "description": "市场类型（必需），可选值：cn(A股),us(美股),hk(港股),fx(外汇),futures(期货),fund(基金),repo(债券逆回购),convertible_bond(可转债),options(期权),crypto(加密货币/CoinGecko)"
+              },
+              "start_date": {
+                "type": "string",
+                "description": "起始日期，格式为YYYYMMDD，如'20230101'"
+              },
+              "end_date": {
+                "type": "string",
+                "description": "结束日期，格式为YYYYMMDD，如'20230131'"
+              },
+              "indicators": {
+                "type": "string",
+                "description": "需要计算的技术指标，多个指标用空格分隔。支持的指标：macd(MACD指标)、rsi(相对强弱指标)、kdj(随机指标)、boll(布林带)、ma(均线指标)。必须明确指定参数，例如：'macd(12,26,9) rsi(14) kdj(9,3,3) boll(20,2) ma(10)'"
+              }
+            },
+            "required": [
+              "code",
+              "market_type"
+            ]
+          }
+        },
+        {
+          "name": "stock_data_minutes",
+          "description": "获取分钟K线数据：A股/加密。支持1MIN/5MIN/15MIN/30MIN/60MIN，时间范围需提供起止日期时间",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "code": {
+                "type": "string",
+                "description": "股票代码，如 '600519.SH' 或 '000001.SZ'"
+              },
+              "market_type": {
+                "type": "string",
+                "description": "市场类型：'cn'（A股，Tushare）、'crypto'（加密币对，Binance）"
+              },
+              "start_datetime": {
+                "type": "string",
+                "description": "起始日期时间，支持 'YYYYMMDDHHmmss' 或 'YYYY-MM-DD HH:mm:ss'"
+              },
+              "end_datetime": {
+                "type": "string",
+                "description": "结束日期时间，支持 'YYYYMMDDHHmmss' 或 'YYYY-MM-DD HH:mm:ss'"
+              },
+              "freq": {
+                "type": "string",
+                "description": "分钟周期：1MIN/5MIN/15MIN/30MIN/60MIN（不区分大小写）"
+              }
+            },
+            "required": [
+              "code",
+              "market_type",
+              "start_datetime",
+              "end_datetime",
+              "freq"
+            ]
+          }
+        },
+        {
+          "name": "index_data",
+          "description": "获取指定股票指数的数据，例如上证指数、深证成指等",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "code": {
+                "type": "string",
+                "description": "指数代码，如'000001.SH'表示上证指数，'399001.SZ'表示深证成指"
+              },
+              "start_date": {
+                "type": "string",
+                "description": "起始日期，格式为YYYYMMDD，如'20230101'"
+              },
+              "end_date": {
+                "type": "string",
+                "description": "结束日期，格式为YYYYMMDD，如'20230131'"
+              }
+            },
+            "required": [
+              "code",
+              "start_date",
+              "end_date"
+            ]
+          }
+        },
+        {
+          "name": "macro_econ",
+          "description": "获取宏观经济数据，包括Shibor利率、LPR利率、GDP、CPI、PPI、货币供应量、PMI、社融数据、Shibor报价、Libor、Hibor等",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "indicator": {
+                "type": "string",
+                "description": "指标类型，可选值：shibor(上海银行间同业拆放利率)、lpr(贷款市场报价利率)、gdp(国内生产总值)、cpi(居民消费价格指数)、ppi(工业生产者出厂价格指数)、cn_m(货币供应量)、cn_pmi(采购经理指数)、cn_sf(社会融资规模)、shibor_quote(Shibor银行报价数据)、libor(伦敦银行间同业拆借利率)、hibor(香港银行间同业拆借利率)"
+              },
+              "start_date": {
+                "type": "string",
+                "description": "起始日期，格式为YYYYMMDD，如'20230101'"
+              },
+              "end_date": {
+                "type": "string",
+                "description": "结束日期，格式为YYYYMMDD，如'20230131'"
+              }
+            },
+            "required": [
+              "indicator",
+              "start_date",
+              "end_date"
+            ]
+          }
+        },
+        {
+          "name": "company_performance",
+          "description": "获取上市公司综合表现数据，包括业绩预告、业绩快报、财务指标、分红送股、主营业务构成、股东变动数据、管理层信息、公司基本信息、资产负债表、现金流量表、利润表等完整财务报表数据",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "ts_code": {
+                "type": "string",
+                "description": "股票代码，如'000001.SZ'表示平安银行，'600000.SH'表示浦发银行"
+              },
+              "data_type": {
+                "type": "string",
+                "description": "数据类型：forecast(业绩预告)、express(业绩快报)、indicators(财务指标-包含盈利能力/偿债能力/营运能力/成长能力等全面指标)、dividend(分红送股)、mainbz(主营业务构成-融合产品/地区/行业)、holder_number(股东人数)、holder_trade(股东增减持)、managers(管理层信息)、audit(财务审计意见)、company_basic(公司基本信息)、balance_basic(核心资产负债表)、balance_all(完整资产负债表)、cashflow_basic(基础现金流)、cashflow_all(完整现金流)、income_basic(核心利润表)、income_all(完整利润表)、share_float(限售股解禁)、repurchase(股票回购)、top10_holders(前十大股东)、top10_floatholders(前十大流通股东)、pledge_stat(股权质押统计)、pledge_detail(股权质押明细)",
+                "enum": [
+                  "forecast",
+                  "express",
+                  "indicators",
+                  "dividend",
+                  "mainbz",
+                  "holder_number",
+                  "holder_trade",
+                  "managers",
+                  "audit",
+                  "company_basic",
+                  "balance_basic",
+                  "balance_all",
+                  "cashflow_basic",
+                  "cashflow_all",
+                  "income_basic",
+                  "income_all",
+                  "share_float",
+                  "repurchase",
+                  "top10_holders",
+                  "top10_floatholders",
+                  "pledge_stat",
+                  "pledge_detail"
+                ]
+              },
+              "start_date": {
+                "type": "string",
+                "description": "起始日期，格式为YYYYMMDD，如'20230101'"
+              },
+              "end_date": {
+                "type": "string",
+                "description": "结束日期，格式为YYYYMMDD，如'20231231'"
+              },
+              "period": {
+                "type": "string",
+                "description": "特定报告期，格式为YYYYMMDD，如'20231231'表示2023年年报。指定此参数时将忽略start_date和end_date"
+              }
+            },
+            "required": [
+              "ts_code",
+              "data_type",
+              "start_date",
+              "end_date"
+            ]
+          }
+        },
+        {
+          "name": "fund_data",
+          "description": "获取公募基金全面数据，包括基金列表、基金经理、基金净值、基金分红、基金持仓等数据。",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "ts_code": {
+                "type": "string",
+                "description": "基金代码，如'150018.SZ'表示银华深证100分级，'001753.OF'表示场外基金。注意：查询基金列表(basic)时必须提供此参数"
+              },
+              "data_type": {
+                "type": "string",
+                "description": "数据类型，可选值：basic(基金列表)、manager(基金经理)、nav(基金净值)、dividend(基金分红)、portfolio(基金持仓)、all(全部数据)",
+                "enum": [
+                  "basic",
+                  "manager",
+                  "nav",
+                  "dividend",
+                  "portfolio",
+                  "all"
+                ]
+              },
+              "start_date": {
+                "type": "string",
+                "description": "起始日期，格式为YYYYMMDD，如'20230101'。重要：对于基金持仓(portfolio)数据和基金净值(nav)数据，如果不指定时间参数，将返回所有历史数据，可能数据量很大。建议指定时间范围或使用period参数"
+              },
+              "end_date": {
+                "type": "string",
+                "description": "结束日期，格式为YYYYMMDD，如'20231231'。配合start_date使用可限制数据范围"
+              },
+              "period": {
+                "type": "string",
+                "description": "特定报告期，格式为YYYYMMDD。例如：'20231231'表示2023年年报，'20240630'表示2024年中报，'20220630'表示2022年三季报，'20240331'表示2024年一季报。指定此参数时将忽略start_date和end_date"
+              }
+            },
+            "required": [
+              "data_type",
+              "ts_code"
+            ]
+          }
+        },
+        {
+          "name": "fund_manager_by_name",
+          "description": "根据基金经理姓名查询基金经理详细信息，包括管理的基金列表、个人背景、任职经历等",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "基金经理姓名，如'张凯'、'刘彦春'等"
+              },
+              "ann_date": {
+                "type": "string",
+                "description": "公告日期，格式为YYYYMMDD，如'20230101'。用于限制查询的公告日期"
+              }
+            },
+            "required": [
+              "name"
+            ]
+          }
+        },
+        {
+          "name": "convertible_bond",
+          "description": "获取可转债非行情数据，支持两种查询方式：1)使用issue类型按时间范围查询可转债发行数据；2)使用info类型按代码查询可转债详细信息",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "ts_code": {
+                "type": "string",
+                "description": "可转债代码，如'110001.SH'表示国电转债，'128001.SZ'表示平安转债。配合info类型使用可查询详细信息"
+              },
+              "data_type": {
+                "type": "string",
+                "description": "数据类型，可选值：issue(可转债发行数据)、info(可转债详细信息，通过代码查询)",
+                "enum": [
+                  "issue",
+                  "info"
+                ]
+              },
+              "start_date": {
+                "type": "string",
+                "description": "起始日期，格式为YYYYMMDD，如'20230101'。用于查询发行数据的公告日期范围"
+              },
+              "end_date": {
+                "type": "string",
+                "description": "结束日期，格式为YYYYMMDD，如'20230131'。用于查询发行数据的公告日期范围"
+              }
+            },
+            "required": [
+              "data_type"
+            ]
+          }
+        },
+        {
+          "name": "block_trade",
+          "description": "获取大宗交易数据，包括成交价格、成交量、买卖双方营业部等详细信息",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "code": {
+                "type": "string",
+                "description": "股票代码（可选），如'000001.SZ'表示平安银行。不填写则查询全市场大宗交易"
+              },
+              "start_date": {
+                "type": "string",
+                "description": "起始日期，格式为YYYYMMDD，如'20230101'"
+              },
+              "end_date": {
+                "type": "string",
+                "description": "结束日期，格式为YYYYMMDD，如'20231231'"
+              }
+            },
+            "required": [
+              "start_date",
+              "end_date"
+            ]
+          }
+        },
+        {
+          "name": "money_flow",
+          "description": "获取个股、大盘和板块资金流向数据，包括主力资金、超大单、大单、中单、小单的净流入净额和净占比数据",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "query_type": {
+                "type": "string",
+                "description": "查询类型：stock=个股，market=大盘，sector=板块。默认根据ts_code自动判断"
+              },
+              "ts_code": {
+                "type": "string",
+                "description": "股票代码或板块代码。个股如'000001.SZ'，板块如'BK0447'(东财板块代码)。不填写则查询大盘资金流向"
+              },
+              "start_date": {
+                "type": "string",
+                "description": "起始日期，格式为YYYYMMDD，如'20240901'"
+              },
+              "end_date": {
+                "type": "string",
+                "description": "结束日期，格式为YYYYMMDD，如'20240930'"
+              },
+              "content_type": {
+                "type": "string",
+                "description": "板块资金类型，仅在查询板块时有效。可选：行业、概念、地域"
+              },
+              "trade_date": {
+                "type": "string",
+                "description": "单独查询某个交易日的数据，格式为YYYYMMDD。如填写则忽略start_date和end_date"
+              }
+            },
+            "required": [
+              "start_date",
+              "end_date"
+            ]
+          }
+        },
+        {
+          "name": "margin_trade",
+          "description": "获取融资融券相关数据，支持多种数据类型：标的股票、交易汇总、交易明细、转融券汇总等",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "data_type": {
+                "type": "string",
+                "description": "数据类型，可选值：margin_secs(融资融券标的股票)、margin(融资融券交易汇总)、margin_detail(融资融券交易明细)、slb_len_mm(做市借券交易汇总)"
+              },
+              "ts_code": {
+                "type": "string",
+                "description": "股票代码，如'000001.SZ'、'600000.SH'等（部分接口可选）"
+              },
+              "start_date": {
+                "type": "string",
+                "description": "起始日期，格式YYYYMMDD，如'20240101'"
+              },
+              "end_date": {
+                "type": "string",
+                "description": "结束日期，格式YYYYMMDD，如'20240131'（可选，默认为当前日期）"
+              },
+              "exchange": {
+                "type": "string",
+                "description": "交易所代码，可选值：SSE(上海证券交易所)、SZSE(深圳证券交易所)、BSE(北京证券交易所)，仅margin_secs接口使用"
+              }
+            },
+            "required": [
+              "data_type",
+              "start_date"
+            ]
+          }
+        },
+        {
+          "name": "company_performance_hk",
+          "description": "获取港股上市公司综合表现数据，包括利润表、资产负债表、现金流量表等财务报表数据",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "ts_code": {
+                "type": "string",
+                "description": "港股代码，如'00700.HK'表示腾讯控股，'00939.HK'表示建设银行"
+              },
+              "data_type": {
+                "type": "string",
+                "description": "数据类型：income(利润表)、balance(资产负债表)、cashflow(现金流量表)",
+                "enum": [
+                  "income",
+                  "balance",
+                  "cashflow"
+                ]
+              },
+              "start_date": {
+                "type": "string",
+                "description": "起始日期，格式为YYYYMMDD，如'20230101'"
+              },
+              "end_date": {
+                "type": "string",
+                "description": "结束日期，格式为YYYYMMDD，如'20231231'"
+              },
+              "period": {
+                "type": "string",
+                "description": "特定报告期，格式为YYYYMMDD，如'20231231'表示2023年年报。指定此参数时将忽略start_date和end_date"
+              },
+              "ind_name": {
+                "type": "string",
+                "description": "指定财务科目名称，如'营业额'、'毛利'、'除税后溢利'等，不指定则返回全部科目"
+              }
+            },
+            "required": [
+              "ts_code",
+              "data_type",
+              "start_date",
+              "end_date"
+            ]
+          }
+        },
+        {
+          "name": "company_performance_us",
+          "description": "获取美股上市公司综合表现数据，包括利润表、资产负债表、现金流量表和财务指标数据",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "ts_code": {
+                "type": "string",
+                "description": "美股代码，如'NVDA'表示英伟达，'AAPL'表示苹果，'TSLA'表示特斯拉"
+              },
+              "data_type": {
+                "type": "string",
+                "description": "数据类型：income(利润表)、balance(资产负债表)、cashflow(现金流量表)、indicator(财务指标)",
+                "enum": [
+                  "income",
+                  "balance",
+                  "cashflow",
+                  "indicator"
+                ]
+              },
+              "start_date": {
+                "type": "string",
+                "description": "起始日期，格式为YYYYMMDD，如'20230101'"
+              },
+              "end_date": {
+                "type": "string",
+                "description": "结束日期，格式为YYYYMMDD，如'20231231'"
+              },
+              "period": {
+                "type": "string",
+                "description": "特定报告期，格式为YYYYMMDD，如'20231231'表示2023年年报。指定此参数时将忽略start_date和end_date"
+              }
+            },
+            "required": [
+              "ts_code",
+              "data_type",
+              "start_date",
+              "end_date"
+            ]
+          }
+        },
+        {
+          "name": "csi_index_constituents",
+          "description": "获取中证指数公司(CSI)指数（含行业/主题）的区间行情、成分权重与估值/财务摘要（PE TTM、PB、股息率、ROE、ROA、净利率、每股经营现金流、资产负债率、营收同比、资产周转率、毛利率、三费比率、现金分红率）。",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "index_code": {
+                "type": "string",
+                "description": "指数代码(仅限CSI，含行业/主题)。请使用 .SH/.SZ 形式且能在 Tushare index_weight 查询到权重的代码，例如中证证券公司 '399975.SZ'；也支持宽基 '000300.SH'、'000905.SH'，以及 'sh000300'、'sz399006' 形式"
+              },
+              "start_date": {
+                "type": "string",
+                "description": "开始日期，YYYYMMDD 或 YYYY-MM-DD"
+              },
+              "end_date": {
+                "type": "string",
+                "description": "结束日期，YYYYMMDD 或 YYYY-MM-DD"
+              }
+            },
+            "required": [
+              "index_code",
+              "start_date",
+              "end_date"
+            ]
+          }
+        },
+        {
+          "name": "dragon_tiger_inst",
+          "description": "龙虎榜机构成交明细（top_inst）。必填：交易日期；可选：股票TS代码。返回表格包含买入/卖出/净额及上榜理由等。",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "trade_date": {
+                "type": "string",
+                "description": "交易日期，格式YYYYMMDD"
+              },
+              "ts_code": {
+                "type": "string",
+                "description": "可选，股票TS代码，如 000001.SZ"
+              }
+            },
+            "required": [
+              "trade_date"
+            ]
+          }
+        },
+        {
+          "name": "hot_news_7x24",
+          "description": "7x24热点：从Tushare新闻接口获取最新的财经、政治、科技、体育、娱乐、军事、社会、国际等新闻",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "limit": {
+                "type": "number",
+                "description": "返回条数，默认100，上限1500。接口按此数量向Tushare请求后再进行内容相似度去重",
+                "minimum": 1,
+                "maximum": 1500
+              }
+            }
+          }
+        }
+      ],
+      "tool_count": 18,
+      "tool_names": [
+        "current_timestamp",
+        "finance_news",
+        "stock_data",
+        "stock_data_minutes",
+        "index_data",
+        "macro_econ",
+        "company_performance",
+        "fund_data",
+        "fund_manager_by_name",
+        "convertible_bond",
+        "block_trade",
+        "money_flow",
+        "margin_trade",
+        "company_performance_hk",
+        "company_performance_us",
+        "csi_index_constituents",
+        "dragon_tiger_inst",
+        "hot_news_7x24"
+      ]
+    },
+    "server_info_crawled": {
+      "id": 49,
+      "name": "Tushare_Finance_Data",
+      "author": "",
+      "overview": "Tushare_Finance_Data - Financial Services MCP server with 18 tools.",
+      "repository_url": "",
+      "homepage": "https://server.smithery.ai/@guangxiangdebizi/FinanceMCP/mcp",
+      "remote_or_local": "Remote",
+      "license": "",
+      "usage_count": "1,020",
+      "success_rate": "100%",
+      "tags": [
+        "financial-services"
+      ],
+      "categories": [
+        "financial services"
+      ],
+      "tools_count": 18,
+      "tools": [
+        {
+          "name": "current_timestamp",
+          "description": "获取当前东八区（中国时区）的时间戳，包括年月日时分秒信息",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "format": {
+                "type": "string",
+                "description": "时间格式，可选值：datetime(完整日期时间，默认)、date(仅日期)、time(仅时间)、timestamp(Unix时间戳)、readable(可读格式)"
+              }
+            }
+          }
+        },
+        {
+          "name": "finance_news",
+          "description": "通过真正的搜索API获取主流财经媒体的新闻内容，支持单个或多个关键词智能搜索",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "query": {
+                "type": "string",
+                "description": "搜索关键词，支持单个关键词如'药明康德'、'腾讯'，或多个关键词用空格分开如'美联储 加息'、'比特币 监管'等。系统会智能搜索相关历史新闻"
+              }
+            },
+            "required": [
+              "query"
+            ]
+          }
+        },
+        {
+          "name": "stock_data",
+          "description": "获取指定股票/加密资产的历史行情数据，支持A股、美股、港股、外汇、期货、基金、债券逆回购、可转债、期权、加密货币(通过CoinGecko)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "code": {
+                "type": "string",
+                "description": "股票/合约/加密资产代码。股票示例：'000001.SZ'(A股平安银行)、'AAPL'(美股)、'00700.HK'(港股)、'USDCNH.FXCM'(外汇)、'CU2501.SHF'(期货)、'159919.SZ'(基金)、'204001.SH'(逆回购)、'113008.SH'(可转债)、'10001313.SH'(期权)。加密示例(需 market_type=crypto，Binance)：推荐标准写法 'BTCUSDT'、'ETHUSDT'、'USDCUSDT'、'FDUSDUSDT' 等；也兼容 'BTC-USDT' 或 'BTC/USDT'。常见报价币：USDT、USDC、FDUSD、TUSD、BUSD、BTC、ETH。注意：若写 'USD' 会自动映射为 'USDT'（如 'BTC-USD' → 'BTCUSDT'）。"
+              },
+              "market_type": {
+                "type": "string",
+                "description": "市场类型（必需），可选值：cn(A股),us(美股),hk(港股),fx(外汇),futures(期货),fund(基金),repo(债券逆回购),convertible_bond(可转债),options(期权),crypto(加密货币/CoinGecko)"
+              },
+              "start_date": {
+                "type": "string",
+                "description": "起始日期，格式为YYYYMMDD，如'20230101'"
+              },
+              "end_date": {
+                "type": "string",
+                "description": "结束日期，格式为YYYYMMDD，如'20230131'"
+              },
+              "indicators": {
+                "type": "string",
+                "description": "需要计算的技术指标，多个指标用空格分隔。支持的指标：macd(MACD指标)、rsi(相对强弱指标)、kdj(随机指标)、boll(布林带)、ma(均线指标)。必须明确指定参数，例如：'macd(12,26,9) rsi(14) kdj(9,3,3) boll(20,2) ma(10)'"
+              }
+            },
+            "required": [
+              "code",
+              "market_type"
+            ]
+          }
+        },
+        {
+          "name": "stock_data_minutes",
+          "description": "获取分钟K线数据：A股/加密。支持1MIN/5MIN/15MIN/30MIN/60MIN，时间范围需提供起止日期时间",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "code": {
+                "type": "string",
+                "description": "股票代码，如 '600519.SH' 或 '000001.SZ'"
+              },
+              "market_type": {
+                "type": "string",
+                "description": "市场类型：'cn'（A股，Tushare）、'crypto'（加密币对，Binance）"
+              },
+              "start_datetime": {
+                "type": "string",
+                "description": "起始日期时间，支持 'YYYYMMDDHHmmss' 或 'YYYY-MM-DD HH:mm:ss'"
+              },
+              "end_datetime": {
+                "type": "string",
+                "description": "结束日期时间，支持 'YYYYMMDDHHmmss' 或 'YYYY-MM-DD HH:mm:ss'"
+              },
+              "freq": {
+                "type": "string",
+                "description": "分钟周期：1MIN/5MIN/15MIN/30MIN/60MIN（不区分大小写）"
+              }
+            },
+            "required": [
+              "code",
+              "market_type",
+              "start_datetime",
+              "end_datetime",
+              "freq"
+            ]
+          }
+        },
+        {
+          "name": "index_data",
+          "description": "获取指定股票指数的数据，例如上证指数、深证成指等",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "code": {
+                "type": "string",
+                "description": "指数代码，如'000001.SH'表示上证指数，'399001.SZ'表示深证成指"
+              },
+              "start_date": {
+                "type": "string",
+                "description": "起始日期，格式为YYYYMMDD，如'20230101'"
+              },
+              "end_date": {
+                "type": "string",
+                "description": "结束日期，格式为YYYYMMDD，如'20230131'"
+              }
+            },
+            "required": [
+              "code",
+              "start_date",
+              "end_date"
+            ]
+          }
+        },
+        {
+          "name": "macro_econ",
+          "description": "获取宏观经济数据，包括Shibor利率、LPR利率、GDP、CPI、PPI、货币供应量、PMI、社融数据、Shibor报价、Libor、Hibor等",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "indicator": {
+                "type": "string",
+                "description": "指标类型，可选值：shibor(上海银行间同业拆放利率)、lpr(贷款市场报价利率)、gdp(国内生产总值)、cpi(居民消费价格指数)、ppi(工业生产者出厂价格指数)、cn_m(货币供应量)、cn_pmi(采购经理指数)、cn_sf(社会融资规模)、shibor_quote(Shibor银行报价数据)、libor(伦敦银行间同业拆借利率)、hibor(香港银行间同业拆借利率)"
+              },
+              "start_date": {
+                "type": "string",
+                "description": "起始日期，格式为YYYYMMDD，如'20230101'"
+              },
+              "end_date": {
+                "type": "string",
+                "description": "结束日期，格式为YYYYMMDD，如'20230131'"
+              }
+            },
+            "required": [
+              "indicator",
+              "start_date",
+              "end_date"
+            ]
+          }
+        },
+        {
+          "name": "company_performance",
+          "description": "获取上市公司综合表现数据，包括业绩预告、业绩快报、财务指标、分红送股、主营业务构成、股东变动数据、管理层信息、公司基本信息、资产负债表、现金流量表、利润表等完整财务报表数据",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "ts_code": {
+                "type": "string",
+                "description": "股票代码，如'000001.SZ'表示平安银行，'600000.SH'表示浦发银行"
+              },
+              "data_type": {
+                "type": "string",
+                "description": "数据类型：forecast(业绩预告)、express(业绩快报)、indicators(财务指标-包含盈利能力/偿债能力/营运能力/成长能力等全面指标)、dividend(分红送股)、mainbz(主营业务构成-融合产品/地区/行业)、holder_number(股东人数)、holder_trade(股东增减持)、managers(管理层信息)、audit(财务审计意见)、company_basic(公司基本信息)、balance_basic(核心资产负债表)、balance_all(完整资产负债表)、cashflow_basic(基础现金流)、cashflow_all(完整现金流)、income_basic(核心利润表)、income_all(完整利润表)、share_float(限售股解禁)、repurchase(股票回购)、top10_holders(前十大股东)、top10_floatholders(前十大流通股东)、pledge_stat(股权质押统计)、pledge_detail(股权质押明细)",
+                "enum": [
+                  "forecast",
+                  "express",
+                  "indicators",
+                  "dividend",
+                  "mainbz",
+                  "holder_number",
+                  "holder_trade",
+                  "managers",
+                  "audit",
+                  "company_basic",
+                  "balance_basic",
+                  "balance_all",
+                  "cashflow_basic",
+                  "cashflow_all",
+                  "income_basic",
+                  "income_all",
+                  "share_float",
+                  "repurchase",
+                  "top10_holders",
+                  "top10_floatholders",
+                  "pledge_stat",
+                  "pledge_detail"
+                ]
+              },
+              "start_date": {
+                "type": "string",
+                "description": "起始日期，格式为YYYYMMDD，如'20230101'"
+              },
+              "end_date": {
+                "type": "string",
+                "description": "结束日期，格式为YYYYMMDD，如'20231231'"
+              },
+              "period": {
+                "type": "string",
+                "description": "特定报告期，格式为YYYYMMDD，如'20231231'表示2023年年报。指定此参数时将忽略start_date和end_date"
+              }
+            },
+            "required": [
+              "ts_code",
+              "data_type",
+              "start_date",
+              "end_date"
+            ]
+          }
+        },
+        {
+          "name": "fund_data",
+          "description": "获取公募基金全面数据，包括基金列表、基金经理、基金净值、基金分红、基金持仓等数据。",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "ts_code": {
+                "type": "string",
+                "description": "基金代码，如'150018.SZ'表示银华深证100分级，'001753.OF'表示场外基金。注意：查询基金列表(basic)时必须提供此参数"
+              },
+              "data_type": {
+                "type": "string",
+                "description": "数据类型，可选值：basic(基金列表)、manager(基金经理)、nav(基金净值)、dividend(基金分红)、portfolio(基金持仓)、all(全部数据)",
+                "enum": [
+                  "basic",
+                  "manager",
+                  "nav",
+                  "dividend",
+                  "portfolio",
+                  "all"
+                ]
+              },
+              "start_date": {
+                "type": "string",
+                "description": "起始日期，格式为YYYYMMDD，如'20230101'。重要：对于基金持仓(portfolio)数据和基金净值(nav)数据，如果不指定时间参数，将返回所有历史数据，可能数据量很大。建议指定时间范围或使用period参数"
+              },
+              "end_date": {
+                "type": "string",
+                "description": "结束日期，格式为YYYYMMDD，如'20231231'。配合start_date使用可限制数据范围"
+              },
+              "period": {
+                "type": "string",
+                "description": "特定报告期，格式为YYYYMMDD。例如：'20231231'表示2023年年报，'20240630'表示2024年中报，'20220630'表示2022年三季报，'20240331'表示2024年一季报。指定此参数时将忽略start_date和end_date"
+              }
+            },
+            "required": [
+              "data_type",
+              "ts_code"
+            ]
+          }
+        },
+        {
+          "name": "fund_manager_by_name",
+          "description": "根据基金经理姓名查询基金经理详细信息，包括管理的基金列表、个人背景、任职经历等",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "基金经理姓名，如'张凯'、'刘彦春'等"
+              },
+              "ann_date": {
+                "type": "string",
+                "description": "公告日期，格式为YYYYMMDD，如'20230101'。用于限制查询的公告日期"
+              }
+            },
+            "required": [
+              "name"
+            ]
+          }
+        },
+        {
+          "name": "convertible_bond",
+          "description": "获取可转债非行情数据，支持两种查询方式：1)使用issue类型按时间范围查询可转债发行数据；2)使用info类型按代码查询可转债详细信息",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "ts_code": {
+                "type": "string",
+                "description": "可转债代码，如'110001.SH'表示国电转债，'128001.SZ'表示平安转债。配合info类型使用可查询详细信息"
+              },
+              "data_type": {
+                "type": "string",
+                "description": "数据类型，可选值：issue(可转债发行数据)、info(可转债详细信息，通过代码查询)",
+                "enum": [
+                  "issue",
+                  "info"
+                ]
+              },
+              "start_date": {
+                "type": "string",
+                "description": "起始日期，格式为YYYYMMDD，如'20230101'。用于查询发行数据的公告日期范围"
+              },
+              "end_date": {
+                "type": "string",
+                "description": "结束日期，格式为YYYYMMDD，如'20230131'。用于查询发行数据的公告日期范围"
+              }
+            },
+            "required": [
+              "data_type"
+            ]
+          }
+        },
+        {
+          "name": "block_trade",
+          "description": "获取大宗交易数据，包括成交价格、成交量、买卖双方营业部等详细信息",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "code": {
+                "type": "string",
+                "description": "股票代码（可选），如'000001.SZ'表示平安银行。不填写则查询全市场大宗交易"
+              },
+              "start_date": {
+                "type": "string",
+                "description": "起始日期，格式为YYYYMMDD，如'20230101'"
+              },
+              "end_date": {
+                "type": "string",
+                "description": "结束日期，格式为YYYYMMDD，如'20231231'"
+              }
+            },
+            "required": [
+              "start_date",
+              "end_date"
+            ]
+          }
+        },
+        {
+          "name": "money_flow",
+          "description": "获取个股、大盘和板块资金流向数据，包括主力资金、超大单、大单、中单、小单的净流入净额和净占比数据",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "query_type": {
+                "type": "string",
+                "description": "查询类型：stock=个股，market=大盘，sector=板块。默认根据ts_code自动判断"
+              },
+              "ts_code": {
+                "type": "string",
+                "description": "股票代码或板块代码。个股如'000001.SZ'，板块如'BK0447'(东财板块代码)。不填写则查询大盘资金流向"
+              },
+              "start_date": {
+                "type": "string",
+                "description": "起始日期，格式为YYYYMMDD，如'20240901'"
+              },
+              "end_date": {
+                "type": "string",
+                "description": "结束日期，格式为YYYYMMDD，如'20240930'"
+              },
+              "content_type": {
+                "type": "string",
+                "description": "板块资金类型，仅在查询板块时有效。可选：行业、概念、地域"
+              },
+              "trade_date": {
+                "type": "string",
+                "description": "单独查询某个交易日的数据，格式为YYYYMMDD。如填写则忽略start_date和end_date"
+              }
+            },
+            "required": [
+              "start_date",
+              "end_date"
+            ]
+          }
+        },
+        {
+          "name": "margin_trade",
+          "description": "获取融资融券相关数据，支持多种数据类型：标的股票、交易汇总、交易明细、转融券汇总等",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "data_type": {
+                "type": "string",
+                "description": "数据类型，可选值：margin_secs(融资融券标的股票)、margin(融资融券交易汇总)、margin_detail(融资融券交易明细)、slb_len_mm(做市借券交易汇总)"
+              },
+              "ts_code": {
+                "type": "string",
+                "description": "股票代码，如'000001.SZ'、'600000.SH'等（部分接口可选）"
+              },
+              "start_date": {
+                "type": "string",
+                "description": "起始日期，格式YYYYMMDD，如'20240101'"
+              },
+              "end_date": {
+                "type": "string",
+                "description": "结束日期，格式YYYYMMDD，如'20240131'（可选，默认为当前日期）"
+              },
+              "exchange": {
+                "type": "string",
+                "description": "交易所代码，可选值：SSE(上海证券交易所)、SZSE(深圳证券交易所)、BSE(北京证券交易所)，仅margin_secs接口使用"
+              }
+            },
+            "required": [
+              "data_type",
+              "start_date"
+            ]
+          }
+        },
+        {
+          "name": "company_performance_hk",
+          "description": "获取港股上市公司综合表现数据，包括利润表、资产负债表、现金流量表等财务报表数据",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "ts_code": {
+                "type": "string",
+                "description": "港股代码，如'00700.HK'表示腾讯控股，'00939.HK'表示建设银行"
+              },
+              "data_type": {
+                "type": "string",
+                "description": "数据类型：income(利润表)、balance(资产负债表)、cashflow(现金流量表)",
+                "enum": [
+                  "income",
+                  "balance",
+                  "cashflow"
+                ]
+              },
+              "start_date": {
+                "type": "string",
+                "description": "起始日期，格式为YYYYMMDD，如'20230101'"
+              },
+              "end_date": {
+                "type": "string",
+                "description": "结束日期，格式为YYYYMMDD，如'20231231'"
+              },
+              "period": {
+                "type": "string",
+                "description": "特定报告期，格式为YYYYMMDD，如'20231231'表示2023年年报。指定此参数时将忽略start_date和end_date"
+              },
+              "ind_name": {
+                "type": "string",
+                "description": "指定财务科目名称，如'营业额'、'毛利'、'除税后溢利'等，不指定则返回全部科目"
+              }
+            },
+            "required": [
+              "ts_code",
+              "data_type",
+              "start_date",
+              "end_date"
+            ]
+          }
+        },
+        {
+          "name": "company_performance_us",
+          "description": "获取美股上市公司综合表现数据，包括利润表、资产负债表、现金流量表和财务指标数据",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "ts_code": {
+                "type": "string",
+                "description": "美股代码，如'NVDA'表示英伟达，'AAPL'表示苹果，'TSLA'表示特斯拉"
+              },
+              "data_type": {
+                "type": "string",
+                "description": "数据类型：income(利润表)、balance(资产负债表)、cashflow(现金流量表)、indicator(财务指标)",
+                "enum": [
+                  "income",
+                  "balance",
+                  "cashflow",
+                  "indicator"
+                ]
+              },
+              "start_date": {
+                "type": "string",
+                "description": "起始日期，格式为YYYYMMDD，如'20230101'"
+              },
+              "end_date": {
+                "type": "string",
+                "description": "结束日期，格式为YYYYMMDD，如'20231231'"
+              },
+              "period": {
+                "type": "string",
+                "description": "特定报告期，格式为YYYYMMDD，如'20231231'表示2023年年报。指定此参数时将忽略start_date和end_date"
+              }
+            },
+            "required": [
+              "ts_code",
+              "data_type",
+              "start_date",
+              "end_date"
+            ]
+          }
+        },
+        {
+          "name": "csi_index_constituents",
+          "description": "获取中证指数公司(CSI)指数（含行业/主题）的区间行情、成分权重与估值/财务摘要（PE TTM、PB、股息率、ROE、ROA、净利率、每股经营现金流、资产负债率、营收同比、资产周转率、毛利率、三费比率、现金分红率）。",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "index_code": {
+                "type": "string",
+                "description": "指数代码(仅限CSI，含行业/主题)。请使用 .SH/.SZ 形式且能在 Tushare index_weight 查询到权重的代码，例如中证证券公司 '399975.SZ'；也支持宽基 '000300.SH'、'000905.SH'，以及 'sh000300'、'sz399006' 形式"
+              },
+              "start_date": {
+                "type": "string",
+                "description": "开始日期，YYYYMMDD 或 YYYY-MM-DD"
+              },
+              "end_date": {
+                "type": "string",
+                "description": "结束日期，YYYYMMDD 或 YYYY-MM-DD"
+              }
+            },
+            "required": [
+              "index_code",
+              "start_date",
+              "end_date"
+            ]
+          }
+        },
+        {
+          "name": "dragon_tiger_inst",
+          "description": "龙虎榜机构成交明细（top_inst）。必填：交易日期；可选：股票TS代码。返回表格包含买入/卖出/净额及上榜理由等。",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "trade_date": {
+                "type": "string",
+                "description": "交易日期，格式YYYYMMDD"
+              },
+              "ts_code": {
+                "type": "string",
+                "description": "可选，股票TS代码，如 000001.SZ"
+              }
+            },
+            "required": [
+              "trade_date"
+            ]
+          }
+        },
+        {
+          "name": "hot_news_7x24",
+          "description": "7x24热点：从Tushare新闻接口获取最新的财经、政治、科技、体育、娱乐、军事、社会、国际等新闻",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "limit": {
+                "type": "number",
+                "description": "返回条数，默认100，上限1500。接口按此数量向Tushare请求后再进行内容相似度去重",
+                "minimum": 1,
+                "maximum": 1500
+              }
+            }
+          }
+        }
+      ],
+      "python_sdk_url": "https://server.smithery.ai/@guangxiangdebizi/FinanceMCP/mcp",
+      "python_sdk_config": "{\"debug\": false}"
+    },
+    "source_filename": "0049.Tushare_Finance_Data_labeled.json",
+    "processed_timestamp": 1772871481,
+    "processing_mode": "gateway",
+    "rank": 50
+  }
+}

@@ -1,0 +1,317 @@
+{
+  "labels": {
+    "analysis": "The MCP Server \"io.github.kc23go/anybrowse\" provides 5 tools for web search & research tasks.",
+    "reasoning": "Primary label \"Web Search & Research\" assigned based on tool names and descriptions.",
+    "primary_label": "Web Search & Research",
+    "secondary_labels": [
+      "Browser Automation",
+      "Data Analysis & Processing",
+      "Development Tools"
+    ],
+    "custom_label": "Web Search & Research - io.github.kc23go/anybrowse",
+    "is_connected": true,
+    "is_remote_tool_valid": true,
+    "featured_server": true
+  },
+  "metadata": {
+    "server_id": 148,
+    "server_name": "io.github.kc23go/anybrowse",
+    "rank_by_usage": 149,
+    "usage_count": "100",
+    "original_file": "tools.json#148",
+    "mode": "gateway",
+    "timestamp": 1772871481,
+    "remote_server_response": {
+      "url": "https://anybrowse.dev/mcp",
+      "is_success": true,
+      "error": null,
+      "tools": [
+        {
+          "name": "batch_scrape",
+          "description": "Scrape multiple URLs at once (up to 10) and get all results as markdown. More efficient than calling scrape() in a loop.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "urls": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "List of URLs to scrape (max 10)"
+              },
+              "context": {
+                "type": "string",
+                "description": "Optional: what you're trying to accomplish"
+              }
+            },
+            "required": [
+              "urls"
+            ]
+          }
+        },
+        {
+          "name": "extract",
+          "description": "Extract structured data from any URL as JSON. Provide a schema describing what you want. Great for prices, availability, product details, contact info.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "url": {
+                "type": "string",
+                "description": "The URL to extract data from"
+              },
+              "schema": {
+                "type": "object",
+                "description": "Field names mapped to types: string, number, boolean, array",
+                "additionalProperties": {
+                  "type": "string",
+                  "enum": [
+                    "string",
+                    "number",
+                    "boolean",
+                    "array"
+                  ]
+                }
+              },
+              "context": {
+                "type": "string",
+                "description": "Optional: what you're trying to accomplish"
+              }
+            },
+            "required": [
+              "url",
+              "schema"
+            ]
+          }
+        },
+        {
+          "name": "scrape",
+          "description": "Convert any URL to clean, LLM-ready Markdown. Renders JavaScript, handles dynamic content, bypasses common bot detection. Returns structured markdown with title and metadata. Tip: provide 'context' to get more relevant results.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "url": {
+                "type": "string",
+                "description": "The URL to scrape (must start with http:// or https://)"
+              },
+              "context": {
+                "type": "string",
+                "description": "Optional: what you're trying to accomplish (e.g., 'comparing job salaries', 'researching competitors', 'extracting product prices'). Helps anybrowse return more relevant content."
+              }
+            },
+            "required": [
+              "url"
+            ]
+          }
+        },
+        {
+          "name": "crawl",
+          "description": "Search Google for a query and scrape the top results to Markdown. Returns structured results with title, URL, and full page content.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "q": {
+                "type": "string",
+                "description": "The search query"
+              },
+              "count": {
+                "type": "number",
+                "description": "Number of results to scrape (1-20, default 3)"
+              },
+              "context": {
+                "type": "string",
+                "description": "Optional: what you're trying to accomplish (e.g., 'finding competitors pricing', 'researching market trends'). Helps return more targeted results."
+              }
+            },
+            "required": [
+              "q"
+            ]
+          }
+        },
+        {
+          "name": "search",
+          "description": "Google search results as structured JSON. Returns titles, URLs, and descriptions without scraping the pages.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "q": {
+                "type": "string",
+                "description": "The search query"
+              },
+              "count": {
+                "type": "number",
+                "description": "Number of results (1-20, default 5)"
+              },
+              "context": {
+                "type": "string",
+                "description": "Optional: what you're trying to accomplish. Helps with result relevance."
+              }
+            },
+            "required": [
+              "q"
+            ]
+          }
+        }
+      ],
+      "tool_count": 5,
+      "tool_names": [
+        "batch_scrape",
+        "extract",
+        "scrape",
+        "crawl",
+        "search"
+      ]
+    },
+    "server_info_crawled": {
+      "id": 148,
+      "name": "io.github.kc23go/anybrowse",
+      "author": "",
+      "overview": "io.github.kc23go/anybrowse - Web Search & Research MCP server with 5 tools.",
+      "repository_url": "",
+      "homepage": "https://anybrowse.dev/mcp",
+      "remote_or_local": "Remote",
+      "license": "",
+      "usage_count": "100",
+      "success_rate": "100%",
+      "tags": [
+        "web-search-research"
+      ],
+      "categories": [
+        "web search & research"
+      ],
+      "tools_count": 5,
+      "tools": [
+        {
+          "name": "batch_scrape",
+          "description": "Scrape multiple URLs at once (up to 10) and get all results as markdown. More efficient than calling scrape() in a loop.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "urls": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "List of URLs to scrape (max 10)"
+              },
+              "context": {
+                "type": "string",
+                "description": "Optional: what you're trying to accomplish"
+              }
+            },
+            "required": [
+              "urls"
+            ]
+          }
+        },
+        {
+          "name": "extract",
+          "description": "Extract structured data from any URL as JSON. Provide a schema describing what you want. Great for prices, availability, product details, contact info.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "url": {
+                "type": "string",
+                "description": "The URL to extract data from"
+              },
+              "schema": {
+                "type": "object",
+                "description": "Field names mapped to types: string, number, boolean, array",
+                "additionalProperties": {
+                  "type": "string",
+                  "enum": [
+                    "string",
+                    "number",
+                    "boolean",
+                    "array"
+                  ]
+                }
+              },
+              "context": {
+                "type": "string",
+                "description": "Optional: what you're trying to accomplish"
+              }
+            },
+            "required": [
+              "url",
+              "schema"
+            ]
+          }
+        },
+        {
+          "name": "scrape",
+          "description": "Convert any URL to clean, LLM-ready Markdown. Renders JavaScript, handles dynamic content, bypasses common bot detection. Returns structured markdown with title and metadata. Tip: provide 'context' to get more relevant results.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "url": {
+                "type": "string",
+                "description": "The URL to scrape (must start with http:// or https://)"
+              },
+              "context": {
+                "type": "string",
+                "description": "Optional: what you're trying to accomplish (e.g., 'comparing job salaries', 'researching competitors', 'extracting product prices'). Helps anybrowse return more relevant content."
+              }
+            },
+            "required": [
+              "url"
+            ]
+          }
+        },
+        {
+          "name": "crawl",
+          "description": "Search Google for a query and scrape the top results to Markdown. Returns structured results with title, URL, and full page content.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "q": {
+                "type": "string",
+                "description": "The search query"
+              },
+              "count": {
+                "type": "number",
+                "description": "Number of results to scrape (1-20, default 3)"
+              },
+              "context": {
+                "type": "string",
+                "description": "Optional: what you're trying to accomplish (e.g., 'finding competitors pricing', 'researching market trends'). Helps return more targeted results."
+              }
+            },
+            "required": [
+              "q"
+            ]
+          }
+        },
+        {
+          "name": "search",
+          "description": "Google search results as structured JSON. Returns titles, URLs, and descriptions without scraping the pages.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "q": {
+                "type": "string",
+                "description": "The search query"
+              },
+              "count": {
+                "type": "number",
+                "description": "Number of results (1-20, default 5)"
+              },
+              "context": {
+                "type": "string",
+                "description": "Optional: what you're trying to accomplish. Helps with result relevance."
+              }
+            },
+            "required": [
+              "q"
+            ]
+          }
+        }
+      ],
+      "python_sdk_url": "https://anybrowse.dev/mcp",
+      "python_sdk_config": "{\"debug\": false}"
+    },
+    "source_filename": "0148.iogithubkc23goanybrowse_labeled.json",
+    "processed_timestamp": 1772871481,
+    "processing_mode": "gateway",
+    "rank": 149
+  }
+}

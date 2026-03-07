@@ -1,0 +1,167 @@
+{
+  "labels": {
+    "analysis": "The MCP Server \"io.github.wywy-llc/gas-library-hub\" provides 2 tools for development tools tasks.",
+    "reasoning": "Primary label \"Development Tools\" assigned based on tool names and descriptions.",
+    "primary_label": "Development Tools",
+    "secondary_labels": [
+      "API Integration",
+      "DevOps",
+      "Web Search & Research",
+      "AI/ML Tools"
+    ],
+    "custom_label": "Development Tools - io.github.wywy-llc/gas-library-hub",
+    "is_connected": true,
+    "is_remote_tool_valid": true,
+    "featured_server": false
+  },
+  "metadata": {
+    "server_id": 234,
+    "server_name": "io.github.wywy-llc/gas-library-hub",
+    "rank_by_usage": 235,
+    "usage_count": "10",
+    "original_file": "tools.json#234",
+    "mode": "gateway",
+    "timestamp": 1772871482,
+    "remote_server_response": {
+      "url": "https://appscripthub.com/api/mcp",
+      "is_success": true,
+      "error": null,
+      "tools": [
+        {
+          "name": "search_libraries",
+          "description": "Search for Google Apps Script libraries by keyword, tags, or criteria. Returns a list of matching libraries with their details.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "query": {
+                "type": "string",
+                "description": "Search keyword (e.g., OAuth, Spreadsheet, Gmail)"
+              },
+              "tags": {
+                "type": "string",
+                "description": "Comma-separated tags to filter by (e.g., \"OAuth,認証\")"
+              },
+              "minStars": {
+                "type": "number",
+                "description": "Minimum star count"
+              },
+              "limit": {
+                "type": "number",
+                "description": "Maximum number of results (default: 10, max: 100)",
+                "default": 10
+              },
+              "locale": {
+                "type": "string",
+                "enum": [
+                  "ja",
+                  "en"
+                ],
+                "description": "Language for summaries (default: ja)",
+                "default": "ja"
+              }
+            }
+          }
+        },
+        {
+          "name": "get_library_details",
+          "description": "Get detailed information about a specific GAS library including AI-generated summary, usage examples, and documentation.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "libraryId": {
+                "type": "string",
+                "description": "The library ID"
+              }
+            },
+            "required": [
+              "libraryId"
+            ]
+          }
+        }
+      ],
+      "tool_count": 2,
+      "tool_names": [
+        "search_libraries",
+        "get_library_details"
+      ]
+    },
+    "server_info_crawled": {
+      "id": 234,
+      "name": "io.github.wywy-llc/gas-library-hub",
+      "author": "",
+      "overview": "io.github.wywy-llc/gas-library-hub - Development Tools MCP server with 2 tools.",
+      "repository_url": "",
+      "homepage": "https://appscripthub.com/api/mcp",
+      "remote_or_local": "Remote",
+      "license": "",
+      "usage_count": "10",
+      "success_rate": "100%",
+      "tags": [
+        "development-tools"
+      ],
+      "categories": [
+        "development tools"
+      ],
+      "tools_count": 2,
+      "tools": [
+        {
+          "name": "search_libraries",
+          "description": "Search for Google Apps Script libraries by keyword, tags, or criteria. Returns a list of matching libraries with their details.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "query": {
+                "type": "string",
+                "description": "Search keyword (e.g., OAuth, Spreadsheet, Gmail)"
+              },
+              "tags": {
+                "type": "string",
+                "description": "Comma-separated tags to filter by (e.g., \"OAuth,認証\")"
+              },
+              "minStars": {
+                "type": "number",
+                "description": "Minimum star count"
+              },
+              "limit": {
+                "type": "number",
+                "description": "Maximum number of results (default: 10, max: 100)",
+                "default": 10
+              },
+              "locale": {
+                "type": "string",
+                "enum": [
+                  "ja",
+                  "en"
+                ],
+                "description": "Language for summaries (default: ja)",
+                "default": "ja"
+              }
+            }
+          }
+        },
+        {
+          "name": "get_library_details",
+          "description": "Get detailed information about a specific GAS library including AI-generated summary, usage examples, and documentation.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "libraryId": {
+                "type": "string",
+                "description": "The library ID"
+              }
+            },
+            "required": [
+              "libraryId"
+            ]
+          }
+        }
+      ],
+      "python_sdk_url": "https://appscripthub.com/api/mcp",
+      "python_sdk_config": "{\"debug\": false}"
+    },
+    "source_filename": "0234.iogithubwywy-llcgas-library-hub_labeled.json",
+    "processed_timestamp": 1772871482,
+    "processing_mode": "gateway",
+    "rank": 235
+  }
+}

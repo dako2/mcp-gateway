@@ -1,0 +1,526 @@
+{
+  "labels": {
+    "analysis": "The MCP Server \"Google Analytics (unofficial)\" provides 4 tools for data analysis & processing tasks.",
+    "reasoning": "Primary label \"Data Analysis & Processing\" assigned based on tool names and descriptions.",
+    "primary_label": "Data Analysis & Processing",
+    "secondary_labels": [
+      "Database Operations",
+      "Development Tools",
+      "Web Search & Research"
+    ],
+    "custom_label": "Data Analysis & Processing - Google Analytics (unofficial)",
+    "is_connected": true,
+    "is_remote_tool_valid": true,
+    "featured_server": false
+  },
+  "metadata": {
+    "server_id": 167,
+    "server_name": "Google Analytics (unofficial)",
+    "rank_by_usage": 168,
+    "usage_count": "10",
+    "original_file": "tools.json#167",
+    "mode": "gateway",
+    "timestamp": 1772871482,
+    "remote_server_response": {
+      "url": "https://api.safe-mcp.com/mcp",
+      "is_success": true,
+      "error": null,
+      "tools": [
+        {
+          "name": "ga4_get_account",
+          "title": "Get GA4 accounts, properties, and apps",
+          "description": "Lists all GA accounts and GA4 properties the user can access, including web and app data streams. Use this to discover propertyId, appStreamId, measurementId, or firebaseAppId values for reports.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {},
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "openWorldHint": true,
+            "destructiveHint": false
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          },
+          "_meta": {
+            "securitySchemes": [
+              {
+                "type": "oauth2",
+                "scopes": [
+                  "ga4.read",
+                  "paid:access"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "stats_significance_test",
+          "title": "Test statistical significance",
+          "description": "Compares two or more proportions (e.g., conversion rate, bounce rate) and returns z-test p-values, confidence intervals, and significance flags. Use groups for time periods (e.g., Week 1 vs Week 2).",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "metric": {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "const": "proportion",
+                    "default": "proportion"
+                  },
+                  "label": {
+                    "type": "string"
+                  }
+                },
+                "additionalProperties": false,
+                "default": {
+                  "type": "proportion"
+                }
+              },
+              "groups": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "successes": {
+                      "type": "number",
+                      "minimum": 0
+                    },
+                    "trials": {
+                      "type": "number",
+                      "exclusiveMinimum": 0
+                    }
+                  },
+                  "required": [
+                    "name",
+                    "successes",
+                    "trials"
+                  ],
+                  "additionalProperties": false
+                },
+                "minItems": 2
+              },
+              "comparisons": {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "enum": [
+                      "baseline",
+                      "all",
+                      "pairs"
+                    ],
+                    "default": "baseline"
+                  },
+                  "baseline": {
+                    "type": "string"
+                  },
+                  "pairs": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "a": {
+                          "type": "string",
+                          "minLength": 1
+                        },
+                        "b": {
+                          "type": "string",
+                          "minLength": 1
+                        }
+                      },
+                      "required": [
+                        "a",
+                        "b"
+                      ],
+                      "additionalProperties": false
+                    }
+                  }
+                },
+                "additionalProperties": false
+              },
+              "alpha": {
+                "type": "number",
+                "minimum": 0.001,
+                "maximum": 0.2,
+                "default": 0.05
+              },
+              "alternative": {
+                "type": "string",
+                "enum": [
+                  "two-sided",
+                  "greater",
+                  "less"
+                ],
+                "default": "two-sided"
+              },
+              "correction": {
+                "type": "string",
+                "enum": [
+                  "none",
+                  "bonferroni"
+                ],
+                "default": "none"
+              }
+            },
+            "required": [
+              "groups"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "openWorldHint": false,
+            "destructiveHint": false
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          },
+          "_meta": {
+            "securitySchemes": [
+              {
+                "type": "oauth2",
+                "scopes": [
+                  "ga4.read",
+                  "paid:access"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "ga4_get_data",
+          "title": "Get GA4 data",
+          "description": "Runs a GA4 Data API report for a property or app stream. Provide propertyId, property (\"properties/123\"), appStreamId, or app (streamId/firebaseAppId/measurementId). dateRanges accepts startDate/endDate or start/end. metrics/dimensions can be a string or array. Use dimensionFilterExpression/metricFilterExpression with FilterExpression shape (filter/andGroup/orGroup/notExpression). Legacy dimensionFilters/metricFilters are supported for simple AND filters. orderBys expects { fieldName, desc, type }. Dates accept YYYY-MM-DD, today/yesterday/NdaysAgo, or any JS Date-parsable string (normalized to YYYY-MM-DD). Example: { propertyId: \"481373915\", dateRanges: [{ startDate: \"30daysAgo\", endDate: \"today\" }], metrics: [\"sessions\"], dimensions: [\"landingPagePlusQueryString\"], limit: 10 }",
+          "inputSchema": {
+            "type": "object",
+            "properties": {}
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "openWorldHint": true,
+            "destructiveHint": false
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          },
+          "_meta": {
+            "openai/toolInvocation/invoking": "Querying GA4 report",
+            "openai/toolInvocation/invoked": "GA4 report ready",
+            "securitySchemes": [
+              {
+                "type": "oauth2",
+                "scopes": [
+                  "ga4.read",
+                  "paid:access"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "ga4_run_funnel_report",
+          "title": "Run GA4 funnel report",
+          "description": "Runs a GA4 Data API funnel report (v1alpha). Provide propertyId, property (\"properties/123\"), appStreamId, or app (streamId/firebaseAppId/measurementId). dateRanges accepts startDate/endDate or start/end. funnel.steps can use filterExpression (FunnelFilterExpression) or a shorthand eventName with optional parameterFilterExpression. funnelBreakdown and funnelNextAction accept a dimension name or an object with dimension + limit. funnelVisualizationType accepts STANDARD_FUNNEL or TRENDED_FUNNEL (also accepts standard/trended). Dimension filters use dimensionFilter/dimensionFilterExpression or legacy dimensionFilters. Dates accept YYYY-MM-DD, today/yesterday/NdaysAgo, or any JS Date-parsable string (normalized to YYYY-MM-DD). Example: { propertyId: \"481373915\", dateRanges: [{ startDate: \"30daysAgo\", endDate: \"today\" }], funnel: { steps: [{ eventName: \"session_start\" }, { eventName: \"page_view\" }] }, limit: 1000 }",
+          "inputSchema": {
+            "type": "object",
+            "properties": {}
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "openWorldHint": true,
+            "destructiveHint": false
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          },
+          "_meta": {
+            "openai/toolInvocation/invoking": "Querying GA4 funnel report",
+            "openai/toolInvocation/invoked": "GA4 funnel report ready",
+            "securitySchemes": [
+              {
+                "type": "oauth2",
+                "scopes": [
+                  "ga4.read",
+                  "paid:access"
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "tool_count": 4,
+      "tool_names": [
+        "ga4_get_account",
+        "stats_significance_test",
+        "ga4_get_data",
+        "ga4_run_funnel_report"
+      ]
+    },
+    "server_info_crawled": {
+      "id": 167,
+      "name": "Google Analytics (unofficial)",
+      "author": "",
+      "overview": "Google Analytics (unofficial) - Data Analysis & Processing MCP server with 4 tools.",
+      "repository_url": "",
+      "homepage": "https://api.safe-mcp.com/mcp",
+      "remote_or_local": "Remote",
+      "license": "",
+      "usage_count": "10",
+      "success_rate": "100%",
+      "tags": [
+        "data-analysis-processing"
+      ],
+      "categories": [
+        "data analysis & processing"
+      ],
+      "tools_count": 4,
+      "tools": [
+        {
+          "name": "ga4_get_account",
+          "title": "Get GA4 accounts, properties, and apps",
+          "description": "Lists all GA accounts and GA4 properties the user can access, including web and app data streams. Use this to discover propertyId, appStreamId, measurementId, or firebaseAppId values for reports.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {},
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "openWorldHint": true,
+            "destructiveHint": false
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          },
+          "_meta": {
+            "securitySchemes": [
+              {
+                "type": "oauth2",
+                "scopes": [
+                  "ga4.read",
+                  "paid:access"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "stats_significance_test",
+          "title": "Test statistical significance",
+          "description": "Compares two or more proportions (e.g., conversion rate, bounce rate) and returns z-test p-values, confidence intervals, and significance flags. Use groups for time periods (e.g., Week 1 vs Week 2).",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "metric": {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "const": "proportion",
+                    "default": "proportion"
+                  },
+                  "label": {
+                    "type": "string"
+                  }
+                },
+                "additionalProperties": false,
+                "default": {
+                  "type": "proportion"
+                }
+              },
+              "groups": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "successes": {
+                      "type": "number",
+                      "minimum": 0
+                    },
+                    "trials": {
+                      "type": "number",
+                      "exclusiveMinimum": 0
+                    }
+                  },
+                  "required": [
+                    "name",
+                    "successes",
+                    "trials"
+                  ],
+                  "additionalProperties": false
+                },
+                "minItems": 2
+              },
+              "comparisons": {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "enum": [
+                      "baseline",
+                      "all",
+                      "pairs"
+                    ],
+                    "default": "baseline"
+                  },
+                  "baseline": {
+                    "type": "string"
+                  },
+                  "pairs": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "a": {
+                          "type": "string",
+                          "minLength": 1
+                        },
+                        "b": {
+                          "type": "string",
+                          "minLength": 1
+                        }
+                      },
+                      "required": [
+                        "a",
+                        "b"
+                      ],
+                      "additionalProperties": false
+                    }
+                  }
+                },
+                "additionalProperties": false
+              },
+              "alpha": {
+                "type": "number",
+                "minimum": 0.001,
+                "maximum": 0.2,
+                "default": 0.05
+              },
+              "alternative": {
+                "type": "string",
+                "enum": [
+                  "two-sided",
+                  "greater",
+                  "less"
+                ],
+                "default": "two-sided"
+              },
+              "correction": {
+                "type": "string",
+                "enum": [
+                  "none",
+                  "bonferroni"
+                ],
+                "default": "none"
+              }
+            },
+            "required": [
+              "groups"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "openWorldHint": false,
+            "destructiveHint": false
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          },
+          "_meta": {
+            "securitySchemes": [
+              {
+                "type": "oauth2",
+                "scopes": [
+                  "ga4.read",
+                  "paid:access"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "ga4_get_data",
+          "title": "Get GA4 data",
+          "description": "Runs a GA4 Data API report for a property or app stream. Provide propertyId, property (\"properties/123\"), appStreamId, or app (streamId/firebaseAppId/measurementId). dateRanges accepts startDate/endDate or start/end. metrics/dimensions can be a string or array. Use dimensionFilterExpression/metricFilterExpression with FilterExpression shape (filter/andGroup/orGroup/notExpression). Legacy dimensionFilters/metricFilters are supported for simple AND filters. orderBys expects { fieldName, desc, type }. Dates accept YYYY-MM-DD, today/yesterday/NdaysAgo, or any JS Date-parsable string (normalized to YYYY-MM-DD). Example: { propertyId: \"481373915\", dateRanges: [{ startDate: \"30daysAgo\", endDate: \"today\" }], metrics: [\"sessions\"], dimensions: [\"landingPagePlusQueryString\"], limit: 10 }",
+          "inputSchema": {
+            "type": "object",
+            "properties": {}
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "openWorldHint": true,
+            "destructiveHint": false
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          },
+          "_meta": {
+            "openai/toolInvocation/invoking": "Querying GA4 report",
+            "openai/toolInvocation/invoked": "GA4 report ready",
+            "securitySchemes": [
+              {
+                "type": "oauth2",
+                "scopes": [
+                  "ga4.read",
+                  "paid:access"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "ga4_run_funnel_report",
+          "title": "Run GA4 funnel report",
+          "description": "Runs a GA4 Data API funnel report (v1alpha). Provide propertyId, property (\"properties/123\"), appStreamId, or app (streamId/firebaseAppId/measurementId). dateRanges accepts startDate/endDate or start/end. funnel.steps can use filterExpression (FunnelFilterExpression) or a shorthand eventName with optional parameterFilterExpression. funnelBreakdown and funnelNextAction accept a dimension name or an object with dimension + limit. funnelVisualizationType accepts STANDARD_FUNNEL or TRENDED_FUNNEL (also accepts standard/trended). Dimension filters use dimensionFilter/dimensionFilterExpression or legacy dimensionFilters. Dates accept YYYY-MM-DD, today/yesterday/NdaysAgo, or any JS Date-parsable string (normalized to YYYY-MM-DD). Example: { propertyId: \"481373915\", dateRanges: [{ startDate: \"30daysAgo\", endDate: \"today\" }], funnel: { steps: [{ eventName: \"session_start\" }, { eventName: \"page_view\" }] }, limit: 1000 }",
+          "inputSchema": {
+            "type": "object",
+            "properties": {}
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "openWorldHint": true,
+            "destructiveHint": false
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          },
+          "_meta": {
+            "openai/toolInvocation/invoking": "Querying GA4 funnel report",
+            "openai/toolInvocation/invoked": "GA4 funnel report ready",
+            "securitySchemes": [
+              {
+                "type": "oauth2",
+                "scopes": [
+                  "ga4.read",
+                  "paid:access"
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "python_sdk_url": "https://api.safe-mcp.com/mcp",
+      "python_sdk_config": "{\"debug\": false}"
+    },
+    "source_filename": "0167.Google-Analytics-unofficial_labeled.json",
+    "processed_timestamp": 1772871482,
+    "processing_mode": "gateway",
+    "rank": 168
+  }
+}

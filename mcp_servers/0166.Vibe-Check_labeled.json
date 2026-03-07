@@ -1,0 +1,531 @@
+{
+  "labels": {
+    "analysis": "The MCP Server \"Vibe Check\" provides 5 tools for ai/ml tools tasks.",
+    "reasoning": "Primary label \"AI/ML Tools\" assigned based on tool names and descriptions.",
+    "primary_label": "AI/ML Tools",
+    "secondary_labels": [
+      "Content Creation",
+      "Social Media",
+      "Education"
+    ],
+    "custom_label": "AI/ML Tools - Vibe Check",
+    "is_connected": true,
+    "is_remote_tool_valid": true,
+    "featured_server": true
+  },
+  "metadata": {
+    "server_id": 166,
+    "server_name": "Vibe Check",
+    "rank_by_usage": 167,
+    "usage_count": "100",
+    "original_file": "tools.json#166",
+    "mode": "gateway",
+    "timestamp": 1772871481,
+    "remote_server_response": {
+      "url": "https://server.smithery.ai/@PV-Bhat/vibe-check-mcp-server/mcp",
+      "is_success": true,
+      "error": null,
+      "tools": [
+        {
+          "name": "vibe_check",
+          "description": "Metacognitive questioning tool that identifies assumptions and breaks tunnel vision to prevent cascading errors",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "goal": {
+                "type": "string",
+                "description": "The agent's current goal",
+                "examples": [
+                  "Ship CPI v2.5 with zero regressions"
+                ]
+              },
+              "plan": {
+                "type": "string",
+                "description": "The agent's detailed plan",
+                "examples": [
+                  "1) Write tests 2) Refactor 3) Canary rollout"
+                ]
+              },
+              "modelOverride": {
+                "type": "object",
+                "properties": {
+                  "provider": {
+                    "type": "string",
+                    "enum": [
+                      "gemini",
+                      "openai",
+                      "openrouter"
+                    ]
+                  },
+                  "model": {
+                    "type": "string"
+                  }
+                },
+                "required": [],
+                "examples": [
+                  {
+                    "provider": "gemini",
+                    "model": "gemini-2.5-pro"
+                  }
+                ]
+              },
+              "userPrompt": {
+                "type": "string",
+                "description": "The original user prompt",
+                "examples": [
+                  "Summarize the repo"
+                ]
+              },
+              "progress": {
+                "type": "string",
+                "description": "The agent's progress so far",
+                "examples": [
+                  "Finished step 1"
+                ]
+              },
+              "uncertainties": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "The agent's uncertainties",
+                "examples": [
+                  [
+                    "uncertain about deployment"
+                  ]
+                ]
+              },
+              "taskContext": {
+                "type": "string",
+                "description": "The context of the current task",
+                "examples": [
+                  "repo: vibe-check-mcp @2.5.0"
+                ]
+              },
+              "sessionId": {
+                "type": "string",
+                "description": "Optional session ID for state management",
+                "examples": [
+                  "session-123"
+                ]
+              }
+            },
+            "required": [
+              "goal",
+              "plan"
+            ],
+            "additionalProperties": false
+          }
+        },
+        {
+          "name": "vibe_learn",
+          "description": "Pattern recognition system that tracks common errors and solutions to prevent recurring issues",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "mistake": {
+                "type": "string",
+                "description": "One-sentence description of the learning entry",
+                "examples": [
+                  "Skipped writing tests"
+                ]
+              },
+              "category": {
+                "type": "string",
+                "description": "Category (standard categories: Complex Solution Bias, Feature Creep, Premature Implementation, Misalignment, Overtooling, Preference, Success, Other)",
+                "enum": [
+                  "Complex Solution Bias",
+                  "Feature Creep",
+                  "Premature Implementation",
+                  "Misalignment",
+                  "Overtooling",
+                  "Preference",
+                  "Success",
+                  "Other"
+                ],
+                "examples": [
+                  "Premature Implementation"
+                ]
+              },
+              "solution": {
+                "type": "string",
+                "description": "How it was corrected (if applicable)",
+                "examples": [
+                  "Added regression tests"
+                ]
+              },
+              "type": {
+                "type": "string",
+                "enum": [
+                  "mistake",
+                  "preference",
+                  "success"
+                ],
+                "description": "Type of learning entry",
+                "examples": [
+                  "mistake"
+                ]
+              },
+              "sessionId": {
+                "type": "string",
+                "description": "Optional session ID for state management",
+                "examples": [
+                  "session-123"
+                ]
+              }
+            },
+            "required": [
+              "mistake",
+              "category"
+            ],
+            "additionalProperties": false
+          }
+        },
+        {
+          "name": "update_constitution",
+          "description": "Append a constitutional rule for this session (in-memory)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "sessionId": {
+                "type": "string",
+                "examples": [
+                  "session-123"
+                ]
+              },
+              "rule": {
+                "type": "string",
+                "examples": [
+                  "Always write tests first"
+                ]
+              }
+            },
+            "required": [
+              "sessionId",
+              "rule"
+            ],
+            "additionalProperties": false
+          }
+        },
+        {
+          "name": "reset_constitution",
+          "description": "Overwrite all constitutional rules for this session",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "sessionId": {
+                "type": "string",
+                "examples": [
+                  "session-123"
+                ]
+              },
+              "rules": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "examples": [
+                  [
+                    "Be kind",
+                    "Avoid loops"
+                  ]
+                ]
+              }
+            },
+            "required": [
+              "sessionId",
+              "rules"
+            ],
+            "additionalProperties": false
+          }
+        },
+        {
+          "name": "check_constitution",
+          "description": "Return the current constitution rules for this session",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "sessionId": {
+                "type": "string",
+                "examples": [
+                  "session-123"
+                ]
+              }
+            },
+            "required": [
+              "sessionId"
+            ],
+            "additionalProperties": false
+          }
+        }
+      ],
+      "tool_count": 5,
+      "tool_names": [
+        "vibe_check",
+        "vibe_learn",
+        "update_constitution",
+        "reset_constitution",
+        "check_constitution"
+      ]
+    },
+    "server_info_crawled": {
+      "id": 166,
+      "name": "Vibe Check",
+      "author": "",
+      "overview": "Vibe Check - AI/ML Tools MCP server with 5 tools.",
+      "repository_url": "",
+      "homepage": "https://server.smithery.ai/@PV-Bhat/vibe-check-mcp-server/mcp",
+      "remote_or_local": "Remote",
+      "license": "",
+      "usage_count": "100",
+      "success_rate": "100%",
+      "tags": [
+        "ai/ml-tools"
+      ],
+      "categories": [
+        "ai/ml tools"
+      ],
+      "tools_count": 5,
+      "tools": [
+        {
+          "name": "vibe_check",
+          "description": "Metacognitive questioning tool that identifies assumptions and breaks tunnel vision to prevent cascading errors",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "goal": {
+                "type": "string",
+                "description": "The agent's current goal",
+                "examples": [
+                  "Ship CPI v2.5 with zero regressions"
+                ]
+              },
+              "plan": {
+                "type": "string",
+                "description": "The agent's detailed plan",
+                "examples": [
+                  "1) Write tests 2) Refactor 3) Canary rollout"
+                ]
+              },
+              "modelOverride": {
+                "type": "object",
+                "properties": {
+                  "provider": {
+                    "type": "string",
+                    "enum": [
+                      "gemini",
+                      "openai",
+                      "openrouter"
+                    ]
+                  },
+                  "model": {
+                    "type": "string"
+                  }
+                },
+                "required": [],
+                "examples": [
+                  {
+                    "provider": "gemini",
+                    "model": "gemini-2.5-pro"
+                  }
+                ]
+              },
+              "userPrompt": {
+                "type": "string",
+                "description": "The original user prompt",
+                "examples": [
+                  "Summarize the repo"
+                ]
+              },
+              "progress": {
+                "type": "string",
+                "description": "The agent's progress so far",
+                "examples": [
+                  "Finished step 1"
+                ]
+              },
+              "uncertainties": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "The agent's uncertainties",
+                "examples": [
+                  [
+                    "uncertain about deployment"
+                  ]
+                ]
+              },
+              "taskContext": {
+                "type": "string",
+                "description": "The context of the current task",
+                "examples": [
+                  "repo: vibe-check-mcp @2.5.0"
+                ]
+              },
+              "sessionId": {
+                "type": "string",
+                "description": "Optional session ID for state management",
+                "examples": [
+                  "session-123"
+                ]
+              }
+            },
+            "required": [
+              "goal",
+              "plan"
+            ],
+            "additionalProperties": false
+          }
+        },
+        {
+          "name": "vibe_learn",
+          "description": "Pattern recognition system that tracks common errors and solutions to prevent recurring issues",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "mistake": {
+                "type": "string",
+                "description": "One-sentence description of the learning entry",
+                "examples": [
+                  "Skipped writing tests"
+                ]
+              },
+              "category": {
+                "type": "string",
+                "description": "Category (standard categories: Complex Solution Bias, Feature Creep, Premature Implementation, Misalignment, Overtooling, Preference, Success, Other)",
+                "enum": [
+                  "Complex Solution Bias",
+                  "Feature Creep",
+                  "Premature Implementation",
+                  "Misalignment",
+                  "Overtooling",
+                  "Preference",
+                  "Success",
+                  "Other"
+                ],
+                "examples": [
+                  "Premature Implementation"
+                ]
+              },
+              "solution": {
+                "type": "string",
+                "description": "How it was corrected (if applicable)",
+                "examples": [
+                  "Added regression tests"
+                ]
+              },
+              "type": {
+                "type": "string",
+                "enum": [
+                  "mistake",
+                  "preference",
+                  "success"
+                ],
+                "description": "Type of learning entry",
+                "examples": [
+                  "mistake"
+                ]
+              },
+              "sessionId": {
+                "type": "string",
+                "description": "Optional session ID for state management",
+                "examples": [
+                  "session-123"
+                ]
+              }
+            },
+            "required": [
+              "mistake",
+              "category"
+            ],
+            "additionalProperties": false
+          }
+        },
+        {
+          "name": "update_constitution",
+          "description": "Append a constitutional rule for this session (in-memory)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "sessionId": {
+                "type": "string",
+                "examples": [
+                  "session-123"
+                ]
+              },
+              "rule": {
+                "type": "string",
+                "examples": [
+                  "Always write tests first"
+                ]
+              }
+            },
+            "required": [
+              "sessionId",
+              "rule"
+            ],
+            "additionalProperties": false
+          }
+        },
+        {
+          "name": "reset_constitution",
+          "description": "Overwrite all constitutional rules for this session",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "sessionId": {
+                "type": "string",
+                "examples": [
+                  "session-123"
+                ]
+              },
+              "rules": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "examples": [
+                  [
+                    "Be kind",
+                    "Avoid loops"
+                  ]
+                ]
+              }
+            },
+            "required": [
+              "sessionId",
+              "rules"
+            ],
+            "additionalProperties": false
+          }
+        },
+        {
+          "name": "check_constitution",
+          "description": "Return the current constitution rules for this session",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "sessionId": {
+                "type": "string",
+                "examples": [
+                  "session-123"
+                ]
+              }
+            },
+            "required": [
+              "sessionId"
+            ],
+            "additionalProperties": false
+          }
+        }
+      ],
+      "python_sdk_url": "https://server.smithery.ai/@PV-Bhat/vibe-check-mcp-server/mcp",
+      "python_sdk_config": "{\"debug\": false}"
+    },
+    "source_filename": "0166.Vibe-Check_labeled.json",
+    "processed_timestamp": 1772871481,
+    "processing_mode": "gateway",
+    "rank": 167
+  }
+}

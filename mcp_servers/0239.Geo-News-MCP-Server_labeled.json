@@ -1,0 +1,163 @@
+{
+  "labels": {
+    "analysis": "The MCP Server \"Geo News MCP Server\" provides 2 tools for development tools tasks.",
+    "reasoning": "Primary label \"Development Tools\" assigned based on tool names and descriptions.",
+    "primary_label": "Development Tools",
+    "secondary_labels": [
+      "API Integration",
+      "DevOps",
+      "News & Media",
+      "Web Search & Research"
+    ],
+    "custom_label": "Development Tools - Geo News MCP Server",
+    "is_connected": true,
+    "is_remote_tool_valid": true,
+    "featured_server": false
+  },
+  "metadata": {
+    "server_id": 239,
+    "server_name": "Geo News MCP Server",
+    "rank_by_usage": 240,
+    "usage_count": "10",
+    "original_file": "tools.json#239",
+    "mode": "gateway",
+    "timestamp": 1772871482,
+    "remote_server_response": {
+      "url": "https://server.smithery.ai/@Ymuberra/geo-news-mcp/mcp",
+      "is_success": true,
+      "error": null,
+      "tools": [
+        {
+          "description": "Get latest news from a specific country",
+          "inputSchema": {
+            "properties": {
+              "category": {
+                "description": "News category",
+                "enum": [
+                  "business",
+                  "entertainment",
+                  "general",
+                  "health",
+                  "science",
+                  "sports",
+                  "technology"
+                ],
+                "type": "string"
+              },
+              "country": {
+                "description": "Country code (e.g., 'us', 'tr', 'gb')",
+                "type": "string"
+              }
+            },
+            "required": [
+              "country"
+            ],
+            "type": "object"
+          },
+          "name": "get_news_by_country"
+        },
+        {
+          "description": "Search for news articles by keyword",
+          "inputSchema": {
+            "properties": {
+              "language": {
+                "description": "Language code (e.g., 'en', 'tr')",
+                "type": "string"
+              },
+              "query": {
+                "description": "Search query",
+                "type": "string"
+              }
+            },
+            "required": [
+              "query"
+            ],
+            "type": "object"
+          },
+          "name": "search_news"
+        }
+      ],
+      "tool_count": 2,
+      "tool_names": [
+        "get_news_by_country",
+        "search_news"
+      ]
+    },
+    "server_info_crawled": {
+      "id": 239,
+      "name": "Geo News MCP Server",
+      "author": "",
+      "overview": "Geo News MCP Server - Development Tools MCP server with 2 tools.",
+      "repository_url": "",
+      "homepage": "https://server.smithery.ai/@Ymuberra/geo-news-mcp/mcp",
+      "remote_or_local": "Remote",
+      "license": "",
+      "usage_count": "10",
+      "success_rate": "100%",
+      "tags": [
+        "development-tools"
+      ],
+      "categories": [
+        "development tools"
+      ],
+      "tools_count": 2,
+      "tools": [
+        {
+          "description": "Get latest news from a specific country",
+          "inputSchema": {
+            "properties": {
+              "category": {
+                "description": "News category",
+                "enum": [
+                  "business",
+                  "entertainment",
+                  "general",
+                  "health",
+                  "science",
+                  "sports",
+                  "technology"
+                ],
+                "type": "string"
+              },
+              "country": {
+                "description": "Country code (e.g., 'us', 'tr', 'gb')",
+                "type": "string"
+              }
+            },
+            "required": [
+              "country"
+            ],
+            "type": "object"
+          },
+          "name": "get_news_by_country"
+        },
+        {
+          "description": "Search for news articles by keyword",
+          "inputSchema": {
+            "properties": {
+              "language": {
+                "description": "Language code (e.g., 'en', 'tr')",
+                "type": "string"
+              },
+              "query": {
+                "description": "Search query",
+                "type": "string"
+              }
+            },
+            "required": [
+              "query"
+            ],
+            "type": "object"
+          },
+          "name": "search_news"
+        }
+      ],
+      "python_sdk_url": "https://server.smithery.ai/@Ymuberra/geo-news-mcp/mcp",
+      "python_sdk_config": "{\"debug\": false}"
+    },
+    "source_filename": "0239.Geo-News-MCP-Server_labeled.json",
+    "processed_timestamp": 1772871482,
+    "processing_mode": "gateway",
+    "rank": 240
+  }
+}

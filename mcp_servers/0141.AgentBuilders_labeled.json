@@ -1,0 +1,337 @@
+{
+  "labels": {
+    "analysis": "The MCP Server \"AgentBuilders\" provides 6 tools for development tools tasks.",
+    "reasoning": "Primary label \"Development Tools\" assigned based on tool names and descriptions.",
+    "primary_label": "Development Tools",
+    "secondary_labels": [
+      "API Integration",
+      "DevOps",
+      "Data Analysis & Processing",
+      "File Management"
+    ],
+    "custom_label": "Development Tools - AgentBuilders",
+    "is_connected": true,
+    "is_remote_tool_valid": true,
+    "featured_server": true
+  },
+  "metadata": {
+    "server_id": 141,
+    "server_name": "AgentBuilders",
+    "rank_by_usage": 142,
+    "usage_count": "100",
+    "original_file": "tools.json#141",
+    "mode": "gateway",
+    "timestamp": 1772871481,
+    "remote_server_response": {
+      "url": "https://api.agentbuilders.app/mcp",
+      "is_success": true,
+      "error": null,
+      "tools": [
+        {
+          "name": "deploy_app",
+          "description": "Deploy a full-stack web app. Creates or redeploys an app with static files, optional database, file storage, user auth, and RBAC. Returns a live URL.",
+          "inputSchema": {
+            "type": "object",
+            "required": [
+              "name",
+              "files"
+            ],
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "App subdomain name (lowercase alphanumeric + hyphens, 1-63 chars)"
+              },
+              "files": {
+                "type": "object",
+                "additionalProperties": {
+                  "type": "string"
+                },
+                "description": "Map of filename to content string"
+              },
+              "public": {
+                "type": "boolean",
+                "description": "Make app publicly accessible (default: private with viewKey)"
+              },
+              "database_tables": {
+                "type": "object",
+                "additionalProperties": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "type": "string"
+                  }
+                },
+                "description": "Database tables: { table_name: { column: 'TEXT'|'INTEGER'|'REAL'|'BLOB' } }"
+              },
+              "enable_files": {
+                "type": "boolean",
+                "description": "Enable R2 file storage for this app"
+              },
+              "enable_auth": {
+                "type": "boolean",
+                "description": "Enable user registration/login for this app"
+              },
+              "rbac_roles": {
+                "type": "object",
+                "description": "RBAC role definitions: { role_name: { permissions: [...], inherits: [...] } }"
+              },
+              "rbac_default_role": {
+                "type": "string",
+                "description": "Default role for new users"
+              },
+              "version": {
+                "type": "integer",
+                "description": "Expected version for optimistic concurrency (CAS)"
+              }
+            }
+          }
+        },
+        {
+          "name": "list_apps",
+          "description": "List all apps deployed with your API key.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {}
+          }
+        },
+        {
+          "name": "get_app",
+          "description": "Get details of a specific app including URL, capabilities, and version.",
+          "inputSchema": {
+            "type": "object",
+            "required": [
+              "name"
+            ],
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "App name"
+              }
+            }
+          }
+        },
+        {
+          "name": "delete_app",
+          "description": "Delete an app and all its data. The name enters a 7-day quarantine period.",
+          "inputSchema": {
+            "type": "object",
+            "required": [
+              "name"
+            ],
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "App name to delete"
+              }
+            }
+          }
+        },
+        {
+          "name": "update_app",
+          "description": "Update app settings (e.g., toggle public/private) without full redeploy.",
+          "inputSchema": {
+            "type": "object",
+            "required": [
+              "name"
+            ],
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "App name"
+              },
+              "public": {
+                "type": "boolean",
+                "description": "Set public accessibility"
+              }
+            }
+          }
+        },
+        {
+          "name": "get_viewkey",
+          "description": "Get the viewKey for a private app. Users need this to access the app.",
+          "inputSchema": {
+            "type": "object",
+            "required": [
+              "name"
+            ],
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "App name"
+              }
+            }
+          }
+        }
+      ],
+      "tool_count": 6,
+      "tool_names": [
+        "deploy_app",
+        "list_apps",
+        "get_app",
+        "delete_app",
+        "update_app",
+        "get_viewkey"
+      ]
+    },
+    "server_info_crawled": {
+      "id": 141,
+      "name": "AgentBuilders",
+      "author": "",
+      "overview": "AgentBuilders - Development Tools MCP server with 6 tools.",
+      "repository_url": "",
+      "homepage": "https://api.agentbuilders.app/mcp",
+      "remote_or_local": "Remote",
+      "license": "",
+      "usage_count": "100",
+      "success_rate": "100%",
+      "tags": [
+        "development-tools"
+      ],
+      "categories": [
+        "development tools"
+      ],
+      "tools_count": 6,
+      "tools": [
+        {
+          "name": "deploy_app",
+          "description": "Deploy a full-stack web app. Creates or redeploys an app with static files, optional database, file storage, user auth, and RBAC. Returns a live URL.",
+          "inputSchema": {
+            "type": "object",
+            "required": [
+              "name",
+              "files"
+            ],
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "App subdomain name (lowercase alphanumeric + hyphens, 1-63 chars)"
+              },
+              "files": {
+                "type": "object",
+                "additionalProperties": {
+                  "type": "string"
+                },
+                "description": "Map of filename to content string"
+              },
+              "public": {
+                "type": "boolean",
+                "description": "Make app publicly accessible (default: private with viewKey)"
+              },
+              "database_tables": {
+                "type": "object",
+                "additionalProperties": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "type": "string"
+                  }
+                },
+                "description": "Database tables: { table_name: { column: 'TEXT'|'INTEGER'|'REAL'|'BLOB' } }"
+              },
+              "enable_files": {
+                "type": "boolean",
+                "description": "Enable R2 file storage for this app"
+              },
+              "enable_auth": {
+                "type": "boolean",
+                "description": "Enable user registration/login for this app"
+              },
+              "rbac_roles": {
+                "type": "object",
+                "description": "RBAC role definitions: { role_name: { permissions: [...], inherits: [...] } }"
+              },
+              "rbac_default_role": {
+                "type": "string",
+                "description": "Default role for new users"
+              },
+              "version": {
+                "type": "integer",
+                "description": "Expected version for optimistic concurrency (CAS)"
+              }
+            }
+          }
+        },
+        {
+          "name": "list_apps",
+          "description": "List all apps deployed with your API key.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {}
+          }
+        },
+        {
+          "name": "get_app",
+          "description": "Get details of a specific app including URL, capabilities, and version.",
+          "inputSchema": {
+            "type": "object",
+            "required": [
+              "name"
+            ],
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "App name"
+              }
+            }
+          }
+        },
+        {
+          "name": "delete_app",
+          "description": "Delete an app and all its data. The name enters a 7-day quarantine period.",
+          "inputSchema": {
+            "type": "object",
+            "required": [
+              "name"
+            ],
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "App name to delete"
+              }
+            }
+          }
+        },
+        {
+          "name": "update_app",
+          "description": "Update app settings (e.g., toggle public/private) without full redeploy.",
+          "inputSchema": {
+            "type": "object",
+            "required": [
+              "name"
+            ],
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "App name"
+              },
+              "public": {
+                "type": "boolean",
+                "description": "Set public accessibility"
+              }
+            }
+          }
+        },
+        {
+          "name": "get_viewkey",
+          "description": "Get the viewKey for a private app. Users need this to access the app.",
+          "inputSchema": {
+            "type": "object",
+            "required": [
+              "name"
+            ],
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "App name"
+              }
+            }
+          }
+        }
+      ],
+      "python_sdk_url": "https://api.agentbuilders.app/mcp",
+      "python_sdk_config": "{\"debug\": false}"
+    },
+    "source_filename": "0141.AgentBuilders_labeled.json",
+    "processed_timestamp": 1772871481,
+    "processing_mode": "gateway",
+    "rank": 142
+  }
+}

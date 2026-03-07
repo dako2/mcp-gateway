@@ -1,0 +1,587 @@
+{
+  "labels": {
+    "analysis": "The MCP Server \"OpenClaw MCP Ecosystem\" provides 8 tools for development tools tasks.",
+    "reasoning": "Primary label \"Development Tools\" assigned based on tool names and descriptions.",
+    "primary_label": "Development Tools",
+    "secondary_labels": [
+      "API Integration",
+      "DevOps",
+      "AI/ML Tools",
+      "Web Search & Research"
+    ],
+    "custom_label": "Development Tools - OpenClaw MCP Ecosystem",
+    "is_connected": true,
+    "is_remote_tool_valid": true,
+    "featured_server": true
+  },
+  "metadata": {
+    "server_id": 108,
+    "server_name": "OpenClaw MCP Ecosystem",
+    "rank_by_usage": 109,
+    "usage_count": "100",
+    "original_file": "tools.json#108",
+    "mode": "gateway",
+    "timestamp": 1772871481,
+    "remote_server_response": {
+      "url": "https://moltbook-publisher-mcp.yagami8095.workers.dev/mcp",
+      "is_success": true,
+      "error": null,
+      "tools": [
+        {
+          "name": "convert_markdown_to_html",
+          "description": "Convert Markdown text to platform-compatible HTML for note.com, Zenn, or Qiita. Handles headings, bold, italic, tables, lists, blockquotes, code blocks, and horizontal rules. Output is ready for direct paste into editor.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "markdown": {
+                "type": "string",
+                "description": "Markdown content to convert"
+              },
+              "platform": {
+                "type": "string",
+                "enum": [
+                  "note",
+                  "zenn",
+                  "qiita",
+                  "generic"
+                ],
+                "description": "Target platform (default: note)"
+              }
+            },
+            "required": [
+              "markdown"
+            ]
+          }
+        },
+        {
+          "name": "optimize_for_seo",
+          "description": "Analyze and optimize Japanese article content for SEO on note.com, Zenn, or Qiita. Returns title suggestions, keyword density, readability score, meta description, and improvement recommendations.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "title": {
+                "type": "string",
+                "description": "Article title"
+              },
+              "content": {
+                "type": "string",
+                "description": "Article content (Markdown or plain text)"
+              },
+              "platform": {
+                "type": "string",
+                "enum": [
+                  "note",
+                  "zenn",
+                  "qiita"
+                ],
+                "description": "Target platform"
+              },
+              "target_keywords": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "Target SEO keywords (optional)"
+              }
+            },
+            "required": [
+              "title",
+              "content"
+            ]
+          }
+        },
+        {
+          "name": "translate_en_to_jp",
+          "description": "Translate English text to natural Japanese. Not machine translation — produces native-sounding Japanese suitable for publishing on Japanese platforms. Preserves technical terms, adds furigana hints for complex kanji.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "text": {
+                "type": "string",
+                "description": "English text to translate"
+              },
+              "style": {
+                "type": "string",
+                "enum": [
+                  "casual",
+                  "formal",
+                  "technical",
+                  "blog"
+                ],
+                "description": "Writing style (default: blog)"
+              },
+              "preserve_terms": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "Technical terms to keep in English (e.g., [\"MCP\", \"API\", \"Claude\"])"
+              }
+            },
+            "required": [
+              "text"
+            ]
+          }
+        },
+        {
+          "name": "generate_article_outline",
+          "description": "Generate a structured article outline from a topic. Produces H2/H3 headings, key points per section, estimated word count, and SEO-optimized structure for Japanese platforms.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "topic": {
+                "type": "string",
+                "description": "Article topic or title idea"
+              },
+              "platform": {
+                "type": "string",
+                "enum": [
+                  "note",
+                  "zenn",
+                  "qiita"
+                ],
+                "description": "Target platform"
+              },
+              "length": {
+                "type": "string",
+                "enum": [
+                  "short",
+                  "medium",
+                  "long"
+                ],
+                "description": "Article length (short: 1000字, medium: 2500字, long: 5000字+)"
+              },
+              "audience": {
+                "type": "string",
+                "description": "Target audience (e.g., \"AI beginners\", \"experienced developers\")"
+              }
+            },
+            "required": [
+              "topic"
+            ]
+          }
+        },
+        {
+          "name": "get_trending_topics",
+          "description": "[PRO] Get current trending topics on note.com, Zenn, and Qiita. Returns top topics with estimated engagement, competition level, and content gap analysis. Updated daily.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "platform": {
+                "type": "string",
+                "enum": [
+                  "note",
+                  "zenn",
+                  "qiita",
+                  "all"
+                ],
+                "description": "Platform to check (default: all)"
+              },
+              "category": {
+                "type": "string",
+                "enum": [
+                  "tech",
+                  "ai",
+                  "business",
+                  "lifestyle",
+                  "all"
+                ],
+                "description": "Category filter"
+              },
+              "api_key": {
+                "type": "string",
+                "description": "Pro API key (required for full results)"
+              }
+            }
+          }
+        },
+        {
+          "name": "cross_post_format",
+          "description": "[PRO] Convert a single article into optimized formats for all 3 Japanese platforms (note.com, Zenn, Qiita). Adjusts heading styles, code blocks, image embeds, and metadata for each platform.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "markdown": {
+                "type": "string",
+                "description": "Article content in Markdown"
+              },
+              "title": {
+                "type": "string",
+                "description": "Article title"
+              },
+              "tags": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "Tags/keywords"
+              },
+              "api_key": {
+                "type": "string",
+                "description": "Pro API key (required)"
+              }
+            },
+            "required": [
+              "markdown",
+              "title"
+            ]
+          }
+        },
+        {
+          "name": "analyze_article_performance",
+          "description": "[PRO] Predict article performance before publishing. Returns estimated views, engagement score, SEO ranking potential, and platform-specific optimization tips.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "title": {
+                "type": "string",
+                "description": "Article title"
+              },
+              "content": {
+                "type": "string",
+                "description": "Article content"
+              },
+              "platform": {
+                "type": "string",
+                "enum": [
+                  "note",
+                  "zenn",
+                  "qiita"
+                ],
+                "description": "Target platform"
+              },
+              "api_key": {
+                "type": "string",
+                "description": "Pro API key (required)"
+              }
+            },
+            "required": [
+              "title",
+              "content"
+            ]
+          }
+        },
+        {
+          "name": "purchase_pro_key",
+          "description": "Get a MoltBook Publisher Pro API key. Pro unlocks: trending topics, cross-post formatting, performance analysis, and 1000 uses/day (vs 20 free). $9/month via PayPal.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "action": {
+                "type": "string",
+                "enum": [
+                  "get_link",
+                  "validate"
+                ],
+                "description": "\"get_link\" for purchase URL, \"validate\" to check existing key"
+              },
+              "api_key": {
+                "type": "string",
+                "description": "API key to validate (for action=validate)"
+              }
+            },
+            "required": [
+              "action"
+            ]
+          }
+        }
+      ],
+      "tool_count": 8,
+      "tool_names": [
+        "convert_markdown_to_html",
+        "optimize_for_seo",
+        "translate_en_to_jp",
+        "generate_article_outline",
+        "get_trending_topics",
+        "cross_post_format",
+        "analyze_article_performance",
+        "purchase_pro_key"
+      ]
+    },
+    "server_info_crawled": {
+      "id": 108,
+      "name": "OpenClaw MCP Ecosystem",
+      "author": "",
+      "overview": "OpenClaw MCP Ecosystem - Development Tools MCP server with 8 tools.",
+      "repository_url": "",
+      "homepage": "https://moltbook-publisher-mcp.yagami8095.workers.dev/mcp",
+      "remote_or_local": "Remote",
+      "license": "",
+      "usage_count": "100",
+      "success_rate": "100%",
+      "tags": [
+        "development-tools"
+      ],
+      "categories": [
+        "development tools"
+      ],
+      "tools_count": 8,
+      "tools": [
+        {
+          "name": "convert_markdown_to_html",
+          "description": "Convert Markdown text to platform-compatible HTML for note.com, Zenn, or Qiita. Handles headings, bold, italic, tables, lists, blockquotes, code blocks, and horizontal rules. Output is ready for direct paste into editor.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "markdown": {
+                "type": "string",
+                "description": "Markdown content to convert"
+              },
+              "platform": {
+                "type": "string",
+                "enum": [
+                  "note",
+                  "zenn",
+                  "qiita",
+                  "generic"
+                ],
+                "description": "Target platform (default: note)"
+              }
+            },
+            "required": [
+              "markdown"
+            ]
+          }
+        },
+        {
+          "name": "optimize_for_seo",
+          "description": "Analyze and optimize Japanese article content for SEO on note.com, Zenn, or Qiita. Returns title suggestions, keyword density, readability score, meta description, and improvement recommendations.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "title": {
+                "type": "string",
+                "description": "Article title"
+              },
+              "content": {
+                "type": "string",
+                "description": "Article content (Markdown or plain text)"
+              },
+              "platform": {
+                "type": "string",
+                "enum": [
+                  "note",
+                  "zenn",
+                  "qiita"
+                ],
+                "description": "Target platform"
+              },
+              "target_keywords": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "Target SEO keywords (optional)"
+              }
+            },
+            "required": [
+              "title",
+              "content"
+            ]
+          }
+        },
+        {
+          "name": "translate_en_to_jp",
+          "description": "Translate English text to natural Japanese. Not machine translation — produces native-sounding Japanese suitable for publishing on Japanese platforms. Preserves technical terms, adds furigana hints for complex kanji.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "text": {
+                "type": "string",
+                "description": "English text to translate"
+              },
+              "style": {
+                "type": "string",
+                "enum": [
+                  "casual",
+                  "formal",
+                  "technical",
+                  "blog"
+                ],
+                "description": "Writing style (default: blog)"
+              },
+              "preserve_terms": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "Technical terms to keep in English (e.g., [\"MCP\", \"API\", \"Claude\"])"
+              }
+            },
+            "required": [
+              "text"
+            ]
+          }
+        },
+        {
+          "name": "generate_article_outline",
+          "description": "Generate a structured article outline from a topic. Produces H2/H3 headings, key points per section, estimated word count, and SEO-optimized structure for Japanese platforms.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "topic": {
+                "type": "string",
+                "description": "Article topic or title idea"
+              },
+              "platform": {
+                "type": "string",
+                "enum": [
+                  "note",
+                  "zenn",
+                  "qiita"
+                ],
+                "description": "Target platform"
+              },
+              "length": {
+                "type": "string",
+                "enum": [
+                  "short",
+                  "medium",
+                  "long"
+                ],
+                "description": "Article length (short: 1000字, medium: 2500字, long: 5000字+)"
+              },
+              "audience": {
+                "type": "string",
+                "description": "Target audience (e.g., \"AI beginners\", \"experienced developers\")"
+              }
+            },
+            "required": [
+              "topic"
+            ]
+          }
+        },
+        {
+          "name": "get_trending_topics",
+          "description": "[PRO] Get current trending topics on note.com, Zenn, and Qiita. Returns top topics with estimated engagement, competition level, and content gap analysis. Updated daily.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "platform": {
+                "type": "string",
+                "enum": [
+                  "note",
+                  "zenn",
+                  "qiita",
+                  "all"
+                ],
+                "description": "Platform to check (default: all)"
+              },
+              "category": {
+                "type": "string",
+                "enum": [
+                  "tech",
+                  "ai",
+                  "business",
+                  "lifestyle",
+                  "all"
+                ],
+                "description": "Category filter"
+              },
+              "api_key": {
+                "type": "string",
+                "description": "Pro API key (required for full results)"
+              }
+            }
+          }
+        },
+        {
+          "name": "cross_post_format",
+          "description": "[PRO] Convert a single article into optimized formats for all 3 Japanese platforms (note.com, Zenn, Qiita). Adjusts heading styles, code blocks, image embeds, and metadata for each platform.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "markdown": {
+                "type": "string",
+                "description": "Article content in Markdown"
+              },
+              "title": {
+                "type": "string",
+                "description": "Article title"
+              },
+              "tags": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "Tags/keywords"
+              },
+              "api_key": {
+                "type": "string",
+                "description": "Pro API key (required)"
+              }
+            },
+            "required": [
+              "markdown",
+              "title"
+            ]
+          }
+        },
+        {
+          "name": "analyze_article_performance",
+          "description": "[PRO] Predict article performance before publishing. Returns estimated views, engagement score, SEO ranking potential, and platform-specific optimization tips.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "title": {
+                "type": "string",
+                "description": "Article title"
+              },
+              "content": {
+                "type": "string",
+                "description": "Article content"
+              },
+              "platform": {
+                "type": "string",
+                "enum": [
+                  "note",
+                  "zenn",
+                  "qiita"
+                ],
+                "description": "Target platform"
+              },
+              "api_key": {
+                "type": "string",
+                "description": "Pro API key (required)"
+              }
+            },
+            "required": [
+              "title",
+              "content"
+            ]
+          }
+        },
+        {
+          "name": "purchase_pro_key",
+          "description": "Get a MoltBook Publisher Pro API key. Pro unlocks: trending topics, cross-post formatting, performance analysis, and 1000 uses/day (vs 20 free). $9/month via PayPal.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "action": {
+                "type": "string",
+                "enum": [
+                  "get_link",
+                  "validate"
+                ],
+                "description": "\"get_link\" for purchase URL, \"validate\" to check existing key"
+              },
+              "api_key": {
+                "type": "string",
+                "description": "API key to validate (for action=validate)"
+              }
+            },
+            "required": [
+              "action"
+            ]
+          }
+        }
+      ],
+      "python_sdk_url": "https://moltbook-publisher-mcp.yagami8095.workers.dev/mcp",
+      "python_sdk_config": "{\"debug\": false}"
+    },
+    "source_filename": "0108.OpenClaw-MCP-Ecosystem_labeled.json",
+    "processed_timestamp": 1772871481,
+    "processing_mode": "gateway",
+    "rank": 109
+  }
+}

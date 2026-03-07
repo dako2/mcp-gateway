@@ -1,0 +1,380 @@
+{
+  "labels": {
+    "analysis": "The MCP Server \"La Palma 24 - Vacation Rentals\" provides 6 tools for real estate tasks.",
+    "reasoning": "Primary label \"Real Estate\" assigned based on tool names and descriptions.",
+    "primary_label": "Real Estate",
+    "secondary_labels": [
+      "E-Commerce",
+      "Development Tools",
+      "DNS & Networking"
+    ],
+    "custom_label": "Real Estate - La Palma 24 - Vacation Rentals",
+    "is_connected": true,
+    "is_remote_tool_valid": true,
+    "featured_server": true
+  },
+  "metadata": {
+    "server_id": 125,
+    "server_name": "La Palma 24 - Vacation Rentals",
+    "rank_by_usage": 126,
+    "usage_count": "100",
+    "original_file": "tools.json#125",
+    "mode": "gateway",
+    "timestamp": 1772871481,
+    "remote_server_response": {
+      "url": "https://mcp.la-palma24.net",
+      "is_success": true,
+      "error": null,
+      "tools": [
+        {
+          "name": "buscar_disponibilidad",
+          "description": "Busca propiedades vacacionales disponibles en La Palma para unas fechas específicas. Permite filtrar por municipio, barrio y número de personas.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "fecha_llegada": {
+                "type": "string",
+                "description": "Fecha de llegada en formato YYYY-MM-DD (ej: 2024-06-15)",
+                "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+              },
+              "fecha_salida": {
+                "type": "string",
+                "description": "Fecha de salida en formato YYYY-MM-DD (ej: 2024-06-22)",
+                "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+              },
+              "num_personas": {
+                "type": "number",
+                "description": "Número de huéspedes (default: 2)",
+                "minimum": 1
+              },
+              "municipio": {
+                "type": "string",
+                "description": "Filtrar por municipio (ej: Santa Cruz de La Palma, Los Llanos de Aridane)"
+              },
+              "barrio": {
+                "type": "string",
+                "description": "Filtrar por barrio/zona (ej: Centro, San Telmo, El Charco)"
+              }
+            },
+            "required": [
+              "fecha_llegada",
+              "fecha_salida"
+            ]
+          }
+        },
+        {
+          "name": "obtener_detalles_propiedad",
+          "description": "Obtiene información completa de una propiedad específica: características, amenidades, ubicación, precios, fotos, descripciones en el idioma solicitado.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "id_casa": {
+                "type": "string",
+                "description": "ID de la propiedad a consultar"
+              },
+              "idioma": {
+                "type": "string",
+                "description": "Idioma para descripciones: es (español), en (inglés), de (alemán)",
+                "enum": [
+                  "es",
+                  "en",
+                  "de"
+                ],
+                "default": "es"
+              }
+            },
+            "required": [
+              "id_casa"
+            ]
+          }
+        },
+        {
+          "name": "calcular_precio_estancia",
+          "description": "Calcula el precio total de una estancia incluyendo tarifas por temporada, descuentos aplicables, número de noches y personas.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "id_casa": {
+                "type": "string",
+                "description": "ID de la propiedad"
+              },
+              "fecha_llegada": {
+                "type": "string",
+                "description": "Fecha de llegada en formato YYYY-MM-DD",
+                "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+              },
+              "fecha_salida": {
+                "type": "string",
+                "description": "Fecha de salida en formato YYYY-MM-DD",
+                "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+              },
+              "num_personas": {
+                "type": "number",
+                "description": "Número de huéspedes (default: 2)",
+                "minimum": 1
+              }
+            },
+            "required": [
+              "id_casa",
+              "fecha_llegada",
+              "fecha_salida"
+            ]
+          }
+        },
+        {
+          "name": "listar_propiedades",
+          "description": "Lista todas las propiedades vacacionales disponibles con filtros opcionales por ubicación, capacidad y características. Incluye paginación.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "municipio": {
+                "type": "string",
+                "description": "Filtrar por municipio"
+              },
+              "barrio": {
+                "type": "string",
+                "description": "Filtrar por barrio/zona"
+              },
+              "dormitorios": {
+                "type": "number",
+                "description": "Número de dormitorios",
+                "minimum": 1
+              },
+              "personas_max": {
+                "type": "number",
+                "description": "Capacidad mínima de personas",
+                "minimum": 1
+              },
+              "limit": {
+                "type": "number",
+                "description": "Número máximo de resultados (default: 50)",
+                "minimum": 1,
+                "maximum": 100,
+                "default": 50
+              },
+              "offset": {
+                "type": "number",
+                "description": "Offset para paginación (default: 0)",
+                "minimum": 0,
+                "default": 0
+              }
+            }
+          }
+        },
+        {
+          "name": "listar_municipios",
+          "description": "Obtiene la lista completa de municipios disponibles en La Palma donde hay propiedades. Útil para saber qué ubicaciones se pueden filtrar.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {}
+          }
+        },
+        {
+          "name": "listar_barrios",
+          "description": "Obtiene la lista de barrios/zonas disponibles, opcionalmente filtrados por municipio. Útil para búsquedas más específicas de ubicación.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "municipio": {
+                "type": "string",
+                "description": "Filtrar barrios por municipio (ej: Santa Cruz de La Palma)"
+              }
+            }
+          }
+        }
+      ],
+      "tool_count": 6,
+      "tool_names": [
+        "buscar_disponibilidad",
+        "obtener_detalles_propiedad",
+        "calcular_precio_estancia",
+        "listar_propiedades",
+        "listar_municipios",
+        "listar_barrios"
+      ]
+    },
+    "server_info_crawled": {
+      "id": 125,
+      "name": "La Palma 24 - Vacation Rentals",
+      "author": "",
+      "overview": "La Palma 24 - Vacation Rentals - Real Estate MCP server with 6 tools.",
+      "repository_url": "",
+      "homepage": "https://mcp.la-palma24.net",
+      "remote_or_local": "Remote",
+      "license": "",
+      "usage_count": "100",
+      "success_rate": "100%",
+      "tags": [
+        "real-estate"
+      ],
+      "categories": [
+        "real estate"
+      ],
+      "tools_count": 6,
+      "tools": [
+        {
+          "name": "buscar_disponibilidad",
+          "description": "Busca propiedades vacacionales disponibles en La Palma para unas fechas específicas. Permite filtrar por municipio, barrio y número de personas.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "fecha_llegada": {
+                "type": "string",
+                "description": "Fecha de llegada en formato YYYY-MM-DD (ej: 2024-06-15)",
+                "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+              },
+              "fecha_salida": {
+                "type": "string",
+                "description": "Fecha de salida en formato YYYY-MM-DD (ej: 2024-06-22)",
+                "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+              },
+              "num_personas": {
+                "type": "number",
+                "description": "Número de huéspedes (default: 2)",
+                "minimum": 1
+              },
+              "municipio": {
+                "type": "string",
+                "description": "Filtrar por municipio (ej: Santa Cruz de La Palma, Los Llanos de Aridane)"
+              },
+              "barrio": {
+                "type": "string",
+                "description": "Filtrar por barrio/zona (ej: Centro, San Telmo, El Charco)"
+              }
+            },
+            "required": [
+              "fecha_llegada",
+              "fecha_salida"
+            ]
+          }
+        },
+        {
+          "name": "obtener_detalles_propiedad",
+          "description": "Obtiene información completa de una propiedad específica: características, amenidades, ubicación, precios, fotos, descripciones en el idioma solicitado.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "id_casa": {
+                "type": "string",
+                "description": "ID de la propiedad a consultar"
+              },
+              "idioma": {
+                "type": "string",
+                "description": "Idioma para descripciones: es (español), en (inglés), de (alemán)",
+                "enum": [
+                  "es",
+                  "en",
+                  "de"
+                ],
+                "default": "es"
+              }
+            },
+            "required": [
+              "id_casa"
+            ]
+          }
+        },
+        {
+          "name": "calcular_precio_estancia",
+          "description": "Calcula el precio total de una estancia incluyendo tarifas por temporada, descuentos aplicables, número de noches y personas.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "id_casa": {
+                "type": "string",
+                "description": "ID de la propiedad"
+              },
+              "fecha_llegada": {
+                "type": "string",
+                "description": "Fecha de llegada en formato YYYY-MM-DD",
+                "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+              },
+              "fecha_salida": {
+                "type": "string",
+                "description": "Fecha de salida en formato YYYY-MM-DD",
+                "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+              },
+              "num_personas": {
+                "type": "number",
+                "description": "Número de huéspedes (default: 2)",
+                "minimum": 1
+              }
+            },
+            "required": [
+              "id_casa",
+              "fecha_llegada",
+              "fecha_salida"
+            ]
+          }
+        },
+        {
+          "name": "listar_propiedades",
+          "description": "Lista todas las propiedades vacacionales disponibles con filtros opcionales por ubicación, capacidad y características. Incluye paginación.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "municipio": {
+                "type": "string",
+                "description": "Filtrar por municipio"
+              },
+              "barrio": {
+                "type": "string",
+                "description": "Filtrar por barrio/zona"
+              },
+              "dormitorios": {
+                "type": "number",
+                "description": "Número de dormitorios",
+                "minimum": 1
+              },
+              "personas_max": {
+                "type": "number",
+                "description": "Capacidad mínima de personas",
+                "minimum": 1
+              },
+              "limit": {
+                "type": "number",
+                "description": "Número máximo de resultados (default: 50)",
+                "minimum": 1,
+                "maximum": 100,
+                "default": 50
+              },
+              "offset": {
+                "type": "number",
+                "description": "Offset para paginación (default: 0)",
+                "minimum": 0,
+                "default": 0
+              }
+            }
+          }
+        },
+        {
+          "name": "listar_municipios",
+          "description": "Obtiene la lista completa de municipios disponibles en La Palma donde hay propiedades. Útil para saber qué ubicaciones se pueden filtrar.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {}
+          }
+        },
+        {
+          "name": "listar_barrios",
+          "description": "Obtiene la lista de barrios/zonas disponibles, opcionalmente filtrados por municipio. Útil para búsquedas más específicas de ubicación.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "municipio": {
+                "type": "string",
+                "description": "Filtrar barrios por municipio (ej: Santa Cruz de La Palma)"
+              }
+            }
+          }
+        }
+      ],
+      "python_sdk_url": "https://mcp.la-palma24.net",
+      "python_sdk_config": "{\"debug\": false}"
+    },
+    "source_filename": "0125.La-Palma-24---Vacation-Rentals_labeled.json",
+    "processed_timestamp": 1772871481,
+    "processing_mode": "gateway",
+    "rank": 126
+  }
+}

@@ -1,0 +1,268 @@
+{
+  "labels": {
+    "analysis": "The MCP Server \"World Airfares Flight Search\" provides 3 tools for development tools tasks.",
+    "reasoning": "Primary label \"Development Tools\" assigned based on tool names and descriptions.",
+    "primary_label": "Development Tools",
+    "secondary_labels": [
+      "API Integration",
+      "DevOps",
+      "Web Search & Research",
+      "Data Analysis & Processing"
+    ],
+    "custom_label": "Development Tools - World Airfares Flight Search",
+    "is_connected": true,
+    "is_remote_tool_valid": true,
+    "featured_server": false
+  },
+  "metadata": {
+    "server_id": 191,
+    "server_name": "World Airfares Flight Search",
+    "rank_by_usage": 192,
+    "usage_count": "10",
+    "original_file": "tools.json#191",
+    "mode": "gateway",
+    "timestamp": 1772871482,
+    "remote_server_response": {
+      "url": "https://mcp.worldairfares.com",
+      "is_success": true,
+      "error": null,
+      "tools": [
+        {
+          "name": "get_itinerary_details",
+          "description": "Get detailed information about a specific flight itinerary. Returns comprehensive details including:\n- Complete flight segments with airline, flight number, times, and aircraft type\n- Departure and arrival terminals (if available)\n- Baggage allowance (checked bags, carry-on, personal item limits)\n- Layover information (duration, airport, overnight status)\n- Fare rules (refundability, change policy, fees)\n- Price breakdown (base fare, taxes, fees)\n- Booking URL for purchase\n\nUse this when user asks for:\n- 'Tell me more about this flight'\n- 'What are the baggage allowances?'\n- 'Is this flight refundable?'\n- 'Show me the layover details'\n- 'What terminals will I use?'\n\nWIDGET NOTE: If this tool's results are displayed in a visual widget alongside your response, do NOT repeat the itinerary details in text format. Instead, briefly confirm the details are shown. Do NOT prompt users with instructions like 'say show details for RefNo X' — the widget already displays the details interactively. Only use the formatting instructions below when NO visual widget is rendering the results.\n\nPRESENTATION FORMATTING (MANDATORY):\n- Present detailed information in well-formatted sections. Group by flight leg, segment, and then rules/baggage.\n- CRITICAL: ALWAYS display full names with codes for better readability:\n  * Airports: Use format 'City Name (CODE)' - Example: 'Colombo (CMB)', 'London Heathrow (LHR)', 'Dubai (DXB)'\n  * Airlines: Use format 'Airline Name (CODE)' - Example: 'Emirates (EK)', 'British Airways (BA)', 'Flydubai (FZ)'\n  * NEVER display codes alone (CMB, DXB, EK, etc.) - users don't recognize them\n  * ALWAYS include both the full name and code in parentheses",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "searchId": {
+                "description": "The searchId from a previous flight search response (found in the 'searchId' field of the JSON response). Used to retrieve cached search results.",
+                "type": "string"
+              },
+              "itineraryId": {
+                "description": "The itineraryId of the specific flight offer to get details for (found in the 'itineraryId' field of each flight offer in the search results, also displayed as 'RefNo' in result tables).",
+                "type": "string"
+              }
+            },
+            "required": [
+              "searchId",
+              "itineraryId"
+            ]
+          },
+          "annotations": {
+            "destructiveHint": false,
+            "openWorldHint": false,
+            "readOnlyHint": true
+          }
+        },
+        {
+          "name": "search_flights",
+          "description": "Search for flights between cities. Returns categorized JSON results:\n\n1. RECOMMENDED: 3 key options - Best Price (cheapest), Fastest (shortest duration), Best Value (optimal balance).\n\n2. BY AIRLINE: Cheapest option per airline with total available count. Users can filter for specific airlines to see all options.\n\n3. ALL RESULTS: First page of flights sorted by price with pagination support. Page size varies by configuration.\n\nWIDGET NOTE: If this tool's results are displayed in a visual widget alongside your response, do NOT repeat the flight data in text or table format. Instead, briefly acknowledge the results (e.g., number of flights found, price range). Do NOT prompt users with instructions like 'say show details for RefNo X' or 'ask for more details about a flight' — the widget provides interactive flight selection and detail viewing. Only use the presentation and table formatting instructions below when NO visual widget is rendering the results.\n\nPRESENTATION ORDER (MANDATORY):\n- FIRST: Display 'Recommended' section as a table with 3 options (Best Price, Fastest, Best Value)\n- SECOND: Display 'By Airline' section showing cheapest flight per airline with availability message (e.g., 'Flydubai (FZ): £220.10 - 5 total options available. Ask to filter by FZ to see all.')\n- THIRD: Display 'All Results' section showing first page of flights in a comprehensive table\n- ALWAYS inform users they can request 'show me [airline] flights' to filter by specific airline from the By Airline list\n\nTABLE FORMATTING (MANDATORY):\n- Include column 'RefNo' displaying the ItineraryId value (users use this to request details)\n- Include column 'Booking Link' displaying the BookingUrl as a clickable link\n- Example table columns: RefNo | Airline | Price | Duration | Stops | Departure | Arrival | Booking Link\n- CRITICAL: ALWAYS display full names with codes for better readability:\n  * Airports: Use format 'City Name (CODE)' - Example: 'Colombo (CMB)', 'London Heathrow (LHR)', 'Dubai (DXB)'\n  * Airlines: Use format 'Airline Name (CODE)' - Example: 'Emirates (EK)', 'British Airways (BA)', 'Flydubai (FZ)'\n  * NEVER display codes alone (CMB, DXB, EK, etc.) - users don't recognize them\n  * ALWAYS include both the full name and code in parentheses\n\nIMPORTANT: Property names are case-sensitive - use exact casing shown in examples. Each flight offer includes a BookingUrl field for immediate booking.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "tripType": {
+                "description": "Trip type (required). Allowed values: 'OneWay', 'RoundTrip', or 'MultiCity' (exact case). Use 'RoundTrip' for most common searches.",
+                "type": "string"
+              },
+              "legs": {
+                "description": "JSON array of flight legs. IMPORTANT: Use PascalCase property names. Each leg MUST have: Origin, Destination, DepartureDate. Example for one-way: [{\"Origin\":\"CMB\",\"Destination\":\"LHR\",\"DepartureDate\":\"2025-10-27\"}]. Example for round-trip: [{\"Origin\":\"LON\",\"Destination\":\"NYC\",\"DepartureDate\":\"2025-12-24\"},{\"Origin\":\"NYC\",\"Destination\":\"LON\",\"DepartureDate\":\"2025-12-31\"}].",
+                "type": "string"
+              },
+              "passengers": {
+                "description": "JSON object with passenger counts. IMPORTANT: Use PascalCase property names. Must have: Adults, Children, Infants. Example: {\"Adults\":1,\"Children\":0,\"Infants\":0}. Valid ranges: Adults (1-9), Children (0-9), Infants (0-9), Infants <= Adults.",
+                "type": "string"
+              },
+              "cabinClass": {
+                "description": "Cabin class. Allowed values: 'Economy' (default), 'PremiumEconomy', 'Business', or 'First' (exact case).",
+                "type": "string",
+                "default": "Economy"
+              },
+              "filters": {
+                "description": "Optional JSON object for filters. IMPORTANT: Use PascalCase property names. Available fields: AirlineCodes (array of 2-letter IATA codes), MaxStops (0-3), MaxPrice (decimal), MinBaggageAllowance (integer), DepartureTimeRange (string: 'Morning'/'Afternoon'/'Evening'/'Night'), DirectFlightOnly (boolean), RefundableOnly (boolean). Example: {\"AirlineCodes\":[\"BA\",\"EK\"],\"MaxStops\":1,\"DirectFlightOnly\":false}.",
+                "type": "string",
+                "default": null
+              }
+            },
+            "required": [
+              "tripType",
+              "legs",
+              "passengers"
+            ]
+          },
+          "annotations": {
+            "destructiveHint": false,
+            "openWorldHint": false,
+            "readOnlyHint": true
+          },
+          "_meta": {
+            "openai/outputTemplate": "ui://widget/flight-search"
+          }
+        },
+        {
+          "name": "get_more_results",
+          "description": "Get additional pages of flight search results from cache. Use this when the user asks for 'more results', 'next page', 'show me more flights', or wants to see flights beyond the initial results. Optionally apply filters to cached results (airline, max stops, max price) without making a new API call. Retrieves results instantly from cache. Requires the searchId from a previous search response.\n\nWIDGET NOTE: If this tool's results are displayed in a visual widget alongside your response, do NOT repeat the flight data in text or table format. Instead, briefly summarize the page results. Do NOT prompt users with instructions like 'say show details for RefNo X' — the widget provides interactive flight selection and detail viewing. Only use the table formatting instructions below when NO visual widget is rendering the results.\n\nTABLE FORMATTING (MANDATORY):\n- ALWAYS format results as a comparison table\n- Include column 'RefNo' displaying the ItineraryId value (users use this to request details)\n- Include column 'Booking Link' displaying the BookingUrl as a clickable link\n- Example table columns: RefNo | Airline | Price | Duration | Stops | Departure | Arrival | Booking Link\n- Include pagination info and offer details below table\n- CRITICAL: ALWAYS display full names with codes for better readability:\n  * Airports: Use format 'City Name (CODE)' - Example: 'Colombo (CMB)', 'London Heathrow (LHR)', 'Dubai (DXB)'\n  * Airlines: Use format 'Airline Name (CODE)' - Example: 'Emirates (EK)', 'British Airways (BA)', 'Flydubai (FZ)'\n  * NEVER display codes alone (CMB, DXB, EK, etc.) - users don't recognize them\n  * ALWAYS include both the full name and code in parentheses\n\nEach flight offer includes a BookingUrl field for immediate booking.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "searchId": {
+                "description": "The searchId from the previous search response (found in the 'searchId' field of the JSON response).",
+                "type": "string"
+              },
+              "page": {
+                "description": "Page number to retrieve (1-based integer). Page 1 was already returned by the initial search. Use 2 for next page, 3 for third page, etc. Default: 2",
+                "type": "integer",
+                "default": 2
+              },
+              "filters": {
+                "description": "Optional JSON object for filters to apply to cached results. IMPORTANT: Use PascalCase property names. Available fields: AirlineCodes (array of 2-letter IATA codes), MaxStops (0-3), MaxPrice (decimal), DepartureTimeRange (string: 'Morning'/'Afternoon'/'Evening'/'Night'), DirectFlightOnly (boolean). Example: {\"AirlineCodes\":[\"BA\",\"EK\"],\"MaxStops\":1}. Filters are applied to cached data without making a new API call.",
+                "type": "string",
+                "default": null
+              }
+            },
+            "required": [
+              "searchId"
+            ]
+          },
+          "annotations": {
+            "destructiveHint": false,
+            "openWorldHint": false,
+            "readOnlyHint": true
+          }
+        }
+      ],
+      "tool_count": 3,
+      "tool_names": [
+        "get_itinerary_details",
+        "search_flights",
+        "get_more_results"
+      ]
+    },
+    "server_info_crawled": {
+      "id": 191,
+      "name": "World Airfares Flight Search",
+      "author": "",
+      "overview": "World Airfares Flight Search - Development Tools MCP server with 3 tools.",
+      "repository_url": "",
+      "homepage": "https://mcp.worldairfares.com",
+      "remote_or_local": "Remote",
+      "license": "",
+      "usage_count": "10",
+      "success_rate": "100%",
+      "tags": [
+        "development-tools"
+      ],
+      "categories": [
+        "development tools"
+      ],
+      "tools_count": 3,
+      "tools": [
+        {
+          "name": "get_itinerary_details",
+          "description": "Get detailed information about a specific flight itinerary. Returns comprehensive details including:\n- Complete flight segments with airline, flight number, times, and aircraft type\n- Departure and arrival terminals (if available)\n- Baggage allowance (checked bags, carry-on, personal item limits)\n- Layover information (duration, airport, overnight status)\n- Fare rules (refundability, change policy, fees)\n- Price breakdown (base fare, taxes, fees)\n- Booking URL for purchase\n\nUse this when user asks for:\n- 'Tell me more about this flight'\n- 'What are the baggage allowances?'\n- 'Is this flight refundable?'\n- 'Show me the layover details'\n- 'What terminals will I use?'\n\nWIDGET NOTE: If this tool's results are displayed in a visual widget alongside your response, do NOT repeat the itinerary details in text format. Instead, briefly confirm the details are shown. Do NOT prompt users with instructions like 'say show details for RefNo X' — the widget already displays the details interactively. Only use the formatting instructions below when NO visual widget is rendering the results.\n\nPRESENTATION FORMATTING (MANDATORY):\n- Present detailed information in well-formatted sections. Group by flight leg, segment, and then rules/baggage.\n- CRITICAL: ALWAYS display full names with codes for better readability:\n  * Airports: Use format 'City Name (CODE)' - Example: 'Colombo (CMB)', 'London Heathrow (LHR)', 'Dubai (DXB)'\n  * Airlines: Use format 'Airline Name (CODE)' - Example: 'Emirates (EK)', 'British Airways (BA)', 'Flydubai (FZ)'\n  * NEVER display codes alone (CMB, DXB, EK, etc.) - users don't recognize them\n  * ALWAYS include both the full name and code in parentheses",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "searchId": {
+                "description": "The searchId from a previous flight search response (found in the 'searchId' field of the JSON response). Used to retrieve cached search results.",
+                "type": "string"
+              },
+              "itineraryId": {
+                "description": "The itineraryId of the specific flight offer to get details for (found in the 'itineraryId' field of each flight offer in the search results, also displayed as 'RefNo' in result tables).",
+                "type": "string"
+              }
+            },
+            "required": [
+              "searchId",
+              "itineraryId"
+            ]
+          },
+          "annotations": {
+            "destructiveHint": false,
+            "openWorldHint": false,
+            "readOnlyHint": true
+          }
+        },
+        {
+          "name": "search_flights",
+          "description": "Search for flights between cities. Returns categorized JSON results:\n\n1. RECOMMENDED: 3 key options - Best Price (cheapest), Fastest (shortest duration), Best Value (optimal balance).\n\n2. BY AIRLINE: Cheapest option per airline with total available count. Users can filter for specific airlines to see all options.\n\n3. ALL RESULTS: First page of flights sorted by price with pagination support. Page size varies by configuration.\n\nWIDGET NOTE: If this tool's results are displayed in a visual widget alongside your response, do NOT repeat the flight data in text or table format. Instead, briefly acknowledge the results (e.g., number of flights found, price range). Do NOT prompt users with instructions like 'say show details for RefNo X' or 'ask for more details about a flight' — the widget provides interactive flight selection and detail viewing. Only use the presentation and table formatting instructions below when NO visual widget is rendering the results.\n\nPRESENTATION ORDER (MANDATORY):\n- FIRST: Display 'Recommended' section as a table with 3 options (Best Price, Fastest, Best Value)\n- SECOND: Display 'By Airline' section showing cheapest flight per airline with availability message (e.g., 'Flydubai (FZ): £220.10 - 5 total options available. Ask to filter by FZ to see all.')\n- THIRD: Display 'All Results' section showing first page of flights in a comprehensive table\n- ALWAYS inform users they can request 'show me [airline] flights' to filter by specific airline from the By Airline list\n\nTABLE FORMATTING (MANDATORY):\n- Include column 'RefNo' displaying the ItineraryId value (users use this to request details)\n- Include column 'Booking Link' displaying the BookingUrl as a clickable link\n- Example table columns: RefNo | Airline | Price | Duration | Stops | Departure | Arrival | Booking Link\n- CRITICAL: ALWAYS display full names with codes for better readability:\n  * Airports: Use format 'City Name (CODE)' - Example: 'Colombo (CMB)', 'London Heathrow (LHR)', 'Dubai (DXB)'\n  * Airlines: Use format 'Airline Name (CODE)' - Example: 'Emirates (EK)', 'British Airways (BA)', 'Flydubai (FZ)'\n  * NEVER display codes alone (CMB, DXB, EK, etc.) - users don't recognize them\n  * ALWAYS include both the full name and code in parentheses\n\nIMPORTANT: Property names are case-sensitive - use exact casing shown in examples. Each flight offer includes a BookingUrl field for immediate booking.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "tripType": {
+                "description": "Trip type (required). Allowed values: 'OneWay', 'RoundTrip', or 'MultiCity' (exact case). Use 'RoundTrip' for most common searches.",
+                "type": "string"
+              },
+              "legs": {
+                "description": "JSON array of flight legs. IMPORTANT: Use PascalCase property names. Each leg MUST have: Origin, Destination, DepartureDate. Example for one-way: [{\"Origin\":\"CMB\",\"Destination\":\"LHR\",\"DepartureDate\":\"2025-10-27\"}]. Example for round-trip: [{\"Origin\":\"LON\",\"Destination\":\"NYC\",\"DepartureDate\":\"2025-12-24\"},{\"Origin\":\"NYC\",\"Destination\":\"LON\",\"DepartureDate\":\"2025-12-31\"}].",
+                "type": "string"
+              },
+              "passengers": {
+                "description": "JSON object with passenger counts. IMPORTANT: Use PascalCase property names. Must have: Adults, Children, Infants. Example: {\"Adults\":1,\"Children\":0,\"Infants\":0}. Valid ranges: Adults (1-9), Children (0-9), Infants (0-9), Infants <= Adults.",
+                "type": "string"
+              },
+              "cabinClass": {
+                "description": "Cabin class. Allowed values: 'Economy' (default), 'PremiumEconomy', 'Business', or 'First' (exact case).",
+                "type": "string",
+                "default": "Economy"
+              },
+              "filters": {
+                "description": "Optional JSON object for filters. IMPORTANT: Use PascalCase property names. Available fields: AirlineCodes (array of 2-letter IATA codes), MaxStops (0-3), MaxPrice (decimal), MinBaggageAllowance (integer), DepartureTimeRange (string: 'Morning'/'Afternoon'/'Evening'/'Night'), DirectFlightOnly (boolean), RefundableOnly (boolean). Example: {\"AirlineCodes\":[\"BA\",\"EK\"],\"MaxStops\":1,\"DirectFlightOnly\":false}.",
+                "type": "string",
+                "default": null
+              }
+            },
+            "required": [
+              "tripType",
+              "legs",
+              "passengers"
+            ]
+          },
+          "annotations": {
+            "destructiveHint": false,
+            "openWorldHint": false,
+            "readOnlyHint": true
+          },
+          "_meta": {
+            "openai/outputTemplate": "ui://widget/flight-search"
+          }
+        },
+        {
+          "name": "get_more_results",
+          "description": "Get additional pages of flight search results from cache. Use this when the user asks for 'more results', 'next page', 'show me more flights', or wants to see flights beyond the initial results. Optionally apply filters to cached results (airline, max stops, max price) without making a new API call. Retrieves results instantly from cache. Requires the searchId from a previous search response.\n\nWIDGET NOTE: If this tool's results are displayed in a visual widget alongside your response, do NOT repeat the flight data in text or table format. Instead, briefly summarize the page results. Do NOT prompt users with instructions like 'say show details for RefNo X' — the widget provides interactive flight selection and detail viewing. Only use the table formatting instructions below when NO visual widget is rendering the results.\n\nTABLE FORMATTING (MANDATORY):\n- ALWAYS format results as a comparison table\n- Include column 'RefNo' displaying the ItineraryId value (users use this to request details)\n- Include column 'Booking Link' displaying the BookingUrl as a clickable link\n- Example table columns: RefNo | Airline | Price | Duration | Stops | Departure | Arrival | Booking Link\n- Include pagination info and offer details below table\n- CRITICAL: ALWAYS display full names with codes for better readability:\n  * Airports: Use format 'City Name (CODE)' - Example: 'Colombo (CMB)', 'London Heathrow (LHR)', 'Dubai (DXB)'\n  * Airlines: Use format 'Airline Name (CODE)' - Example: 'Emirates (EK)', 'British Airways (BA)', 'Flydubai (FZ)'\n  * NEVER display codes alone (CMB, DXB, EK, etc.) - users don't recognize them\n  * ALWAYS include both the full name and code in parentheses\n\nEach flight offer includes a BookingUrl field for immediate booking.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "searchId": {
+                "description": "The searchId from the previous search response (found in the 'searchId' field of the JSON response).",
+                "type": "string"
+              },
+              "page": {
+                "description": "Page number to retrieve (1-based integer). Page 1 was already returned by the initial search. Use 2 for next page, 3 for third page, etc. Default: 2",
+                "type": "integer",
+                "default": 2
+              },
+              "filters": {
+                "description": "Optional JSON object for filters to apply to cached results. IMPORTANT: Use PascalCase property names. Available fields: AirlineCodes (array of 2-letter IATA codes), MaxStops (0-3), MaxPrice (decimal), DepartureTimeRange (string: 'Morning'/'Afternoon'/'Evening'/'Night'), DirectFlightOnly (boolean). Example: {\"AirlineCodes\":[\"BA\",\"EK\"],\"MaxStops\":1}. Filters are applied to cached data without making a new API call.",
+                "type": "string",
+                "default": null
+              }
+            },
+            "required": [
+              "searchId"
+            ]
+          },
+          "annotations": {
+            "destructiveHint": false,
+            "openWorldHint": false,
+            "readOnlyHint": true
+          }
+        }
+      ],
+      "python_sdk_url": "https://mcp.worldairfares.com",
+      "python_sdk_config": "{\"debug\": false}"
+    },
+    "source_filename": "0191.World-Airfares-Flight-Search_labeled.json",
+    "processed_timestamp": 1772871482,
+    "processing_mode": "gateway",
+    "rank": 192
+  }
+}

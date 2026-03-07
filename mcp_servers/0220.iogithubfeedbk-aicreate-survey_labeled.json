@@ -1,0 +1,421 @@
+{
+  "labels": {
+    "analysis": "The MCP Server \"io.github.feedbk-ai/create-survey\" provides 2 tools for development tools tasks.",
+    "reasoning": "Primary label \"Development Tools\" assigned based on tool names and descriptions.",
+    "primary_label": "Development Tools",
+    "secondary_labels": [
+      "API Integration",
+      "DevOps",
+      "AI/ML Tools",
+      "Productivity"
+    ],
+    "custom_label": "Development Tools - io.github.feedbk-ai/create-survey",
+    "is_connected": true,
+    "is_remote_tool_valid": true,
+    "featured_server": false
+  },
+  "metadata": {
+    "server_id": 220,
+    "server_name": "io.github.feedbk-ai/create-survey",
+    "rank_by_usage": 221,
+    "usage_count": "15",
+    "original_file": "tools.json#220",
+    "mode": "gateway",
+    "timestamp": 1772871482,
+    "remote_server_response": {
+      "url": "https://mcp.feedbk.ai/mcp",
+      "is_success": true,
+      "error": null,
+      "tools": [
+        {
+          "name": "start_survey",
+          "title": "Start Survey",
+          "description": "Start drafting a survey with AI-probing. Call this to start the workflow, drafting a survey.",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {}
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "openWorldHint": false
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "publish_survey",
+          "title": "Publish Survey",
+          "description": "Publish a survey to feedbk.ai. Call this after the user confirms the survey is ready.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "guide": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "duration": {
+                    "type": "number"
+                  },
+                  "lang": {
+                    "type": "string",
+                    "default": "en"
+                  },
+                  "questions": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "string"
+                        },
+                        "text": {
+                          "type": "string"
+                        },
+                        "framing": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "type": {
+                          "type": "string",
+                          "enum": [
+                            "single_choice",
+                            "multiple_choice",
+                            "open_text",
+                            "rating"
+                          ]
+                        },
+                        "choices": {
+                          "anyOf": [
+                            {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "text": {
+                                    "type": "string"
+                                  }
+                                },
+                                "required": [
+                                  "text"
+                                ],
+                                "additionalProperties": false
+                              }
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ]
+                        },
+                        "rating_min_label": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "rating_max_label": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "rating_levels": {
+                          "type": "number",
+                          "default": 5
+                        },
+                        "ai_probing": {
+                          "type": "boolean",
+                          "default": true
+                        },
+                        "condition": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        }
+                      },
+                      "required": [
+                        "id",
+                        "text",
+                        "type"
+                      ],
+                      "additionalProperties": false
+                    }
+                  },
+                  "intro_framing": {
+                    "type": "string",
+                    "default": "Hallo! Willkommen zur Umfrage."
+                  },
+                  "intro_text": {
+                    "type": "string",
+                    "default": "Können wir starten?"
+                  },
+                  "intro_yes": {
+                    "type": "string",
+                    "default": "Ja"
+                  },
+                  "intro_no": {
+                    "type": "string",
+                    "default": "Nein"
+                  },
+                  "redirect_text": {
+                    "type": "string",
+                    "default": "Vielen Dank für Ihre Teilnahme!"
+                  },
+                  "redirect_url": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "default": "/redirect.html?return=complete"
+                  }
+                },
+                "required": [
+                  "name",
+                  "duration",
+                  "questions"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "required": [
+              "guide"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": false,
+            "openWorldHint": true
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          },
+          "_meta": {
+            "ui": {
+              "resourceUri": "ui://publish-survey/share-qr.html"
+            },
+            "ui/resourceUri": "ui://publish-survey/share-qr.html"
+          }
+        }
+      ],
+      "tool_count": 2,
+      "tool_names": [
+        "start_survey",
+        "publish_survey"
+      ]
+    },
+    "server_info_crawled": {
+      "id": 220,
+      "name": "io.github.feedbk-ai/create-survey",
+      "author": "",
+      "overview": "io.github.feedbk-ai/create-survey - Development Tools MCP server with 2 tools.",
+      "repository_url": "",
+      "homepage": "https://mcp.feedbk.ai/mcp",
+      "remote_or_local": "Remote",
+      "license": "",
+      "usage_count": "15",
+      "success_rate": "100%",
+      "tags": [
+        "development-tools"
+      ],
+      "categories": [
+        "development tools"
+      ],
+      "tools_count": 2,
+      "tools": [
+        {
+          "name": "start_survey",
+          "title": "Start Survey",
+          "description": "Start drafting a survey with AI-probing. Call this to start the workflow, drafting a survey.",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {}
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "openWorldHint": false
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "publish_survey",
+          "title": "Publish Survey",
+          "description": "Publish a survey to feedbk.ai. Call this after the user confirms the survey is ready.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "guide": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "duration": {
+                    "type": "number"
+                  },
+                  "lang": {
+                    "type": "string",
+                    "default": "en"
+                  },
+                  "questions": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "string"
+                        },
+                        "text": {
+                          "type": "string"
+                        },
+                        "framing": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "type": {
+                          "type": "string",
+                          "enum": [
+                            "single_choice",
+                            "multiple_choice",
+                            "open_text",
+                            "rating"
+                          ]
+                        },
+                        "choices": {
+                          "anyOf": [
+                            {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "text": {
+                                    "type": "string"
+                                  }
+                                },
+                                "required": [
+                                  "text"
+                                ],
+                                "additionalProperties": false
+                              }
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ]
+                        },
+                        "rating_min_label": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "rating_max_label": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "rating_levels": {
+                          "type": "number",
+                          "default": 5
+                        },
+                        "ai_probing": {
+                          "type": "boolean",
+                          "default": true
+                        },
+                        "condition": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        }
+                      },
+                      "required": [
+                        "id",
+                        "text",
+                        "type"
+                      ],
+                      "additionalProperties": false
+                    }
+                  },
+                  "intro_framing": {
+                    "type": "string",
+                    "default": "Hallo! Willkommen zur Umfrage."
+                  },
+                  "intro_text": {
+                    "type": "string",
+                    "default": "Können wir starten?"
+                  },
+                  "intro_yes": {
+                    "type": "string",
+                    "default": "Ja"
+                  },
+                  "intro_no": {
+                    "type": "string",
+                    "default": "Nein"
+                  },
+                  "redirect_text": {
+                    "type": "string",
+                    "default": "Vielen Dank für Ihre Teilnahme!"
+                  },
+                  "redirect_url": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "default": "/redirect.html?return=complete"
+                  }
+                },
+                "required": [
+                  "name",
+                  "duration",
+                  "questions"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "required": [
+              "guide"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": false,
+            "openWorldHint": true
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          },
+          "_meta": {
+            "ui": {
+              "resourceUri": "ui://publish-survey/share-qr.html"
+            },
+            "ui/resourceUri": "ui://publish-survey/share-qr.html"
+          }
+        }
+      ],
+      "python_sdk_url": "https://mcp.feedbk.ai/mcp",
+      "python_sdk_config": "{\"debug\": false}"
+    },
+    "source_filename": "0220.iogithubfeedbk-aicreate-survey_labeled.json",
+    "processed_timestamp": 1772871482,
+    "processing_mode": "gateway",
+    "rank": 221
+  }
+}

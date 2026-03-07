@@ -1,0 +1,100 @@
+{
+  "labels": {
+    "analysis": "The MCP Server \"docs.mindsdb.com\" provides 1 tools for development tools tasks.",
+    "reasoning": "Primary label \"Development Tools\" assigned based on tool names and descriptions.",
+    "primary_label": "Development Tools",
+    "secondary_labels": [
+      "API Integration",
+      "DevOps",
+      "Web Search & Research",
+      "AI/ML Tools"
+    ],
+    "custom_label": "Development Tools - docs.mindsdb.com",
+    "is_connected": true,
+    "is_remote_tool_valid": true,
+    "featured_server": false
+  },
+  "metadata": {
+    "server_id": 256,
+    "server_name": "docs.mindsdb.com",
+    "rank_by_usage": 257,
+    "usage_count": "10",
+    "original_file": "tools.json#256",
+    "mode": "gateway",
+    "timestamp": 1772871482,
+    "remote_server_response": {
+      "url": "https://docs.mindsdb.com/mcp",
+      "is_success": true,
+      "error": null,
+      "tools": [
+        {
+          "name": "SearchMindsDb",
+          "description": "Search across the MindsDB knowledge base to find relevant information, code examples, API references, and guides. Use this tool when you need to answer questions about MindsDB, find specific documentation, understand how features work, or locate implementation details. The search returns contextual content with titles and direct links to the documentation pages.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "query": {
+                "type": "string",
+                "description": "Search query"
+              }
+            },
+            "required": [
+              "query"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          }
+        }
+      ],
+      "tool_count": 1,
+      "tool_names": [
+        "SearchMindsDb"
+      ]
+    },
+    "server_info_crawled": {
+      "id": 256,
+      "name": "docs.mindsdb.com",
+      "author": "",
+      "overview": "docs.mindsdb.com - Development Tools MCP server with 1 tools.",
+      "repository_url": "",
+      "homepage": "https://docs.mindsdb.com/mcp",
+      "remote_or_local": "Remote",
+      "license": "",
+      "usage_count": "10",
+      "success_rate": "100%",
+      "tags": [
+        "development-tools"
+      ],
+      "categories": [
+        "development tools"
+      ],
+      "tools_count": 1,
+      "tools": [
+        {
+          "name": "SearchMindsDb",
+          "description": "Search across the MindsDB knowledge base to find relevant information, code examples, API references, and guides. Use this tool when you need to answer questions about MindsDB, find specific documentation, understand how features work, or locate implementation details. The search returns contextual content with titles and direct links to the documentation pages.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "query": {
+                "type": "string",
+                "description": "Search query"
+              }
+            },
+            "required": [
+              "query"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          }
+        }
+      ],
+      "python_sdk_url": "https://docs.mindsdb.com/mcp",
+      "python_sdk_config": "{\"debug\": false}"
+    },
+    "source_filename": "0256.docsmindsdbcom_labeled.json",
+    "processed_timestamp": 1772871482,
+    "processing_mode": "gateway",
+    "rank": 257
+  }
+}

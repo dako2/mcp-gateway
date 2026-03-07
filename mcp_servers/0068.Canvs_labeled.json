@@ -1,0 +1,1737 @@
+{
+  "labels": {
+    "analysis": "The MCP Server \"Canvs\" provides 13 tools for web search & research tasks.",
+    "reasoning": "Primary label \"Web Search & Research\" assigned based on tool names and descriptions.",
+    "primary_label": "Web Search & Research",
+    "secondary_labels": [
+      "Browser Automation",
+      "Data Analysis & Processing",
+      "DNS & Networking"
+    ],
+    "custom_label": "Web Search & Research - Canvs",
+    "is_connected": true,
+    "is_remote_tool_valid": true,
+    "featured_server": true
+  },
+  "metadata": {
+    "server_id": 68,
+    "server_name": "Canvs",
+    "rank_by_usage": 69,
+    "usage_count": "640",
+    "original_file": "tools.json#68",
+    "mode": "gateway",
+    "timestamp": 1772871481,
+    "remote_server_response": {
+      "url": "https://app.canvs.io/mcp",
+      "is_success": true,
+      "error": null,
+      "tools": [
+        {
+          "name": "get_guide",
+          "description": "⚠️ MANDATORY FIRST STEP - Call this tool BEFORE using any other Canvs tools! Returns comprehensive instructions for creating whiteboards: tool selection strategy, iterative workflow, and examples. Following these instructions ensures correct diagrams.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {}
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "openWorldHint": false,
+            "destructiveHint": false
+          }
+        },
+        {
+          "name": "add_elements",
+          "description": "Main method for creating canvas and adding elements. ⚠️ IMPORTANT: Call get_guide first and follow its instructions! If room_url is NOT provided - creates a NEW canvas and returns room_url. If room_url IS provided - adds elements to that canvas. IMPORTANT: When creating new canvas, ALWAYS include room_url in your response to the user! Element types: rectangle, ellipse, diamond, text, arrow, line. TEXT IN SHAPES: use containerId on text element pointing to shape id. ARROWS: Position at EDGE of source shape. Auto-bound within 30px. Colors: strokeColor, backgroundColor (hex).",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "room_url": {
+                "type": "string",
+                "description": "Room URL or ID. If not provided, creates a new canvas"
+              },
+              "elements": {
+                "type": "array",
+                "description": "Array of element definitions to create",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "description": "Unique element ID. IMPORTANT: Always set explicit IDs for shapes that arrows will connect to!"
+                    },
+                    "type": {
+                      "type": "string",
+                      "enum": [
+                        "rectangle",
+                        "ellipse",
+                        "diamond",
+                        "arrow",
+                        "line",
+                        "freedraw",
+                        "text",
+                        "image"
+                      ],
+                      "description": "Element type"
+                    },
+                    "x": {
+                      "type": "number",
+                      "description": "X coordinate"
+                    },
+                    "y": {
+                      "type": "number",
+                      "description": "Y coordinate"
+                    },
+                    "width": {
+                      "type": "number",
+                      "description": "Width (default: 100)"
+                    },
+                    "height": {
+                      "type": "number",
+                      "description": "Height (default: 100)"
+                    },
+                    "strokeColor": {
+                      "type": "string",
+                      "description": "Stroke color in hex (default: #1e1e1e)"
+                    },
+                    "backgroundColor": {
+                      "type": "string",
+                      "description": "Fill color in hex or 'transparent' (default: transparent)"
+                    },
+                    "fillStyle": {
+                      "type": "string",
+                      "description": "Fill style: solid, hachure, cross-hatch (default: solid)"
+                    },
+                    "strokeWidth": {
+                      "type": "number",
+                      "description": "Stroke width (default: 2)"
+                    },
+                    "roughness": {
+                      "type": "number",
+                      "description": "Roughness: 0=architect, 1=artist, 2=cartoonist (default: 1)"
+                    },
+                    "opacity": {
+                      "type": "number",
+                      "description": "Opacity 0-100 (default: 100)"
+                    },
+                    "text": {
+                      "type": "string",
+                      "description": "Text content (for text elements)"
+                    },
+                    "fontSize": {
+                      "type": "number",
+                      "description": "Font size (default: 20)"
+                    },
+                    "fontFamily": {
+                      "type": "number",
+                      "description": "Font family: 1=Virgil, 2=Helvetica, 3=Cascadia (default: 1)"
+                    },
+                    "points": {
+                      "type": "array",
+                      "description": "Points array for arrows/lines. Relative to element x,y. Example: [[0,0],[0,100]] for vertical arrow",
+                      "items": {
+                        "type": "array",
+                        "items": {
+                          "type": "number"
+                        }
+                      }
+                    },
+                    "containerId": {
+                      "type": "string",
+                      "description": "Container element ID (for text bound to shapes). Set x,y to 0,0 for auto-centering"
+                    },
+                    "locked": {
+                      "type": "boolean",
+                      "description": "Lock element (default: false)"
+                    },
+                    "startBinding": {
+                      "type": "object",
+                      "description": "For arrows: bind start point to a shape. REQUIRED for connected diagrams!",
+                      "properties": {
+                        "elementId": {
+                          "type": "string",
+                          "description": "ID of shape to connect to (REQUIRED)"
+                        },
+                        "focus": {
+                          "type": "number",
+                          "description": "Position on edge: -1 to 1, 0=center (default: 0)"
+                        },
+                        "gap": {
+                          "type": "number",
+                          "description": "Gap from shape edge in pixels (default: 8)"
+                        }
+                      }
+                    },
+                    "endBinding": {
+                      "type": "object",
+                      "description": "For arrows: bind end point to a shape. REQUIRED for connected diagrams!",
+                      "properties": {
+                        "elementId": {
+                          "type": "string",
+                          "description": "ID of shape to connect to (REQUIRED)"
+                        },
+                        "focus": {
+                          "type": "number",
+                          "description": "Position on edge: -1 to 1, 0=center (default: 0)"
+                        },
+                        "gap": {
+                          "type": "number",
+                          "description": "Gap from shape edge in pixels (default: 8)"
+                        }
+                      }
+                    },
+                    "label": {
+                      "type": "string",
+                      "description": "For arrows: text label displayed on the arrow"
+                    }
+                  },
+                  "required": [
+                    "type",
+                    "x",
+                    "y"
+                  ]
+                }
+              },
+              "timeout": {
+                "type": "number",
+                "description": "Room lifetime in seconds (default: 3600, max: 86400). Only used when creating new canvas",
+                "default": 3600
+              }
+            },
+            "required": [
+              "elements"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "openWorldHint": true,
+            "destructiveHint": false
+          },
+          "outputSchema": {
+            "type": "object",
+            "properties": {
+              "url": {
+                "type": "string",
+                "description": "Canvas room URL"
+              },
+              "isNew": {
+                "type": "boolean",
+                "description": "Whether a new canvas was created"
+              }
+            }
+          },
+          "_meta": {
+            "ui": {
+              "resourceUri": "ui://widget/canvas-preview.html"
+            },
+            "ui/resourceUri": "ui://widget/canvas-preview.html"
+          }
+        },
+        {
+          "name": "update_elements",
+          "description": "Update elements on a canvas. Requires room_url from add_elements. Pass elements array with id and fields to update.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "room_url": {
+                "type": "string",
+                "description": "Room URL (from create_canvas) or room ID to operate on"
+              },
+              "elements": {
+                "type": "array",
+                "description": "Array of element updates (each must have id)",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "description": "Element ID to update"
+                    },
+                    "type": {
+                      "type": "string",
+                      "enum": [
+                        "rectangle",
+                        "ellipse",
+                        "diamond",
+                        "arrow",
+                        "line",
+                        "freedraw",
+                        "text",
+                        "image"
+                      ],
+                      "description": "New element type"
+                    },
+                    "x": {
+                      "type": "number",
+                      "description": "New X coordinate"
+                    },
+                    "y": {
+                      "type": "number",
+                      "description": "New Y coordinate"
+                    },
+                    "width": {
+                      "type": "number",
+                      "description": "New width"
+                    },
+                    "height": {
+                      "type": "number",
+                      "description": "New height"
+                    },
+                    "strokeColor": {
+                      "type": "string",
+                      "description": "New stroke color"
+                    },
+                    "backgroundColor": {
+                      "type": "string",
+                      "description": "New fill color"
+                    },
+                    "fillStyle": {
+                      "type": "string",
+                      "description": "New fill style"
+                    },
+                    "strokeWidth": {
+                      "type": "number",
+                      "description": "New stroke width"
+                    },
+                    "roughness": {
+                      "type": "number",
+                      "description": "New roughness"
+                    },
+                    "opacity": {
+                      "type": "number",
+                      "description": "New opacity"
+                    },
+                    "text": {
+                      "type": "string",
+                      "description": "New text content"
+                    },
+                    "fontSize": {
+                      "type": "number",
+                      "description": "New font size"
+                    },
+                    "fontFamily": {
+                      "type": "number",
+                      "description": "New font family"
+                    },
+                    "points": {
+                      "type": "array",
+                      "description": "New points array",
+                      "items": {
+                        "type": "array",
+                        "items": {
+                          "type": "number"
+                        }
+                      }
+                    },
+                    "locked": {
+                      "type": "boolean",
+                      "description": "Lock/unlock element"
+                    }
+                  },
+                  "required": [
+                    "id"
+                  ]
+                }
+              }
+            },
+            "required": [
+              "room_url",
+              "elements"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "openWorldHint": false,
+            "destructiveHint": false
+          },
+          "outputSchema": {
+            "type": "object",
+            "properties": {
+              "url": {
+                "type": "string",
+                "description": "Canvas room URL"
+              },
+              "isNew": {
+                "type": "boolean",
+                "description": "Whether a new canvas was created"
+              }
+            }
+          },
+          "_meta": {
+            "ui": {
+              "resourceUri": "ui://widget/canvas-preview.html"
+            },
+            "ui/resourceUri": "ui://widget/canvas-preview.html"
+          }
+        },
+        {
+          "name": "delete_elements",
+          "description": "Delete elements from a canvas. Requires room_url from add_elements. Pass ids array of element IDs to delete.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "room_url": {
+                "type": "string",
+                "description": "Room URL (from create_canvas) or room ID to operate on"
+              },
+              "ids": {
+                "type": "array",
+                "description": "Array of element IDs to delete",
+                "items": {
+                  "type": "string"
+                }
+              }
+            },
+            "required": [
+              "room_url",
+              "ids"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "openWorldHint": false,
+            "destructiveHint": true
+          },
+          "outputSchema": {
+            "type": "object",
+            "properties": {
+              "url": {
+                "type": "string",
+                "description": "Canvas room URL"
+              },
+              "isNew": {
+                "type": "boolean",
+                "description": "Whether a new canvas was created"
+              }
+            }
+          },
+          "_meta": {
+            "ui": {
+              "resourceUri": "ui://widget/canvas-preview.html"
+            },
+            "ui/resourceUri": "ui://widget/canvas-preview.html"
+          }
+        },
+        {
+          "name": "query_elements",
+          "description": "Query elements on a canvas. Requires room_url from add_elements. Returns elements matching optional filters.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "room_url": {
+                "type": "string",
+                "description": "Room URL (from create_canvas) or room ID to operate on"
+              },
+              "type": {
+                "type": "string",
+                "enum": [
+                  "rectangle",
+                  "ellipse",
+                  "diamond",
+                  "arrow",
+                  "line",
+                  "freedraw",
+                  "text",
+                  "image"
+                ],
+                "description": "Filter by element type"
+              },
+              "filter": {
+                "type": "object",
+                "description": "Additional key-value filters (e.g., {locked: true})"
+              }
+            },
+            "required": [
+              "room_url"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "openWorldHint": false,
+            "destructiveHint": false
+          }
+        },
+        {
+          "name": "group_elements",
+          "description": "Group elements on a canvas. Requires room_url from add_elements.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "room_url": {
+                "type": "string",
+                "description": "Room URL (from create_canvas) or room ID to operate on"
+              },
+              "elementIds": {
+                "type": "array",
+                "description": "Array of element IDs to group",
+                "items": {
+                  "type": "string"
+                }
+              }
+            },
+            "required": [
+              "room_url",
+              "elementIds"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "openWorldHint": false,
+            "destructiveHint": false
+          },
+          "outputSchema": {
+            "type": "object",
+            "properties": {
+              "url": {
+                "type": "string",
+                "description": "Canvas room URL"
+              },
+              "isNew": {
+                "type": "boolean",
+                "description": "Whether a new canvas was created"
+              }
+            }
+          },
+          "_meta": {
+            "ui": {
+              "resourceUri": "ui://widget/canvas-preview.html"
+            },
+            "ui/resourceUri": "ui://widget/canvas-preview.html"
+          }
+        },
+        {
+          "name": "ungroup_elements",
+          "description": "Ungroup elements on a canvas. Pass element IDs — all groups containing those elements will be removed. Requires room_url from add_elements.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "room_url": {
+                "type": "string",
+                "description": "Room URL (from create_canvas) or room ID to operate on"
+              },
+              "elementIds": {
+                "type": "array",
+                "description": "Array of element IDs to ungroup",
+                "items": {
+                  "type": "string"
+                }
+              }
+            },
+            "required": [
+              "room_url",
+              "elementIds"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "openWorldHint": false,
+            "destructiveHint": false
+          },
+          "outputSchema": {
+            "type": "object",
+            "properties": {
+              "url": {
+                "type": "string",
+                "description": "Canvas room URL"
+              },
+              "isNew": {
+                "type": "boolean",
+                "description": "Whether a new canvas was created"
+              }
+            }
+          },
+          "_meta": {
+            "ui": {
+              "resourceUri": "ui://widget/canvas-preview.html"
+            },
+            "ui/resourceUri": "ui://widget/canvas-preview.html"
+          }
+        },
+        {
+          "name": "align_elements",
+          "description": "Align elements on a canvas. Requires room_url from add_elements.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "room_url": {
+                "type": "string",
+                "description": "Room URL (from create_canvas) or room ID to operate on"
+              },
+              "elementIds": {
+                "type": "array",
+                "description": "Array of element IDs to align",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "alignment": {
+                "type": "string",
+                "enum": [
+                  "left",
+                  "center",
+                  "right",
+                  "top",
+                  "middle",
+                  "bottom"
+                ],
+                "description": "Alignment direction"
+              }
+            },
+            "required": [
+              "room_url",
+              "elementIds",
+              "alignment"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "openWorldHint": false,
+            "destructiveHint": false
+          },
+          "outputSchema": {
+            "type": "object",
+            "properties": {
+              "url": {
+                "type": "string",
+                "description": "Canvas room URL"
+              },
+              "isNew": {
+                "type": "boolean",
+                "description": "Whether a new canvas was created"
+              }
+            }
+          },
+          "_meta": {
+            "ui": {
+              "resourceUri": "ui://widget/canvas-preview.html"
+            },
+            "ui/resourceUri": "ui://widget/canvas-preview.html"
+          }
+        },
+        {
+          "name": "distribute_elements",
+          "description": "Lay out elements sequentially without overlapping, with a 10% gap between each pair. First element stays as anchor, others are placed after it. Requires room_url from add_elements.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "room_url": {
+                "type": "string",
+                "description": "Room URL (from create_canvas) or room ID to operate on"
+              },
+              "elementIds": {
+                "type": "array",
+                "description": "Array of element IDs to distribute",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "direction": {
+                "type": "string",
+                "enum": [
+                  "horizontal",
+                  "vertical"
+                ],
+                "description": "Distribution direction"
+              }
+            },
+            "required": [
+              "room_url",
+              "elementIds",
+              "direction"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "openWorldHint": false,
+            "destructiveHint": false
+          },
+          "outputSchema": {
+            "type": "object",
+            "properties": {
+              "url": {
+                "type": "string",
+                "description": "Canvas room URL"
+              },
+              "isNew": {
+                "type": "boolean",
+                "description": "Whether a new canvas was created"
+              }
+            }
+          },
+          "_meta": {
+            "ui": {
+              "resourceUri": "ui://widget/canvas-preview.html"
+            },
+            "ui/resourceUri": "ui://widget/canvas-preview.html"
+          }
+        },
+        {
+          "name": "lock_elements",
+          "description": "Lock elements on a canvas. Requires room_url from add_elements.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "room_url": {
+                "type": "string",
+                "description": "Room URL (from create_canvas) or room ID to operate on"
+              },
+              "elementIds": {
+                "type": "array",
+                "description": "Array of element IDs to lock",
+                "items": {
+                  "type": "string"
+                }
+              }
+            },
+            "required": [
+              "room_url",
+              "elementIds"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "openWorldHint": false,
+            "destructiveHint": false
+          },
+          "outputSchema": {
+            "type": "object",
+            "properties": {
+              "url": {
+                "type": "string",
+                "description": "Canvas room URL"
+              },
+              "isNew": {
+                "type": "boolean",
+                "description": "Whether a new canvas was created"
+              }
+            }
+          },
+          "_meta": {
+            "ui": {
+              "resourceUri": "ui://widget/canvas-preview.html"
+            },
+            "ui/resourceUri": "ui://widget/canvas-preview.html"
+          }
+        },
+        {
+          "name": "unlock_elements",
+          "description": "Unlock elements on a canvas. Requires room_url from add_elements.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "room_url": {
+                "type": "string",
+                "description": "Room URL (from create_canvas) or room ID to operate on"
+              },
+              "elementIds": {
+                "type": "array",
+                "description": "Array of element IDs to unlock",
+                "items": {
+                  "type": "string"
+                }
+              }
+            },
+            "required": [
+              "room_url",
+              "elementIds"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "openWorldHint": false,
+            "destructiveHint": false
+          },
+          "outputSchema": {
+            "type": "object",
+            "properties": {
+              "url": {
+                "type": "string",
+                "description": "Canvas room URL"
+              },
+              "isNew": {
+                "type": "boolean",
+                "description": "Whether a new canvas was created"
+              }
+            }
+          },
+          "_meta": {
+            "ui": {
+              "resourceUri": "ui://widget/canvas-preview.html"
+            },
+            "ui/resourceUri": "ui://widget/canvas-preview.html"
+          }
+        },
+        {
+          "name": "add_elements_from_mermaid",
+          "description": "Add elements from Mermaid diagram. ⚠️ IMPORTANT: Call get_guide first and follow its instructions! If room_url is NOT provided - creates a NEW canvas and returns room_url. If room_url IS provided - adds diagram elements to that canvas. IMPORTANT: When creating new canvas, ALWAYS include room_url in your response to the user! Supports Flowchart, Sequence, and Class diagrams. FLOWCHART EXAMPLE: \"flowchart TD\\n  A[Start] --> B{Decision}\\n  B -->|Yes| C[OK]\\n  B -->|No| D[Cancel]\" SEQUENCE EXAMPLE: \"sequenceDiagram\\n  Alice->>Bob: Hello\\n  Bob-->>Alice: Hi\" CLASS EXAMPLE: \"classDiagram\\n  class Animal{\\n    +name: string\\n    +eat()\\n  }\\n  Animal <|-- Dog\"",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "room_url": {
+                "type": "string",
+                "description": "Room URL or ID. If not provided, creates a new canvas"
+              },
+              "mermaid": {
+                "type": "string",
+                "description": "Mermaid diagram definition (flowchart, sequence, or class diagram)"
+              },
+              "config": {
+                "type": "object",
+                "description": "Optional Mermaid configuration",
+                "properties": {
+                  "flowchart": {
+                    "type": "object",
+                    "properties": {
+                      "curve": {
+                        "type": "string",
+                        "enum": [
+                          "linear",
+                          "basis"
+                        ],
+                        "description": "Curve style for flowchart edges (default: linear)"
+                      }
+                    }
+                  },
+                  "maxEdges": {
+                    "type": "number",
+                    "description": "Maximum number of edges to render (default: 1000)"
+                  },
+                  "maxTextSize": {
+                    "type": "number",
+                    "description": "Maximum text size (default: 1000)"
+                  }
+                }
+              },
+              "timeout": {
+                "type": "number",
+                "description": "Room lifetime in seconds (default: 3600, max: 86400). Only used when creating new canvas",
+                "default": 3600
+              }
+            },
+            "required": [
+              "mermaid"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "openWorldHint": true,
+            "destructiveHint": false
+          },
+          "outputSchema": {
+            "type": "object",
+            "properties": {
+              "url": {
+                "type": "string",
+                "description": "Canvas room URL"
+              },
+              "isNew": {
+                "type": "boolean",
+                "description": "Whether a new canvas was created"
+              }
+            }
+          },
+          "_meta": {
+            "ui": {
+              "resourceUri": "ui://widget/canvas-preview.html"
+            },
+            "ui/resourceUri": "ui://widget/canvas-preview.html"
+          }
+        },
+        {
+          "name": "get_image",
+          "description": "Get SVG render of the canvas from the browser. Requires an active browser session.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "room_url": {
+                "type": "string",
+                "description": "Room URL (from create_canvas) or room ID to operate on"
+              }
+            },
+            "required": [
+              "room_url"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "openWorldHint": false,
+            "destructiveHint": false
+          }
+        }
+      ],
+      "tool_count": 13,
+      "tool_names": [
+        "get_guide",
+        "add_elements",
+        "update_elements",
+        "delete_elements",
+        "query_elements",
+        "group_elements",
+        "ungroup_elements",
+        "align_elements",
+        "distribute_elements",
+        "lock_elements",
+        "unlock_elements",
+        "add_elements_from_mermaid",
+        "get_image"
+      ]
+    },
+    "server_info_crawled": {
+      "id": 68,
+      "name": "Canvs",
+      "author": "",
+      "overview": "Canvs - Web Search & Research MCP server with 13 tools.",
+      "repository_url": "",
+      "homepage": "https://app.canvs.io/mcp",
+      "remote_or_local": "Remote",
+      "license": "",
+      "usage_count": "640",
+      "success_rate": "100%",
+      "tags": [
+        "web-search-research"
+      ],
+      "categories": [
+        "web search & research"
+      ],
+      "tools_count": 13,
+      "tools": [
+        {
+          "name": "get_guide",
+          "description": "⚠️ MANDATORY FIRST STEP - Call this tool BEFORE using any other Canvs tools! Returns comprehensive instructions for creating whiteboards: tool selection strategy, iterative workflow, and examples. Following these instructions ensures correct diagrams.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {}
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "openWorldHint": false,
+            "destructiveHint": false
+          }
+        },
+        {
+          "name": "add_elements",
+          "description": "Main method for creating canvas and adding elements. ⚠️ IMPORTANT: Call get_guide first and follow its instructions! If room_url is NOT provided - creates a NEW canvas and returns room_url. If room_url IS provided - adds elements to that canvas. IMPORTANT: When creating new canvas, ALWAYS include room_url in your response to the user! Element types: rectangle, ellipse, diamond, text, arrow, line. TEXT IN SHAPES: use containerId on text element pointing to shape id. ARROWS: Position at EDGE of source shape. Auto-bound within 30px. Colors: strokeColor, backgroundColor (hex).",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "room_url": {
+                "type": "string",
+                "description": "Room URL or ID. If not provided, creates a new canvas"
+              },
+              "elements": {
+                "type": "array",
+                "description": "Array of element definitions to create",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "description": "Unique element ID. IMPORTANT: Always set explicit IDs for shapes that arrows will connect to!"
+                    },
+                    "type": {
+                      "type": "string",
+                      "enum": [
+                        "rectangle",
+                        "ellipse",
+                        "diamond",
+                        "arrow",
+                        "line",
+                        "freedraw",
+                        "text",
+                        "image"
+                      ],
+                      "description": "Element type"
+                    },
+                    "x": {
+                      "type": "number",
+                      "description": "X coordinate"
+                    },
+                    "y": {
+                      "type": "number",
+                      "description": "Y coordinate"
+                    },
+                    "width": {
+                      "type": "number",
+                      "description": "Width (default: 100)"
+                    },
+                    "height": {
+                      "type": "number",
+                      "description": "Height (default: 100)"
+                    },
+                    "strokeColor": {
+                      "type": "string",
+                      "description": "Stroke color in hex (default: #1e1e1e)"
+                    },
+                    "backgroundColor": {
+                      "type": "string",
+                      "description": "Fill color in hex or 'transparent' (default: transparent)"
+                    },
+                    "fillStyle": {
+                      "type": "string",
+                      "description": "Fill style: solid, hachure, cross-hatch (default: solid)"
+                    },
+                    "strokeWidth": {
+                      "type": "number",
+                      "description": "Stroke width (default: 2)"
+                    },
+                    "roughness": {
+                      "type": "number",
+                      "description": "Roughness: 0=architect, 1=artist, 2=cartoonist (default: 1)"
+                    },
+                    "opacity": {
+                      "type": "number",
+                      "description": "Opacity 0-100 (default: 100)"
+                    },
+                    "text": {
+                      "type": "string",
+                      "description": "Text content (for text elements)"
+                    },
+                    "fontSize": {
+                      "type": "number",
+                      "description": "Font size (default: 20)"
+                    },
+                    "fontFamily": {
+                      "type": "number",
+                      "description": "Font family: 1=Virgil, 2=Helvetica, 3=Cascadia (default: 1)"
+                    },
+                    "points": {
+                      "type": "array",
+                      "description": "Points array for arrows/lines. Relative to element x,y. Example: [[0,0],[0,100]] for vertical arrow",
+                      "items": {
+                        "type": "array",
+                        "items": {
+                          "type": "number"
+                        }
+                      }
+                    },
+                    "containerId": {
+                      "type": "string",
+                      "description": "Container element ID (for text bound to shapes). Set x,y to 0,0 for auto-centering"
+                    },
+                    "locked": {
+                      "type": "boolean",
+                      "description": "Lock element (default: false)"
+                    },
+                    "startBinding": {
+                      "type": "object",
+                      "description": "For arrows: bind start point to a shape. REQUIRED for connected diagrams!",
+                      "properties": {
+                        "elementId": {
+                          "type": "string",
+                          "description": "ID of shape to connect to (REQUIRED)"
+                        },
+                        "focus": {
+                          "type": "number",
+                          "description": "Position on edge: -1 to 1, 0=center (default: 0)"
+                        },
+                        "gap": {
+                          "type": "number",
+                          "description": "Gap from shape edge in pixels (default: 8)"
+                        }
+                      }
+                    },
+                    "endBinding": {
+                      "type": "object",
+                      "description": "For arrows: bind end point to a shape. REQUIRED for connected diagrams!",
+                      "properties": {
+                        "elementId": {
+                          "type": "string",
+                          "description": "ID of shape to connect to (REQUIRED)"
+                        },
+                        "focus": {
+                          "type": "number",
+                          "description": "Position on edge: -1 to 1, 0=center (default: 0)"
+                        },
+                        "gap": {
+                          "type": "number",
+                          "description": "Gap from shape edge in pixels (default: 8)"
+                        }
+                      }
+                    },
+                    "label": {
+                      "type": "string",
+                      "description": "For arrows: text label displayed on the arrow"
+                    }
+                  },
+                  "required": [
+                    "type",
+                    "x",
+                    "y"
+                  ]
+                }
+              },
+              "timeout": {
+                "type": "number",
+                "description": "Room lifetime in seconds (default: 3600, max: 86400). Only used when creating new canvas",
+                "default": 3600
+              }
+            },
+            "required": [
+              "elements"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "openWorldHint": true,
+            "destructiveHint": false
+          },
+          "outputSchema": {
+            "type": "object",
+            "properties": {
+              "url": {
+                "type": "string",
+                "description": "Canvas room URL"
+              },
+              "isNew": {
+                "type": "boolean",
+                "description": "Whether a new canvas was created"
+              }
+            }
+          },
+          "_meta": {
+            "ui": {
+              "resourceUri": "ui://widget/canvas-preview.html"
+            },
+            "ui/resourceUri": "ui://widget/canvas-preview.html"
+          }
+        },
+        {
+          "name": "update_elements",
+          "description": "Update elements on a canvas. Requires room_url from add_elements. Pass elements array with id and fields to update.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "room_url": {
+                "type": "string",
+                "description": "Room URL (from create_canvas) or room ID to operate on"
+              },
+              "elements": {
+                "type": "array",
+                "description": "Array of element updates (each must have id)",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "description": "Element ID to update"
+                    },
+                    "type": {
+                      "type": "string",
+                      "enum": [
+                        "rectangle",
+                        "ellipse",
+                        "diamond",
+                        "arrow",
+                        "line",
+                        "freedraw",
+                        "text",
+                        "image"
+                      ],
+                      "description": "New element type"
+                    },
+                    "x": {
+                      "type": "number",
+                      "description": "New X coordinate"
+                    },
+                    "y": {
+                      "type": "number",
+                      "description": "New Y coordinate"
+                    },
+                    "width": {
+                      "type": "number",
+                      "description": "New width"
+                    },
+                    "height": {
+                      "type": "number",
+                      "description": "New height"
+                    },
+                    "strokeColor": {
+                      "type": "string",
+                      "description": "New stroke color"
+                    },
+                    "backgroundColor": {
+                      "type": "string",
+                      "description": "New fill color"
+                    },
+                    "fillStyle": {
+                      "type": "string",
+                      "description": "New fill style"
+                    },
+                    "strokeWidth": {
+                      "type": "number",
+                      "description": "New stroke width"
+                    },
+                    "roughness": {
+                      "type": "number",
+                      "description": "New roughness"
+                    },
+                    "opacity": {
+                      "type": "number",
+                      "description": "New opacity"
+                    },
+                    "text": {
+                      "type": "string",
+                      "description": "New text content"
+                    },
+                    "fontSize": {
+                      "type": "number",
+                      "description": "New font size"
+                    },
+                    "fontFamily": {
+                      "type": "number",
+                      "description": "New font family"
+                    },
+                    "points": {
+                      "type": "array",
+                      "description": "New points array",
+                      "items": {
+                        "type": "array",
+                        "items": {
+                          "type": "number"
+                        }
+                      }
+                    },
+                    "locked": {
+                      "type": "boolean",
+                      "description": "Lock/unlock element"
+                    }
+                  },
+                  "required": [
+                    "id"
+                  ]
+                }
+              }
+            },
+            "required": [
+              "room_url",
+              "elements"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "openWorldHint": false,
+            "destructiveHint": false
+          },
+          "outputSchema": {
+            "type": "object",
+            "properties": {
+              "url": {
+                "type": "string",
+                "description": "Canvas room URL"
+              },
+              "isNew": {
+                "type": "boolean",
+                "description": "Whether a new canvas was created"
+              }
+            }
+          },
+          "_meta": {
+            "ui": {
+              "resourceUri": "ui://widget/canvas-preview.html"
+            },
+            "ui/resourceUri": "ui://widget/canvas-preview.html"
+          }
+        },
+        {
+          "name": "delete_elements",
+          "description": "Delete elements from a canvas. Requires room_url from add_elements. Pass ids array of element IDs to delete.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "room_url": {
+                "type": "string",
+                "description": "Room URL (from create_canvas) or room ID to operate on"
+              },
+              "ids": {
+                "type": "array",
+                "description": "Array of element IDs to delete",
+                "items": {
+                  "type": "string"
+                }
+              }
+            },
+            "required": [
+              "room_url",
+              "ids"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "openWorldHint": false,
+            "destructiveHint": true
+          },
+          "outputSchema": {
+            "type": "object",
+            "properties": {
+              "url": {
+                "type": "string",
+                "description": "Canvas room URL"
+              },
+              "isNew": {
+                "type": "boolean",
+                "description": "Whether a new canvas was created"
+              }
+            }
+          },
+          "_meta": {
+            "ui": {
+              "resourceUri": "ui://widget/canvas-preview.html"
+            },
+            "ui/resourceUri": "ui://widget/canvas-preview.html"
+          }
+        },
+        {
+          "name": "query_elements",
+          "description": "Query elements on a canvas. Requires room_url from add_elements. Returns elements matching optional filters.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "room_url": {
+                "type": "string",
+                "description": "Room URL (from create_canvas) or room ID to operate on"
+              },
+              "type": {
+                "type": "string",
+                "enum": [
+                  "rectangle",
+                  "ellipse",
+                  "diamond",
+                  "arrow",
+                  "line",
+                  "freedraw",
+                  "text",
+                  "image"
+                ],
+                "description": "Filter by element type"
+              },
+              "filter": {
+                "type": "object",
+                "description": "Additional key-value filters (e.g., {locked: true})"
+              }
+            },
+            "required": [
+              "room_url"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "openWorldHint": false,
+            "destructiveHint": false
+          }
+        },
+        {
+          "name": "group_elements",
+          "description": "Group elements on a canvas. Requires room_url from add_elements.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "room_url": {
+                "type": "string",
+                "description": "Room URL (from create_canvas) or room ID to operate on"
+              },
+              "elementIds": {
+                "type": "array",
+                "description": "Array of element IDs to group",
+                "items": {
+                  "type": "string"
+                }
+              }
+            },
+            "required": [
+              "room_url",
+              "elementIds"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "openWorldHint": false,
+            "destructiveHint": false
+          },
+          "outputSchema": {
+            "type": "object",
+            "properties": {
+              "url": {
+                "type": "string",
+                "description": "Canvas room URL"
+              },
+              "isNew": {
+                "type": "boolean",
+                "description": "Whether a new canvas was created"
+              }
+            }
+          },
+          "_meta": {
+            "ui": {
+              "resourceUri": "ui://widget/canvas-preview.html"
+            },
+            "ui/resourceUri": "ui://widget/canvas-preview.html"
+          }
+        },
+        {
+          "name": "ungroup_elements",
+          "description": "Ungroup elements on a canvas. Pass element IDs — all groups containing those elements will be removed. Requires room_url from add_elements.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "room_url": {
+                "type": "string",
+                "description": "Room URL (from create_canvas) or room ID to operate on"
+              },
+              "elementIds": {
+                "type": "array",
+                "description": "Array of element IDs to ungroup",
+                "items": {
+                  "type": "string"
+                }
+              }
+            },
+            "required": [
+              "room_url",
+              "elementIds"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "openWorldHint": false,
+            "destructiveHint": false
+          },
+          "outputSchema": {
+            "type": "object",
+            "properties": {
+              "url": {
+                "type": "string",
+                "description": "Canvas room URL"
+              },
+              "isNew": {
+                "type": "boolean",
+                "description": "Whether a new canvas was created"
+              }
+            }
+          },
+          "_meta": {
+            "ui": {
+              "resourceUri": "ui://widget/canvas-preview.html"
+            },
+            "ui/resourceUri": "ui://widget/canvas-preview.html"
+          }
+        },
+        {
+          "name": "align_elements",
+          "description": "Align elements on a canvas. Requires room_url from add_elements.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "room_url": {
+                "type": "string",
+                "description": "Room URL (from create_canvas) or room ID to operate on"
+              },
+              "elementIds": {
+                "type": "array",
+                "description": "Array of element IDs to align",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "alignment": {
+                "type": "string",
+                "enum": [
+                  "left",
+                  "center",
+                  "right",
+                  "top",
+                  "middle",
+                  "bottom"
+                ],
+                "description": "Alignment direction"
+              }
+            },
+            "required": [
+              "room_url",
+              "elementIds",
+              "alignment"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "openWorldHint": false,
+            "destructiveHint": false
+          },
+          "outputSchema": {
+            "type": "object",
+            "properties": {
+              "url": {
+                "type": "string",
+                "description": "Canvas room URL"
+              },
+              "isNew": {
+                "type": "boolean",
+                "description": "Whether a new canvas was created"
+              }
+            }
+          },
+          "_meta": {
+            "ui": {
+              "resourceUri": "ui://widget/canvas-preview.html"
+            },
+            "ui/resourceUri": "ui://widget/canvas-preview.html"
+          }
+        },
+        {
+          "name": "distribute_elements",
+          "description": "Lay out elements sequentially without overlapping, with a 10% gap between each pair. First element stays as anchor, others are placed after it. Requires room_url from add_elements.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "room_url": {
+                "type": "string",
+                "description": "Room URL (from create_canvas) or room ID to operate on"
+              },
+              "elementIds": {
+                "type": "array",
+                "description": "Array of element IDs to distribute",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "direction": {
+                "type": "string",
+                "enum": [
+                  "horizontal",
+                  "vertical"
+                ],
+                "description": "Distribution direction"
+              }
+            },
+            "required": [
+              "room_url",
+              "elementIds",
+              "direction"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "openWorldHint": false,
+            "destructiveHint": false
+          },
+          "outputSchema": {
+            "type": "object",
+            "properties": {
+              "url": {
+                "type": "string",
+                "description": "Canvas room URL"
+              },
+              "isNew": {
+                "type": "boolean",
+                "description": "Whether a new canvas was created"
+              }
+            }
+          },
+          "_meta": {
+            "ui": {
+              "resourceUri": "ui://widget/canvas-preview.html"
+            },
+            "ui/resourceUri": "ui://widget/canvas-preview.html"
+          }
+        },
+        {
+          "name": "lock_elements",
+          "description": "Lock elements on a canvas. Requires room_url from add_elements.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "room_url": {
+                "type": "string",
+                "description": "Room URL (from create_canvas) or room ID to operate on"
+              },
+              "elementIds": {
+                "type": "array",
+                "description": "Array of element IDs to lock",
+                "items": {
+                  "type": "string"
+                }
+              }
+            },
+            "required": [
+              "room_url",
+              "elementIds"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "openWorldHint": false,
+            "destructiveHint": false
+          },
+          "outputSchema": {
+            "type": "object",
+            "properties": {
+              "url": {
+                "type": "string",
+                "description": "Canvas room URL"
+              },
+              "isNew": {
+                "type": "boolean",
+                "description": "Whether a new canvas was created"
+              }
+            }
+          },
+          "_meta": {
+            "ui": {
+              "resourceUri": "ui://widget/canvas-preview.html"
+            },
+            "ui/resourceUri": "ui://widget/canvas-preview.html"
+          }
+        },
+        {
+          "name": "unlock_elements",
+          "description": "Unlock elements on a canvas. Requires room_url from add_elements.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "room_url": {
+                "type": "string",
+                "description": "Room URL (from create_canvas) or room ID to operate on"
+              },
+              "elementIds": {
+                "type": "array",
+                "description": "Array of element IDs to unlock",
+                "items": {
+                  "type": "string"
+                }
+              }
+            },
+            "required": [
+              "room_url",
+              "elementIds"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "openWorldHint": false,
+            "destructiveHint": false
+          },
+          "outputSchema": {
+            "type": "object",
+            "properties": {
+              "url": {
+                "type": "string",
+                "description": "Canvas room URL"
+              },
+              "isNew": {
+                "type": "boolean",
+                "description": "Whether a new canvas was created"
+              }
+            }
+          },
+          "_meta": {
+            "ui": {
+              "resourceUri": "ui://widget/canvas-preview.html"
+            },
+            "ui/resourceUri": "ui://widget/canvas-preview.html"
+          }
+        },
+        {
+          "name": "add_elements_from_mermaid",
+          "description": "Add elements from Mermaid diagram. ⚠️ IMPORTANT: Call get_guide first and follow its instructions! If room_url is NOT provided - creates a NEW canvas and returns room_url. If room_url IS provided - adds diagram elements to that canvas. IMPORTANT: When creating new canvas, ALWAYS include room_url in your response to the user! Supports Flowchart, Sequence, and Class diagrams. FLOWCHART EXAMPLE: \"flowchart TD\\n  A[Start] --> B{Decision}\\n  B -->|Yes| C[OK]\\n  B -->|No| D[Cancel]\" SEQUENCE EXAMPLE: \"sequenceDiagram\\n  Alice->>Bob: Hello\\n  Bob-->>Alice: Hi\" CLASS EXAMPLE: \"classDiagram\\n  class Animal{\\n    +name: string\\n    +eat()\\n  }\\n  Animal <|-- Dog\"",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "room_url": {
+                "type": "string",
+                "description": "Room URL or ID. If not provided, creates a new canvas"
+              },
+              "mermaid": {
+                "type": "string",
+                "description": "Mermaid diagram definition (flowchart, sequence, or class diagram)"
+              },
+              "config": {
+                "type": "object",
+                "description": "Optional Mermaid configuration",
+                "properties": {
+                  "flowchart": {
+                    "type": "object",
+                    "properties": {
+                      "curve": {
+                        "type": "string",
+                        "enum": [
+                          "linear",
+                          "basis"
+                        ],
+                        "description": "Curve style for flowchart edges (default: linear)"
+                      }
+                    }
+                  },
+                  "maxEdges": {
+                    "type": "number",
+                    "description": "Maximum number of edges to render (default: 1000)"
+                  },
+                  "maxTextSize": {
+                    "type": "number",
+                    "description": "Maximum text size (default: 1000)"
+                  }
+                }
+              },
+              "timeout": {
+                "type": "number",
+                "description": "Room lifetime in seconds (default: 3600, max: 86400). Only used when creating new canvas",
+                "default": 3600
+              }
+            },
+            "required": [
+              "mermaid"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "openWorldHint": true,
+            "destructiveHint": false
+          },
+          "outputSchema": {
+            "type": "object",
+            "properties": {
+              "url": {
+                "type": "string",
+                "description": "Canvas room URL"
+              },
+              "isNew": {
+                "type": "boolean",
+                "description": "Whether a new canvas was created"
+              }
+            }
+          },
+          "_meta": {
+            "ui": {
+              "resourceUri": "ui://widget/canvas-preview.html"
+            },
+            "ui/resourceUri": "ui://widget/canvas-preview.html"
+          }
+        },
+        {
+          "name": "get_image",
+          "description": "Get SVG render of the canvas from the browser. Requires an active browser session.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "room_url": {
+                "type": "string",
+                "description": "Room URL (from create_canvas) or room ID to operate on"
+              }
+            },
+            "required": [
+              "room_url"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "openWorldHint": false,
+            "destructiveHint": false
+          }
+        }
+      ],
+      "python_sdk_url": "https://app.canvs.io/mcp",
+      "python_sdk_config": "{\"debug\": false}"
+    },
+    "source_filename": "0068.Canvs_labeled.json",
+    "processed_timestamp": 1772871481,
+    "processing_mode": "gateway",
+    "rank": 69
+  }
+}

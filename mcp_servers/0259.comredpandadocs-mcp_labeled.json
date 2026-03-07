@@ -1,0 +1,105 @@
+{
+  "labels": {
+    "analysis": "The MCP Server \"com.redpanda/docs-mcp\" provides 1 tools for web search & research tasks.",
+    "reasoning": "Primary label \"Web Search & Research\" assigned based on tool names and descriptions.",
+    "primary_label": "Web Search & Research",
+    "secondary_labels": [
+      "Browser Automation",
+      "Data Analysis & Processing",
+      "Development Tools"
+    ],
+    "custom_label": "Web Search & Research - com.redpanda/docs-mcp",
+    "is_connected": true,
+    "is_remote_tool_valid": true,
+    "featured_server": false
+  },
+  "metadata": {
+    "server_id": 259,
+    "server_name": "com.redpanda/docs-mcp",
+    "rank_by_usage": 260,
+    "usage_count": "10",
+    "original_file": "tools.json#259",
+    "mode": "gateway",
+    "timestamp": 1772871482,
+    "remote_server_response": {
+      "url": "https://docs.redpanda.com/mcp",
+      "is_success": true,
+      "error": null,
+      "tools": [
+        {
+          "name": "ask_redpanda_question",
+          "title": "Search Redpanda Sources",
+          "description": "Search the official Redpanda documentation and return the most relevant sections from it for a user query. Each returned section includes the url and its actual content in markdown. Use this tool for all queries that require Redpanda knowledge. Results are ordered by relevance, with the most relevant result returned first.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "question": {
+                "type": "string"
+              },
+              "top_k": {
+                "type": "number"
+              }
+            },
+            "required": [
+              "question"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          }
+        }
+      ],
+      "tool_count": 1,
+      "tool_names": [
+        "ask_redpanda_question"
+      ]
+    },
+    "server_info_crawled": {
+      "id": 259,
+      "name": "com.redpanda/docs-mcp",
+      "author": "",
+      "overview": "com.redpanda/docs-mcp - Web Search & Research MCP server with 1 tools.",
+      "repository_url": "",
+      "homepage": "https://docs.redpanda.com/mcp",
+      "remote_or_local": "Remote",
+      "license": "",
+      "usage_count": "10",
+      "success_rate": "100%",
+      "tags": [
+        "web-search-research"
+      ],
+      "categories": [
+        "web search & research"
+      ],
+      "tools_count": 1,
+      "tools": [
+        {
+          "name": "ask_redpanda_question",
+          "title": "Search Redpanda Sources",
+          "description": "Search the official Redpanda documentation and return the most relevant sections from it for a user query. Each returned section includes the url and its actual content in markdown. Use this tool for all queries that require Redpanda knowledge. Results are ordered by relevance, with the most relevant result returned first.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "question": {
+                "type": "string"
+              },
+              "top_k": {
+                "type": "number"
+              }
+            },
+            "required": [
+              "question"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          }
+        }
+      ],
+      "python_sdk_url": "https://docs.redpanda.com/mcp",
+      "python_sdk_config": "{\"debug\": false}"
+    },
+    "source_filename": "0259.comredpandadocs-mcp_labeled.json",
+    "processed_timestamp": 1772871482,
+    "processing_mode": "gateway",
+    "rank": 260
+  }
+}

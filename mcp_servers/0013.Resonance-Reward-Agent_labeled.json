@@ -1,0 +1,2309 @@
+{
+  "labels": {
+    "analysis": "The MCP Server \"Resonance Reward Agent\" provides 45 tools for dns & networking tasks.",
+    "reasoning": "Primary label \"DNS & Networking\" assigned based on tool names and descriptions.",
+    "primary_label": "DNS & Networking",
+    "secondary_labels": [
+      "Security & Authentication",
+      "Web Search & Research",
+      "Development Tools"
+    ],
+    "custom_label": "DNS & Networking - Resonance Reward Agent",
+    "is_connected": true,
+    "is_remote_tool_valid": true,
+    "featured_server": true
+  },
+  "metadata": {
+    "server_id": 13,
+    "server_name": "Resonance Reward Agent",
+    "rank_by_usage": 14,
+    "usage_count": "9,350",
+    "original_file": "tools.json#13",
+    "mode": "gateway",
+    "timestamp": 1772871481,
+    "remote_server_response": {
+      "url": "https://agent.rsnc.network/mcp",
+      "is_success": true,
+      "error": null,
+      "tools": [
+        {
+          "name": "rsnc_agent_network_info",
+          "description": "Returns info about the Resonance rewards network — a cross-brand cashback and perks marketplace covering retail, dining, travel, gaming, and more.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {},
+            "required": []
+          }
+        },
+        {
+          "name": "rsnc_agent_list_brands",
+          "description": "Search and browse brands offering cashback, rewards, and deals. Filter by category (retail, dining, travel, gaming) to find relevant offers for shopping, booking, or purchasing.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "category": {
+                "type": "string",
+                "description": "Filter brands by category (e.g. \"retail\", \"gaming\")."
+              },
+              "limit": {
+                "type": "number",
+                "description": "Maximum number of brands to return. Defaults to 50."
+              },
+              "offset": {
+                "type": "number",
+                "description": "Pagination offset. Defaults to 0."
+              }
+            },
+            "required": []
+          }
+        },
+        {
+          "name": "rsnc_agent_network_stats",
+          "description": "Returns how many brands, users, and rewards are active — useful for understanding the scope of available deals and cashback offers.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {},
+            "required": []
+          }
+        },
+        {
+          "name": "rsnc_agent_check_brand",
+          "description": "Check if a brand or website is on the Resonance cashback network. Returns their reward program details if found, or information about how to join if not.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "query": {
+                "type": "string",
+                "description": "Brand name, domain, or URL to look up (e.g. \"nike.com\", \"Starbucks\")."
+              }
+            },
+            "required": [
+              "query"
+            ]
+          }
+        },
+        {
+          "name": "rsnc_agent_brand_rankings",
+          "description": "See which brands offer the most rewards, have the most active programs, or the best cashback rates. Useful for finding where to shop for maximum value.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "category": {
+                "type": "string",
+                "description": "Filter by category (e.g. \"retail\", \"dining\", \"travel\", \"gaming\")."
+              },
+              "limit": {
+                "type": "number",
+                "description": "Number of brands to rank. Defaults to 10, max 10."
+              }
+            },
+            "required": []
+          }
+        },
+        {
+          "name": "rsnc_agent_brand_info",
+          "description": "Get details on a brand's reward program: what actions earn cashback (purchases, signups, reviews, referrals), how much you earn per action, and any bonus opportunities.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "brandId": {
+                "type": "string",
+                "description": "The brand identifier. Use rsnc_agent_list_brands to discover brands by category."
+              }
+            },
+            "required": [
+              "brandId"
+            ]
+          }
+        },
+        {
+          "name": "rsnc_agent_brand_perks",
+          "description": "Browse a brand's available rewards — discounts, free products, exclusive access, experiences, and more. See what's redeemable and what each costs.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "brandId": {
+                "type": "string",
+                "description": "The brand identifier. Use rsnc_agent_list_brands to discover brands by category."
+              },
+              "category": {
+                "type": "string",
+                "description": "Optional category filter for perks."
+              }
+            },
+            "required": [
+              "brandId"
+            ]
+          }
+        },
+        {
+          "name": "rsnc_agent_user_balance",
+          "description": "Check how much cashback a user has earned at a specific brand and how much they can spend on rewards. Requires authentication.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "userId": {
+                "type": "string",
+                "description": "User identifier (email address or wallet address)."
+              },
+              "brandId": {
+                "type": "string",
+                "description": "The brand identifier. Use rsnc_agent_list_brands to discover brands by category."
+              }
+            },
+            "required": [
+              "userId",
+              "brandId"
+            ]
+          }
+        },
+        {
+          "name": "rsnc_agent_user_stats",
+          "description": "Get a user's complete reward profile for a brand: total earned, total redeemed, active streaks, and achievements. Useful for recommending next actions. Requires authentication.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "userId": {
+                "type": "string",
+                "description": "User identifier (email address or wallet address)."
+              },
+              "brandId": {
+                "type": "string",
+                "description": "The brand identifier. Use rsnc_agent_list_brands to discover brands by category."
+              }
+            },
+            "required": [
+              "userId",
+              "brandId"
+            ]
+          }
+        },
+        {
+          "name": "rsnc_agent_user_portfolio",
+          "description": "Get a unified view of a user's rewards across ALL brands — total balance, per-brand breakdown, active streaks, and the best perk they can afford right now. The cross-brand loyalty dashboard. Requires authentication.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "userId": {
+                "type": "string",
+                "description": "User identifier (email address or wallet address)."
+              }
+            },
+            "required": [
+              "userId"
+            ]
+          }
+        },
+        {
+          "name": "rsnc_agent_process_event",
+          "description": "Record a qualifying action (purchase, signup, review, referral) to earn cashback for a user. Returns the reward amount credited. Requires authentication.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "brandId": {
+                "type": "string",
+                "description": "The brand identifier. Use rsnc_agent_list_brands to discover brands by category."
+              },
+              "eventType": {
+                "type": "string",
+                "description": "The type of event to track (e.g. \"purchase\", \"review\", \"referral\")."
+              },
+              "userId": {
+                "type": "string",
+                "description": "User email address."
+              },
+              "metadata": {
+                "type": "object",
+                "description": "Optional metadata to attach to the event."
+              }
+            },
+            "required": [
+              "brandId",
+              "eventType",
+              "userId"
+            ]
+          }
+        },
+        {
+          "name": "rsnc_agent_process_bulk",
+          "description": "Record multiple qualifying actions in one request — batch purchases, signups, or engagement events across brands. Requires authentication.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "events": {
+                "type": "array",
+                "description": "Array of events to process.",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "brandId": {
+                      "type": "string",
+                      "description": "The brand identifier. Use rsnc_agent_list_brands to discover brands by category."
+                    },
+                    "eventType": {
+                      "type": "string",
+                      "description": "The type of event to track."
+                    },
+                    "userId": {
+                      "type": "string",
+                      "description": "User email address."
+                    },
+                    "metadata": {
+                      "type": "object",
+                      "description": "Optional metadata to attach to the event."
+                    }
+                  },
+                  "required": [
+                    "brandId",
+                    "eventType",
+                    "userId"
+                  ]
+                }
+              }
+            },
+            "required": [
+              "events"
+            ]
+          }
+        },
+        {
+          "name": "rsnc_agent_browse_perks",
+          "description": "Search for deals, discounts, and rewards across all brands or filter by category and budget. Find cashback offers, free products, exclusive access, and experiences from retail, dining, travel, and more.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "category": {
+                "type": "string",
+                "description": "Filter perks by category."
+              },
+              "maxPrice": {
+                "type": "number",
+                "description": "Maximum reward cost to include in results."
+              },
+              "brandId": {
+                "type": "string",
+                "description": "Scope to a specific brand. If omitted, returns deals from all active brands. Use rsnc_agent_list_brands to find brands."
+              },
+              "limit": {
+                "type": "number",
+                "description": "Maximum number of perks to return. Defaults to 20."
+              }
+            },
+            "required": []
+          }
+        },
+        {
+          "name": "rsnc_agent_redeem_perk",
+          "description": "Claim a reward for a user — redeem a discount, freebie, or exclusive offer using their earned cashback. Returns a confirmation code. Requires authentication.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "perkId": {
+                "type": "string",
+                "description": "The ID of the perk to redeem."
+              },
+              "userId": {
+                "type": "string",
+                "description": "User identifier (email or wallet address)."
+              },
+              "brandId": {
+                "type": "string",
+                "description": "The brand identifier. Use rsnc_agent_list_brands to discover brands by category."
+              }
+            },
+            "required": [
+              "perkId",
+              "userId",
+              "brandId"
+            ]
+          }
+        },
+        {
+          "name": "rsnc_agent_leaderboard",
+          "description": "See top earners and most active customers for a brand. Useful for social proof or finding the most rewarding brands to shop at.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "brandId": {
+                "type": "string",
+                "description": "The brand identifier. Use rsnc_agent_list_brands to discover brands by category."
+              },
+              "metric": {
+                "type": "string",
+                "enum": [
+                  "rsnc_earned",
+                  "streak",
+                  "activity"
+                ],
+                "description": "Leaderboard ranking metric. Defaults to rsnc_earned."
+              },
+              "period": {
+                "type": "string",
+                "enum": [
+                  "daily",
+                  "weekly",
+                  "monthly",
+                  "all_time"
+                ],
+                "description": "Time period for the leaderboard. Defaults to all_time."
+              },
+              "limit": {
+                "type": "number",
+                "description": "Maximum number of entries to return. Defaults to 10."
+              }
+            },
+            "required": [
+              "brandId"
+            ]
+          }
+        },
+        {
+          "name": "rsnc_agent_estimate_roi",
+          "description": "Estimate the return on investment of adding a Resonance cashback program to a business. Takes industry and business metrics to project engagement and retention impact.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "industry": {
+                "type": "string",
+                "enum": [
+                  "retail",
+                  "dining",
+                  "travel",
+                  "gaming",
+                  "other"
+                ],
+                "description": "Business industry category."
+              },
+              "monthlyCustomers": {
+                "type": "number",
+                "description": "Estimated monthly customers. Used to project reward costs and impact."
+              },
+              "averageOrderValue": {
+                "type": "number",
+                "description": "Average transaction value in USD. Used to estimate cashback costs."
+              }
+            },
+            "required": [
+              "industry"
+            ]
+          }
+        },
+        {
+          "name": "rsnc_agent_request_info",
+          "description": "Request information about adding a Resonance cashback program to a business. Captures contact details for the partnerships team.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "businessName": {
+                "type": "string",
+                "description": "Name of the business."
+              },
+              "contactEmail": {
+                "type": "string",
+                "description": "Contact email for the business owner or decision maker."
+              },
+              "website": {
+                "type": "string",
+                "description": "Business website URL."
+              },
+              "industry": {
+                "type": "string",
+                "description": "Business industry category."
+              }
+            },
+            "required": [
+              "businessName",
+              "contactEmail"
+            ]
+          }
+        },
+        {
+          "name": "rsnc_agent_onboard_brand",
+          "description": "Register a new brand on the Resonance cashback network. Creates their account, generates credentials (accessible via partner portal), and sends a welcome email. Requires agent authentication with onboarding permission.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "brandAddress": {
+                "type": "string",
+                "description": "Brand's public wallet address (Ethereum format, 0x-prefixed)."
+              },
+              "businessName": {
+                "type": "string",
+                "description": "Brand/business name."
+              },
+              "contactEmail": {
+                "type": "string",
+                "description": "Contact email — becomes their portal login."
+              },
+              "website": {
+                "type": "string",
+                "description": "Brand website URL."
+              },
+              "category": {
+                "type": "string",
+                "description": "Industry category (retail, dining, travel, gaming, other)."
+              },
+              "description": {
+                "type": "string",
+                "description": "Short description of the business."
+              }
+            },
+            "required": [
+              "brandAddress",
+              "businessName",
+              "contactEmail"
+            ]
+          }
+        },
+        {
+          "name": "rsnc_agent_manage_keys",
+          "description": "Manage API keys for brands you onboarded. Rotate, revoke, or check status. Never exposes secrets — credentials are accessed through the partner portal.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "action": {
+                "type": "string",
+                "enum": [
+                  "rotate",
+                  "revoke",
+                  "status"
+                ],
+                "description": "Key management action."
+              },
+              "brandId": {
+                "type": "string",
+                "description": "Brand wallet address."
+              }
+            },
+            "required": [
+              "action",
+              "brandId"
+            ]
+          }
+        },
+        {
+          "name": "rsnc_agent_network_analytics",
+          "description": "Get real-time network analytics: total users, brands, rewards distributed, trending categories, and growth metrics across the entire Resonance network.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "period": {
+                "type": "string",
+                "enum": [
+                  "7d",
+                  "30d",
+                  "90d"
+                ],
+                "description": "Time period for analytics. Defaults to \"30d\"."
+              }
+            },
+            "required": []
+          }
+        },
+        {
+          "name": "rsnc_agent_brand_analytics",
+          "description": "Deep analytics for a specific brand: daily performance trends, customer velocity, event activity, and program health metrics. Use this to understand how a brand's reward program is performing.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "brandId": {
+                "type": "string",
+                "description": "The brand identifier."
+              },
+              "period": {
+                "type": "string",
+                "enum": [
+                  "7d",
+                  "30d",
+                  "90d"
+                ],
+                "description": "Time period for analytics. Defaults to \"30d\"."
+              }
+            },
+            "required": [
+              "brandId"
+            ]
+          }
+        },
+        {
+          "name": "rsnc_agent_event_performance",
+          "description": "See how each reward event is performing at a brand: which actions drive the most engagement, claim rates, and reward efficiency per event type.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "brandId": {
+                "type": "string",
+                "description": "The brand identifier."
+              },
+              "period": {
+                "type": "string",
+                "enum": [
+                  "7d",
+                  "30d",
+                  "90d"
+                ],
+                "description": "Time period for analytics. Defaults to \"30d\"."
+              }
+            },
+            "required": [
+              "brandId"
+            ]
+          }
+        },
+        {
+          "name": "rsnc_agent_perk_analytics",
+          "description": "Analyze perk collection performance: redemption rates, supply status, which perks are most popular. Helps brands optimize their reward catalog.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "brandId": {
+                "type": "string",
+                "description": "The brand identifier."
+              }
+            },
+            "required": [
+              "brandId"
+            ]
+          }
+        },
+        {
+          "name": "rsnc_agent_brand_health",
+          "description": "Get a program health assessment for a brand with data-driven recommendations. Analyzes event performance, perk utilization, and customer engagement to suggest optimizations.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "brandId": {
+                "type": "string",
+                "description": "The brand identifier."
+              }
+            },
+            "required": [
+              "brandId"
+            ]
+          }
+        },
+        {
+          "name": "rsnc_agent_create_event",
+          "description": "Create a new reward event for a brand. Events define what user actions earn cashback. The agent validates the configuration against the brand's data maturity before creating.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "brandId": {
+                "type": "string",
+                "description": "The brand identifier (wallet address)."
+              },
+              "eventType": {
+                "type": "string",
+                "enum": [
+                  "purchase",
+                  "signup",
+                  "review",
+                  "referral",
+                  "custom"
+                ],
+                "description": "The type of user action that triggers this reward event."
+              },
+              "rewardAmount": {
+                "type": "number",
+                "description": "RSNC tokens awarded per claim. Must be greater than 0."
+              },
+              "maxClaims": {
+                "type": "number",
+                "description": "Maximum total claims allowed. 0 = unlimited. Defaults to 0."
+              },
+              "cooldownHours": {
+                "type": "number",
+                "description": "Hours between claims per user. Defaults to 24."
+              },
+              "customName": {
+                "type": "string",
+                "description": "Required when eventType is \"custom\". Human-readable name for the custom event."
+              },
+              "detectionMethod": {
+                "type": "string",
+                "enum": [
+                  "webhook",
+                  "form_submission",
+                  "api_webhook"
+                ],
+                "description": "How the event is detected. Defaults to \"webhook\"."
+              }
+            },
+            "required": [
+              "brandId",
+              "eventType",
+              "rewardAmount"
+            ]
+          }
+        },
+        {
+          "name": "rsnc_agent_update_event",
+          "description": "Update an existing reward event's configuration. Changes to reward amounts are validated against performance data to ensure sufficient data for evaluation.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "brandId": {
+                "type": "string",
+                "description": "The brand identifier (wallet address)."
+              },
+              "eventId": {
+                "type": "string",
+                "description": "The event identifier to update."
+              },
+              "rewardAmount": {
+                "type": "number",
+                "description": "New RSNC tokens awarded per claim."
+              },
+              "maxClaims": {
+                "type": "number",
+                "description": "New maximum total claims allowed. 0 = unlimited."
+              },
+              "cooldownHours": {
+                "type": "number",
+                "description": "New cooldown period in hours between claims per user."
+              },
+              "enabled": {
+                "type": "boolean",
+                "description": "Enable or disable the event."
+              }
+            },
+            "required": [
+              "brandId",
+              "eventId"
+            ]
+          }
+        },
+        {
+          "name": "rsnc_agent_create_perk",
+          "description": "Create a new perk collection for a brand. Perks are rewards users can claim with earned RSNC tokens — discounts, free products, VIP access, and more.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "brandId": {
+                "type": "string",
+                "description": "The brand identifier (wallet address)."
+              },
+              "name": {
+                "type": "string",
+                "description": "Display name for the perk."
+              },
+              "description": {
+                "type": "string",
+                "description": "Description of what the user receives."
+              },
+              "priceInPoints": {
+                "type": "number",
+                "description": "RSNC cost to redeem this perk. Must be greater than 0."
+              },
+              "maxSupply": {
+                "type": "number",
+                "description": "Total supply available. Must be greater than 0."
+              },
+              "maxPerUser": {
+                "type": "number",
+                "description": "Maximum redemptions per user. Defaults to 1."
+              },
+              "category": {
+                "type": "string",
+                "description": "Optional perk category (e.g. \"discount\", \"freebie\", \"vip\")."
+              },
+              "tags": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "Optional tags for search and filtering."
+              }
+            },
+            "required": [
+              "brandId",
+              "name",
+              "description",
+              "priceInPoints",
+              "maxSupply"
+            ]
+          }
+        },
+        {
+          "name": "rsnc_agent_update_perk",
+          "description": "Update a perk collection's configuration. Can adjust pricing, supply, and active status.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "brandId": {
+                "type": "string",
+                "description": "The brand identifier (wallet address). Used for permission and scope checks."
+              },
+              "collectionId": {
+                "type": "number",
+                "description": "The perk collection ID to update."
+              },
+              "priceInPoints": {
+                "type": "number",
+                "description": "New RSNC cost to redeem."
+              },
+              "maxSupply": {
+                "type": "number",
+                "description": "New total supply."
+              },
+              "isActive": {
+                "type": "boolean",
+                "description": "Enable or disable the perk."
+              },
+              "description": {
+                "type": "string",
+                "description": "New description text."
+              }
+            },
+            "required": [
+              "brandId",
+              "collectionId"
+            ]
+          }
+        },
+        {
+          "name": "rsnc_agent_my_rewards",
+          "description": "Check your agent's RSNC reward earnings, activity stats, and remaining rate cap allowances. Shows how much the agent has earned for discovering brands, onboarding partners, and driving network growth.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {},
+            "required": []
+          }
+        },
+        {
+          "name": "rsnc_agent_claim_reward",
+          "description": "Claim a reward for a valuable agent action. Rewards are paid from the Resonance network fund with daily and weekly rate caps. Discovery earns 100 RSNC, onboarding earns 500 RSNC.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "rewardType": {
+                "type": "string",
+                "enum": [
+                  "discovery",
+                  "onboarding"
+                ],
+                "description": "Type of action to claim reward for."
+              },
+              "brandAddress": {
+                "type": "string",
+                "description": "The brand address associated with this action."
+              }
+            },
+            "required": [
+              "rewardType",
+              "brandAddress"
+            ]
+          }
+        },
+        {
+          "name": "rsnc_agent_compare_brands",
+          "description": "Compare 2-5 brands side-by-side across all performance metrics: velocity, customers reached, transactions, LTZ distributed, event diversity, and perk utilization. Returns a structured comparison matrix with per-metric winners and insights.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "brandIds": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "minItems": 2,
+                "maxItems": 5,
+                "description": "Array of 2-5 brand identifiers to compare."
+              },
+              "period": {
+                "type": "string",
+                "enum": [
+                  "7d",
+                  "30d",
+                  "90d"
+                ],
+                "description": "Time period for comparison. Defaults to \"30d\"."
+              }
+            },
+            "required": [
+              "brandIds"
+            ]
+          }
+        },
+        {
+          "name": "rsnc_agent_compare_cashback",
+          "description": "Compare cashback rates across brands for a specific purchase amount. Shows exactly how much you earn at each brand — side-by-side \"Buy $100 at Nike = $8 back vs Adidas = $3 back\". The key decision tool for purchase routing.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "brandIds": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "minItems": 2,
+                "maxItems": 10,
+                "description": "Brands to compare. Or omit and use category to auto-discover."
+              },
+              "category": {
+                "type": "string",
+                "description": "Category to auto-discover brands for comparison (retail, dining, travel, gaming)."
+              },
+              "purchaseAmount": {
+                "type": "number",
+                "description": "Purchase amount in USD to calculate exact cashback."
+              }
+            },
+            "required": [
+              "purchaseAmount"
+            ]
+          }
+        },
+        {
+          "name": "rsnc_agent_best_deals",
+          "description": "Find the best cashback deals and rewards matching a shopping intent. Searches brands by category, ranks by reward value, and optionally personalizes results based on user balances. Use this when a user wants to shop, eat, travel, or game and wants the best rewards.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "intent": {
+                "type": "string",
+                "description": "What the user wants to do — e.g. \"buy running shoes\", \"get coffee\", \"book a hotel\", \"play games\". Matched against brand categories and perk descriptions."
+              },
+              "category": {
+                "type": "string",
+                "description": "Direct category filter (retail, dining, travel, gaming). If provided, overrides intent-based category matching."
+              },
+              "userId": {
+                "type": "string",
+                "description": "Optional user ID (email/wallet). When provided, results include personalized data: current balance, affordable perks, and \"you can afford this NOW\" flags."
+              },
+              "budget": {
+                "type": "number",
+                "description": "Optional max perk cost to consider."
+              },
+              "limit": {
+                "type": "number",
+                "description": "Maximum deals to return. Defaults to 10."
+              }
+            },
+            "required": [
+              "intent"
+            ]
+          }
+        },
+        {
+          "name": "rsnc_agent_next_goal",
+          "description": "Calculate the fastest path to a user's next attainable reward. Shows exactly how many actions (purchases, reviews, referrals) are needed to afford a specific perk. Creates urgency and drives engagement. Requires authentication.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "userId": {
+                "type": "string",
+                "description": "User identifier (email or wallet address)."
+              },
+              "brandId": {
+                "type": "string",
+                "description": "Optional: focus on a specific brand. If omitted, finds the best goal across all brands the user is active with."
+              },
+              "targetPerkId": {
+                "type": "string",
+                "description": "Optional: calculate path to a specific perk. If omitted, finds the most attainable perk."
+              }
+            },
+            "required": [
+              "userId"
+            ]
+          }
+        },
+        {
+          "name": "rsnc_agent_route_purchase",
+          "description": "Find the best brand to buy from based on cashback and rewards. Given a shopping intent, compares all matching brands and ranks them by total reward value — cashback earned, perks redeemable, and effective savings. The core purchase intelligence tool for agentic commerce.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "intent": {
+                "type": "string",
+                "description": "What the user wants to buy — e.g. \"running shoes\", \"coffee\", \"hotel in NYC\"."
+              },
+              "category": {
+                "type": "string",
+                "description": "Direct category filter (retail, dining, travel, gaming)."
+              },
+              "purchaseAmount": {
+                "type": "number",
+                "description": "Expected purchase amount in USD. Used to calculate exact cashback and savings."
+              },
+              "userId": {
+                "type": "string",
+                "description": "Optional user ID for personalized routing — factors in existing balances and redeemable perks."
+              }
+            },
+            "required": [
+              "intent"
+            ]
+          }
+        },
+        {
+          "name": "rsnc_agent_stack_deals",
+          "description": "Calculate the optimal deal stack for a specific purchase at a specific brand. Combines base cashback earned + best redeemable perk + any active promotions to show total savings. Use after route_purchase to maximize value at the chosen brand.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "brandId": {
+                "type": "string",
+                "description": "The brand to optimize the deal for."
+              },
+              "purchaseAmount": {
+                "type": "number",
+                "description": "Purchase amount in USD."
+              },
+              "userId": {
+                "type": "string",
+                "description": "User ID to check redeemable perks against their balance."
+              }
+            },
+            "required": [
+              "brandId",
+              "purchaseAmount",
+              "userId"
+            ]
+          }
+        },
+        {
+          "name": "rsnc_agent_user_persona",
+          "description": "Get a user's behavioral profile: earn patterns, persona archetype, tag/brand affinities, price preferences, and network position. Requires HMAC authentication.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "userId": {
+                "type": "string",
+                "description": "The user identifier (email or wallet address)."
+              }
+            },
+            "required": [
+              "userId"
+            ]
+          }
+        },
+        {
+          "name": "rsnc_agent_user_recommendations",
+          "description": "Get personalized perk recommendations for a user, scored by persona affinity and affordability. Requires HMAC authentication.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "userId": {
+                "type": "string",
+                "description": "The user identifier (email or wallet address)."
+              },
+              "limit": {
+                "type": "number",
+                "description": "Maximum number of recommendations to return. Defaults to 5."
+              }
+            },
+            "required": [
+              "userId"
+            ]
+          }
+        },
+        {
+          "name": "rsnc_agent_perk_intelligence",
+          "description": "Get intelligence on a brand's perks: heat scores, conversion funnels, supply depletion rates, and retention impact. Helps optimize perk catalogs.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "brandId": {
+                "type": "string",
+                "description": "The brand identifier."
+              }
+            },
+            "required": [
+              "brandId"
+            ]
+          }
+        },
+        {
+          "name": "rsnc_agent_perk_audience",
+          "description": "Get the persona breakdown of users who claimed a specific perk: archetypes, engagement levels, and platform distribution.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "brandId": {
+                "type": "string",
+                "description": "The brand identifier."
+              },
+              "collectionId": {
+                "type": "number",
+                "description": "The perk collection ID."
+              }
+            },
+            "required": [
+              "brandId",
+              "collectionId"
+            ]
+          }
+        },
+        {
+          "name": "rsnc_agent_brand_audience",
+          "description": "Get a brand's user persona distribution: archetype breakdown, engagement levels, platform split, and archetype drift over time.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "brandId": {
+                "type": "string",
+                "description": "The brand identifier."
+              }
+            },
+            "required": [
+              "brandId"
+            ]
+          }
+        },
+        {
+          "name": "rsnc_agent_network_flows",
+          "description": "See how users flow between brands across the network. Shows which brands are emitters (users leave to redeem elsewhere) vs attractors (users come to redeem). All data is anonymous and category-level.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "period": {
+                "type": "string",
+                "enum": [
+                  "7d",
+                  "30d",
+                  "90d"
+                ],
+                "description": "Time period for flow analysis. Defaults to \"30d\"."
+              }
+            },
+            "required": []
+          }
+        },
+        {
+          "name": "rsnc_agent_network_trending",
+          "description": "See what's trending across the Resonance network: hottest perk categories, fastest growing brand categories, and overall network health metrics.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "period": {
+                "type": "string",
+                "enum": [
+                  "7d",
+                  "30d",
+                  "90d"
+                ],
+                "description": "Time period for trending data. Defaults to \"7d\"."
+              },
+              "limit": {
+                "type": "number",
+                "description": "Maximum number of trending items per category. Defaults to 10."
+              }
+            },
+            "required": []
+          }
+        },
+        {
+          "name": "rsnc_agent_suggest_events",
+          "description": "Get AI-recommended reward event configurations for a brand. Analyzes what event types, reward amounts, and cooldowns work best in the brand's category based on network-wide patterns.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "brandId": {
+                "type": "string",
+                "description": "The brand identifier."
+              }
+            },
+            "required": [
+              "brandId"
+            ]
+          }
+        },
+        {
+          "name": "rsnc_agent_suggest_perks",
+          "description": "Get AI-recommended perk configurations for a brand. Suggests perk types, pricing, and supply limits based on audience composition and balance distribution patterns.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "brandId": {
+                "type": "string",
+                "description": "The brand identifier."
+              }
+            },
+            "required": [
+              "brandId"
+            ]
+          }
+        }
+      ],
+      "tool_count": 45,
+      "tool_names": [
+        "rsnc_agent_network_info",
+        "rsnc_agent_list_brands",
+        "rsnc_agent_network_stats",
+        "rsnc_agent_check_brand",
+        "rsnc_agent_brand_rankings",
+        "rsnc_agent_brand_info",
+        "rsnc_agent_brand_perks",
+        "rsnc_agent_user_balance",
+        "rsnc_agent_user_stats",
+        "rsnc_agent_user_portfolio",
+        "rsnc_agent_process_event",
+        "rsnc_agent_process_bulk",
+        "rsnc_agent_browse_perks",
+        "rsnc_agent_redeem_perk",
+        "rsnc_agent_leaderboard",
+        "rsnc_agent_estimate_roi",
+        "rsnc_agent_request_info",
+        "rsnc_agent_onboard_brand",
+        "rsnc_agent_manage_keys",
+        "rsnc_agent_network_analytics",
+        "rsnc_agent_brand_analytics",
+        "rsnc_agent_event_performance",
+        "rsnc_agent_perk_analytics",
+        "rsnc_agent_brand_health",
+        "rsnc_agent_create_event",
+        "rsnc_agent_update_event",
+        "rsnc_agent_create_perk",
+        "rsnc_agent_update_perk",
+        "rsnc_agent_my_rewards",
+        "rsnc_agent_claim_reward",
+        "rsnc_agent_compare_brands",
+        "rsnc_agent_compare_cashback",
+        "rsnc_agent_best_deals",
+        "rsnc_agent_next_goal",
+        "rsnc_agent_route_purchase",
+        "rsnc_agent_stack_deals",
+        "rsnc_agent_user_persona",
+        "rsnc_agent_user_recommendations",
+        "rsnc_agent_perk_intelligence",
+        "rsnc_agent_perk_audience",
+        "rsnc_agent_brand_audience",
+        "rsnc_agent_network_flows",
+        "rsnc_agent_network_trending",
+        "rsnc_agent_suggest_events",
+        "rsnc_agent_suggest_perks"
+      ]
+    },
+    "server_info_crawled": {
+      "id": 13,
+      "name": "Resonance Reward Agent",
+      "author": "",
+      "overview": "Resonance Reward Agent - DNS & Networking MCP server with 45 tools.",
+      "repository_url": "",
+      "homepage": "https://agent.rsnc.network/mcp",
+      "remote_or_local": "Remote",
+      "license": "",
+      "usage_count": "9,350",
+      "success_rate": "100%",
+      "tags": [
+        "dns-networking"
+      ],
+      "categories": [
+        "dns & networking"
+      ],
+      "tools_count": 45,
+      "tools": [
+        {
+          "name": "rsnc_agent_network_info",
+          "description": "Returns info about the Resonance rewards network — a cross-brand cashback and perks marketplace covering retail, dining, travel, gaming, and more.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {},
+            "required": []
+          }
+        },
+        {
+          "name": "rsnc_agent_list_brands",
+          "description": "Search and browse brands offering cashback, rewards, and deals. Filter by category (retail, dining, travel, gaming) to find relevant offers for shopping, booking, or purchasing.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "category": {
+                "type": "string",
+                "description": "Filter brands by category (e.g. \"retail\", \"gaming\")."
+              },
+              "limit": {
+                "type": "number",
+                "description": "Maximum number of brands to return. Defaults to 50."
+              },
+              "offset": {
+                "type": "number",
+                "description": "Pagination offset. Defaults to 0."
+              }
+            },
+            "required": []
+          }
+        },
+        {
+          "name": "rsnc_agent_network_stats",
+          "description": "Returns how many brands, users, and rewards are active — useful for understanding the scope of available deals and cashback offers.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {},
+            "required": []
+          }
+        },
+        {
+          "name": "rsnc_agent_check_brand",
+          "description": "Check if a brand or website is on the Resonance cashback network. Returns their reward program details if found, or information about how to join if not.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "query": {
+                "type": "string",
+                "description": "Brand name, domain, or URL to look up (e.g. \"nike.com\", \"Starbucks\")."
+              }
+            },
+            "required": [
+              "query"
+            ]
+          }
+        },
+        {
+          "name": "rsnc_agent_brand_rankings",
+          "description": "See which brands offer the most rewards, have the most active programs, or the best cashback rates. Useful for finding where to shop for maximum value.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "category": {
+                "type": "string",
+                "description": "Filter by category (e.g. \"retail\", \"dining\", \"travel\", \"gaming\")."
+              },
+              "limit": {
+                "type": "number",
+                "description": "Number of brands to rank. Defaults to 10, max 10."
+              }
+            },
+            "required": []
+          }
+        },
+        {
+          "name": "rsnc_agent_brand_info",
+          "description": "Get details on a brand's reward program: what actions earn cashback (purchases, signups, reviews, referrals), how much you earn per action, and any bonus opportunities.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "brandId": {
+                "type": "string",
+                "description": "The brand identifier. Use rsnc_agent_list_brands to discover brands by category."
+              }
+            },
+            "required": [
+              "brandId"
+            ]
+          }
+        },
+        {
+          "name": "rsnc_agent_brand_perks",
+          "description": "Browse a brand's available rewards — discounts, free products, exclusive access, experiences, and more. See what's redeemable and what each costs.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "brandId": {
+                "type": "string",
+                "description": "The brand identifier. Use rsnc_agent_list_brands to discover brands by category."
+              },
+              "category": {
+                "type": "string",
+                "description": "Optional category filter for perks."
+              }
+            },
+            "required": [
+              "brandId"
+            ]
+          }
+        },
+        {
+          "name": "rsnc_agent_user_balance",
+          "description": "Check how much cashback a user has earned at a specific brand and how much they can spend on rewards. Requires authentication.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "userId": {
+                "type": "string",
+                "description": "User identifier (email address or wallet address)."
+              },
+              "brandId": {
+                "type": "string",
+                "description": "The brand identifier. Use rsnc_agent_list_brands to discover brands by category."
+              }
+            },
+            "required": [
+              "userId",
+              "brandId"
+            ]
+          }
+        },
+        {
+          "name": "rsnc_agent_user_stats",
+          "description": "Get a user's complete reward profile for a brand: total earned, total redeemed, active streaks, and achievements. Useful for recommending next actions. Requires authentication.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "userId": {
+                "type": "string",
+                "description": "User identifier (email address or wallet address)."
+              },
+              "brandId": {
+                "type": "string",
+                "description": "The brand identifier. Use rsnc_agent_list_brands to discover brands by category."
+              }
+            },
+            "required": [
+              "userId",
+              "brandId"
+            ]
+          }
+        },
+        {
+          "name": "rsnc_agent_user_portfolio",
+          "description": "Get a unified view of a user's rewards across ALL brands — total balance, per-brand breakdown, active streaks, and the best perk they can afford right now. The cross-brand loyalty dashboard. Requires authentication.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "userId": {
+                "type": "string",
+                "description": "User identifier (email address or wallet address)."
+              }
+            },
+            "required": [
+              "userId"
+            ]
+          }
+        },
+        {
+          "name": "rsnc_agent_process_event",
+          "description": "Record a qualifying action (purchase, signup, review, referral) to earn cashback for a user. Returns the reward amount credited. Requires authentication.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "brandId": {
+                "type": "string",
+                "description": "The brand identifier. Use rsnc_agent_list_brands to discover brands by category."
+              },
+              "eventType": {
+                "type": "string",
+                "description": "The type of event to track (e.g. \"purchase\", \"review\", \"referral\")."
+              },
+              "userId": {
+                "type": "string",
+                "description": "User email address."
+              },
+              "metadata": {
+                "type": "object",
+                "description": "Optional metadata to attach to the event."
+              }
+            },
+            "required": [
+              "brandId",
+              "eventType",
+              "userId"
+            ]
+          }
+        },
+        {
+          "name": "rsnc_agent_process_bulk",
+          "description": "Record multiple qualifying actions in one request — batch purchases, signups, or engagement events across brands. Requires authentication.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "events": {
+                "type": "array",
+                "description": "Array of events to process.",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "brandId": {
+                      "type": "string",
+                      "description": "The brand identifier. Use rsnc_agent_list_brands to discover brands by category."
+                    },
+                    "eventType": {
+                      "type": "string",
+                      "description": "The type of event to track."
+                    },
+                    "userId": {
+                      "type": "string",
+                      "description": "User email address."
+                    },
+                    "metadata": {
+                      "type": "object",
+                      "description": "Optional metadata to attach to the event."
+                    }
+                  },
+                  "required": [
+                    "brandId",
+                    "eventType",
+                    "userId"
+                  ]
+                }
+              }
+            },
+            "required": [
+              "events"
+            ]
+          }
+        },
+        {
+          "name": "rsnc_agent_browse_perks",
+          "description": "Search for deals, discounts, and rewards across all brands or filter by category and budget. Find cashback offers, free products, exclusive access, and experiences from retail, dining, travel, and more.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "category": {
+                "type": "string",
+                "description": "Filter perks by category."
+              },
+              "maxPrice": {
+                "type": "number",
+                "description": "Maximum reward cost to include in results."
+              },
+              "brandId": {
+                "type": "string",
+                "description": "Scope to a specific brand. If omitted, returns deals from all active brands. Use rsnc_agent_list_brands to find brands."
+              },
+              "limit": {
+                "type": "number",
+                "description": "Maximum number of perks to return. Defaults to 20."
+              }
+            },
+            "required": []
+          }
+        },
+        {
+          "name": "rsnc_agent_redeem_perk",
+          "description": "Claim a reward for a user — redeem a discount, freebie, or exclusive offer using their earned cashback. Returns a confirmation code. Requires authentication.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "perkId": {
+                "type": "string",
+                "description": "The ID of the perk to redeem."
+              },
+              "userId": {
+                "type": "string",
+                "description": "User identifier (email or wallet address)."
+              },
+              "brandId": {
+                "type": "string",
+                "description": "The brand identifier. Use rsnc_agent_list_brands to discover brands by category."
+              }
+            },
+            "required": [
+              "perkId",
+              "userId",
+              "brandId"
+            ]
+          }
+        },
+        {
+          "name": "rsnc_agent_leaderboard",
+          "description": "See top earners and most active customers for a brand. Useful for social proof or finding the most rewarding brands to shop at.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "brandId": {
+                "type": "string",
+                "description": "The brand identifier. Use rsnc_agent_list_brands to discover brands by category."
+              },
+              "metric": {
+                "type": "string",
+                "enum": [
+                  "rsnc_earned",
+                  "streak",
+                  "activity"
+                ],
+                "description": "Leaderboard ranking metric. Defaults to rsnc_earned."
+              },
+              "period": {
+                "type": "string",
+                "enum": [
+                  "daily",
+                  "weekly",
+                  "monthly",
+                  "all_time"
+                ],
+                "description": "Time period for the leaderboard. Defaults to all_time."
+              },
+              "limit": {
+                "type": "number",
+                "description": "Maximum number of entries to return. Defaults to 10."
+              }
+            },
+            "required": [
+              "brandId"
+            ]
+          }
+        },
+        {
+          "name": "rsnc_agent_estimate_roi",
+          "description": "Estimate the return on investment of adding a Resonance cashback program to a business. Takes industry and business metrics to project engagement and retention impact.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "industry": {
+                "type": "string",
+                "enum": [
+                  "retail",
+                  "dining",
+                  "travel",
+                  "gaming",
+                  "other"
+                ],
+                "description": "Business industry category."
+              },
+              "monthlyCustomers": {
+                "type": "number",
+                "description": "Estimated monthly customers. Used to project reward costs and impact."
+              },
+              "averageOrderValue": {
+                "type": "number",
+                "description": "Average transaction value in USD. Used to estimate cashback costs."
+              }
+            },
+            "required": [
+              "industry"
+            ]
+          }
+        },
+        {
+          "name": "rsnc_agent_request_info",
+          "description": "Request information about adding a Resonance cashback program to a business. Captures contact details for the partnerships team.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "businessName": {
+                "type": "string",
+                "description": "Name of the business."
+              },
+              "contactEmail": {
+                "type": "string",
+                "description": "Contact email for the business owner or decision maker."
+              },
+              "website": {
+                "type": "string",
+                "description": "Business website URL."
+              },
+              "industry": {
+                "type": "string",
+                "description": "Business industry category."
+              }
+            },
+            "required": [
+              "businessName",
+              "contactEmail"
+            ]
+          }
+        },
+        {
+          "name": "rsnc_agent_onboard_brand",
+          "description": "Register a new brand on the Resonance cashback network. Creates their account, generates credentials (accessible via partner portal), and sends a welcome email. Requires agent authentication with onboarding permission.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "brandAddress": {
+                "type": "string",
+                "description": "Brand's public wallet address (Ethereum format, 0x-prefixed)."
+              },
+              "businessName": {
+                "type": "string",
+                "description": "Brand/business name."
+              },
+              "contactEmail": {
+                "type": "string",
+                "description": "Contact email — becomes their portal login."
+              },
+              "website": {
+                "type": "string",
+                "description": "Brand website URL."
+              },
+              "category": {
+                "type": "string",
+                "description": "Industry category (retail, dining, travel, gaming, other)."
+              },
+              "description": {
+                "type": "string",
+                "description": "Short description of the business."
+              }
+            },
+            "required": [
+              "brandAddress",
+              "businessName",
+              "contactEmail"
+            ]
+          }
+        },
+        {
+          "name": "rsnc_agent_manage_keys",
+          "description": "Manage API keys for brands you onboarded. Rotate, revoke, or check status. Never exposes secrets — credentials are accessed through the partner portal.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "action": {
+                "type": "string",
+                "enum": [
+                  "rotate",
+                  "revoke",
+                  "status"
+                ],
+                "description": "Key management action."
+              },
+              "brandId": {
+                "type": "string",
+                "description": "Brand wallet address."
+              }
+            },
+            "required": [
+              "action",
+              "brandId"
+            ]
+          }
+        },
+        {
+          "name": "rsnc_agent_network_analytics",
+          "description": "Get real-time network analytics: total users, brands, rewards distributed, trending categories, and growth metrics across the entire Resonance network.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "period": {
+                "type": "string",
+                "enum": [
+                  "7d",
+                  "30d",
+                  "90d"
+                ],
+                "description": "Time period for analytics. Defaults to \"30d\"."
+              }
+            },
+            "required": []
+          }
+        },
+        {
+          "name": "rsnc_agent_brand_analytics",
+          "description": "Deep analytics for a specific brand: daily performance trends, customer velocity, event activity, and program health metrics. Use this to understand how a brand's reward program is performing.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "brandId": {
+                "type": "string",
+                "description": "The brand identifier."
+              },
+              "period": {
+                "type": "string",
+                "enum": [
+                  "7d",
+                  "30d",
+                  "90d"
+                ],
+                "description": "Time period for analytics. Defaults to \"30d\"."
+              }
+            },
+            "required": [
+              "brandId"
+            ]
+          }
+        },
+        {
+          "name": "rsnc_agent_event_performance",
+          "description": "See how each reward event is performing at a brand: which actions drive the most engagement, claim rates, and reward efficiency per event type.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "brandId": {
+                "type": "string",
+                "description": "The brand identifier."
+              },
+              "period": {
+                "type": "string",
+                "enum": [
+                  "7d",
+                  "30d",
+                  "90d"
+                ],
+                "description": "Time period for analytics. Defaults to \"30d\"."
+              }
+            },
+            "required": [
+              "brandId"
+            ]
+          }
+        },
+        {
+          "name": "rsnc_agent_perk_analytics",
+          "description": "Analyze perk collection performance: redemption rates, supply status, which perks are most popular. Helps brands optimize their reward catalog.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "brandId": {
+                "type": "string",
+                "description": "The brand identifier."
+              }
+            },
+            "required": [
+              "brandId"
+            ]
+          }
+        },
+        {
+          "name": "rsnc_agent_brand_health",
+          "description": "Get a program health assessment for a brand with data-driven recommendations. Analyzes event performance, perk utilization, and customer engagement to suggest optimizations.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "brandId": {
+                "type": "string",
+                "description": "The brand identifier."
+              }
+            },
+            "required": [
+              "brandId"
+            ]
+          }
+        },
+        {
+          "name": "rsnc_agent_create_event",
+          "description": "Create a new reward event for a brand. Events define what user actions earn cashback. The agent validates the configuration against the brand's data maturity before creating.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "brandId": {
+                "type": "string",
+                "description": "The brand identifier (wallet address)."
+              },
+              "eventType": {
+                "type": "string",
+                "enum": [
+                  "purchase",
+                  "signup",
+                  "review",
+                  "referral",
+                  "custom"
+                ],
+                "description": "The type of user action that triggers this reward event."
+              },
+              "rewardAmount": {
+                "type": "number",
+                "description": "RSNC tokens awarded per claim. Must be greater than 0."
+              },
+              "maxClaims": {
+                "type": "number",
+                "description": "Maximum total claims allowed. 0 = unlimited. Defaults to 0."
+              },
+              "cooldownHours": {
+                "type": "number",
+                "description": "Hours between claims per user. Defaults to 24."
+              },
+              "customName": {
+                "type": "string",
+                "description": "Required when eventType is \"custom\". Human-readable name for the custom event."
+              },
+              "detectionMethod": {
+                "type": "string",
+                "enum": [
+                  "webhook",
+                  "form_submission",
+                  "api_webhook"
+                ],
+                "description": "How the event is detected. Defaults to \"webhook\"."
+              }
+            },
+            "required": [
+              "brandId",
+              "eventType",
+              "rewardAmount"
+            ]
+          }
+        },
+        {
+          "name": "rsnc_agent_update_event",
+          "description": "Update an existing reward event's configuration. Changes to reward amounts are validated against performance data to ensure sufficient data for evaluation.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "brandId": {
+                "type": "string",
+                "description": "The brand identifier (wallet address)."
+              },
+              "eventId": {
+                "type": "string",
+                "description": "The event identifier to update."
+              },
+              "rewardAmount": {
+                "type": "number",
+                "description": "New RSNC tokens awarded per claim."
+              },
+              "maxClaims": {
+                "type": "number",
+                "description": "New maximum total claims allowed. 0 = unlimited."
+              },
+              "cooldownHours": {
+                "type": "number",
+                "description": "New cooldown period in hours between claims per user."
+              },
+              "enabled": {
+                "type": "boolean",
+                "description": "Enable or disable the event."
+              }
+            },
+            "required": [
+              "brandId",
+              "eventId"
+            ]
+          }
+        },
+        {
+          "name": "rsnc_agent_create_perk",
+          "description": "Create a new perk collection for a brand. Perks are rewards users can claim with earned RSNC tokens — discounts, free products, VIP access, and more.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "brandId": {
+                "type": "string",
+                "description": "The brand identifier (wallet address)."
+              },
+              "name": {
+                "type": "string",
+                "description": "Display name for the perk."
+              },
+              "description": {
+                "type": "string",
+                "description": "Description of what the user receives."
+              },
+              "priceInPoints": {
+                "type": "number",
+                "description": "RSNC cost to redeem this perk. Must be greater than 0."
+              },
+              "maxSupply": {
+                "type": "number",
+                "description": "Total supply available. Must be greater than 0."
+              },
+              "maxPerUser": {
+                "type": "number",
+                "description": "Maximum redemptions per user. Defaults to 1."
+              },
+              "category": {
+                "type": "string",
+                "description": "Optional perk category (e.g. \"discount\", \"freebie\", \"vip\")."
+              },
+              "tags": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "Optional tags for search and filtering."
+              }
+            },
+            "required": [
+              "brandId",
+              "name",
+              "description",
+              "priceInPoints",
+              "maxSupply"
+            ]
+          }
+        },
+        {
+          "name": "rsnc_agent_update_perk",
+          "description": "Update a perk collection's configuration. Can adjust pricing, supply, and active status.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "brandId": {
+                "type": "string",
+                "description": "The brand identifier (wallet address). Used for permission and scope checks."
+              },
+              "collectionId": {
+                "type": "number",
+                "description": "The perk collection ID to update."
+              },
+              "priceInPoints": {
+                "type": "number",
+                "description": "New RSNC cost to redeem."
+              },
+              "maxSupply": {
+                "type": "number",
+                "description": "New total supply."
+              },
+              "isActive": {
+                "type": "boolean",
+                "description": "Enable or disable the perk."
+              },
+              "description": {
+                "type": "string",
+                "description": "New description text."
+              }
+            },
+            "required": [
+              "brandId",
+              "collectionId"
+            ]
+          }
+        },
+        {
+          "name": "rsnc_agent_my_rewards",
+          "description": "Check your agent's RSNC reward earnings, activity stats, and remaining rate cap allowances. Shows how much the agent has earned for discovering brands, onboarding partners, and driving network growth.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {},
+            "required": []
+          }
+        },
+        {
+          "name": "rsnc_agent_claim_reward",
+          "description": "Claim a reward for a valuable agent action. Rewards are paid from the Resonance network fund with daily and weekly rate caps. Discovery earns 100 RSNC, onboarding earns 500 RSNC.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "rewardType": {
+                "type": "string",
+                "enum": [
+                  "discovery",
+                  "onboarding"
+                ],
+                "description": "Type of action to claim reward for."
+              },
+              "brandAddress": {
+                "type": "string",
+                "description": "The brand address associated with this action."
+              }
+            },
+            "required": [
+              "rewardType",
+              "brandAddress"
+            ]
+          }
+        },
+        {
+          "name": "rsnc_agent_compare_brands",
+          "description": "Compare 2-5 brands side-by-side across all performance metrics: velocity, customers reached, transactions, LTZ distributed, event diversity, and perk utilization. Returns a structured comparison matrix with per-metric winners and insights.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "brandIds": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "minItems": 2,
+                "maxItems": 5,
+                "description": "Array of 2-5 brand identifiers to compare."
+              },
+              "period": {
+                "type": "string",
+                "enum": [
+                  "7d",
+                  "30d",
+                  "90d"
+                ],
+                "description": "Time period for comparison. Defaults to \"30d\"."
+              }
+            },
+            "required": [
+              "brandIds"
+            ]
+          }
+        },
+        {
+          "name": "rsnc_agent_compare_cashback",
+          "description": "Compare cashback rates across brands for a specific purchase amount. Shows exactly how much you earn at each brand — side-by-side \"Buy $100 at Nike = $8 back vs Adidas = $3 back\". The key decision tool for purchase routing.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "brandIds": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "minItems": 2,
+                "maxItems": 10,
+                "description": "Brands to compare. Or omit and use category to auto-discover."
+              },
+              "category": {
+                "type": "string",
+                "description": "Category to auto-discover brands for comparison (retail, dining, travel, gaming)."
+              },
+              "purchaseAmount": {
+                "type": "number",
+                "description": "Purchase amount in USD to calculate exact cashback."
+              }
+            },
+            "required": [
+              "purchaseAmount"
+            ]
+          }
+        },
+        {
+          "name": "rsnc_agent_best_deals",
+          "description": "Find the best cashback deals and rewards matching a shopping intent. Searches brands by category, ranks by reward value, and optionally personalizes results based on user balances. Use this when a user wants to shop, eat, travel, or game and wants the best rewards.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "intent": {
+                "type": "string",
+                "description": "What the user wants to do — e.g. \"buy running shoes\", \"get coffee\", \"book a hotel\", \"play games\". Matched against brand categories and perk descriptions."
+              },
+              "category": {
+                "type": "string",
+                "description": "Direct category filter (retail, dining, travel, gaming). If provided, overrides intent-based category matching."
+              },
+              "userId": {
+                "type": "string",
+                "description": "Optional user ID (email/wallet). When provided, results include personalized data: current balance, affordable perks, and \"you can afford this NOW\" flags."
+              },
+              "budget": {
+                "type": "number",
+                "description": "Optional max perk cost to consider."
+              },
+              "limit": {
+                "type": "number",
+                "description": "Maximum deals to return. Defaults to 10."
+              }
+            },
+            "required": [
+              "intent"
+            ]
+          }
+        },
+        {
+          "name": "rsnc_agent_next_goal",
+          "description": "Calculate the fastest path to a user's next attainable reward. Shows exactly how many actions (purchases, reviews, referrals) are needed to afford a specific perk. Creates urgency and drives engagement. Requires authentication.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "userId": {
+                "type": "string",
+                "description": "User identifier (email or wallet address)."
+              },
+              "brandId": {
+                "type": "string",
+                "description": "Optional: focus on a specific brand. If omitted, finds the best goal across all brands the user is active with."
+              },
+              "targetPerkId": {
+                "type": "string",
+                "description": "Optional: calculate path to a specific perk. If omitted, finds the most attainable perk."
+              }
+            },
+            "required": [
+              "userId"
+            ]
+          }
+        },
+        {
+          "name": "rsnc_agent_route_purchase",
+          "description": "Find the best brand to buy from based on cashback and rewards. Given a shopping intent, compares all matching brands and ranks them by total reward value — cashback earned, perks redeemable, and effective savings. The core purchase intelligence tool for agentic commerce.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "intent": {
+                "type": "string",
+                "description": "What the user wants to buy — e.g. \"running shoes\", \"coffee\", \"hotel in NYC\"."
+              },
+              "category": {
+                "type": "string",
+                "description": "Direct category filter (retail, dining, travel, gaming)."
+              },
+              "purchaseAmount": {
+                "type": "number",
+                "description": "Expected purchase amount in USD. Used to calculate exact cashback and savings."
+              },
+              "userId": {
+                "type": "string",
+                "description": "Optional user ID for personalized routing — factors in existing balances and redeemable perks."
+              }
+            },
+            "required": [
+              "intent"
+            ]
+          }
+        },
+        {
+          "name": "rsnc_agent_stack_deals",
+          "description": "Calculate the optimal deal stack for a specific purchase at a specific brand. Combines base cashback earned + best redeemable perk + any active promotions to show total savings. Use after route_purchase to maximize value at the chosen brand.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "brandId": {
+                "type": "string",
+                "description": "The brand to optimize the deal for."
+              },
+              "purchaseAmount": {
+                "type": "number",
+                "description": "Purchase amount in USD."
+              },
+              "userId": {
+                "type": "string",
+                "description": "User ID to check redeemable perks against their balance."
+              }
+            },
+            "required": [
+              "brandId",
+              "purchaseAmount",
+              "userId"
+            ]
+          }
+        },
+        {
+          "name": "rsnc_agent_user_persona",
+          "description": "Get a user's behavioral profile: earn patterns, persona archetype, tag/brand affinities, price preferences, and network position. Requires HMAC authentication.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "userId": {
+                "type": "string",
+                "description": "The user identifier (email or wallet address)."
+              }
+            },
+            "required": [
+              "userId"
+            ]
+          }
+        },
+        {
+          "name": "rsnc_agent_user_recommendations",
+          "description": "Get personalized perk recommendations for a user, scored by persona affinity and affordability. Requires HMAC authentication.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "userId": {
+                "type": "string",
+                "description": "The user identifier (email or wallet address)."
+              },
+              "limit": {
+                "type": "number",
+                "description": "Maximum number of recommendations to return. Defaults to 5."
+              }
+            },
+            "required": [
+              "userId"
+            ]
+          }
+        },
+        {
+          "name": "rsnc_agent_perk_intelligence",
+          "description": "Get intelligence on a brand's perks: heat scores, conversion funnels, supply depletion rates, and retention impact. Helps optimize perk catalogs.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "brandId": {
+                "type": "string",
+                "description": "The brand identifier."
+              }
+            },
+            "required": [
+              "brandId"
+            ]
+          }
+        },
+        {
+          "name": "rsnc_agent_perk_audience",
+          "description": "Get the persona breakdown of users who claimed a specific perk: archetypes, engagement levels, and platform distribution.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "brandId": {
+                "type": "string",
+                "description": "The brand identifier."
+              },
+              "collectionId": {
+                "type": "number",
+                "description": "The perk collection ID."
+              }
+            },
+            "required": [
+              "brandId",
+              "collectionId"
+            ]
+          }
+        },
+        {
+          "name": "rsnc_agent_brand_audience",
+          "description": "Get a brand's user persona distribution: archetype breakdown, engagement levels, platform split, and archetype drift over time.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "brandId": {
+                "type": "string",
+                "description": "The brand identifier."
+              }
+            },
+            "required": [
+              "brandId"
+            ]
+          }
+        },
+        {
+          "name": "rsnc_agent_network_flows",
+          "description": "See how users flow between brands across the network. Shows which brands are emitters (users leave to redeem elsewhere) vs attractors (users come to redeem). All data is anonymous and category-level.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "period": {
+                "type": "string",
+                "enum": [
+                  "7d",
+                  "30d",
+                  "90d"
+                ],
+                "description": "Time period for flow analysis. Defaults to \"30d\"."
+              }
+            },
+            "required": []
+          }
+        },
+        {
+          "name": "rsnc_agent_network_trending",
+          "description": "See what's trending across the Resonance network: hottest perk categories, fastest growing brand categories, and overall network health metrics.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "period": {
+                "type": "string",
+                "enum": [
+                  "7d",
+                  "30d",
+                  "90d"
+                ],
+                "description": "Time period for trending data. Defaults to \"7d\"."
+              },
+              "limit": {
+                "type": "number",
+                "description": "Maximum number of trending items per category. Defaults to 10."
+              }
+            },
+            "required": []
+          }
+        },
+        {
+          "name": "rsnc_agent_suggest_events",
+          "description": "Get AI-recommended reward event configurations for a brand. Analyzes what event types, reward amounts, and cooldowns work best in the brand's category based on network-wide patterns.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "brandId": {
+                "type": "string",
+                "description": "The brand identifier."
+              }
+            },
+            "required": [
+              "brandId"
+            ]
+          }
+        },
+        {
+          "name": "rsnc_agent_suggest_perks",
+          "description": "Get AI-recommended perk configurations for a brand. Suggests perk types, pricing, and supply limits based on audience composition and balance distribution patterns.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "brandId": {
+                "type": "string",
+                "description": "The brand identifier."
+              }
+            },
+            "required": [
+              "brandId"
+            ]
+          }
+        }
+      ],
+      "python_sdk_url": "https://agent.rsnc.network/mcp",
+      "python_sdk_config": "{\"debug\": false}"
+    },
+    "source_filename": "0013.Resonance-Reward-Agent_labeled.json",
+    "processed_timestamp": 1772871481,
+    "processing_mode": "gateway",
+    "rank": 14
+  }
+}

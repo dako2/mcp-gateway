@@ -1,0 +1,756 @@
+{
+  "labels": {
+    "analysis": "The MCP Server \"ATOM Pricing Intelligence\" provides 8 tools for ai/ml tools tasks.",
+    "reasoning": "Primary label \"AI/ML Tools\" assigned based on tool names and descriptions.",
+    "primary_label": "AI/ML Tools",
+    "secondary_labels": [
+      "Content Creation",
+      "Web Search & Research",
+      "Development Tools"
+    ],
+    "custom_label": "AI/ML Tools - ATOM Pricing Intelligence",
+    "is_connected": true,
+    "is_remote_tool_valid": true,
+    "featured_server": true
+  },
+  "metadata": {
+    "server_id": 109,
+    "server_name": "ATOM Pricing Intelligence",
+    "rank_by_usage": 110,
+    "usage_count": "100",
+    "original_file": "tools.json#109",
+    "mode": "gateway",
+    "timestamp": 1772871481,
+    "remote_server_response": {
+      "url": "https://atom-mcp-server-production.up.railway.app/mcp",
+      "is_success": true,
+      "error": null,
+      "tools": [
+        {
+          "name": "search_models",
+          "title": "Search AI Models",
+          "description": "Search and filter AI inference models across 40+ vendors and 1,600+ SKUs.\n\nQuery by modality (Text, Image, Audio, Video, Multimodal), vendor, creator, model family, open-source status, price range, context window, and parameter count.\n\nReturns matching models with pricing. Free tier shows count + price range; paid tier shows full details.\n\nExamples:\n  - \"Find open-source text models under $1/M tokens\" → open_source=true, modality=\"Text\", max_price=0.001\n  - \"What multimodal models does Google offer?\" → vendor=\"Google\", modality=\"Multimodal\"\n  - \"Models with 128K+ context window\" → min_context_window=128000",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "modality": {
+                "type": "string",
+                "description": "Filter by modality: Text, Image, Audio, Video, Voice, Multimodal, Embedding"
+              },
+              "vendor": {
+                "type": "string",
+                "description": "Filter by vendor name, e.g. 'OpenAI', 'Anthropic'"
+              },
+              "creator": {
+                "type": "string",
+                "description": "Filter by model creator/developer"
+              },
+              "model_family": {
+                "type": "string",
+                "description": "Filter by model family, e.g. 'GPT-4o', 'Claude 3.5'"
+              },
+              "open_source": {
+                "type": "string",
+                "description": "Filter by open-source status: 'true' or 'false'"
+              },
+              "direction": {
+                "type": "string",
+                "enum": [
+                  "Input",
+                  "Output",
+                  "Cached Input"
+                ],
+                "description": "Filter by pricing direction"
+              },
+              "max_price": {
+                "type": "number",
+                "description": "Maximum normalized price (USD per unit)"
+              },
+              "min_context_window": {
+                "type": "integer",
+                "description": "Minimum context window in tokens"
+              },
+              "min_parameter_count": {
+                "type": "string",
+                "description": "Minimum parameter count, e.g. '7B', '70B'"
+              },
+              "limit": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 100,
+                "default": 20,
+                "description": "Maximum results to return (default 20)"
+              },
+              "offset": {
+                "type": "integer",
+                "minimum": 0,
+                "default": 0,
+                "description": "Offset for pagination"
+              },
+              "_atom_api_key": {
+                "type": "string",
+                "description": "Your ATOM API key for full access. Omit for free tier (redacted data)."
+              }
+            },
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "get_model_detail",
+          "title": "Get Model Details",
+          "description": "Deep dive on a single AI model: technical specs + pricing across all vendors.\n\nReturns model_registry data (context window, parameters, open-source status, training cutoff, model family) plus all SKU pricing across every vendor that offers this model.\n\nExamples:\n  - \"Tell me everything about GPT-4o\" → model_name=\"GPT-4o\"\n  - \"Claude Sonnet 4.5 specs and pricing\" → model_name=\"Claude Sonnet 4.5\"",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "model_name": {
+                "type": "string",
+                "description": "Model name to look up, e.g. 'GPT-4o', 'Claude Sonnet 4.5', 'Llama 3.1 70B'"
+              },
+              "_atom_api_key": {
+                "type": "string",
+                "description": "Your ATOM API key for full access. Omit for free tier (redacted data)."
+              }
+            },
+            "required": [
+              "model_name"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "compare_prices",
+          "title": "Compare Prices Across Vendors",
+          "description": "Cross-vendor price comparison for a specific model or model family.\n\nShows the same model (or family) priced across different vendors, sorted cheapest first. Essential for cost optimization and vendor selection.\n\nExamples:\n  - \"Compare Llama 3.1 70B pricing across vendors\" → model_name=\"Llama 3.1 70B\"\n  - \"Cheapest GPT-4 family output pricing\" → model_family=\"GPT-4\", direction=\"Output\"\n  - \"Claude pricing comparison\" → model_family=\"Claude\"",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "model_name": {
+                "type": "string",
+                "description": "Model name to compare prices for, e.g. 'GPT-4o', 'Llama 3.1 70B'"
+              },
+              "model_family": {
+                "type": "string",
+                "description": "Model family to compare, e.g. 'GPT-4o', 'Claude 3.5'"
+              },
+              "direction": {
+                "type": "string",
+                "enum": [
+                  "Input",
+                  "Output",
+                  "Cached Input"
+                ],
+                "description": "Filter by pricing direction"
+              },
+              "modality": {
+                "type": "string",
+                "description": "Filter by modality: Text, Image, Audio, etc."
+              },
+              "limit": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 100,
+                "default": 50,
+                "description": "Maximum results (default 50)"
+              },
+              "_atom_api_key": {
+                "type": "string",
+                "description": "Your ATOM API key for full access. Omit for free tier (redacted data)."
+              }
+            },
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "get_vendor_catalog",
+          "title": "Get Vendor Catalog",
+          "description": "Full catalog for a specific vendor: all models, modalities, and pricing.\n\nReturns vendor metadata (country, region, pricing page URL) plus every model and SKU they offer.\n\nExamples:\n  - \"What does Together AI sell?\" → vendor=\"Together AI\"\n  - \"OpenAI's text model pricing\" → vendor=\"OpenAI\", modality=\"Text\"\n  - \"Amazon Bedrock catalog\" → vendor=\"Amazon Bedrock\"",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "vendor": {
+                "type": "string",
+                "description": "Vendor name, e.g. 'OpenAI', 'Together AI', 'Amazon Bedrock'"
+              },
+              "modality": {
+                "type": "string",
+                "description": "Optionally filter by modality: Text, Image, Audio, Video, Voice, Multimodal"
+              },
+              "direction": {
+                "type": "string",
+                "enum": [
+                  "Input",
+                  "Output",
+                  "Cached Input"
+                ],
+                "description": "Optionally filter by pricing direction"
+              },
+              "limit": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 200,
+                "default": 50,
+                "description": "Maximum results (default 50)"
+              },
+              "_atom_api_key": {
+                "type": "string",
+                "description": "Your ATOM API key for full access. Omit for free tier (redacted data)."
+              }
+            },
+            "required": [
+              "vendor"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "get_market_stats",
+          "title": "Get Market Statistics",
+          "description": "Aggregate AI inference market intelligence.\n\nReturns total vendor/model/SKU counts, price distribution (median, mean, quartiles, min/max), and modality breakdown. Optionally filter by modality.\n\nExamples:\n  - \"AI inference market overview\" → (no params)\n  - \"Text model pricing statistics\" → modality=\"Text\"\n  - \"Image generation market stats\" → modality=\"Image\"",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "modality": {
+                "type": "string",
+                "description": "Optionally focus on a specific modality: Text, Image, Audio, Video, etc."
+              },
+              "_atom_api_key": {
+                "type": "string",
+                "description": "Your ATOM API key for full access. Omit for free tier (redacted data)."
+              }
+            },
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "get_index_benchmarks",
+          "title": "Get AIPI Index Benchmarks",
+          "description": "AIPI (ATOM Inference Price Index) — chained matched-model price benchmarks for AI inference.\n\nReturns 14 benchmark indexes across four categories:\n- Modality (6): Text, Multimodal, Image, Audio, Video, Voice — what does this type of inference cost?\n- Channel (4): Model Developers, Cloud Marketplaces, Inference Platforms, Neoclouds — where should you buy?\n- Tier (3): Frontier, Budget, Reasoning — what's the premium for capability?\n- Special (1): Open-Source — how much cheaper is open-weight inference?\n\nEach index includes input, cached input, and output pricing per period.\n\nThese are market-wide benchmarks, not individual vendor prices. Use them to understand where the market is and how it's moving.\n\nFully public — available to all tiers.\n\nExamples:\n  - \"What's the current benchmark for text inference?\" → index_category=\"Modality\"\n  - \"Show me all AIPI indexes\" → (no params)\n  - \"Neocloud pricing benchmark\" → index_code=\"AIPI NCL GLB\"\n  - \"Channel pricing comparison\" → index_category=\"Channel\"\n  - \"Open-source vs market pricing\" → index_code=\"AIPI OSS GLB\"",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "index_code": {
+                "type": "string",
+                "description": "Filter by specific AIPI index code, e.g. 'AIPI TXT GLB', 'AIPI DEV GLB', 'AIPI OSS GLB'. Omit to see all indexes."
+              },
+              "index_category": {
+                "type": "string",
+                "description": "Filter by index category: 'Modality', 'Channel', 'Tier', 'Special'"
+              },
+              "limit": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 100,
+                "default": 25,
+                "description": "Maximum results to return (default 25)"
+              },
+              "_atom_api_key": {
+                "type": "string",
+                "description": "Your ATOM API key for full access. Omit for free tier (redacted data)."
+              }
+            },
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "get_kpis",
+          "title": "Get Market KPIs",
+          "description": "ATOM Inference Price Index (AIPI) market-level KPIs.\n\nReturns 6 key performance indicators derived from live pricing data:\n- Output Premium: how much more output tokens cost vs input\n- Caching Savings: average discount for cached input pricing\n- Open Source Advantage: price difference between open-source and proprietary\n- Context Cost Curve: price multiplier for larger context windows\n- Caching Availability: % of models offering cached pricing\n- Size Spread: price ratio between largest and smallest models\n\nThese KPIs are available to all tiers — they demonstrate ATOM's market intelligence.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "_atom_api_key": {
+                "type": "string",
+                "description": "Your ATOM API key for full access. Omit for free tier (redacted data)."
+              }
+            },
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "list_vendors",
+          "title": "List All Vendors",
+          "description": "List all AI inference vendors tracked by ATOM.\n\nReturns vendor name, country, region, and pricing page URL. Vendors span four channel types: Model Developers, Cloud Marketplaces, Inference Platforms, and Neoclouds. Optionally filter by region or country.\n\nExamples:\n  - \"List all vendors\" → (no params)\n  - \"European AI vendors\" → region=\"Europe\"\n  - \"Chinese AI vendors\" → country=\"China\"",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "region": {
+                "type": "string",
+                "description": "Optionally filter by region: 'North America', 'Europe', 'Asia', etc."
+              },
+              "country": {
+                "type": "string",
+                "description": "Optionally filter by country, e.g. 'United States', 'China', 'France'"
+              },
+              "_atom_api_key": {
+                "type": "string",
+                "description": "Your ATOM API key for full access. Omit for free tier (redacted data)."
+              }
+            },
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        }
+      ],
+      "tool_count": 8,
+      "tool_names": [
+        "search_models",
+        "get_model_detail",
+        "compare_prices",
+        "get_vendor_catalog",
+        "get_market_stats",
+        "get_index_benchmarks",
+        "get_kpis",
+        "list_vendors"
+      ]
+    },
+    "server_info_crawled": {
+      "id": 109,
+      "name": "ATOM Pricing Intelligence",
+      "author": "",
+      "overview": "ATOM Pricing Intelligence - AI/ML Tools MCP server with 8 tools.",
+      "repository_url": "",
+      "homepage": "https://atom-mcp-server-production.up.railway.app/mcp",
+      "remote_or_local": "Remote",
+      "license": "",
+      "usage_count": "100",
+      "success_rate": "100%",
+      "tags": [
+        "ai/ml-tools"
+      ],
+      "categories": [
+        "ai/ml tools"
+      ],
+      "tools_count": 8,
+      "tools": [
+        {
+          "name": "search_models",
+          "title": "Search AI Models",
+          "description": "Search and filter AI inference models across 40+ vendors and 1,600+ SKUs.\n\nQuery by modality (Text, Image, Audio, Video, Multimodal), vendor, creator, model family, open-source status, price range, context window, and parameter count.\n\nReturns matching models with pricing. Free tier shows count + price range; paid tier shows full details.\n\nExamples:\n  - \"Find open-source text models under $1/M tokens\" → open_source=true, modality=\"Text\", max_price=0.001\n  - \"What multimodal models does Google offer?\" → vendor=\"Google\", modality=\"Multimodal\"\n  - \"Models with 128K+ context window\" → min_context_window=128000",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "modality": {
+                "type": "string",
+                "description": "Filter by modality: Text, Image, Audio, Video, Voice, Multimodal, Embedding"
+              },
+              "vendor": {
+                "type": "string",
+                "description": "Filter by vendor name, e.g. 'OpenAI', 'Anthropic'"
+              },
+              "creator": {
+                "type": "string",
+                "description": "Filter by model creator/developer"
+              },
+              "model_family": {
+                "type": "string",
+                "description": "Filter by model family, e.g. 'GPT-4o', 'Claude 3.5'"
+              },
+              "open_source": {
+                "type": "string",
+                "description": "Filter by open-source status: 'true' or 'false'"
+              },
+              "direction": {
+                "type": "string",
+                "enum": [
+                  "Input",
+                  "Output",
+                  "Cached Input"
+                ],
+                "description": "Filter by pricing direction"
+              },
+              "max_price": {
+                "type": "number",
+                "description": "Maximum normalized price (USD per unit)"
+              },
+              "min_context_window": {
+                "type": "integer",
+                "description": "Minimum context window in tokens"
+              },
+              "min_parameter_count": {
+                "type": "string",
+                "description": "Minimum parameter count, e.g. '7B', '70B'"
+              },
+              "limit": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 100,
+                "default": 20,
+                "description": "Maximum results to return (default 20)"
+              },
+              "offset": {
+                "type": "integer",
+                "minimum": 0,
+                "default": 0,
+                "description": "Offset for pagination"
+              },
+              "_atom_api_key": {
+                "type": "string",
+                "description": "Your ATOM API key for full access. Omit for free tier (redacted data)."
+              }
+            },
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "get_model_detail",
+          "title": "Get Model Details",
+          "description": "Deep dive on a single AI model: technical specs + pricing across all vendors.\n\nReturns model_registry data (context window, parameters, open-source status, training cutoff, model family) plus all SKU pricing across every vendor that offers this model.\n\nExamples:\n  - \"Tell me everything about GPT-4o\" → model_name=\"GPT-4o\"\n  - \"Claude Sonnet 4.5 specs and pricing\" → model_name=\"Claude Sonnet 4.5\"",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "model_name": {
+                "type": "string",
+                "description": "Model name to look up, e.g. 'GPT-4o', 'Claude Sonnet 4.5', 'Llama 3.1 70B'"
+              },
+              "_atom_api_key": {
+                "type": "string",
+                "description": "Your ATOM API key for full access. Omit for free tier (redacted data)."
+              }
+            },
+            "required": [
+              "model_name"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "compare_prices",
+          "title": "Compare Prices Across Vendors",
+          "description": "Cross-vendor price comparison for a specific model or model family.\n\nShows the same model (or family) priced across different vendors, sorted cheapest first. Essential for cost optimization and vendor selection.\n\nExamples:\n  - \"Compare Llama 3.1 70B pricing across vendors\" → model_name=\"Llama 3.1 70B\"\n  - \"Cheapest GPT-4 family output pricing\" → model_family=\"GPT-4\", direction=\"Output\"\n  - \"Claude pricing comparison\" → model_family=\"Claude\"",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "model_name": {
+                "type": "string",
+                "description": "Model name to compare prices for, e.g. 'GPT-4o', 'Llama 3.1 70B'"
+              },
+              "model_family": {
+                "type": "string",
+                "description": "Model family to compare, e.g. 'GPT-4o', 'Claude 3.5'"
+              },
+              "direction": {
+                "type": "string",
+                "enum": [
+                  "Input",
+                  "Output",
+                  "Cached Input"
+                ],
+                "description": "Filter by pricing direction"
+              },
+              "modality": {
+                "type": "string",
+                "description": "Filter by modality: Text, Image, Audio, etc."
+              },
+              "limit": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 100,
+                "default": 50,
+                "description": "Maximum results (default 50)"
+              },
+              "_atom_api_key": {
+                "type": "string",
+                "description": "Your ATOM API key for full access. Omit for free tier (redacted data)."
+              }
+            },
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "get_vendor_catalog",
+          "title": "Get Vendor Catalog",
+          "description": "Full catalog for a specific vendor: all models, modalities, and pricing.\n\nReturns vendor metadata (country, region, pricing page URL) plus every model and SKU they offer.\n\nExamples:\n  - \"What does Together AI sell?\" → vendor=\"Together AI\"\n  - \"OpenAI's text model pricing\" → vendor=\"OpenAI\", modality=\"Text\"\n  - \"Amazon Bedrock catalog\" → vendor=\"Amazon Bedrock\"",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "vendor": {
+                "type": "string",
+                "description": "Vendor name, e.g. 'OpenAI', 'Together AI', 'Amazon Bedrock'"
+              },
+              "modality": {
+                "type": "string",
+                "description": "Optionally filter by modality: Text, Image, Audio, Video, Voice, Multimodal"
+              },
+              "direction": {
+                "type": "string",
+                "enum": [
+                  "Input",
+                  "Output",
+                  "Cached Input"
+                ],
+                "description": "Optionally filter by pricing direction"
+              },
+              "limit": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 200,
+                "default": 50,
+                "description": "Maximum results (default 50)"
+              },
+              "_atom_api_key": {
+                "type": "string",
+                "description": "Your ATOM API key for full access. Omit for free tier (redacted data)."
+              }
+            },
+            "required": [
+              "vendor"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "get_market_stats",
+          "title": "Get Market Statistics",
+          "description": "Aggregate AI inference market intelligence.\n\nReturns total vendor/model/SKU counts, price distribution (median, mean, quartiles, min/max), and modality breakdown. Optionally filter by modality.\n\nExamples:\n  - \"AI inference market overview\" → (no params)\n  - \"Text model pricing statistics\" → modality=\"Text\"\n  - \"Image generation market stats\" → modality=\"Image\"",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "modality": {
+                "type": "string",
+                "description": "Optionally focus on a specific modality: Text, Image, Audio, Video, etc."
+              },
+              "_atom_api_key": {
+                "type": "string",
+                "description": "Your ATOM API key for full access. Omit for free tier (redacted data)."
+              }
+            },
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "get_index_benchmarks",
+          "title": "Get AIPI Index Benchmarks",
+          "description": "AIPI (ATOM Inference Price Index) — chained matched-model price benchmarks for AI inference.\n\nReturns 14 benchmark indexes across four categories:\n- Modality (6): Text, Multimodal, Image, Audio, Video, Voice — what does this type of inference cost?\n- Channel (4): Model Developers, Cloud Marketplaces, Inference Platforms, Neoclouds — where should you buy?\n- Tier (3): Frontier, Budget, Reasoning — what's the premium for capability?\n- Special (1): Open-Source — how much cheaper is open-weight inference?\n\nEach index includes input, cached input, and output pricing per period.\n\nThese are market-wide benchmarks, not individual vendor prices. Use them to understand where the market is and how it's moving.\n\nFully public — available to all tiers.\n\nExamples:\n  - \"What's the current benchmark for text inference?\" → index_category=\"Modality\"\n  - \"Show me all AIPI indexes\" → (no params)\n  - \"Neocloud pricing benchmark\" → index_code=\"AIPI NCL GLB\"\n  - \"Channel pricing comparison\" → index_category=\"Channel\"\n  - \"Open-source vs market pricing\" → index_code=\"AIPI OSS GLB\"",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "index_code": {
+                "type": "string",
+                "description": "Filter by specific AIPI index code, e.g. 'AIPI TXT GLB', 'AIPI DEV GLB', 'AIPI OSS GLB'. Omit to see all indexes."
+              },
+              "index_category": {
+                "type": "string",
+                "description": "Filter by index category: 'Modality', 'Channel', 'Tier', 'Special'"
+              },
+              "limit": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 100,
+                "default": 25,
+                "description": "Maximum results to return (default 25)"
+              },
+              "_atom_api_key": {
+                "type": "string",
+                "description": "Your ATOM API key for full access. Omit for free tier (redacted data)."
+              }
+            },
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "get_kpis",
+          "title": "Get Market KPIs",
+          "description": "ATOM Inference Price Index (AIPI) market-level KPIs.\n\nReturns 6 key performance indicators derived from live pricing data:\n- Output Premium: how much more output tokens cost vs input\n- Caching Savings: average discount for cached input pricing\n- Open Source Advantage: price difference between open-source and proprietary\n- Context Cost Curve: price multiplier for larger context windows\n- Caching Availability: % of models offering cached pricing\n- Size Spread: price ratio between largest and smallest models\n\nThese KPIs are available to all tiers — they demonstrate ATOM's market intelligence.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "_atom_api_key": {
+                "type": "string",
+                "description": "Your ATOM API key for full access. Omit for free tier (redacted data)."
+              }
+            },
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "list_vendors",
+          "title": "List All Vendors",
+          "description": "List all AI inference vendors tracked by ATOM.\n\nReturns vendor name, country, region, and pricing page URL. Vendors span four channel types: Model Developers, Cloud Marketplaces, Inference Platforms, and Neoclouds. Optionally filter by region or country.\n\nExamples:\n  - \"List all vendors\" → (no params)\n  - \"European AI vendors\" → region=\"Europe\"\n  - \"Chinese AI vendors\" → country=\"China\"",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "region": {
+                "type": "string",
+                "description": "Optionally filter by region: 'North America', 'Europe', 'Asia', etc."
+              },
+              "country": {
+                "type": "string",
+                "description": "Optionally filter by country, e.g. 'United States', 'China', 'France'"
+              },
+              "_atom_api_key": {
+                "type": "string",
+                "description": "Your ATOM API key for full access. Omit for free tier (redacted data)."
+              }
+            },
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        }
+      ],
+      "python_sdk_url": "https://atom-mcp-server-production.up.railway.app/mcp",
+      "python_sdk_config": "{\"debug\": false}"
+    },
+    "source_filename": "0109.ATOM-Pricing-Intelligence_labeled.json",
+    "processed_timestamp": 1772871481,
+    "processing_mode": "gateway",
+    "rank": 110
+  }
+}

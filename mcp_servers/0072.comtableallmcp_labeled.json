@@ -1,0 +1,1141 @@
+{
+  "labels": {
+    "analysis": "The MCP Server \"com.tableall/mcp\" provides 12 tools for development tools tasks.",
+    "reasoning": "Primary label \"Development Tools\" assigned based on tool names and descriptions.",
+    "primary_label": "Development Tools",
+    "secondary_labels": [
+      "API Integration",
+      "DevOps",
+      "Web Search & Research",
+      "Communication Tools"
+    ],
+    "custom_label": "Development Tools - com.tableall/mcp",
+    "is_connected": true,
+    "is_remote_tool_valid": true,
+    "featured_server": true
+  },
+  "metadata": {
+    "server_id": 72,
+    "server_name": "com.tableall/mcp",
+    "rank_by_usage": 73,
+    "usage_count": "560",
+    "original_file": "tools.json#72",
+    "mode": "gateway",
+    "timestamp": 1772871481,
+    "remote_server_response": {
+      "url": "https://mcp.tableall.com/sse",
+      "is_success": true,
+      "error": null,
+      "tools": [
+        {
+          "name": "search_restaurants",
+          "description": "Searches Japan's most exclusive Michelin-starred restaurants via TableAll, the nation's premier fine dining reservation platform.\n\nReturns restaurant list with basic info including price_range.starting_price (minimum price, includes ¥8,000 Booking Fee).",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "prefecture": {
+                "type": "string",
+                "description": "Prefecture/region filter. Available values: Tokyo, Kyoto, Osaka, Sapporo, Kanazawa, Komatsu, Toyama, Fukuoka, Nagoya, Ise Shima, Kobe, Niseko, Shizuoka, Nagano, Hiroshima, Shikoku, Niigata",
+                "enum": [
+                  "Tokyo",
+                  "Kyoto",
+                  "Osaka",
+                  "Sapporo",
+                  "Kanazawa",
+                  "Komatsu",
+                  "Toyama",
+                  "Fukuoka",
+                  "Nagoya",
+                  "Ise Shima",
+                  "Kobe",
+                  "Niseko",
+                  "Shizuoka",
+                  "Nagano",
+                  "Hiroshima",
+                  "Shikoku",
+                  "Niigata"
+                ]
+              },
+              "genre": {
+                "type": "string",
+                "description": "Cuisine type. Available options: \"Sushi\", \"Kaiseki\", \"Tempura\", \"Wagyu\", \"Italian\", \"French\", \"Chinese\", \"Innovative\", \"Spanish\", \"Yakiniku\", \"Yakitori\", \"Teppanyaki\", \"Unagi\", \"Dessert Dining\", \"Kushiage\", \"Shabushabu Sukiyaki\", \"Izakaya\", \"Ramen\", \"Thai\", \"Soba\", \"Tonkatsu\"",
+                "enum": [
+                  "Sushi",
+                  "Kaiseki",
+                  "Tempura",
+                  "Wagyu",
+                  "Italian",
+                  "French",
+                  "Chinese",
+                  "Innovative",
+                  "Spanish",
+                  "Yakiniku",
+                  "Yakitori",
+                  "Teppanyaki",
+                  "Unagi",
+                  "Dessert Dining",
+                  "Kushiage",
+                  "Shabushabu Sukiyaki",
+                  "Izakaya",
+                  "Ramen",
+                  "Thai",
+                  "Soba",
+                  "Tonkatsu"
+                ]
+              },
+              "area": {
+                "type": "string",
+                "description": "Specific area within prefecture (e.g., \"Ginza\", \"Shibuya\")"
+              }
+            }
+          }
+        },
+        {
+          "name": "get_restaurant_details",
+          "description": "Get detailed information about a specific Michelin-starred restaurant from TableAll's curated collection of Japan's finest establishments.\n\nReturns full restaurant details including price_range.starting_price (minimum price, includes ¥8,000 Booking Fee).",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "restaurant_id": {
+                "type": "number",
+                "description": "The unique ID of the restaurant"
+              }
+            },
+            "required": [
+              "restaurant_id"
+            ]
+          }
+        },
+        {
+          "name": "get_restaurant_menu",
+          "description": "Get exclusive menu items and courses for a specific Michelin-starred restaurant through TableAll's premium reservation service.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "restaurant_id": {
+                "type": "number",
+                "description": "The unique ID of the restaurant"
+              }
+            },
+            "required": [
+              "restaurant_id"
+            ]
+          }
+        },
+        {
+          "name": "check_availability",
+          "description": "Check real-time availability for Japan's most coveted Michelin-starred restaurants through TableAll's exclusive booking system.\n\nDATE HANDLING - CRITICAL:\nWhen user provides only month/day without year:\n1. Default to the current year\n2. If the resulting date would be in the past, use NEXT year instead\nExample (current date: 2026/1/28):\n- User says \"2/12-2/15\" → use 2026/2/12-2026/2/15 (future date in current year)\nExample (current date: 2026/3/12):\n- User says \"2/12-2/15\" → use 2027/2/12-2027/2/15 (past date, so use next year)\nNEVER search for dates in the past.\n\nReturns two types of openings:\n1. Fixed seats (seat_type: \"fixed\"): The opening has a fixed number of seats. You MUST book all seats together - partial booking is not allowed. For example, a 4-seat opening requires exactly 4 guests.\n2. Flexible seats (seat_type: \"flexible\"): You can choose your party size within the specified range (min_num_people to max_num_people).\n\nWhen making a reservation:\n- For fixed seats: party_size must equal the fixed_seats value\n- For flexible seats: party_size must be within min_seats and max_seats range",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "start_date": {
+                "type": "string",
+                "description": "Start date in YYYY-MM-DD format"
+              },
+              "end_date": {
+                "type": "string",
+                "description": "End date in YYYY-MM-DD format"
+              },
+              "restaurant_id": {
+                "type": "number",
+                "description": "Specific restaurant ID (optional)"
+              },
+              "daily_or_minutes": {
+                "type": "string",
+                "enum": [
+                  "daily",
+                  "minutes"
+                ],
+                "description": "Time granularity - \"daily\" for daily view or \"minutes\" for minute-level detail",
+                "default": "minutes"
+              },
+              "by_menu_item": {
+                "type": "boolean",
+                "description": "Group availability by menu items",
+                "default": false
+              },
+              "num_people": {
+                "type": "number",
+                "description": "Number of people/party size (optional)",
+                "minimum": 1
+              }
+            }
+          }
+        },
+        {
+          "name": "search_available_restaurants",
+          "description": "Search for restaurants with availability in a specified date range.\n\nThis is the most efficient way to find available restaurants. Instead of:\n1. Calling search_restaurants to get a list\n2. Calling check_availability for each restaurant individually\n\nYou can use this single tool to get all restaurants with openings in one request.\n\nUse this tool when:\n- User wants to find any available restaurant in a region/area\n- User specifies a date range and wants to see what's available\n- User has flexible restaurant preferences but specific date requirements\n\nDATE HANDLING - CRITICAL:\nWhen user provides only month/day without year:\n1. Default to the current year\n2. If the resulting date would be in the past, use NEXT year instead\nExample (current date: 2026/1/28):\n- User says \"2/12-2/15\" → use 2026/2/12-2026/2/15 (future date in current year)\nExample (current date: 2026/3/12):\n- User says \"2/12-2/15\" → use 2027/2/12-2027/2/15 (past date, so use next year)\nNEVER search for dates in the past.\n\nDATE RANGE RULE:\nWhen user specifies a single date (e.g., \"December 20th\"):\n- Automatically search from 2 days before to 3 days after the specified date\n- Inform the user: \"I'll search around your preferred date to show you more options.\"\n- Example: User says \"December 20th\" → start_date: \"2024-12-18\", end_date: \"2024-12-23\"\n- If user explicitly wants only that specific date (e.g., \"only December 20th\", \"exactly on the 20th\"), respect their request and use that single date for both start_date and end_date.\n\nParameters:\n- start_date, end_date: Required. Date range to search (YYYY-MM-DD)\n- prefecture: Optional. Filter by prefecture. Available values: Tokyo, Kyoto, Osaka, Sapporo, Kanazawa, Komatsu, Toyama, Fukuoka, Nagoya, Ise Shima, Kobe, Niseko, Shizuoka, Nagano, Hiroshima, Shikoku, Niigata\n- area: Optional. Filter by area (e.g., \"Ginza\", \"Shibuya\")\n- genre: Optional. Filter by cuisine type (e.g., \"Sushi\", \"French\")\n- num_people: Optional. Filter by party size\n\nReturns restaurants with their available openings, including:\n- Restaurant basic info (name, cuisine, location, michelin stars, price_range, open_time, closed_days)\n- Available openings with date, time, seat type, and course info\n\nPRICE NOTE:\n- price_range.starting_price shows the minimum price (e.g., \"¥39,000〜\")\n- All prices include TableAll's ¥8,000 Booking Fee",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "start_date": {
+                "type": "string",
+                "description": "Start date in YYYY-MM-DD format (required)"
+              },
+              "end_date": {
+                "type": "string",
+                "description": "End date in YYYY-MM-DD format (required)"
+              },
+              "prefecture": {
+                "type": "string",
+                "description": "Prefecture/region filter. Values not in the allowed list will be ignored.",
+                "enum": [
+                  "Tokyo",
+                  "Kyoto",
+                  "Osaka",
+                  "Sapporo",
+                  "Kanazawa",
+                  "Komatsu",
+                  "Toyama",
+                  "Fukuoka",
+                  "Nagoya",
+                  "Ise Shima",
+                  "Kobe",
+                  "Niseko",
+                  "Shizuoka",
+                  "Nagano",
+                  "Hiroshima",
+                  "Shikoku",
+                  "Niigata"
+                ]
+              },
+              "area": {
+                "type": "string",
+                "description": "Specific area within prefecture (e.g., \"Ginza\", \"Shibuya\")"
+              },
+              "genre": {
+                "type": "string",
+                "description": "Cuisine type (e.g., \"Sushi\", \"Kaiseki\", \"French\", \"Italian\")",
+                "enum": [
+                  "Sushi",
+                  "Kaiseki",
+                  "Tempura",
+                  "Wagyu",
+                  "Italian",
+                  "French",
+                  "Chinese",
+                  "Innovative",
+                  "Spanish",
+                  "Yakiniku",
+                  "Yakitori",
+                  "Teppanyaki",
+                  "Unagi",
+                  "Dessert Dining",
+                  "Kushiage",
+                  "Shabushabu Sukiyaki",
+                  "Izakaya",
+                  "Ramen",
+                  "Thai",
+                  "Soba",
+                  "Tonkatsu"
+                ]
+              },
+              "num_people": {
+                "type": "number",
+                "description": "Number of guests to filter availability",
+                "minimum": 1
+              },
+              "limit": {
+                "type": "number",
+                "description": "Maximum number of restaurants to return (default: 20, max: 100)",
+                "minimum": 1,
+                "maximum": 100,
+                "default": 20
+              },
+              "offset": {
+                "type": "number",
+                "description": "Number of restaurants to skip for pagination (default: 0)",
+                "minimum": 0,
+                "default": 0
+              }
+            },
+            "required": [
+              "start_date",
+              "end_date"
+            ]
+          }
+        },
+        {
+          "name": "get_restaurant_resource",
+          "description": "Get formatted information for a specific Michelin-starred restaurant from TableAll's exclusive collection as a readable resource.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "restaurant_id": {
+                "type": "string",
+                "description": "The unique ID of the restaurant"
+              }
+            },
+            "required": [
+              "restaurant_id"
+            ]
+          }
+        },
+        {
+          "name": "create_reservation",
+          "description": "Secure a coveted reservation at Japan's most exclusive Michelin-starred restaurants through TableAll's premium booking platform (Future feature).",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "restaurant_id": {
+                "type": "number",
+                "description": "Restaurant to book"
+              },
+              "guest_name": {
+                "type": "string",
+                "description": "Guest name"
+              },
+              "guest_email": {
+                "type": "string",
+                "description": "Guest email"
+              },
+              "party_size": {
+                "type": "number",
+                "description": "Number of people"
+              },
+              "reservation_date": {
+                "type": "string",
+                "description": "Date in YYYY-MM-DD format"
+              },
+              "reservation_time": {
+                "type": "string",
+                "description": "Time in HH:MM format"
+              }
+            },
+            "required": [
+              "restaurant_id",
+              "guest_name",
+              "guest_email",
+              "party_size",
+              "reservation_date",
+              "reservation_time"
+            ]
+          }
+        },
+        {
+          "name": "get_cancel_policies",
+          "description": "Get cancel policies for a restaurant before making a reservation.\n\nAlways call this tool before create_reservation or create_reservation_request to inform the user about cancellation terms.\n\nIMPORTANT - For RESERVATION REQUESTS (create_reservation_request):\nBefore showing the cancel policy, you MUST first explain how reservation requests work:\n\"How does it work?\nWe will check the availability based on the information you provide below.\n- If available, we will reserve immediately, charge your credit card, and send you a confirmation email.\n- If not available, we will notify you by email. No charge will be made.\n* You can only cancel a request before we confirm the availability with the restaurants (within 10 minutes ~ 24 hours of the request).\"\n\nThen introduce the cancel policy with:\n\"Once your reservation request is confirmed and a booking is made, the following cancellation policy will apply:\"\n\nCRITICAL - BOOKING FEE NOTICE (MUST ALWAYS DISPLAY):\nWhen displaying cancellation policies to users, you MUST ALWAYS include this notice at the end:\n\"* Note: The booking fee is non-refundable regardless of cancellation timing.\"\nThis notice is MANDATORY and must be shown every time you display cancellation policies, whether for direct reservations or reservation requests. NEVER skip this notice.\n\nReturns:\n- policies: Array of cancel policy tiers (days_before, cancel_fee_percentage)\n- no_show_fee_percentage: Fee for no-show\n- booking_fee_note: MUST be displayed to user - booking fee is non-refundable",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "restaurant_id": {
+                "type": "number",
+                "description": "Restaurant ID to get cancel policies for"
+              },
+              "course_id": {
+                "type": "string",
+                "description": "Course external ID (optional, for course-specific policies)"
+              }
+            },
+            "required": [
+              "restaurant_id"
+            ]
+          }
+        },
+        {
+          "name": "create_reservation",
+          "description": "Create a direct reservation for an available opening.\n\nREQUIRED FLOW - Follow these steps in order:\n\nSTEP 1: CANCEL POLICY - Before collecting user information:\n- Call get_cancel_policies to retrieve the cancellation terms\n- Explain the cancel policy to the user clearly\n- MUST include: \"* Note: The booking fee is non-refundable regardless of cancellation timing.\"\n- Ensure the user understands the cancellation fees before proceeding\n\nSTEP 2: COLLECT EMAIL ONLY - First, ask ONLY for email address:\n\"To proceed with the reservation, please provide your email address.\"\n- Do NOT ask for name, country, or phone yet\n- Wait for the user to provide their email\n\nSTEP 3: CHECK USER & COLLECT ADDITIONAL INFO IF NEEDED:\nAfter receiving the email, call this tool with only the email.\n- If user EXISTS: The API will proceed with the existing user info. No additional info needed.\n- If user DOES NOT EXIST: The API will return an error with code \"USER_NOT_FOUND\".\n  In this case, ask the user for additional information:\n  \"It looks like you don't have a TableAll account yet. To create one, please provide:\n  - Full name (first and last name)\n  - Country\n  - Phone number\"\n  Then call this tool again with all the information.\n  When a new account is created, the API will return password_reset_url.\n  You MUST display this to the user:\n  \"Your TableAll account has been created! Please set your password using this link: [password_reset_url]\n  Note: The same link has also been sent to your email address.\"\n\nSTEP 4: CONFIRMATION - After collecting all information, you MUST:\n1. Display a summary of all reservation details to the user:\n   - Restaurant name\n   - Date and time\n   - Number of guests\n   - Course name\n   - Email address (highlight this for verification)\n   - Cancel policy summary\n2. Ask the user to confirm: \"Please verify the information above, especially your email address. Shall I proceed with this reservation?\"\n3. Only call this tool AFTER the user explicitly confirms.\n\nRESERVATION RULES:\n- Use this only when an opening_id is available from check_availability\n- For fixed-seat openings, party_size MUST equal the fixed_seats value\n- For flexible-seat openings, party_size must be within min/max range\n\nThis tool internally:\n1. Verifies or creates user account (verify_or_create)\n2. Creates the reservation\n3. Returns a payment URL for the user to complete\n\nThe user must open the payment_url in their browser to complete the reservation.\nNote: The same payment link has also been sent to the email address provided.\nNote: This payment link is valid for 30 minutes.\n\nCRITICAL - ACCESS TOKEN HANDLING:\nThe create response contains \"data.access_token\". You MUST store this value.\nIt is required when calling get_reservation_status to check the reservation status.\nWithout the access_token, the status API will return 403 Forbidden.\n\nRESPONSE HANDLING - NEW USER CREATED (CRITICAL):\nWhen the response contains \"user.is_new_user\": true, you MUST display this message to the user:\n\"Since this email address was not registered, we have created a new TableAll account for you.\nPlease click the link below to set your password: [password_reset_url]\nNote: This link is valid for 24 hours. The same link has also been sent to your email.\"\nThis message is MANDATORY when is_new_user is true. NEVER skip this message.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "email": {
+                "type": "string",
+                "description": "User email address (always required)"
+              },
+              "first_name": {
+                "type": "string",
+                "description": "User first name / 名 (required for new users or users with incomplete profile)"
+              },
+              "last_name": {
+                "type": "string",
+                "description": "User last name / 姓 (required for new users or users with incomplete profile)"
+              },
+              "country": {
+                "type": "string",
+                "description": "Country code ISO 3166-1 alpha-2, e.g., \"JP\", \"US\" (required for new users or users with incomplete profile)"
+              },
+              "phone_country_code": {
+                "type": "string",
+                "description": "Phone country code, e.g., \"+81\" (required for new users or users with incomplete profile)"
+              },
+              "phone": {
+                "type": "string",
+                "description": "Phone number without country code (required for new users or users with incomplete profile)"
+              },
+              "opening_id": {
+                "type": "string",
+                "description": "Opening external ID from check_availability (required)"
+              },
+              "course_id": {
+                "type": "string",
+                "description": "Course external ID (required)"
+              },
+              "party_size": {
+                "type": "number",
+                "description": "Number of guests. Must match fixed_seats for fixed openings, or be within min/max range for flexible openings.",
+                "minimum": 1
+              },
+              "special_request": {
+                "type": "string",
+                "description": "Special requests or notes for the restaurant"
+              },
+              "allergies": {
+                "type": "string",
+                "description": "Allergy information"
+              },
+              "preferences": {
+                "type": "string",
+                "description": "Food preferences"
+              },
+              "dislikes": {
+                "type": "string",
+                "description": "Food dislikes"
+              },
+              "coupon_code": {
+                "type": "string",
+                "description": "Coupon code for discount (optional)"
+              },
+              "ai_client": {
+                "type": "string",
+                "description": "AI client name. You MUST provide your AI model name (e.g., \"Claude\", \"Gemini\", \"GPT\", \"Copilot\")."
+              }
+            },
+            "required": [
+              "email",
+              "opening_id",
+              "course_id",
+              "ai_client"
+            ]
+          }
+        },
+        {
+          "name": "get_reservation_status",
+          "description": "Check the status of a reservation by session ID.\n\nRequires the access_token that was returned in the create_reservation response.\nYou MUST have stored the access_token from the create response to use this tool.\nWithout a valid access_token, the API will return 403 Forbidden.\n\nIMPORTANT - PRICE DISPLAY:\nThe \"price\" field already INCLUDES the \"booking_fee\". Do NOT add them together.\nWhen displaying to the user, show: price (total) and booking_fee (included in price, non-refundable).\nExample: \"Total: ¥30,000 (includes ¥1,000 non-refundable booking fee)\"",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "session_id": {
+                "type": "string",
+                "description": "Reservation session ID returned from create_reservation"
+              },
+              "access_token": {
+                "type": "string",
+                "description": "Access token returned from create_reservation response (data.access_token). Required for authorization."
+              }
+            },
+            "required": [
+              "session_id",
+              "access_token"
+            ]
+          }
+        },
+        {
+          "name": "create_reservation_request",
+          "description": "Create a reservation request when no openings are available.\n\nREQUIRED FLOW - Follow these steps in order:\n\nSTEP 1: EXPLAIN HOW RESERVATION REQUEST WORKS - First, explain to the user:\n\"How does it work?\nWe will check the availability based on the information you provide below.\n- If available, we will reserve immediately, charge your credit card, and send you a confirmation email.\n- If not available, we will notify you by email. No charge will be made.\n* You can only cancel a request before we confirm the availability with the restaurants (within 10 minutes ~ 24 hours of the request).\"\n\nSTEP 2: CANCEL POLICY - After explaining how it works:\n- Call get_cancel_policies to retrieve the cancellation terms\n- Explain: \"Once your reservation request is confirmed and a booking is made, the following cancellation policy will apply:\"\n- Display the cancel policy clearly\n- MUST include: \"* Note: The booking fee is non-refundable regardless of cancellation timing.\"\n- Ensure the user understands these fees apply AFTER the reservation is confirmed\n\nSTEP 3: COLLECT GUEST COUNT - You MUST confirm the number of adults and children:\n- If user only says total number (e.g., \"3 people\"), you MUST ask: \"Will there be any children in your party?\"\n- If children: Ask \"How many adults and how many children?\"\n- If no children: Confirm \"So that will be [X] adults, no children. Is that correct?\"\n- NEVER skip this confirmation step\n\nSTEP 4: COLLECT EMAIL ONLY - First, ask ONLY for email address:\n\"To proceed with the reservation request, please provide your email address.\"\n- Do NOT ask for name, country, or phone yet\n- Wait for the user to provide their email\n\nSTEP 5: CHECK USER & COLLECT ADDITIONAL INFO IF NEEDED:\nAfter receiving the email, call this tool with only the email.\n- If user EXISTS: The API will proceed with the existing user info. No additional info needed.\n- If user DOES NOT EXIST: The API will return an error with code \"USER_NOT_FOUND\".\n  In this case, ask the user for additional information:\n  \"It looks like you don't have a TableAll account yet. To create one, please provide:\n  - Full name (first and last name)\n  - Country\n  - Phone number\"\n  Then call this tool again with all the information.\n  When a new account is created, the API will return password_reset_url.\n  You MUST display this to the user:\n  \"Your TableAll account has been created! Please set your password using this link: [password_reset_url]\n  Note: The same link has also been sent to your email address.\"\n\nSTEP 6: CONFIRMATION - After collecting all information, you MUST:\n1. Display a summary of all reservation request details to the user:\n   - Restaurant name\n   - Preferred date(s) and time range (Japan Time)\n   - Number of adults\n   - Number of children\n   - Course name\n   - Email address (highlight this for verification)\n2. Ask the user to confirm: \"Please verify the information above, especially your email address. Shall I proceed with this reservation request?\"\n3. Only call this tool AFTER the user explicitly confirms.\n\nRESERVATION REQUEST RULES:\n- Use this when check_availability returns no results\n- Allows specifying multiple preferred dates\n- Restaurant will review and approve/decline the request\n\nDATE HANDLING - CRITICAL:\n- When user says \"any day in [month]\" (e.g., \"any day in January\"), include ALL days of that month\n- When user says \"any day during [period]\" (e.g., \"any day from Jan 10-20\"), include ALL days in that range\n- When user says \"anytime in [week/period]\", include ALL days in that period\n- Do NOT arbitrarily narrow down dates - include every day the user indicated as acceptable\n- Example: \"Any day in January\" → include all 31 days (2025-01-01 to 2025-01-31)\n- Example: \"Jan 15-20 any day is fine\" → include all 6 days (2025-01-15 to 2025-01-20)\n\nThis tool internally:\n1. Verifies or creates user account (verify_or_create)\n2. Creates the reservation request\n3. Returns a payment URL for card registration\n\nThe user must open the payment_url to register their card. Payment is only charged when the restaurant approves the request.\nNote: The same payment link has also been sent to the email address provided.\nNote: This payment link is valid for 30 minutes.\n\nCRITICAL - ACCESS TOKEN HANDLING:\nThe create response contains \"data.access_token\". You MUST store this value.\nIt is required when calling get_reservation_request_status to check the request status.\nWithout the access_token, the status API will return 403 Forbidden.\n\nRESPONSE HANDLING - NEW USER CREATED (CRITICAL):\nWhen the response contains \"user.is_new_user\": true, you MUST display this message to the user:\n\"Since this email address was not registered, we have created a new TableAll account for you.\nPlease click the link below to set your password: [password_reset_url]\nNote: This link is valid for 24 hours. The same link has also been sent to your email.\"\nThis message is MANDATORY when is_new_user is true. NEVER skip this message.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "email": {
+                "type": "string",
+                "description": "User email address (always required)"
+              },
+              "first_name": {
+                "type": "string",
+                "description": "User first name / 名 (required for new users or users with incomplete profile)"
+              },
+              "last_name": {
+                "type": "string",
+                "description": "User last name / 姓 (required for new users or users with incomplete profile)"
+              },
+              "country": {
+                "type": "string",
+                "description": "Country code ISO 3166-1 alpha-2, e.g., \"JP\", \"US\" (required for new users or users with incomplete profile)"
+              },
+              "phone_country_code": {
+                "type": "string",
+                "description": "Phone country code, e.g., \"+81\" (required for new users or users with incomplete profile)"
+              },
+              "phone": {
+                "type": "string",
+                "description": "Phone number without country code (required for new users or users with incomplete profile)"
+              },
+              "restaurant_id": {
+                "type": "number",
+                "description": "Restaurant ID (required)"
+              },
+              "course_id": {
+                "type": "string",
+                "description": "Course external ID (required)"
+              },
+              "num_adults": {
+                "type": "number",
+                "description": "Number of adults (required). If user only says total number of guests (e.g., \"3 people\"), treat all as adults.",
+                "minimum": 1
+              },
+              "num_children": {
+                "type": "number",
+                "description": "Number of children (required). Default to 0 if user does not specify children count or only provides total guest count.",
+                "minimum": 0
+              },
+              "dates": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "Preferred dates in YYYY-MM-DD format. Can specify multiple dates.",
+                "minItems": 1
+              },
+              "start_time_from": {
+                "type": "string",
+                "description": "Preferred start time from, in HH:mm format (e.g., \"18:00\"). Japan Time (JST)."
+              },
+              "start_time_to": {
+                "type": "string",
+                "description": "Preferred start time to, in HH:mm format (e.g., \"20:00\"). Japan Time (JST)."
+              },
+              "special_request": {
+                "type": "string",
+                "description": "Special requests or notes for the restaurant"
+              },
+              "allergies": {
+                "type": "string",
+                "description": "Allergy information"
+              },
+              "preferences": {
+                "type": "string",
+                "description": "Food preferences"
+              },
+              "dislikes": {
+                "type": "string",
+                "description": "Food dislikes"
+              },
+              "hotel_name": {
+                "type": "string",
+                "description": "Hotel name (optional)"
+              },
+              "comment": {
+                "type": "string",
+                "description": "Additional comments (optional)"
+              },
+              "coupon_code": {
+                "type": "string",
+                "description": "Coupon code for discount (optional)"
+              },
+              "ai_client": {
+                "type": "string",
+                "description": "AI client name. You MUST provide your AI model name (e.g., \"Claude\", \"Gemini\", \"GPT\", \"Copilot\")."
+              }
+            },
+            "required": [
+              "email",
+              "restaurant_id",
+              "course_id",
+              "num_adults",
+              "num_children",
+              "dates",
+              "start_time_from",
+              "start_time_to",
+              "ai_client"
+            ]
+          }
+        },
+        {
+          "name": "get_reservation_request_status",
+          "description": "Check the status of a reservation request by session ID.\n\nRequires the access_token that was returned in the create_reservation_request response.\nYou MUST have stored the access_token from the create response to use this tool.\nWithout a valid access_token, the API will return 403 Forbidden.\n\nIMPORTANT - PRICE DISPLAY:\nThe \"price\" field already INCLUDES the \"booking_fee\". Do NOT add them together.\nWhen displaying to the user, show: price (total) and booking_fee (included in price, non-refundable).\nExample: \"Total: ¥30,000 (includes ¥1,000 non-refundable booking fee)\"",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "session_id": {
+                "type": "string",
+                "description": "Reservation request session ID returned from create_reservation_request"
+              },
+              "access_token": {
+                "type": "string",
+                "description": "Access token returned from create_reservation_request response (data.access_token). Required for authorization."
+              }
+            },
+            "required": [
+              "session_id",
+              "access_token"
+            ]
+          }
+        }
+      ],
+      "tool_count": 12,
+      "tool_names": [
+        "search_restaurants",
+        "get_restaurant_details",
+        "get_restaurant_menu",
+        "check_availability",
+        "search_available_restaurants",
+        "get_restaurant_resource",
+        "create_reservation",
+        "get_cancel_policies",
+        "create_reservation",
+        "get_reservation_status",
+        "create_reservation_request",
+        "get_reservation_request_status"
+      ]
+    },
+    "server_info_crawled": {
+      "id": 72,
+      "name": "com.tableall/mcp",
+      "author": "",
+      "overview": "com.tableall/mcp - Development Tools MCP server with 12 tools.",
+      "repository_url": "",
+      "homepage": "https://mcp.tableall.com/sse",
+      "remote_or_local": "Remote",
+      "license": "",
+      "usage_count": "560",
+      "success_rate": "100%",
+      "tags": [
+        "development-tools"
+      ],
+      "categories": [
+        "development tools"
+      ],
+      "tools_count": 12,
+      "tools": [
+        {
+          "name": "search_restaurants",
+          "description": "Searches Japan's most exclusive Michelin-starred restaurants via TableAll, the nation's premier fine dining reservation platform.\n\nReturns restaurant list with basic info including price_range.starting_price (minimum price, includes ¥8,000 Booking Fee).",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "prefecture": {
+                "type": "string",
+                "description": "Prefecture/region filter. Available values: Tokyo, Kyoto, Osaka, Sapporo, Kanazawa, Komatsu, Toyama, Fukuoka, Nagoya, Ise Shima, Kobe, Niseko, Shizuoka, Nagano, Hiroshima, Shikoku, Niigata",
+                "enum": [
+                  "Tokyo",
+                  "Kyoto",
+                  "Osaka",
+                  "Sapporo",
+                  "Kanazawa",
+                  "Komatsu",
+                  "Toyama",
+                  "Fukuoka",
+                  "Nagoya",
+                  "Ise Shima",
+                  "Kobe",
+                  "Niseko",
+                  "Shizuoka",
+                  "Nagano",
+                  "Hiroshima",
+                  "Shikoku",
+                  "Niigata"
+                ]
+              },
+              "genre": {
+                "type": "string",
+                "description": "Cuisine type. Available options: \"Sushi\", \"Kaiseki\", \"Tempura\", \"Wagyu\", \"Italian\", \"French\", \"Chinese\", \"Innovative\", \"Spanish\", \"Yakiniku\", \"Yakitori\", \"Teppanyaki\", \"Unagi\", \"Dessert Dining\", \"Kushiage\", \"Shabushabu Sukiyaki\", \"Izakaya\", \"Ramen\", \"Thai\", \"Soba\", \"Tonkatsu\"",
+                "enum": [
+                  "Sushi",
+                  "Kaiseki",
+                  "Tempura",
+                  "Wagyu",
+                  "Italian",
+                  "French",
+                  "Chinese",
+                  "Innovative",
+                  "Spanish",
+                  "Yakiniku",
+                  "Yakitori",
+                  "Teppanyaki",
+                  "Unagi",
+                  "Dessert Dining",
+                  "Kushiage",
+                  "Shabushabu Sukiyaki",
+                  "Izakaya",
+                  "Ramen",
+                  "Thai",
+                  "Soba",
+                  "Tonkatsu"
+                ]
+              },
+              "area": {
+                "type": "string",
+                "description": "Specific area within prefecture (e.g., \"Ginza\", \"Shibuya\")"
+              }
+            }
+          }
+        },
+        {
+          "name": "get_restaurant_details",
+          "description": "Get detailed information about a specific Michelin-starred restaurant from TableAll's curated collection of Japan's finest establishments.\n\nReturns full restaurant details including price_range.starting_price (minimum price, includes ¥8,000 Booking Fee).",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "restaurant_id": {
+                "type": "number",
+                "description": "The unique ID of the restaurant"
+              }
+            },
+            "required": [
+              "restaurant_id"
+            ]
+          }
+        },
+        {
+          "name": "get_restaurant_menu",
+          "description": "Get exclusive menu items and courses for a specific Michelin-starred restaurant through TableAll's premium reservation service.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "restaurant_id": {
+                "type": "number",
+                "description": "The unique ID of the restaurant"
+              }
+            },
+            "required": [
+              "restaurant_id"
+            ]
+          }
+        },
+        {
+          "name": "check_availability",
+          "description": "Check real-time availability for Japan's most coveted Michelin-starred restaurants through TableAll's exclusive booking system.\n\nDATE HANDLING - CRITICAL:\nWhen user provides only month/day without year:\n1. Default to the current year\n2. If the resulting date would be in the past, use NEXT year instead\nExample (current date: 2026/1/28):\n- User says \"2/12-2/15\" → use 2026/2/12-2026/2/15 (future date in current year)\nExample (current date: 2026/3/12):\n- User says \"2/12-2/15\" → use 2027/2/12-2027/2/15 (past date, so use next year)\nNEVER search for dates in the past.\n\nReturns two types of openings:\n1. Fixed seats (seat_type: \"fixed\"): The opening has a fixed number of seats. You MUST book all seats together - partial booking is not allowed. For example, a 4-seat opening requires exactly 4 guests.\n2. Flexible seats (seat_type: \"flexible\"): You can choose your party size within the specified range (min_num_people to max_num_people).\n\nWhen making a reservation:\n- For fixed seats: party_size must equal the fixed_seats value\n- For flexible seats: party_size must be within min_seats and max_seats range",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "start_date": {
+                "type": "string",
+                "description": "Start date in YYYY-MM-DD format"
+              },
+              "end_date": {
+                "type": "string",
+                "description": "End date in YYYY-MM-DD format"
+              },
+              "restaurant_id": {
+                "type": "number",
+                "description": "Specific restaurant ID (optional)"
+              },
+              "daily_or_minutes": {
+                "type": "string",
+                "enum": [
+                  "daily",
+                  "minutes"
+                ],
+                "description": "Time granularity - \"daily\" for daily view or \"minutes\" for minute-level detail",
+                "default": "minutes"
+              },
+              "by_menu_item": {
+                "type": "boolean",
+                "description": "Group availability by menu items",
+                "default": false
+              },
+              "num_people": {
+                "type": "number",
+                "description": "Number of people/party size (optional)",
+                "minimum": 1
+              }
+            }
+          }
+        },
+        {
+          "name": "search_available_restaurants",
+          "description": "Search for restaurants with availability in a specified date range.\n\nThis is the most efficient way to find available restaurants. Instead of:\n1. Calling search_restaurants to get a list\n2. Calling check_availability for each restaurant individually\n\nYou can use this single tool to get all restaurants with openings in one request.\n\nUse this tool when:\n- User wants to find any available restaurant in a region/area\n- User specifies a date range and wants to see what's available\n- User has flexible restaurant preferences but specific date requirements\n\nDATE HANDLING - CRITICAL:\nWhen user provides only month/day without year:\n1. Default to the current year\n2. If the resulting date would be in the past, use NEXT year instead\nExample (current date: 2026/1/28):\n- User says \"2/12-2/15\" → use 2026/2/12-2026/2/15 (future date in current year)\nExample (current date: 2026/3/12):\n- User says \"2/12-2/15\" → use 2027/2/12-2027/2/15 (past date, so use next year)\nNEVER search for dates in the past.\n\nDATE RANGE RULE:\nWhen user specifies a single date (e.g., \"December 20th\"):\n- Automatically search from 2 days before to 3 days after the specified date\n- Inform the user: \"I'll search around your preferred date to show you more options.\"\n- Example: User says \"December 20th\" → start_date: \"2024-12-18\", end_date: \"2024-12-23\"\n- If user explicitly wants only that specific date (e.g., \"only December 20th\", \"exactly on the 20th\"), respect their request and use that single date for both start_date and end_date.\n\nParameters:\n- start_date, end_date: Required. Date range to search (YYYY-MM-DD)\n- prefecture: Optional. Filter by prefecture. Available values: Tokyo, Kyoto, Osaka, Sapporo, Kanazawa, Komatsu, Toyama, Fukuoka, Nagoya, Ise Shima, Kobe, Niseko, Shizuoka, Nagano, Hiroshima, Shikoku, Niigata\n- area: Optional. Filter by area (e.g., \"Ginza\", \"Shibuya\")\n- genre: Optional. Filter by cuisine type (e.g., \"Sushi\", \"French\")\n- num_people: Optional. Filter by party size\n\nReturns restaurants with their available openings, including:\n- Restaurant basic info (name, cuisine, location, michelin stars, price_range, open_time, closed_days)\n- Available openings with date, time, seat type, and course info\n\nPRICE NOTE:\n- price_range.starting_price shows the minimum price (e.g., \"¥39,000〜\")\n- All prices include TableAll's ¥8,000 Booking Fee",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "start_date": {
+                "type": "string",
+                "description": "Start date in YYYY-MM-DD format (required)"
+              },
+              "end_date": {
+                "type": "string",
+                "description": "End date in YYYY-MM-DD format (required)"
+              },
+              "prefecture": {
+                "type": "string",
+                "description": "Prefecture/region filter. Values not in the allowed list will be ignored.",
+                "enum": [
+                  "Tokyo",
+                  "Kyoto",
+                  "Osaka",
+                  "Sapporo",
+                  "Kanazawa",
+                  "Komatsu",
+                  "Toyama",
+                  "Fukuoka",
+                  "Nagoya",
+                  "Ise Shima",
+                  "Kobe",
+                  "Niseko",
+                  "Shizuoka",
+                  "Nagano",
+                  "Hiroshima",
+                  "Shikoku",
+                  "Niigata"
+                ]
+              },
+              "area": {
+                "type": "string",
+                "description": "Specific area within prefecture (e.g., \"Ginza\", \"Shibuya\")"
+              },
+              "genre": {
+                "type": "string",
+                "description": "Cuisine type (e.g., \"Sushi\", \"Kaiseki\", \"French\", \"Italian\")",
+                "enum": [
+                  "Sushi",
+                  "Kaiseki",
+                  "Tempura",
+                  "Wagyu",
+                  "Italian",
+                  "French",
+                  "Chinese",
+                  "Innovative",
+                  "Spanish",
+                  "Yakiniku",
+                  "Yakitori",
+                  "Teppanyaki",
+                  "Unagi",
+                  "Dessert Dining",
+                  "Kushiage",
+                  "Shabushabu Sukiyaki",
+                  "Izakaya",
+                  "Ramen",
+                  "Thai",
+                  "Soba",
+                  "Tonkatsu"
+                ]
+              },
+              "num_people": {
+                "type": "number",
+                "description": "Number of guests to filter availability",
+                "minimum": 1
+              },
+              "limit": {
+                "type": "number",
+                "description": "Maximum number of restaurants to return (default: 20, max: 100)",
+                "minimum": 1,
+                "maximum": 100,
+                "default": 20
+              },
+              "offset": {
+                "type": "number",
+                "description": "Number of restaurants to skip for pagination (default: 0)",
+                "minimum": 0,
+                "default": 0
+              }
+            },
+            "required": [
+              "start_date",
+              "end_date"
+            ]
+          }
+        },
+        {
+          "name": "get_restaurant_resource",
+          "description": "Get formatted information for a specific Michelin-starred restaurant from TableAll's exclusive collection as a readable resource.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "restaurant_id": {
+                "type": "string",
+                "description": "The unique ID of the restaurant"
+              }
+            },
+            "required": [
+              "restaurant_id"
+            ]
+          }
+        },
+        {
+          "name": "create_reservation",
+          "description": "Secure a coveted reservation at Japan's most exclusive Michelin-starred restaurants through TableAll's premium booking platform (Future feature).",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "restaurant_id": {
+                "type": "number",
+                "description": "Restaurant to book"
+              },
+              "guest_name": {
+                "type": "string",
+                "description": "Guest name"
+              },
+              "guest_email": {
+                "type": "string",
+                "description": "Guest email"
+              },
+              "party_size": {
+                "type": "number",
+                "description": "Number of people"
+              },
+              "reservation_date": {
+                "type": "string",
+                "description": "Date in YYYY-MM-DD format"
+              },
+              "reservation_time": {
+                "type": "string",
+                "description": "Time in HH:MM format"
+              }
+            },
+            "required": [
+              "restaurant_id",
+              "guest_name",
+              "guest_email",
+              "party_size",
+              "reservation_date",
+              "reservation_time"
+            ]
+          }
+        },
+        {
+          "name": "get_cancel_policies",
+          "description": "Get cancel policies for a restaurant before making a reservation.\n\nAlways call this tool before create_reservation or create_reservation_request to inform the user about cancellation terms.\n\nIMPORTANT - For RESERVATION REQUESTS (create_reservation_request):\nBefore showing the cancel policy, you MUST first explain how reservation requests work:\n\"How does it work?\nWe will check the availability based on the information you provide below.\n- If available, we will reserve immediately, charge your credit card, and send you a confirmation email.\n- If not available, we will notify you by email. No charge will be made.\n* You can only cancel a request before we confirm the availability with the restaurants (within 10 minutes ~ 24 hours of the request).\"\n\nThen introduce the cancel policy with:\n\"Once your reservation request is confirmed and a booking is made, the following cancellation policy will apply:\"\n\nCRITICAL - BOOKING FEE NOTICE (MUST ALWAYS DISPLAY):\nWhen displaying cancellation policies to users, you MUST ALWAYS include this notice at the end:\n\"* Note: The booking fee is non-refundable regardless of cancellation timing.\"\nThis notice is MANDATORY and must be shown every time you display cancellation policies, whether for direct reservations or reservation requests. NEVER skip this notice.\n\nReturns:\n- policies: Array of cancel policy tiers (days_before, cancel_fee_percentage)\n- no_show_fee_percentage: Fee for no-show\n- booking_fee_note: MUST be displayed to user - booking fee is non-refundable",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "restaurant_id": {
+                "type": "number",
+                "description": "Restaurant ID to get cancel policies for"
+              },
+              "course_id": {
+                "type": "string",
+                "description": "Course external ID (optional, for course-specific policies)"
+              }
+            },
+            "required": [
+              "restaurant_id"
+            ]
+          }
+        },
+        {
+          "name": "create_reservation",
+          "description": "Create a direct reservation for an available opening.\n\nREQUIRED FLOW - Follow these steps in order:\n\nSTEP 1: CANCEL POLICY - Before collecting user information:\n- Call get_cancel_policies to retrieve the cancellation terms\n- Explain the cancel policy to the user clearly\n- MUST include: \"* Note: The booking fee is non-refundable regardless of cancellation timing.\"\n- Ensure the user understands the cancellation fees before proceeding\n\nSTEP 2: COLLECT EMAIL ONLY - First, ask ONLY for email address:\n\"To proceed with the reservation, please provide your email address.\"\n- Do NOT ask for name, country, or phone yet\n- Wait for the user to provide their email\n\nSTEP 3: CHECK USER & COLLECT ADDITIONAL INFO IF NEEDED:\nAfter receiving the email, call this tool with only the email.\n- If user EXISTS: The API will proceed with the existing user info. No additional info needed.\n- If user DOES NOT EXIST: The API will return an error with code \"USER_NOT_FOUND\".\n  In this case, ask the user for additional information:\n  \"It looks like you don't have a TableAll account yet. To create one, please provide:\n  - Full name (first and last name)\n  - Country\n  - Phone number\"\n  Then call this tool again with all the information.\n  When a new account is created, the API will return password_reset_url.\n  You MUST display this to the user:\n  \"Your TableAll account has been created! Please set your password using this link: [password_reset_url]\n  Note: The same link has also been sent to your email address.\"\n\nSTEP 4: CONFIRMATION - After collecting all information, you MUST:\n1. Display a summary of all reservation details to the user:\n   - Restaurant name\n   - Date and time\n   - Number of guests\n   - Course name\n   - Email address (highlight this for verification)\n   - Cancel policy summary\n2. Ask the user to confirm: \"Please verify the information above, especially your email address. Shall I proceed with this reservation?\"\n3. Only call this tool AFTER the user explicitly confirms.\n\nRESERVATION RULES:\n- Use this only when an opening_id is available from check_availability\n- For fixed-seat openings, party_size MUST equal the fixed_seats value\n- For flexible-seat openings, party_size must be within min/max range\n\nThis tool internally:\n1. Verifies or creates user account (verify_or_create)\n2. Creates the reservation\n3. Returns a payment URL for the user to complete\n\nThe user must open the payment_url in their browser to complete the reservation.\nNote: The same payment link has also been sent to the email address provided.\nNote: This payment link is valid for 30 minutes.\n\nCRITICAL - ACCESS TOKEN HANDLING:\nThe create response contains \"data.access_token\". You MUST store this value.\nIt is required when calling get_reservation_status to check the reservation status.\nWithout the access_token, the status API will return 403 Forbidden.\n\nRESPONSE HANDLING - NEW USER CREATED (CRITICAL):\nWhen the response contains \"user.is_new_user\": true, you MUST display this message to the user:\n\"Since this email address was not registered, we have created a new TableAll account for you.\nPlease click the link below to set your password: [password_reset_url]\nNote: This link is valid for 24 hours. The same link has also been sent to your email.\"\nThis message is MANDATORY when is_new_user is true. NEVER skip this message.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "email": {
+                "type": "string",
+                "description": "User email address (always required)"
+              },
+              "first_name": {
+                "type": "string",
+                "description": "User first name / 名 (required for new users or users with incomplete profile)"
+              },
+              "last_name": {
+                "type": "string",
+                "description": "User last name / 姓 (required for new users or users with incomplete profile)"
+              },
+              "country": {
+                "type": "string",
+                "description": "Country code ISO 3166-1 alpha-2, e.g., \"JP\", \"US\" (required for new users or users with incomplete profile)"
+              },
+              "phone_country_code": {
+                "type": "string",
+                "description": "Phone country code, e.g., \"+81\" (required for new users or users with incomplete profile)"
+              },
+              "phone": {
+                "type": "string",
+                "description": "Phone number without country code (required for new users or users with incomplete profile)"
+              },
+              "opening_id": {
+                "type": "string",
+                "description": "Opening external ID from check_availability (required)"
+              },
+              "course_id": {
+                "type": "string",
+                "description": "Course external ID (required)"
+              },
+              "party_size": {
+                "type": "number",
+                "description": "Number of guests. Must match fixed_seats for fixed openings, or be within min/max range for flexible openings.",
+                "minimum": 1
+              },
+              "special_request": {
+                "type": "string",
+                "description": "Special requests or notes for the restaurant"
+              },
+              "allergies": {
+                "type": "string",
+                "description": "Allergy information"
+              },
+              "preferences": {
+                "type": "string",
+                "description": "Food preferences"
+              },
+              "dislikes": {
+                "type": "string",
+                "description": "Food dislikes"
+              },
+              "coupon_code": {
+                "type": "string",
+                "description": "Coupon code for discount (optional)"
+              },
+              "ai_client": {
+                "type": "string",
+                "description": "AI client name. You MUST provide your AI model name (e.g., \"Claude\", \"Gemini\", \"GPT\", \"Copilot\")."
+              }
+            },
+            "required": [
+              "email",
+              "opening_id",
+              "course_id",
+              "ai_client"
+            ]
+          }
+        },
+        {
+          "name": "get_reservation_status",
+          "description": "Check the status of a reservation by session ID.\n\nRequires the access_token that was returned in the create_reservation response.\nYou MUST have stored the access_token from the create response to use this tool.\nWithout a valid access_token, the API will return 403 Forbidden.\n\nIMPORTANT - PRICE DISPLAY:\nThe \"price\" field already INCLUDES the \"booking_fee\". Do NOT add them together.\nWhen displaying to the user, show: price (total) and booking_fee (included in price, non-refundable).\nExample: \"Total: ¥30,000 (includes ¥1,000 non-refundable booking fee)\"",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "session_id": {
+                "type": "string",
+                "description": "Reservation session ID returned from create_reservation"
+              },
+              "access_token": {
+                "type": "string",
+                "description": "Access token returned from create_reservation response (data.access_token). Required for authorization."
+              }
+            },
+            "required": [
+              "session_id",
+              "access_token"
+            ]
+          }
+        },
+        {
+          "name": "create_reservation_request",
+          "description": "Create a reservation request when no openings are available.\n\nREQUIRED FLOW - Follow these steps in order:\n\nSTEP 1: EXPLAIN HOW RESERVATION REQUEST WORKS - First, explain to the user:\n\"How does it work?\nWe will check the availability based on the information you provide below.\n- If available, we will reserve immediately, charge your credit card, and send you a confirmation email.\n- If not available, we will notify you by email. No charge will be made.\n* You can only cancel a request before we confirm the availability with the restaurants (within 10 minutes ~ 24 hours of the request).\"\n\nSTEP 2: CANCEL POLICY - After explaining how it works:\n- Call get_cancel_policies to retrieve the cancellation terms\n- Explain: \"Once your reservation request is confirmed and a booking is made, the following cancellation policy will apply:\"\n- Display the cancel policy clearly\n- MUST include: \"* Note: The booking fee is non-refundable regardless of cancellation timing.\"\n- Ensure the user understands these fees apply AFTER the reservation is confirmed\n\nSTEP 3: COLLECT GUEST COUNT - You MUST confirm the number of adults and children:\n- If user only says total number (e.g., \"3 people\"), you MUST ask: \"Will there be any children in your party?\"\n- If children: Ask \"How many adults and how many children?\"\n- If no children: Confirm \"So that will be [X] adults, no children. Is that correct?\"\n- NEVER skip this confirmation step\n\nSTEP 4: COLLECT EMAIL ONLY - First, ask ONLY for email address:\n\"To proceed with the reservation request, please provide your email address.\"\n- Do NOT ask for name, country, or phone yet\n- Wait for the user to provide their email\n\nSTEP 5: CHECK USER & COLLECT ADDITIONAL INFO IF NEEDED:\nAfter receiving the email, call this tool with only the email.\n- If user EXISTS: The API will proceed with the existing user info. No additional info needed.\n- If user DOES NOT EXIST: The API will return an error with code \"USER_NOT_FOUND\".\n  In this case, ask the user for additional information:\n  \"It looks like you don't have a TableAll account yet. To create one, please provide:\n  - Full name (first and last name)\n  - Country\n  - Phone number\"\n  Then call this tool again with all the information.\n  When a new account is created, the API will return password_reset_url.\n  You MUST display this to the user:\n  \"Your TableAll account has been created! Please set your password using this link: [password_reset_url]\n  Note: The same link has also been sent to your email address.\"\n\nSTEP 6: CONFIRMATION - After collecting all information, you MUST:\n1. Display a summary of all reservation request details to the user:\n   - Restaurant name\n   - Preferred date(s) and time range (Japan Time)\n   - Number of adults\n   - Number of children\n   - Course name\n   - Email address (highlight this for verification)\n2. Ask the user to confirm: \"Please verify the information above, especially your email address. Shall I proceed with this reservation request?\"\n3. Only call this tool AFTER the user explicitly confirms.\n\nRESERVATION REQUEST RULES:\n- Use this when check_availability returns no results\n- Allows specifying multiple preferred dates\n- Restaurant will review and approve/decline the request\n\nDATE HANDLING - CRITICAL:\n- When user says \"any day in [month]\" (e.g., \"any day in January\"), include ALL days of that month\n- When user says \"any day during [period]\" (e.g., \"any day from Jan 10-20\"), include ALL days in that range\n- When user says \"anytime in [week/period]\", include ALL days in that period\n- Do NOT arbitrarily narrow down dates - include every day the user indicated as acceptable\n- Example: \"Any day in January\" → include all 31 days (2025-01-01 to 2025-01-31)\n- Example: \"Jan 15-20 any day is fine\" → include all 6 days (2025-01-15 to 2025-01-20)\n\nThis tool internally:\n1. Verifies or creates user account (verify_or_create)\n2. Creates the reservation request\n3. Returns a payment URL for card registration\n\nThe user must open the payment_url to register their card. Payment is only charged when the restaurant approves the request.\nNote: The same payment link has also been sent to the email address provided.\nNote: This payment link is valid for 30 minutes.\n\nCRITICAL - ACCESS TOKEN HANDLING:\nThe create response contains \"data.access_token\". You MUST store this value.\nIt is required when calling get_reservation_request_status to check the request status.\nWithout the access_token, the status API will return 403 Forbidden.\n\nRESPONSE HANDLING - NEW USER CREATED (CRITICAL):\nWhen the response contains \"user.is_new_user\": true, you MUST display this message to the user:\n\"Since this email address was not registered, we have created a new TableAll account for you.\nPlease click the link below to set your password: [password_reset_url]\nNote: This link is valid for 24 hours. The same link has also been sent to your email.\"\nThis message is MANDATORY when is_new_user is true. NEVER skip this message.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "email": {
+                "type": "string",
+                "description": "User email address (always required)"
+              },
+              "first_name": {
+                "type": "string",
+                "description": "User first name / 名 (required for new users or users with incomplete profile)"
+              },
+              "last_name": {
+                "type": "string",
+                "description": "User last name / 姓 (required for new users or users with incomplete profile)"
+              },
+              "country": {
+                "type": "string",
+                "description": "Country code ISO 3166-1 alpha-2, e.g., \"JP\", \"US\" (required for new users or users with incomplete profile)"
+              },
+              "phone_country_code": {
+                "type": "string",
+                "description": "Phone country code, e.g., \"+81\" (required for new users or users with incomplete profile)"
+              },
+              "phone": {
+                "type": "string",
+                "description": "Phone number without country code (required for new users or users with incomplete profile)"
+              },
+              "restaurant_id": {
+                "type": "number",
+                "description": "Restaurant ID (required)"
+              },
+              "course_id": {
+                "type": "string",
+                "description": "Course external ID (required)"
+              },
+              "num_adults": {
+                "type": "number",
+                "description": "Number of adults (required). If user only says total number of guests (e.g., \"3 people\"), treat all as adults.",
+                "minimum": 1
+              },
+              "num_children": {
+                "type": "number",
+                "description": "Number of children (required). Default to 0 if user does not specify children count or only provides total guest count.",
+                "minimum": 0
+              },
+              "dates": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "Preferred dates in YYYY-MM-DD format. Can specify multiple dates.",
+                "minItems": 1
+              },
+              "start_time_from": {
+                "type": "string",
+                "description": "Preferred start time from, in HH:mm format (e.g., \"18:00\"). Japan Time (JST)."
+              },
+              "start_time_to": {
+                "type": "string",
+                "description": "Preferred start time to, in HH:mm format (e.g., \"20:00\"). Japan Time (JST)."
+              },
+              "special_request": {
+                "type": "string",
+                "description": "Special requests or notes for the restaurant"
+              },
+              "allergies": {
+                "type": "string",
+                "description": "Allergy information"
+              },
+              "preferences": {
+                "type": "string",
+                "description": "Food preferences"
+              },
+              "dislikes": {
+                "type": "string",
+                "description": "Food dislikes"
+              },
+              "hotel_name": {
+                "type": "string",
+                "description": "Hotel name (optional)"
+              },
+              "comment": {
+                "type": "string",
+                "description": "Additional comments (optional)"
+              },
+              "coupon_code": {
+                "type": "string",
+                "description": "Coupon code for discount (optional)"
+              },
+              "ai_client": {
+                "type": "string",
+                "description": "AI client name. You MUST provide your AI model name (e.g., \"Claude\", \"Gemini\", \"GPT\", \"Copilot\")."
+              }
+            },
+            "required": [
+              "email",
+              "restaurant_id",
+              "course_id",
+              "num_adults",
+              "num_children",
+              "dates",
+              "start_time_from",
+              "start_time_to",
+              "ai_client"
+            ]
+          }
+        },
+        {
+          "name": "get_reservation_request_status",
+          "description": "Check the status of a reservation request by session ID.\n\nRequires the access_token that was returned in the create_reservation_request response.\nYou MUST have stored the access_token from the create response to use this tool.\nWithout a valid access_token, the API will return 403 Forbidden.\n\nIMPORTANT - PRICE DISPLAY:\nThe \"price\" field already INCLUDES the \"booking_fee\". Do NOT add them together.\nWhen displaying to the user, show: price (total) and booking_fee (included in price, non-refundable).\nExample: \"Total: ¥30,000 (includes ¥1,000 non-refundable booking fee)\"",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "session_id": {
+                "type": "string",
+                "description": "Reservation request session ID returned from create_reservation_request"
+              },
+              "access_token": {
+                "type": "string",
+                "description": "Access token returned from create_reservation_request response (data.access_token). Required for authorization."
+              }
+            },
+            "required": [
+              "session_id",
+              "access_token"
+            ]
+          }
+        }
+      ],
+      "python_sdk_url": "https://mcp.tableall.com/sse",
+      "python_sdk_config": "{\"debug\": false}"
+    },
+    "source_filename": "0072.comtableallmcp_labeled.json",
+    "processed_timestamp": 1772871481,
+    "processing_mode": "gateway",
+    "rank": 73
+  }
+}

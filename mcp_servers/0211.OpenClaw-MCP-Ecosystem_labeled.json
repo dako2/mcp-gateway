@@ -1,0 +1,134 @@
+{
+  "labels": {
+    "analysis": "The MCP Server \"OpenClaw MCP Ecosystem\" provides 3 tools for development tools tasks.",
+    "reasoning": "Primary label \"Development Tools\" assigned based on tool names and descriptions.",
+    "primary_label": "Development Tools",
+    "secondary_labels": [
+      "API Integration",
+      "DevOps",
+      "Web Search & Research",
+      "Data Analysis & Processing"
+    ],
+    "custom_label": "Development Tools - OpenClaw MCP Ecosystem",
+    "is_connected": true,
+    "is_remote_tool_valid": true,
+    "featured_server": false
+  },
+  "metadata": {
+    "server_id": 211,
+    "server_name": "OpenClaw MCP Ecosystem",
+    "rank_by_usage": 212,
+    "usage_count": "10",
+    "original_file": "tools.json#211",
+    "mode": "gateway",
+    "timestamp": 1772871482,
+    "remote_server_response": {
+      "url": "https://openclaw-fortune-mcp.yagami8095.workers.dev/mcp",
+      "is_success": true,
+      "error": null,
+      "tools": [
+        {
+          "name": "get_daily_fortune",
+          "description": "Get daily horoscope and tarot card reading for a zodiac sign. Returns overall score, tarot card, love/work/money/health scores, lucky item/color/number/direction, and personalized message. Available signs: aries, taurus, gemini, cancer, leo, virgo, libra, scorpio, sagittarius, capricorn, aquarius, pisces. Also accepts Japanese names.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "sign": {
+                "type": "string",
+                "description": "Zodiac sign (e.g., aries, leo, pisces)"
+              }
+            },
+            "required": [
+              "sign"
+            ]
+          }
+        },
+        {
+          "name": "get_fortune_ranking",
+          "description": "Get today's zodiac sign ranking from 1st to 12th place with scores and tiers. Great for finding out which signs are luckiest today.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {},
+            "required": []
+          }
+        },
+        {
+          "name": "get_all_fortunes",
+          "description": "Get complete fortune data for all 12 zodiac signs including rankings, tarot cards, category scores, and lucky items. Comprehensive daily horoscope overview.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {},
+            "required": []
+          }
+        }
+      ],
+      "tool_count": 3,
+      "tool_names": [
+        "get_daily_fortune",
+        "get_fortune_ranking",
+        "get_all_fortunes"
+      ]
+    },
+    "server_info_crawled": {
+      "id": 211,
+      "name": "OpenClaw MCP Ecosystem",
+      "author": "",
+      "overview": "OpenClaw MCP Ecosystem - Development Tools MCP server with 3 tools.",
+      "repository_url": "",
+      "homepage": "https://openclaw-fortune-mcp.yagami8095.workers.dev/mcp",
+      "remote_or_local": "Remote",
+      "license": "",
+      "usage_count": "10",
+      "success_rate": "100%",
+      "tags": [
+        "development-tools"
+      ],
+      "categories": [
+        "development tools"
+      ],
+      "tools_count": 3,
+      "tools": [
+        {
+          "name": "get_daily_fortune",
+          "description": "Get daily horoscope and tarot card reading for a zodiac sign. Returns overall score, tarot card, love/work/money/health scores, lucky item/color/number/direction, and personalized message. Available signs: aries, taurus, gemini, cancer, leo, virgo, libra, scorpio, sagittarius, capricorn, aquarius, pisces. Also accepts Japanese names.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "sign": {
+                "type": "string",
+                "description": "Zodiac sign (e.g., aries, leo, pisces)"
+              }
+            },
+            "required": [
+              "sign"
+            ]
+          }
+        },
+        {
+          "name": "get_fortune_ranking",
+          "description": "Get today's zodiac sign ranking from 1st to 12th place with scores and tiers. Great for finding out which signs are luckiest today.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {},
+            "required": []
+          }
+        },
+        {
+          "name": "get_all_fortunes",
+          "description": "Get complete fortune data for all 12 zodiac signs including rankings, tarot cards, category scores, and lucky items. Comprehensive daily horoscope overview.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {},
+            "required": []
+          }
+        }
+      ],
+      "python_sdk_url": "https://openclaw-fortune-mcp.yagami8095.workers.dev/mcp",
+      "python_sdk_config": "{\"debug\": false}"
+    },
+    "source_filename": "0211.OpenClaw-MCP-Ecosystem_labeled.json",
+    "processed_timestamp": 1772871482,
+    "processing_mode": "gateway",
+    "rank": 212
+  }
+}

@@ -1,0 +1,4156 @@
+{
+  "labels": {
+    "analysis": "The MCP Server \"Skiplagged MCP\" provides 10 tools for maps & location tasks.",
+    "reasoning": "Primary label \"Maps & Location\" assigned based on tool names and descriptions.",
+    "primary_label": "Maps & Location",
+    "secondary_labels": [
+      "API Integration",
+      "Development Tools",
+      "Web Search & Research"
+    ],
+    "custom_label": "Maps & Location - Skiplagged MCP",
+    "is_connected": true,
+    "is_remote_tool_valid": true,
+    "featured_server": true
+  },
+  "metadata": {
+    "server_id": 82,
+    "server_name": "Skiplagged MCP",
+    "rank_by_usage": 83,
+    "usage_count": "360",
+    "original_file": "tools.json#82",
+    "mode": "gateway",
+    "timestamp": 1772871481,
+    "remote_server_response": {
+      "url": "https://mcp.skiplagged.com/mcp",
+      "is_success": true,
+      "error": null,
+      "tools": [
+        {
+          "name": "sk_flights_search",
+          "title": "Skiplagged Flights Search",
+          "description": "Search Skiplagged for flights between specific locations with filtering options for passengers, fare class, stops, airlines, and timing preferences",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "origin": {
+                "type": "string",
+                "description": "Departure location - prefer IATA code"
+              },
+              "destination": {
+                "type": "string",
+                "description": "Arrival location - prefer IATA code"
+              },
+              "departureDate": {
+                "type": "string",
+                "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+              },
+              "returnDate": {
+                "type": "string",
+                "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+              },
+              "limit": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 100,
+                "default": 12,
+                "description": "Maximum number of flights to return (default: 12, max: 100)"
+              },
+              "offset": {
+                "type": "integer",
+                "minimum": 0,
+                "default": 0,
+                "description": "Number of flights to skip for pagination (default: 0)"
+              },
+              "sort": {
+                "type": "string",
+                "enum": [
+                  "price",
+                  "duration",
+                  "value"
+                ],
+                "default": "value",
+                "description": "Sort flights by price (cheapest first), duration (shortest first), or value (best price/time ratio, default)"
+              },
+              "adults": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 9,
+                "default": 1,
+                "description": "Number of adult passengers (default: 1, max: 9)"
+              },
+              "children": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 8,
+                "default": 0,
+                "description": "Number of child passengers (default: 0, max: 8)"
+              },
+              "infantsLap": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 4,
+                "default": 0,
+                "description": "Number of lap infants (default: 0, max: 4)"
+              },
+              "infantsSeat": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 4,
+                "default": 0,
+                "description": "Number of seat infants (default: 0, max: 4)"
+              },
+              "fareClass": {
+                "type": "string",
+                "enum": [
+                  "basic-economy",
+                  "economy",
+                  "premium",
+                  "business",
+                  "first"
+                ],
+                "default": "economy",
+                "description": "Fare class preference (default: economy)"
+              },
+              "includeHiddenCity": {
+                "type": "boolean",
+                "default": true,
+                "description": "Include hidden city flights (default: true)"
+              },
+              "includeVirtualInterlining": {
+                "type": "boolean",
+                "default": true,
+                "description": "Include virtual interlining flights (default: true)"
+              },
+              "includeStandard": {
+                "type": "boolean",
+                "default": true,
+                "description": "Include standard flights (default: true)"
+              },
+              "maxStops": {
+                "type": "string",
+                "enum": [
+                  "none",
+                  "one",
+                  "many"
+                ],
+                "description": "Maximum number of stops (none=nonstop, one=1 stop, many=2+ stops)"
+              },
+              "preferredAirlines": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "Array of preferred airline codes (e.g., ['UA', 'DL'])"
+              },
+              "excludedAirlines": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "Array of excluded airline codes (e.g., ['F9', 'NK'])"
+              },
+              "departureTimeEarliest": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 1439,
+                "description": "Earliest departure time in minutes from midnight (0-1439)"
+              },
+              "departureTimeLatest": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 1439,
+                "description": "Latest departure time in minutes from midnight (0-1439)"
+              },
+              "arrivalTimeEarliest": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 1439,
+                "description": "Earliest arrival time in minutes from midnight (0-1439)"
+              },
+              "arrivalTimeLatest": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 1439,
+                "description": "Latest arrival time in minutes from midnight (0-1439)"
+              },
+              "maxFlightDuration": {
+                "type": "integer",
+                "minimum": 0,
+                "description": "Maximum total flight duration in minutes"
+              },
+              "maxLayoverDuration": {
+                "type": "integer",
+                "minimum": 0,
+                "description": "Maximum layover duration in minutes"
+              },
+              "departureAirports": {
+                "anyOf": [
+                  {
+                    "anyOf": [
+                      {
+                        "not": {}
+                      },
+                      {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        },
+                        "minItems": 1
+                      }
+                    ]
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "description": "Array of specific departure airport codes to include (when origin city has multiple airports)"
+              },
+              "arrivalAirports": {
+                "anyOf": [
+                  {
+                    "anyOf": [
+                      {
+                        "not": {}
+                      },
+                      {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        },
+                        "minItems": 1
+                      }
+                    ]
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "description": "Array of specific arrival airport codes to include (when destination city has multiple airports)"
+              },
+              "renderMode": {
+                "type": "string",
+                "enum": [
+                  "ui",
+                  "text"
+                ],
+                "description": "Preferred render mode for tool output (ui or text)."
+              }
+            },
+            "required": [
+              "origin",
+              "destination",
+              "departureDate"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "openWorldHint": false
+          },
+          "_meta": {
+            "openai/outputTemplate": "ui://widget/skiplagged_flights_search.html"
+          },
+          "outputSchema": {
+            "type": "object",
+            "properties": {
+              "searchUrl": {
+                "type": "string",
+                "format": "uri",
+                "description": "Complete search URL with all parameters"
+              },
+              "flights": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "const": "FlightCard"
+                    },
+                    "id": {
+                      "type": "string"
+                    },
+                    "airlines": {
+                      "type": "string"
+                    },
+                    "departure": {
+                      "type": "object",
+                      "properties": {
+                        "airport": {
+                          "type": "string"
+                        },
+                        "dateTime": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "airport",
+                        "dateTime"
+                      ],
+                      "additionalProperties": false
+                    },
+                    "arrival": {
+                      "type": "object",
+                      "properties": {
+                        "airport": {
+                          "type": "string"
+                        },
+                        "dateTime": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "airport",
+                        "dateTime"
+                      ],
+                      "additionalProperties": false
+                    },
+                    "duration": {
+                      "type": "string"
+                    },
+                    "layovers": {
+                      "type": "number"
+                    },
+                    "price": {
+                      "type": "object",
+                      "properties": {
+                        "amount": {
+                          "type": "number"
+                        },
+                        "currency": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "amount",
+                        "currency"
+                      ],
+                      "additionalProperties": false
+                    },
+                    "deepLink": {
+                      "type": "string",
+                      "format": "uri"
+                    },
+                    "attributes": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "returnFlight": {
+                      "type": "object",
+                      "properties": {
+                        "airlines": {
+                          "type": "string"
+                        },
+                        "departure": {
+                          "type": "object",
+                          "properties": {
+                            "airport": {
+                              "type": "string"
+                            },
+                            "dateTime": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "airport",
+                            "dateTime"
+                          ],
+                          "additionalProperties": false
+                        },
+                        "arrival": {
+                          "type": "object",
+                          "properties": {
+                            "airport": {
+                              "type": "string"
+                            },
+                            "dateTime": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "airport",
+                            "dateTime"
+                          ],
+                          "additionalProperties": false
+                        },
+                        "duration": {
+                          "type": "string"
+                        },
+                        "layovers": {
+                          "type": "number"
+                        },
+                        "attributes": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "required": [
+                        "airlines",
+                        "departure",
+                        "arrival",
+                        "duration"
+                      ],
+                      "additionalProperties": false
+                    },
+                    "_meta": {
+                      "type": "object",
+                      "properties": {
+                        "uiResourceType": {
+                          "type": "string",
+                          "const": "FlightCard"
+                        }
+                      },
+                      "required": [
+                        "uiResourceType"
+                      ],
+                      "additionalProperties": false
+                    }
+                  },
+                  "required": [
+                    "type",
+                    "id",
+                    "airlines",
+                    "departure",
+                    "arrival",
+                    "duration",
+                    "price",
+                    "deepLink"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "pagination": {
+                "type": "object",
+                "properties": {
+                  "totalAvailable": {
+                    "type": "integer",
+                    "description": "Total number of flights available"
+                  },
+                  "currentlyShowing": {
+                    "type": "integer",
+                    "description": "Number of flights in this result set"
+                  },
+                  "offset": {
+                    "type": "integer",
+                    "description": "Current result offset for pagination"
+                  },
+                  "limit": {
+                    "type": "integer",
+                    "description": "Maximum results per page"
+                  },
+                  "hasMoreResults": {
+                    "type": "boolean",
+                    "description": "Whether additional results are available"
+                  }
+                },
+                "required": [
+                  "totalAvailable",
+                  "currentlyShowing",
+                  "offset",
+                  "limit",
+                  "hasMoreResults"
+                ],
+                "additionalProperties": false,
+                "description": "Result pagination information"
+              }
+            },
+            "required": [
+              "searchUrl",
+              "flights",
+              "pagination"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          }
+        },
+        {
+          "name": "sk_destinations_anywhere",
+          "title": "Skiplagged Flexible Destination Search",
+          "description": "Find cheapest destinations from a departure city when flexible about where to go. Perfect for discovering travel opportunities and deals.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "from": {
+                "type": "string",
+                "description": "Departure IATA code or city name"
+              },
+              "depart": {
+                "type": "string",
+                "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+                "description": "Departure date in YYYY-MM-DD format"
+              },
+              "return": {
+                "type": "string",
+                "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+                "description": "Return date in YYYY-MM-DD format (optional for one-way trips)"
+              },
+              "fare_class": {
+                "type": "string",
+                "enum": [
+                  "basic-economy",
+                  "economy",
+                  "premium",
+                  "business",
+                  "first"
+                ],
+                "default": "economy",
+                "description": "Fare class preference"
+              },
+              "adults": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 9,
+                "default": 1,
+                "description": "Number of adult passengers"
+              },
+              "children": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 8,
+                "default": 0,
+                "description": "Number of child passengers"
+              },
+              "infantsLap": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 4,
+                "default": 0,
+                "description": "Number of lap infants"
+              },
+              "infantsSeat": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 4,
+                "default": 0,
+                "description": "Number of seat infants"
+              },
+              "renderMode": {
+                "type": "string",
+                "enum": [
+                  "ui",
+                  "text"
+                ],
+                "description": "Preferred render mode for tool output (ui or text)."
+              }
+            },
+            "required": [
+              "from",
+              "depart"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "openWorldHint": false
+          },
+          "outputSchema": {
+            "type": "object",
+            "properties": {
+              "searchUrl": {
+                "type": "string",
+                "format": "uri",
+                "description": "Complete search URL with all parameters"
+              },
+              "results": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "const": "DealCard"
+                    },
+                    "id": {
+                      "type": "string"
+                    },
+                    "destination": {
+                      "type": "object",
+                      "properties": {
+                        "city": {
+                          "type": "string"
+                        },
+                        "region": {
+                          "type": "string"
+                        },
+                        "airport": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "city",
+                        "region",
+                        "airport"
+                      ],
+                      "additionalProperties": false
+                    },
+                    "price": {
+                      "type": "object",
+                      "properties": {
+                        "amount": {
+                          "type": "number"
+                        },
+                        "currency": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "amount",
+                        "currency"
+                      ],
+                      "additionalProperties": false
+                    },
+                    "flightType": {
+                      "type": "string"
+                    },
+                    "dateRange": {
+                      "type": "string"
+                    },
+                    "tripLength": {
+                      "type": "string"
+                    },
+                    "description": {
+                      "type": "string"
+                    },
+                    "deepLink": {
+                      "type": "string",
+                      "format": "uri"
+                    },
+                    "_meta": {
+                      "type": "object",
+                      "properties": {
+                        "uiResourceType": {
+                          "type": "string",
+                          "const": "DealCard"
+                        }
+                      },
+                      "required": [
+                        "uiResourceType"
+                      ],
+                      "additionalProperties": false
+                    }
+                  },
+                  "required": [
+                    "type",
+                    "id",
+                    "destination",
+                    "price",
+                    "flightType",
+                    "deepLink"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "pagination": {
+                "type": "object",
+                "properties": {
+                  "totalAvailable": {
+                    "type": "integer",
+                    "description": "Total number of destinations available"
+                  },
+                  "currentlyShowing": {
+                    "type": "integer",
+                    "description": "Number of destinations in this result set"
+                  },
+                  "offset": {
+                    "type": "integer",
+                    "description": "Current result offset for pagination"
+                  },
+                  "limit": {
+                    "type": "integer",
+                    "description": "Maximum results per page"
+                  },
+                  "hasMoreResults": {
+                    "type": "boolean",
+                    "description": "Whether additional results are available"
+                  }
+                },
+                "required": [
+                  "totalAvailable",
+                  "currentlyShowing",
+                  "offset",
+                  "limit",
+                  "hasMoreResults"
+                ],
+                "additionalProperties": false,
+                "description": "Result pagination information"
+              }
+            },
+            "required": [
+              "searchUrl",
+              "results",
+              "pagination"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          }
+        },
+        {
+          "name": "sk_flex_departure_calendar",
+          "title": "Skiplagged One-Way Fare Calendar",
+          "description": "Generate a flexible calendar of the lowest one-way fares around a chosen departure, returning date → cheapest-price entries to help pick the best day to fly. Intended for flexible-date price discovery, not exact itinerary selection.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "origin": {
+                "type": "string",
+                "description": "Departure city name or IATA code (will be resolved to IATA code automatically)"
+              },
+              "destination": {
+                "type": "string",
+                "description": "Arrival city name or IATA code (will be resolved to IATA code automatically)"
+              },
+              "departureDate": {
+                "type": "string",
+                "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+                "description": "Preferred departure date (YYYY-MM-DD format)"
+              },
+              "returnDate": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "description": "Return date for matching trip length (optional, YYYY-MM-DD format)"
+              },
+              "sort": {
+                "type": "string",
+                "enum": [
+                  "date",
+                  "price"
+                ],
+                "default": "date",
+                "description": "Sort results chronologically or by lowest price first"
+              },
+              "adults": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 9,
+                "default": 1,
+                "description": "Number of adult passengers (default: 1, max: 9)"
+              },
+              "children": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 8,
+                "default": 0,
+                "description": "Number of child passengers (default: 0, max: 8)"
+              },
+              "infantsLap": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 4,
+                "default": 0,
+                "description": "Number of lap infants (default: 0, max: 4)"
+              },
+              "infantsSeat": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 4,
+                "default": 0,
+                "description": "Number of seat infants (default: 0, max: 4)"
+              },
+              "renderMode": {
+                "type": "string",
+                "enum": [
+                  "ui",
+                  "text"
+                ],
+                "description": "Preferred render mode for tool output (ui or text)."
+              }
+            },
+            "required": [
+              "origin",
+              "destination",
+              "departureDate"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "openWorldHint": false
+          },
+          "_meta": {
+            "openai/outputTemplate": "ui://widget/skiplagged_flex_chart.html"
+          },
+          "outputSchema": {
+            "type": "object",
+            "properties": {
+              "searchUrl": {
+                "type": "string",
+                "format": "uri",
+                "description": "Complete search URL with all parameters"
+              },
+              "origin": {
+                "type": "string",
+                "description": "Resolved origin airport code used for this search"
+              },
+              "destination": {
+                "type": "string",
+                "description": "Resolved destination airport code used for this search"
+              },
+              "mode": {
+                "type": "string",
+                "enum": [
+                  "depart",
+                  "return"
+                ],
+                "description": "Indicates whether these options vary departure dates or return dates"
+              },
+              "sort": {
+                "type": "string",
+                "enum": [
+                  "date",
+                  "price"
+                ],
+                "description": "Ordering applied to the options array"
+              },
+              "chart": {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "const": "FlexChart"
+                  },
+                  "id": {
+                    "type": "string"
+                  },
+                  "title": {
+                    "type": "string"
+                  },
+                  "subtitle": {
+                    "type": "string"
+                  },
+                  "origin": {
+                    "type": "string"
+                  },
+                  "destination": {
+                    "type": "string"
+                  },
+                  "mode": {
+                    "type": "string",
+                    "enum": [
+                      "depart",
+                      "return"
+                    ]
+                  },
+                  "sort": {
+                    "type": "string",
+                    "enum": [
+                      "date",
+                      "price"
+                    ]
+                  },
+                  "searchUrl": {
+                    "type": "string",
+                    "format": "uri"
+                  },
+                  "points": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "departure": {
+                          "type": "string"
+                        },
+                        "return": {
+                          "type": "string"
+                        },
+                        "price": {
+                          "type": "number"
+                        }
+                      },
+                      "required": [
+                        "departure",
+                        "price"
+                      ],
+                      "additionalProperties": false
+                    }
+                  },
+                  "_meta": {
+                    "type": "object",
+                    "properties": {
+                      "uiResourceType": {
+                        "type": "string",
+                        "const": "FlexChart"
+                      }
+                    },
+                    "required": [
+                      "uiResourceType"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "type",
+                  "id",
+                  "title",
+                  "origin",
+                  "destination",
+                  "mode",
+                  "sort",
+                  "searchUrl",
+                  "points"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "required": [
+              "searchUrl",
+              "origin",
+              "destination",
+              "mode",
+              "sort",
+              "chart"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          }
+        },
+        {
+          "name": "sk_flex_return_calendar",
+          "title": "Skiplagged Round-Trip Price Calendar",
+          "description": "Generate a flexible round-trip price calendar for a fixed-length stay around a chosen travel window. Returns (depart date, return date, lowest total price) entries for nearby date pairs that preserve the original trip length; intended for price discovery, not exact itinerary selection.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "origin": {
+                "type": "string",
+                "description": "Departure city name or IATA code (will be resolved to IATA code automatically)"
+              },
+              "destination": {
+                "type": "string",
+                "description": "Arrival city name or IATA code (will be resolved to IATA code automatically)"
+              },
+              "departureDate": {
+                "type": "string",
+                "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+                "description": "Preferred departure date (YYYY-MM-DD format)"
+              },
+              "returnDate": {
+                "type": "string",
+                "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+                "description": "Return date for the reference trip (YYYY-MM-DD format)"
+              },
+              "sort": {
+                "type": "string",
+                "enum": [
+                  "date",
+                  "price"
+                ],
+                "default": "date",
+                "description": "Sort results chronologically or by lowest price first"
+              },
+              "adults": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 9,
+                "default": 1,
+                "description": "Number of adult passengers (default: 1, max: 9)"
+              },
+              "children": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 8,
+                "default": 0,
+                "description": "Number of child passengers (default: 0, max: 8)"
+              },
+              "infantsLap": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 4,
+                "default": 0,
+                "description": "Number of lap infants (default: 0, max: 4)"
+              },
+              "infantsSeat": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 4,
+                "default": 0,
+                "description": "Number of seat infants (default: 0, max: 4)"
+              },
+              "renderMode": {
+                "type": "string",
+                "enum": [
+                  "ui",
+                  "text"
+                ],
+                "description": "Preferred render mode for tool output (ui or text)."
+              }
+            },
+            "required": [
+              "origin",
+              "destination",
+              "departureDate",
+              "returnDate"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "openWorldHint": false
+          },
+          "_meta": {
+            "openai/outputTemplate": "ui://widget/skiplagged_flex_chart.html"
+          },
+          "outputSchema": {
+            "type": "object",
+            "properties": {
+              "searchUrl": {
+                "type": "string",
+                "format": "uri",
+                "description": "Complete search URL with all parameters"
+              },
+              "origin": {
+                "type": "string",
+                "description": "Resolved origin airport code used for this search"
+              },
+              "destination": {
+                "type": "string",
+                "description": "Resolved destination airport code used for this search"
+              },
+              "mode": {
+                "type": "string",
+                "enum": [
+                  "depart",
+                  "return"
+                ],
+                "description": "Indicates whether these options vary departure dates or return dates"
+              },
+              "sort": {
+                "type": "string",
+                "enum": [
+                  "date",
+                  "price"
+                ],
+                "description": "Ordering applied to the options array"
+              },
+              "chart": {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "const": "FlexChart"
+                  },
+                  "id": {
+                    "type": "string"
+                  },
+                  "title": {
+                    "type": "string"
+                  },
+                  "subtitle": {
+                    "type": "string"
+                  },
+                  "origin": {
+                    "type": "string"
+                  },
+                  "destination": {
+                    "type": "string"
+                  },
+                  "mode": {
+                    "type": "string",
+                    "enum": [
+                      "depart",
+                      "return"
+                    ]
+                  },
+                  "sort": {
+                    "type": "string",
+                    "enum": [
+                      "date",
+                      "price"
+                    ]
+                  },
+                  "searchUrl": {
+                    "type": "string",
+                    "format": "uri"
+                  },
+                  "points": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "departure": {
+                          "type": "string"
+                        },
+                        "return": {
+                          "type": "string"
+                        },
+                        "price": {
+                          "type": "number"
+                        }
+                      },
+                      "required": [
+                        "departure",
+                        "price"
+                      ],
+                      "additionalProperties": false
+                    }
+                  },
+                  "_meta": {
+                    "type": "object",
+                    "properties": {
+                      "uiResourceType": {
+                        "type": "string",
+                        "const": "FlexChart"
+                      }
+                    },
+                    "required": [
+                      "uiResourceType"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "type",
+                  "id",
+                  "title",
+                  "origin",
+                  "destination",
+                  "mode",
+                  "sort",
+                  "searchUrl",
+                  "points"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "required": [
+              "searchUrl",
+              "origin",
+              "destination",
+              "mode",
+              "sort",
+              "chart"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          }
+        },
+        {
+          "name": "sk_hotels_search",
+          "title": "Skiplagged Hotel Search",
+          "description": "Search Skiplagged for hotels in a city with specific check-in and check-out dates, including ratings and pricing.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "city": {
+                "type": "string",
+                "description": "City name to search for hotels (will be matched against available cities)"
+              },
+              "checkin": {
+                "type": "string",
+                "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+                "description": "Check-in date (YYYY-MM-DD format)"
+              },
+              "checkout": {
+                "type": "string",
+                "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+                "description": "Check-out date (YYYY-MM-DD format)"
+              },
+              "limit": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 100,
+                "default": 12,
+                "description": "Maximum number of hotels to return (default: 12, max: 100)"
+              },
+              "offset": {
+                "type": "integer",
+                "minimum": 0,
+                "default": 0,
+                "description": "Number of hotels to skip for pagination (default: 0)"
+              },
+              "sort": {
+                "type": "string",
+                "enum": [
+                  "price",
+                  "ranking",
+                  "value",
+                  "discount"
+                ],
+                "default": "value",
+                "description": "Sort hotels by price (cheapest first), ranking (highest rated first), value (best value rating), or discount (best deals first, default when deals available)"
+              },
+              "numRooms": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 9,
+                "default": 1,
+                "description": "Number of rooms (default: 1, max: 9)"
+              },
+              "numAdults": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 10,
+                "default": 2,
+                "description": "Number of adults (default: 2, max: 10)"
+              },
+              "numChildren": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 10,
+                "default": 0,
+                "description": "Number of children (default: 0, max: 10)"
+              },
+              "renderMode": {
+                "type": "string",
+                "enum": [
+                  "ui",
+                  "text"
+                ],
+                "description": "Preferred render mode for tool output (ui or text)."
+              }
+            },
+            "required": [
+              "city",
+              "checkin",
+              "checkout"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "openWorldHint": false
+          },
+          "_meta": {
+            "openai/outputTemplate": "ui://widget/skiplagged_hotels_search.html"
+          },
+          "outputSchema": {
+            "type": "object",
+            "properties": {
+              "searchUrl": {
+                "type": "string",
+                "format": "uri",
+                "description": "Complete search URL with all parameters"
+              },
+              "results": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "const": "HotelCard"
+                    },
+                    "id": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "imageUrl": {
+                      "type": "string"
+                    },
+                    "rating": {
+                      "type": "object",
+                      "properties": {
+                        "stars": {
+                          "type": "number"
+                        },
+                        "text": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "stars",
+                        "text"
+                      ],
+                      "additionalProperties": false
+                    },
+                    "price": {
+                      "type": "object",
+                      "properties": {
+                        "amount": {
+                          "type": "number"
+                        },
+                        "currency": {
+                          "type": "string"
+                        },
+                        "text": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "amount",
+                        "currency",
+                        "text"
+                      ],
+                      "additionalProperties": false
+                    },
+                    "chain": {
+                      "type": "string"
+                    },
+                    "location": {
+                      "type": "string"
+                    },
+                    "amenities": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "deepLink": {
+                      "type": "string",
+                      "format": "uri"
+                    },
+                    "_meta": {
+                      "type": "object",
+                      "properties": {
+                        "uiResourceType": {
+                          "type": "string",
+                          "const": "HotelCard"
+                        }
+                      },
+                      "required": [
+                        "uiResourceType"
+                      ],
+                      "additionalProperties": false
+                    }
+                  },
+                  "required": [
+                    "type",
+                    "id",
+                    "name",
+                    "rating",
+                    "price",
+                    "chain",
+                    "location",
+                    "amenities",
+                    "deepLink"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "pagination": {
+                "type": "object",
+                "properties": {
+                  "totalAvailable": {
+                    "type": "integer",
+                    "description": "Total number of hotels available"
+                  },
+                  "currentlyShowing": {
+                    "type": "integer",
+                    "description": "Number of hotels in this result set"
+                  },
+                  "offset": {
+                    "type": "integer",
+                    "description": "Current result offset for pagination"
+                  },
+                  "limit": {
+                    "type": "integer",
+                    "description": "Maximum results per page"
+                  },
+                  "hasMoreResults": {
+                    "type": "boolean",
+                    "description": "Whether additional results are available"
+                  }
+                },
+                "required": [
+                  "totalAvailable",
+                  "currentlyShowing",
+                  "offset",
+                  "limit",
+                  "hasMoreResults"
+                ],
+                "additionalProperties": false,
+                "description": "Result pagination information"
+              }
+            },
+            "required": [
+              "searchUrl",
+              "results",
+              "pagination"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          }
+        },
+        {
+          "name": "sk_cars_search",
+          "title": "Skiplagged Car Search",
+          "description": "Search Skiplagged for rental cars between pickup and dropoff locations/dates, returning prices, companies, and car details.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "pickupLocation": {
+                "type": "string",
+                "description": "Pickup location: airport code (preferred) or \"lat,lng\""
+              },
+              "pickupDate": {
+                "type": "string",
+                "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+                "description": "Pickup date (YYYY-MM-DD)"
+              },
+              "pickupTime": {
+                "type": "string",
+                "pattern": "^\\d{2}:\\d{2}(:\\d{2})?$",
+                "default": "10:00",
+                "description": "Pickup time (HH:mm or HH:mm:ss, default 10:00)"
+              },
+              "dropoffLocation": {
+                "type": "string",
+                "description": "Dropoff location (defaults to pickup)"
+              },
+              "dropoffDate": {
+                "type": "string",
+                "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+                "description": "Dropoff date (YYYY-MM-DD)"
+              },
+              "dropoffTime": {
+                "type": "string",
+                "pattern": "^\\d{2}:\\d{2}(:\\d{2})?$",
+                "default": "10:00",
+                "description": "Dropoff time (HH:mm or HH:mm:ss, default 10:00)"
+              },
+              "limit": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 100,
+                "default": 12,
+                "description": "Maximum number of car offers to return"
+              },
+              "offset": {
+                "type": "integer",
+                "minimum": 0,
+                "default": 0,
+                "description": "Number of car offers to skip for pagination (default: 0)"
+              },
+              "renderMode": {
+                "type": "string",
+                "enum": [
+                  "ui",
+                  "text"
+                ],
+                "description": "Preferred render mode for tool output (ui or text)."
+              }
+            },
+            "required": [
+              "pickupLocation",
+              "pickupDate",
+              "dropoffDate"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "openWorldHint": false
+          },
+          "outputSchema": {
+            "type": "object",
+            "properties": {
+              "searchUrl": {
+                "type": "string",
+                "format": "uri",
+                "description": "Complete search URL with all parameters"
+              },
+              "results": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "description": "Unique contract token for booking"
+                    },
+                    "companyName": {
+                      "type": "string",
+                      "description": "Rental company name"
+                    },
+                    "companyLogoUrl": {
+                      "type": "string",
+                      "description": "Rental company logo URL"
+                    },
+                    "vehicleName": {
+                      "type": "string",
+                      "description": "Vehicle name"
+                    },
+                    "vehicleDescription": {
+                      "type": "string",
+                      "description": "Vehicle description"
+                    },
+                    "exampleVehicle": {
+                      "type": "string",
+                      "description": "Example model text"
+                    },
+                    "passengers": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "description": "Passenger capacity"
+                    },
+                    "bags": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "description": "Bag capacity"
+                    },
+                    "transmission": {
+                      "type": "string",
+                      "enum": [
+                        "Automatic",
+                        "Manual"
+                      ],
+                      "description": "Transmission type"
+                    },
+                    "unlimitedMileage": {
+                      "type": "boolean",
+                      "description": "Includes unlimited mileage"
+                    },
+                    "freeCancellation": {
+                      "type": "boolean",
+                      "description": "Free cancellation available"
+                    },
+                    "allowCancellation": {
+                      "type": "boolean",
+                      "description": "Cancellation allowed (free or fee)"
+                    },
+                    "prepaid": {
+                      "type": "boolean",
+                      "description": "Whether the rate is prepaid"
+                    },
+                    "ccRequired": {
+                      "type": "boolean",
+                      "description": "Credit card required to book"
+                    },
+                    "ageRequired": {
+                      "type": "boolean",
+                      "description": "Driver age required"
+                    },
+                    "priceCurrency": {
+                      "type": "string",
+                      "description": "Currency code (ISO-4217)"
+                    },
+                    "priceRateInDollars": {
+                      "type": "number",
+                      "description": "Per-day/quoted rate in US dollars for comparison"
+                    },
+                    "totalPriceInDollars": {
+                      "type": "number",
+                      "description": "Total rental price in US dollars"
+                    },
+                    "pickup": {
+                      "type": "object",
+                      "properties": {
+                        "airportCode": {
+                          "type": "string",
+                          "description": "Pickup/dropoff airport code"
+                        },
+                        "address": {
+                          "type": "string",
+                          "description": "Pickup/dropoff address"
+                        },
+                        "lat": {
+                          "type": "number",
+                          "description": "Latitude"
+                        },
+                        "lng": {
+                          "type": "number",
+                          "description": "Longitude"
+                        }
+                      },
+                      "additionalProperties": false,
+                      "description": "Pickup location"
+                    },
+                    "dropoff": {
+                      "type": "object",
+                      "properties": {
+                        "airportCode": {
+                          "$ref": "#/properties/results/items/properties/pickup/properties/airportCode"
+                        },
+                        "address": {
+                          "$ref": "#/properties/results/items/properties/pickup/properties/address"
+                        },
+                        "lat": {
+                          "$ref": "#/properties/results/items/properties/pickup/properties/lat"
+                        },
+                        "lng": {
+                          "$ref": "#/properties/results/items/properties/pickup/properties/lng"
+                        }
+                      },
+                      "additionalProperties": false,
+                      "description": "Dropoff location"
+                    },
+                    "bookingLink": {
+                      "type": "string",
+                      "format": "uri",
+                      "description": "Deep link to book this car using the contract token"
+                    },
+                    "source": {
+                      "type": "string",
+                      "description": "Provider/source identifier"
+                    },
+                    "tags": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      },
+                      "description": "Vehicle type tags"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "companyName",
+                    "vehicleName",
+                    "passengers",
+                    "bags",
+                    "transmission",
+                    "unlimitedMileage",
+                    "freeCancellation",
+                    "allowCancellation",
+                    "prepaid",
+                    "ccRequired",
+                    "ageRequired",
+                    "priceCurrency",
+                    "priceRateInDollars",
+                    "totalPriceInDollars",
+                    "pickup",
+                    "dropoff",
+                    "bookingLink",
+                    "source"
+                  ],
+                  "additionalProperties": false
+                },
+                "description": "Available car rental offers"
+              },
+              "pagination": {
+                "type": "object",
+                "properties": {
+                  "totalAvailable": {
+                    "type": "integer",
+                    "description": "Total number of cars available"
+                  },
+                  "currentlyShowing": {
+                    "type": "integer",
+                    "description": "Number of cars in this result set"
+                  },
+                  "offset": {
+                    "type": "integer",
+                    "description": "Current result offset for pagination"
+                  },
+                  "limit": {
+                    "type": "integer",
+                    "description": "Maximum results per page"
+                  },
+                  "hasMoreResults": {
+                    "type": "boolean",
+                    "description": "Whether additional results are available"
+                  }
+                },
+                "required": [
+                  "totalAvailable",
+                  "currentlyShowing",
+                  "offset",
+                  "limit",
+                  "hasMoreResults"
+                ],
+                "additionalProperties": false,
+                "description": "Result pagination information"
+              }
+            },
+            "required": [
+              "searchUrl",
+              "results",
+              "pagination"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          }
+        },
+        {
+          "name": "sk_hotel_details",
+          "title": "Skiplagged Hotel Details",
+          "description": "Fetch room-level availability, pricing, and amenities for a specific hotel and stay dates.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "hotelId": {
+                "type": "integer",
+                "description": "Hotel ID (from search results) to fetch detailed availability for"
+              },
+              "checkin": {
+                "type": "string",
+                "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+                "description": "Check-in date (YYYY-MM-DD format)"
+              },
+              "checkout": {
+                "type": "string",
+                "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+                "description": "Check-out date (YYYY-MM-DD format)"
+              },
+              "live": {
+                "type": "boolean",
+                "default": true,
+                "description": "Use live rates (includes booking links). Disable for faster, less accurate cached rates."
+              },
+              "numRooms": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 5,
+                "default": 1,
+                "description": "Number of rooms (default: 1, max: 5)"
+              },
+              "numAdults": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 10,
+                "default": 2,
+                "description": "Number of adults (default: 2, max: 10)"
+              },
+              "numChildren": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 10,
+                "default": 0,
+                "description": "Number of children (default: 0, max: 10)"
+              },
+              "renderMode": {
+                "type": "string",
+                "enum": [
+                  "ui",
+                  "text"
+                ],
+                "description": "Preferred render mode for tool output (ui or text)."
+              }
+            },
+            "required": [
+              "hotelId",
+              "checkin",
+              "checkout"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "openWorldHint": false
+          },
+          "outputSchema": {
+            "type": "object",
+            "properties": {
+              "hotelId": {
+                "type": "string",
+                "description": "Unique hotel identifier"
+              },
+              "imageUrl": {
+                "type": "string",
+                "description": "Hotel image URL"
+              },
+              "hotelName": {
+                "type": "string",
+                "description": "Hotel name"
+              },
+              "starRating": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 5,
+                "description": "Hotel star rating (0-5)"
+              },
+              "reviewRating": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 10,
+                "description": "Review rating (0-10)"
+              },
+              "pricePerNightInDollars": {
+                "type": "number",
+                "description": "Price per night in US dollars"
+              },
+              "totalPriceInDollars": {
+                "type": "number",
+                "description": "Total price for entire stay in US dollars"
+              },
+              "chainName": {
+                "type": "string",
+                "description": "Hotel chain name or 'Independent'"
+              },
+              "amenityNames": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "List of hotel amenities"
+              },
+              "address": {
+                "type": "string",
+                "description": "Hotel address"
+              },
+              "cityName": {
+                "type": "string",
+                "description": "City name"
+              },
+              "stateName": {
+                "type": "string",
+                "description": "State name"
+              },
+              "countryName": {
+                "type": "string",
+                "description": "Country name"
+              },
+              "bookingLink": {
+                "type": "string",
+                "format": "uri",
+                "description": "Direct booking URL for this hotel"
+              },
+              "description": {
+                "type": "string",
+                "description": "Hotel description"
+              },
+              "reviewCount": {
+                "type": "integer",
+                "description": "Number of guest reviews"
+              },
+              "checkinDate": {
+                "type": "string",
+                "description": "Check-in date for this detail search (YYYY-MM-DD)"
+              },
+              "checkoutDate": {
+                "type": "string",
+                "description": "Check-out date for this detail search (YYYY-MM-DD)"
+              },
+              "checkInTime": {
+                "type": "string",
+                "description": "Check-in time window"
+              },
+              "checkOutTime": {
+                "type": "string",
+                "description": "Check-out time window"
+              },
+              "location": {
+                "type": "object",
+                "properties": {
+                  "lat": {
+                    "type": "number",
+                    "description": "Hotel latitude"
+                  },
+                  "lng": {
+                    "type": "number",
+                    "description": "Hotel longitude"
+                  }
+                },
+                "required": [
+                  "lat",
+                  "lng"
+                ],
+                "additionalProperties": false,
+                "description": "Geographic coordinates"
+              },
+              "rooms": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "description": "Unique room/offer identifier"
+                    },
+                    "title": {
+                      "type": "string",
+                      "description": "Room name or title"
+                    },
+                    "description": {
+                      "type": "string",
+                      "description": "Short room description"
+                    },
+                    "occupancyLimit": {
+                      "type": "integer",
+                      "minimum": 1,
+                      "description": "Maximum guests allowed"
+                    },
+                    "pricePerNightInDollars": {
+                      "type": "number",
+                      "description": "Nightly price in US dollars for this room"
+                    },
+                    "totalPriceInDollars": {
+                      "type": "number",
+                      "description": "Total stay price (room + taxes/fees) in US dollars"
+                    },
+                    "taxesAndFeesInDollars": {
+                      "type": "number",
+                      "description": "Portion of total that is taxes/fees in US dollars"
+                    },
+                    "currency": {
+                      "type": "string",
+                      "description": "Price currency code (e.g., USD)"
+                    },
+                    "refundable": {
+                      "type": "boolean",
+                      "description": "Whether the room is refundable"
+                    },
+                    "freeCancellation": {
+                      "type": "boolean",
+                      "description": "Whether cancellation is free"
+                    },
+                    "amenities": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      },
+                      "description": "Room-level amenity highlights"
+                    },
+                    "bedTypes": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      },
+                      "description": "Bed configuration descriptions"
+                    },
+                    "imageUrl": {
+                      "type": "string",
+                      "description": "Representative room photo"
+                    },
+                    "bookingLink": {
+                      "type": "string",
+                      "format": "uri",
+                      "description": "Direct booking URL for this room"
+                    },
+                    "source": {
+                      "type": "string",
+                      "description": "Rate provider/source identifier"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "title",
+                    "occupancyLimit",
+                    "pricePerNightInDollars",
+                    "totalPriceInDollars",
+                    "currency",
+                    "bookingLink"
+                  ],
+                  "additionalProperties": false
+                },
+                "description": "Room offers for this search"
+              }
+            },
+            "required": [
+              "hotelId",
+              "hotelName",
+              "starRating",
+              "reviewRating",
+              "pricePerNightInDollars",
+              "chainName",
+              "amenityNames",
+              "address",
+              "bookingLink",
+              "checkinDate",
+              "checkoutDate",
+              "rooms"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          }
+        },
+        {
+          "name": "sk_faq_search",
+          "title": "Search Skiplagged FAQ",
+          "description": "Search FAQ for relevant answers about Skiplagged - company, stuff, its products, and policies. Useful for customer support and general inquiries",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "query": {
+                "type": "string",
+                "minLength": 1,
+                "description": "The search query for FAQ retrieval"
+              },
+              "top_k": {
+                "type": "integer",
+                "maximum": 5,
+                "default": 3,
+                "description": "Number of top articles to return"
+              },
+              "renderMode": {
+                "type": "string",
+                "enum": [
+                  "ui",
+                  "text"
+                ],
+                "description": "Preferred render mode for tool output (ui or text)."
+              }
+            },
+            "required": [
+              "query"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "sk_resolve_location",
+          "title": "Resolve location to airport code",
+          "description": "Resolve latitude and longitude to the IATA code of nearest airport and city information",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "lat": {
+                "type": "number",
+                "description": "latitude"
+              },
+              "lng": {
+                "type": "number",
+                "description": "longitude"
+              },
+              "renderMode": {
+                "type": "string",
+                "enum": [
+                  "ui",
+                  "text"
+                ],
+                "description": "Preferred render mode for tool output (ui or text)."
+              }
+            },
+            "required": [
+              "lat",
+              "lng"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "sk_resolve_iata",
+          "title": "Resolve city name to airport code",
+          "description": "Resolve a city name to a valid IATA code",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "input": {
+                "type": "string",
+                "description": "City name code to resolve to IATA code"
+              },
+              "renderMode": {
+                "type": "string",
+                "enum": [
+                  "ui",
+                  "text"
+                ],
+                "description": "Preferred render mode for tool output (ui or text)."
+              }
+            },
+            "required": [
+              "input"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "openWorldHint": false
+          }
+        }
+      ],
+      "tool_count": 10,
+      "tool_names": [
+        "sk_flights_search",
+        "sk_destinations_anywhere",
+        "sk_flex_departure_calendar",
+        "sk_flex_return_calendar",
+        "sk_hotels_search",
+        "sk_cars_search",
+        "sk_hotel_details",
+        "sk_faq_search",
+        "sk_resolve_location",
+        "sk_resolve_iata"
+      ]
+    },
+    "server_info_crawled": {
+      "id": 82,
+      "name": "Skiplagged MCP",
+      "author": "",
+      "overview": "Skiplagged MCP - Maps & Location MCP server with 10 tools.",
+      "repository_url": "",
+      "homepage": "https://mcp.skiplagged.com/mcp",
+      "remote_or_local": "Remote",
+      "license": "",
+      "usage_count": "360",
+      "success_rate": "100%",
+      "tags": [
+        "maps-location"
+      ],
+      "categories": [
+        "maps & location"
+      ],
+      "tools_count": 10,
+      "tools": [
+        {
+          "name": "sk_flights_search",
+          "title": "Skiplagged Flights Search",
+          "description": "Search Skiplagged for flights between specific locations with filtering options for passengers, fare class, stops, airlines, and timing preferences",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "origin": {
+                "type": "string",
+                "description": "Departure location - prefer IATA code"
+              },
+              "destination": {
+                "type": "string",
+                "description": "Arrival location - prefer IATA code"
+              },
+              "departureDate": {
+                "type": "string",
+                "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+              },
+              "returnDate": {
+                "type": "string",
+                "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+              },
+              "limit": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 100,
+                "default": 12,
+                "description": "Maximum number of flights to return (default: 12, max: 100)"
+              },
+              "offset": {
+                "type": "integer",
+                "minimum": 0,
+                "default": 0,
+                "description": "Number of flights to skip for pagination (default: 0)"
+              },
+              "sort": {
+                "type": "string",
+                "enum": [
+                  "price",
+                  "duration",
+                  "value"
+                ],
+                "default": "value",
+                "description": "Sort flights by price (cheapest first), duration (shortest first), or value (best price/time ratio, default)"
+              },
+              "adults": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 9,
+                "default": 1,
+                "description": "Number of adult passengers (default: 1, max: 9)"
+              },
+              "children": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 8,
+                "default": 0,
+                "description": "Number of child passengers (default: 0, max: 8)"
+              },
+              "infantsLap": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 4,
+                "default": 0,
+                "description": "Number of lap infants (default: 0, max: 4)"
+              },
+              "infantsSeat": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 4,
+                "default": 0,
+                "description": "Number of seat infants (default: 0, max: 4)"
+              },
+              "fareClass": {
+                "type": "string",
+                "enum": [
+                  "basic-economy",
+                  "economy",
+                  "premium",
+                  "business",
+                  "first"
+                ],
+                "default": "economy",
+                "description": "Fare class preference (default: economy)"
+              },
+              "includeHiddenCity": {
+                "type": "boolean",
+                "default": true,
+                "description": "Include hidden city flights (default: true)"
+              },
+              "includeVirtualInterlining": {
+                "type": "boolean",
+                "default": true,
+                "description": "Include virtual interlining flights (default: true)"
+              },
+              "includeStandard": {
+                "type": "boolean",
+                "default": true,
+                "description": "Include standard flights (default: true)"
+              },
+              "maxStops": {
+                "type": "string",
+                "enum": [
+                  "none",
+                  "one",
+                  "many"
+                ],
+                "description": "Maximum number of stops (none=nonstop, one=1 stop, many=2+ stops)"
+              },
+              "preferredAirlines": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "Array of preferred airline codes (e.g., ['UA', 'DL'])"
+              },
+              "excludedAirlines": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "Array of excluded airline codes (e.g., ['F9', 'NK'])"
+              },
+              "departureTimeEarliest": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 1439,
+                "description": "Earliest departure time in minutes from midnight (0-1439)"
+              },
+              "departureTimeLatest": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 1439,
+                "description": "Latest departure time in minutes from midnight (0-1439)"
+              },
+              "arrivalTimeEarliest": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 1439,
+                "description": "Earliest arrival time in minutes from midnight (0-1439)"
+              },
+              "arrivalTimeLatest": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 1439,
+                "description": "Latest arrival time in minutes from midnight (0-1439)"
+              },
+              "maxFlightDuration": {
+                "type": "integer",
+                "minimum": 0,
+                "description": "Maximum total flight duration in minutes"
+              },
+              "maxLayoverDuration": {
+                "type": "integer",
+                "minimum": 0,
+                "description": "Maximum layover duration in minutes"
+              },
+              "departureAirports": {
+                "anyOf": [
+                  {
+                    "anyOf": [
+                      {
+                        "not": {}
+                      },
+                      {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        },
+                        "minItems": 1
+                      }
+                    ]
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "description": "Array of specific departure airport codes to include (when origin city has multiple airports)"
+              },
+              "arrivalAirports": {
+                "anyOf": [
+                  {
+                    "anyOf": [
+                      {
+                        "not": {}
+                      },
+                      {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        },
+                        "minItems": 1
+                      }
+                    ]
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "description": "Array of specific arrival airport codes to include (when destination city has multiple airports)"
+              },
+              "renderMode": {
+                "type": "string",
+                "enum": [
+                  "ui",
+                  "text"
+                ],
+                "description": "Preferred render mode for tool output (ui or text)."
+              }
+            },
+            "required": [
+              "origin",
+              "destination",
+              "departureDate"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "openWorldHint": false
+          },
+          "_meta": {
+            "openai/outputTemplate": "ui://widget/skiplagged_flights_search.html"
+          },
+          "outputSchema": {
+            "type": "object",
+            "properties": {
+              "searchUrl": {
+                "type": "string",
+                "format": "uri",
+                "description": "Complete search URL with all parameters"
+              },
+              "flights": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "const": "FlightCard"
+                    },
+                    "id": {
+                      "type": "string"
+                    },
+                    "airlines": {
+                      "type": "string"
+                    },
+                    "departure": {
+                      "type": "object",
+                      "properties": {
+                        "airport": {
+                          "type": "string"
+                        },
+                        "dateTime": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "airport",
+                        "dateTime"
+                      ],
+                      "additionalProperties": false
+                    },
+                    "arrival": {
+                      "type": "object",
+                      "properties": {
+                        "airport": {
+                          "type": "string"
+                        },
+                        "dateTime": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "airport",
+                        "dateTime"
+                      ],
+                      "additionalProperties": false
+                    },
+                    "duration": {
+                      "type": "string"
+                    },
+                    "layovers": {
+                      "type": "number"
+                    },
+                    "price": {
+                      "type": "object",
+                      "properties": {
+                        "amount": {
+                          "type": "number"
+                        },
+                        "currency": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "amount",
+                        "currency"
+                      ],
+                      "additionalProperties": false
+                    },
+                    "deepLink": {
+                      "type": "string",
+                      "format": "uri"
+                    },
+                    "attributes": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "returnFlight": {
+                      "type": "object",
+                      "properties": {
+                        "airlines": {
+                          "type": "string"
+                        },
+                        "departure": {
+                          "type": "object",
+                          "properties": {
+                            "airport": {
+                              "type": "string"
+                            },
+                            "dateTime": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "airport",
+                            "dateTime"
+                          ],
+                          "additionalProperties": false
+                        },
+                        "arrival": {
+                          "type": "object",
+                          "properties": {
+                            "airport": {
+                              "type": "string"
+                            },
+                            "dateTime": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "airport",
+                            "dateTime"
+                          ],
+                          "additionalProperties": false
+                        },
+                        "duration": {
+                          "type": "string"
+                        },
+                        "layovers": {
+                          "type": "number"
+                        },
+                        "attributes": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "required": [
+                        "airlines",
+                        "departure",
+                        "arrival",
+                        "duration"
+                      ],
+                      "additionalProperties": false
+                    },
+                    "_meta": {
+                      "type": "object",
+                      "properties": {
+                        "uiResourceType": {
+                          "type": "string",
+                          "const": "FlightCard"
+                        }
+                      },
+                      "required": [
+                        "uiResourceType"
+                      ],
+                      "additionalProperties": false
+                    }
+                  },
+                  "required": [
+                    "type",
+                    "id",
+                    "airlines",
+                    "departure",
+                    "arrival",
+                    "duration",
+                    "price",
+                    "deepLink"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "pagination": {
+                "type": "object",
+                "properties": {
+                  "totalAvailable": {
+                    "type": "integer",
+                    "description": "Total number of flights available"
+                  },
+                  "currentlyShowing": {
+                    "type": "integer",
+                    "description": "Number of flights in this result set"
+                  },
+                  "offset": {
+                    "type": "integer",
+                    "description": "Current result offset for pagination"
+                  },
+                  "limit": {
+                    "type": "integer",
+                    "description": "Maximum results per page"
+                  },
+                  "hasMoreResults": {
+                    "type": "boolean",
+                    "description": "Whether additional results are available"
+                  }
+                },
+                "required": [
+                  "totalAvailable",
+                  "currentlyShowing",
+                  "offset",
+                  "limit",
+                  "hasMoreResults"
+                ],
+                "additionalProperties": false,
+                "description": "Result pagination information"
+              }
+            },
+            "required": [
+              "searchUrl",
+              "flights",
+              "pagination"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          }
+        },
+        {
+          "name": "sk_destinations_anywhere",
+          "title": "Skiplagged Flexible Destination Search",
+          "description": "Find cheapest destinations from a departure city when flexible about where to go. Perfect for discovering travel opportunities and deals.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "from": {
+                "type": "string",
+                "description": "Departure IATA code or city name"
+              },
+              "depart": {
+                "type": "string",
+                "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+                "description": "Departure date in YYYY-MM-DD format"
+              },
+              "return": {
+                "type": "string",
+                "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+                "description": "Return date in YYYY-MM-DD format (optional for one-way trips)"
+              },
+              "fare_class": {
+                "type": "string",
+                "enum": [
+                  "basic-economy",
+                  "economy",
+                  "premium",
+                  "business",
+                  "first"
+                ],
+                "default": "economy",
+                "description": "Fare class preference"
+              },
+              "adults": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 9,
+                "default": 1,
+                "description": "Number of adult passengers"
+              },
+              "children": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 8,
+                "default": 0,
+                "description": "Number of child passengers"
+              },
+              "infantsLap": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 4,
+                "default": 0,
+                "description": "Number of lap infants"
+              },
+              "infantsSeat": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 4,
+                "default": 0,
+                "description": "Number of seat infants"
+              },
+              "renderMode": {
+                "type": "string",
+                "enum": [
+                  "ui",
+                  "text"
+                ],
+                "description": "Preferred render mode for tool output (ui or text)."
+              }
+            },
+            "required": [
+              "from",
+              "depart"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "openWorldHint": false
+          },
+          "outputSchema": {
+            "type": "object",
+            "properties": {
+              "searchUrl": {
+                "type": "string",
+                "format": "uri",
+                "description": "Complete search URL with all parameters"
+              },
+              "results": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "const": "DealCard"
+                    },
+                    "id": {
+                      "type": "string"
+                    },
+                    "destination": {
+                      "type": "object",
+                      "properties": {
+                        "city": {
+                          "type": "string"
+                        },
+                        "region": {
+                          "type": "string"
+                        },
+                        "airport": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "city",
+                        "region",
+                        "airport"
+                      ],
+                      "additionalProperties": false
+                    },
+                    "price": {
+                      "type": "object",
+                      "properties": {
+                        "amount": {
+                          "type": "number"
+                        },
+                        "currency": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "amount",
+                        "currency"
+                      ],
+                      "additionalProperties": false
+                    },
+                    "flightType": {
+                      "type": "string"
+                    },
+                    "dateRange": {
+                      "type": "string"
+                    },
+                    "tripLength": {
+                      "type": "string"
+                    },
+                    "description": {
+                      "type": "string"
+                    },
+                    "deepLink": {
+                      "type": "string",
+                      "format": "uri"
+                    },
+                    "_meta": {
+                      "type": "object",
+                      "properties": {
+                        "uiResourceType": {
+                          "type": "string",
+                          "const": "DealCard"
+                        }
+                      },
+                      "required": [
+                        "uiResourceType"
+                      ],
+                      "additionalProperties": false
+                    }
+                  },
+                  "required": [
+                    "type",
+                    "id",
+                    "destination",
+                    "price",
+                    "flightType",
+                    "deepLink"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "pagination": {
+                "type": "object",
+                "properties": {
+                  "totalAvailable": {
+                    "type": "integer",
+                    "description": "Total number of destinations available"
+                  },
+                  "currentlyShowing": {
+                    "type": "integer",
+                    "description": "Number of destinations in this result set"
+                  },
+                  "offset": {
+                    "type": "integer",
+                    "description": "Current result offset for pagination"
+                  },
+                  "limit": {
+                    "type": "integer",
+                    "description": "Maximum results per page"
+                  },
+                  "hasMoreResults": {
+                    "type": "boolean",
+                    "description": "Whether additional results are available"
+                  }
+                },
+                "required": [
+                  "totalAvailable",
+                  "currentlyShowing",
+                  "offset",
+                  "limit",
+                  "hasMoreResults"
+                ],
+                "additionalProperties": false,
+                "description": "Result pagination information"
+              }
+            },
+            "required": [
+              "searchUrl",
+              "results",
+              "pagination"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          }
+        },
+        {
+          "name": "sk_flex_departure_calendar",
+          "title": "Skiplagged One-Way Fare Calendar",
+          "description": "Generate a flexible calendar of the lowest one-way fares around a chosen departure, returning date → cheapest-price entries to help pick the best day to fly. Intended for flexible-date price discovery, not exact itinerary selection.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "origin": {
+                "type": "string",
+                "description": "Departure city name or IATA code (will be resolved to IATA code automatically)"
+              },
+              "destination": {
+                "type": "string",
+                "description": "Arrival city name or IATA code (will be resolved to IATA code automatically)"
+              },
+              "departureDate": {
+                "type": "string",
+                "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+                "description": "Preferred departure date (YYYY-MM-DD format)"
+              },
+              "returnDate": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "description": "Return date for matching trip length (optional, YYYY-MM-DD format)"
+              },
+              "sort": {
+                "type": "string",
+                "enum": [
+                  "date",
+                  "price"
+                ],
+                "default": "date",
+                "description": "Sort results chronologically or by lowest price first"
+              },
+              "adults": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 9,
+                "default": 1,
+                "description": "Number of adult passengers (default: 1, max: 9)"
+              },
+              "children": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 8,
+                "default": 0,
+                "description": "Number of child passengers (default: 0, max: 8)"
+              },
+              "infantsLap": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 4,
+                "default": 0,
+                "description": "Number of lap infants (default: 0, max: 4)"
+              },
+              "infantsSeat": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 4,
+                "default": 0,
+                "description": "Number of seat infants (default: 0, max: 4)"
+              },
+              "renderMode": {
+                "type": "string",
+                "enum": [
+                  "ui",
+                  "text"
+                ],
+                "description": "Preferred render mode for tool output (ui or text)."
+              }
+            },
+            "required": [
+              "origin",
+              "destination",
+              "departureDate"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "openWorldHint": false
+          },
+          "_meta": {
+            "openai/outputTemplate": "ui://widget/skiplagged_flex_chart.html"
+          },
+          "outputSchema": {
+            "type": "object",
+            "properties": {
+              "searchUrl": {
+                "type": "string",
+                "format": "uri",
+                "description": "Complete search URL with all parameters"
+              },
+              "origin": {
+                "type": "string",
+                "description": "Resolved origin airport code used for this search"
+              },
+              "destination": {
+                "type": "string",
+                "description": "Resolved destination airport code used for this search"
+              },
+              "mode": {
+                "type": "string",
+                "enum": [
+                  "depart",
+                  "return"
+                ],
+                "description": "Indicates whether these options vary departure dates or return dates"
+              },
+              "sort": {
+                "type": "string",
+                "enum": [
+                  "date",
+                  "price"
+                ],
+                "description": "Ordering applied to the options array"
+              },
+              "chart": {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "const": "FlexChart"
+                  },
+                  "id": {
+                    "type": "string"
+                  },
+                  "title": {
+                    "type": "string"
+                  },
+                  "subtitle": {
+                    "type": "string"
+                  },
+                  "origin": {
+                    "type": "string"
+                  },
+                  "destination": {
+                    "type": "string"
+                  },
+                  "mode": {
+                    "type": "string",
+                    "enum": [
+                      "depart",
+                      "return"
+                    ]
+                  },
+                  "sort": {
+                    "type": "string",
+                    "enum": [
+                      "date",
+                      "price"
+                    ]
+                  },
+                  "searchUrl": {
+                    "type": "string",
+                    "format": "uri"
+                  },
+                  "points": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "departure": {
+                          "type": "string"
+                        },
+                        "return": {
+                          "type": "string"
+                        },
+                        "price": {
+                          "type": "number"
+                        }
+                      },
+                      "required": [
+                        "departure",
+                        "price"
+                      ],
+                      "additionalProperties": false
+                    }
+                  },
+                  "_meta": {
+                    "type": "object",
+                    "properties": {
+                      "uiResourceType": {
+                        "type": "string",
+                        "const": "FlexChart"
+                      }
+                    },
+                    "required": [
+                      "uiResourceType"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "type",
+                  "id",
+                  "title",
+                  "origin",
+                  "destination",
+                  "mode",
+                  "sort",
+                  "searchUrl",
+                  "points"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "required": [
+              "searchUrl",
+              "origin",
+              "destination",
+              "mode",
+              "sort",
+              "chart"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          }
+        },
+        {
+          "name": "sk_flex_return_calendar",
+          "title": "Skiplagged Round-Trip Price Calendar",
+          "description": "Generate a flexible round-trip price calendar for a fixed-length stay around a chosen travel window. Returns (depart date, return date, lowest total price) entries for nearby date pairs that preserve the original trip length; intended for price discovery, not exact itinerary selection.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "origin": {
+                "type": "string",
+                "description": "Departure city name or IATA code (will be resolved to IATA code automatically)"
+              },
+              "destination": {
+                "type": "string",
+                "description": "Arrival city name or IATA code (will be resolved to IATA code automatically)"
+              },
+              "departureDate": {
+                "type": "string",
+                "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+                "description": "Preferred departure date (YYYY-MM-DD format)"
+              },
+              "returnDate": {
+                "type": "string",
+                "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+                "description": "Return date for the reference trip (YYYY-MM-DD format)"
+              },
+              "sort": {
+                "type": "string",
+                "enum": [
+                  "date",
+                  "price"
+                ],
+                "default": "date",
+                "description": "Sort results chronologically or by lowest price first"
+              },
+              "adults": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 9,
+                "default": 1,
+                "description": "Number of adult passengers (default: 1, max: 9)"
+              },
+              "children": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 8,
+                "default": 0,
+                "description": "Number of child passengers (default: 0, max: 8)"
+              },
+              "infantsLap": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 4,
+                "default": 0,
+                "description": "Number of lap infants (default: 0, max: 4)"
+              },
+              "infantsSeat": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 4,
+                "default": 0,
+                "description": "Number of seat infants (default: 0, max: 4)"
+              },
+              "renderMode": {
+                "type": "string",
+                "enum": [
+                  "ui",
+                  "text"
+                ],
+                "description": "Preferred render mode for tool output (ui or text)."
+              }
+            },
+            "required": [
+              "origin",
+              "destination",
+              "departureDate",
+              "returnDate"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "openWorldHint": false
+          },
+          "_meta": {
+            "openai/outputTemplate": "ui://widget/skiplagged_flex_chart.html"
+          },
+          "outputSchema": {
+            "type": "object",
+            "properties": {
+              "searchUrl": {
+                "type": "string",
+                "format": "uri",
+                "description": "Complete search URL with all parameters"
+              },
+              "origin": {
+                "type": "string",
+                "description": "Resolved origin airport code used for this search"
+              },
+              "destination": {
+                "type": "string",
+                "description": "Resolved destination airport code used for this search"
+              },
+              "mode": {
+                "type": "string",
+                "enum": [
+                  "depart",
+                  "return"
+                ],
+                "description": "Indicates whether these options vary departure dates or return dates"
+              },
+              "sort": {
+                "type": "string",
+                "enum": [
+                  "date",
+                  "price"
+                ],
+                "description": "Ordering applied to the options array"
+              },
+              "chart": {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "const": "FlexChart"
+                  },
+                  "id": {
+                    "type": "string"
+                  },
+                  "title": {
+                    "type": "string"
+                  },
+                  "subtitle": {
+                    "type": "string"
+                  },
+                  "origin": {
+                    "type": "string"
+                  },
+                  "destination": {
+                    "type": "string"
+                  },
+                  "mode": {
+                    "type": "string",
+                    "enum": [
+                      "depart",
+                      "return"
+                    ]
+                  },
+                  "sort": {
+                    "type": "string",
+                    "enum": [
+                      "date",
+                      "price"
+                    ]
+                  },
+                  "searchUrl": {
+                    "type": "string",
+                    "format": "uri"
+                  },
+                  "points": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "departure": {
+                          "type": "string"
+                        },
+                        "return": {
+                          "type": "string"
+                        },
+                        "price": {
+                          "type": "number"
+                        }
+                      },
+                      "required": [
+                        "departure",
+                        "price"
+                      ],
+                      "additionalProperties": false
+                    }
+                  },
+                  "_meta": {
+                    "type": "object",
+                    "properties": {
+                      "uiResourceType": {
+                        "type": "string",
+                        "const": "FlexChart"
+                      }
+                    },
+                    "required": [
+                      "uiResourceType"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "type",
+                  "id",
+                  "title",
+                  "origin",
+                  "destination",
+                  "mode",
+                  "sort",
+                  "searchUrl",
+                  "points"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "required": [
+              "searchUrl",
+              "origin",
+              "destination",
+              "mode",
+              "sort",
+              "chart"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          }
+        },
+        {
+          "name": "sk_hotels_search",
+          "title": "Skiplagged Hotel Search",
+          "description": "Search Skiplagged for hotels in a city with specific check-in and check-out dates, including ratings and pricing.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "city": {
+                "type": "string",
+                "description": "City name to search for hotels (will be matched against available cities)"
+              },
+              "checkin": {
+                "type": "string",
+                "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+                "description": "Check-in date (YYYY-MM-DD format)"
+              },
+              "checkout": {
+                "type": "string",
+                "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+                "description": "Check-out date (YYYY-MM-DD format)"
+              },
+              "limit": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 100,
+                "default": 12,
+                "description": "Maximum number of hotels to return (default: 12, max: 100)"
+              },
+              "offset": {
+                "type": "integer",
+                "minimum": 0,
+                "default": 0,
+                "description": "Number of hotels to skip for pagination (default: 0)"
+              },
+              "sort": {
+                "type": "string",
+                "enum": [
+                  "price",
+                  "ranking",
+                  "value",
+                  "discount"
+                ],
+                "default": "value",
+                "description": "Sort hotels by price (cheapest first), ranking (highest rated first), value (best value rating), or discount (best deals first, default when deals available)"
+              },
+              "numRooms": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 9,
+                "default": 1,
+                "description": "Number of rooms (default: 1, max: 9)"
+              },
+              "numAdults": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 10,
+                "default": 2,
+                "description": "Number of adults (default: 2, max: 10)"
+              },
+              "numChildren": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 10,
+                "default": 0,
+                "description": "Number of children (default: 0, max: 10)"
+              },
+              "renderMode": {
+                "type": "string",
+                "enum": [
+                  "ui",
+                  "text"
+                ],
+                "description": "Preferred render mode for tool output (ui or text)."
+              }
+            },
+            "required": [
+              "city",
+              "checkin",
+              "checkout"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "openWorldHint": false
+          },
+          "_meta": {
+            "openai/outputTemplate": "ui://widget/skiplagged_hotels_search.html"
+          },
+          "outputSchema": {
+            "type": "object",
+            "properties": {
+              "searchUrl": {
+                "type": "string",
+                "format": "uri",
+                "description": "Complete search URL with all parameters"
+              },
+              "results": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "const": "HotelCard"
+                    },
+                    "id": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "imageUrl": {
+                      "type": "string"
+                    },
+                    "rating": {
+                      "type": "object",
+                      "properties": {
+                        "stars": {
+                          "type": "number"
+                        },
+                        "text": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "stars",
+                        "text"
+                      ],
+                      "additionalProperties": false
+                    },
+                    "price": {
+                      "type": "object",
+                      "properties": {
+                        "amount": {
+                          "type": "number"
+                        },
+                        "currency": {
+                          "type": "string"
+                        },
+                        "text": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "amount",
+                        "currency",
+                        "text"
+                      ],
+                      "additionalProperties": false
+                    },
+                    "chain": {
+                      "type": "string"
+                    },
+                    "location": {
+                      "type": "string"
+                    },
+                    "amenities": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "deepLink": {
+                      "type": "string",
+                      "format": "uri"
+                    },
+                    "_meta": {
+                      "type": "object",
+                      "properties": {
+                        "uiResourceType": {
+                          "type": "string",
+                          "const": "HotelCard"
+                        }
+                      },
+                      "required": [
+                        "uiResourceType"
+                      ],
+                      "additionalProperties": false
+                    }
+                  },
+                  "required": [
+                    "type",
+                    "id",
+                    "name",
+                    "rating",
+                    "price",
+                    "chain",
+                    "location",
+                    "amenities",
+                    "deepLink"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "pagination": {
+                "type": "object",
+                "properties": {
+                  "totalAvailable": {
+                    "type": "integer",
+                    "description": "Total number of hotels available"
+                  },
+                  "currentlyShowing": {
+                    "type": "integer",
+                    "description": "Number of hotels in this result set"
+                  },
+                  "offset": {
+                    "type": "integer",
+                    "description": "Current result offset for pagination"
+                  },
+                  "limit": {
+                    "type": "integer",
+                    "description": "Maximum results per page"
+                  },
+                  "hasMoreResults": {
+                    "type": "boolean",
+                    "description": "Whether additional results are available"
+                  }
+                },
+                "required": [
+                  "totalAvailable",
+                  "currentlyShowing",
+                  "offset",
+                  "limit",
+                  "hasMoreResults"
+                ],
+                "additionalProperties": false,
+                "description": "Result pagination information"
+              }
+            },
+            "required": [
+              "searchUrl",
+              "results",
+              "pagination"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          }
+        },
+        {
+          "name": "sk_cars_search",
+          "title": "Skiplagged Car Search",
+          "description": "Search Skiplagged for rental cars between pickup and dropoff locations/dates, returning prices, companies, and car details.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "pickupLocation": {
+                "type": "string",
+                "description": "Pickup location: airport code (preferred) or \"lat,lng\""
+              },
+              "pickupDate": {
+                "type": "string",
+                "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+                "description": "Pickup date (YYYY-MM-DD)"
+              },
+              "pickupTime": {
+                "type": "string",
+                "pattern": "^\\d{2}:\\d{2}(:\\d{2})?$",
+                "default": "10:00",
+                "description": "Pickup time (HH:mm or HH:mm:ss, default 10:00)"
+              },
+              "dropoffLocation": {
+                "type": "string",
+                "description": "Dropoff location (defaults to pickup)"
+              },
+              "dropoffDate": {
+                "type": "string",
+                "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+                "description": "Dropoff date (YYYY-MM-DD)"
+              },
+              "dropoffTime": {
+                "type": "string",
+                "pattern": "^\\d{2}:\\d{2}(:\\d{2})?$",
+                "default": "10:00",
+                "description": "Dropoff time (HH:mm or HH:mm:ss, default 10:00)"
+              },
+              "limit": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 100,
+                "default": 12,
+                "description": "Maximum number of car offers to return"
+              },
+              "offset": {
+                "type": "integer",
+                "minimum": 0,
+                "default": 0,
+                "description": "Number of car offers to skip for pagination (default: 0)"
+              },
+              "renderMode": {
+                "type": "string",
+                "enum": [
+                  "ui",
+                  "text"
+                ],
+                "description": "Preferred render mode for tool output (ui or text)."
+              }
+            },
+            "required": [
+              "pickupLocation",
+              "pickupDate",
+              "dropoffDate"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "openWorldHint": false
+          },
+          "outputSchema": {
+            "type": "object",
+            "properties": {
+              "searchUrl": {
+                "type": "string",
+                "format": "uri",
+                "description": "Complete search URL with all parameters"
+              },
+              "results": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "description": "Unique contract token for booking"
+                    },
+                    "companyName": {
+                      "type": "string",
+                      "description": "Rental company name"
+                    },
+                    "companyLogoUrl": {
+                      "type": "string",
+                      "description": "Rental company logo URL"
+                    },
+                    "vehicleName": {
+                      "type": "string",
+                      "description": "Vehicle name"
+                    },
+                    "vehicleDescription": {
+                      "type": "string",
+                      "description": "Vehicle description"
+                    },
+                    "exampleVehicle": {
+                      "type": "string",
+                      "description": "Example model text"
+                    },
+                    "passengers": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "description": "Passenger capacity"
+                    },
+                    "bags": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "description": "Bag capacity"
+                    },
+                    "transmission": {
+                      "type": "string",
+                      "enum": [
+                        "Automatic",
+                        "Manual"
+                      ],
+                      "description": "Transmission type"
+                    },
+                    "unlimitedMileage": {
+                      "type": "boolean",
+                      "description": "Includes unlimited mileage"
+                    },
+                    "freeCancellation": {
+                      "type": "boolean",
+                      "description": "Free cancellation available"
+                    },
+                    "allowCancellation": {
+                      "type": "boolean",
+                      "description": "Cancellation allowed (free or fee)"
+                    },
+                    "prepaid": {
+                      "type": "boolean",
+                      "description": "Whether the rate is prepaid"
+                    },
+                    "ccRequired": {
+                      "type": "boolean",
+                      "description": "Credit card required to book"
+                    },
+                    "ageRequired": {
+                      "type": "boolean",
+                      "description": "Driver age required"
+                    },
+                    "priceCurrency": {
+                      "type": "string",
+                      "description": "Currency code (ISO-4217)"
+                    },
+                    "priceRateInDollars": {
+                      "type": "number",
+                      "description": "Per-day/quoted rate in US dollars for comparison"
+                    },
+                    "totalPriceInDollars": {
+                      "type": "number",
+                      "description": "Total rental price in US dollars"
+                    },
+                    "pickup": {
+                      "type": "object",
+                      "properties": {
+                        "airportCode": {
+                          "type": "string",
+                          "description": "Pickup/dropoff airport code"
+                        },
+                        "address": {
+                          "type": "string",
+                          "description": "Pickup/dropoff address"
+                        },
+                        "lat": {
+                          "type": "number",
+                          "description": "Latitude"
+                        },
+                        "lng": {
+                          "type": "number",
+                          "description": "Longitude"
+                        }
+                      },
+                      "additionalProperties": false,
+                      "description": "Pickup location"
+                    },
+                    "dropoff": {
+                      "type": "object",
+                      "properties": {
+                        "airportCode": {
+                          "$ref": "#/properties/results/items/properties/pickup/properties/airportCode"
+                        },
+                        "address": {
+                          "$ref": "#/properties/results/items/properties/pickup/properties/address"
+                        },
+                        "lat": {
+                          "$ref": "#/properties/results/items/properties/pickup/properties/lat"
+                        },
+                        "lng": {
+                          "$ref": "#/properties/results/items/properties/pickup/properties/lng"
+                        }
+                      },
+                      "additionalProperties": false,
+                      "description": "Dropoff location"
+                    },
+                    "bookingLink": {
+                      "type": "string",
+                      "format": "uri",
+                      "description": "Deep link to book this car using the contract token"
+                    },
+                    "source": {
+                      "type": "string",
+                      "description": "Provider/source identifier"
+                    },
+                    "tags": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      },
+                      "description": "Vehicle type tags"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "companyName",
+                    "vehicleName",
+                    "passengers",
+                    "bags",
+                    "transmission",
+                    "unlimitedMileage",
+                    "freeCancellation",
+                    "allowCancellation",
+                    "prepaid",
+                    "ccRequired",
+                    "ageRequired",
+                    "priceCurrency",
+                    "priceRateInDollars",
+                    "totalPriceInDollars",
+                    "pickup",
+                    "dropoff",
+                    "bookingLink",
+                    "source"
+                  ],
+                  "additionalProperties": false
+                },
+                "description": "Available car rental offers"
+              },
+              "pagination": {
+                "type": "object",
+                "properties": {
+                  "totalAvailable": {
+                    "type": "integer",
+                    "description": "Total number of cars available"
+                  },
+                  "currentlyShowing": {
+                    "type": "integer",
+                    "description": "Number of cars in this result set"
+                  },
+                  "offset": {
+                    "type": "integer",
+                    "description": "Current result offset for pagination"
+                  },
+                  "limit": {
+                    "type": "integer",
+                    "description": "Maximum results per page"
+                  },
+                  "hasMoreResults": {
+                    "type": "boolean",
+                    "description": "Whether additional results are available"
+                  }
+                },
+                "required": [
+                  "totalAvailable",
+                  "currentlyShowing",
+                  "offset",
+                  "limit",
+                  "hasMoreResults"
+                ],
+                "additionalProperties": false,
+                "description": "Result pagination information"
+              }
+            },
+            "required": [
+              "searchUrl",
+              "results",
+              "pagination"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          }
+        },
+        {
+          "name": "sk_hotel_details",
+          "title": "Skiplagged Hotel Details",
+          "description": "Fetch room-level availability, pricing, and amenities for a specific hotel and stay dates.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "hotelId": {
+                "type": "integer",
+                "description": "Hotel ID (from search results) to fetch detailed availability for"
+              },
+              "checkin": {
+                "type": "string",
+                "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+                "description": "Check-in date (YYYY-MM-DD format)"
+              },
+              "checkout": {
+                "type": "string",
+                "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+                "description": "Check-out date (YYYY-MM-DD format)"
+              },
+              "live": {
+                "type": "boolean",
+                "default": true,
+                "description": "Use live rates (includes booking links). Disable for faster, less accurate cached rates."
+              },
+              "numRooms": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 5,
+                "default": 1,
+                "description": "Number of rooms (default: 1, max: 5)"
+              },
+              "numAdults": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 10,
+                "default": 2,
+                "description": "Number of adults (default: 2, max: 10)"
+              },
+              "numChildren": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 10,
+                "default": 0,
+                "description": "Number of children (default: 0, max: 10)"
+              },
+              "renderMode": {
+                "type": "string",
+                "enum": [
+                  "ui",
+                  "text"
+                ],
+                "description": "Preferred render mode for tool output (ui or text)."
+              }
+            },
+            "required": [
+              "hotelId",
+              "checkin",
+              "checkout"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "openWorldHint": false
+          },
+          "outputSchema": {
+            "type": "object",
+            "properties": {
+              "hotelId": {
+                "type": "string",
+                "description": "Unique hotel identifier"
+              },
+              "imageUrl": {
+                "type": "string",
+                "description": "Hotel image URL"
+              },
+              "hotelName": {
+                "type": "string",
+                "description": "Hotel name"
+              },
+              "starRating": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 5,
+                "description": "Hotel star rating (0-5)"
+              },
+              "reviewRating": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 10,
+                "description": "Review rating (0-10)"
+              },
+              "pricePerNightInDollars": {
+                "type": "number",
+                "description": "Price per night in US dollars"
+              },
+              "totalPriceInDollars": {
+                "type": "number",
+                "description": "Total price for entire stay in US dollars"
+              },
+              "chainName": {
+                "type": "string",
+                "description": "Hotel chain name or 'Independent'"
+              },
+              "amenityNames": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "List of hotel amenities"
+              },
+              "address": {
+                "type": "string",
+                "description": "Hotel address"
+              },
+              "cityName": {
+                "type": "string",
+                "description": "City name"
+              },
+              "stateName": {
+                "type": "string",
+                "description": "State name"
+              },
+              "countryName": {
+                "type": "string",
+                "description": "Country name"
+              },
+              "bookingLink": {
+                "type": "string",
+                "format": "uri",
+                "description": "Direct booking URL for this hotel"
+              },
+              "description": {
+                "type": "string",
+                "description": "Hotel description"
+              },
+              "reviewCount": {
+                "type": "integer",
+                "description": "Number of guest reviews"
+              },
+              "checkinDate": {
+                "type": "string",
+                "description": "Check-in date for this detail search (YYYY-MM-DD)"
+              },
+              "checkoutDate": {
+                "type": "string",
+                "description": "Check-out date for this detail search (YYYY-MM-DD)"
+              },
+              "checkInTime": {
+                "type": "string",
+                "description": "Check-in time window"
+              },
+              "checkOutTime": {
+                "type": "string",
+                "description": "Check-out time window"
+              },
+              "location": {
+                "type": "object",
+                "properties": {
+                  "lat": {
+                    "type": "number",
+                    "description": "Hotel latitude"
+                  },
+                  "lng": {
+                    "type": "number",
+                    "description": "Hotel longitude"
+                  }
+                },
+                "required": [
+                  "lat",
+                  "lng"
+                ],
+                "additionalProperties": false,
+                "description": "Geographic coordinates"
+              },
+              "rooms": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "description": "Unique room/offer identifier"
+                    },
+                    "title": {
+                      "type": "string",
+                      "description": "Room name or title"
+                    },
+                    "description": {
+                      "type": "string",
+                      "description": "Short room description"
+                    },
+                    "occupancyLimit": {
+                      "type": "integer",
+                      "minimum": 1,
+                      "description": "Maximum guests allowed"
+                    },
+                    "pricePerNightInDollars": {
+                      "type": "number",
+                      "description": "Nightly price in US dollars for this room"
+                    },
+                    "totalPriceInDollars": {
+                      "type": "number",
+                      "description": "Total stay price (room + taxes/fees) in US dollars"
+                    },
+                    "taxesAndFeesInDollars": {
+                      "type": "number",
+                      "description": "Portion of total that is taxes/fees in US dollars"
+                    },
+                    "currency": {
+                      "type": "string",
+                      "description": "Price currency code (e.g., USD)"
+                    },
+                    "refundable": {
+                      "type": "boolean",
+                      "description": "Whether the room is refundable"
+                    },
+                    "freeCancellation": {
+                      "type": "boolean",
+                      "description": "Whether cancellation is free"
+                    },
+                    "amenities": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      },
+                      "description": "Room-level amenity highlights"
+                    },
+                    "bedTypes": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      },
+                      "description": "Bed configuration descriptions"
+                    },
+                    "imageUrl": {
+                      "type": "string",
+                      "description": "Representative room photo"
+                    },
+                    "bookingLink": {
+                      "type": "string",
+                      "format": "uri",
+                      "description": "Direct booking URL for this room"
+                    },
+                    "source": {
+                      "type": "string",
+                      "description": "Rate provider/source identifier"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "title",
+                    "occupancyLimit",
+                    "pricePerNightInDollars",
+                    "totalPriceInDollars",
+                    "currency",
+                    "bookingLink"
+                  ],
+                  "additionalProperties": false
+                },
+                "description": "Room offers for this search"
+              }
+            },
+            "required": [
+              "hotelId",
+              "hotelName",
+              "starRating",
+              "reviewRating",
+              "pricePerNightInDollars",
+              "chainName",
+              "amenityNames",
+              "address",
+              "bookingLink",
+              "checkinDate",
+              "checkoutDate",
+              "rooms"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          }
+        },
+        {
+          "name": "sk_faq_search",
+          "title": "Search Skiplagged FAQ",
+          "description": "Search FAQ for relevant answers about Skiplagged - company, stuff, its products, and policies. Useful for customer support and general inquiries",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "query": {
+                "type": "string",
+                "minLength": 1,
+                "description": "The search query for FAQ retrieval"
+              },
+              "top_k": {
+                "type": "integer",
+                "maximum": 5,
+                "default": 3,
+                "description": "Number of top articles to return"
+              },
+              "renderMode": {
+                "type": "string",
+                "enum": [
+                  "ui",
+                  "text"
+                ],
+                "description": "Preferred render mode for tool output (ui or text)."
+              }
+            },
+            "required": [
+              "query"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "sk_resolve_location",
+          "title": "Resolve location to airport code",
+          "description": "Resolve latitude and longitude to the IATA code of nearest airport and city information",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "lat": {
+                "type": "number",
+                "description": "latitude"
+              },
+              "lng": {
+                "type": "number",
+                "description": "longitude"
+              },
+              "renderMode": {
+                "type": "string",
+                "enum": [
+                  "ui",
+                  "text"
+                ],
+                "description": "Preferred render mode for tool output (ui or text)."
+              }
+            },
+            "required": [
+              "lat",
+              "lng"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "sk_resolve_iata",
+          "title": "Resolve city name to airport code",
+          "description": "Resolve a city name to a valid IATA code",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "input": {
+                "type": "string",
+                "description": "City name code to resolve to IATA code"
+              },
+              "renderMode": {
+                "type": "string",
+                "enum": [
+                  "ui",
+                  "text"
+                ],
+                "description": "Preferred render mode for tool output (ui or text)."
+              }
+            },
+            "required": [
+              "input"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "openWorldHint": false
+          }
+        }
+      ],
+      "python_sdk_url": "https://mcp.skiplagged.com/mcp",
+      "python_sdk_config": "{\"debug\": false}"
+    },
+    "source_filename": "0082.Skiplagged-MCP_labeled.json",
+    "processed_timestamp": 1772871481,
+    "processing_mode": "gateway",
+    "rank": 83
+  }
+}

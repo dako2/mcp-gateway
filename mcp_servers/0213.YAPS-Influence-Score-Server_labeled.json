@@ -1,0 +1,161 @@
+{
+  "labels": {
+    "analysis": "The MCP Server \"YAPS Influence Score Server\" provides 3 tools for gaming tasks.",
+    "reasoning": "Primary label \"Gaming\" assigned based on tool names and descriptions.",
+    "primary_label": "Gaming",
+    "secondary_labels": [
+      "Entertainment",
+      "AI/ML Tools",
+      "Productivity"
+    ],
+    "custom_label": "Gaming - YAPS Influence Score Server",
+    "is_connected": true,
+    "is_remote_tool_valid": true,
+    "featured_server": false
+  },
+  "metadata": {
+    "server_id": 213,
+    "server_name": "YAPS Influence Score Server",
+    "rank_by_usage": 214,
+    "usage_count": "10",
+    "original_file": "tools.json#213",
+    "mode": "gateway",
+    "timestamp": 1772871482,
+    "remote_server_response": {
+      "url": "https://server.smithery.ai/@degenpilot404/yap_mcp/mcp",
+      "is_success": true,
+      "error": null,
+      "tools": [
+        {
+          "name": "get_yaps_score",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "username": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "required": [
+              "username"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          }
+        },
+        {
+          "name": "compare_scores",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "username_a": {
+                "type": "string",
+                "minLength": 1
+              },
+              "username_b": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "required": [
+              "username_a",
+              "username_b"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          }
+        },
+        {
+          "name": "leaderboard_today",
+          "inputSchema": {
+            "type": "object",
+            "properties": {},
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          }
+        }
+      ],
+      "tool_count": 3,
+      "tool_names": [
+        "get_yaps_score",
+        "compare_scores",
+        "leaderboard_today"
+      ]
+    },
+    "server_info_crawled": {
+      "id": 213,
+      "name": "YAPS Influence Score Server",
+      "author": "",
+      "overview": "YAPS Influence Score Server - Gaming MCP server with 3 tools.",
+      "repository_url": "",
+      "homepage": "https://server.smithery.ai/@degenpilot404/yap_mcp/mcp",
+      "remote_or_local": "Remote",
+      "license": "",
+      "usage_count": "10",
+      "success_rate": "100%",
+      "tags": [
+        "gaming"
+      ],
+      "categories": [
+        "gaming"
+      ],
+      "tools_count": 3,
+      "tools": [
+        {
+          "name": "get_yaps_score",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "username": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "required": [
+              "username"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          }
+        },
+        {
+          "name": "compare_scores",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "username_a": {
+                "type": "string",
+                "minLength": 1
+              },
+              "username_b": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "required": [
+              "username_a",
+              "username_b"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          }
+        },
+        {
+          "name": "leaderboard_today",
+          "inputSchema": {
+            "type": "object",
+            "properties": {},
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          }
+        }
+      ],
+      "python_sdk_url": "https://server.smithery.ai/@degenpilot404/yap_mcp/mcp",
+      "python_sdk_config": "{\"debug\": false}"
+    },
+    "source_filename": "0213.YAPS-Influence-Score-Server_labeled.json",
+    "processed_timestamp": 1772871482,
+    "processing_mode": "gateway",
+    "rank": 214
+  }
+}

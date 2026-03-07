@@ -1,0 +1,1123 @@
+{
+  "labels": {
+    "analysis": "The MCP Server \"io.github.klever-io/mcp-klever-vm\" provides 16 tools for development tools tasks.",
+    "reasoning": "Primary label \"Development Tools\" assigned based on tool names and descriptions.",
+    "primary_label": "Development Tools",
+    "secondary_labels": [
+      "API Integration",
+      "DevOps",
+      "Cryptocurrency & Blockchain",
+      "Web Search & Research"
+    ],
+    "custom_label": "Development Tools - io.github.klever-io/mcp-klever-vm",
+    "is_connected": true,
+    "is_remote_tool_valid": true,
+    "featured_server": true
+  },
+  "metadata": {
+    "server_id": 57,
+    "server_name": "io.github.klever-io/mcp-klever-vm",
+    "rank_by_usage": 58,
+    "usage_count": "1,290",
+    "original_file": "tools.json#57",
+    "mode": "gateway",
+    "timestamp": 1772871481,
+    "remote_server_response": {
+      "url": "https://mcp.klever.org/mcp",
+      "is_success": true,
+      "error": null,
+      "tools": [
+        {
+          "name": "query_context",
+          "description": "Search the Klever VM knowledge base for smart contract development context. Returns structured JSON with matching entries, scores, and pagination. Use this for precise filtering by type or tags; use search_documentation for human-readable \"how do I...\" answers.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "query": {
+                "type": "string",
+                "description": "Free-text search query. Use Klever-specific terms for best results (e.g. \"storage mapper SingleValueMapper\", \"payable endpoint KLV\", \"deploy contract testnet\")."
+              },
+              "types": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "enum": [
+                    "code_example",
+                    "best_practice",
+                    "security_tip",
+                    "optimization",
+                    "documentation",
+                    "error_pattern",
+                    "deployment_tool",
+                    "runtime_behavior"
+                  ]
+                },
+                "description": "Filter results by context type. Omit to search all types. Common combinations: [\"code_example\", \"documentation\"] for learning, [\"error_pattern\"] for debugging, [\"security_tip\", \"best_practice\"] for reviews."
+              },
+              "tags": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "Filter by tags (e.g. [\"storage\", \"mapper\"], [\"tokens\", \"KLV\"], [\"events\"]). Tags are matched with OR logic — any matching tag includes the entry."
+              },
+              "contractType": {
+                "type": "string",
+                "description": "Filter by contract type (e.g. \"token\", \"nft\", \"defi\", \"dao\"). Only returns entries tagged for this contract category."
+              },
+              "limit": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 100,
+                "default": 10,
+                "description": "Maximum number of results to return (1-100). Default: 10."
+              },
+              "offset": {
+                "type": "integer",
+                "minimum": 0,
+                "default": 0,
+                "description": "Number of results to skip for pagination. Use with limit to page through results. Default: 0."
+              }
+            }
+          },
+          "annotations": {
+            "title": "Query Knowledge Base",
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "get_context",
+          "description": "Retrieve a single knowledge base entry by its unique ID. Returns the full entry including content, metadata, tags, and related context IDs. Use this after query_context or find_similar to get complete details for a specific entry.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "description": "The unique context ID (UUID format). Obtain IDs from query_context or find_similar results."
+              }
+            },
+            "required": [
+              "id"
+            ]
+          },
+          "annotations": {
+            "title": "Get Context by ID",
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "find_similar",
+          "description": "Find knowledge base entries similar to a given entry by comparing tags and content. Returns related contexts ranked by similarity score. Useful for discovering related patterns, examples, or documentation after finding one relevant entry.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "description": "The context ID to find similar entries for. Obtain from query_context or get_context results."
+              },
+              "limit": {
+                "type": "integer",
+                "minimum": 1,
+                "default": 5,
+                "description": "Maximum number of similar entries to return. Typical range is 1-20; higher values may be slower. Default: 5."
+              }
+            },
+            "required": [
+              "id"
+            ]
+          },
+          "annotations": {
+            "title": "Find Similar Contexts",
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "get_knowledge_stats",
+          "description": "Get summary statistics of the Klever VM knowledge base. Returns total entry count, counts broken down by context type (code_example, best_practice, security_tip, etc.), and a sample entry title for each type. Useful for understanding what knowledge is available before querying.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {}
+          },
+          "annotations": {
+            "title": "Knowledge Base Stats",
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "enhance_with_context",
+          "description": "Augment a natural-language query with relevant Klever VM knowledge base context. Extracts Klever-specific keywords, finds matching entries, and returns the original query combined with relevant code examples and documentation in markdown. Use this to enrich a user prompt before answering Klever development questions.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "query": {
+                "type": "string",
+                "description": "The user's natural-language question or prompt to enhance (e.g. \"How do I handle KLV payments in my contract?\")."
+              },
+              "autoInclude": {
+                "type": "boolean",
+                "default": true,
+                "description": "When true (default), automatically appends the most relevant knowledge base entries to the response. Set to false to only return metadata without injecting context."
+              }
+            },
+            "required": [
+              "query"
+            ]
+          },
+          "annotations": {
+            "title": "Enhance Query with Context",
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "search_documentation",
+          "description": "Search Klever VM documentation and knowledge base. Returns human-readable markdown with titles, descriptions, and code snippets. Optimized for \"how do I...\" questions. Use this instead of query_context when you need formatted developer documentation.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "query": {
+                "type": "string",
+                "description": "Search query in natural language (e.g. \"how to use storage mappers\", \"deploy contract to testnet\", \"handle KDA token transfers\")."
+              },
+              "category": {
+                "type": "string",
+                "enum": [
+                  "core",
+                  "storage",
+                  "events",
+                  "tokens",
+                  "modules",
+                  "tools",
+                  "scripts",
+                  "examples",
+                  "errors",
+                  "best-practices",
+                  "documentation"
+                ],
+                "description": "Narrow results to a specific knowledge category. Available: core, storage, events, tokens, modules, tools, scripts, examples, errors, best-practices, documentation."
+              }
+            },
+            "required": [
+              "query"
+            ]
+          },
+          "annotations": {
+            "title": "Search Documentation",
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "analyze_contract",
+          "description": "Analyze Klever smart contract Rust source code for common issues. Checks for missing imports, missing #[klever_sc::contract] macro, missing endpoint annotations, payable handlers without call_value usage, storage mappers without #[storage_mapper], and missing event definitions. Returns findings with severity (error/warning/info) and links to relevant knowledge base entries.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "sourceCode": {
+                "type": "string",
+                "description": "The full Rust source code of the Klever smart contract to analyze. Must be valid Rust code using klever_sc imports."
+              },
+              "contractName": {
+                "type": "string",
+                "description": "Human-readable name for the contract (used in output labeling). Defaults to \"contract\" if omitted."
+              }
+            },
+            "required": [
+              "sourceCode"
+            ]
+          },
+          "annotations": {
+            "title": "Analyze Contract",
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "get_balance",
+          "description": "Get the KLV or KDA token balance for a Klever blockchain address. Returns the balance in the smallest unit (for KLV: 1 KLV = 1,000,000 units with 6 decimal places). Optionally specify an asset ID to query a specific KDA token balance instead of KLV.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "address": {
+                "type": "string",
+                "description": "Klever address (klv1... bech32 format)."
+              },
+              "assetId": {
+                "type": "string",
+                "description": "Optional KDA token ID (e.g. \"USDT-A1B2\", \"LPKLVKFI-3I0N\"). Omit for KLV balance."
+              },
+              "network": {
+                "type": "string",
+                "enum": [
+                  "mainnet",
+                  "testnet",
+                  "devnet",
+                  "local"
+                ],
+                "description": "Network to query. Options: \"mainnet\", \"testnet\", \"devnet\", \"local\". Defaults to server default (mainnet)."
+              }
+            },
+            "required": [
+              "address"
+            ]
+          },
+          "annotations": {
+            "title": "Get Balance",
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": true
+          }
+        },
+        {
+          "name": "get_account",
+          "description": "Get full account details for a Klever blockchain address including nonce, balance, frozen balance, allowance, and permissions. Use this when you need comprehensive account state beyond just the balance.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "address": {
+                "type": "string",
+                "description": "Klever address (klv1... bech32 format)."
+              },
+              "network": {
+                "type": "string",
+                "enum": [
+                  "mainnet",
+                  "testnet",
+                  "devnet",
+                  "local"
+                ],
+                "description": "Network to query. Options: \"mainnet\", \"testnet\", \"devnet\", \"local\". Defaults to server default (mainnet)."
+              }
+            },
+            "required": [
+              "address"
+            ]
+          },
+          "annotations": {
+            "title": "Get Account",
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": true
+          }
+        },
+        {
+          "name": "get_asset_info",
+          "description": "Get complete properties and configuration for any asset on the Klever blockchain (KLV, KFI, KDA tokens, NFT collections). Returns supply info, permissions (CanMint, CanBurn, etc.), roles, precision, and metadata. Note: string fields like ID, Name, Ticker are base64-encoded in the raw response.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "assetId": {
+                "type": "string",
+                "description": "Asset identifier (e.g. \"KLV\", \"KFI\", \"USDT-A1B2\", \"MYNFT-XY78\")."
+              },
+              "network": {
+                "type": "string",
+                "enum": [
+                  "mainnet",
+                  "testnet",
+                  "devnet",
+                  "local"
+                ],
+                "description": "Network to query. Options: \"mainnet\", \"testnet\", \"devnet\", \"local\". Defaults to server default (mainnet)."
+              }
+            },
+            "required": [
+              "assetId"
+            ]
+          },
+          "annotations": {
+            "title": "Get Asset Info",
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": true
+          }
+        },
+        {
+          "name": "query_sc",
+          "description": "Execute a read-only query against a Klever smart contract (VM view call). Returns the contract function result as base64-encoded return data. Arguments must be base64-encoded. Use this to read contract state without modifying it.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "scAddress": {
+                "type": "string",
+                "description": "Smart contract address (klv1... bech32 format)."
+              },
+              "funcName": {
+                "type": "string",
+                "description": "Function name to call (must be a #[view] function on the contract)."
+              },
+              "args": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "Optional base64-encoded arguments. For addresses, encode the hex-decoded bech32 bytes. For numbers, use big-endian byte encoding."
+              },
+              "caller": {
+                "type": "string",
+                "description": "Optional caller address (klv1... bech32 format). Some view functions use the caller to look up address-keyed storage mappers."
+              },
+              "network": {
+                "type": "string",
+                "enum": [
+                  "mainnet",
+                  "testnet",
+                  "devnet",
+                  "local"
+                ],
+                "description": "Network to query. Options: \"mainnet\", \"testnet\", \"devnet\", \"local\". Defaults to server default (mainnet)."
+              }
+            },
+            "required": [
+              "scAddress",
+              "funcName"
+            ]
+          },
+          "annotations": {
+            "title": "Query Smart Contract",
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": true
+          }
+        },
+        {
+          "name": "get_transaction",
+          "description": "Get transaction details by hash from the Klever blockchain. Returns sender, receiver, status, block info, contracts, and receipts. Uses the API proxy for indexed data.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "hash": {
+                "type": "string",
+                "description": "Transaction hash (hex string)."
+              },
+              "network": {
+                "type": "string",
+                "enum": [
+                  "mainnet",
+                  "testnet",
+                  "devnet",
+                  "local"
+                ],
+                "description": "Network to query. Options: \"mainnet\", \"testnet\", \"devnet\", \"local\". Defaults to server default (mainnet)."
+              }
+            },
+            "required": [
+              "hash"
+            ]
+          },
+          "annotations": {
+            "title": "Get Transaction",
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": true
+          }
+        },
+        {
+          "name": "get_block",
+          "description": "Get block information from the Klever blockchain by nonce (block number). If no nonce is provided, returns the latest block. Returns hash, timestamp, proposer, number of transactions, and other block metadata.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "nonce": {
+                "type": "integer",
+                "minimum": 0,
+                "description": "Block number (nonce). Omit to get the latest block."
+              },
+              "network": {
+                "type": "string",
+                "enum": [
+                  "mainnet",
+                  "testnet",
+                  "devnet",
+                  "local"
+                ],
+                "description": "Network to query. Options: \"mainnet\", \"testnet\", \"devnet\", \"local\". Defaults to server default (mainnet)."
+              }
+            }
+          },
+          "annotations": {
+            "title": "Get Block",
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": true
+          }
+        },
+        {
+          "name": "list_validators",
+          "description": "List active validators on the Klever blockchain network. Returns validator addresses, names, commission rates, delegation info, and staking amounts.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "network": {
+                "type": "string",
+                "enum": [
+                  "mainnet",
+                  "testnet",
+                  "devnet",
+                  "local"
+                ],
+                "description": "Network to query. Options: \"mainnet\", \"testnet\", \"devnet\", \"local\". Defaults to server default (mainnet)."
+              }
+            }
+          },
+          "annotations": {
+            "title": "List Validators",
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": true
+          }
+        },
+        {
+          "name": "init_klever_project",
+          "description": "Scaffold a new Klever smart contract project using the SDK. Creates the Rust project structure via `ksc new` and generates automation scripts (build, deploy, upgrade, query, test, interact). Requires Klever SDK installed at ~/klever-sdk/. Run check_sdk_status first to verify. NOTE: In public profile, this tool returns a project template JSON and does not perform any filesystem changes.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "The contract project name in kebab-case (e.g. \"my-token\", \"nft-marketplace\"). Used as the Cargo package name and directory name."
+              },
+              "template": {
+                "type": "string",
+                "enum": [
+                  "empty",
+                  "adder"
+                ],
+                "description": "Project template to scaffold from. \"empty\" creates a blank contract with just an init function. \"adder\" creates a simple counter example. Default: \"empty\".",
+                "default": "empty"
+              },
+              "noMove": {
+                "type": "boolean",
+                "description": "When true, keeps the project in the SDK output directory instead of moving it to the current working directory. Default: false.",
+                "default": false
+              }
+            },
+            "required": [
+              "name"
+            ]
+          },
+          "annotations": {
+            "title": "Initialize Klever Project",
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "add_helper_scripts",
+          "description": "Add build, deploy, upgrade, query, test, and interact automation scripts to an existing Klever smart contract project. Creates a scripts/ directory with bash scripts and updates .gitignore. Run this from the project root directory (where Cargo.toml is located). NOTE: In public profile, this tool returns a project template JSON and does not perform any filesystem changes.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "contractName": {
+                "type": "string",
+                "description": "The contract name to embed in scripts (e.g. \"my-token\"). If omitted, auto-detected from the `name` field in Cargo.toml."
+              }
+            }
+          },
+          "annotations": {
+            "title": "Add Helper Scripts",
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        }
+      ],
+      "tool_count": 16,
+      "tool_names": [
+        "query_context",
+        "get_context",
+        "find_similar",
+        "get_knowledge_stats",
+        "enhance_with_context",
+        "search_documentation",
+        "analyze_contract",
+        "get_balance",
+        "get_account",
+        "get_asset_info",
+        "query_sc",
+        "get_transaction",
+        "get_block",
+        "list_validators",
+        "init_klever_project",
+        "add_helper_scripts"
+      ]
+    },
+    "server_info_crawled": {
+      "id": 57,
+      "name": "io.github.klever-io/mcp-klever-vm",
+      "author": "",
+      "overview": "io.github.klever-io/mcp-klever-vm - Development Tools MCP server with 16 tools.",
+      "repository_url": "",
+      "homepage": "https://mcp.klever.org/mcp",
+      "remote_or_local": "Remote",
+      "license": "",
+      "usage_count": "1,290",
+      "success_rate": "100%",
+      "tags": [
+        "development-tools"
+      ],
+      "categories": [
+        "development tools"
+      ],
+      "tools_count": 16,
+      "tools": [
+        {
+          "name": "query_context",
+          "description": "Search the Klever VM knowledge base for smart contract development context. Returns structured JSON with matching entries, scores, and pagination. Use this for precise filtering by type or tags; use search_documentation for human-readable \"how do I...\" answers.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "query": {
+                "type": "string",
+                "description": "Free-text search query. Use Klever-specific terms for best results (e.g. \"storage mapper SingleValueMapper\", \"payable endpoint KLV\", \"deploy contract testnet\")."
+              },
+              "types": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "enum": [
+                    "code_example",
+                    "best_practice",
+                    "security_tip",
+                    "optimization",
+                    "documentation",
+                    "error_pattern",
+                    "deployment_tool",
+                    "runtime_behavior"
+                  ]
+                },
+                "description": "Filter results by context type. Omit to search all types. Common combinations: [\"code_example\", \"documentation\"] for learning, [\"error_pattern\"] for debugging, [\"security_tip\", \"best_practice\"] for reviews."
+              },
+              "tags": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "Filter by tags (e.g. [\"storage\", \"mapper\"], [\"tokens\", \"KLV\"], [\"events\"]). Tags are matched with OR logic — any matching tag includes the entry."
+              },
+              "contractType": {
+                "type": "string",
+                "description": "Filter by contract type (e.g. \"token\", \"nft\", \"defi\", \"dao\"). Only returns entries tagged for this contract category."
+              },
+              "limit": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 100,
+                "default": 10,
+                "description": "Maximum number of results to return (1-100). Default: 10."
+              },
+              "offset": {
+                "type": "integer",
+                "minimum": 0,
+                "default": 0,
+                "description": "Number of results to skip for pagination. Use with limit to page through results. Default: 0."
+              }
+            }
+          },
+          "annotations": {
+            "title": "Query Knowledge Base",
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "get_context",
+          "description": "Retrieve a single knowledge base entry by its unique ID. Returns the full entry including content, metadata, tags, and related context IDs. Use this after query_context or find_similar to get complete details for a specific entry.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "description": "The unique context ID (UUID format). Obtain IDs from query_context or find_similar results."
+              }
+            },
+            "required": [
+              "id"
+            ]
+          },
+          "annotations": {
+            "title": "Get Context by ID",
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "find_similar",
+          "description": "Find knowledge base entries similar to a given entry by comparing tags and content. Returns related contexts ranked by similarity score. Useful for discovering related patterns, examples, or documentation after finding one relevant entry.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "description": "The context ID to find similar entries for. Obtain from query_context or get_context results."
+              },
+              "limit": {
+                "type": "integer",
+                "minimum": 1,
+                "default": 5,
+                "description": "Maximum number of similar entries to return. Typical range is 1-20; higher values may be slower. Default: 5."
+              }
+            },
+            "required": [
+              "id"
+            ]
+          },
+          "annotations": {
+            "title": "Find Similar Contexts",
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "get_knowledge_stats",
+          "description": "Get summary statistics of the Klever VM knowledge base. Returns total entry count, counts broken down by context type (code_example, best_practice, security_tip, etc.), and a sample entry title for each type. Useful for understanding what knowledge is available before querying.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {}
+          },
+          "annotations": {
+            "title": "Knowledge Base Stats",
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "enhance_with_context",
+          "description": "Augment a natural-language query with relevant Klever VM knowledge base context. Extracts Klever-specific keywords, finds matching entries, and returns the original query combined with relevant code examples and documentation in markdown. Use this to enrich a user prompt before answering Klever development questions.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "query": {
+                "type": "string",
+                "description": "The user's natural-language question or prompt to enhance (e.g. \"How do I handle KLV payments in my contract?\")."
+              },
+              "autoInclude": {
+                "type": "boolean",
+                "default": true,
+                "description": "When true (default), automatically appends the most relevant knowledge base entries to the response. Set to false to only return metadata without injecting context."
+              }
+            },
+            "required": [
+              "query"
+            ]
+          },
+          "annotations": {
+            "title": "Enhance Query with Context",
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "search_documentation",
+          "description": "Search Klever VM documentation and knowledge base. Returns human-readable markdown with titles, descriptions, and code snippets. Optimized for \"how do I...\" questions. Use this instead of query_context when you need formatted developer documentation.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "query": {
+                "type": "string",
+                "description": "Search query in natural language (e.g. \"how to use storage mappers\", \"deploy contract to testnet\", \"handle KDA token transfers\")."
+              },
+              "category": {
+                "type": "string",
+                "enum": [
+                  "core",
+                  "storage",
+                  "events",
+                  "tokens",
+                  "modules",
+                  "tools",
+                  "scripts",
+                  "examples",
+                  "errors",
+                  "best-practices",
+                  "documentation"
+                ],
+                "description": "Narrow results to a specific knowledge category. Available: core, storage, events, tokens, modules, tools, scripts, examples, errors, best-practices, documentation."
+              }
+            },
+            "required": [
+              "query"
+            ]
+          },
+          "annotations": {
+            "title": "Search Documentation",
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "analyze_contract",
+          "description": "Analyze Klever smart contract Rust source code for common issues. Checks for missing imports, missing #[klever_sc::contract] macro, missing endpoint annotations, payable handlers without call_value usage, storage mappers without #[storage_mapper], and missing event definitions. Returns findings with severity (error/warning/info) and links to relevant knowledge base entries.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "sourceCode": {
+                "type": "string",
+                "description": "The full Rust source code of the Klever smart contract to analyze. Must be valid Rust code using klever_sc imports."
+              },
+              "contractName": {
+                "type": "string",
+                "description": "Human-readable name for the contract (used in output labeling). Defaults to \"contract\" if omitted."
+              }
+            },
+            "required": [
+              "sourceCode"
+            ]
+          },
+          "annotations": {
+            "title": "Analyze Contract",
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "get_balance",
+          "description": "Get the KLV or KDA token balance for a Klever blockchain address. Returns the balance in the smallest unit (for KLV: 1 KLV = 1,000,000 units with 6 decimal places). Optionally specify an asset ID to query a specific KDA token balance instead of KLV.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "address": {
+                "type": "string",
+                "description": "Klever address (klv1... bech32 format)."
+              },
+              "assetId": {
+                "type": "string",
+                "description": "Optional KDA token ID (e.g. \"USDT-A1B2\", \"LPKLVKFI-3I0N\"). Omit for KLV balance."
+              },
+              "network": {
+                "type": "string",
+                "enum": [
+                  "mainnet",
+                  "testnet",
+                  "devnet",
+                  "local"
+                ],
+                "description": "Network to query. Options: \"mainnet\", \"testnet\", \"devnet\", \"local\". Defaults to server default (mainnet)."
+              }
+            },
+            "required": [
+              "address"
+            ]
+          },
+          "annotations": {
+            "title": "Get Balance",
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": true
+          }
+        },
+        {
+          "name": "get_account",
+          "description": "Get full account details for a Klever blockchain address including nonce, balance, frozen balance, allowance, and permissions. Use this when you need comprehensive account state beyond just the balance.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "address": {
+                "type": "string",
+                "description": "Klever address (klv1... bech32 format)."
+              },
+              "network": {
+                "type": "string",
+                "enum": [
+                  "mainnet",
+                  "testnet",
+                  "devnet",
+                  "local"
+                ],
+                "description": "Network to query. Options: \"mainnet\", \"testnet\", \"devnet\", \"local\". Defaults to server default (mainnet)."
+              }
+            },
+            "required": [
+              "address"
+            ]
+          },
+          "annotations": {
+            "title": "Get Account",
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": true
+          }
+        },
+        {
+          "name": "get_asset_info",
+          "description": "Get complete properties and configuration for any asset on the Klever blockchain (KLV, KFI, KDA tokens, NFT collections). Returns supply info, permissions (CanMint, CanBurn, etc.), roles, precision, and metadata. Note: string fields like ID, Name, Ticker are base64-encoded in the raw response.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "assetId": {
+                "type": "string",
+                "description": "Asset identifier (e.g. \"KLV\", \"KFI\", \"USDT-A1B2\", \"MYNFT-XY78\")."
+              },
+              "network": {
+                "type": "string",
+                "enum": [
+                  "mainnet",
+                  "testnet",
+                  "devnet",
+                  "local"
+                ],
+                "description": "Network to query. Options: \"mainnet\", \"testnet\", \"devnet\", \"local\". Defaults to server default (mainnet)."
+              }
+            },
+            "required": [
+              "assetId"
+            ]
+          },
+          "annotations": {
+            "title": "Get Asset Info",
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": true
+          }
+        },
+        {
+          "name": "query_sc",
+          "description": "Execute a read-only query against a Klever smart contract (VM view call). Returns the contract function result as base64-encoded return data. Arguments must be base64-encoded. Use this to read contract state without modifying it.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "scAddress": {
+                "type": "string",
+                "description": "Smart contract address (klv1... bech32 format)."
+              },
+              "funcName": {
+                "type": "string",
+                "description": "Function name to call (must be a #[view] function on the contract)."
+              },
+              "args": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "Optional base64-encoded arguments. For addresses, encode the hex-decoded bech32 bytes. For numbers, use big-endian byte encoding."
+              },
+              "caller": {
+                "type": "string",
+                "description": "Optional caller address (klv1... bech32 format). Some view functions use the caller to look up address-keyed storage mappers."
+              },
+              "network": {
+                "type": "string",
+                "enum": [
+                  "mainnet",
+                  "testnet",
+                  "devnet",
+                  "local"
+                ],
+                "description": "Network to query. Options: \"mainnet\", \"testnet\", \"devnet\", \"local\". Defaults to server default (mainnet)."
+              }
+            },
+            "required": [
+              "scAddress",
+              "funcName"
+            ]
+          },
+          "annotations": {
+            "title": "Query Smart Contract",
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": true
+          }
+        },
+        {
+          "name": "get_transaction",
+          "description": "Get transaction details by hash from the Klever blockchain. Returns sender, receiver, status, block info, contracts, and receipts. Uses the API proxy for indexed data.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "hash": {
+                "type": "string",
+                "description": "Transaction hash (hex string)."
+              },
+              "network": {
+                "type": "string",
+                "enum": [
+                  "mainnet",
+                  "testnet",
+                  "devnet",
+                  "local"
+                ],
+                "description": "Network to query. Options: \"mainnet\", \"testnet\", \"devnet\", \"local\". Defaults to server default (mainnet)."
+              }
+            },
+            "required": [
+              "hash"
+            ]
+          },
+          "annotations": {
+            "title": "Get Transaction",
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": true
+          }
+        },
+        {
+          "name": "get_block",
+          "description": "Get block information from the Klever blockchain by nonce (block number). If no nonce is provided, returns the latest block. Returns hash, timestamp, proposer, number of transactions, and other block metadata.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "nonce": {
+                "type": "integer",
+                "minimum": 0,
+                "description": "Block number (nonce). Omit to get the latest block."
+              },
+              "network": {
+                "type": "string",
+                "enum": [
+                  "mainnet",
+                  "testnet",
+                  "devnet",
+                  "local"
+                ],
+                "description": "Network to query. Options: \"mainnet\", \"testnet\", \"devnet\", \"local\". Defaults to server default (mainnet)."
+              }
+            }
+          },
+          "annotations": {
+            "title": "Get Block",
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": true
+          }
+        },
+        {
+          "name": "list_validators",
+          "description": "List active validators on the Klever blockchain network. Returns validator addresses, names, commission rates, delegation info, and staking amounts.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "network": {
+                "type": "string",
+                "enum": [
+                  "mainnet",
+                  "testnet",
+                  "devnet",
+                  "local"
+                ],
+                "description": "Network to query. Options: \"mainnet\", \"testnet\", \"devnet\", \"local\". Defaults to server default (mainnet)."
+              }
+            }
+          },
+          "annotations": {
+            "title": "List Validators",
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": true
+          }
+        },
+        {
+          "name": "init_klever_project",
+          "description": "Scaffold a new Klever smart contract project using the SDK. Creates the Rust project structure via `ksc new` and generates automation scripts (build, deploy, upgrade, query, test, interact). Requires Klever SDK installed at ~/klever-sdk/. Run check_sdk_status first to verify. NOTE: In public profile, this tool returns a project template JSON and does not perform any filesystem changes.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "The contract project name in kebab-case (e.g. \"my-token\", \"nft-marketplace\"). Used as the Cargo package name and directory name."
+              },
+              "template": {
+                "type": "string",
+                "enum": [
+                  "empty",
+                  "adder"
+                ],
+                "description": "Project template to scaffold from. \"empty\" creates a blank contract with just an init function. \"adder\" creates a simple counter example. Default: \"empty\".",
+                "default": "empty"
+              },
+              "noMove": {
+                "type": "boolean",
+                "description": "When true, keeps the project in the SDK output directory instead of moving it to the current working directory. Default: false.",
+                "default": false
+              }
+            },
+            "required": [
+              "name"
+            ]
+          },
+          "annotations": {
+            "title": "Initialize Klever Project",
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "add_helper_scripts",
+          "description": "Add build, deploy, upgrade, query, test, and interact automation scripts to an existing Klever smart contract project. Creates a scripts/ directory with bash scripts and updates .gitignore. Run this from the project root directory (where Cargo.toml is located). NOTE: In public profile, this tool returns a project template JSON and does not perform any filesystem changes.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "contractName": {
+                "type": "string",
+                "description": "The contract name to embed in scripts (e.g. \"my-token\"). If omitted, auto-detected from the `name` field in Cargo.toml."
+              }
+            }
+          },
+          "annotations": {
+            "title": "Add Helper Scripts",
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        }
+      ],
+      "python_sdk_url": "https://mcp.klever.org/mcp",
+      "python_sdk_config": "{\"debug\": false}"
+    },
+    "source_filename": "0057.iogithubklever-iomcp-klever-vm_labeled.json",
+    "processed_timestamp": 1772871481,
+    "processing_mode": "gateway",
+    "rank": 58
+  }
+}
