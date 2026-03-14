@@ -1,0 +1,153 @@
+{
+  "labels": {
+    "analysis": "The MCP Server provides functionality for performing web searches using DuckDuckGo and fetching/parsing content from webpages. This enables users to retrieve information directly from the web in a structured way, which enhances LLM interaction with real-time data.",
+    "reasoning": "The primary label \"Web Search & Research\" is chosen because the main functionality revolves around searching the web and retrieving information. The secondary label \"API Integration\" is added because the server interfaces with DuckDuckGo's search API and webpage content fetching. No custom label is needed as the functionality is well-covered by predefined categories.",
+    "primary_label": "Web Search & Research",
+    "secondary_labels": [
+      "API Integration"
+    ],
+    "custom_label": null,
+    "is_connected": true,
+    "is_remote_tool_valid": true,
+    "featured_server": false,
+    "tool_verified": false,
+    "tool_verified_status": "broken",
+    "tool_verified_at": "2026-03-14T20:38:42.891524+00:00",
+    "tool_verified_tool": "search",
+    "tool_verified_reason": "client timeout after 20003ms"
+  },
+  "metadata": {
+    "server_id": 271,
+    "server_name": "DuckDuckGo Search Server",
+    "rank_by_usage": 19,
+    "usage_count": "5,604",
+    "original_file": "toucan_live#@nickclyde/duckduckgo-mcp-server",
+    "mode": "toucan",
+    "timestamp": 1772876338,
+    "remote_server_response": {
+      "url": "https://server.smithery.ai/@nickclyde/duckduckgo-mcp-server/mcp",
+      "is_success": true,
+      "error": null,
+      "tools": [
+        {
+          "name": "search",
+          "description": "\n    Search DuckDuckGo and return formatted results.\n\n    Args:\n        query: The search query string\n        max_results: Maximum number of results to return (default: 10)\n        ctx: MCP context for logging\n    ",
+          "input_schema": {
+            "properties": {
+              "query": {
+                "title": "Query",
+                "type": "string"
+              },
+              "max_results": {
+                "default": 10,
+                "title": "Max Results",
+                "type": "integer"
+              }
+            },
+            "required": [
+              "query"
+            ],
+            "title": "searchArguments",
+            "type": "object"
+          },
+          "annotations": null
+        },
+        {
+          "name": "fetch_content",
+          "description": "\n    Fetch and parse content from a webpage URL.\n\n    Args:\n        url: The webpage URL to fetch content from\n        ctx: MCP context for logging\n    ",
+          "input_schema": {
+            "properties": {
+              "url": {
+                "title": "Url",
+                "type": "string"
+              }
+            },
+            "required": [
+              "url"
+            ],
+            "title": "fetch_contentArguments",
+            "type": "object"
+          },
+          "annotations": null
+        }
+      ],
+      "tool_count": 2,
+      "tool_names": [
+        "search",
+        "fetch_content"
+      ]
+    },
+    "server_info_crawled": {
+      "id": 271,
+      "name": "DuckDuckGo Search Server",
+      "author": "",
+      "overview": "Enable web search capabilities through DuckDuckGo. Fetch and parse webpage content intelligently for enhanced LLM interaction.",
+      "repository_url": "",
+      "homepage": "https://server.smithery.ai/@nickclyde/duckduckgo-mcp-server/mcp",
+      "remote_or_local": "Remote",
+      "license": "",
+      "usage_count": "5,604",
+      "success_rate": "99.94%",
+      "tags": [
+        "search",
+        "web",
+        "api",
+        "mcp"
+      ],
+      "categories": [
+        "search",
+        "api"
+      ],
+      "tools_count": 2,
+      "tools": [
+        {
+          "name": "search",
+          "description": "\n    Search DuckDuckGo and return formatted results.\n\n    Args:\n        query: The search query string\n        max_results: Maximum number of results to return (default: 10)\n        ctx: MCP context for logging\n    ",
+          "input_schema": {
+            "properties": {
+              "query": {
+                "title": "Query",
+                "type": "string"
+              },
+              "max_results": {
+                "default": 10,
+                "title": "Max Results",
+                "type": "integer"
+              }
+            },
+            "required": [
+              "query"
+            ],
+            "title": "searchArguments",
+            "type": "object"
+          },
+          "annotations": null
+        },
+        {
+          "name": "fetch_content",
+          "description": "\n    Fetch and parse content from a webpage URL.\n\n    Args:\n        url: The webpage URL to fetch content from\n        ctx: MCP context for logging\n    ",
+          "input_schema": {
+            "properties": {
+              "url": {
+                "title": "Url",
+                "type": "string"
+              }
+            },
+            "required": [
+              "url"
+            ],
+            "title": "fetch_contentArguments",
+            "type": "object"
+          },
+          "annotations": null
+        }
+      ],
+      "python_sdk_url": "https://server.smithery.ai/@nickclyde/duckduckgo-mcp-server/mcp",
+      "python_sdk_config": "{\"debug\": false}"
+    },
+    "source_filename": "0271.DuckDuckGo-Search-Server_labeled.json",
+    "processed_timestamp": 1772876338,
+    "processing_mode": "toucan",
+    "rank": 19
+  }
+}

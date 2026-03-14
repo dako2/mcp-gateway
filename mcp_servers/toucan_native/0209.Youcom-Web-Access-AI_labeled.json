@@ -1,0 +1,896 @@
+{
+  "labels": {
+    "analysis": "The MCP Server \"You.com Web Access & AI\" provides 3 tools focused on web search & research tasks. Core capabilities include search and retrieval. Key tools: you-search, you-contents, you-research.",
+    "reasoning": "Primary label \"Web Search & Research\" assigned based on strong keyword matches in tool names and descriptions: search, research.",
+    "primary_label": "Web Search & Research",
+    "secondary_labels": [
+      "News & Media"
+    ],
+    "custom_label": "Search - You.com Web Access & AI",
+    "is_connected": true,
+    "is_remote_tool_valid": true,
+    "featured_server": false,
+    "tool_verified": true,
+    "tool_verified_status": "verified",
+    "tool_verified_at": "2026-03-14T20:38:20.604235+00:00",
+    "tool_verified_tool": "you-search",
+    "tool_verified_reason": "response received"
+  },
+  "metadata": {
+    "server_id": 209,
+    "server_name": "You.com Web Access & AI",
+    "rank_by_usage": 210,
+    "usage_count": "10",
+    "original_file": "tools.json#209",
+    "mode": "gateway",
+    "timestamp": 1772876338,
+    "remote_server_response": {
+      "url": "https://api.you.com/mcp",
+      "is_success": true,
+      "error": null,
+      "tools": [
+        {
+          "name": "you-search",
+          "title": "Web Search",
+          "description": "Web and news search via You.com",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {
+              "query": {
+                "type": "string",
+                "minLength": 1,
+                "description": "Search query. Supports operators: site:domain.com (domain filter), filetype:pdf (file type), +term (include), -term (exclude), AND/OR/NOT (boolean logic), lang:en (language). Example: \"machine learning (Python OR PyTorch) -TensorFlow filetype:pdf\""
+              },
+              "count": {
+                "description": "Max results per section",
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 100
+              },
+              "freshness": {
+                "description": "day/week/month/year or YYYY-MM-DDtoYYYY-MM-DD",
+                "type": "string"
+              },
+              "offset": {
+                "description": "Pagination offset",
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 9
+              },
+              "country": {
+                "description": "Country code",
+                "type": "string",
+                "enum": [
+                  "AR",
+                  "AU",
+                  "AT",
+                  "BE",
+                  "BR",
+                  "CA",
+                  "CL",
+                  "DK",
+                  "FI",
+                  "FR",
+                  "DE",
+                  "HK",
+                  "IN",
+                  "ID",
+                  "IT",
+                  "JP",
+                  "KR",
+                  "MY",
+                  "MX",
+                  "NL",
+                  "NZ",
+                  "NO",
+                  "CN",
+                  "PL",
+                  "PT",
+                  "PH",
+                  "RU",
+                  "SA",
+                  "ZA",
+                  "ES",
+                  "SE",
+                  "CH",
+                  "TW",
+                  "TR",
+                  "GB",
+                  "US"
+                ]
+              },
+              "safesearch": {
+                "description": "Filter level",
+                "type": "string",
+                "enum": [
+                  "off",
+                  "moderate",
+                  "strict"
+                ]
+              },
+              "livecrawl": {
+                "description": "Live-crawl sections for full content",
+                "type": "string",
+                "enum": [
+                  "web",
+                  "news",
+                  "all"
+                ]
+              },
+              "livecrawl_formats": {
+                "description": "Format for crawled content",
+                "type": "string",
+                "enum": [
+                  "html",
+                  "markdown"
+                ]
+              }
+            },
+            "required": [
+              "query"
+            ]
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          },
+          "outputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {
+              "resultCounts": {
+                "type": "object",
+                "properties": {
+                  "web": {
+                    "type": "number",
+                    "description": "Web results"
+                  },
+                  "news": {
+                    "type": "number",
+                    "description": "News results"
+                  },
+                  "total": {
+                    "type": "number",
+                    "description": "Total results"
+                  }
+                },
+                "required": [
+                  "web",
+                  "news",
+                  "total"
+                ],
+                "additionalProperties": false
+              },
+              "results": {
+                "description": "Search results",
+                "type": "object",
+                "properties": {
+                  "web": {
+                    "description": "Web results",
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "url": {
+                          "type": "string",
+                          "description": "URL"
+                        },
+                        "title": {
+                          "type": "string",
+                          "description": "Title"
+                        },
+                        "page_age": {
+                          "description": "Publication timestamp",
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "url",
+                        "title"
+                      ],
+                      "additionalProperties": false
+                    }
+                  },
+                  "news": {
+                    "description": "News results",
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "url": {
+                          "type": "string",
+                          "description": "URL"
+                        },
+                        "title": {
+                          "type": "string",
+                          "description": "Title"
+                        },
+                        "page_age": {
+                          "type": "string",
+                          "description": "Publication timestamp"
+                        }
+                      },
+                      "required": [
+                        "url",
+                        "title",
+                        "page_age"
+                      ],
+                      "additionalProperties": false
+                    }
+                  }
+                },
+                "additionalProperties": false
+              }
+            },
+            "required": [
+              "resultCounts"
+            ],
+            "additionalProperties": false
+          }
+        },
+        {
+          "name": "you-contents",
+          "title": "Extract Web Page Contents",
+          "description": "Extract page content in markdown or HTML",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {
+              "urls": {
+                "minItems": 1,
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "Array of webpage URLs to extract content from (e.g., [\"https://example.com\"])"
+              },
+              "formats": {
+                "description": "Output formats: array of \"markdown\" (text), \"html\" (layout), or \"metadata\" (structured data)",
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "enum": [
+                    "markdown",
+                    "html",
+                    "metadata"
+                  ]
+                }
+              },
+              "format": {
+                "description": "(Deprecated) Output format - use formats array instead",
+                "type": "string",
+                "enum": [
+                  "markdown",
+                  "html"
+                ]
+              },
+              "crawl_timeout": {
+                "description": "Optional timeout in seconds (1-60) for page crawling",
+                "type": "number",
+                "minimum": 1,
+                "maximum": 60
+              }
+            },
+            "required": [
+              "urls"
+            ]
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          },
+          "outputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {
+              "count": {
+                "type": "number",
+                "description": "URLs processed"
+              },
+              "formats": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "Content formats requested"
+              },
+              "items": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "url": {
+                      "type": "string",
+                      "description": "URL"
+                    },
+                    "title": {
+                      "description": "Title",
+                      "type": "string"
+                    },
+                    "markdown": {
+                      "description": "Markdown content",
+                      "type": "string"
+                    },
+                    "html": {
+                      "description": "HTML content",
+                      "type": "string"
+                    },
+                    "metadata": {
+                      "anyOf": [
+                        {
+                          "type": "object",
+                          "properties": {
+                            "favicon_url": {
+                              "type": "string",
+                              "description": "Favicon URL"
+                            },
+                            "site_name": {
+                              "anyOf": [
+                                {
+                                  "type": "string"
+                                },
+                                {
+                                  "type": "null"
+                                }
+                              ],
+                              "description": "Site name"
+                            }
+                          },
+                          "required": [
+                            "favicon_url"
+                          ],
+                          "additionalProperties": false
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ],
+                      "description": "Page metadata"
+                    }
+                  },
+                  "required": [
+                    "url"
+                  ],
+                  "additionalProperties": false
+                },
+                "description": "Extracted items"
+              }
+            },
+            "required": [
+              "count",
+              "formats",
+              "items"
+            ],
+            "additionalProperties": false
+          }
+        },
+        {
+          "name": "you-research",
+          "title": "Research",
+          "description": "Research a topic with comprehensive answers and cited sources. Configurable effort levels (lite, standard, deep, exhaustive).",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {
+              "input": {
+                "type": "string",
+                "minLength": 1,
+                "description": "The research question or complex query requiring in-depth investigation and multi-step reasoning. Maximum length: 40,000 characters."
+              },
+              "research_effort": {
+                "default": "standard",
+                "description": "Controls how much time and effort the Research API spends on your question. lite: fast answers, standard: balanced (default), deep: thorough, exhaustive: most comprehensive.",
+                "type": "string",
+                "enum": [
+                  "lite",
+                  "standard",
+                  "deep",
+                  "exhaustive"
+                ]
+              }
+            },
+            "required": [
+              "input"
+            ]
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          },
+          "outputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {
+              "content_type": {
+                "type": "string",
+                "description": "Format of the content field"
+              },
+              "sourceCount": {
+                "type": "number",
+                "description": "Number of sources used"
+              },
+              "sources": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "url": {
+                      "type": "string",
+                      "description": "Source URL"
+                    },
+                    "title": {
+                      "description": "Source title",
+                      "type": "string"
+                    },
+                    "snippetCount": {
+                      "type": "number",
+                      "description": "Number of excerpts from this source"
+                    }
+                  },
+                  "required": [
+                    "url",
+                    "snippetCount"
+                  ],
+                  "additionalProperties": false
+                },
+                "description": "Sources used in the research answer"
+              }
+            },
+            "required": [
+              "content_type",
+              "sourceCount",
+              "sources"
+            ],
+            "additionalProperties": false
+          }
+        }
+      ],
+      "tool_count": 3,
+      "tool_names": [
+        "you-search",
+        "you-contents",
+        "you-research"
+      ]
+    },
+    "server_info_crawled": {
+      "id": 209,
+      "name": "You.com Web Access & AI",
+      "author": "",
+      "overview": "You.com Web Access & AI - Web Search & Research server with 3 tools. The MCP Server \"You.com Web Access & AI\" provides 3 tools focused on web search & research tasks. Co",
+      "repository_url": "",
+      "homepage": "https://api.you.com/mcp",
+      "remote_or_local": "Remote",
+      "license": "",
+      "usage_count": "10",
+      "success_rate": "100%",
+      "tags": [
+        "web-search-research",
+        "news-media"
+      ],
+      "categories": [
+        "web search & research",
+        "news & media"
+      ],
+      "tools_count": 3,
+      "tools": [
+        {
+          "name": "you-search",
+          "title": "Web Search",
+          "description": "Web and news search via You.com",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {
+              "query": {
+                "type": "string",
+                "minLength": 1,
+                "description": "Search query. Supports operators: site:domain.com (domain filter), filetype:pdf (file type), +term (include), -term (exclude), AND/OR/NOT (boolean logic), lang:en (language). Example: \"machine learning (Python OR PyTorch) -TensorFlow filetype:pdf\""
+              },
+              "count": {
+                "description": "Max results per section",
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 100
+              },
+              "freshness": {
+                "description": "day/week/month/year or YYYY-MM-DDtoYYYY-MM-DD",
+                "type": "string"
+              },
+              "offset": {
+                "description": "Pagination offset",
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 9
+              },
+              "country": {
+                "description": "Country code",
+                "type": "string",
+                "enum": [
+                  "AR",
+                  "AU",
+                  "AT",
+                  "BE",
+                  "BR",
+                  "CA",
+                  "CL",
+                  "DK",
+                  "FI",
+                  "FR",
+                  "DE",
+                  "HK",
+                  "IN",
+                  "ID",
+                  "IT",
+                  "JP",
+                  "KR",
+                  "MY",
+                  "MX",
+                  "NL",
+                  "NZ",
+                  "NO",
+                  "CN",
+                  "PL",
+                  "PT",
+                  "PH",
+                  "RU",
+                  "SA",
+                  "ZA",
+                  "ES",
+                  "SE",
+                  "CH",
+                  "TW",
+                  "TR",
+                  "GB",
+                  "US"
+                ]
+              },
+              "safesearch": {
+                "description": "Filter level",
+                "type": "string",
+                "enum": [
+                  "off",
+                  "moderate",
+                  "strict"
+                ]
+              },
+              "livecrawl": {
+                "description": "Live-crawl sections for full content",
+                "type": "string",
+                "enum": [
+                  "web",
+                  "news",
+                  "all"
+                ]
+              },
+              "livecrawl_formats": {
+                "description": "Format for crawled content",
+                "type": "string",
+                "enum": [
+                  "html",
+                  "markdown"
+                ]
+              }
+            },
+            "required": [
+              "query"
+            ]
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          },
+          "outputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {
+              "resultCounts": {
+                "type": "object",
+                "properties": {
+                  "web": {
+                    "type": "number",
+                    "description": "Web results"
+                  },
+                  "news": {
+                    "type": "number",
+                    "description": "News results"
+                  },
+                  "total": {
+                    "type": "number",
+                    "description": "Total results"
+                  }
+                },
+                "required": [
+                  "web",
+                  "news",
+                  "total"
+                ],
+                "additionalProperties": false
+              },
+              "results": {
+                "description": "Search results",
+                "type": "object",
+                "properties": {
+                  "web": {
+                    "description": "Web results",
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "url": {
+                          "type": "string",
+                          "description": "URL"
+                        },
+                        "title": {
+                          "type": "string",
+                          "description": "Title"
+                        },
+                        "page_age": {
+                          "description": "Publication timestamp",
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "url",
+                        "title"
+                      ],
+                      "additionalProperties": false
+                    }
+                  },
+                  "news": {
+                    "description": "News results",
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "url": {
+                          "type": "string",
+                          "description": "URL"
+                        },
+                        "title": {
+                          "type": "string",
+                          "description": "Title"
+                        },
+                        "page_age": {
+                          "type": "string",
+                          "description": "Publication timestamp"
+                        }
+                      },
+                      "required": [
+                        "url",
+                        "title",
+                        "page_age"
+                      ],
+                      "additionalProperties": false
+                    }
+                  }
+                },
+                "additionalProperties": false
+              }
+            },
+            "required": [
+              "resultCounts"
+            ],
+            "additionalProperties": false
+          }
+        },
+        {
+          "name": "you-contents",
+          "title": "Extract Web Page Contents",
+          "description": "Extract page content in markdown or HTML",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {
+              "urls": {
+                "minItems": 1,
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "Array of webpage URLs to extract content from (e.g., [\"https://example.com\"])"
+              },
+              "formats": {
+                "description": "Output formats: array of \"markdown\" (text), \"html\" (layout), or \"metadata\" (structured data)",
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "enum": [
+                    "markdown",
+                    "html",
+                    "metadata"
+                  ]
+                }
+              },
+              "format": {
+                "description": "(Deprecated) Output format - use formats array instead",
+                "type": "string",
+                "enum": [
+                  "markdown",
+                  "html"
+                ]
+              },
+              "crawl_timeout": {
+                "description": "Optional timeout in seconds (1-60) for page crawling",
+                "type": "number",
+                "minimum": 1,
+                "maximum": 60
+              }
+            },
+            "required": [
+              "urls"
+            ]
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          },
+          "outputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {
+              "count": {
+                "type": "number",
+                "description": "URLs processed"
+              },
+              "formats": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "Content formats requested"
+              },
+              "items": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "url": {
+                      "type": "string",
+                      "description": "URL"
+                    },
+                    "title": {
+                      "description": "Title",
+                      "type": "string"
+                    },
+                    "markdown": {
+                      "description": "Markdown content",
+                      "type": "string"
+                    },
+                    "html": {
+                      "description": "HTML content",
+                      "type": "string"
+                    },
+                    "metadata": {
+                      "anyOf": [
+                        {
+                          "type": "object",
+                          "properties": {
+                            "favicon_url": {
+                              "type": "string",
+                              "description": "Favicon URL"
+                            },
+                            "site_name": {
+                              "anyOf": [
+                                {
+                                  "type": "string"
+                                },
+                                {
+                                  "type": "null"
+                                }
+                              ],
+                              "description": "Site name"
+                            }
+                          },
+                          "required": [
+                            "favicon_url"
+                          ],
+                          "additionalProperties": false
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ],
+                      "description": "Page metadata"
+                    }
+                  },
+                  "required": [
+                    "url"
+                  ],
+                  "additionalProperties": false
+                },
+                "description": "Extracted items"
+              }
+            },
+            "required": [
+              "count",
+              "formats",
+              "items"
+            ],
+            "additionalProperties": false
+          }
+        },
+        {
+          "name": "you-research",
+          "title": "Research",
+          "description": "Research a topic with comprehensive answers and cited sources. Configurable effort levels (lite, standard, deep, exhaustive).",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {
+              "input": {
+                "type": "string",
+                "minLength": 1,
+                "description": "The research question or complex query requiring in-depth investigation and multi-step reasoning. Maximum length: 40,000 characters."
+              },
+              "research_effort": {
+                "default": "standard",
+                "description": "Controls how much time and effort the Research API spends on your question. lite: fast answers, standard: balanced (default), deep: thorough, exhaustive: most comprehensive.",
+                "type": "string",
+                "enum": [
+                  "lite",
+                  "standard",
+                  "deep",
+                  "exhaustive"
+                ]
+              }
+            },
+            "required": [
+              "input"
+            ]
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          },
+          "outputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {
+              "content_type": {
+                "type": "string",
+                "description": "Format of the content field"
+              },
+              "sourceCount": {
+                "type": "number",
+                "description": "Number of sources used"
+              },
+              "sources": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "url": {
+                      "type": "string",
+                      "description": "Source URL"
+                    },
+                    "title": {
+                      "description": "Source title",
+                      "type": "string"
+                    },
+                    "snippetCount": {
+                      "type": "number",
+                      "description": "Number of excerpts from this source"
+                    }
+                  },
+                  "required": [
+                    "url",
+                    "snippetCount"
+                  ],
+                  "additionalProperties": false
+                },
+                "description": "Sources used in the research answer"
+              }
+            },
+            "required": [
+              "content_type",
+              "sourceCount",
+              "sources"
+            ],
+            "additionalProperties": false
+          }
+        }
+      ],
+      "python_sdk_url": "https://api.you.com/mcp",
+      "python_sdk_config": "{\"debug\": false}"
+    },
+    "source_filename": "0209.Youcom-Web-Access-AI_labeled.json",
+    "processed_timestamp": 1772876338,
+    "processing_mode": "gateway",
+    "rank": 210
+  }
+}

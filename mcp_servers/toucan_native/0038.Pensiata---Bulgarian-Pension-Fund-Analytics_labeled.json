@@ -1,0 +1,2933 @@
+{
+  "labels": {
+    "analysis": "The MCP Server \"Pensiata - Bulgarian Pension Fund Analytics\" provides 21 tools focused on data analysis & processing tasks. Core capabilities include analysis and computation, data access and reading, modification and updates. Key tools: list_managers, list_funds, get_nav_series, list_benchmarks, list_metrics.",
+    "reasoning": "Primary label \"Data Analysis & Processing\" assigned based on strong keyword matches in tool names and descriptions: data, analytic, metric, chart.",
+    "primary_label": "Data Analysis & Processing",
+    "secondary_labels": [
+      "Financial Services",
+      "Gaming"
+    ],
+    "custom_label": "Data Access & Management - Pensiata - Bulgarian Pension Fund Analytics",
+    "is_connected": true,
+    "is_remote_tool_valid": true,
+    "featured_server": true,
+    "tool_verified": true,
+    "tool_verified_status": "verified",
+    "tool_verified_at": "2026-03-14T20:38:12.364065+00:00",
+    "tool_verified_tool": "list_managers",
+    "tool_verified_reason": "response received"
+  },
+  "metadata": {
+    "server_id": 38,
+    "server_name": "Pensiata - Bulgarian Pension Fund Analytics",
+    "rank_by_usage": 39,
+    "usage_count": "8,100",
+    "original_file": "tools.json#38",
+    "mode": "gateway",
+    "timestamp": 1772876337,
+    "remote_server_response": {
+      "url": "https://mcp.pensiata.me/mcp",
+      "is_success": true,
+      "error": null,
+      "tools": [
+        {
+          "name": "list_managers",
+          "description": "Retrieve Bulgarian pension manager metadata for UPF, PPF, and VPF/DPF schemes.\n\nUse this to discover licensed managers and their supported scheme types before\nrunning rankings or metric calculations over FSC-tracked pension data.\nData freshness: reflects latest ingested official FSC manager/scheme coverage.",
+          "inputSchema": {
+            "additionalProperties": false,
+            "properties": {
+              "scheme_code": {
+                "anyOf": [
+                  {
+                    "enum": [
+                      "upf",
+                      "ppf",
+                      "dpf"
+                    ],
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              }
+            },
+            "type": "object"
+          },
+          "outputSchema": {
+            "additionalProperties": true,
+            "type": "object"
+          },
+          "_meta": {
+            "fastmcp": {
+              "tags": []
+            }
+          }
+        },
+        {
+          "name": "list_funds",
+          "description": "List Bulgarian private pension funds and canonical fund IDs.\n\nReturns `fund_id` in `manager_slug:scheme_code` format for UPF, PPF, and VPF/DPF.\nUse this as discovery before calling NAV, metric, and ranking tools.\nData freshness: fund metadata follows latest FSC-tracked manager/scheme dataset.",
+          "inputSchema": {
+            "additionalProperties": false,
+            "properties": {
+              "scheme_code": {
+                "anyOf": [
+                  {
+                    "enum": [
+                      "upf",
+                      "ppf",
+                      "dpf"
+                    ],
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "active_only": {
+                "default": true,
+                "type": "boolean"
+              }
+            },
+            "type": "object"
+          },
+          "outputSchema": {
+            "additionalProperties": true,
+            "type": "object"
+          },
+          "_meta": {
+            "fastmcp": {
+              "tags": []
+            }
+          }
+        },
+        {
+          "name": "get_nav_series",
+          "description": "Get official NAV time series for a Bulgarian pension fund (UPF/PPF/VPF).\n\nAccepts either `fund_id` or (`manager_slug`, `scheme_code`) and returns normalized\nNAV points for return/risk calculations and charting.\nData freshness: updated as new source NAV observations are ingested.",
+          "inputSchema": {
+            "additionalProperties": false,
+            "properties": {
+              "fund_id": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "manager_slug": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "scheme_code": {
+                "anyOf": [
+                  {
+                    "enum": [
+                      "upf",
+                      "ppf",
+                      "dpf"
+                    ],
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "date_from": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "date_to": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "frequency": {
+                "default": "daily",
+                "enum": [
+                  "daily",
+                  "weekly",
+                  "monthly"
+                ],
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "outputSchema": {
+            "additionalProperties": true,
+            "type": "object"
+          },
+          "_meta": {
+            "fastmcp": {
+              "tags": []
+            }
+          }
+        },
+        {
+          "name": "list_benchmarks",
+          "description": "List benchmark assets for Bulgarian pension comparisons.\n\nIncludes inflation and market references used to evaluate relative performance\nof UPF, PPF, and VPF/DPF funds.\nData freshness: benchmark metadata is stable; prices are updated as new source data arrives.",
+          "inputSchema": {
+            "additionalProperties": false,
+            "properties": {},
+            "type": "object"
+          },
+          "outputSchema": {
+            "additionalProperties": true,
+            "type": "object"
+          },
+          "_meta": {
+            "fastmcp": {
+              "tags": []
+            }
+          }
+        },
+        {
+          "name": "list_metrics",
+          "description": "List all supported financial metric identifiers for MCP analytics tools.",
+          "inputSchema": {
+            "additionalProperties": false,
+            "properties": {},
+            "type": "object"
+          },
+          "outputSchema": {
+            "additionalProperties": true,
+            "type": "object"
+          },
+          "_meta": {
+            "fastmcp": {
+              "tags": []
+            }
+          }
+        },
+        {
+          "name": "cache_stats",
+          "description": "Return MCP cache telemetry for diagnostics and performance debugging.",
+          "inputSchema": {
+            "additionalProperties": false,
+            "properties": {},
+            "type": "object"
+          },
+          "outputSchema": {
+            "additionalProperties": true,
+            "type": "object"
+          },
+          "_meta": {
+            "fastmcp": {
+              "tags": []
+            }
+          }
+        },
+        {
+          "name": "get_benchmark_series",
+          "description": "Get historical benchmark series for pension-fund comparison workflows.\n\nUse with compute/rank tools to compare Bulgarian pension funds against inflation\nor market proxies over aligned periods.\nData freshness: updated as new benchmark source observations become available.",
+          "inputSchema": {
+            "additionalProperties": false,
+            "properties": {
+              "benchmark_slug": {
+                "type": "string"
+              },
+              "date_from": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "date_to": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "frequency": {
+                "default": "daily",
+                "enum": [
+                  "daily",
+                  "weekly",
+                  "monthly"
+                ],
+                "type": "string"
+              }
+            },
+            "required": [
+              "benchmark_slug"
+            ],
+            "type": "object"
+          },
+          "outputSchema": {
+            "additionalProperties": true,
+            "type": "object"
+          },
+          "_meta": {
+            "fastmcp": {
+              "tags": []
+            }
+          }
+        },
+        {
+          "name": "compute_metric",
+          "description": "Compute a metric for Bulgarian pension funds or benchmark targets.\n\nSupports returns, drawdown, volatility, Sharpe/Sortino/Calmar, correlation, and\nbenchmark-aware metrics over configurable period and frequency.\nData freshness: computed from latest ingested FSC NAV and benchmark data.",
+          "inputSchema": {
+            "additionalProperties": false,
+            "properties": {
+              "metric": {
+                "type": "string"
+              },
+              "period": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "additionalProperties": true,
+                    "type": "object"
+                  }
+                ]
+              },
+              "fund_id": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "manager_slug": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "scheme_code": {
+                "anyOf": [
+                  {
+                    "enum": [
+                      "upf",
+                      "ppf",
+                      "dpf"
+                    ],
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "benchmark_target_slug": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "benchmark_slug": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "risk_free_slug": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "risk_free_rate": {
+                "anyOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "window": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "integer"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "frequency": {
+                "default": "daily",
+                "enum": [
+                  "daily",
+                  "weekly",
+                  "monthly"
+                ],
+                "type": "string"
+              }
+            },
+            "required": [
+              "metric",
+              "period"
+            ],
+            "type": "object"
+          },
+          "outputSchema": {
+            "additionalProperties": true,
+            "type": "object"
+          },
+          "_meta": {
+            "fastmcp": {
+              "tags": []
+            }
+          }
+        },
+        {
+          "name": "rank",
+          "description": "Rank funds within UPF/PPF/VPF schemes by a selected metric and period.\n\nSupports optional extra columns via `include_metrics` for agent-friendly table outputs.\nData freshness: rankings are computed from the latest ingested FSC-aligned NAV dataset.",
+          "inputSchema": {
+            "additionalProperties": false,
+            "properties": {
+              "scheme_code": {
+                "enum": [
+                  "upf",
+                  "ppf",
+                  "dpf"
+                ],
+                "type": "string"
+              },
+              "metric": {
+                "type": "string"
+              },
+              "period": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "additionalProperties": true,
+                    "type": "object"
+                  }
+                ]
+              },
+              "benchmark_slug": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "order": {
+                "default": "desc",
+                "enum": [
+                  "desc",
+                  "asc"
+                ],
+                "type": "string"
+              },
+              "limit": {
+                "default": 50,
+                "type": "integer"
+              },
+              "offset": {
+                "default": 0,
+                "type": "integer"
+              },
+              "include_metrics": {
+                "anyOf": [
+                  {
+                    "items": {
+                      "type": "string"
+                    },
+                    "type": "array"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "frequency": {
+                "default": "daily",
+                "enum": [
+                  "daily",
+                  "weekly",
+                  "monthly"
+                ],
+                "type": "string"
+              },
+              "risk_free_rate": {
+                "anyOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "window": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "integer"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              }
+            },
+            "required": [
+              "scheme_code",
+              "metric",
+              "period"
+            ],
+            "type": "object"
+          },
+          "outputSchema": {
+            "additionalProperties": true,
+            "type": "object"
+          },
+          "_meta": {
+            "fastmcp": {
+              "tags": []
+            }
+          }
+        },
+        {
+          "name": "rank_benchmarks",
+          "description": "Rank benchmark assets by metric and period for market-context comparison.\n\nData freshness: rankings reflect latest ingested benchmark observations.",
+          "inputSchema": {
+            "additionalProperties": false,
+            "properties": {
+              "metric": {
+                "type": "string"
+              },
+              "period": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "additionalProperties": true,
+                    "type": "object"
+                  }
+                ]
+              },
+              "benchmark_slug": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "order": {
+                "default": "desc",
+                "enum": [
+                  "desc",
+                  "asc"
+                ],
+                "type": "string"
+              },
+              "limit": {
+                "default": 50,
+                "type": "integer"
+              },
+              "offset": {
+                "default": 0,
+                "type": "integer"
+              },
+              "include_metrics": {
+                "anyOf": [
+                  {
+                    "items": {
+                      "type": "string"
+                    },
+                    "type": "array"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "frequency": {
+                "default": "daily",
+                "enum": [
+                  "daily",
+                  "weekly",
+                  "monthly"
+                ],
+                "type": "string"
+              },
+              "risk_free_rate": {
+                "anyOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "window": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "integer"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              }
+            },
+            "required": [
+              "metric",
+              "period"
+            ],
+            "type": "object"
+          },
+          "outputSchema": {
+            "additionalProperties": true,
+            "type": "object"
+          },
+          "_meta": {
+            "fastmcp": {
+              "tags": []
+            }
+          }
+        },
+        {
+          "name": "simulate_saver_outcome",
+          "description": "Simulate saver outcomes with periodic contributions into Bulgarian pension funds.\n\nEstimates invested amount, terminal value, and IRR-like performance diagnostics.\nData freshness: simulation uses the latest available NAV history in the dataset.",
+          "inputSchema": {
+            "additionalProperties": false,
+            "properties": {
+              "monthly_contribution": {
+                "type": "number"
+              },
+              "scheme_code": {
+                "enum": [
+                  "upf",
+                  "ppf",
+                  "dpf"
+                ],
+                "type": "string"
+              },
+              "manager_slug": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "fund_id": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "start_date": {
+                "default": "2005-01-01",
+                "type": "string"
+              },
+              "end_date": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              }
+            },
+            "required": [
+              "monthly_contribution",
+              "scheme_code"
+            ],
+            "type": "object"
+          },
+          "outputSchema": {
+            "additionalProperties": true,
+            "type": "object"
+          },
+          "_meta": {
+            "fastmcp": {
+              "tags": []
+            }
+          }
+        },
+        {
+          "name": "get_bulgarian_pension_fund_managers",
+          "description": "Alias for `list_managers` with explicit Bulgarian pension context for agent discovery.",
+          "inputSchema": {
+            "additionalProperties": false,
+            "properties": {
+              "scheme_code": {
+                "anyOf": [
+                  {
+                    "enum": [
+                      "upf",
+                      "ppf",
+                      "dpf"
+                    ],
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              }
+            },
+            "type": "object"
+          },
+          "outputSchema": {
+            "additionalProperties": true,
+            "type": "object"
+          },
+          "_meta": {
+            "fastmcp": {
+              "tags": []
+            }
+          }
+        },
+        {
+          "name": "get_bulgarian_pension_funds",
+          "description": "Alias for `list_funds` to discover UPF/PPF/VPF fund IDs for FSC-based analysis.",
+          "inputSchema": {
+            "additionalProperties": false,
+            "properties": {
+              "scheme_code": {
+                "anyOf": [
+                  {
+                    "enum": [
+                      "upf",
+                      "ppf",
+                      "dpf"
+                    ],
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "active_only": {
+                "default": true,
+                "type": "boolean"
+              }
+            },
+            "type": "object"
+          },
+          "outputSchema": {
+            "additionalProperties": true,
+            "type": "object"
+          },
+          "_meta": {
+            "fastmcp": {
+              "tags": []
+            }
+          }
+        },
+        {
+          "name": "get_bulgarian_pension_fund_nav_series",
+          "description": "Alias for `get_nav_series` with explicit pension NAV semantics for tool-RAG routing.",
+          "inputSchema": {
+            "additionalProperties": false,
+            "properties": {
+              "fund_id": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "manager_slug": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "scheme_code": {
+                "anyOf": [
+                  {
+                    "enum": [
+                      "upf",
+                      "ppf",
+                      "dpf"
+                    ],
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "date_from": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "date_to": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "frequency": {
+                "default": "daily",
+                "enum": [
+                  "daily",
+                  "weekly",
+                  "monthly"
+                ],
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "outputSchema": {
+            "additionalProperties": true,
+            "type": "object"
+          },
+          "_meta": {
+            "fastmcp": {
+              "tags": []
+            }
+          }
+        },
+        {
+          "name": "get_bulgarian_pension_benchmarks",
+          "description": "Alias for `list_benchmarks` with Bulgarian pension comparison context.",
+          "inputSchema": {
+            "additionalProperties": false,
+            "properties": {},
+            "type": "object"
+          },
+          "outputSchema": {
+            "additionalProperties": true,
+            "type": "object"
+          },
+          "_meta": {
+            "fastmcp": {
+              "tags": []
+            }
+          }
+        },
+        {
+          "name": "get_bulgarian_pension_metrics_catalog",
+          "description": "Alias for `list_metrics` so agents can semantically find available pension metrics.",
+          "inputSchema": {
+            "additionalProperties": false,
+            "properties": {},
+            "type": "object"
+          },
+          "outputSchema": {
+            "additionalProperties": true,
+            "type": "object"
+          },
+          "_meta": {
+            "fastmcp": {
+              "tags": []
+            }
+          }
+        },
+        {
+          "name": "get_bulgarian_pension_benchmark_series",
+          "description": "Alias for `get_benchmark_series` to retrieve inflation/market comparators for UPF/PPF/VPF.",
+          "inputSchema": {
+            "additionalProperties": false,
+            "properties": {
+              "benchmark_slug": {
+                "type": "string"
+              },
+              "date_from": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "date_to": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "frequency": {
+                "default": "daily",
+                "enum": [
+                  "daily",
+                  "weekly",
+                  "monthly"
+                ],
+                "type": "string"
+              }
+            },
+            "required": [
+              "benchmark_slug"
+            ],
+            "type": "object"
+          },
+          "outputSchema": {
+            "additionalProperties": true,
+            "type": "object"
+          },
+          "_meta": {
+            "fastmcp": {
+              "tags": []
+            }
+          }
+        },
+        {
+          "name": "get_bulgarian_pension_fund_metric",
+          "description": "Alias for `compute_metric` with explicit Bulgarian pension metric intent.",
+          "inputSchema": {
+            "additionalProperties": false,
+            "properties": {
+              "metric": {
+                "type": "string"
+              },
+              "period": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "additionalProperties": true,
+                    "type": "object"
+                  }
+                ]
+              },
+              "fund_id": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "manager_slug": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "scheme_code": {
+                "anyOf": [
+                  {
+                    "enum": [
+                      "upf",
+                      "ppf",
+                      "dpf"
+                    ],
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "benchmark_target_slug": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "benchmark_slug": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "risk_free_slug": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "risk_free_rate": {
+                "anyOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "window": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "integer"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "frequency": {
+                "default": "daily",
+                "enum": [
+                  "daily",
+                  "weekly",
+                  "monthly"
+                ],
+                "type": "string"
+              }
+            },
+            "required": [
+              "metric",
+              "period"
+            ],
+            "type": "object"
+          },
+          "outputSchema": {
+            "additionalProperties": true,
+            "type": "object"
+          },
+          "_meta": {
+            "fastmcp": {
+              "tags": []
+            }
+          }
+        },
+        {
+          "name": "rank_bulgarian_pension_funds_by_metric",
+          "description": "Alias for `rank` to semantically target Bulgarian UPF/PPF/VPF leaderboard queries.",
+          "inputSchema": {
+            "additionalProperties": false,
+            "properties": {
+              "scheme_code": {
+                "enum": [
+                  "upf",
+                  "ppf",
+                  "dpf"
+                ],
+                "type": "string"
+              },
+              "metric": {
+                "type": "string"
+              },
+              "period": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "additionalProperties": true,
+                    "type": "object"
+                  }
+                ]
+              },
+              "benchmark_slug": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "order": {
+                "default": "desc",
+                "enum": [
+                  "desc",
+                  "asc"
+                ],
+                "type": "string"
+              },
+              "limit": {
+                "default": 50,
+                "type": "integer"
+              },
+              "offset": {
+                "default": 0,
+                "type": "integer"
+              },
+              "include_metrics": {
+                "anyOf": [
+                  {
+                    "items": {
+                      "type": "string"
+                    },
+                    "type": "array"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "frequency": {
+                "default": "daily",
+                "enum": [
+                  "daily",
+                  "weekly",
+                  "monthly"
+                ],
+                "type": "string"
+              },
+              "risk_free_rate": {
+                "anyOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "window": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "integer"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              }
+            },
+            "required": [
+              "scheme_code",
+              "metric",
+              "period"
+            ],
+            "type": "object"
+          },
+          "outputSchema": {
+            "additionalProperties": true,
+            "type": "object"
+          },
+          "_meta": {
+            "fastmcp": {
+              "tags": []
+            }
+          }
+        },
+        {
+          "name": "rank_bulgarian_pension_benchmarks_by_metric",
+          "description": "Alias for `rank_benchmarks` for semantically rich benchmark ranking discovery.",
+          "inputSchema": {
+            "additionalProperties": false,
+            "properties": {
+              "metric": {
+                "type": "string"
+              },
+              "period": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "additionalProperties": true,
+                    "type": "object"
+                  }
+                ]
+              },
+              "benchmark_slug": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "order": {
+                "default": "desc",
+                "enum": [
+                  "desc",
+                  "asc"
+                ],
+                "type": "string"
+              },
+              "limit": {
+                "default": 50,
+                "type": "integer"
+              },
+              "offset": {
+                "default": 0,
+                "type": "integer"
+              },
+              "include_metrics": {
+                "anyOf": [
+                  {
+                    "items": {
+                      "type": "string"
+                    },
+                    "type": "array"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "frequency": {
+                "default": "daily",
+                "enum": [
+                  "daily",
+                  "weekly",
+                  "monthly"
+                ],
+                "type": "string"
+              },
+              "risk_free_rate": {
+                "anyOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "window": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "integer"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "scheme_code": {
+                "default": "upf",
+                "enum": [
+                  "upf",
+                  "ppf",
+                  "dpf"
+                ],
+                "type": "string"
+              }
+            },
+            "required": [
+              "metric",
+              "period"
+            ],
+            "type": "object"
+          },
+          "outputSchema": {
+            "additionalProperties": true,
+            "type": "object"
+          },
+          "_meta": {
+            "fastmcp": {
+              "tags": []
+            }
+          }
+        },
+        {
+          "name": "simulate_bulgarian_pension_saver_outcome",
+          "description": "Alias for `simulate_saver_outcome` with explicit Bulgarian pension savings semantics.",
+          "inputSchema": {
+            "additionalProperties": false,
+            "properties": {
+              "manager_slug": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "scheme_code": {
+                "default": "upf",
+                "enum": [
+                  "upf",
+                  "ppf",
+                  "dpf"
+                ],
+                "type": "string"
+              },
+              "monthly_amount": {
+                "default": 200.0,
+                "type": "number"
+              },
+              "date_from": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "end_date": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              }
+            },
+            "type": "object"
+          },
+          "outputSchema": {
+            "additionalProperties": true,
+            "type": "object"
+          },
+          "_meta": {
+            "fastmcp": {
+              "tags": []
+            }
+          }
+        }
+      ],
+      "tool_count": 21,
+      "tool_names": [
+        "list_managers",
+        "list_funds",
+        "get_nav_series",
+        "list_benchmarks",
+        "list_metrics",
+        "cache_stats",
+        "get_benchmark_series",
+        "compute_metric",
+        "rank",
+        "rank_benchmarks",
+        "simulate_saver_outcome",
+        "get_bulgarian_pension_fund_managers",
+        "get_bulgarian_pension_funds",
+        "get_bulgarian_pension_fund_nav_series",
+        "get_bulgarian_pension_benchmarks",
+        "get_bulgarian_pension_metrics_catalog",
+        "get_bulgarian_pension_benchmark_series",
+        "get_bulgarian_pension_fund_metric",
+        "rank_bulgarian_pension_funds_by_metric",
+        "rank_bulgarian_pension_benchmarks_by_metric",
+        "simulate_bulgarian_pension_saver_outcome"
+      ]
+    },
+    "server_info_crawled": {
+      "id": 38,
+      "name": "Pensiata - Bulgarian Pension Fund Analytics",
+      "author": "",
+      "overview": "Pensiata - Bulgarian Pension Fund Analytics - Data Analysis & Processing server with 21 tools. The MCP Server \"Pensiata - Bulgarian Pension Fund Analytics\" provides 21 tools focused on data analy",
+      "repository_url": "",
+      "homepage": "https://mcp.pensiata.me/mcp",
+      "remote_or_local": "Remote",
+      "license": "",
+      "usage_count": "8,100",
+      "success_rate": "100%",
+      "tags": [
+        "data-analysis-processing",
+        "financial-services",
+        "gaming"
+      ],
+      "categories": [
+        "data analysis & processing",
+        "financial services",
+        "gaming"
+      ],
+      "tools_count": 21,
+      "tools": [
+        {
+          "name": "list_managers",
+          "description": "Retrieve Bulgarian pension manager metadata for UPF, PPF, and VPF/DPF schemes.\n\nUse this to discover licensed managers and their supported scheme types before\nrunning rankings or metric calculations over FSC-tracked pension data.\nData freshness: reflects latest ingested official FSC manager/scheme coverage.",
+          "inputSchema": {
+            "additionalProperties": false,
+            "properties": {
+              "scheme_code": {
+                "anyOf": [
+                  {
+                    "enum": [
+                      "upf",
+                      "ppf",
+                      "dpf"
+                    ],
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              }
+            },
+            "type": "object"
+          },
+          "outputSchema": {
+            "additionalProperties": true,
+            "type": "object"
+          },
+          "_meta": {
+            "fastmcp": {
+              "tags": []
+            }
+          }
+        },
+        {
+          "name": "list_funds",
+          "description": "List Bulgarian private pension funds and canonical fund IDs.\n\nReturns `fund_id` in `manager_slug:scheme_code` format for UPF, PPF, and VPF/DPF.\nUse this as discovery before calling NAV, metric, and ranking tools.\nData freshness: fund metadata follows latest FSC-tracked manager/scheme dataset.",
+          "inputSchema": {
+            "additionalProperties": false,
+            "properties": {
+              "scheme_code": {
+                "anyOf": [
+                  {
+                    "enum": [
+                      "upf",
+                      "ppf",
+                      "dpf"
+                    ],
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "active_only": {
+                "default": true,
+                "type": "boolean"
+              }
+            },
+            "type": "object"
+          },
+          "outputSchema": {
+            "additionalProperties": true,
+            "type": "object"
+          },
+          "_meta": {
+            "fastmcp": {
+              "tags": []
+            }
+          }
+        },
+        {
+          "name": "get_nav_series",
+          "description": "Get official NAV time series for a Bulgarian pension fund (UPF/PPF/VPF).\n\nAccepts either `fund_id` or (`manager_slug`, `scheme_code`) and returns normalized\nNAV points for return/risk calculations and charting.\nData freshness: updated as new source NAV observations are ingested.",
+          "inputSchema": {
+            "additionalProperties": false,
+            "properties": {
+              "fund_id": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "manager_slug": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "scheme_code": {
+                "anyOf": [
+                  {
+                    "enum": [
+                      "upf",
+                      "ppf",
+                      "dpf"
+                    ],
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "date_from": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "date_to": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "frequency": {
+                "default": "daily",
+                "enum": [
+                  "daily",
+                  "weekly",
+                  "monthly"
+                ],
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "outputSchema": {
+            "additionalProperties": true,
+            "type": "object"
+          },
+          "_meta": {
+            "fastmcp": {
+              "tags": []
+            }
+          }
+        },
+        {
+          "name": "list_benchmarks",
+          "description": "List benchmark assets for Bulgarian pension comparisons.\n\nIncludes inflation and market references used to evaluate relative performance\nof UPF, PPF, and VPF/DPF funds.\nData freshness: benchmark metadata is stable; prices are updated as new source data arrives.",
+          "inputSchema": {
+            "additionalProperties": false,
+            "properties": {},
+            "type": "object"
+          },
+          "outputSchema": {
+            "additionalProperties": true,
+            "type": "object"
+          },
+          "_meta": {
+            "fastmcp": {
+              "tags": []
+            }
+          }
+        },
+        {
+          "name": "list_metrics",
+          "description": "List all supported financial metric identifiers for MCP analytics tools.",
+          "inputSchema": {
+            "additionalProperties": false,
+            "properties": {},
+            "type": "object"
+          },
+          "outputSchema": {
+            "additionalProperties": true,
+            "type": "object"
+          },
+          "_meta": {
+            "fastmcp": {
+              "tags": []
+            }
+          }
+        },
+        {
+          "name": "cache_stats",
+          "description": "Return MCP cache telemetry for diagnostics and performance debugging.",
+          "inputSchema": {
+            "additionalProperties": false,
+            "properties": {},
+            "type": "object"
+          },
+          "outputSchema": {
+            "additionalProperties": true,
+            "type": "object"
+          },
+          "_meta": {
+            "fastmcp": {
+              "tags": []
+            }
+          }
+        },
+        {
+          "name": "get_benchmark_series",
+          "description": "Get historical benchmark series for pension-fund comparison workflows.\n\nUse with compute/rank tools to compare Bulgarian pension funds against inflation\nor market proxies over aligned periods.\nData freshness: updated as new benchmark source observations become available.",
+          "inputSchema": {
+            "additionalProperties": false,
+            "properties": {
+              "benchmark_slug": {
+                "type": "string"
+              },
+              "date_from": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "date_to": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "frequency": {
+                "default": "daily",
+                "enum": [
+                  "daily",
+                  "weekly",
+                  "monthly"
+                ],
+                "type": "string"
+              }
+            },
+            "required": [
+              "benchmark_slug"
+            ],
+            "type": "object"
+          },
+          "outputSchema": {
+            "additionalProperties": true,
+            "type": "object"
+          },
+          "_meta": {
+            "fastmcp": {
+              "tags": []
+            }
+          }
+        },
+        {
+          "name": "compute_metric",
+          "description": "Compute a metric for Bulgarian pension funds or benchmark targets.\n\nSupports returns, drawdown, volatility, Sharpe/Sortino/Calmar, correlation, and\nbenchmark-aware metrics over configurable period and frequency.\nData freshness: computed from latest ingested FSC NAV and benchmark data.",
+          "inputSchema": {
+            "additionalProperties": false,
+            "properties": {
+              "metric": {
+                "type": "string"
+              },
+              "period": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "additionalProperties": true,
+                    "type": "object"
+                  }
+                ]
+              },
+              "fund_id": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "manager_slug": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "scheme_code": {
+                "anyOf": [
+                  {
+                    "enum": [
+                      "upf",
+                      "ppf",
+                      "dpf"
+                    ],
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "benchmark_target_slug": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "benchmark_slug": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "risk_free_slug": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "risk_free_rate": {
+                "anyOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "window": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "integer"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "frequency": {
+                "default": "daily",
+                "enum": [
+                  "daily",
+                  "weekly",
+                  "monthly"
+                ],
+                "type": "string"
+              }
+            },
+            "required": [
+              "metric",
+              "period"
+            ],
+            "type": "object"
+          },
+          "outputSchema": {
+            "additionalProperties": true,
+            "type": "object"
+          },
+          "_meta": {
+            "fastmcp": {
+              "tags": []
+            }
+          }
+        },
+        {
+          "name": "rank",
+          "description": "Rank funds within UPF/PPF/VPF schemes by a selected metric and period.\n\nSupports optional extra columns via `include_metrics` for agent-friendly table outputs.\nData freshness: rankings are computed from the latest ingested FSC-aligned NAV dataset.",
+          "inputSchema": {
+            "additionalProperties": false,
+            "properties": {
+              "scheme_code": {
+                "enum": [
+                  "upf",
+                  "ppf",
+                  "dpf"
+                ],
+                "type": "string"
+              },
+              "metric": {
+                "type": "string"
+              },
+              "period": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "additionalProperties": true,
+                    "type": "object"
+                  }
+                ]
+              },
+              "benchmark_slug": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "order": {
+                "default": "desc",
+                "enum": [
+                  "desc",
+                  "asc"
+                ],
+                "type": "string"
+              },
+              "limit": {
+                "default": 50,
+                "type": "integer"
+              },
+              "offset": {
+                "default": 0,
+                "type": "integer"
+              },
+              "include_metrics": {
+                "anyOf": [
+                  {
+                    "items": {
+                      "type": "string"
+                    },
+                    "type": "array"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "frequency": {
+                "default": "daily",
+                "enum": [
+                  "daily",
+                  "weekly",
+                  "monthly"
+                ],
+                "type": "string"
+              },
+              "risk_free_rate": {
+                "anyOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "window": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "integer"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              }
+            },
+            "required": [
+              "scheme_code",
+              "metric",
+              "period"
+            ],
+            "type": "object"
+          },
+          "outputSchema": {
+            "additionalProperties": true,
+            "type": "object"
+          },
+          "_meta": {
+            "fastmcp": {
+              "tags": []
+            }
+          }
+        },
+        {
+          "name": "rank_benchmarks",
+          "description": "Rank benchmark assets by metric and period for market-context comparison.\n\nData freshness: rankings reflect latest ingested benchmark observations.",
+          "inputSchema": {
+            "additionalProperties": false,
+            "properties": {
+              "metric": {
+                "type": "string"
+              },
+              "period": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "additionalProperties": true,
+                    "type": "object"
+                  }
+                ]
+              },
+              "benchmark_slug": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "order": {
+                "default": "desc",
+                "enum": [
+                  "desc",
+                  "asc"
+                ],
+                "type": "string"
+              },
+              "limit": {
+                "default": 50,
+                "type": "integer"
+              },
+              "offset": {
+                "default": 0,
+                "type": "integer"
+              },
+              "include_metrics": {
+                "anyOf": [
+                  {
+                    "items": {
+                      "type": "string"
+                    },
+                    "type": "array"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "frequency": {
+                "default": "daily",
+                "enum": [
+                  "daily",
+                  "weekly",
+                  "monthly"
+                ],
+                "type": "string"
+              },
+              "risk_free_rate": {
+                "anyOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "window": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "integer"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              }
+            },
+            "required": [
+              "metric",
+              "period"
+            ],
+            "type": "object"
+          },
+          "outputSchema": {
+            "additionalProperties": true,
+            "type": "object"
+          },
+          "_meta": {
+            "fastmcp": {
+              "tags": []
+            }
+          }
+        },
+        {
+          "name": "simulate_saver_outcome",
+          "description": "Simulate saver outcomes with periodic contributions into Bulgarian pension funds.\n\nEstimates invested amount, terminal value, and IRR-like performance diagnostics.\nData freshness: simulation uses the latest available NAV history in the dataset.",
+          "inputSchema": {
+            "additionalProperties": false,
+            "properties": {
+              "monthly_contribution": {
+                "type": "number"
+              },
+              "scheme_code": {
+                "enum": [
+                  "upf",
+                  "ppf",
+                  "dpf"
+                ],
+                "type": "string"
+              },
+              "manager_slug": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "fund_id": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "start_date": {
+                "default": "2005-01-01",
+                "type": "string"
+              },
+              "end_date": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              }
+            },
+            "required": [
+              "monthly_contribution",
+              "scheme_code"
+            ],
+            "type": "object"
+          },
+          "outputSchema": {
+            "additionalProperties": true,
+            "type": "object"
+          },
+          "_meta": {
+            "fastmcp": {
+              "tags": []
+            }
+          }
+        },
+        {
+          "name": "get_bulgarian_pension_fund_managers",
+          "description": "Alias for `list_managers` with explicit Bulgarian pension context for agent discovery.",
+          "inputSchema": {
+            "additionalProperties": false,
+            "properties": {
+              "scheme_code": {
+                "anyOf": [
+                  {
+                    "enum": [
+                      "upf",
+                      "ppf",
+                      "dpf"
+                    ],
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              }
+            },
+            "type": "object"
+          },
+          "outputSchema": {
+            "additionalProperties": true,
+            "type": "object"
+          },
+          "_meta": {
+            "fastmcp": {
+              "tags": []
+            }
+          }
+        },
+        {
+          "name": "get_bulgarian_pension_funds",
+          "description": "Alias for `list_funds` to discover UPF/PPF/VPF fund IDs for FSC-based analysis.",
+          "inputSchema": {
+            "additionalProperties": false,
+            "properties": {
+              "scheme_code": {
+                "anyOf": [
+                  {
+                    "enum": [
+                      "upf",
+                      "ppf",
+                      "dpf"
+                    ],
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "active_only": {
+                "default": true,
+                "type": "boolean"
+              }
+            },
+            "type": "object"
+          },
+          "outputSchema": {
+            "additionalProperties": true,
+            "type": "object"
+          },
+          "_meta": {
+            "fastmcp": {
+              "tags": []
+            }
+          }
+        },
+        {
+          "name": "get_bulgarian_pension_fund_nav_series",
+          "description": "Alias for `get_nav_series` with explicit pension NAV semantics for tool-RAG routing.",
+          "inputSchema": {
+            "additionalProperties": false,
+            "properties": {
+              "fund_id": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "manager_slug": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "scheme_code": {
+                "anyOf": [
+                  {
+                    "enum": [
+                      "upf",
+                      "ppf",
+                      "dpf"
+                    ],
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "date_from": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "date_to": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "frequency": {
+                "default": "daily",
+                "enum": [
+                  "daily",
+                  "weekly",
+                  "monthly"
+                ],
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "outputSchema": {
+            "additionalProperties": true,
+            "type": "object"
+          },
+          "_meta": {
+            "fastmcp": {
+              "tags": []
+            }
+          }
+        },
+        {
+          "name": "get_bulgarian_pension_benchmarks",
+          "description": "Alias for `list_benchmarks` with Bulgarian pension comparison context.",
+          "inputSchema": {
+            "additionalProperties": false,
+            "properties": {},
+            "type": "object"
+          },
+          "outputSchema": {
+            "additionalProperties": true,
+            "type": "object"
+          },
+          "_meta": {
+            "fastmcp": {
+              "tags": []
+            }
+          }
+        },
+        {
+          "name": "get_bulgarian_pension_metrics_catalog",
+          "description": "Alias for `list_metrics` so agents can semantically find available pension metrics.",
+          "inputSchema": {
+            "additionalProperties": false,
+            "properties": {},
+            "type": "object"
+          },
+          "outputSchema": {
+            "additionalProperties": true,
+            "type": "object"
+          },
+          "_meta": {
+            "fastmcp": {
+              "tags": []
+            }
+          }
+        },
+        {
+          "name": "get_bulgarian_pension_benchmark_series",
+          "description": "Alias for `get_benchmark_series` to retrieve inflation/market comparators for UPF/PPF/VPF.",
+          "inputSchema": {
+            "additionalProperties": false,
+            "properties": {
+              "benchmark_slug": {
+                "type": "string"
+              },
+              "date_from": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "date_to": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "frequency": {
+                "default": "daily",
+                "enum": [
+                  "daily",
+                  "weekly",
+                  "monthly"
+                ],
+                "type": "string"
+              }
+            },
+            "required": [
+              "benchmark_slug"
+            ],
+            "type": "object"
+          },
+          "outputSchema": {
+            "additionalProperties": true,
+            "type": "object"
+          },
+          "_meta": {
+            "fastmcp": {
+              "tags": []
+            }
+          }
+        },
+        {
+          "name": "get_bulgarian_pension_fund_metric",
+          "description": "Alias for `compute_metric` with explicit Bulgarian pension metric intent.",
+          "inputSchema": {
+            "additionalProperties": false,
+            "properties": {
+              "metric": {
+                "type": "string"
+              },
+              "period": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "additionalProperties": true,
+                    "type": "object"
+                  }
+                ]
+              },
+              "fund_id": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "manager_slug": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "scheme_code": {
+                "anyOf": [
+                  {
+                    "enum": [
+                      "upf",
+                      "ppf",
+                      "dpf"
+                    ],
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "benchmark_target_slug": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "benchmark_slug": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "risk_free_slug": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "risk_free_rate": {
+                "anyOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "window": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "integer"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "frequency": {
+                "default": "daily",
+                "enum": [
+                  "daily",
+                  "weekly",
+                  "monthly"
+                ],
+                "type": "string"
+              }
+            },
+            "required": [
+              "metric",
+              "period"
+            ],
+            "type": "object"
+          },
+          "outputSchema": {
+            "additionalProperties": true,
+            "type": "object"
+          },
+          "_meta": {
+            "fastmcp": {
+              "tags": []
+            }
+          }
+        },
+        {
+          "name": "rank_bulgarian_pension_funds_by_metric",
+          "description": "Alias for `rank` to semantically target Bulgarian UPF/PPF/VPF leaderboard queries.",
+          "inputSchema": {
+            "additionalProperties": false,
+            "properties": {
+              "scheme_code": {
+                "enum": [
+                  "upf",
+                  "ppf",
+                  "dpf"
+                ],
+                "type": "string"
+              },
+              "metric": {
+                "type": "string"
+              },
+              "period": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "additionalProperties": true,
+                    "type": "object"
+                  }
+                ]
+              },
+              "benchmark_slug": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "order": {
+                "default": "desc",
+                "enum": [
+                  "desc",
+                  "asc"
+                ],
+                "type": "string"
+              },
+              "limit": {
+                "default": 50,
+                "type": "integer"
+              },
+              "offset": {
+                "default": 0,
+                "type": "integer"
+              },
+              "include_metrics": {
+                "anyOf": [
+                  {
+                    "items": {
+                      "type": "string"
+                    },
+                    "type": "array"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "frequency": {
+                "default": "daily",
+                "enum": [
+                  "daily",
+                  "weekly",
+                  "monthly"
+                ],
+                "type": "string"
+              },
+              "risk_free_rate": {
+                "anyOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "window": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "integer"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              }
+            },
+            "required": [
+              "scheme_code",
+              "metric",
+              "period"
+            ],
+            "type": "object"
+          },
+          "outputSchema": {
+            "additionalProperties": true,
+            "type": "object"
+          },
+          "_meta": {
+            "fastmcp": {
+              "tags": []
+            }
+          }
+        },
+        {
+          "name": "rank_bulgarian_pension_benchmarks_by_metric",
+          "description": "Alias for `rank_benchmarks` for semantically rich benchmark ranking discovery.",
+          "inputSchema": {
+            "additionalProperties": false,
+            "properties": {
+              "metric": {
+                "type": "string"
+              },
+              "period": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "additionalProperties": true,
+                    "type": "object"
+                  }
+                ]
+              },
+              "benchmark_slug": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "order": {
+                "default": "desc",
+                "enum": [
+                  "desc",
+                  "asc"
+                ],
+                "type": "string"
+              },
+              "limit": {
+                "default": 50,
+                "type": "integer"
+              },
+              "offset": {
+                "default": 0,
+                "type": "integer"
+              },
+              "include_metrics": {
+                "anyOf": [
+                  {
+                    "items": {
+                      "type": "string"
+                    },
+                    "type": "array"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "frequency": {
+                "default": "daily",
+                "enum": [
+                  "daily",
+                  "weekly",
+                  "monthly"
+                ],
+                "type": "string"
+              },
+              "risk_free_rate": {
+                "anyOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "window": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "integer"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "scheme_code": {
+                "default": "upf",
+                "enum": [
+                  "upf",
+                  "ppf",
+                  "dpf"
+                ],
+                "type": "string"
+              }
+            },
+            "required": [
+              "metric",
+              "period"
+            ],
+            "type": "object"
+          },
+          "outputSchema": {
+            "additionalProperties": true,
+            "type": "object"
+          },
+          "_meta": {
+            "fastmcp": {
+              "tags": []
+            }
+          }
+        },
+        {
+          "name": "simulate_bulgarian_pension_saver_outcome",
+          "description": "Alias for `simulate_saver_outcome` with explicit Bulgarian pension savings semantics.",
+          "inputSchema": {
+            "additionalProperties": false,
+            "properties": {
+              "manager_slug": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "scheme_code": {
+                "default": "upf",
+                "enum": [
+                  "upf",
+                  "ppf",
+                  "dpf"
+                ],
+                "type": "string"
+              },
+              "monthly_amount": {
+                "default": 200.0,
+                "type": "number"
+              },
+              "date_from": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "end_date": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              }
+            },
+            "type": "object"
+          },
+          "outputSchema": {
+            "additionalProperties": true,
+            "type": "object"
+          },
+          "_meta": {
+            "fastmcp": {
+              "tags": []
+            }
+          }
+        }
+      ],
+      "python_sdk_url": "https://mcp.pensiata.me/mcp",
+      "python_sdk_config": "{\"debug\": false}"
+    },
+    "source_filename": "0038.Pensiata---Bulgarian-Pension-Fund-Analytics_labeled.json",
+    "processed_timestamp": 1772876337,
+    "processing_mode": "gateway",
+    "rank": 39
+  }
+}

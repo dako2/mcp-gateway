@@ -1,0 +1,163 @@
+{
+  "labels": {
+    "analysis": "The MCP Server (MyFirstMCP) serves as a foundational implementation of the Model Context Protocol, enabling LLMs to interact with external tools via a standardized JSON-RPC interface. Its core functionality revolves around facilitating dynamic interactions with data and actions, simplifying the development of LLM applications. The available tools (add and subtract) demonstrate basic arithmetic operations, suggesting the server is designed to be extensible with more complex tools in the future. The primary purpose appears to be the integration of tools and resources with LLMs, abstracting the complexity of such integrations.",
+    "reasoning": "The primary label \"Development Tools\" was chosen because the server is explicitly designed to simplify LLM application development by providing a standardized interface for tool integration. The secondary label \"API Integration\" was selected due to the JSON-RPC interface and the focus on exposing tools and resources. No custom label is needed as the predefined categories sufficiently cover the server's functionality.",
+    "primary_label": "Development Tools",
+    "secondary_labels": [
+      "API Integration"
+    ],
+    "custom_label": null,
+    "is_connected": true,
+    "is_remote_tool_valid": true,
+    "featured_server": false,
+    "tool_verified": false,
+    "tool_verified_status": "broken",
+    "tool_verified_at": "2026-03-14T20:40:01.075644+00:00",
+    "tool_verified_tool": "add",
+    "tool_verified_reason": "client timeout after 20003ms"
+  },
+  "metadata": {
+    "server_id": 344,
+    "server_name": "MyFirstMCP",
+    "rank_by_usage": 1655,
+    "usage_count": "Not available",
+    "original_file": "toucan_live#@zhouxubin/myfirstmcp",
+    "mode": "toucan",
+    "timestamp": 1772876338,
+    "remote_server_response": {
+      "url": "https://server.smithery.ai/@zhouxubin/myfirstmcp/mcp",
+      "is_success": true,
+      "error": null,
+      "tools": [
+        {
+          "name": "add",
+          "description": "Add two numbers\nArgs:\n    a: The first number\n    b: The second number\nReturns:\n    The sum of the two numbers\n",
+          "input_schema": {
+            "properties": {
+              "a": {
+                "title": "A",
+                "type": "integer"
+              },
+              "b": {
+                "title": "B",
+                "type": "integer"
+              }
+            },
+            "required": [
+              "a",
+              "b"
+            ],
+            "title": "addArguments",
+            "type": "object"
+          },
+          "annotations": null
+        },
+        {
+          "name": "subtract",
+          "description": "Subtract two numbers\nArgs:\n    a: The first number\n    b: The second number\nReturns:\n    The difference between the two numbers\n",
+          "input_schema": {
+            "properties": {
+              "a": {
+                "title": "A",
+                "type": "integer"
+              },
+              "b": {
+                "title": "B",
+                "type": "integer"
+              }
+            },
+            "required": [
+              "a",
+              "b"
+            ],
+            "title": "subtractArguments",
+            "type": "object"
+          },
+          "annotations": null
+        }
+      ],
+      "tool_count": 2,
+      "tool_names": [
+        "add",
+        "subtract"
+      ]
+    },
+    "server_info_crawled": {
+      "id": 344,
+      "name": "MyFirstMCP",
+      "author": "",
+      "overview": "Provide a basic implementation of the Model Context Protocol server to enable integration of LLMs with external tools and resources. Facilitate dynamic interaction with data and actions through a standardized JSON-RPC interface. Simplify the development of LLM applications by exposing tools, resources, and prompts.",
+      "repository_url": "",
+      "homepage": "https://server.smithery.ai/@zhouxubin/myfirstmcp/mcp",
+      "remote_or_local": "Remote",
+      "license": "",
+      "usage_count": "Not available",
+      "success_rate": "Not available",
+      "tags": [
+        "search",
+        "web",
+        "api",
+        "mcp"
+      ],
+      "categories": [
+        "search",
+        "api"
+      ],
+      "tools_count": 2,
+      "tools": [
+        {
+          "name": "add",
+          "description": "Add two numbers\nArgs:\n    a: The first number\n    b: The second number\nReturns:\n    The sum of the two numbers\n",
+          "input_schema": {
+            "properties": {
+              "a": {
+                "title": "A",
+                "type": "integer"
+              },
+              "b": {
+                "title": "B",
+                "type": "integer"
+              }
+            },
+            "required": [
+              "a",
+              "b"
+            ],
+            "title": "addArguments",
+            "type": "object"
+          },
+          "annotations": null
+        },
+        {
+          "name": "subtract",
+          "description": "Subtract two numbers\nArgs:\n    a: The first number\n    b: The second number\nReturns:\n    The difference between the two numbers\n",
+          "input_schema": {
+            "properties": {
+              "a": {
+                "title": "A",
+                "type": "integer"
+              },
+              "b": {
+                "title": "B",
+                "type": "integer"
+              }
+            },
+            "required": [
+              "a",
+              "b"
+            ],
+            "title": "subtractArguments",
+            "type": "object"
+          },
+          "annotations": null
+        }
+      ],
+      "python_sdk_url": "https://server.smithery.ai/@zhouxubin/myfirstmcp/mcp",
+      "python_sdk_config": "{\"debug\": false}"
+    },
+    "source_filename": "0344.MyFirstMCP_labeled.json",
+    "processed_timestamp": 1772876338,
+    "processing_mode": "toucan",
+    "rank": 1655
+  }
+}

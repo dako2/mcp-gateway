@@ -1,0 +1,1766 @@
+{
+  "labels": {
+    "analysis": "The MCP Server \"TaScan\" provides 28 tools focused on productivity tasks. Core capabilities include creation and generation, data access and reading, deletion and cleanup, modification and updates. Key tools: tascan_list_projects, tascan_create_project, tascan_get_project, tascan_update_project, tascan_delete_project.",
+    "reasoning": "Primary label \"Productivity\" assigned based on strong keyword matches in tool names and descriptions: task, project, timer.",
+    "primary_label": "Productivity",
+    "secondary_labels": [
+      "Security & Authentication",
+      "Communication Tools"
+    ],
+    "custom_label": "Data Access & Generation - TaScan",
+    "is_connected": true,
+    "is_remote_tool_valid": true,
+    "featured_server": true,
+    "tool_verified": false,
+    "tool_verified_status": "auth_required",
+    "tool_verified_at": "2026-03-14T20:38:11.045858+00:00",
+    "tool_verified_tool": "tascan_list_projects",
+    "tool_verified_reason": "HTTP 401"
+  },
+  "metadata": {
+    "server_id": 32,
+    "server_name": "TaScan",
+    "rank_by_usage": 33,
+    "usage_count": "8,400",
+    "original_file": "tools.json#32",
+    "mode": "gateway",
+    "timestamp": 1772876337,
+    "remote_server_response": {
+      "url": "https://tascan-live-event.netlify.app/mcp",
+      "is_success": true,
+      "error": null,
+      "tools": [
+        {
+          "name": "tascan_list_projects",
+          "description": "List all TaScan projects in the organization",
+          "inputSchema": {
+            "type": "object",
+            "properties": {}
+          },
+          "annotations": {
+            "title": "List Projects",
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "tascan_create_project",
+          "description": "Create a new TaScan project (top-level container for events)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "Project name"
+              },
+              "location": {
+                "type": "string",
+                "description": "Project location / venue"
+              }
+            },
+            "required": [
+              "name"
+            ]
+          },
+          "annotations": {
+            "title": "Create Project",
+            "readOnlyHint": false,
+            "destructiveHint": false,
+            "idempotentHint": false,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "tascan_get_project",
+          "description": "Get details of a specific project",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "project_id": {
+                "type": "string",
+                "description": "Project ID"
+              }
+            },
+            "required": [
+              "project_id"
+            ]
+          },
+          "annotations": {
+            "title": "Get Project",
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "tascan_update_project",
+          "description": "Update a project (name, location, status, dates)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "project_id": {
+                "type": "string",
+                "description": "Project ID"
+              },
+              "name": {
+                "type": "string",
+                "description": "New name"
+              },
+              "location": {
+                "type": "string",
+                "description": "New location"
+              },
+              "status": {
+                "type": "string",
+                "enum": [
+                  "active",
+                  "archived"
+                ],
+                "description": "Status"
+              },
+              "start_date": {
+                "type": "string",
+                "description": "Start date (ISO)"
+              },
+              "end_date": {
+                "type": "string",
+                "description": "End date (ISO)"
+              }
+            },
+            "required": [
+              "project_id"
+            ]
+          },
+          "annotations": {
+            "title": "Update Project",
+            "readOnlyHint": false,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "tascan_delete_project",
+          "description": "Delete a project and all its events, tasks, and completions. This action is irreversible.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "project_id": {
+                "type": "string",
+                "description": "Project ID to delete"
+              }
+            },
+            "required": [
+              "project_id"
+            ]
+          },
+          "annotations": {
+            "title": "Delete Project",
+            "readOnlyHint": false,
+            "destructiveHint": true,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "tascan_create_event",
+          "description": "Create a new event (task list) within a project",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "project_id": {
+                "type": "string",
+                "description": "Project ID"
+              },
+              "name": {
+                "type": "string",
+                "description": "Event name"
+              },
+              "description": {
+                "type": "string",
+                "description": "Event description"
+              }
+            },
+            "required": [
+              "project_id",
+              "name"
+            ]
+          },
+          "annotations": {
+            "title": "Create Event",
+            "readOnlyHint": false,
+            "destructiveHint": false,
+            "idempotentHint": false,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "tascan_list_events",
+          "description": "List all events (task lists) within a project",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "project_id": {
+                "type": "string",
+                "description": "Project ID"
+              }
+            },
+            "required": [
+              "project_id"
+            ]
+          },
+          "annotations": {
+            "title": "List Events",
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "tascan_get_event",
+          "description": "Get details of a specific event (task list) including its tasks",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "list_id": {
+                "type": "string",
+                "description": "Task list (event) ID"
+              }
+            },
+            "required": [
+              "list_id"
+            ]
+          },
+          "annotations": {
+            "title": "Get Event",
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "tascan_update_event",
+          "description": "Update an event / task list (name, description, team_mode, timer_mode)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "list_id": {
+                "type": "string",
+                "description": "Task list (event) ID"
+              },
+              "name": {
+                "type": "string",
+                "description": "New name"
+              },
+              "description": {
+                "type": "string",
+                "description": "New description"
+              },
+              "team_mode": {
+                "type": "boolean",
+                "description": "Team mode"
+              },
+              "timer_mode": {
+                "type": "boolean",
+                "description": "Timer mode"
+              }
+            },
+            "required": [
+              "list_id"
+            ]
+          },
+          "annotations": {
+            "title": "Update Event",
+            "readOnlyHint": false,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "tascan_delete_event",
+          "description": "Delete an event (task list) and all its tasks and completions. This action is irreversible.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "list_id": {
+                "type": "string",
+                "description": "Task list (event) ID to delete"
+              }
+            },
+            "required": [
+              "list_id"
+            ]
+          },
+          "annotations": {
+            "title": "Delete Event",
+            "readOnlyHint": false,
+            "destructiveHint": true,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "tascan_add_tasks",
+          "description": "Add one or more tasks to an event (task list). Supports bulk creation. IMPORTANT: Set response_type correctly — use \"text\" for info collection (names, phones, emails, notes), \"photo\" for visual verification (inspections, serial numbers, damage checks), \"checkbox\" only for simple confirmations.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "list_id": {
+                "type": "string",
+                "description": "Task list (event) ID"
+              },
+              "tasks": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "title": {
+                      "type": "string",
+                      "description": "Task title"
+                    },
+                    "description": {
+                      "type": "string",
+                      "description": "Task description"
+                    },
+                    "response_type": {
+                      "type": "string",
+                      "enum": [
+                        "checkbox",
+                        "photo",
+                        "text",
+                        "number",
+                        "date",
+                        "choice"
+                      ],
+                      "description": "CRITICAL: \"text\" for names, phones, emails, notes, addresses, any free-form input. \"photo\" for tasks needing photographic proof (inspections, serial numbers, packed cases). \"checkbox\" ONLY for simple yes/no confirmations. \"number\" for numeric values. \"date\" for dates. \"choice\" for multiple-choice (needs response_config.options). Most info-collection tasks should be \"text\", most verification tasks should be \"photo\"."
+                    },
+                    "is_safety_checkpoint": {
+                      "type": "boolean",
+                      "description": "Safety-critical task flag"
+                    },
+                    "requires_photo": {
+                      "type": "boolean",
+                      "description": "Require photo on completion"
+                    }
+                  },
+                  "required": [
+                    "title"
+                  ]
+                },
+                "description": "Array of tasks to create"
+              }
+            },
+            "required": [
+              "list_id",
+              "tasks"
+            ]
+          },
+          "annotations": {
+            "title": "Add Tasks",
+            "readOnlyHint": false,
+            "destructiveHint": false,
+            "idempotentHint": false,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "tascan_list_tasks",
+          "description": "List all tasks in an event (task list)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "list_id": {
+                "type": "string",
+                "description": "Task list (event) ID"
+              }
+            },
+            "required": [
+              "list_id"
+            ]
+          },
+          "annotations": {
+            "title": "List Tasks",
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "tascan_get_task",
+          "description": "Get details of a specific task including completions",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "task_id": {
+                "type": "string",
+                "description": "Task ID"
+              }
+            },
+            "required": [
+              "task_id"
+            ]
+          },
+          "annotations": {
+            "title": "Get Task",
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "tascan_update_task",
+          "description": "Update a task (title, description, response_type, flags, sort_order)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "task_id": {
+                "type": "string",
+                "description": "Task ID"
+              },
+              "title": {
+                "type": "string",
+                "description": "New title"
+              },
+              "description": {
+                "type": "string",
+                "description": "New description"
+              },
+              "response_type": {
+                "type": "string",
+                "enum": [
+                  "checkbox",
+                  "photo",
+                  "text",
+                  "number",
+                  "date",
+                  "choice"
+                ],
+                "description": "See tascan_add_tasks for guidance. \"text\" for info collection, \"photo\" for visual proof, \"checkbox\" for yes/no only."
+              },
+              "is_safety_checkpoint": {
+                "type": "boolean",
+                "description": "Safety-critical flag"
+              },
+              "requires_photo": {
+                "type": "boolean",
+                "description": "Require photo"
+              },
+              "sort_order": {
+                "type": "number",
+                "description": "Sort position"
+              }
+            },
+            "required": [
+              "task_id"
+            ]
+          },
+          "annotations": {
+            "title": "Update Task",
+            "readOnlyHint": false,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "tascan_delete_task",
+          "description": "Delete a specific task and its completions. This action is irreversible.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "task_id": {
+                "type": "string",
+                "description": "Task ID to delete"
+              }
+            },
+            "required": [
+              "task_id"
+            ]
+          },
+          "annotations": {
+            "title": "Delete Task",
+            "readOnlyHint": false,
+            "destructiveHint": true,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "tascan_complete_task",
+          "description": "Complete a task on behalf of a worker. Inserts a completion record and timer event. Use this to simulate or record task completions via the API.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "task_id": {
+                "type": "string",
+                "description": "Task ID to complete"
+              },
+              "worker_id": {
+                "type": "string",
+                "description": "Worker ID performing the completion"
+              },
+              "notes": {
+                "type": "string",
+                "description": "Optional completion notes"
+              },
+              "response_value": {
+                "type": "string",
+                "description": "Response value (for text/number/choice tasks)"
+              }
+            },
+            "required": [
+              "task_id",
+              "worker_id"
+            ]
+          },
+          "annotations": {
+            "title": "Complete Task",
+            "readOnlyHint": false,
+            "destructiveHint": false,
+            "idempotentHint": false,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "tascan_list_workers",
+          "description": "List all workers (taskees) in the organization",
+          "inputSchema": {
+            "type": "object",
+            "properties": {}
+          },
+          "annotations": {
+            "title": "List Workers",
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "tascan_create_worker",
+          "description": "Create a new worker (taskee) in the organization",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "Worker name"
+              },
+              "phone": {
+                "type": "string",
+                "description": "Phone number"
+              },
+              "email": {
+                "type": "string",
+                "description": "Email"
+              }
+            },
+            "required": [
+              "name"
+            ]
+          },
+          "annotations": {
+            "title": "Create Worker",
+            "readOnlyHint": false,
+            "destructiveHint": false,
+            "idempotentHint": false,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "tascan_update_worker",
+          "description": "Update a worker profile (name, phone, email)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "worker_id": {
+                "type": "string",
+                "description": "Worker ID"
+              },
+              "name": {
+                "type": "string",
+                "description": "New name"
+              },
+              "phone": {
+                "type": "string",
+                "description": "New phone"
+              },
+              "email": {
+                "type": "string",
+                "description": "New email"
+              }
+            },
+            "required": [
+              "worker_id"
+            ]
+          },
+          "annotations": {
+            "title": "Update Worker",
+            "readOnlyHint": false,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "tascan_generate_qr",
+          "description": "Generate a QR code for a task list (event) that workers can scan to access tasks",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "list_id": {
+                "type": "string",
+                "description": "Task list (event) ID"
+              }
+            },
+            "required": [
+              "list_id"
+            ]
+          },
+          "annotations": {
+            "title": "Generate QR Code",
+            "readOnlyHint": false,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "tascan_apply_template",
+          "description": "Apply a pre-built template to a task list, adding all template tasks",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "list_id": {
+                "type": "string",
+                "description": "Task list (event) ID"
+              },
+              "template_slug": {
+                "type": "string",
+                "description": "Template slug (e.g. \"conference-load-in\", \"warehouse-receiving\")"
+              }
+            },
+            "required": [
+              "list_id",
+              "template_slug"
+            ]
+          },
+          "annotations": {
+            "title": "Apply Template",
+            "readOnlyHint": false,
+            "destructiveHint": false,
+            "idempotentHint": false,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "tascan_list_templates",
+          "description": "List available task templates (built-in and saved)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "category": {
+                "type": "string",
+                "description": "Filter by category (e.g. \"live-events\", \"hospitality\", \"logistics\")"
+              }
+            }
+          },
+          "annotations": {
+            "title": "List Templates",
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "tascan_get_report",
+          "description": "Get completion report for a task list (event) including task status, completions, workers, and photos",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "list_id": {
+                "type": "string",
+                "description": "Task list (event) ID"
+              }
+            },
+            "required": [
+              "list_id"
+            ]
+          },
+          "annotations": {
+            "title": "Get Report",
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "tascan_list_issues",
+          "description": "List all issues for a task list (event). Returns open, acknowledged, and resolved issues with severity, type, and category. Use this to discover issues that need AI analysis via tascan_analyze_issue.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "list_id": {
+                "type": "string",
+                "description": "Task list (event) ID"
+              }
+            },
+            "required": [
+              "list_id"
+            ]
+          },
+          "annotations": {
+            "title": "List Issues",
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "tascan_analyze_issue",
+          "description": "Step 1 of the Closed-Loop Autonomous Operations Protocol. Retrieves full issue context including worker info, message thread, project history, and recent similar issues. Use this data to reason about the root cause and generate a remediation plan. Also supports server-side AI analysis via POST (calls Anthropic API directly).",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "issue_id": {
+                "type": "string",
+                "description": "Issue ID to analyze"
+              },
+              "server_side_ai": {
+                "type": "boolean",
+                "description": "If true, the server calls Anthropic API directly for AI analysis (default: false — returns raw data for MCP client to analyze)"
+              }
+            },
+            "required": [
+              "issue_id"
+            ]
+          },
+          "annotations": {
+            "title": "Analyze Issue",
+            "readOnlyHint": false,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": true
+          }
+        },
+        {
+          "name": "tascan_recommend_fix",
+          "description": "Step 2 of the Closed-Loop Autonomous Operations Protocol. Post an AI-generated recommendation to an issue thread. Accepts both a text recommendation and an optional structured_recommendation object with task definitions for auto-dispatch. The recommendation is persisted in the AI audit trail.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "issue_id": {
+                "type": "string",
+                "description": "Issue ID to recommend a fix for"
+              },
+              "recommendation": {
+                "type": "string",
+                "description": "The AI-generated recommendation text (clear, actionable instructions)"
+              },
+              "structured_recommendation": {
+                "type": "object",
+                "description": "Optional structured recommendation with tasks for auto-dispatch. Format: { recommendation_summary, confidence_score, tasks: [{ title, description, response_type, requires_photo, is_safety_checkpoint, sort_order }], estimated_duration_minutes, required_responder_role }"
+              },
+              "ai_agent": {
+                "type": "string",
+                "description": "Name of the AI agent posting (default: TaScan AI)"
+              }
+            },
+            "required": [
+              "issue_id",
+              "recommendation"
+            ]
+          },
+          "annotations": {
+            "title": "Recommend Fix",
+            "readOnlyHint": false,
+            "destructiveHint": false,
+            "idempotentHint": false,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "tascan_dispatch_instruction",
+          "description": "Step 3 of the Closed-Loop Autonomous Operations Protocol. Dispatches remediation to the worker via MULTI-CHANNEL delivery: (1) issue thread message, (2) in-app notification, (3) progress feed update, (4) SMS if phone on file, (5) optional remediation task list creation. Closes the loop from digital AI analysis to physical worker execution.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "issue_id": {
+                "type": "string",
+                "description": "Issue ID this instruction relates to"
+              },
+              "instruction": {
+                "type": "string",
+                "description": "Clear, actionable instruction for the worker to execute"
+              },
+              "worker_id": {
+                "type": "string",
+                "description": "Target worker ID (defaults to the worker who reported the issue)"
+              },
+              "remediation_tasks": {
+                "type": "array",
+                "description": "Optional array of tasks to create as a remediation task list. Each: { title, description, response_type, requires_photo, is_safety_checkpoint, sort_order }",
+                "items": {
+                  "type": "object"
+                }
+              },
+              "recommendation_summary": {
+                "type": "string",
+                "description": "One-line summary for the task list description"
+              },
+              "send_sms": {
+                "type": "boolean",
+                "description": "Send SMS to worker (default: true if phone on file)"
+              },
+              "ai_agent": {
+                "type": "string",
+                "description": "Name of the AI agent dispatching (default: TaScan AI)"
+              }
+            },
+            "required": [
+              "issue_id",
+              "instruction"
+            ]
+          },
+          "annotations": {
+            "title": "Dispatch Instruction",
+            "readOnlyHint": false,
+            "destructiveHint": false,
+            "idempotentHint": false,
+            "openWorldHint": true
+          }
+        },
+        {
+          "name": "tascan_auto_resolve",
+          "description": "FULL Closed-Loop Autonomous Operations Protocol in one call. Server-side AI analyzes the issue, generates remediation tasks, creates a task list, and dispatches to the worker — all without human intervention. This executes Patent Claim 7: autonomous operations from issue detection through physical-world instruction delivery.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "issue_id": {
+                "type": "string",
+                "description": "Issue ID to auto-resolve"
+              }
+            },
+            "required": [
+              "issue_id"
+            ]
+          },
+          "annotations": {
+            "title": "Auto-Resolve Issue",
+            "readOnlyHint": false,
+            "destructiveHint": false,
+            "idempotentHint": false,
+            "openWorldHint": true
+          }
+        }
+      ],
+      "tool_count": 28,
+      "tool_names": [
+        "tascan_list_projects",
+        "tascan_create_project",
+        "tascan_get_project",
+        "tascan_update_project",
+        "tascan_delete_project",
+        "tascan_create_event",
+        "tascan_list_events",
+        "tascan_get_event",
+        "tascan_update_event",
+        "tascan_delete_event",
+        "tascan_add_tasks",
+        "tascan_list_tasks",
+        "tascan_get_task",
+        "tascan_update_task",
+        "tascan_delete_task",
+        "tascan_complete_task",
+        "tascan_list_workers",
+        "tascan_create_worker",
+        "tascan_update_worker",
+        "tascan_generate_qr",
+        "tascan_apply_template",
+        "tascan_list_templates",
+        "tascan_get_report",
+        "tascan_list_issues",
+        "tascan_analyze_issue",
+        "tascan_recommend_fix",
+        "tascan_dispatch_instruction",
+        "tascan_auto_resolve"
+      ]
+    },
+    "server_info_crawled": {
+      "id": 32,
+      "name": "TaScan",
+      "author": "",
+      "overview": "TaScan - Productivity server with 28 tools. The MCP Server \"TaScan\" provides 28 tools focused on productivity tasks. Core capabilities include c",
+      "repository_url": "",
+      "homepage": "https://tascan-live-event.netlify.app/mcp",
+      "remote_or_local": "Remote",
+      "license": "",
+      "usage_count": "8,400",
+      "success_rate": "100%",
+      "tags": [
+        "productivity",
+        "security-authentication",
+        "communication-tools"
+      ],
+      "categories": [
+        "productivity",
+        "security & authentication",
+        "communication tools"
+      ],
+      "tools_count": 28,
+      "tools": [
+        {
+          "name": "tascan_list_projects",
+          "description": "List all TaScan projects in the organization",
+          "inputSchema": {
+            "type": "object",
+            "properties": {}
+          },
+          "annotations": {
+            "title": "List Projects",
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "tascan_create_project",
+          "description": "Create a new TaScan project (top-level container for events)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "Project name"
+              },
+              "location": {
+                "type": "string",
+                "description": "Project location / venue"
+              }
+            },
+            "required": [
+              "name"
+            ]
+          },
+          "annotations": {
+            "title": "Create Project",
+            "readOnlyHint": false,
+            "destructiveHint": false,
+            "idempotentHint": false,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "tascan_get_project",
+          "description": "Get details of a specific project",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "project_id": {
+                "type": "string",
+                "description": "Project ID"
+              }
+            },
+            "required": [
+              "project_id"
+            ]
+          },
+          "annotations": {
+            "title": "Get Project",
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "tascan_update_project",
+          "description": "Update a project (name, location, status, dates)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "project_id": {
+                "type": "string",
+                "description": "Project ID"
+              },
+              "name": {
+                "type": "string",
+                "description": "New name"
+              },
+              "location": {
+                "type": "string",
+                "description": "New location"
+              },
+              "status": {
+                "type": "string",
+                "enum": [
+                  "active",
+                  "archived"
+                ],
+                "description": "Status"
+              },
+              "start_date": {
+                "type": "string",
+                "description": "Start date (ISO)"
+              },
+              "end_date": {
+                "type": "string",
+                "description": "End date (ISO)"
+              }
+            },
+            "required": [
+              "project_id"
+            ]
+          },
+          "annotations": {
+            "title": "Update Project",
+            "readOnlyHint": false,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "tascan_delete_project",
+          "description": "Delete a project and all its events, tasks, and completions. This action is irreversible.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "project_id": {
+                "type": "string",
+                "description": "Project ID to delete"
+              }
+            },
+            "required": [
+              "project_id"
+            ]
+          },
+          "annotations": {
+            "title": "Delete Project",
+            "readOnlyHint": false,
+            "destructiveHint": true,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "tascan_create_event",
+          "description": "Create a new event (task list) within a project",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "project_id": {
+                "type": "string",
+                "description": "Project ID"
+              },
+              "name": {
+                "type": "string",
+                "description": "Event name"
+              },
+              "description": {
+                "type": "string",
+                "description": "Event description"
+              }
+            },
+            "required": [
+              "project_id",
+              "name"
+            ]
+          },
+          "annotations": {
+            "title": "Create Event",
+            "readOnlyHint": false,
+            "destructiveHint": false,
+            "idempotentHint": false,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "tascan_list_events",
+          "description": "List all events (task lists) within a project",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "project_id": {
+                "type": "string",
+                "description": "Project ID"
+              }
+            },
+            "required": [
+              "project_id"
+            ]
+          },
+          "annotations": {
+            "title": "List Events",
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "tascan_get_event",
+          "description": "Get details of a specific event (task list) including its tasks",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "list_id": {
+                "type": "string",
+                "description": "Task list (event) ID"
+              }
+            },
+            "required": [
+              "list_id"
+            ]
+          },
+          "annotations": {
+            "title": "Get Event",
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "tascan_update_event",
+          "description": "Update an event / task list (name, description, team_mode, timer_mode)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "list_id": {
+                "type": "string",
+                "description": "Task list (event) ID"
+              },
+              "name": {
+                "type": "string",
+                "description": "New name"
+              },
+              "description": {
+                "type": "string",
+                "description": "New description"
+              },
+              "team_mode": {
+                "type": "boolean",
+                "description": "Team mode"
+              },
+              "timer_mode": {
+                "type": "boolean",
+                "description": "Timer mode"
+              }
+            },
+            "required": [
+              "list_id"
+            ]
+          },
+          "annotations": {
+            "title": "Update Event",
+            "readOnlyHint": false,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "tascan_delete_event",
+          "description": "Delete an event (task list) and all its tasks and completions. This action is irreversible.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "list_id": {
+                "type": "string",
+                "description": "Task list (event) ID to delete"
+              }
+            },
+            "required": [
+              "list_id"
+            ]
+          },
+          "annotations": {
+            "title": "Delete Event",
+            "readOnlyHint": false,
+            "destructiveHint": true,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "tascan_add_tasks",
+          "description": "Add one or more tasks to an event (task list). Supports bulk creation. IMPORTANT: Set response_type correctly — use \"text\" for info collection (names, phones, emails, notes), \"photo\" for visual verification (inspections, serial numbers, damage checks), \"checkbox\" only for simple confirmations.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "list_id": {
+                "type": "string",
+                "description": "Task list (event) ID"
+              },
+              "tasks": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "title": {
+                      "type": "string",
+                      "description": "Task title"
+                    },
+                    "description": {
+                      "type": "string",
+                      "description": "Task description"
+                    },
+                    "response_type": {
+                      "type": "string",
+                      "enum": [
+                        "checkbox",
+                        "photo",
+                        "text",
+                        "number",
+                        "date",
+                        "choice"
+                      ],
+                      "description": "CRITICAL: \"text\" for names, phones, emails, notes, addresses, any free-form input. \"photo\" for tasks needing photographic proof (inspections, serial numbers, packed cases). \"checkbox\" ONLY for simple yes/no confirmations. \"number\" for numeric values. \"date\" for dates. \"choice\" for multiple-choice (needs response_config.options). Most info-collection tasks should be \"text\", most verification tasks should be \"photo\"."
+                    },
+                    "is_safety_checkpoint": {
+                      "type": "boolean",
+                      "description": "Safety-critical task flag"
+                    },
+                    "requires_photo": {
+                      "type": "boolean",
+                      "description": "Require photo on completion"
+                    }
+                  },
+                  "required": [
+                    "title"
+                  ]
+                },
+                "description": "Array of tasks to create"
+              }
+            },
+            "required": [
+              "list_id",
+              "tasks"
+            ]
+          },
+          "annotations": {
+            "title": "Add Tasks",
+            "readOnlyHint": false,
+            "destructiveHint": false,
+            "idempotentHint": false,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "tascan_list_tasks",
+          "description": "List all tasks in an event (task list)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "list_id": {
+                "type": "string",
+                "description": "Task list (event) ID"
+              }
+            },
+            "required": [
+              "list_id"
+            ]
+          },
+          "annotations": {
+            "title": "List Tasks",
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "tascan_get_task",
+          "description": "Get details of a specific task including completions",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "task_id": {
+                "type": "string",
+                "description": "Task ID"
+              }
+            },
+            "required": [
+              "task_id"
+            ]
+          },
+          "annotations": {
+            "title": "Get Task",
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "tascan_update_task",
+          "description": "Update a task (title, description, response_type, flags, sort_order)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "task_id": {
+                "type": "string",
+                "description": "Task ID"
+              },
+              "title": {
+                "type": "string",
+                "description": "New title"
+              },
+              "description": {
+                "type": "string",
+                "description": "New description"
+              },
+              "response_type": {
+                "type": "string",
+                "enum": [
+                  "checkbox",
+                  "photo",
+                  "text",
+                  "number",
+                  "date",
+                  "choice"
+                ],
+                "description": "See tascan_add_tasks for guidance. \"text\" for info collection, \"photo\" for visual proof, \"checkbox\" for yes/no only."
+              },
+              "is_safety_checkpoint": {
+                "type": "boolean",
+                "description": "Safety-critical flag"
+              },
+              "requires_photo": {
+                "type": "boolean",
+                "description": "Require photo"
+              },
+              "sort_order": {
+                "type": "number",
+                "description": "Sort position"
+              }
+            },
+            "required": [
+              "task_id"
+            ]
+          },
+          "annotations": {
+            "title": "Update Task",
+            "readOnlyHint": false,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "tascan_delete_task",
+          "description": "Delete a specific task and its completions. This action is irreversible.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "task_id": {
+                "type": "string",
+                "description": "Task ID to delete"
+              }
+            },
+            "required": [
+              "task_id"
+            ]
+          },
+          "annotations": {
+            "title": "Delete Task",
+            "readOnlyHint": false,
+            "destructiveHint": true,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "tascan_complete_task",
+          "description": "Complete a task on behalf of a worker. Inserts a completion record and timer event. Use this to simulate or record task completions via the API.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "task_id": {
+                "type": "string",
+                "description": "Task ID to complete"
+              },
+              "worker_id": {
+                "type": "string",
+                "description": "Worker ID performing the completion"
+              },
+              "notes": {
+                "type": "string",
+                "description": "Optional completion notes"
+              },
+              "response_value": {
+                "type": "string",
+                "description": "Response value (for text/number/choice tasks)"
+              }
+            },
+            "required": [
+              "task_id",
+              "worker_id"
+            ]
+          },
+          "annotations": {
+            "title": "Complete Task",
+            "readOnlyHint": false,
+            "destructiveHint": false,
+            "idempotentHint": false,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "tascan_list_workers",
+          "description": "List all workers (taskees) in the organization",
+          "inputSchema": {
+            "type": "object",
+            "properties": {}
+          },
+          "annotations": {
+            "title": "List Workers",
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "tascan_create_worker",
+          "description": "Create a new worker (taskee) in the organization",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "Worker name"
+              },
+              "phone": {
+                "type": "string",
+                "description": "Phone number"
+              },
+              "email": {
+                "type": "string",
+                "description": "Email"
+              }
+            },
+            "required": [
+              "name"
+            ]
+          },
+          "annotations": {
+            "title": "Create Worker",
+            "readOnlyHint": false,
+            "destructiveHint": false,
+            "idempotentHint": false,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "tascan_update_worker",
+          "description": "Update a worker profile (name, phone, email)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "worker_id": {
+                "type": "string",
+                "description": "Worker ID"
+              },
+              "name": {
+                "type": "string",
+                "description": "New name"
+              },
+              "phone": {
+                "type": "string",
+                "description": "New phone"
+              },
+              "email": {
+                "type": "string",
+                "description": "New email"
+              }
+            },
+            "required": [
+              "worker_id"
+            ]
+          },
+          "annotations": {
+            "title": "Update Worker",
+            "readOnlyHint": false,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "tascan_generate_qr",
+          "description": "Generate a QR code for a task list (event) that workers can scan to access tasks",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "list_id": {
+                "type": "string",
+                "description": "Task list (event) ID"
+              }
+            },
+            "required": [
+              "list_id"
+            ]
+          },
+          "annotations": {
+            "title": "Generate QR Code",
+            "readOnlyHint": false,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "tascan_apply_template",
+          "description": "Apply a pre-built template to a task list, adding all template tasks",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "list_id": {
+                "type": "string",
+                "description": "Task list (event) ID"
+              },
+              "template_slug": {
+                "type": "string",
+                "description": "Template slug (e.g. \"conference-load-in\", \"warehouse-receiving\")"
+              }
+            },
+            "required": [
+              "list_id",
+              "template_slug"
+            ]
+          },
+          "annotations": {
+            "title": "Apply Template",
+            "readOnlyHint": false,
+            "destructiveHint": false,
+            "idempotentHint": false,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "tascan_list_templates",
+          "description": "List available task templates (built-in and saved)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "category": {
+                "type": "string",
+                "description": "Filter by category (e.g. \"live-events\", \"hospitality\", \"logistics\")"
+              }
+            }
+          },
+          "annotations": {
+            "title": "List Templates",
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "tascan_get_report",
+          "description": "Get completion report for a task list (event) including task status, completions, workers, and photos",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "list_id": {
+                "type": "string",
+                "description": "Task list (event) ID"
+              }
+            },
+            "required": [
+              "list_id"
+            ]
+          },
+          "annotations": {
+            "title": "Get Report",
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "tascan_list_issues",
+          "description": "List all issues for a task list (event). Returns open, acknowledged, and resolved issues with severity, type, and category. Use this to discover issues that need AI analysis via tascan_analyze_issue.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "list_id": {
+                "type": "string",
+                "description": "Task list (event) ID"
+              }
+            },
+            "required": [
+              "list_id"
+            ]
+          },
+          "annotations": {
+            "title": "List Issues",
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "tascan_analyze_issue",
+          "description": "Step 1 of the Closed-Loop Autonomous Operations Protocol. Retrieves full issue context including worker info, message thread, project history, and recent similar issues. Use this data to reason about the root cause and generate a remediation plan. Also supports server-side AI analysis via POST (calls Anthropic API directly).",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "issue_id": {
+                "type": "string",
+                "description": "Issue ID to analyze"
+              },
+              "server_side_ai": {
+                "type": "boolean",
+                "description": "If true, the server calls Anthropic API directly for AI analysis (default: false — returns raw data for MCP client to analyze)"
+              }
+            },
+            "required": [
+              "issue_id"
+            ]
+          },
+          "annotations": {
+            "title": "Analyze Issue",
+            "readOnlyHint": false,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": true
+          }
+        },
+        {
+          "name": "tascan_recommend_fix",
+          "description": "Step 2 of the Closed-Loop Autonomous Operations Protocol. Post an AI-generated recommendation to an issue thread. Accepts both a text recommendation and an optional structured_recommendation object with task definitions for auto-dispatch. The recommendation is persisted in the AI audit trail.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "issue_id": {
+                "type": "string",
+                "description": "Issue ID to recommend a fix for"
+              },
+              "recommendation": {
+                "type": "string",
+                "description": "The AI-generated recommendation text (clear, actionable instructions)"
+              },
+              "structured_recommendation": {
+                "type": "object",
+                "description": "Optional structured recommendation with tasks for auto-dispatch. Format: { recommendation_summary, confidence_score, tasks: [{ title, description, response_type, requires_photo, is_safety_checkpoint, sort_order }], estimated_duration_minutes, required_responder_role }"
+              },
+              "ai_agent": {
+                "type": "string",
+                "description": "Name of the AI agent posting (default: TaScan AI)"
+              }
+            },
+            "required": [
+              "issue_id",
+              "recommendation"
+            ]
+          },
+          "annotations": {
+            "title": "Recommend Fix",
+            "readOnlyHint": false,
+            "destructiveHint": false,
+            "idempotentHint": false,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "tascan_dispatch_instruction",
+          "description": "Step 3 of the Closed-Loop Autonomous Operations Protocol. Dispatches remediation to the worker via MULTI-CHANNEL delivery: (1) issue thread message, (2) in-app notification, (3) progress feed update, (4) SMS if phone on file, (5) optional remediation task list creation. Closes the loop from digital AI analysis to physical worker execution.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "issue_id": {
+                "type": "string",
+                "description": "Issue ID this instruction relates to"
+              },
+              "instruction": {
+                "type": "string",
+                "description": "Clear, actionable instruction for the worker to execute"
+              },
+              "worker_id": {
+                "type": "string",
+                "description": "Target worker ID (defaults to the worker who reported the issue)"
+              },
+              "remediation_tasks": {
+                "type": "array",
+                "description": "Optional array of tasks to create as a remediation task list. Each: { title, description, response_type, requires_photo, is_safety_checkpoint, sort_order }",
+                "items": {
+                  "type": "object"
+                }
+              },
+              "recommendation_summary": {
+                "type": "string",
+                "description": "One-line summary for the task list description"
+              },
+              "send_sms": {
+                "type": "boolean",
+                "description": "Send SMS to worker (default: true if phone on file)"
+              },
+              "ai_agent": {
+                "type": "string",
+                "description": "Name of the AI agent dispatching (default: TaScan AI)"
+              }
+            },
+            "required": [
+              "issue_id",
+              "instruction"
+            ]
+          },
+          "annotations": {
+            "title": "Dispatch Instruction",
+            "readOnlyHint": false,
+            "destructiveHint": false,
+            "idempotentHint": false,
+            "openWorldHint": true
+          }
+        },
+        {
+          "name": "tascan_auto_resolve",
+          "description": "FULL Closed-Loop Autonomous Operations Protocol in one call. Server-side AI analyzes the issue, generates remediation tasks, creates a task list, and dispatches to the worker — all without human intervention. This executes Patent Claim 7: autonomous operations from issue detection through physical-world instruction delivery.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "issue_id": {
+                "type": "string",
+                "description": "Issue ID to auto-resolve"
+              }
+            },
+            "required": [
+              "issue_id"
+            ]
+          },
+          "annotations": {
+            "title": "Auto-Resolve Issue",
+            "readOnlyHint": false,
+            "destructiveHint": false,
+            "idempotentHint": false,
+            "openWorldHint": true
+          }
+        }
+      ],
+      "python_sdk_url": "https://tascan-live-event.netlify.app/mcp",
+      "python_sdk_config": "{\"debug\": false}"
+    },
+    "source_filename": "0032.TaScan_labeled.json",
+    "processed_timestamp": 1772876337,
+    "processing_mode": "gateway",
+    "rank": 33
+  }
+}

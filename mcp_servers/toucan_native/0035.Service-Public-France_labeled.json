@@ -1,0 +1,1732 @@
+{
+  "labels": {
+    "analysis": "The MCP Server \"Service Public France\" provides 26 tools focused on development tools tasks. Core capabilities include data access and reading. Key tools: rechercher, rechercher_fiche, lire_fiche, rechercher_service_local, naviguer_themes.",
+    "reasoning": "Primary label \"Development Tools\" assigned based on strong keyword matches in tool names and descriptions: code.",
+    "primary_label": "Development Tools",
+    "secondary_labels": [
+      "Financial Services",
+      "Data Analysis & Processing"
+    ],
+    "custom_label": "Development Tools - Service Public France",
+    "is_connected": true,
+    "is_remote_tool_valid": true,
+    "featured_server": true,
+    "tool_verified": true,
+    "tool_verified_status": "verified",
+    "tool_verified_at": "2026-03-14T20:38:12.324733+00:00",
+    "tool_verified_tool": "rechercher_service_local",
+    "tool_verified_reason": "tool call succeeded"
+  },
+  "metadata": {
+    "server_id": 35,
+    "server_name": "Service Public France",
+    "rank_by_usage": 36,
+    "usage_count": "8,250",
+    "original_file": "tools.json#35",
+    "mode": "gateway",
+    "timestamp": 1772876337,
+    "remote_server_response": {
+      "url": "https://mcp-service-public.nhaultcoeur.workers.dev/mcp",
+      "is_success": true,
+      "error": null,
+      "tools": [
+        {
+          "name": "rechercher",
+          "description": "Recherche unifiee intelligente dans les sources service-public.fr et Legifrance. Dispatche automatiquement vers : fiches pratiques DILA, doctrine fiscale BOFiP, fiscalite locale, transactions immobilieres DVF, simulation TF/frais notaire/IR, zonage ABC, conventions collectives, securite, risques naturels, textes legaux (lois/decrets/arretes), codes juridiques (Code civil/travail/penal...) et jurisprudence. A utiliser en premier si la source appropriee n'est pas evidente.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "query": {
+                "type": "string",
+                "description": "Question ou termes de recherche en langage naturel (ex: 'taxe foncière à Lyon', 'renouveler passeport', 'prix immobilier à Bondy', 'frais de notaire 250000 euros', 'zone Pinel Bordeaux', 'convention collective bâtiment', 'combien d impôt pour 40000 euros marié 2 enfants')"
+              },
+              "limit": {
+                "type": "number",
+                "description": "Nombre de résultats (1-10, défaut 5)"
+              }
+            },
+            "required": [
+              "query"
+            ]
+          }
+        },
+        {
+          "name": "rechercher_fiche",
+          "description": "Recherche dans les fiches pratiques de service-public.fr (droits, démarches administratives). Utilise la recherche plein texte.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "query": {
+                "type": "string",
+                "description": "Termes de recherche (ex: 'passeport', 'allocation logement')"
+              },
+              "theme": {
+                "type": "string",
+                "description": "Filtrer par thème (ex: 'Papiers', 'Logement')"
+              },
+              "audience": {
+                "type": "string",
+                "enum": [
+                  "Particuliers",
+                  "Professionnels",
+                  "Associations"
+                ],
+                "description": "Public cible"
+              },
+              "limit": {
+                "type": "number",
+                "description": "Nombre de résultats (1-20, défaut 10)"
+              }
+            },
+            "required": [
+              "query"
+            ]
+          }
+        },
+        {
+          "name": "lire_fiche",
+          "description": "Lit le contenu complet d'une fiche pratique par son identifiant (ex: F14929 pour le passeport).",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "fiche_id": {
+                "type": "string",
+                "description": "Identifiant de la fiche (ex: F14929, N360, R42946)"
+              }
+            },
+            "required": [
+              "fiche_id"
+            ]
+          }
+        },
+        {
+          "name": "rechercher_service_local",
+          "description": "Recherche un service public local (mairie, préfecture, CAF, CPAM, France Services...) via l'Annuaire de l'administration.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "type_organisme": {
+                "type": "string",
+                "description": "Type de service (ex: 'mairie', 'prefecture', 'caf')"
+              },
+              "code_postal": {
+                "type": "string",
+                "description": "Code postal (ex: '75001')"
+              },
+              "commune": {
+                "type": "string",
+                "description": "Nom de la commune"
+              },
+              "code_insee": {
+                "type": "string",
+                "description": "Code INSEE de la commune"
+              },
+              "limit": {
+                "type": "number",
+                "description": "Nombre de résultats (1-20, défaut 5)"
+              }
+            }
+          }
+        },
+        {
+          "name": "naviguer_themes",
+          "description": "Parcourt l'arborescence thématique de service-public.fr. Sans paramètre, liste les thèmes principaux.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "theme_id": {
+                "type": "string",
+                "description": "ID du thème à explorer (ex: N19810, N360)"
+              }
+            }
+          }
+        },
+        {
+          "name": "consulter_fiscalite_locale",
+          "description": "Consulte les taux d'imposition locale d'une commune (taxe foncière, taxe d'habitation, TEOM, CFE). Accepte un nom de commune, un code INSEE ou un code postal. Sans exercice précisé, affiche l'évolution sur 4 ans avec tendance. Données REI de la DGFiP via data.economie.gouv.fr.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "commune": {
+                "type": "string",
+                "description": "Nom de la commune (ex: 'PARIS', 'LYON')"
+              },
+              "communes": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "Liste de communes à comparer (2-5 noms en majuscules, ex: ['PARIS', 'LYON', 'MARSEILLE']). Active le mode comparaison côte à côte.",
+                "maxItems": 5,
+                "minItems": 2
+              },
+              "code_insee": {
+                "type": "string",
+                "description": "Code INSEE de la commune (ex: '75056', '69123')"
+              },
+              "code_postal": {
+                "type": "string",
+                "description": "Code postal (ex: '93140', '75001'). Résout automatiquement vers le(s) code(s) INSEE."
+              },
+              "exercice": {
+                "type": "string",
+                "description": "Année fiscale (ex: '2024'). Sans exercice : affiche l'évolution sur toutes les années disponibles."
+              },
+              "type": {
+                "type": "string",
+                "enum": [
+                  "particuliers",
+                  "entreprises"
+                ],
+                "description": "Type de fiscalité (défaut: particuliers)"
+              }
+            }
+          }
+        },
+        {
+          "name": "rechercher_doctrine_fiscale",
+          "description": "Recherche dans la doctrine fiscale officielle (BOFiP - Bulletin Officiel des Finances Publiques). Couvre IR, TVA, IS, plus-values, etc.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "query": {
+                "type": "string",
+                "description": "Termes de recherche (ex: 'plus-values immobilières', 'crédit impôt recherche')"
+              },
+              "serie": {
+                "type": "string",
+                "description": "Filtrer par série BOFiP (ex: 'IR', 'TVA', 'IS', 'RFPI', 'BIC')"
+              },
+              "limit": {
+                "type": "number",
+                "description": "Nombre de résultats (1-10, défaut 5)"
+              }
+            },
+            "required": [
+              "query"
+            ]
+          }
+        },
+        {
+          "name": "consulter_transactions_immobilieres",
+          "description": "Consulte les transactions immobilières (DVF - Demandes de Valeurs Foncières) d'une commune. Fournit prix médians, prix au m², répartition par type de bien et nombre de pièces. Avec evolution=true, retourne l'historique des prix médians par année (2019-aujourd'hui) avec tendance. Données DGFiP via data.gouv.fr. Hors Alsace, Moselle et Mayotte.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "commune": {
+                "type": "string",
+                "description": "Nom de la commune (ex: 'Bondy', 'Lyon')"
+              },
+              "code_insee": {
+                "type": "string",
+                "description": "Code INSEE de la commune (ex: '93010')"
+              },
+              "code_postal": {
+                "type": "string",
+                "description": "Code postal (ex: '93140'). Résout automatiquement vers le(s) code(s) INSEE."
+              },
+              "type_local": {
+                "type": "string",
+                "enum": [
+                  "Appartement",
+                  "Maison",
+                  "Local industriel. commercial ou assimilé"
+                ],
+                "description": "Filtrer par type de bien"
+              },
+              "annee": {
+                "type": "number",
+                "description": "Filtrer sur une année spécifique (ex: 2024). Par défaut : 2 dernières années."
+              },
+              "evolution": {
+                "type": "boolean",
+                "description": "Si true, retourne l'évolution des prix médians année par année (2019-aujourd'hui) avec tendance hausse/baisse/stable. Ignore le paramètre annee."
+              }
+            }
+          }
+        },
+        {
+          "name": "simuler_taxe_fonciere",
+          "description": "Estime la taxe foncière annuelle d'un bien immobilier. Combine les vrais taux communaux (REI DGFiP) avec une estimation de la valeur locative cadastrale ajustée au marché local via les transactions DVF. Accepte un nom de commune, un code INSEE ou un code postal. Décompose les taux par collectivité (commune, EPCI, syndicat, GEMAPI, TSE, TASA). Détecte l'exonération construction neuve 2 ans (art. 1383 CGI). Simule le scénario d'abattement résidence principale si voté par la commune. Résultat indicatif uniquement.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "commune": {
+                "type": "string",
+                "description": "Nom de la commune (ex: 'Lyon', 'Bordeaux')"
+              },
+              "code_insee": {
+                "type": "string",
+                "description": "Code INSEE de la commune (ex: '69123')"
+              },
+              "code_postal": {
+                "type": "string",
+                "description": "Code postal (ex: '33000'). Résout automatiquement vers le code INSEE."
+              },
+              "surface": {
+                "type": "number",
+                "description": "Surface habitable en m² (ex: 75)"
+              },
+              "type_bien": {
+                "type": "string",
+                "enum": [
+                  "Maison",
+                  "Appartement"
+                ],
+                "description": "Type de bien immobilier"
+              },
+              "nombre_pieces": {
+                "type": "number",
+                "description": "Nombre de pièces principales (optionnel, estimé si absent)"
+              },
+              "annee_construction": {
+                "type": "number",
+                "description": "Année de construction (optionnel, influence le coefficient d'entretien et détecte l'exonération 2 ans)"
+              },
+              "residence_principale": {
+                "type": "boolean",
+                "description": "S'il s'agit de la résidence principale (optionnel, affiche les exonérations possibles)"
+              }
+            },
+            "required": [
+              "surface",
+              "type_bien"
+            ]
+          }
+        },
+        {
+          "name": "simuler_frais_notaire",
+          "description": "Estime les frais de notaire (frais d'acquisition) pour un achat immobilier. Calcule les droits de mutation (DMTO), émoluments du notaire (barème dégressif réglementé), contribution de sécurité immobilière et débours. Distingue ancien (7-8 %) et neuf (2-3 %). Si le département est précisé, applique le taux DMTO exact (normal 5,81 % ou majoré 6,32 % selon le département, LF 2025). Sans département, affiche les deux hypothèses. Accepte un code département, un code postal ou un numéro de département.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "prix": {
+                "type": "number",
+                "description": "Prix d'achat du bien en euros (ex: 250000)"
+              },
+              "type": {
+                "type": "string",
+                "enum": [
+                  "ancien",
+                  "neuf"
+                ],
+                "description": "Type de bien : ancien ou neuf"
+              },
+              "departement": {
+                "type": "string",
+                "description": "Département (code 2-3 chiffres, code postal 5 chiffres, ou '2A'/'2B' pour la Corse). Permet d'appliquer le taux DMTO exact."
+              }
+            },
+            "required": [
+              "prix",
+              "type"
+            ]
+          }
+        },
+        {
+          "name": "consulter_zonage_immobilier",
+          "description": "Consulte la zone ABC d'une commune (A bis, A, B1, B2, C) utilisée pour les dispositifs immobiliers (Pinel, PTZ, plafonds loyers). Accepte un nom de commune, un code INSEE ou un code postal. Retourne la zone, les plafonds de loyer, les plafonds de ressources et l'éligibilité aux dispositifs. Source : Ministère de la Transition écologique via data.gouv.fr.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "commune": {
+                "type": "string",
+                "description": "Nom de la commune (ex: 'Lyon', 'Bordeaux')"
+              },
+              "code_insee": {
+                "type": "string",
+                "description": "Code INSEE de la commune (ex: '69123')"
+              },
+              "code_postal": {
+                "type": "string",
+                "description": "Code postal (ex: '33000'). Résout automatiquement vers le code INSEE."
+              }
+            }
+          }
+        },
+        {
+          "name": "comparer_communes",
+          "description": "Compare 2 à 5 communes sur un tableau croisé : population et densité, fiscalité locale (taux TFB, TEOM), prix immobiliers (DVF médian/m² appart et maison), zonage ABC, services publics locaux, établissements scolaires, scores 6ème, sécurité départementale (cambriolages, vols, violences), risques naturels (nombre de risques, arrêtés CatNat), données santé (densité médecins) et intercommunalité. Aide à la décision pour un déménagement ou un investissement. Accepte des noms de communes, codes postaux ou codes INSEE.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "communes": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "Liste de 2 à 5 communes à comparer (noms, codes postaux ou codes INSEE). Ex: ['Lyon', 'Bordeaux', 'Nantes']",
+                "minItems": 2,
+                "maxItems": 5
+              }
+            },
+            "required": [
+              "communes"
+            ]
+          }
+        },
+        {
+          "name": "simuler_impot_revenu",
+          "description": "Estime l'impot sur le revenu (IR) selon le bareme progressif 2025 (revenus 2024). Calcule le quotient familial, applique le plafonnement, la decote et la contribution exceptionnelle hauts revenus (CEHR). Parametres : revenu net imposable (obligatoire), nombre de parts OU situation familiale + nombre d'enfants. Options : revenus fonciers (micro-foncier 30% abattement ou reel), revenus de capitaux (PFU 30% ou bareme), micro-BIC (abattement 50%), micro-BNC (abattement 34%).",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "revenu_net_imposable": {
+                "type": "number",
+                "description": "Revenu net imposable en euros (ex: 42000)"
+              },
+              "nb_parts": {
+                "type": "number",
+                "description": "Nombre de parts fiscales (optionnel, defaut 1). Prioritaire sur situation + nb_enfants."
+              },
+              "situation": {
+                "type": "string",
+                "enum": [
+                  "celibataire",
+                  "marie",
+                  "pacse",
+                  "divorce",
+                  "veuf"
+                ],
+                "description": "Situation familiale (optionnel, permet le calcul auto des parts)"
+              },
+              "nb_enfants": {
+                "type": "number",
+                "description": "Nombre d'enfants a charge (optionnel, defaut 0)"
+              },
+              "revenus_fonciers": {
+                "type": "number",
+                "description": "Revenus fonciers bruts en euros (optionnel). Negatif possible en regime reel (deficit foncier)."
+              },
+              "regime_foncier": {
+                "type": "string",
+                "enum": [
+                  "micro",
+                  "reel"
+                ],
+                "description": "Regime foncier (defaut: micro). Micro = abattement 30 %, reel = montant net fourni."
+              },
+              "revenus_capitaux": {
+                "type": "number",
+                "description": "Revenus de capitaux mobiliers en euros (dividendes, interets, plus-values). Optionnel."
+              },
+              "regime_capitaux": {
+                "type": "string",
+                "enum": [
+                  "pfu",
+                  "bareme"
+                ],
+                "description": "Imposition des capitaux (defaut: pfu). PFU = flat tax 30 %, bareme = integration au revenu global."
+              },
+              "micro_bic": {
+                "type": "number",
+                "description": "Chiffre d'affaires micro-BIC en euros (abattement 50 %). Optionnel."
+              },
+              "micro_bnc": {
+                "type": "number",
+                "description": "Recettes micro-BNC en euros (abattement 34 %). Optionnel."
+              }
+            },
+            "required": [
+              "revenu_net_imposable"
+            ]
+          }
+        },
+        {
+          "name": "rechercher_convention_collective",
+          "description": "Recherche une convention collective nationale par numero IDCC, secteur d'activite ou mot-cle. Source : base KALI (DILA) via data.gouv.fr. Retourne le titre, l'IDCC, l'etat (en vigueur/abrogee), la nature et le lien Legifrance.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "query": {
+                "type": "string",
+                "description": "Mot-cle ou secteur d'activite (ex: 'boulangerie', 'metallurgie', 'batiment')"
+              },
+              "idcc": {
+                "type": "string",
+                "description": "Numero IDCC (ex: '843', '3248')"
+              },
+              "limit": {
+                "type": "number",
+                "description": "Nombre de resultats (1-20, defaut 10)"
+              }
+            }
+          }
+        },
+        {
+          "name": "rechercher_entreprise",
+          "description": "Recherche une entreprise francaise par SIRET, SIREN ou nom. Retourne les informations legales (forme juridique, NAF, effectif, dirigeants, adresse) et la ou les convention(s) collective(s) applicable(s) avec detail KALI. Source : API Recherche d'entreprises (DINUM) + KALI (DILA).",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "siret": {
+                "type": "string",
+                "description": "Numero SIRET (14 chiffres, ex: '41816609600069')"
+              },
+              "siren": {
+                "type": "string",
+                "description": "Numero SIREN (9 chiffres, ex: '418166096')"
+              },
+              "nom": {
+                "type": "string",
+                "description": "Nom ou raison sociale de l'entreprise (ex: 'OCTO Technology')"
+              }
+            }
+          }
+        },
+        {
+          "name": "rechercher_etablissement_scolaire",
+          "description": "Recherche un etablissement scolaire (ecole, college, lycee) par commune, code postal ou nom. Retourne les informations detaillees : adresse, contact, voies d'enseignement, services (restauration, internat, ULIS), sections (europeenne, sport, arts), education prioritaire. Source : Annuaire de l'education (data.education.gouv.fr), 68 000+ etablissements.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "commune": {
+                "type": "string",
+                "description": "Nom de la commune (ex: 'Lyon', 'Bondy')"
+              },
+              "code_postal": {
+                "type": "string",
+                "description": "Code postal (ex: '69001', '93140')"
+              },
+              "code_insee": {
+                "type": "string",
+                "description": "Code INSEE de la commune"
+              },
+              "type": {
+                "type": "string",
+                "description": "Type d'etablissement : 'ecole', 'college', 'lycee', 'maternelle', 'elementaire', 'primaire', 'erea'"
+              },
+              "statut": {
+                "type": "string",
+                "enum": [
+                  "public",
+                  "prive"
+                ],
+                "description": "Statut : public ou prive"
+              },
+              "nom": {
+                "type": "string",
+                "description": "Nom de l'etablissement (recherche partielle, ex: 'Lacassagne')"
+              },
+              "limit": {
+                "type": "number",
+                "description": "Nombre de resultats (1-20, defaut 10)"
+              }
+            }
+          }
+        },
+        {
+          "name": "consulter_resultats_lycee",
+          "description": "Consulte les indicateurs de valeur ajoutee (IVAL) d'un lycee : taux de reussite au bac, valeur ajoutee, taux d'acces 2nde-bac, taux de mentions. Couvre les lycees generaux/technologiques et professionnels, publics et prives sous contrat. Donnees DEPP session 2012-2024. Source : data.education.gouv.fr.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "commune": {
+                "type": "string",
+                "description": "Nom de la commune (ex: 'Lyon', 'Bordeaux')"
+              },
+              "code_postal": {
+                "type": "string",
+                "description": "Code postal (ex: '69001')"
+              },
+              "code_insee": {
+                "type": "string",
+                "description": "Code INSEE de la commune"
+              },
+              "nom_lycee": {
+                "type": "string",
+                "description": "Nom du lycee (recherche partielle, ex: 'Lacassagne', 'Guimard')"
+              },
+              "type": {
+                "type": "string",
+                "enum": [
+                  "gt",
+                  "pro",
+                  "tous"
+                ],
+                "description": "Voie : 'gt' (general/techno), 'pro' (professionnel), 'tous' (defaut)"
+              },
+              "evolution": {
+                "type": "boolean",
+                "description": "Si true, retourne l'historique multi-annees (2012-2024) avec tendance, au lieu de la derniere session uniquement."
+              },
+              "limit": {
+                "type": "number",
+                "description": "Nombre de resultats (1-20, defaut 10)"
+              }
+            }
+          }
+        },
+        {
+          "name": "consulter_evaluations_nationales",
+          "description": "Consulte les resultats des evaluations nationales (6eme et CE2) par departement. Compare les scores departementaux au niveau national, avec repartition par groupes de niveau et tendance annuelle. Accepte un nom de commune, un code postal ou un code departement. Source : DEPP via data.education.gouv.fr.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "commune": {
+                "type": "string",
+                "description": "Nom de la commune (ex: 'Bondy', 'Lyon') — resout le departement automatiquement"
+              },
+              "code_postal": {
+                "type": "string",
+                "description": "Code postal (ex: '93140') — resout le departement automatiquement"
+              },
+              "code_departement": {
+                "type": "string",
+                "description": "Code departement direct (ex: '93', '75', '2A', '971')"
+              },
+              "niveau": {
+                "type": "string",
+                "enum": [
+                  "6eme",
+                  "CE2",
+                  "tous"
+                ],
+                "description": "Niveau scolaire (defaut: 'tous')"
+              },
+              "annee": {
+                "type": "number",
+                "description": "Annee scolaire (ex: 2025). Par defaut : derniere disponible."
+              }
+            }
+          }
+        },
+        {
+          "name": "consulter_parcoursup",
+          "description": "Recherche des formations sur Parcoursup par mot-cle, ville, departement ou filiere. Retourne les informations detaillees : etablissement, selectivite, taux d'acces, capacite, nombre de voeux, profil des admis (bac, mentions, boursiers), lien fiche Parcoursup. Donnees session 2025. Source : Ministere de l'Enseignement superieur via data.education.gouv.fr.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "recherche": {
+                "type": "string",
+                "description": "Mot-cle ou intitule de formation (ex: 'informatique', 'BTS comptabilite', 'licence droit')"
+              },
+              "ville": {
+                "type": "string",
+                "description": "Ville de l'etablissement (ex: 'Lyon', 'Paris')"
+              },
+              "code_postal": {
+                "type": "string",
+                "description": "Code postal (ex: '69001'). Resout automatiquement vers la ville."
+              },
+              "departement": {
+                "type": "string",
+                "description": "Code departement (ex: '69', '93', '2A')"
+              },
+              "filiere": {
+                "type": "string",
+                "description": "Type de filiere : 'BUT', 'BTS', 'Licence', 'CPGE', 'PASS', 'LAS', 'IFSI', 'ingenieur'"
+              },
+              "limit": {
+                "type": "number",
+                "description": "Nombre de resultats (1-20, defaut 10)"
+              }
+            }
+          }
+        },
+        {
+          "name": "consulter_acces_soins",
+          "description": "Consulte les donnees d'acces aux soins par departement : effectifs et densite des medecins generalistes et specialistes liberaux, patientele medecin traitant, primo-installations, installations en zones sous-dotees, file active. Compare avec les moyennes nationales. Accepte un nom de commune, un code postal ou un code departement. Source : Assurance Maladie (CNAM) via data.ameli.fr.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "commune": {
+                "type": "string",
+                "description": "Nom de la commune (ex: 'Bondy', 'Lyon') — resout le departement automatiquement"
+              },
+              "code_postal": {
+                "type": "string",
+                "description": "Code postal (ex: '93140') — resout le departement automatiquement"
+              },
+              "code_departement": {
+                "type": "string",
+                "description": "Code departement direct (ex: '93', '75', '2A', '971')"
+              }
+            }
+          }
+        },
+        {
+          "name": "consulter_insertion_professionnelle",
+          "description": "Consulte les indicateurs d'insertion professionnelle des lycees professionnels (InserJeunes). Taux d'emploi a 6/12/18/24 mois apres la sortie, taux de poursuite d'etudes, valeur ajoutee. Detail par formation (CAP, Bac Pro, BTS, Mention complementaire). Recherche par nom d'etablissement, ville, departement ou code UAI. Source : DEPP/DARES via data.education.gouv.fr.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "recherche": {
+                "type": "string",
+                "description": "Nom d'etablissement ou mot-cle (ex: 'coiffure', 'automobile')"
+              },
+              "uai": {
+                "type": "string",
+                "description": "Code UAI de l'etablissement (ex: '0691723Y'). Retourne une fiche detaillee avec formations."
+              },
+              "ville": {
+                "type": "string",
+                "description": "Ville de l'etablissement (ex: 'Lyon', 'Marseille')"
+              },
+              "code_departement": {
+                "type": "string",
+                "description": "Code departement (ex: '69', '93', '2A')"
+              },
+              "type_diplome": {
+                "type": "string",
+                "enum": [
+                  "CAP",
+                  "BAC PRO",
+                  "BTS",
+                  "MC3",
+                  "MC4",
+                  "BP"
+                ],
+                "description": "Filtrer par type de diplome (optionnel)"
+              },
+              "limit": {
+                "type": "number",
+                "description": "Nombre de resultats (1-10, defaut 5)"
+              }
+            }
+          }
+        },
+        {
+          "name": "consulter_securite",
+          "description": "Consulte les statistiques de securite et delinquance par departement : cambriolages, vols, violences, homicides, escroqueries, stupefiants. Fournit le nombre de faits, le taux pour 1000 habitants et l'evolution annuelle. Accepte un nom de commune, un code postal ou un code departement. Source : SSMSI, Ministere de l'Interieur via data.gouv.fr.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "code_departement": {
+                "type": "string",
+                "description": "Code departement (ex: '75', '93', '2A')"
+              },
+              "commune": {
+                "type": "string",
+                "description": "Nom de la commune (ex: 'Lyon') — resout le departement automatiquement"
+              },
+              "code_postal": {
+                "type": "string",
+                "description": "Code postal (ex: '93140') — resout le departement automatiquement"
+              },
+              "annee": {
+                "type": "number",
+                "description": "Annee specifique (optionnel, defaut: derniere disponible)"
+              }
+            }
+          }
+        },
+        {
+          "name": "consulter_risques_naturels",
+          "description": "Consulte les risques naturels et technologiques d'une commune : inondation, seisme, mouvement de terrain, risque industriel, feu de foret, etc. Liste les risques identifies et les arretes de catastrophe naturelle (CatNat) avec dates. Accepte un nom de commune, un code postal ou un code INSEE. Source : Georisques (BRGM/MTE) via georisques.gouv.fr.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "commune": {
+                "type": "string",
+                "description": "Nom de la commune (ex: 'Nimes', 'Vaison-la-Romaine')"
+              },
+              "code_postal": {
+                "type": "string",
+                "description": "Code postal (ex: '30000')"
+              },
+              "code_insee": {
+                "type": "string",
+                "description": "Code INSEE de la commune (ex: '30189'). Prioritaire si fourni."
+              }
+            }
+          }
+        },
+        {
+          "name": "rechercher_texte_legal",
+          "description": "Recherche dans les textes legislatifs et reglementaires francais (lois, decrets, arretes, ordonnances) par mots-cles. Retourne les textes correspondants avec leur nature, date et lien Legifrance. Source : API Legifrance officielle (PISTE/DILA).",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "recherche": {
+                "type": "string",
+                "description": "Mots-cles de recherche (ex: 'protection donnees personnelles', 'teletravail conges')"
+              },
+              "champ": {
+                "type": "string",
+                "enum": [
+                  "ALL",
+                  "TITLE",
+                  "ARTICLE",
+                  "NUM_ARTICLE"
+                ],
+                "description": "Champ de recherche (defaut: ALL)"
+              },
+              "type_recherche": {
+                "type": "string",
+                "enum": [
+                  "TOUS_LES_MOTS_DANS_UN_CHAMP",
+                  "EXACTE",
+                  "UN_DES_MOT"
+                ],
+                "description": "Type de recherche (defaut: TOUS_LES_MOTS_DANS_UN_CHAMP)"
+              },
+              "limit": {
+                "type": "number",
+                "description": "Nombre de resultats (1-20, defaut 5)"
+              }
+            },
+            "required": [
+              "recherche"
+            ]
+          }
+        },
+        {
+          "name": "rechercher_code_juridique",
+          "description": "Recherche d'articles dans les codes de loi francais (Code civil, Code du travail, Code penal, Code de commerce, etc.). Retourne les articles avec leur numero, contenu et lien Legifrance. Source : API Legifrance officielle (PISTE/DILA).",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "recherche": {
+                "type": "string",
+                "description": "Termes de recherche (ex: 'contrat de travail', 'legitime defense', 'clause abusive')"
+              },
+              "code": {
+                "type": "string",
+                "description": "Nom complet du code juridique (ex: 'Code civil', 'Code du travail', 'Code penal', 'Code de commerce')"
+              },
+              "champ": {
+                "type": "string",
+                "enum": [
+                  "ALL",
+                  "TITLE",
+                  "ARTICLE",
+                  "NUM_ARTICLE"
+                ],
+                "description": "Champ de recherche (defaut: ALL)"
+              },
+              "type_recherche": {
+                "type": "string",
+                "enum": [
+                  "TOUS_LES_MOTS_DANS_UN_CHAMP",
+                  "EXACTE",
+                  "UN_DES_MOT"
+                ],
+                "description": "Type de recherche (defaut: TOUS_LES_MOTS_DANS_UN_CHAMP)"
+              },
+              "limit": {
+                "type": "number",
+                "description": "Nombre de resultats (1-20, defaut 5)"
+              }
+            },
+            "required": [
+              "recherche",
+              "code"
+            ]
+          }
+        },
+        {
+          "name": "rechercher_jurisprudence",
+          "description": "Recherche de jurisprudence judiciaire francaise : arrets de la Cour de cassation et cours d'appel. Retourne les decisions avec juridiction, formation, solution et lien Legifrance. Source : API Legifrance officielle (PISTE/DILA).",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "recherche": {
+                "type": "string",
+                "description": "Termes de recherche (ex: 'licenciement abusif', 'prejudice moral', 'clause non-concurrence')"
+              },
+              "juridiction": {
+                "type": "string",
+                "enum": [
+                  "Cour de cassation",
+                  "Cours d'appel",
+                  "Toutes"
+                ],
+                "description": "Filtrer par juridiction (defaut: Toutes)"
+              },
+              "publie_bulletin": {
+                "type": "boolean",
+                "description": "Filtrer les arrets publies au bulletin (Cour de cassation uniquement). Optionnel."
+              },
+              "limit": {
+                "type": "number",
+                "description": "Nombre de resultats (1-20, defaut 5)"
+              }
+            },
+            "required": [
+              "recherche"
+            ]
+          }
+        }
+      ],
+      "tool_count": 26,
+      "tool_names": [
+        "rechercher",
+        "rechercher_fiche",
+        "lire_fiche",
+        "rechercher_service_local",
+        "naviguer_themes",
+        "consulter_fiscalite_locale",
+        "rechercher_doctrine_fiscale",
+        "consulter_transactions_immobilieres",
+        "simuler_taxe_fonciere",
+        "simuler_frais_notaire",
+        "consulter_zonage_immobilier",
+        "comparer_communes",
+        "simuler_impot_revenu",
+        "rechercher_convention_collective",
+        "rechercher_entreprise",
+        "rechercher_etablissement_scolaire",
+        "consulter_resultats_lycee",
+        "consulter_evaluations_nationales",
+        "consulter_parcoursup",
+        "consulter_acces_soins",
+        "consulter_insertion_professionnelle",
+        "consulter_securite",
+        "consulter_risques_naturels",
+        "rechercher_texte_legal",
+        "rechercher_code_juridique",
+        "rechercher_jurisprudence"
+      ]
+    },
+    "server_info_crawled": {
+      "id": 35,
+      "name": "Service Public France",
+      "author": "",
+      "overview": "Service Public France - Development Tools server with 26 tools. The MCP Server \"Service Public France\" provides 26 tools focused on development tools tasks. Core ca",
+      "repository_url": "",
+      "homepage": "https://mcp-service-public.nhaultcoeur.workers.dev/mcp",
+      "remote_or_local": "Remote",
+      "license": "",
+      "usage_count": "8,250",
+      "success_rate": "100%",
+      "tags": [
+        "development-tools",
+        "financial-services",
+        "data-analysis-processing"
+      ],
+      "categories": [
+        "development tools",
+        "financial services",
+        "data analysis & processing"
+      ],
+      "tools_count": 26,
+      "tools": [
+        {
+          "name": "rechercher",
+          "description": "Recherche unifiee intelligente dans les sources service-public.fr et Legifrance. Dispatche automatiquement vers : fiches pratiques DILA, doctrine fiscale BOFiP, fiscalite locale, transactions immobilieres DVF, simulation TF/frais notaire/IR, zonage ABC, conventions collectives, securite, risques naturels, textes legaux (lois/decrets/arretes), codes juridiques (Code civil/travail/penal...) et jurisprudence. A utiliser en premier si la source appropriee n'est pas evidente.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "query": {
+                "type": "string",
+                "description": "Question ou termes de recherche en langage naturel (ex: 'taxe foncière à Lyon', 'renouveler passeport', 'prix immobilier à Bondy', 'frais de notaire 250000 euros', 'zone Pinel Bordeaux', 'convention collective bâtiment', 'combien d impôt pour 40000 euros marié 2 enfants')"
+              },
+              "limit": {
+                "type": "number",
+                "description": "Nombre de résultats (1-10, défaut 5)"
+              }
+            },
+            "required": [
+              "query"
+            ]
+          }
+        },
+        {
+          "name": "rechercher_fiche",
+          "description": "Recherche dans les fiches pratiques de service-public.fr (droits, démarches administratives). Utilise la recherche plein texte.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "query": {
+                "type": "string",
+                "description": "Termes de recherche (ex: 'passeport', 'allocation logement')"
+              },
+              "theme": {
+                "type": "string",
+                "description": "Filtrer par thème (ex: 'Papiers', 'Logement')"
+              },
+              "audience": {
+                "type": "string",
+                "enum": [
+                  "Particuliers",
+                  "Professionnels",
+                  "Associations"
+                ],
+                "description": "Public cible"
+              },
+              "limit": {
+                "type": "number",
+                "description": "Nombre de résultats (1-20, défaut 10)"
+              }
+            },
+            "required": [
+              "query"
+            ]
+          }
+        },
+        {
+          "name": "lire_fiche",
+          "description": "Lit le contenu complet d'une fiche pratique par son identifiant (ex: F14929 pour le passeport).",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "fiche_id": {
+                "type": "string",
+                "description": "Identifiant de la fiche (ex: F14929, N360, R42946)"
+              }
+            },
+            "required": [
+              "fiche_id"
+            ]
+          }
+        },
+        {
+          "name": "rechercher_service_local",
+          "description": "Recherche un service public local (mairie, préfecture, CAF, CPAM, France Services...) via l'Annuaire de l'administration.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "type_organisme": {
+                "type": "string",
+                "description": "Type de service (ex: 'mairie', 'prefecture', 'caf')"
+              },
+              "code_postal": {
+                "type": "string",
+                "description": "Code postal (ex: '75001')"
+              },
+              "commune": {
+                "type": "string",
+                "description": "Nom de la commune"
+              },
+              "code_insee": {
+                "type": "string",
+                "description": "Code INSEE de la commune"
+              },
+              "limit": {
+                "type": "number",
+                "description": "Nombre de résultats (1-20, défaut 5)"
+              }
+            }
+          }
+        },
+        {
+          "name": "naviguer_themes",
+          "description": "Parcourt l'arborescence thématique de service-public.fr. Sans paramètre, liste les thèmes principaux.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "theme_id": {
+                "type": "string",
+                "description": "ID du thème à explorer (ex: N19810, N360)"
+              }
+            }
+          }
+        },
+        {
+          "name": "consulter_fiscalite_locale",
+          "description": "Consulte les taux d'imposition locale d'une commune (taxe foncière, taxe d'habitation, TEOM, CFE). Accepte un nom de commune, un code INSEE ou un code postal. Sans exercice précisé, affiche l'évolution sur 4 ans avec tendance. Données REI de la DGFiP via data.economie.gouv.fr.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "commune": {
+                "type": "string",
+                "description": "Nom de la commune (ex: 'PARIS', 'LYON')"
+              },
+              "communes": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "Liste de communes à comparer (2-5 noms en majuscules, ex: ['PARIS', 'LYON', 'MARSEILLE']). Active le mode comparaison côte à côte.",
+                "maxItems": 5,
+                "minItems": 2
+              },
+              "code_insee": {
+                "type": "string",
+                "description": "Code INSEE de la commune (ex: '75056', '69123')"
+              },
+              "code_postal": {
+                "type": "string",
+                "description": "Code postal (ex: '93140', '75001'). Résout automatiquement vers le(s) code(s) INSEE."
+              },
+              "exercice": {
+                "type": "string",
+                "description": "Année fiscale (ex: '2024'). Sans exercice : affiche l'évolution sur toutes les années disponibles."
+              },
+              "type": {
+                "type": "string",
+                "enum": [
+                  "particuliers",
+                  "entreprises"
+                ],
+                "description": "Type de fiscalité (défaut: particuliers)"
+              }
+            }
+          }
+        },
+        {
+          "name": "rechercher_doctrine_fiscale",
+          "description": "Recherche dans la doctrine fiscale officielle (BOFiP - Bulletin Officiel des Finances Publiques). Couvre IR, TVA, IS, plus-values, etc.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "query": {
+                "type": "string",
+                "description": "Termes de recherche (ex: 'plus-values immobilières', 'crédit impôt recherche')"
+              },
+              "serie": {
+                "type": "string",
+                "description": "Filtrer par série BOFiP (ex: 'IR', 'TVA', 'IS', 'RFPI', 'BIC')"
+              },
+              "limit": {
+                "type": "number",
+                "description": "Nombre de résultats (1-10, défaut 5)"
+              }
+            },
+            "required": [
+              "query"
+            ]
+          }
+        },
+        {
+          "name": "consulter_transactions_immobilieres",
+          "description": "Consulte les transactions immobilières (DVF - Demandes de Valeurs Foncières) d'une commune. Fournit prix médians, prix au m², répartition par type de bien et nombre de pièces. Avec evolution=true, retourne l'historique des prix médians par année (2019-aujourd'hui) avec tendance. Données DGFiP via data.gouv.fr. Hors Alsace, Moselle et Mayotte.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "commune": {
+                "type": "string",
+                "description": "Nom de la commune (ex: 'Bondy', 'Lyon')"
+              },
+              "code_insee": {
+                "type": "string",
+                "description": "Code INSEE de la commune (ex: '93010')"
+              },
+              "code_postal": {
+                "type": "string",
+                "description": "Code postal (ex: '93140'). Résout automatiquement vers le(s) code(s) INSEE."
+              },
+              "type_local": {
+                "type": "string",
+                "enum": [
+                  "Appartement",
+                  "Maison",
+                  "Local industriel. commercial ou assimilé"
+                ],
+                "description": "Filtrer par type de bien"
+              },
+              "annee": {
+                "type": "number",
+                "description": "Filtrer sur une année spécifique (ex: 2024). Par défaut : 2 dernières années."
+              },
+              "evolution": {
+                "type": "boolean",
+                "description": "Si true, retourne l'évolution des prix médians année par année (2019-aujourd'hui) avec tendance hausse/baisse/stable. Ignore le paramètre annee."
+              }
+            }
+          }
+        },
+        {
+          "name": "simuler_taxe_fonciere",
+          "description": "Estime la taxe foncière annuelle d'un bien immobilier. Combine les vrais taux communaux (REI DGFiP) avec une estimation de la valeur locative cadastrale ajustée au marché local via les transactions DVF. Accepte un nom de commune, un code INSEE ou un code postal. Décompose les taux par collectivité (commune, EPCI, syndicat, GEMAPI, TSE, TASA). Détecte l'exonération construction neuve 2 ans (art. 1383 CGI). Simule le scénario d'abattement résidence principale si voté par la commune. Résultat indicatif uniquement.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "commune": {
+                "type": "string",
+                "description": "Nom de la commune (ex: 'Lyon', 'Bordeaux')"
+              },
+              "code_insee": {
+                "type": "string",
+                "description": "Code INSEE de la commune (ex: '69123')"
+              },
+              "code_postal": {
+                "type": "string",
+                "description": "Code postal (ex: '33000'). Résout automatiquement vers le code INSEE."
+              },
+              "surface": {
+                "type": "number",
+                "description": "Surface habitable en m² (ex: 75)"
+              },
+              "type_bien": {
+                "type": "string",
+                "enum": [
+                  "Maison",
+                  "Appartement"
+                ],
+                "description": "Type de bien immobilier"
+              },
+              "nombre_pieces": {
+                "type": "number",
+                "description": "Nombre de pièces principales (optionnel, estimé si absent)"
+              },
+              "annee_construction": {
+                "type": "number",
+                "description": "Année de construction (optionnel, influence le coefficient d'entretien et détecte l'exonération 2 ans)"
+              },
+              "residence_principale": {
+                "type": "boolean",
+                "description": "S'il s'agit de la résidence principale (optionnel, affiche les exonérations possibles)"
+              }
+            },
+            "required": [
+              "surface",
+              "type_bien"
+            ]
+          }
+        },
+        {
+          "name": "simuler_frais_notaire",
+          "description": "Estime les frais de notaire (frais d'acquisition) pour un achat immobilier. Calcule les droits de mutation (DMTO), émoluments du notaire (barème dégressif réglementé), contribution de sécurité immobilière et débours. Distingue ancien (7-8 %) et neuf (2-3 %). Si le département est précisé, applique le taux DMTO exact (normal 5,81 % ou majoré 6,32 % selon le département, LF 2025). Sans département, affiche les deux hypothèses. Accepte un code département, un code postal ou un numéro de département.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "prix": {
+                "type": "number",
+                "description": "Prix d'achat du bien en euros (ex: 250000)"
+              },
+              "type": {
+                "type": "string",
+                "enum": [
+                  "ancien",
+                  "neuf"
+                ],
+                "description": "Type de bien : ancien ou neuf"
+              },
+              "departement": {
+                "type": "string",
+                "description": "Département (code 2-3 chiffres, code postal 5 chiffres, ou '2A'/'2B' pour la Corse). Permet d'appliquer le taux DMTO exact."
+              }
+            },
+            "required": [
+              "prix",
+              "type"
+            ]
+          }
+        },
+        {
+          "name": "consulter_zonage_immobilier",
+          "description": "Consulte la zone ABC d'une commune (A bis, A, B1, B2, C) utilisée pour les dispositifs immobiliers (Pinel, PTZ, plafonds loyers). Accepte un nom de commune, un code INSEE ou un code postal. Retourne la zone, les plafonds de loyer, les plafonds de ressources et l'éligibilité aux dispositifs. Source : Ministère de la Transition écologique via data.gouv.fr.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "commune": {
+                "type": "string",
+                "description": "Nom de la commune (ex: 'Lyon', 'Bordeaux')"
+              },
+              "code_insee": {
+                "type": "string",
+                "description": "Code INSEE de la commune (ex: '69123')"
+              },
+              "code_postal": {
+                "type": "string",
+                "description": "Code postal (ex: '33000'). Résout automatiquement vers le code INSEE."
+              }
+            }
+          }
+        },
+        {
+          "name": "comparer_communes",
+          "description": "Compare 2 à 5 communes sur un tableau croisé : population et densité, fiscalité locale (taux TFB, TEOM), prix immobiliers (DVF médian/m² appart et maison), zonage ABC, services publics locaux, établissements scolaires, scores 6ème, sécurité départementale (cambriolages, vols, violences), risques naturels (nombre de risques, arrêtés CatNat), données santé (densité médecins) et intercommunalité. Aide à la décision pour un déménagement ou un investissement. Accepte des noms de communes, codes postaux ou codes INSEE.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "communes": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "Liste de 2 à 5 communes à comparer (noms, codes postaux ou codes INSEE). Ex: ['Lyon', 'Bordeaux', 'Nantes']",
+                "minItems": 2,
+                "maxItems": 5
+              }
+            },
+            "required": [
+              "communes"
+            ]
+          }
+        },
+        {
+          "name": "simuler_impot_revenu",
+          "description": "Estime l'impot sur le revenu (IR) selon le bareme progressif 2025 (revenus 2024). Calcule le quotient familial, applique le plafonnement, la decote et la contribution exceptionnelle hauts revenus (CEHR). Parametres : revenu net imposable (obligatoire), nombre de parts OU situation familiale + nombre d'enfants. Options : revenus fonciers (micro-foncier 30% abattement ou reel), revenus de capitaux (PFU 30% ou bareme), micro-BIC (abattement 50%), micro-BNC (abattement 34%).",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "revenu_net_imposable": {
+                "type": "number",
+                "description": "Revenu net imposable en euros (ex: 42000)"
+              },
+              "nb_parts": {
+                "type": "number",
+                "description": "Nombre de parts fiscales (optionnel, defaut 1). Prioritaire sur situation + nb_enfants."
+              },
+              "situation": {
+                "type": "string",
+                "enum": [
+                  "celibataire",
+                  "marie",
+                  "pacse",
+                  "divorce",
+                  "veuf"
+                ],
+                "description": "Situation familiale (optionnel, permet le calcul auto des parts)"
+              },
+              "nb_enfants": {
+                "type": "number",
+                "description": "Nombre d'enfants a charge (optionnel, defaut 0)"
+              },
+              "revenus_fonciers": {
+                "type": "number",
+                "description": "Revenus fonciers bruts en euros (optionnel). Negatif possible en regime reel (deficit foncier)."
+              },
+              "regime_foncier": {
+                "type": "string",
+                "enum": [
+                  "micro",
+                  "reel"
+                ],
+                "description": "Regime foncier (defaut: micro). Micro = abattement 30 %, reel = montant net fourni."
+              },
+              "revenus_capitaux": {
+                "type": "number",
+                "description": "Revenus de capitaux mobiliers en euros (dividendes, interets, plus-values). Optionnel."
+              },
+              "regime_capitaux": {
+                "type": "string",
+                "enum": [
+                  "pfu",
+                  "bareme"
+                ],
+                "description": "Imposition des capitaux (defaut: pfu). PFU = flat tax 30 %, bareme = integration au revenu global."
+              },
+              "micro_bic": {
+                "type": "number",
+                "description": "Chiffre d'affaires micro-BIC en euros (abattement 50 %). Optionnel."
+              },
+              "micro_bnc": {
+                "type": "number",
+                "description": "Recettes micro-BNC en euros (abattement 34 %). Optionnel."
+              }
+            },
+            "required": [
+              "revenu_net_imposable"
+            ]
+          }
+        },
+        {
+          "name": "rechercher_convention_collective",
+          "description": "Recherche une convention collective nationale par numero IDCC, secteur d'activite ou mot-cle. Source : base KALI (DILA) via data.gouv.fr. Retourne le titre, l'IDCC, l'etat (en vigueur/abrogee), la nature et le lien Legifrance.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "query": {
+                "type": "string",
+                "description": "Mot-cle ou secteur d'activite (ex: 'boulangerie', 'metallurgie', 'batiment')"
+              },
+              "idcc": {
+                "type": "string",
+                "description": "Numero IDCC (ex: '843', '3248')"
+              },
+              "limit": {
+                "type": "number",
+                "description": "Nombre de resultats (1-20, defaut 10)"
+              }
+            }
+          }
+        },
+        {
+          "name": "rechercher_entreprise",
+          "description": "Recherche une entreprise francaise par SIRET, SIREN ou nom. Retourne les informations legales (forme juridique, NAF, effectif, dirigeants, adresse) et la ou les convention(s) collective(s) applicable(s) avec detail KALI. Source : API Recherche d'entreprises (DINUM) + KALI (DILA).",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "siret": {
+                "type": "string",
+                "description": "Numero SIRET (14 chiffres, ex: '41816609600069')"
+              },
+              "siren": {
+                "type": "string",
+                "description": "Numero SIREN (9 chiffres, ex: '418166096')"
+              },
+              "nom": {
+                "type": "string",
+                "description": "Nom ou raison sociale de l'entreprise (ex: 'OCTO Technology')"
+              }
+            }
+          }
+        },
+        {
+          "name": "rechercher_etablissement_scolaire",
+          "description": "Recherche un etablissement scolaire (ecole, college, lycee) par commune, code postal ou nom. Retourne les informations detaillees : adresse, contact, voies d'enseignement, services (restauration, internat, ULIS), sections (europeenne, sport, arts), education prioritaire. Source : Annuaire de l'education (data.education.gouv.fr), 68 000+ etablissements.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "commune": {
+                "type": "string",
+                "description": "Nom de la commune (ex: 'Lyon', 'Bondy')"
+              },
+              "code_postal": {
+                "type": "string",
+                "description": "Code postal (ex: '69001', '93140')"
+              },
+              "code_insee": {
+                "type": "string",
+                "description": "Code INSEE de la commune"
+              },
+              "type": {
+                "type": "string",
+                "description": "Type d'etablissement : 'ecole', 'college', 'lycee', 'maternelle', 'elementaire', 'primaire', 'erea'"
+              },
+              "statut": {
+                "type": "string",
+                "enum": [
+                  "public",
+                  "prive"
+                ],
+                "description": "Statut : public ou prive"
+              },
+              "nom": {
+                "type": "string",
+                "description": "Nom de l'etablissement (recherche partielle, ex: 'Lacassagne')"
+              },
+              "limit": {
+                "type": "number",
+                "description": "Nombre de resultats (1-20, defaut 10)"
+              }
+            }
+          }
+        },
+        {
+          "name": "consulter_resultats_lycee",
+          "description": "Consulte les indicateurs de valeur ajoutee (IVAL) d'un lycee : taux de reussite au bac, valeur ajoutee, taux d'acces 2nde-bac, taux de mentions. Couvre les lycees generaux/technologiques et professionnels, publics et prives sous contrat. Donnees DEPP session 2012-2024. Source : data.education.gouv.fr.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "commune": {
+                "type": "string",
+                "description": "Nom de la commune (ex: 'Lyon', 'Bordeaux')"
+              },
+              "code_postal": {
+                "type": "string",
+                "description": "Code postal (ex: '69001')"
+              },
+              "code_insee": {
+                "type": "string",
+                "description": "Code INSEE de la commune"
+              },
+              "nom_lycee": {
+                "type": "string",
+                "description": "Nom du lycee (recherche partielle, ex: 'Lacassagne', 'Guimard')"
+              },
+              "type": {
+                "type": "string",
+                "enum": [
+                  "gt",
+                  "pro",
+                  "tous"
+                ],
+                "description": "Voie : 'gt' (general/techno), 'pro' (professionnel), 'tous' (defaut)"
+              },
+              "evolution": {
+                "type": "boolean",
+                "description": "Si true, retourne l'historique multi-annees (2012-2024) avec tendance, au lieu de la derniere session uniquement."
+              },
+              "limit": {
+                "type": "number",
+                "description": "Nombre de resultats (1-20, defaut 10)"
+              }
+            }
+          }
+        },
+        {
+          "name": "consulter_evaluations_nationales",
+          "description": "Consulte les resultats des evaluations nationales (6eme et CE2) par departement. Compare les scores departementaux au niveau national, avec repartition par groupes de niveau et tendance annuelle. Accepte un nom de commune, un code postal ou un code departement. Source : DEPP via data.education.gouv.fr.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "commune": {
+                "type": "string",
+                "description": "Nom de la commune (ex: 'Bondy', 'Lyon') — resout le departement automatiquement"
+              },
+              "code_postal": {
+                "type": "string",
+                "description": "Code postal (ex: '93140') — resout le departement automatiquement"
+              },
+              "code_departement": {
+                "type": "string",
+                "description": "Code departement direct (ex: '93', '75', '2A', '971')"
+              },
+              "niveau": {
+                "type": "string",
+                "enum": [
+                  "6eme",
+                  "CE2",
+                  "tous"
+                ],
+                "description": "Niveau scolaire (defaut: 'tous')"
+              },
+              "annee": {
+                "type": "number",
+                "description": "Annee scolaire (ex: 2025). Par defaut : derniere disponible."
+              }
+            }
+          }
+        },
+        {
+          "name": "consulter_parcoursup",
+          "description": "Recherche des formations sur Parcoursup par mot-cle, ville, departement ou filiere. Retourne les informations detaillees : etablissement, selectivite, taux d'acces, capacite, nombre de voeux, profil des admis (bac, mentions, boursiers), lien fiche Parcoursup. Donnees session 2025. Source : Ministere de l'Enseignement superieur via data.education.gouv.fr.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "recherche": {
+                "type": "string",
+                "description": "Mot-cle ou intitule de formation (ex: 'informatique', 'BTS comptabilite', 'licence droit')"
+              },
+              "ville": {
+                "type": "string",
+                "description": "Ville de l'etablissement (ex: 'Lyon', 'Paris')"
+              },
+              "code_postal": {
+                "type": "string",
+                "description": "Code postal (ex: '69001'). Resout automatiquement vers la ville."
+              },
+              "departement": {
+                "type": "string",
+                "description": "Code departement (ex: '69', '93', '2A')"
+              },
+              "filiere": {
+                "type": "string",
+                "description": "Type de filiere : 'BUT', 'BTS', 'Licence', 'CPGE', 'PASS', 'LAS', 'IFSI', 'ingenieur'"
+              },
+              "limit": {
+                "type": "number",
+                "description": "Nombre de resultats (1-20, defaut 10)"
+              }
+            }
+          }
+        },
+        {
+          "name": "consulter_acces_soins",
+          "description": "Consulte les donnees d'acces aux soins par departement : effectifs et densite des medecins generalistes et specialistes liberaux, patientele medecin traitant, primo-installations, installations en zones sous-dotees, file active. Compare avec les moyennes nationales. Accepte un nom de commune, un code postal ou un code departement. Source : Assurance Maladie (CNAM) via data.ameli.fr.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "commune": {
+                "type": "string",
+                "description": "Nom de la commune (ex: 'Bondy', 'Lyon') — resout le departement automatiquement"
+              },
+              "code_postal": {
+                "type": "string",
+                "description": "Code postal (ex: '93140') — resout le departement automatiquement"
+              },
+              "code_departement": {
+                "type": "string",
+                "description": "Code departement direct (ex: '93', '75', '2A', '971')"
+              }
+            }
+          }
+        },
+        {
+          "name": "consulter_insertion_professionnelle",
+          "description": "Consulte les indicateurs d'insertion professionnelle des lycees professionnels (InserJeunes). Taux d'emploi a 6/12/18/24 mois apres la sortie, taux de poursuite d'etudes, valeur ajoutee. Detail par formation (CAP, Bac Pro, BTS, Mention complementaire). Recherche par nom d'etablissement, ville, departement ou code UAI. Source : DEPP/DARES via data.education.gouv.fr.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "recherche": {
+                "type": "string",
+                "description": "Nom d'etablissement ou mot-cle (ex: 'coiffure', 'automobile')"
+              },
+              "uai": {
+                "type": "string",
+                "description": "Code UAI de l'etablissement (ex: '0691723Y'). Retourne une fiche detaillee avec formations."
+              },
+              "ville": {
+                "type": "string",
+                "description": "Ville de l'etablissement (ex: 'Lyon', 'Marseille')"
+              },
+              "code_departement": {
+                "type": "string",
+                "description": "Code departement (ex: '69', '93', '2A')"
+              },
+              "type_diplome": {
+                "type": "string",
+                "enum": [
+                  "CAP",
+                  "BAC PRO",
+                  "BTS",
+                  "MC3",
+                  "MC4",
+                  "BP"
+                ],
+                "description": "Filtrer par type de diplome (optionnel)"
+              },
+              "limit": {
+                "type": "number",
+                "description": "Nombre de resultats (1-10, defaut 5)"
+              }
+            }
+          }
+        },
+        {
+          "name": "consulter_securite",
+          "description": "Consulte les statistiques de securite et delinquance par departement : cambriolages, vols, violences, homicides, escroqueries, stupefiants. Fournit le nombre de faits, le taux pour 1000 habitants et l'evolution annuelle. Accepte un nom de commune, un code postal ou un code departement. Source : SSMSI, Ministere de l'Interieur via data.gouv.fr.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "code_departement": {
+                "type": "string",
+                "description": "Code departement (ex: '75', '93', '2A')"
+              },
+              "commune": {
+                "type": "string",
+                "description": "Nom de la commune (ex: 'Lyon') — resout le departement automatiquement"
+              },
+              "code_postal": {
+                "type": "string",
+                "description": "Code postal (ex: '93140') — resout le departement automatiquement"
+              },
+              "annee": {
+                "type": "number",
+                "description": "Annee specifique (optionnel, defaut: derniere disponible)"
+              }
+            }
+          }
+        },
+        {
+          "name": "consulter_risques_naturels",
+          "description": "Consulte les risques naturels et technologiques d'une commune : inondation, seisme, mouvement de terrain, risque industriel, feu de foret, etc. Liste les risques identifies et les arretes de catastrophe naturelle (CatNat) avec dates. Accepte un nom de commune, un code postal ou un code INSEE. Source : Georisques (BRGM/MTE) via georisques.gouv.fr.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "commune": {
+                "type": "string",
+                "description": "Nom de la commune (ex: 'Nimes', 'Vaison-la-Romaine')"
+              },
+              "code_postal": {
+                "type": "string",
+                "description": "Code postal (ex: '30000')"
+              },
+              "code_insee": {
+                "type": "string",
+                "description": "Code INSEE de la commune (ex: '30189'). Prioritaire si fourni."
+              }
+            }
+          }
+        },
+        {
+          "name": "rechercher_texte_legal",
+          "description": "Recherche dans les textes legislatifs et reglementaires francais (lois, decrets, arretes, ordonnances) par mots-cles. Retourne les textes correspondants avec leur nature, date et lien Legifrance. Source : API Legifrance officielle (PISTE/DILA).",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "recherche": {
+                "type": "string",
+                "description": "Mots-cles de recherche (ex: 'protection donnees personnelles', 'teletravail conges')"
+              },
+              "champ": {
+                "type": "string",
+                "enum": [
+                  "ALL",
+                  "TITLE",
+                  "ARTICLE",
+                  "NUM_ARTICLE"
+                ],
+                "description": "Champ de recherche (defaut: ALL)"
+              },
+              "type_recherche": {
+                "type": "string",
+                "enum": [
+                  "TOUS_LES_MOTS_DANS_UN_CHAMP",
+                  "EXACTE",
+                  "UN_DES_MOT"
+                ],
+                "description": "Type de recherche (defaut: TOUS_LES_MOTS_DANS_UN_CHAMP)"
+              },
+              "limit": {
+                "type": "number",
+                "description": "Nombre de resultats (1-20, defaut 5)"
+              }
+            },
+            "required": [
+              "recherche"
+            ]
+          }
+        },
+        {
+          "name": "rechercher_code_juridique",
+          "description": "Recherche d'articles dans les codes de loi francais (Code civil, Code du travail, Code penal, Code de commerce, etc.). Retourne les articles avec leur numero, contenu et lien Legifrance. Source : API Legifrance officielle (PISTE/DILA).",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "recherche": {
+                "type": "string",
+                "description": "Termes de recherche (ex: 'contrat de travail', 'legitime defense', 'clause abusive')"
+              },
+              "code": {
+                "type": "string",
+                "description": "Nom complet du code juridique (ex: 'Code civil', 'Code du travail', 'Code penal', 'Code de commerce')"
+              },
+              "champ": {
+                "type": "string",
+                "enum": [
+                  "ALL",
+                  "TITLE",
+                  "ARTICLE",
+                  "NUM_ARTICLE"
+                ],
+                "description": "Champ de recherche (defaut: ALL)"
+              },
+              "type_recherche": {
+                "type": "string",
+                "enum": [
+                  "TOUS_LES_MOTS_DANS_UN_CHAMP",
+                  "EXACTE",
+                  "UN_DES_MOT"
+                ],
+                "description": "Type de recherche (defaut: TOUS_LES_MOTS_DANS_UN_CHAMP)"
+              },
+              "limit": {
+                "type": "number",
+                "description": "Nombre de resultats (1-20, defaut 5)"
+              }
+            },
+            "required": [
+              "recherche",
+              "code"
+            ]
+          }
+        },
+        {
+          "name": "rechercher_jurisprudence",
+          "description": "Recherche de jurisprudence judiciaire francaise : arrets de la Cour de cassation et cours d'appel. Retourne les decisions avec juridiction, formation, solution et lien Legifrance. Source : API Legifrance officielle (PISTE/DILA).",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "recherche": {
+                "type": "string",
+                "description": "Termes de recherche (ex: 'licenciement abusif', 'prejudice moral', 'clause non-concurrence')"
+              },
+              "juridiction": {
+                "type": "string",
+                "enum": [
+                  "Cour de cassation",
+                  "Cours d'appel",
+                  "Toutes"
+                ],
+                "description": "Filtrer par juridiction (defaut: Toutes)"
+              },
+              "publie_bulletin": {
+                "type": "boolean",
+                "description": "Filtrer les arrets publies au bulletin (Cour de cassation uniquement). Optionnel."
+              },
+              "limit": {
+                "type": "number",
+                "description": "Nombre de resultats (1-20, defaut 5)"
+              }
+            },
+            "required": [
+              "recherche"
+            ]
+          }
+        }
+      ],
+      "python_sdk_url": "https://mcp-service-public.nhaultcoeur.workers.dev/mcp",
+      "python_sdk_config": "{\"debug\": false}"
+    },
+    "source_filename": "0035.Service-Public-France_labeled.json",
+    "processed_timestamp": 1772876337,
+    "processing_mode": "gateway",
+    "rank": 36
+  }
+}

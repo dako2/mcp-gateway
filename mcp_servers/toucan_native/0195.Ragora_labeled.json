@@ -1,0 +1,365 @@
+{
+  "labels": {
+    "analysis": "The MCP Server \"Ragora\" provides 3 tools focused on database operations tasks. Core capabilities include search and retrieval. Key tools: discover_collections, search, search_collection.",
+    "reasoning": "Primary label \"Database Operations\" assigned based on strong keyword matches in tool names and descriptions: collection.",
+    "primary_label": "Database Operations",
+    "secondary_labels": [
+      "Web Search & Research",
+      "Data Analysis & Processing"
+    ],
+    "custom_label": "Search - Ragora",
+    "is_connected": true,
+    "is_remote_tool_valid": true,
+    "featured_server": false,
+    "tool_verified": true,
+    "tool_verified_status": "verified",
+    "tool_verified_at": "2026-03-14T20:38:19.106229+00:00",
+    "tool_verified_tool": "search",
+    "tool_verified_reason": "response received"
+  },
+  "metadata": {
+    "server_id": 195,
+    "server_name": "Ragora",
+    "rank_by_usage": 196,
+    "usage_count": "10",
+    "original_file": "tools.json#195",
+    "mode": "gateway",
+    "timestamp": 1772876338,
+    "remote_server_response": {
+      "url": "https://mcp.ragora.app/mcp",
+      "is_success": true,
+      "error": null,
+      "tools": [
+        {
+          "name": "discover_collections",
+          "description": "Discover all knowledge bases you have access to.\n\nReturns collection names, descriptions, content types, stats,\navailable operations, and usage examples for each collection.\nCall this first to understand what data is available before searching.",
+          "inputSchema": {
+            "properties": {},
+            "type": "object"
+          },
+          "outputSchema": {
+            "description": "Generic wrapper for non-object return types.",
+            "properties": {
+              "result": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "result"
+            ],
+            "type": "object",
+            "x-fastmcp-wrap-result": true
+          },
+          "annotations": {
+            "readOnlyHint": true
+          },
+          "_meta": {
+            "fastmcp": {
+              "tags": []
+            }
+          }
+        },
+        {
+          "name": "search",
+          "description": "Search across ALL your knowledge bases at once.\n\nUse this when you want broad results or aren't sure which collection has the answer.\nFor targeted search in a specific collection, use search_collection() instead.",
+          "inputSchema": {
+            "properties": {
+              "query": {
+                "description": "Natural language search query.",
+                "type": "string"
+              },
+              "top_k": {
+                "default": 5,
+                "description": "Maximum number of results to return (default 5).",
+                "type": "integer"
+              }
+            },
+            "required": [
+              "query"
+            ],
+            "type": "object"
+          },
+          "outputSchema": {
+            "description": "Generic wrapper for non-object return types.",
+            "properties": {
+              "result": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "result"
+            ],
+            "type": "object",
+            "x-fastmcp-wrap-result": true
+          },
+          "annotations": {
+            "readOnlyHint": true
+          },
+          "_meta": {
+            "fastmcp": {
+              "tags": []
+            }
+          }
+        },
+        {
+          "name": "search_collection",
+          "description": "Search a specific knowledge base by name.\n\nUse discover_collections() first to find available collection names.",
+          "inputSchema": {
+            "properties": {
+              "collection_name": {
+                "description": "Human-readable collection name or slug (e.g. \"employee_handbook\").",
+                "type": "string"
+              },
+              "query": {
+                "description": "Natural language search query.",
+                "type": "string"
+              },
+              "top_k": {
+                "default": 5,
+                "description": "Maximum number of results to return (default 5).",
+                "type": "integer"
+              },
+              "custom_tags": {
+                "anyOf": [
+                  {
+                    "items": {
+                      "type": "string"
+                    },
+                    "type": "array"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "description": "Optional explicit tags to scope retrieval. Use discover_collections() to see available tags for each collection."
+              },
+              "filters": {
+                "anyOf": [
+                  {
+                    "additionalProperties": true,
+                    "type": "object"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "description": "Optional metadata filters. Use discover_collections() to see available filter fields for each collection."
+              }
+            },
+            "required": [
+              "collection_name",
+              "query"
+            ],
+            "type": "object"
+          },
+          "outputSchema": {
+            "description": "Generic wrapper for non-object return types.",
+            "properties": {
+              "result": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "result"
+            ],
+            "type": "object",
+            "x-fastmcp-wrap-result": true
+          },
+          "annotations": {
+            "readOnlyHint": true
+          },
+          "_meta": {
+            "fastmcp": {
+              "tags": []
+            }
+          }
+        }
+      ],
+      "tool_count": 3,
+      "tool_names": [
+        "discover_collections",
+        "search",
+        "search_collection"
+      ]
+    },
+    "server_info_crawled": {
+      "id": 195,
+      "name": "Ragora",
+      "author": "",
+      "overview": "Ragora - Database Operations server with 3 tools. The MCP Server \"Ragora\" provides 3 tools focused on database operations tasks. Core capabilities inc",
+      "repository_url": "",
+      "homepage": "https://mcp.ragora.app/mcp",
+      "remote_or_local": "Remote",
+      "license": "",
+      "usage_count": "10",
+      "success_rate": "100%",
+      "tags": [
+        "database-operations",
+        "web-search-research",
+        "data-analysis-processing"
+      ],
+      "categories": [
+        "database operations",
+        "web search & research",
+        "data analysis & processing"
+      ],
+      "tools_count": 3,
+      "tools": [
+        {
+          "name": "discover_collections",
+          "description": "Discover all knowledge bases you have access to.\n\nReturns collection names, descriptions, content types, stats,\navailable operations, and usage examples for each collection.\nCall this first to understand what data is available before searching.",
+          "inputSchema": {
+            "properties": {},
+            "type": "object"
+          },
+          "outputSchema": {
+            "description": "Generic wrapper for non-object return types.",
+            "properties": {
+              "result": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "result"
+            ],
+            "type": "object",
+            "x-fastmcp-wrap-result": true
+          },
+          "annotations": {
+            "readOnlyHint": true
+          },
+          "_meta": {
+            "fastmcp": {
+              "tags": []
+            }
+          }
+        },
+        {
+          "name": "search",
+          "description": "Search across ALL your knowledge bases at once.\n\nUse this when you want broad results or aren't sure which collection has the answer.\nFor targeted search in a specific collection, use search_collection() instead.",
+          "inputSchema": {
+            "properties": {
+              "query": {
+                "description": "Natural language search query.",
+                "type": "string"
+              },
+              "top_k": {
+                "default": 5,
+                "description": "Maximum number of results to return (default 5).",
+                "type": "integer"
+              }
+            },
+            "required": [
+              "query"
+            ],
+            "type": "object"
+          },
+          "outputSchema": {
+            "description": "Generic wrapper for non-object return types.",
+            "properties": {
+              "result": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "result"
+            ],
+            "type": "object",
+            "x-fastmcp-wrap-result": true
+          },
+          "annotations": {
+            "readOnlyHint": true
+          },
+          "_meta": {
+            "fastmcp": {
+              "tags": []
+            }
+          }
+        },
+        {
+          "name": "search_collection",
+          "description": "Search a specific knowledge base by name.\n\nUse discover_collections() first to find available collection names.",
+          "inputSchema": {
+            "properties": {
+              "collection_name": {
+                "description": "Human-readable collection name or slug (e.g. \"employee_handbook\").",
+                "type": "string"
+              },
+              "query": {
+                "description": "Natural language search query.",
+                "type": "string"
+              },
+              "top_k": {
+                "default": 5,
+                "description": "Maximum number of results to return (default 5).",
+                "type": "integer"
+              },
+              "custom_tags": {
+                "anyOf": [
+                  {
+                    "items": {
+                      "type": "string"
+                    },
+                    "type": "array"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "description": "Optional explicit tags to scope retrieval. Use discover_collections() to see available tags for each collection."
+              },
+              "filters": {
+                "anyOf": [
+                  {
+                    "additionalProperties": true,
+                    "type": "object"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "description": "Optional metadata filters. Use discover_collections() to see available filter fields for each collection."
+              }
+            },
+            "required": [
+              "collection_name",
+              "query"
+            ],
+            "type": "object"
+          },
+          "outputSchema": {
+            "description": "Generic wrapper for non-object return types.",
+            "properties": {
+              "result": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "result"
+            ],
+            "type": "object",
+            "x-fastmcp-wrap-result": true
+          },
+          "annotations": {
+            "readOnlyHint": true
+          },
+          "_meta": {
+            "fastmcp": {
+              "tags": []
+            }
+          }
+        }
+      ],
+      "python_sdk_url": "https://mcp.ragora.app/mcp",
+      "python_sdk_config": "{\"debug\": false}"
+    },
+    "source_filename": "0195.Ragora_labeled.json",
+    "processed_timestamp": 1772876338,
+    "processing_mode": "gateway",
+    "rank": 196
+  }
+}

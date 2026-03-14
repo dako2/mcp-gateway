@@ -1,0 +1,325 @@
+{
+  "labels": {
+    "analysis": "The MCP Server \"OpenClaw MCP Ecosystem\" provides 5 tools focused on gaming tasks. Core capabilities include creation and generation, search and retrieval. Key tools: regex_test, regex_explain, regex_build, regex_replace, regex_extract.",
+    "reasoning": "Primary label \"Gaming\" assigned based on strong keyword matches in tool names and descriptions: match.",
+    "primary_label": "Gaming",
+    "secondary_labels": [
+      "Development Tools",
+      "Cryptocurrency & Blockchain"
+    ],
+    "custom_label": "Deployment - OpenClaw MCP Ecosystem",
+    "is_connected": true,
+    "is_remote_tool_valid": true,
+    "featured_server": true,
+    "tool_verified": true,
+    "tool_verified_status": "verified",
+    "tool_verified_at": "2026-03-14T20:38:17.092908+00:00",
+    "tool_verified_tool": "regex_explain",
+    "tool_verified_reason": "tool call succeeded"
+  },
+  "metadata": {
+    "server_id": 152,
+    "server_name": "OpenClaw MCP Ecosystem",
+    "rank_by_usage": 153,
+    "usage_count": "100",
+    "original_file": "tools.json#152",
+    "mode": "gateway",
+    "timestamp": 1772876337,
+    "remote_server_response": {
+      "url": "https://regex-engine-mcp.yagami8095.workers.dev/mcp",
+      "is_success": true,
+      "error": null,
+      "tools": [
+        {
+          "name": "regex_test",
+          "description": "Test a regex pattern against input text. Returns matches (full match + groups), match count, and positions.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "pattern": {
+                "type": "string",
+                "description": "The regex pattern to test"
+              },
+              "text": {
+                "type": "string",
+                "description": "The text to test against"
+              },
+              "flags": {
+                "type": "string",
+                "description": "Regex flags (e.g., \"gi\", \"m\"). Defaults to \"g\"",
+                "default": "g"
+              }
+            },
+            "required": [
+              "pattern",
+              "text"
+            ]
+          }
+        },
+        {
+          "name": "regex_explain",
+          "description": "Explain a regex pattern in plain English, token by token.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "pattern": {
+                "type": "string",
+                "description": "The regex pattern to explain"
+              }
+            },
+            "required": [
+              "pattern"
+            ]
+          }
+        },
+        {
+          "name": "regex_build",
+          "description": "Build a regex from a natural language description (e.g., \"match email addresses\"). Returns pattern, explanation, and test examples.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "description": {
+                "type": "string",
+                "description": "Natural language description of what to match"
+              },
+              "flavor": {
+                "type": "string",
+                "enum": [
+                  "js",
+                  "python",
+                  "go"
+                ],
+                "description": "Regex flavor/dialect. Defaults to \"js\"",
+                "default": "js"
+              }
+            },
+            "required": [
+              "description"
+            ]
+          }
+        },
+        {
+          "name": "regex_replace",
+          "description": "Apply a regex find-and-replace on text.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "pattern": {
+                "type": "string",
+                "description": "The regex pattern to find"
+              },
+              "text": {
+                "type": "string",
+                "description": "The input text"
+              },
+              "replacement": {
+                "type": "string",
+                "description": "The replacement string (can use $1, $2, etc. for capture groups)"
+              },
+              "flags": {
+                "type": "string",
+                "description": "Regex flags. Defaults to \"g\"",
+                "default": "g"
+              }
+            },
+            "required": [
+              "pattern",
+              "text",
+              "replacement"
+            ]
+          }
+        },
+        {
+          "name": "regex_extract",
+          "description": "Extract all matches from text with named capture group support.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "pattern": {
+                "type": "string",
+                "description": "The regex pattern to extract with (may include named groups (?<name>...))"
+              },
+              "text": {
+                "type": "string",
+                "description": "The input text"
+              },
+              "flags": {
+                "type": "string",
+                "description": "Regex flags. Defaults to \"g\"",
+                "default": "g"
+              }
+            },
+            "required": [
+              "pattern",
+              "text"
+            ]
+          }
+        }
+      ],
+      "tool_count": 5,
+      "tool_names": [
+        "regex_test",
+        "regex_explain",
+        "regex_build",
+        "regex_replace",
+        "regex_extract"
+      ]
+    },
+    "server_info_crawled": {
+      "id": 152,
+      "name": "OpenClaw MCP Ecosystem",
+      "author": "",
+      "overview": "OpenClaw MCP Ecosystem - Gaming server with 5 tools. The MCP Server \"OpenClaw MCP Ecosystem\" provides 5 tools focused on gaming tasks. Core capabilities ",
+      "repository_url": "",
+      "homepage": "https://regex-engine-mcp.yagami8095.workers.dev/mcp",
+      "remote_or_local": "Remote",
+      "license": "",
+      "usage_count": "100",
+      "success_rate": "100%",
+      "tags": [
+        "gaming",
+        "development-tools",
+        "cryptocurrency-blockchain"
+      ],
+      "categories": [
+        "gaming",
+        "development tools",
+        "cryptocurrency & blockchain"
+      ],
+      "tools_count": 5,
+      "tools": [
+        {
+          "name": "regex_test",
+          "description": "Test a regex pattern against input text. Returns matches (full match + groups), match count, and positions.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "pattern": {
+                "type": "string",
+                "description": "The regex pattern to test"
+              },
+              "text": {
+                "type": "string",
+                "description": "The text to test against"
+              },
+              "flags": {
+                "type": "string",
+                "description": "Regex flags (e.g., \"gi\", \"m\"). Defaults to \"g\"",
+                "default": "g"
+              }
+            },
+            "required": [
+              "pattern",
+              "text"
+            ]
+          }
+        },
+        {
+          "name": "regex_explain",
+          "description": "Explain a regex pattern in plain English, token by token.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "pattern": {
+                "type": "string",
+                "description": "The regex pattern to explain"
+              }
+            },
+            "required": [
+              "pattern"
+            ]
+          }
+        },
+        {
+          "name": "regex_build",
+          "description": "Build a regex from a natural language description (e.g., \"match email addresses\"). Returns pattern, explanation, and test examples.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "description": {
+                "type": "string",
+                "description": "Natural language description of what to match"
+              },
+              "flavor": {
+                "type": "string",
+                "enum": [
+                  "js",
+                  "python",
+                  "go"
+                ],
+                "description": "Regex flavor/dialect. Defaults to \"js\"",
+                "default": "js"
+              }
+            },
+            "required": [
+              "description"
+            ]
+          }
+        },
+        {
+          "name": "regex_replace",
+          "description": "Apply a regex find-and-replace on text.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "pattern": {
+                "type": "string",
+                "description": "The regex pattern to find"
+              },
+              "text": {
+                "type": "string",
+                "description": "The input text"
+              },
+              "replacement": {
+                "type": "string",
+                "description": "The replacement string (can use $1, $2, etc. for capture groups)"
+              },
+              "flags": {
+                "type": "string",
+                "description": "Regex flags. Defaults to \"g\"",
+                "default": "g"
+              }
+            },
+            "required": [
+              "pattern",
+              "text",
+              "replacement"
+            ]
+          }
+        },
+        {
+          "name": "regex_extract",
+          "description": "Extract all matches from text with named capture group support.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "pattern": {
+                "type": "string",
+                "description": "The regex pattern to extract with (may include named groups (?<name>...))"
+              },
+              "text": {
+                "type": "string",
+                "description": "The input text"
+              },
+              "flags": {
+                "type": "string",
+                "description": "Regex flags. Defaults to \"g\"",
+                "default": "g"
+              }
+            },
+            "required": [
+              "pattern",
+              "text"
+            ]
+          }
+        }
+      ],
+      "python_sdk_url": "https://regex-engine-mcp.yagami8095.workers.dev/mcp",
+      "python_sdk_config": "{\"debug\": false}"
+    },
+    "source_filename": "0152.OpenClaw-MCP-Ecosystem_labeled.json",
+    "processed_timestamp": 1772876337,
+    "processing_mode": "gateway",
+    "rank": 153
+  }
+}

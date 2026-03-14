@@ -1,0 +1,2307 @@
+{
+  "labels": {
+    "analysis": "The MCP Server \"Ludo AI Game Assets\" provides 21 tools focused on development tools tasks. Core capabilities include creation and generation, data access and reading, deletion and cleanup, modification and updates. Key tools: validateApiKeyEndpoint, createImage, generateWithStyle, editImage, animateSprite.",
+    "reasoning": "Primary label \"Development Tools\" assigned based on strong keyword matches in tool names and descriptions: endpoint.",
+    "primary_label": "Development Tools",
+    "secondary_labels": [
+      "Content Creation",
+      "AI/ML Tools"
+    ],
+    "custom_label": "Data Access & Generation - Ludo AI Game Assets",
+    "is_connected": true,
+    "is_remote_tool_valid": true,
+    "featured_server": true,
+    "tool_verified": false,
+    "tool_verified_status": "auth_required",
+    "tool_verified_at": "2026-03-14T20:38:11.175395+00:00",
+    "tool_verified_tool": "validateApiKeyEndpoint",
+    "tool_verified_reason": "auth error in response: {\"jsonrpc\": \"2.0\", \"id\": 22522, \"result\": {\"content\": [{\"type\": \"text\", \"text\": \"API Error: Status 4"
+  },
+  "metadata": {
+    "server_id": 39,
+    "server_name": "Ludo AI Game Assets",
+    "rank_by_usage": 40,
+    "usage_count": "8,050",
+    "original_file": "tools.json#39",
+    "mode": "gateway",
+    "timestamp": 1772876337,
+    "remote_server_response": {
+      "url": "https://mcp.ludo.ai/mcp",
+      "is_success": true,
+      "error": null,
+      "tools": [
+        {
+          "name": "validateApiKeyEndpoint",
+          "description": "Validates an API key. Returns 200 if valid, 403 if invalid.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {},
+            "required": []
+          }
+        },
+        {
+          "name": "createImage",
+          "description": "createImage. This endpoint consumes 0.5 credits per result.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "requestBody": {
+                "type": "object",
+                "description": "Payload for generating an image from text prompt",
+                "required": [
+                  "image_type",
+                  "prompt"
+                ],
+                "properties": {
+                  "image_type": {
+                    "type": "string",
+                    "description": "What kind of image to generate.",
+                    "enum": [
+                      "screenshot",
+                      "icon",
+                      "art",
+                      "asset",
+                      "sprite",
+                      "sprite-vfx",
+                      "ui_asset",
+                      "fixed_background",
+                      "texture",
+                      "3d",
+                      "generic"
+                    ],
+                    "example": "screenshot"
+                  },
+                  "prompt": {
+                    "type": "string",
+                    "description": "Text description of the image to generate. The more detailed the prompt, the more accurate the image will be."
+                  },
+                  "art_style": {
+                    "type": "string",
+                    "description": "Visual art style for the sprite (e.g., \"Pixel Art\", \"Cartoonish\", \"Realistic\").",
+                    "enum": [
+                      "Any style",
+                      "Cartoonish",
+                      "Pixel Art (16-Bit)",
+                      "Low Poly",
+                      "Stylized 3D",
+                      "Flat Design",
+                      "Illustration",
+                      "Cel-Shaded",
+                      "Retro 2D",
+                      "Voxel Art",
+                      "Minimalist",
+                      "Hand-Painted",
+                      "Anime/Manga",
+                      "Vector Art",
+                      "Chibi",
+                      "Retro 3D",
+                      "Comic Book",
+                      "Silhouette",
+                      "Pixel Art (8-Bit)",
+                      "Photorealistic 3D"
+                    ],
+                    "example": "Any style"
+                  },
+                  "perspective": {
+                    "type": "string",
+                    "description": "Camera angle/view for the sprite (e.g., \"Side view\", \"Front view\", \"Isometric\").",
+                    "enum": [
+                      "Any perspective",
+                      "First-Person",
+                      "Third-Person",
+                      "Over-the-Shoulder",
+                      "Top-Down",
+                      "Isometric",
+                      "Side-Scroll",
+                      "Free Camera",
+                      "2.5D"
+                    ],
+                    "example": "Any perspective"
+                  },
+                  "aspect_ratio": {
+                    "type": "string",
+                    "description": "Aspect ratio of the output image.",
+                    "enum": [
+                      "default",
+                      "ar_1_1",
+                      "ar_4_3",
+                      "ar_16_9",
+                      "ar_19_9",
+                      "ar_3_4",
+                      "ar_9_16",
+                      "ar_9_19"
+                    ],
+                    "example": "default"
+                  },
+                  "n": {
+                    "type": "number",
+                    "format": "integer",
+                    "default": 1,
+                    "minimum": 1,
+                    "maximum": 8,
+                    "description": "Number of image variations to generate",
+                    "example": 1
+                  },
+                  "augment_prompt": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Augment the prompt behind the scenes. Disable to have more control.",
+                    "example": true
+                  },
+                  "request_id": {
+                    "type": "string",
+                    "description": "Optional client-provided identifier for this request. Use this to retrieve results later via the results endpoint."
+                  }
+                }
+              }
+            },
+            "required": [
+              "requestBody"
+            ]
+          }
+        },
+        {
+          "name": "generateWithStyle",
+          "description": "generateWithStyle. This endpoint consumes 0.5 credits per result.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "requestBody": {
+                "type": "object",
+                "description": "Payload for generating new content while maintaining the visual style of a reference image",
+                "required": [
+                  "style_image",
+                  "prompt",
+                  "image_type"
+                ],
+                "properties": {
+                  "style_image": {
+                    "type": "string",
+                    "description": "URL or base64-encoded reference image whose visual style should be matched.",
+                    "example": "<url> OR data:image/png;base64,..."
+                  },
+                  "prompt": {
+                    "type": "string",
+                    "description": "Text description of what to generate (e.g., \"a warrior character\", \"a forest background\", \"a treasure chest\")."
+                  },
+                  "image_type": {
+                    "type": "string",
+                    "description": "What kind of image to generate.",
+                    "default": "sprite",
+                    "enum": [
+                      "screenshot",
+                      "icon",
+                      "art",
+                      "asset",
+                      "sprite",
+                      "sprite-vfx",
+                      "ui_asset",
+                      "fixed_background",
+                      "texture",
+                      "3d",
+                      "generic"
+                    ],
+                    "example": "screenshot"
+                  },
+                  "n": {
+                    "type": "number",
+                    "format": "integer",
+                    "description": "Number of variations to generate (1-4).",
+                    "minimum": 1,
+                    "maximum": 4,
+                    "default": 1,
+                    "example": 1
+                  },
+                  "augment_prompt": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Augment the prompt behind the scenes. Disable to have more control.",
+                    "example": true
+                  },
+                  "request_id": {
+                    "type": "string",
+                    "description": "Optional client-provided identifier for this request. Use this to retrieve results later via the results endpoint."
+                  }
+                }
+              }
+            },
+            "required": [
+              "requestBody"
+            ]
+          }
+        },
+        {
+          "name": "editImage",
+          "description": "editImage. This endpoint consumes 0.5 credits per result.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "requestBody": {
+                "type": "object",
+                "description": "Payload for editing an existing image based on text instructions",
+                "required": [
+                  "image",
+                  "prompt"
+                ],
+                "properties": {
+                  "image": {
+                    "type": "string",
+                    "description": "URL or base64-encoded source image to edit.",
+                    "example": "<url> OR data:image/png;base64,..."
+                  },
+                  "prompt": {
+                    "type": "string",
+                    "description": "Text description of the changes to make (e.g., \"remove the background\", \"add clouds to the sky\", \"make it darker\", \"change the color scheme to warmer tones\")."
+                  },
+                  "reference_image": {
+                    "type": "string",
+                    "description": "Optional URL or base64-encoded reference image for style or content guidance.",
+                    "example": "<url> OR data:image/png;base64,..."
+                  },
+                  "n": {
+                    "type": "number",
+                    "format": "integer",
+                    "description": "Number of edited variations to generate (1-4).",
+                    "minimum": 1,
+                    "maximum": 4,
+                    "default": 1,
+                    "example": 1
+                  },
+                  "augment_prompt": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Augment the prompt behind the scenes. Disable to have more control.",
+                    "example": true
+                  },
+                  "request_id": {
+                    "type": "string",
+                    "description": "Optional client-provided identifier for this request. Use this to retrieve results later via the results endpoint."
+                  }
+                }
+              }
+            },
+            "required": [
+              "requestBody"
+            ]
+          }
+        },
+        {
+          "name": "animateSprite",
+          "description": "animateSprite. This endpoint consumes 5 credits per call.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "requestBody": {
+                "type": "object",
+                "description": "Payload for generating an animated spritesheet from a static image. Input images can either be provided in base64 or URL. If the image was generated using Ludo, ideally it should be generated using the \"sprite\", \"sprite-vfx\" or \"ui_asset\" type.",
+                "required": [
+                  "motion_prompt",
+                  "initial_image"
+                ],
+                "properties": {
+                  "motion_prompt": {
+                    "type": "string",
+                    "description": "Text description of the desired animation (e.g., \"walking\", \"jumping\", \"idle breathing\", \"attack slash\")."
+                  },
+                  "initial_image": {
+                    "type": "string",
+                    "description": "The url OR base64 of the starting frame image to animate. This is the base sprite that will be brought to life.",
+                    "example": "<url> OR data:image/png;base64,..."
+                  },
+                  "final_image": {
+                    "type": "string",
+                    "description": "The url OR base64 of ending frame image. When provided, the animation will interpolate between the initial and final frames.",
+                    "example": "<url> OR data:image/png;base64,..."
+                  },
+                  "loop": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Trim the animation at the beginning or end to create a seamless loop. Not guaranteed to produce a perfect loop.",
+                    "example": true
+                  },
+                  "crop": {
+                    "type": "boolean",
+                    "description": "Crop sprite frames to fit content. Results in smaller spritesheets but inconsistent frame sizes across different animations."
+                  },
+                  "frames": {
+                    "type": "number",
+                    "format": "integer",
+                    "description": "Number of frames in the output spritesheet. Accepted values: 4, 9, 16, 25, 36, 49, 64.",
+                    "default": 36,
+                    "example": 4
+                  },
+                  "frame_size": {
+                    "type": "number",
+                    "format": "integer",
+                    "description": "Size of each frame in pixels (width and height). 0 is for maximum resolution. Accepted values: 32, 64, 96, 128, 192, 256, 384, 0.",
+                    "default": 0,
+                    "example": 32
+                  },
+                  "margin_ratio": {
+                    "type": "number",
+                    "format": "float",
+                    "description": "Amount of padding around the sprite as a ratio (0.0 to 1.0). Only used when margin_ratio_mode is \"manual\". Higher values provide more space for expansive animations."
+                  },
+                  "margin_ratio_mode": {
+                    "type": "string",
+                    "description": "Controls how margins are applied around the sprite.",
+                    "enum": [
+                      "auto",
+                      "manual",
+                      "none"
+                    ],
+                    "default": "auto",
+                    "example": "auto"
+                  },
+                  "image_type": {
+                    "type": "string",
+                    "description": "Type of sprite being animated. Affects generation parameters and styling.",
+                    "enum": [
+                      "sprite",
+                      "sprite-vfx",
+                      "ui_asset"
+                    ],
+                    "example": "sprite"
+                  },
+                  "model": {
+                    "type": "string",
+                    "description": "Animation model to use.\n- \"standard\": More consistent and predictable. Durations: 1.2, 1.5, 2, 2.5, 3 seconds (default: 2)\n- \"new\": Higher quality with more dynamic motion. Duration: 4 seconds only\n",
+                    "enum": [
+                      "standard",
+                      "new"
+                    ],
+                    "default": "standard",
+                    "example": "standard"
+                  },
+                  "duration": {
+                    "type": "number",
+                    "format": "float",
+                    "description": "Animation length in seconds. Available values depend on the model:\n- standard model: 1.2, 1.5, 2, 2.5, 3 (default: 2)\n- new model: 4 (default: 4) Accepted values: 1.2, 1.5, 2, 2.5, 3, 4.",
+                    "example": 1.2
+                  },
+                  "augment_prompt": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Augment the prompt behind the scenes. Disable to have more control.",
+                    "example": true
+                  },
+                  "gif": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "When true, generates an animated GIF from the spritesheet and returns it in gif_url. Disabled by default to reduce response time.",
+                    "example": false
+                  },
+                  "individual_frames": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "When true, extracts each frame from the spritesheet as an individual image and returns the URLs in individual_frame_urls.",
+                    "example": false
+                  },
+                  "spritesheet_with_background": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "When true, also returns the spritesheet with background intact (before background removal). Useful for manually fixing background removal issues. The with-background spritesheet URL will be in spritesheet_with_background_url.",
+                    "example": false
+                  },
+                  "request_id": {
+                    "type": "string",
+                    "description": "Optional client-provided identifier for this request. Use this to retrieve results later via the results endpoint."
+                  }
+                }
+              }
+            },
+            "required": [
+              "requestBody"
+            ]
+          }
+        },
+        {
+          "name": "generatePose",
+          "description": "generatePose. This endpoint consumes 0.5 credits per result.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "requestBody": {
+                "type": "object",
+                "description": "Payload for generating a new pose for an existing sprite",
+                "required": [
+                  "image",
+                  "pose"
+                ],
+                "properties": {
+                  "image": {
+                    "type": "string",
+                    "description": "URL or base64-encoded source sprite image to generate a new pose from.",
+                    "example": "<url> OR data:image/png;base64,..."
+                  },
+                  "pose": {
+                    "type": "string",
+                    "description": "Target pose for the sprite. Use the value \"Other\" to generate other poses not listed in the accepted values, and fill the field description accordingly.",
+                    "enum": [
+                      "Idle (Front)",
+                      "Idle (Back)",
+                      "Idle (Left Facing)",
+                      "Idle (Right Facing)",
+                      "Walk (Left)",
+                      "Walk (Right)",
+                      "Walk (Towards the camera)",
+                      "Walk (Away from the camera)",
+                      "Run (Left)",
+                      "Run (Right)",
+                      "Run (Towards the camera)",
+                      "Run (Away from the camera)",
+                      "Crouching",
+                      "Crawling",
+                      "Sitting",
+                      "Defending / Blocking",
+                      "Attack Ready",
+                      "Jump Preparation",
+                      "Sleeping",
+                      "Flying",
+                      "Other"
+                    ],
+                    "example": "Idle (Front)"
+                  },
+                  "description": {
+                    "type": "string",
+                    "description": "Optional additional instructions or description to guide the pose generation."
+                  },
+                  "n": {
+                    "type": "number",
+                    "format": "integer",
+                    "description": "Number of pose variations to generate (1-4).",
+                    "minimum": 1,
+                    "maximum": 4,
+                    "default": 1,
+                    "example": 1
+                  },
+                  "augment_prompt": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Augment the prompt behind the scenes. Disable to have more control.",
+                    "example": true
+                  },
+                  "request_id": {
+                    "type": "string",
+                    "description": "Optional client-provided identifier for this request. Use this to retrieve results later via the results endpoint."
+                  }
+                }
+              }
+            },
+            "required": [
+              "requestBody"
+            ]
+          }
+        },
+        {
+          "name": "transferMotion",
+          "description": "transferMotion. This endpoint consumes 8 credits per call.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "requestBody": {
+                "type": "object",
+                "description": "Payload for transferring motion from a video onto a static sprite image, producing an animated spritesheet.",
+                "required": [
+                  "image"
+                ],
+                "properties": {
+                  "image": {
+                    "type": "string",
+                    "description": "Payload for generating an animated spritesheet from a static image. Input images can either be provided in base64 or URL. If the image was generated using Ludo, ideally it should be generated using the \"sprite\", \"sprite-vfx\" or \"ui_asset\" type.",
+                    "example": "data:image/png;base64,..."
+                  },
+                  "video": {
+                    "type": "string",
+                    "description": "URL of the video to use as motion source. You can use videos from the animateSprite endpoint or provide your own. Videos up to 4 seconds will produce better results. Either `video` or `preset_id` + `perspective` + `direction` must be provided."
+                  },
+                  "preset_id": {
+                    "type": "string",
+                    "description": "ID of an animation preset to use instead of a video URL. Use the animation-presets endpoint to list available presets. When using a preset, `perspective` and `direction` are required."
+                  },
+                  "direction": {
+                    "type": "string",
+                    "description": "Direction for the animation preset. When using a preset, `direction` is required.",
+                    "enum": [
+                      "N",
+                      "NE",
+                      "E",
+                      "SE",
+                      "S",
+                      "SW",
+                      "W",
+                      "NW"
+                    ],
+                    "example": "N"
+                  },
+                  "perspective": {
+                    "type": "string",
+                    "description": "Perspective ID to use with the animation preset. When using a preset, `perspective` is required."
+                  },
+                  "frames": {
+                    "type": "number",
+                    "format": "integer",
+                    "description": "Number of frames in the output spritesheet. Accepted values: 4, 9, 16, 25, 36, 49, 64.",
+                    "default": 36,
+                    "example": 4
+                  },
+                  "frame_size": {
+                    "type": "number",
+                    "format": "integer",
+                    "description": "Size of each frame in pixels (width and height). 0 is for maximum resolution. Accepted values: 32, 64, 96, 128, 192, 256, 384, 0.",
+                    "default": 0,
+                    "example": 32
+                  },
+                  "loop": {
+                    "type": "boolean",
+                    "description": "Trim the animation at the beginning or end to create a seamless loop."
+                  },
+                  "crop": {
+                    "type": "boolean",
+                    "description": "Crop sprite frames to fit content. Results in smaller spritesheets but inconsistent frame sizes across different animations."
+                  },
+                  "margin_ratio": {
+                    "type": "number",
+                    "format": "float",
+                    "description": "Amount of padding around the sprite as a ratio (0.0 to 1.0). Only used when margin_ratio_mode is \"manual\".",
+                    "default": 0.15,
+                    "example": 0.15
+                  },
+                  "margin_ratio_mode": {
+                    "type": "string",
+                    "description": "Controls how margins are applied around the sprite.",
+                    "enum": [
+                      "manual",
+                      "none"
+                    ],
+                    "default": "manual",
+                    "example": "manual"
+                  },
+                  "gif": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "When true, generates an animated GIF from the spritesheet and returns it in gif_url. Disabled by default to reduce response time.",
+                    "example": false
+                  },
+                  "individual_frames": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "When true, extracts each frame from the spritesheet as an individual image and returns the URLs in individual_frame_urls.",
+                    "example": false
+                  },
+                  "spritesheet_with_background": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "When true, also returns the spritesheet with background intact (before background removal). Useful for manually fixing background removal issues. The with-background spritesheet URL will be in spritesheet_with_background_url.",
+                    "example": false
+                  },
+                  "request_id": {
+                    "type": "string",
+                    "description": "Optional client-provided identifier for this request. Use this to retrieve results later via the results endpoint."
+                  }
+                }
+              }
+            },
+            "required": [
+              "requestBody"
+            ]
+          }
+        },
+        {
+          "name": "listAnimationPresets",
+          "description": "Lists available animation presets for use with the transferMotion endpoint",
+          "inputSchema": {
+            "type": "object",
+            "properties": {},
+            "required": []
+          }
+        },
+        {
+          "name": "createVideo",
+          "description": "createVideo. This endpoint consumes 5-15 credits depending on duration (3s: 5, 5s: 8, 8s: 12, 10s: 15).",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "requestBody": {
+                "type": "object",
+                "description": "Payload for generating a video from a source image and motion prompt",
+                "required": [
+                  "image",
+                  "prompt"
+                ],
+                "properties": {
+                  "image": {
+                    "type": "string",
+                    "description": "URL or base64-encoded source image (the starting frame for the video)",
+                    "example": "<url> OR data:image/png;base64,..."
+                  },
+                  "prompt": {
+                    "type": "string",
+                    "description": "Text description of the motion or action for the video (e.g., \"walking forward\", \"waving hand\", \"camera zoom in\")"
+                  },
+                  "augment_prompt": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Augment the prompt behind the scenes. Disable to have more control.",
+                    "example": true
+                  },
+                  "final_image": {
+                    "type": "string",
+                    "description": "URL or base64-encoded end frame image. When provided, the video will interpolate between the initial and final frames.",
+                    "example": "<url> OR data:image/png;base64,..."
+                  },
+                  "duration": {
+                    "type": "number",
+                    "format": "integer",
+                    "description": "Video duration in seconds Accepted values: 3, 5, 8, 10.",
+                    "default": 5,
+                    "example": 5
+                  },
+                  "model": {
+                    "type": "string",
+                    "description": "Video generation model to use.\n- \"standard\": More consistent and predictable results\n- \"new\": Higher quality with more dynamic motion",
+                    "enum": [
+                      "standard",
+                      "new"
+                    ],
+                    "default": "standard",
+                    "example": "standard"
+                  },
+                  "request_id": {
+                    "type": "string",
+                    "description": "Optional client-provided identifier for this request. Use this to retrieve results later via the results endpoint."
+                  }
+                }
+              }
+            },
+            "required": [
+              "requestBody"
+            ]
+          }
+        },
+        {
+          "name": "removeBackground",
+          "description": "removeBackground. This endpoint consumes 0.5 credits per result.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "requestBody": {
+                "type": "object",
+                "description": "Payload for removing the background of an image",
+                "required": [
+                  "image"
+                ],
+                "properties": {
+                  "image": {
+                    "type": "string",
+                    "description": "URL or base64-encoded image to remove the background from.",
+                    "example": "<url> OR data:image/png;base64,..."
+                  },
+                  "crop": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Whether to crop/trim the result to fit the content.",
+                    "example": false
+                  },
+                  "creative_edit": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Higher quality results but the image will not be exactly the same as the input.",
+                    "example": true
+                  },
+                  "request_id": {
+                    "type": "string",
+                    "description": "Optional client-provided identifier for this request. Use this to retrieve results later via the results endpoint."
+                  }
+                }
+              }
+            },
+            "required": [
+              "requestBody"
+            ]
+          }
+        },
+        {
+          "name": "create3DModel",
+          "description": "create3DModel. This endpoint consumes 3 credits per call.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "requestBody": {
+                "type": "object",
+                "required": [
+                  "image"
+                ],
+                "properties": {
+                  "image": {
+                    "type": "string",
+                    "description": "URL or base64-encoded image to convert to 3D",
+                    "example": "<url> OR data:image/png;base64,..."
+                  },
+                  "target_num_faces": {
+                    "type": "integer",
+                    "default": 50000,
+                    "minimum": 1000,
+                    "maximum": 100000,
+                    "description": "Maximum triangle count for the mesh (1000-100000)",
+                    "example": 50000
+                  },
+                  "texture_size": {
+                    "type": "integer",
+                    "default": 2048,
+                    "description": "Texture resolution in pixels Accepted values: 1024, 2048, 4096.",
+                    "example": 1024
+                  },
+                  "texture_type": {
+                    "type": "string",
+                    "default": "pbr",
+                    "description": "Texture type",
+                    "enum": [
+                      "pbr",
+                      "simple",
+                      "none"
+                    ],
+                    "example": "pbr"
+                  },
+                  "high_detail_shape": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Enable higher detail shape generation. Generation time will increase and the effect is only noticeable with a high target_num_faces value (around >30.000)",
+                    "example": false
+                  },
+                  "request_id": {
+                    "type": "string",
+                    "description": "Optional client-provided identifier for this request. Use this to retrieve results later via the results endpoint."
+                  }
+                }
+              }
+            },
+            "required": [
+              "requestBody"
+            ]
+          }
+        },
+        {
+          "name": "createSoundEffect",
+          "description": "createSoundEffect. This endpoint consumes 3 credits per call.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "requestBody": {
+                "type": "object",
+                "description": "Payload for generating a sound effect from a text description",
+                "required": [
+                  "description"
+                ],
+                "properties": {
+                  "description": {
+                    "type": "string",
+                    "description": "Text description of the sound effect to generate (e.g., \"laser gun firing\", \"footsteps on gravel\")."
+                  },
+                  "duration": {
+                    "type": "number",
+                    "format": "float",
+                    "minimum": 0,
+                    "maximum": 10,
+                    "default": 0,
+                    "description": "Duration in seconds. Use 0 for automatic duration based on the description.",
+                    "example": 0
+                  },
+                  "augment_prompt": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Augment the prompt behind the scenes. Disable to have more control.",
+                    "example": true
+                  },
+                  "request_id": {
+                    "type": "string",
+                    "description": "Optional client-provided identifier for this request. Use this to retrieve results later via the results endpoint."
+                  }
+                }
+              }
+            },
+            "required": [
+              "requestBody"
+            ]
+          }
+        },
+        {
+          "name": "createMusic",
+          "description": "createMusic. This endpoint consumes 3 credits per call.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "requestBody": {
+                "type": "object",
+                "description": "Payload for generating music from a text description",
+                "required": [
+                  "description"
+                ],
+                "properties": {
+                  "description": {
+                    "type": "string",
+                    "description": "Text description of the music to generate (e.g., \"epic orchestral battle theme\", \"calm piano melody\")."
+                  },
+                  "lyrics": {
+                    "type": "string",
+                    "description": "Optional lyrics to include in the generated music."
+                  },
+                  "augment_prompt": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Augment the prompt behind the scenes. Disable to have more control.",
+                    "example": true
+                  },
+                  "request_id": {
+                    "type": "string",
+                    "description": "Optional client-provided identifier for this request. Use this to retrieve results later via the results endpoint."
+                  }
+                }
+              }
+            },
+            "required": [
+              "requestBody"
+            ]
+          }
+        },
+        {
+          "name": "createVoice",
+          "description": "createVoice. This endpoint consumes 3 credits per call.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "requestBody": {
+                "type": "object",
+                "description": "Payload for generating a voice sample from a character description",
+                "required": [
+                  "voice_description",
+                  "text"
+                ],
+                "properties": {
+                  "voice_description": {
+                    "type": "string",
+                    "description": "Text description of the voice character (e.g., \"deep-voiced warrior\", \"cheerful young girl\")."
+                  },
+                  "text": {
+                    "type": "string",
+                    "description": "Text for the voice to speak (max 20 words).",
+                    "maxLength": 200,
+                    "minLength": 1
+                  },
+                  "type": {
+                    "type": "string",
+                    "default": "human",
+                    "description": "Type of voice to generate.",
+                    "enum": [
+                      "human",
+                      "non-human"
+                    ],
+                    "example": "human"
+                  },
+                  "augment_prompt": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Augment the prompt behind the scenes. Disable to have more control.",
+                    "example": true
+                  },
+                  "request_id": {
+                    "type": "string",
+                    "description": "Optional client-provided identifier for this request. Use this to retrieve results later via the results endpoint."
+                  }
+                }
+              }
+            },
+            "required": [
+              "requestBody"
+            ]
+          }
+        },
+        {
+          "name": "createSpeech",
+          "description": "createSpeech. This endpoint consumes 3 credits per call.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "requestBody": {
+                "type": "object",
+                "description": "Payload for text-to-speech generation using voice cloning",
+                "required": [
+                  "text",
+                  "sample"
+                ],
+                "properties": {
+                  "text": {
+                    "type": "string",
+                    "description": "Text to convert to speech (max 100 words).",
+                    "maxLength": 1000,
+                    "minLength": 1
+                  },
+                  "sample": {
+                    "type": "string",
+                    "description": "URL or base64-encoded audio sample for voice cloning.",
+                    "example": "<url> OR data:image/png;base64,..."
+                  },
+                  "request_id": {
+                    "type": "string",
+                    "description": "Optional client-provided identifier for this request. Use this to retrieve results later via the results endpoint."
+                  }
+                }
+              }
+            },
+            "required": [
+              "requestBody"
+            ]
+          }
+        },
+        {
+          "name": "createSpeechPreset",
+          "description": "createSpeechPreset. This endpoint consumes 3 credits per call.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "requestBody": {
+                "type": "object",
+                "description": "Payload for text-to-speech generation using a voice preset",
+                "required": [
+                  "text",
+                  "voice_preset_id"
+                ],
+                "properties": {
+                  "text": {
+                    "type": "string",
+                    "description": "Text to convert to speech (max 100 words).",
+                    "maxLength": 1000
+                  },
+                  "voice_preset_id": {
+                    "type": "string",
+                    "description": "Voice preset identifier.",
+                    "enum": [
+                      "Serious woman",
+                      "Wise woman",
+                      "Calm woman",
+                      "Fast-paced woman",
+                      "Calm young girl",
+                      "Expressive teen girl",
+                      "Calm teen girl",
+                      "Sweet girl",
+                      "Patient man",
+                      "Determined man",
+                      "Young elegant man",
+                      "Teen boy",
+                      "Friendly man",
+                      "Deep voice man"
+                    ],
+                    "example": "Serious woman"
+                  },
+                  "emotion": {
+                    "type": "string",
+                    "description": "Emotion to apply to the speech.",
+                    "enum": [
+                      "Default",
+                      "Happy",
+                      "Sad",
+                      "Angry",
+                      "Fearful",
+                      "Disgusted",
+                      "Surprised",
+                      "Neutral"
+                    ],
+                    "example": "Default"
+                  },
+                  "language": {
+                    "type": "string",
+                    "description": "Language code for the speech.",
+                    "enum": [
+                      "auto",
+                      "English",
+                      "Afrikaans",
+                      "Arabic",
+                      "Bulgarian",
+                      "Catalan",
+                      "Chinese",
+                      "Chinese,Yue",
+                      "Croatian",
+                      "Czech",
+                      "Danish",
+                      "English",
+                      "Filipino",
+                      "Finnish",
+                      "French",
+                      "German",
+                      "Greek",
+                      "Hebrew",
+                      "Hindi",
+                      "Hungarian",
+                      "Indonesian",
+                      "Italian",
+                      "Japanese",
+                      "Korean",
+                      "Malay",
+                      "Norwegian",
+                      "Nynorsk",
+                      "Persian",
+                      "Polish",
+                      "Portuguese",
+                      "Romanian",
+                      "Russian",
+                      "Slovak",
+                      "Slovenian",
+                      "Spanish",
+                      "Swedish",
+                      "Tamil",
+                      "Thai",
+                      "Turkish",
+                      "Ukrainian",
+                      "Vietnamese"
+                    ],
+                    "example": "auto"
+                  },
+                  "request_id": {
+                    "type": "string",
+                    "description": "Optional client-provided identifier for this request. Use this to retrieve results later via the results endpoint."
+                  }
+                }
+              }
+            },
+            "required": [
+              "requestBody"
+            ]
+          }
+        },
+        {
+          "name": "getImageResults",
+          "description": "Retrieves recent API-generated image results",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "request_id": {
+                "type": "string",
+                "description": "Filter results by request_id"
+              }
+            },
+            "required": []
+          }
+        },
+        {
+          "name": "getSpriteResults",
+          "description": "Retrieves recent API-generated spritesheet results",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "request_id": {
+                "type": "string",
+                "description": "Filter results by request_id"
+              }
+            },
+            "required": []
+          }
+        },
+        {
+          "name": "getVideoResults",
+          "description": "Retrieves recent API-generated video results",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "request_id": {
+                "type": "string",
+                "description": "Filter results by request_id"
+              }
+            },
+            "required": []
+          }
+        },
+        {
+          "name": "getAudioResults",
+          "description": "Retrieves recent API-generated audio results",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "request_id": {
+                "type": "string",
+                "description": "Filter results by request_id"
+              }
+            },
+            "required": []
+          }
+        },
+        {
+          "name": "get3DModelResults",
+          "description": "Retrieves recent API-generated 3D model results",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "request_id": {
+                "type": "string",
+                "description": "Filter results by request_id"
+              }
+            },
+            "required": []
+          }
+        }
+      ],
+      "tool_count": 21,
+      "tool_names": [
+        "validateApiKeyEndpoint",
+        "createImage",
+        "generateWithStyle",
+        "editImage",
+        "animateSprite",
+        "generatePose",
+        "transferMotion",
+        "listAnimationPresets",
+        "createVideo",
+        "removeBackground",
+        "create3DModel",
+        "createSoundEffect",
+        "createMusic",
+        "createVoice",
+        "createSpeech",
+        "createSpeechPreset",
+        "getImageResults",
+        "getSpriteResults",
+        "getVideoResults",
+        "getAudioResults",
+        "get3DModelResults"
+      ]
+    },
+    "server_info_crawled": {
+      "id": 39,
+      "name": "Ludo AI Game Assets",
+      "author": "",
+      "overview": "Ludo AI Game Assets - Development Tools server with 21 tools. The MCP Server \"Ludo AI Game Assets\" provides 21 tools focused on development tools tasks. Core capa",
+      "repository_url": "",
+      "homepage": "https://mcp.ludo.ai/mcp",
+      "remote_or_local": "Remote",
+      "license": "",
+      "usage_count": "8,050",
+      "success_rate": "100%",
+      "tags": [
+        "development-tools",
+        "content-creation",
+        "ai/ml-tools"
+      ],
+      "categories": [
+        "development tools",
+        "content creation",
+        "ai/ml tools"
+      ],
+      "tools_count": 21,
+      "tools": [
+        {
+          "name": "validateApiKeyEndpoint",
+          "description": "Validates an API key. Returns 200 if valid, 403 if invalid.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {},
+            "required": []
+          }
+        },
+        {
+          "name": "createImage",
+          "description": "createImage. This endpoint consumes 0.5 credits per result.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "requestBody": {
+                "type": "object",
+                "description": "Payload for generating an image from text prompt",
+                "required": [
+                  "image_type",
+                  "prompt"
+                ],
+                "properties": {
+                  "image_type": {
+                    "type": "string",
+                    "description": "What kind of image to generate.",
+                    "enum": [
+                      "screenshot",
+                      "icon",
+                      "art",
+                      "asset",
+                      "sprite",
+                      "sprite-vfx",
+                      "ui_asset",
+                      "fixed_background",
+                      "texture",
+                      "3d",
+                      "generic"
+                    ],
+                    "example": "screenshot"
+                  },
+                  "prompt": {
+                    "type": "string",
+                    "description": "Text description of the image to generate. The more detailed the prompt, the more accurate the image will be."
+                  },
+                  "art_style": {
+                    "type": "string",
+                    "description": "Visual art style for the sprite (e.g., \"Pixel Art\", \"Cartoonish\", \"Realistic\").",
+                    "enum": [
+                      "Any style",
+                      "Cartoonish",
+                      "Pixel Art (16-Bit)",
+                      "Low Poly",
+                      "Stylized 3D",
+                      "Flat Design",
+                      "Illustration",
+                      "Cel-Shaded",
+                      "Retro 2D",
+                      "Voxel Art",
+                      "Minimalist",
+                      "Hand-Painted",
+                      "Anime/Manga",
+                      "Vector Art",
+                      "Chibi",
+                      "Retro 3D",
+                      "Comic Book",
+                      "Silhouette",
+                      "Pixel Art (8-Bit)",
+                      "Photorealistic 3D"
+                    ],
+                    "example": "Any style"
+                  },
+                  "perspective": {
+                    "type": "string",
+                    "description": "Camera angle/view for the sprite (e.g., \"Side view\", \"Front view\", \"Isometric\").",
+                    "enum": [
+                      "Any perspective",
+                      "First-Person",
+                      "Third-Person",
+                      "Over-the-Shoulder",
+                      "Top-Down",
+                      "Isometric",
+                      "Side-Scroll",
+                      "Free Camera",
+                      "2.5D"
+                    ],
+                    "example": "Any perspective"
+                  },
+                  "aspect_ratio": {
+                    "type": "string",
+                    "description": "Aspect ratio of the output image.",
+                    "enum": [
+                      "default",
+                      "ar_1_1",
+                      "ar_4_3",
+                      "ar_16_9",
+                      "ar_19_9",
+                      "ar_3_4",
+                      "ar_9_16",
+                      "ar_9_19"
+                    ],
+                    "example": "default"
+                  },
+                  "n": {
+                    "type": "number",
+                    "format": "integer",
+                    "default": 1,
+                    "minimum": 1,
+                    "maximum": 8,
+                    "description": "Number of image variations to generate",
+                    "example": 1
+                  },
+                  "augment_prompt": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Augment the prompt behind the scenes. Disable to have more control.",
+                    "example": true
+                  },
+                  "request_id": {
+                    "type": "string",
+                    "description": "Optional client-provided identifier for this request. Use this to retrieve results later via the results endpoint."
+                  }
+                }
+              }
+            },
+            "required": [
+              "requestBody"
+            ]
+          }
+        },
+        {
+          "name": "generateWithStyle",
+          "description": "generateWithStyle. This endpoint consumes 0.5 credits per result.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "requestBody": {
+                "type": "object",
+                "description": "Payload for generating new content while maintaining the visual style of a reference image",
+                "required": [
+                  "style_image",
+                  "prompt",
+                  "image_type"
+                ],
+                "properties": {
+                  "style_image": {
+                    "type": "string",
+                    "description": "URL or base64-encoded reference image whose visual style should be matched.",
+                    "example": "<url> OR data:image/png;base64,..."
+                  },
+                  "prompt": {
+                    "type": "string",
+                    "description": "Text description of what to generate (e.g., \"a warrior character\", \"a forest background\", \"a treasure chest\")."
+                  },
+                  "image_type": {
+                    "type": "string",
+                    "description": "What kind of image to generate.",
+                    "default": "sprite",
+                    "enum": [
+                      "screenshot",
+                      "icon",
+                      "art",
+                      "asset",
+                      "sprite",
+                      "sprite-vfx",
+                      "ui_asset",
+                      "fixed_background",
+                      "texture",
+                      "3d",
+                      "generic"
+                    ],
+                    "example": "screenshot"
+                  },
+                  "n": {
+                    "type": "number",
+                    "format": "integer",
+                    "description": "Number of variations to generate (1-4).",
+                    "minimum": 1,
+                    "maximum": 4,
+                    "default": 1,
+                    "example": 1
+                  },
+                  "augment_prompt": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Augment the prompt behind the scenes. Disable to have more control.",
+                    "example": true
+                  },
+                  "request_id": {
+                    "type": "string",
+                    "description": "Optional client-provided identifier for this request. Use this to retrieve results later via the results endpoint."
+                  }
+                }
+              }
+            },
+            "required": [
+              "requestBody"
+            ]
+          }
+        },
+        {
+          "name": "editImage",
+          "description": "editImage. This endpoint consumes 0.5 credits per result.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "requestBody": {
+                "type": "object",
+                "description": "Payload for editing an existing image based on text instructions",
+                "required": [
+                  "image",
+                  "prompt"
+                ],
+                "properties": {
+                  "image": {
+                    "type": "string",
+                    "description": "URL or base64-encoded source image to edit.",
+                    "example": "<url> OR data:image/png;base64,..."
+                  },
+                  "prompt": {
+                    "type": "string",
+                    "description": "Text description of the changes to make (e.g., \"remove the background\", \"add clouds to the sky\", \"make it darker\", \"change the color scheme to warmer tones\")."
+                  },
+                  "reference_image": {
+                    "type": "string",
+                    "description": "Optional URL or base64-encoded reference image for style or content guidance.",
+                    "example": "<url> OR data:image/png;base64,..."
+                  },
+                  "n": {
+                    "type": "number",
+                    "format": "integer",
+                    "description": "Number of edited variations to generate (1-4).",
+                    "minimum": 1,
+                    "maximum": 4,
+                    "default": 1,
+                    "example": 1
+                  },
+                  "augment_prompt": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Augment the prompt behind the scenes. Disable to have more control.",
+                    "example": true
+                  },
+                  "request_id": {
+                    "type": "string",
+                    "description": "Optional client-provided identifier for this request. Use this to retrieve results later via the results endpoint."
+                  }
+                }
+              }
+            },
+            "required": [
+              "requestBody"
+            ]
+          }
+        },
+        {
+          "name": "animateSprite",
+          "description": "animateSprite. This endpoint consumes 5 credits per call.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "requestBody": {
+                "type": "object",
+                "description": "Payload for generating an animated spritesheet from a static image. Input images can either be provided in base64 or URL. If the image was generated using Ludo, ideally it should be generated using the \"sprite\", \"sprite-vfx\" or \"ui_asset\" type.",
+                "required": [
+                  "motion_prompt",
+                  "initial_image"
+                ],
+                "properties": {
+                  "motion_prompt": {
+                    "type": "string",
+                    "description": "Text description of the desired animation (e.g., \"walking\", \"jumping\", \"idle breathing\", \"attack slash\")."
+                  },
+                  "initial_image": {
+                    "type": "string",
+                    "description": "The url OR base64 of the starting frame image to animate. This is the base sprite that will be brought to life.",
+                    "example": "<url> OR data:image/png;base64,..."
+                  },
+                  "final_image": {
+                    "type": "string",
+                    "description": "The url OR base64 of ending frame image. When provided, the animation will interpolate between the initial and final frames.",
+                    "example": "<url> OR data:image/png;base64,..."
+                  },
+                  "loop": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Trim the animation at the beginning or end to create a seamless loop. Not guaranteed to produce a perfect loop.",
+                    "example": true
+                  },
+                  "crop": {
+                    "type": "boolean",
+                    "description": "Crop sprite frames to fit content. Results in smaller spritesheets but inconsistent frame sizes across different animations."
+                  },
+                  "frames": {
+                    "type": "number",
+                    "format": "integer",
+                    "description": "Number of frames in the output spritesheet. Accepted values: 4, 9, 16, 25, 36, 49, 64.",
+                    "default": 36,
+                    "example": 4
+                  },
+                  "frame_size": {
+                    "type": "number",
+                    "format": "integer",
+                    "description": "Size of each frame in pixels (width and height). 0 is for maximum resolution. Accepted values: 32, 64, 96, 128, 192, 256, 384, 0.",
+                    "default": 0,
+                    "example": 32
+                  },
+                  "margin_ratio": {
+                    "type": "number",
+                    "format": "float",
+                    "description": "Amount of padding around the sprite as a ratio (0.0 to 1.0). Only used when margin_ratio_mode is \"manual\". Higher values provide more space for expansive animations."
+                  },
+                  "margin_ratio_mode": {
+                    "type": "string",
+                    "description": "Controls how margins are applied around the sprite.",
+                    "enum": [
+                      "auto",
+                      "manual",
+                      "none"
+                    ],
+                    "default": "auto",
+                    "example": "auto"
+                  },
+                  "image_type": {
+                    "type": "string",
+                    "description": "Type of sprite being animated. Affects generation parameters and styling.",
+                    "enum": [
+                      "sprite",
+                      "sprite-vfx",
+                      "ui_asset"
+                    ],
+                    "example": "sprite"
+                  },
+                  "model": {
+                    "type": "string",
+                    "description": "Animation model to use.\n- \"standard\": More consistent and predictable. Durations: 1.2, 1.5, 2, 2.5, 3 seconds (default: 2)\n- \"new\": Higher quality with more dynamic motion. Duration: 4 seconds only\n",
+                    "enum": [
+                      "standard",
+                      "new"
+                    ],
+                    "default": "standard",
+                    "example": "standard"
+                  },
+                  "duration": {
+                    "type": "number",
+                    "format": "float",
+                    "description": "Animation length in seconds. Available values depend on the model:\n- standard model: 1.2, 1.5, 2, 2.5, 3 (default: 2)\n- new model: 4 (default: 4) Accepted values: 1.2, 1.5, 2, 2.5, 3, 4.",
+                    "example": 1.2
+                  },
+                  "augment_prompt": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Augment the prompt behind the scenes. Disable to have more control.",
+                    "example": true
+                  },
+                  "gif": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "When true, generates an animated GIF from the spritesheet and returns it in gif_url. Disabled by default to reduce response time.",
+                    "example": false
+                  },
+                  "individual_frames": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "When true, extracts each frame from the spritesheet as an individual image and returns the URLs in individual_frame_urls.",
+                    "example": false
+                  },
+                  "spritesheet_with_background": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "When true, also returns the spritesheet with background intact (before background removal). Useful for manually fixing background removal issues. The with-background spritesheet URL will be in spritesheet_with_background_url.",
+                    "example": false
+                  },
+                  "request_id": {
+                    "type": "string",
+                    "description": "Optional client-provided identifier for this request. Use this to retrieve results later via the results endpoint."
+                  }
+                }
+              }
+            },
+            "required": [
+              "requestBody"
+            ]
+          }
+        },
+        {
+          "name": "generatePose",
+          "description": "generatePose. This endpoint consumes 0.5 credits per result.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "requestBody": {
+                "type": "object",
+                "description": "Payload for generating a new pose for an existing sprite",
+                "required": [
+                  "image",
+                  "pose"
+                ],
+                "properties": {
+                  "image": {
+                    "type": "string",
+                    "description": "URL or base64-encoded source sprite image to generate a new pose from.",
+                    "example": "<url> OR data:image/png;base64,..."
+                  },
+                  "pose": {
+                    "type": "string",
+                    "description": "Target pose for the sprite. Use the value \"Other\" to generate other poses not listed in the accepted values, and fill the field description accordingly.",
+                    "enum": [
+                      "Idle (Front)",
+                      "Idle (Back)",
+                      "Idle (Left Facing)",
+                      "Idle (Right Facing)",
+                      "Walk (Left)",
+                      "Walk (Right)",
+                      "Walk (Towards the camera)",
+                      "Walk (Away from the camera)",
+                      "Run (Left)",
+                      "Run (Right)",
+                      "Run (Towards the camera)",
+                      "Run (Away from the camera)",
+                      "Crouching",
+                      "Crawling",
+                      "Sitting",
+                      "Defending / Blocking",
+                      "Attack Ready",
+                      "Jump Preparation",
+                      "Sleeping",
+                      "Flying",
+                      "Other"
+                    ],
+                    "example": "Idle (Front)"
+                  },
+                  "description": {
+                    "type": "string",
+                    "description": "Optional additional instructions or description to guide the pose generation."
+                  },
+                  "n": {
+                    "type": "number",
+                    "format": "integer",
+                    "description": "Number of pose variations to generate (1-4).",
+                    "minimum": 1,
+                    "maximum": 4,
+                    "default": 1,
+                    "example": 1
+                  },
+                  "augment_prompt": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Augment the prompt behind the scenes. Disable to have more control.",
+                    "example": true
+                  },
+                  "request_id": {
+                    "type": "string",
+                    "description": "Optional client-provided identifier for this request. Use this to retrieve results later via the results endpoint."
+                  }
+                }
+              }
+            },
+            "required": [
+              "requestBody"
+            ]
+          }
+        },
+        {
+          "name": "transferMotion",
+          "description": "transferMotion. This endpoint consumes 8 credits per call.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "requestBody": {
+                "type": "object",
+                "description": "Payload for transferring motion from a video onto a static sprite image, producing an animated spritesheet.",
+                "required": [
+                  "image"
+                ],
+                "properties": {
+                  "image": {
+                    "type": "string",
+                    "description": "Payload for generating an animated spritesheet from a static image. Input images can either be provided in base64 or URL. If the image was generated using Ludo, ideally it should be generated using the \"sprite\", \"sprite-vfx\" or \"ui_asset\" type.",
+                    "example": "data:image/png;base64,..."
+                  },
+                  "video": {
+                    "type": "string",
+                    "description": "URL of the video to use as motion source. You can use videos from the animateSprite endpoint or provide your own. Videos up to 4 seconds will produce better results. Either `video` or `preset_id` + `perspective` + `direction` must be provided."
+                  },
+                  "preset_id": {
+                    "type": "string",
+                    "description": "ID of an animation preset to use instead of a video URL. Use the animation-presets endpoint to list available presets. When using a preset, `perspective` and `direction` are required."
+                  },
+                  "direction": {
+                    "type": "string",
+                    "description": "Direction for the animation preset. When using a preset, `direction` is required.",
+                    "enum": [
+                      "N",
+                      "NE",
+                      "E",
+                      "SE",
+                      "S",
+                      "SW",
+                      "W",
+                      "NW"
+                    ],
+                    "example": "N"
+                  },
+                  "perspective": {
+                    "type": "string",
+                    "description": "Perspective ID to use with the animation preset. When using a preset, `perspective` is required."
+                  },
+                  "frames": {
+                    "type": "number",
+                    "format": "integer",
+                    "description": "Number of frames in the output spritesheet. Accepted values: 4, 9, 16, 25, 36, 49, 64.",
+                    "default": 36,
+                    "example": 4
+                  },
+                  "frame_size": {
+                    "type": "number",
+                    "format": "integer",
+                    "description": "Size of each frame in pixels (width and height). 0 is for maximum resolution. Accepted values: 32, 64, 96, 128, 192, 256, 384, 0.",
+                    "default": 0,
+                    "example": 32
+                  },
+                  "loop": {
+                    "type": "boolean",
+                    "description": "Trim the animation at the beginning or end to create a seamless loop."
+                  },
+                  "crop": {
+                    "type": "boolean",
+                    "description": "Crop sprite frames to fit content. Results in smaller spritesheets but inconsistent frame sizes across different animations."
+                  },
+                  "margin_ratio": {
+                    "type": "number",
+                    "format": "float",
+                    "description": "Amount of padding around the sprite as a ratio (0.0 to 1.0). Only used when margin_ratio_mode is \"manual\".",
+                    "default": 0.15,
+                    "example": 0.15
+                  },
+                  "margin_ratio_mode": {
+                    "type": "string",
+                    "description": "Controls how margins are applied around the sprite.",
+                    "enum": [
+                      "manual",
+                      "none"
+                    ],
+                    "default": "manual",
+                    "example": "manual"
+                  },
+                  "gif": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "When true, generates an animated GIF from the spritesheet and returns it in gif_url. Disabled by default to reduce response time.",
+                    "example": false
+                  },
+                  "individual_frames": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "When true, extracts each frame from the spritesheet as an individual image and returns the URLs in individual_frame_urls.",
+                    "example": false
+                  },
+                  "spritesheet_with_background": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "When true, also returns the spritesheet with background intact (before background removal). Useful for manually fixing background removal issues. The with-background spritesheet URL will be in spritesheet_with_background_url.",
+                    "example": false
+                  },
+                  "request_id": {
+                    "type": "string",
+                    "description": "Optional client-provided identifier for this request. Use this to retrieve results later via the results endpoint."
+                  }
+                }
+              }
+            },
+            "required": [
+              "requestBody"
+            ]
+          }
+        },
+        {
+          "name": "listAnimationPresets",
+          "description": "Lists available animation presets for use with the transferMotion endpoint",
+          "inputSchema": {
+            "type": "object",
+            "properties": {},
+            "required": []
+          }
+        },
+        {
+          "name": "createVideo",
+          "description": "createVideo. This endpoint consumes 5-15 credits depending on duration (3s: 5, 5s: 8, 8s: 12, 10s: 15).",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "requestBody": {
+                "type": "object",
+                "description": "Payload for generating a video from a source image and motion prompt",
+                "required": [
+                  "image",
+                  "prompt"
+                ],
+                "properties": {
+                  "image": {
+                    "type": "string",
+                    "description": "URL or base64-encoded source image (the starting frame for the video)",
+                    "example": "<url> OR data:image/png;base64,..."
+                  },
+                  "prompt": {
+                    "type": "string",
+                    "description": "Text description of the motion or action for the video (e.g., \"walking forward\", \"waving hand\", \"camera zoom in\")"
+                  },
+                  "augment_prompt": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Augment the prompt behind the scenes. Disable to have more control.",
+                    "example": true
+                  },
+                  "final_image": {
+                    "type": "string",
+                    "description": "URL or base64-encoded end frame image. When provided, the video will interpolate between the initial and final frames.",
+                    "example": "<url> OR data:image/png;base64,..."
+                  },
+                  "duration": {
+                    "type": "number",
+                    "format": "integer",
+                    "description": "Video duration in seconds Accepted values: 3, 5, 8, 10.",
+                    "default": 5,
+                    "example": 5
+                  },
+                  "model": {
+                    "type": "string",
+                    "description": "Video generation model to use.\n- \"standard\": More consistent and predictable results\n- \"new\": Higher quality with more dynamic motion",
+                    "enum": [
+                      "standard",
+                      "new"
+                    ],
+                    "default": "standard",
+                    "example": "standard"
+                  },
+                  "request_id": {
+                    "type": "string",
+                    "description": "Optional client-provided identifier for this request. Use this to retrieve results later via the results endpoint."
+                  }
+                }
+              }
+            },
+            "required": [
+              "requestBody"
+            ]
+          }
+        },
+        {
+          "name": "removeBackground",
+          "description": "removeBackground. This endpoint consumes 0.5 credits per result.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "requestBody": {
+                "type": "object",
+                "description": "Payload for removing the background of an image",
+                "required": [
+                  "image"
+                ],
+                "properties": {
+                  "image": {
+                    "type": "string",
+                    "description": "URL or base64-encoded image to remove the background from.",
+                    "example": "<url> OR data:image/png;base64,..."
+                  },
+                  "crop": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Whether to crop/trim the result to fit the content.",
+                    "example": false
+                  },
+                  "creative_edit": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Higher quality results but the image will not be exactly the same as the input.",
+                    "example": true
+                  },
+                  "request_id": {
+                    "type": "string",
+                    "description": "Optional client-provided identifier for this request. Use this to retrieve results later via the results endpoint."
+                  }
+                }
+              }
+            },
+            "required": [
+              "requestBody"
+            ]
+          }
+        },
+        {
+          "name": "create3DModel",
+          "description": "create3DModel. This endpoint consumes 3 credits per call.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "requestBody": {
+                "type": "object",
+                "required": [
+                  "image"
+                ],
+                "properties": {
+                  "image": {
+                    "type": "string",
+                    "description": "URL or base64-encoded image to convert to 3D",
+                    "example": "<url> OR data:image/png;base64,..."
+                  },
+                  "target_num_faces": {
+                    "type": "integer",
+                    "default": 50000,
+                    "minimum": 1000,
+                    "maximum": 100000,
+                    "description": "Maximum triangle count for the mesh (1000-100000)",
+                    "example": 50000
+                  },
+                  "texture_size": {
+                    "type": "integer",
+                    "default": 2048,
+                    "description": "Texture resolution in pixels Accepted values: 1024, 2048, 4096.",
+                    "example": 1024
+                  },
+                  "texture_type": {
+                    "type": "string",
+                    "default": "pbr",
+                    "description": "Texture type",
+                    "enum": [
+                      "pbr",
+                      "simple",
+                      "none"
+                    ],
+                    "example": "pbr"
+                  },
+                  "high_detail_shape": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Enable higher detail shape generation. Generation time will increase and the effect is only noticeable with a high target_num_faces value (around >30.000)",
+                    "example": false
+                  },
+                  "request_id": {
+                    "type": "string",
+                    "description": "Optional client-provided identifier for this request. Use this to retrieve results later via the results endpoint."
+                  }
+                }
+              }
+            },
+            "required": [
+              "requestBody"
+            ]
+          }
+        },
+        {
+          "name": "createSoundEffect",
+          "description": "createSoundEffect. This endpoint consumes 3 credits per call.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "requestBody": {
+                "type": "object",
+                "description": "Payload for generating a sound effect from a text description",
+                "required": [
+                  "description"
+                ],
+                "properties": {
+                  "description": {
+                    "type": "string",
+                    "description": "Text description of the sound effect to generate (e.g., \"laser gun firing\", \"footsteps on gravel\")."
+                  },
+                  "duration": {
+                    "type": "number",
+                    "format": "float",
+                    "minimum": 0,
+                    "maximum": 10,
+                    "default": 0,
+                    "description": "Duration in seconds. Use 0 for automatic duration based on the description.",
+                    "example": 0
+                  },
+                  "augment_prompt": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Augment the prompt behind the scenes. Disable to have more control.",
+                    "example": true
+                  },
+                  "request_id": {
+                    "type": "string",
+                    "description": "Optional client-provided identifier for this request. Use this to retrieve results later via the results endpoint."
+                  }
+                }
+              }
+            },
+            "required": [
+              "requestBody"
+            ]
+          }
+        },
+        {
+          "name": "createMusic",
+          "description": "createMusic. This endpoint consumes 3 credits per call.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "requestBody": {
+                "type": "object",
+                "description": "Payload for generating music from a text description",
+                "required": [
+                  "description"
+                ],
+                "properties": {
+                  "description": {
+                    "type": "string",
+                    "description": "Text description of the music to generate (e.g., \"epic orchestral battle theme\", \"calm piano melody\")."
+                  },
+                  "lyrics": {
+                    "type": "string",
+                    "description": "Optional lyrics to include in the generated music."
+                  },
+                  "augment_prompt": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Augment the prompt behind the scenes. Disable to have more control.",
+                    "example": true
+                  },
+                  "request_id": {
+                    "type": "string",
+                    "description": "Optional client-provided identifier for this request. Use this to retrieve results later via the results endpoint."
+                  }
+                }
+              }
+            },
+            "required": [
+              "requestBody"
+            ]
+          }
+        },
+        {
+          "name": "createVoice",
+          "description": "createVoice. This endpoint consumes 3 credits per call.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "requestBody": {
+                "type": "object",
+                "description": "Payload for generating a voice sample from a character description",
+                "required": [
+                  "voice_description",
+                  "text"
+                ],
+                "properties": {
+                  "voice_description": {
+                    "type": "string",
+                    "description": "Text description of the voice character (e.g., \"deep-voiced warrior\", \"cheerful young girl\")."
+                  },
+                  "text": {
+                    "type": "string",
+                    "description": "Text for the voice to speak (max 20 words).",
+                    "maxLength": 200,
+                    "minLength": 1
+                  },
+                  "type": {
+                    "type": "string",
+                    "default": "human",
+                    "description": "Type of voice to generate.",
+                    "enum": [
+                      "human",
+                      "non-human"
+                    ],
+                    "example": "human"
+                  },
+                  "augment_prompt": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Augment the prompt behind the scenes. Disable to have more control.",
+                    "example": true
+                  },
+                  "request_id": {
+                    "type": "string",
+                    "description": "Optional client-provided identifier for this request. Use this to retrieve results later via the results endpoint."
+                  }
+                }
+              }
+            },
+            "required": [
+              "requestBody"
+            ]
+          }
+        },
+        {
+          "name": "createSpeech",
+          "description": "createSpeech. This endpoint consumes 3 credits per call.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "requestBody": {
+                "type": "object",
+                "description": "Payload for text-to-speech generation using voice cloning",
+                "required": [
+                  "text",
+                  "sample"
+                ],
+                "properties": {
+                  "text": {
+                    "type": "string",
+                    "description": "Text to convert to speech (max 100 words).",
+                    "maxLength": 1000,
+                    "minLength": 1
+                  },
+                  "sample": {
+                    "type": "string",
+                    "description": "URL or base64-encoded audio sample for voice cloning.",
+                    "example": "<url> OR data:image/png;base64,..."
+                  },
+                  "request_id": {
+                    "type": "string",
+                    "description": "Optional client-provided identifier for this request. Use this to retrieve results later via the results endpoint."
+                  }
+                }
+              }
+            },
+            "required": [
+              "requestBody"
+            ]
+          }
+        },
+        {
+          "name": "createSpeechPreset",
+          "description": "createSpeechPreset. This endpoint consumes 3 credits per call.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "requestBody": {
+                "type": "object",
+                "description": "Payload for text-to-speech generation using a voice preset",
+                "required": [
+                  "text",
+                  "voice_preset_id"
+                ],
+                "properties": {
+                  "text": {
+                    "type": "string",
+                    "description": "Text to convert to speech (max 100 words).",
+                    "maxLength": 1000
+                  },
+                  "voice_preset_id": {
+                    "type": "string",
+                    "description": "Voice preset identifier.",
+                    "enum": [
+                      "Serious woman",
+                      "Wise woman",
+                      "Calm woman",
+                      "Fast-paced woman",
+                      "Calm young girl",
+                      "Expressive teen girl",
+                      "Calm teen girl",
+                      "Sweet girl",
+                      "Patient man",
+                      "Determined man",
+                      "Young elegant man",
+                      "Teen boy",
+                      "Friendly man",
+                      "Deep voice man"
+                    ],
+                    "example": "Serious woman"
+                  },
+                  "emotion": {
+                    "type": "string",
+                    "description": "Emotion to apply to the speech.",
+                    "enum": [
+                      "Default",
+                      "Happy",
+                      "Sad",
+                      "Angry",
+                      "Fearful",
+                      "Disgusted",
+                      "Surprised",
+                      "Neutral"
+                    ],
+                    "example": "Default"
+                  },
+                  "language": {
+                    "type": "string",
+                    "description": "Language code for the speech.",
+                    "enum": [
+                      "auto",
+                      "English",
+                      "Afrikaans",
+                      "Arabic",
+                      "Bulgarian",
+                      "Catalan",
+                      "Chinese",
+                      "Chinese,Yue",
+                      "Croatian",
+                      "Czech",
+                      "Danish",
+                      "English",
+                      "Filipino",
+                      "Finnish",
+                      "French",
+                      "German",
+                      "Greek",
+                      "Hebrew",
+                      "Hindi",
+                      "Hungarian",
+                      "Indonesian",
+                      "Italian",
+                      "Japanese",
+                      "Korean",
+                      "Malay",
+                      "Norwegian",
+                      "Nynorsk",
+                      "Persian",
+                      "Polish",
+                      "Portuguese",
+                      "Romanian",
+                      "Russian",
+                      "Slovak",
+                      "Slovenian",
+                      "Spanish",
+                      "Swedish",
+                      "Tamil",
+                      "Thai",
+                      "Turkish",
+                      "Ukrainian",
+                      "Vietnamese"
+                    ],
+                    "example": "auto"
+                  },
+                  "request_id": {
+                    "type": "string",
+                    "description": "Optional client-provided identifier for this request. Use this to retrieve results later via the results endpoint."
+                  }
+                }
+              }
+            },
+            "required": [
+              "requestBody"
+            ]
+          }
+        },
+        {
+          "name": "getImageResults",
+          "description": "Retrieves recent API-generated image results",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "request_id": {
+                "type": "string",
+                "description": "Filter results by request_id"
+              }
+            },
+            "required": []
+          }
+        },
+        {
+          "name": "getSpriteResults",
+          "description": "Retrieves recent API-generated spritesheet results",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "request_id": {
+                "type": "string",
+                "description": "Filter results by request_id"
+              }
+            },
+            "required": []
+          }
+        },
+        {
+          "name": "getVideoResults",
+          "description": "Retrieves recent API-generated video results",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "request_id": {
+                "type": "string",
+                "description": "Filter results by request_id"
+              }
+            },
+            "required": []
+          }
+        },
+        {
+          "name": "getAudioResults",
+          "description": "Retrieves recent API-generated audio results",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "request_id": {
+                "type": "string",
+                "description": "Filter results by request_id"
+              }
+            },
+            "required": []
+          }
+        },
+        {
+          "name": "get3DModelResults",
+          "description": "Retrieves recent API-generated 3D model results",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "request_id": {
+                "type": "string",
+                "description": "Filter results by request_id"
+              }
+            },
+            "required": []
+          }
+        }
+      ],
+      "python_sdk_url": "https://mcp.ludo.ai/mcp",
+      "python_sdk_config": "{\"debug\": false}"
+    },
+    "source_filename": "0039.Ludo-AI-Game-Assets_labeled.json",
+    "processed_timestamp": 1772876337,
+    "processing_mode": "gateway",
+    "rank": 40
+  }
+}

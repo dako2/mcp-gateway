@@ -1,0 +1,328 @@
+{
+  "labels": {
+    "analysis": "The MCP Server \"LinkedIn MCP Server\" provides 3 tools focused on social media tasks. Core capabilities include creation and generation, data access and reading. Key tools: createSharePost, getSharePosts, getPersonProfile.",
+    "reasoning": "Primary label \"Social Media\" assigned based on strong keyword matches in tool names and descriptions: linkedin.",
+    "primary_label": "Social Media",
+    "secondary_labels": [],
+    "custom_label": "Data Access & Generation - LinkedIn MCP Server",
+    "is_connected": true,
+    "is_remote_tool_valid": true,
+    "featured_server": false,
+    "tool_verified": false,
+    "tool_verified_status": "auth_required",
+    "tool_verified_at": "2026-03-14T20:38:19.046483+00:00",
+    "tool_verified_tool": "getSharePosts",
+    "tool_verified_reason": "HTTP 401"
+  },
+  "metadata": {
+    "server_id": 197,
+    "server_name": "LinkedIn MCP Server",
+    "rank_by_usage": 198,
+    "usage_count": "10",
+    "original_file": "tools.json#197",
+    "mode": "gateway",
+    "timestamp": 1772876338,
+    "remote_server_response": {
+      "url": "https://linkedin.run.mcp.com.ai/mcp",
+      "is_success": true,
+      "error": null,
+      "tools": [
+        {
+          "name": "createSharePost",
+          "title": "Share on LinkedIn, create a share post",
+          "description": "Share on LinkedIn, create a share post - Create a new share post on LinkedIn using text, URLs, and images",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "createSharePostBody": {
+                "type": "object",
+                "properties": {
+                  "author": {
+                    "type": "string",
+                    "description": "URN of the member or organization"
+                  },
+                  "lifecycleState": {
+                    "type": "string",
+                    "enum": [
+                      "PUBLISHED",
+                      "DRAFT"
+                    ]
+                  },
+                  "visibility": {
+                    "type": "object",
+                    "properties": {
+                      "com.linkedin.ugc.MemberNetworkVisibility": {
+                        "type": "string",
+                        "enum": [
+                          "PUBLIC",
+                          "CONNECTIONS"
+                        ],
+                        "description": "Visibility of the share post"
+                      }
+                    },
+                    "required": [
+                      "com.linkedin.ugc.MemberNetworkVisibility"
+                    ]
+                  },
+                  "specificContent": {
+                    "type": "object",
+                    "properties": {
+                      "com.linkedin.ugc.ShareContent": {
+                        "type": "object",
+                        "properties": {
+                          "shareCommentary": {
+                            "type": "object",
+                            "properties": {
+                              "text": {
+                                "type": "string"
+                              }
+                            },
+                            "description": "Text for the content of the share post, long format"
+                          },
+                          "shareMediaCategory": {
+                            "type": "string",
+                            "enum": [
+                              "NONE",
+                              "ARTICLE",
+                              "IMAGE"
+                            ]
+                          },
+                          "media": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {}
+                            },
+                            "minItems": 0
+                          }
+                        },
+                        "required": [
+                          "shareCommentary",
+                          "shareMediaCategory"
+                        ]
+                      }
+                    }
+                  }
+                },
+                "required": [
+                  "author",
+                  "lifecycleState",
+                  "visibility",
+                  "specificContent"
+                ]
+              }
+            },
+            "required": [
+              "createSharePostBody"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": true
+          }
+        },
+        {
+          "name": "getSharePosts",
+          "title": "Get share posts",
+          "description": "Get share posts - Retrieve share posts for the authenticated user or organization",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "authors": {
+                "type": "string"
+              },
+              "count": {
+                "type": "integer",
+                "maximum": 100
+              },
+              "start": {
+                "type": "integer"
+              }
+            }
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false
+          }
+        },
+        {
+          "name": "getPersonProfile",
+          "title": "Get person profile",
+          "description": "Get person profile - Get basic profile information for a person",
+          "inputSchema": {
+            "type": "object",
+            "properties": {}
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false
+          }
+        }
+      ],
+      "tool_count": 3,
+      "tool_names": [
+        "createSharePost",
+        "getSharePosts",
+        "getPersonProfile"
+      ]
+    },
+    "server_info_crawled": {
+      "id": 197,
+      "name": "LinkedIn MCP Server",
+      "author": "",
+      "overview": "LinkedIn MCP Server - Social Media server with 3 tools. The MCP Server \"LinkedIn MCP Server\" provides 3 tools focused on social media tasks. Core capabiliti",
+      "repository_url": "",
+      "homepage": "https://linkedin.run.mcp.com.ai/mcp",
+      "remote_or_local": "Remote",
+      "license": "",
+      "usage_count": "10",
+      "success_rate": "100%",
+      "tags": [
+        "social-media"
+      ],
+      "categories": [
+        "social media"
+      ],
+      "tools_count": 3,
+      "tools": [
+        {
+          "name": "createSharePost",
+          "title": "Share on LinkedIn, create a share post",
+          "description": "Share on LinkedIn, create a share post - Create a new share post on LinkedIn using text, URLs, and images",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "createSharePostBody": {
+                "type": "object",
+                "properties": {
+                  "author": {
+                    "type": "string",
+                    "description": "URN of the member or organization"
+                  },
+                  "lifecycleState": {
+                    "type": "string",
+                    "enum": [
+                      "PUBLISHED",
+                      "DRAFT"
+                    ]
+                  },
+                  "visibility": {
+                    "type": "object",
+                    "properties": {
+                      "com.linkedin.ugc.MemberNetworkVisibility": {
+                        "type": "string",
+                        "enum": [
+                          "PUBLIC",
+                          "CONNECTIONS"
+                        ],
+                        "description": "Visibility of the share post"
+                      }
+                    },
+                    "required": [
+                      "com.linkedin.ugc.MemberNetworkVisibility"
+                    ]
+                  },
+                  "specificContent": {
+                    "type": "object",
+                    "properties": {
+                      "com.linkedin.ugc.ShareContent": {
+                        "type": "object",
+                        "properties": {
+                          "shareCommentary": {
+                            "type": "object",
+                            "properties": {
+                              "text": {
+                                "type": "string"
+                              }
+                            },
+                            "description": "Text for the content of the share post, long format"
+                          },
+                          "shareMediaCategory": {
+                            "type": "string",
+                            "enum": [
+                              "NONE",
+                              "ARTICLE",
+                              "IMAGE"
+                            ]
+                          },
+                          "media": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {}
+                            },
+                            "minItems": 0
+                          }
+                        },
+                        "required": [
+                          "shareCommentary",
+                          "shareMediaCategory"
+                        ]
+                      }
+                    }
+                  }
+                },
+                "required": [
+                  "author",
+                  "lifecycleState",
+                  "visibility",
+                  "specificContent"
+                ]
+              }
+            },
+            "required": [
+              "createSharePostBody"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": true
+          }
+        },
+        {
+          "name": "getSharePosts",
+          "title": "Get share posts",
+          "description": "Get share posts - Retrieve share posts for the authenticated user or organization",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "authors": {
+                "type": "string"
+              },
+              "count": {
+                "type": "integer",
+                "maximum": 100
+              },
+              "start": {
+                "type": "integer"
+              }
+            }
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false
+          }
+        },
+        {
+          "name": "getPersonProfile",
+          "title": "Get person profile",
+          "description": "Get person profile - Get basic profile information for a person",
+          "inputSchema": {
+            "type": "object",
+            "properties": {}
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false
+          }
+        }
+      ],
+      "python_sdk_url": "https://linkedin.run.mcp.com.ai/mcp",
+      "python_sdk_config": "{\"debug\": false}"
+    },
+    "source_filename": "0197.LinkedIn-MCP-Server_labeled.json",
+    "processed_timestamp": 1772876338,
+    "processing_mode": "gateway",
+    "rank": 198
+  }
+}

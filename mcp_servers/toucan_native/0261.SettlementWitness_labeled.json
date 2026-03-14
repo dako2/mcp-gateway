@@ -1,0 +1,116 @@
+{
+  "labels": {
+    "analysis": "The MCP Server \"SettlementWitness\" provides 1 tools focused on development tools tasks. Core capabilities include modification and updates. Key tools: settlement_witness.",
+    "reasoning": "Default category assigned; no strong keyword matches found for settlementwitness.",
+    "primary_label": "Development Tools",
+    "secondary_labels": [],
+    "custom_label": "Development Tools - SettlementWitness",
+    "is_connected": true,
+    "is_remote_tool_valid": true,
+    "featured_server": false,
+    "tool_verified": true,
+    "tool_verified_status": "verified",
+    "tool_verified_at": "2026-03-14T20:38:22.871522+00:00",
+    "tool_verified_tool": "settlement_witness",
+    "tool_verified_reason": "response received"
+  },
+  "metadata": {
+    "server_id": 261,
+    "server_name": "SettlementWitness",
+    "rank_by_usage": 262,
+    "usage_count": "15",
+    "original_file": "tools.json#261",
+    "mode": "gateway",
+    "timestamp": 1772876338,
+    "remote_server_response": {
+      "url": "https://defaultverifier.com/mcp",
+      "is_success": true,
+      "error": null,
+      "tools": [
+        {
+          "name": "settlement_witness",
+          "description": "Thin MCP adapter that forwards to SettlementWitness and returns the exact receipt JSON.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "task_id": {
+                "type": "string"
+              },
+              "spec": {
+                "type": "object",
+                "additionalProperties": true
+              },
+              "output": {
+                "type": "object",
+                "additionalProperties": true
+              }
+            },
+            "required": [
+              "task_id",
+              "spec",
+              "output"
+            ],
+            "additionalProperties": false
+          }
+        }
+      ],
+      "tool_count": 1,
+      "tool_names": [
+        "settlement_witness"
+      ]
+    },
+    "server_info_crawled": {
+      "id": 261,
+      "name": "SettlementWitness",
+      "author": "",
+      "overview": "SettlementWitness - Development Tools server with 1 tools. The MCP Server \"SettlementWitness\" provides 1 tools focused on development tools tasks. Core capabil",
+      "repository_url": "",
+      "homepage": "https://defaultverifier.com/mcp",
+      "remote_or_local": "Remote",
+      "license": "",
+      "usage_count": "15",
+      "success_rate": "100%",
+      "tags": [
+        "development-tools"
+      ],
+      "categories": [
+        "development tools"
+      ],
+      "tools_count": 1,
+      "tools": [
+        {
+          "name": "settlement_witness",
+          "description": "Thin MCP adapter that forwards to SettlementWitness and returns the exact receipt JSON.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "task_id": {
+                "type": "string"
+              },
+              "spec": {
+                "type": "object",
+                "additionalProperties": true
+              },
+              "output": {
+                "type": "object",
+                "additionalProperties": true
+              }
+            },
+            "required": [
+              "task_id",
+              "spec",
+              "output"
+            ],
+            "additionalProperties": false
+          }
+        }
+      ],
+      "python_sdk_url": "https://defaultverifier.com/mcp",
+      "python_sdk_config": "{\"debug\": false}"
+    },
+    "source_filename": "0261.SettlementWitness_labeled.json",
+    "processed_timestamp": 1772876338,
+    "processing_mode": "gateway",
+    "rank": 262
+  }
+}

@@ -1,0 +1,3610 @@
+{
+  "labels": {
+    "analysis": "The MCP Server \"Cortex\" provides 30 tools focused on data analysis & processing tasks. Core capabilities include data access and reading, modification and updates, search and retrieval. Key tools: listAllEntities, listEntityDescriptors, listDependenciesForEntity, getDependency, getEntityDetails.",
+    "reasoning": "Primary label \"Data Analysis & Processing\" assigned based on strong keyword matches in tool names and descriptions: data, metric.",
+    "primary_label": "Data Analysis & Processing",
+    "secondary_labels": [
+      "Web Search & Research",
+      "Development Tools"
+    ],
+    "custom_label": "Data Access & Deployment - Cortex",
+    "is_connected": true,
+    "is_remote_tool_valid": true,
+    "featured_server": true,
+    "tool_verified": true,
+    "tool_verified_status": "verified",
+    "tool_verified_at": "2026-03-14T20:38:10.724508+00:00",
+    "tool_verified_tool": "get_more_tools",
+    "tool_verified_reason": "response received"
+  },
+  "metadata": {
+    "server_id": 29,
+    "server_name": "Cortex",
+    "rank_by_usage": 30,
+    "usage_count": "8,550",
+    "original_file": "tools.json#29",
+    "mode": "gateway",
+    "timestamp": 1772876337,
+    "remote_server_response": {
+      "url": "https://mcp.cortex.io/mcp",
+      "is_success": true,
+      "error": null,
+      "tools": [
+        {
+          "name": "listAllEntities",
+          "description": "List and filter catalog entities with support for pagination, search, and various filters including groups, types, owners, and git repositories. If the client is trying to fetch data for teams, use 'type': 'team' in these APIs.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "groups": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "default": [],
+                "description": "Filter based on groups, which correspond to the `x-cortex-groups` field in the Catalog Descriptor. Accepts a comma-delimited list of groups"
+              },
+              "owners": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "default": [],
+                "description": "Filter based on owner group names, which correspond to the `x-cortex-owners` field in the Catalog Descriptor. Accepts a comma-delimited list of owner group names"
+              },
+              "hierarchyDepth": {
+                "type": "string",
+                "default": "full",
+                "description": "Depth of the parent / children hierarchy nodes. Can be 'full' or a valid integer"
+              },
+              "gitRepositories": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "default": [],
+                "description": "Supports only GitHub repositories in the `org/repo` format"
+              },
+              "includeHierarchyFields": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "List of sub fields to include for hierarchies. Only supports 'groups'"
+              },
+              "types": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "default": [],
+                "description": "Filter the response to specific types of entities. By default, this includes services, resources, and domains. Corresponds to the `x-cortex-type` field in the entity descriptor."
+              },
+              "query": {
+                "type": "string",
+                "default": "",
+                "description": "Filter based on a [search query](https://docs.cortex.io/settings/search). This will search across entity properties. If provided, results will be sorted by relevance."
+              },
+              "includeArchived": {
+                "type": "boolean",
+                "default": false,
+                "description": "Whether to include archived entities in the response"
+              },
+              "includeMetadata": {
+                "type": "boolean",
+                "default": false,
+                "description": "Whether to include custom data for each entity in the response"
+              },
+              "includeLinks": {
+                "type": "boolean",
+                "default": false,
+                "description": "Whether to include links for each entity in the response"
+              },
+              "includeSlackChannels": {
+                "type": "boolean",
+                "description": "Whether to include Slack channels for each entity in the response"
+              },
+              "includeOwners": {
+                "type": "boolean",
+                "default": false,
+                "description": "Whether to include ownership information for each entity in the response"
+              },
+              "includeNestedFields": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "List of sub fields to include for different types"
+              },
+              "pageSize": {
+                "type": "integer",
+                "format": "int32",
+                "default": 250,
+                "description": "Number of results to return per page, between 1 and 1000. Default 250."
+              },
+              "page": {
+                "type": "integer",
+                "format": "int32",
+                "default": 0,
+                "description": "Page number to return, 0-indexed. Default 0."
+              },
+              "context": {
+                "type": "string",
+                "description": "\n                Explain why you're invoking this tool now and how its output will be used.\n                Then state how this call supports your *overall objective* and fits into your broader plan across all tool calls (e.g., why this tool vs. others, and what step it unblocks).\n                Never share any personal details or sensitive information.\n                "
+              }
+            },
+            "required": [
+              "pageSize",
+              "page",
+              "context"
+            ]
+          },
+          "_meta": {
+            "_fastmcp": {
+              "tags": [
+                "Catalog Entities",
+                "catalog entities",
+                "cortex-api",
+                "openapi"
+              ]
+            }
+          }
+        },
+        {
+          "name": "listEntityDescriptors",
+          "description": "Cortex Catalog API - Access and manage your service catalog, teams, domains, and resources",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "yaml": {
+                "type": "boolean",
+                "description": "When true, returns the YAML representation of the descriptors"
+              },
+              "types": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "Filter the response to specific types of entities. By default, this includes services, resources, and domains. Corresponds to the `x-cortex-type` field in the entity descriptor."
+              },
+              "pageSize": {
+                "type": "integer",
+                "format": "int32",
+                "description": "Number of entities to return per page"
+              },
+              "page": {
+                "type": "integer",
+                "format": "int32",
+                "description": "Page number to return, 0 indexed"
+              },
+              "context": {
+                "type": "string",
+                "description": "\n                Explain why you're invoking this tool now and how its output will be used.\n                Then state how this call supports your *overall objective* and fits into your broader plan across all tool calls (e.g., why this tool vs. others, and what step it unblocks).\n                Never share any personal details or sensitive information.\n                "
+              }
+            },
+            "required": [
+              "pageSize",
+              "page",
+              "context"
+            ]
+          },
+          "_meta": {
+            "_fastmcp": {
+              "tags": [
+                "Catalog Entities",
+                "catalog entities",
+                "cortex-api",
+                "openapi"
+              ]
+            }
+          }
+        },
+        {
+          "name": "listDependenciesForEntity",
+          "description": "List all dependencies for an entity including both incoming (who depends on this service) and outgoing (what this service depends on) relationships. Essential for understanding service interactions, planning changes, and assessing blast radius",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "callerTag": {
+                "type": "string"
+              },
+              "includeOutgoing": {
+                "type": "boolean",
+                "default": true
+              },
+              "includeIncoming": {
+                "type": "boolean",
+                "default": false
+              },
+              "pageSize": {
+                "type": "integer",
+                "format": "int32",
+                "default": 250,
+                "description": "Number of results to return per page, between 1 and 1000. Default 250."
+              },
+              "page": {
+                "type": "integer",
+                "format": "int32",
+                "default": 0,
+                "description": "Page number to return, 0-indexed. Default 0."
+              },
+              "context": {
+                "type": "string",
+                "description": "\n                Explain why you're invoking this tool now and how its output will be used.\n                Then state how this call supports your *overall objective* and fits into your broader plan across all tool calls (e.g., why this tool vs. others, and what step it unblocks).\n                Never share any personal details or sensitive information.\n                "
+              }
+            },
+            "required": [
+              "callerTag",
+              "pageSize",
+              "page",
+              "context"
+            ]
+          },
+          "_meta": {
+            "_fastmcp": {
+              "tags": [
+                "Dependencies",
+                "cortex-api",
+                "dependencies",
+                "openapi"
+              ]
+            }
+          }
+        },
+        {
+          "name": "getDependency",
+          "description": "Get specific dependency details between two entities including method, path, and metadata. Useful for understanding the nature of the relationship, API contracts, and communication patterns between services",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "callerTag": {
+                "type": "string"
+              },
+              "calleeTag": {
+                "type": "string"
+              },
+              "method": {
+                "type": "string"
+              },
+              "path": {
+                "type": "string"
+              },
+              "context": {
+                "type": "string",
+                "description": "\n                Explain why you're invoking this tool now and how its output will be used.\n                Then state how this call supports your *overall objective* and fits into your broader plan across all tool calls (e.g., why this tool vs. others, and what step it unblocks).\n                Never share any personal details or sensitive information.\n                "
+              }
+            },
+            "required": [
+              "callerTag",
+              "calleeTag",
+              "context"
+            ]
+          },
+          "_meta": {
+            "_fastmcp": {
+              "tags": [
+                "Dependencies",
+                "cortex-api",
+                "dependencies",
+                "openapi"
+              ]
+            }
+          }
+        },
+        {
+          "name": "getEntityDetails",
+          "description": "Retrieve comprehensive details about a specific entity including its metadata, ownership, hierarchies, and relationships. This is the primary method for getting complete information about services, teams, or domains.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "tagOrId": {
+                "type": "string",
+                "description": "Entity identifier - can be a tag or CID"
+              },
+              "hierarchyDepth": {
+                "type": "string",
+                "default": "full",
+                "description": "Depth of the parent / children hierarchy nodes. Can be 'full' or a valid integer"
+              },
+              "includeHierarchyFields": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "List of sub fields to include for hierarchies. Only supports 'groups'"
+              },
+              "includeOwners": {
+                "type": "boolean",
+                "description": "Include ownership information, default is true"
+              },
+              "context": {
+                "type": "string",
+                "description": "\n                Explain why you're invoking this tool now and how its output will be used.\n                Then state how this call supports your *overall objective* and fits into your broader plan across all tool calls (e.g., why this tool vs. others, and what step it unblocks).\n                Never share any personal details or sensitive information.\n                "
+              }
+            },
+            "required": [
+              "tagOrId",
+              "context"
+            ]
+          },
+          "_meta": {
+            "_fastmcp": {
+              "tags": [
+                "Catalog Entities",
+                "catalog entities",
+                "cortex-api",
+                "openapi"
+              ]
+            }
+          }
+        },
+        {
+          "name": "getCustomDataForEntity",
+          "description": "List all custom data key-value pairs associated with an entity. Retrieve metadata, configuration settings, and custom attributes stored for services, resources, or domains. Supports pagination for entities with large amounts of custom data",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "tagOrId": {
+                "type": "string",
+                "description": "Entity identifier - can be a tag or CID"
+              },
+              "pageSize": {
+                "type": "integer",
+                "format": "int32",
+                "default": 250,
+                "description": "Number of results to return per page, between 1 and 1000. Default 250."
+              },
+              "page": {
+                "type": "integer",
+                "format": "int32",
+                "default": 0,
+                "description": "Page number to return, 0-indexed. Default 0."
+              },
+              "context": {
+                "type": "string",
+                "description": "\n                Explain why you're invoking this tool now and how its output will be used.\n                Then state how this call supports your *overall objective* and fits into your broader plan across all tool calls (e.g., why this tool vs. others, and what step it unblocks).\n                Never share any personal details or sensitive information.\n                "
+              }
+            },
+            "required": [
+              "tagOrId",
+              "pageSize",
+              "page",
+              "context"
+            ]
+          },
+          "_meta": {
+            "_fastmcp": {
+              "tags": [
+                "Custom Data",
+                "cortex-api",
+                "custom data",
+                "openapi"
+              ]
+            }
+          }
+        },
+        {
+          "name": "getCustomDataForEntityByKey",
+          "description": "Retrieve a specific custom data value by key for an entity. Efficiently access individual metadata attributes, configuration values, or custom properties without fetching all custom data",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "tagOrId": {
+                "type": "string",
+                "description": "Entity identifier - can be a tag or CID"
+              },
+              "key": {
+                "type": "string"
+              },
+              "context": {
+                "type": "string",
+                "description": "\n                Explain why you're invoking this tool now and how its output will be used.\n                Then state how this call supports your *overall objective* and fits into your broader plan across all tool calls (e.g., why this tool vs. others, and what step it unblocks).\n                Never share any personal details or sensitive information.\n                "
+              }
+            },
+            "required": [
+              "tagOrId",
+              "key",
+              "context"
+            ]
+          },
+          "_meta": {
+            "_fastmcp": {
+              "tags": [
+                "Custom Data",
+                "cortex-api",
+                "custom data",
+                "openapi"
+              ]
+            }
+          }
+        },
+        {
+          "name": "listCustomEventsForEntity",
+          "description": "List custom events for an entity with optional filtering by type and time range. Supports pagination and filtering by event type, start time, and end time to retrieve historical event data",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "tagOrId": {
+                "type": "string",
+                "description": "Entity identifier - can be a tag or CID"
+              },
+              "type": {
+                "type": "string"
+              },
+              "timestamp": {
+                "type": "string",
+                "format": "date-time",
+                "description": "Use 'startTime' instead"
+              },
+              "startTime": {
+                "type": "string",
+                "format": "date-time",
+                "description": "If provided, events with greater than or equal to timestamp will be returned (a date-time without a time-zone in the ISO-8601 calendar system)"
+              },
+              "endTime": {
+                "type": "string",
+                "format": "date-time",
+                "description": "If provided, events with less than or equal to timestamp will be returned (a date-time without a time-zone in the ISO-8601 calendar system)"
+              },
+              "pageSize": {
+                "type": "integer",
+                "format": "int32",
+                "default": 250,
+                "description": "Number of results to return per page, between 1 and 1000. Default 250."
+              },
+              "page": {
+                "type": "integer",
+                "format": "int32",
+                "default": 0,
+                "description": "Page number to return, 0-indexed. Default 0."
+              },
+              "context": {
+                "type": "string",
+                "description": "\n                Explain why you're invoking this tool now and how its output will be used.\n                Then state how this call supports your *overall objective* and fits into your broader plan across all tool calls (e.g., why this tool vs. others, and what step it unblocks).\n                Never share any personal details or sensitive information.\n                "
+              }
+            },
+            "required": [
+              "tagOrId",
+              "pageSize",
+              "page",
+              "context"
+            ]
+          },
+          "_meta": {
+            "_fastmcp": {
+              "tags": [
+                "Custom Events",
+                "cortex-api",
+                "custom events",
+                "openapi"
+              ]
+            }
+          }
+        },
+        {
+          "name": "getCustomEventForEntityByUuid",
+          "description": "Retrieve a specific custom event by its UUID. Returns event details including title, description, timestamp, type, and any custom data associated with the event",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "tagOrId": {
+                "type": "string",
+                "description": "Entity identifier - can be a tag or CID"
+              },
+              "uuid": {
+                "type": "string",
+                "format": "uuid"
+              },
+              "context": {
+                "type": "string",
+                "description": "\n                Explain why you're invoking this tool now and how its output will be used.\n                Then state how this call supports your *overall objective* and fits into your broader plan across all tool calls (e.g., why this tool vs. others, and what step it unblocks).\n                Never share any personal details or sensitive information.\n                "
+              }
+            },
+            "required": [
+              "tagOrId",
+              "uuid",
+              "context"
+            ]
+          },
+          "_meta": {
+            "_fastmcp": {
+              "tags": [
+                "Custom Events",
+                "cortex-api",
+                "custom events",
+                "openapi"
+              ]
+            }
+          }
+        },
+        {
+          "name": "getDeploysForEntity",
+          "description": "List all deployments for a specific catalog entity. Returns deployment history including timestamps, environments, SHAs, and deployment types in paginated format",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "tagOrId": {
+                "type": "string",
+                "description": "Entity identifier - can be a tag or CID"
+              },
+              "pageSize": {
+                "type": "integer",
+                "format": "int32",
+                "default": 250,
+                "description": "Number of results to return per page, between 1 and 1000. Default 250."
+              },
+              "page": {
+                "type": "integer",
+                "format": "int32",
+                "default": 0,
+                "description": "Page number to return, 0-indexed. Default 0."
+              },
+              "context": {
+                "type": "string",
+                "description": "\n                Explain why you're invoking this tool now and how its output will be used.\n                Then state how this call supports your *overall objective* and fits into your broader plan across all tool calls (e.g., why this tool vs. others, and what step it unblocks).\n                Never share any personal details or sensitive information.\n                "
+              }
+            },
+            "required": [
+              "tagOrId",
+              "pageSize",
+              "page",
+              "context"
+            ]
+          },
+          "_meta": {
+            "_fastmcp": {
+              "tags": [
+                "Deploys",
+                "cortex-api",
+                "deploys",
+                "openapi"
+              ]
+            }
+          }
+        },
+        {
+          "name": "getCurrentOncallForEntity",
+          "description": "Retrieve the current on-call personnel for an entity in real-time. Shows who is actively responsible for incident response, including primary and secondary on-call, contact information, and rotation schedules",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "tagOrId": {
+                "type": "string",
+                "description": "Entity identifier - can be a tag or CID"
+              },
+              "context": {
+                "type": "string",
+                "description": "\n                Explain why you're invoking this tool now and how its output will be used.\n                Then state how this call supports your *overall objective* and fits into your broader plan across all tool calls (e.g., why this tool vs. others, and what step it unblocks).\n                Never share any personal details or sensitive information.\n                "
+              }
+            },
+            "required": [
+              "tagOrId",
+              "context"
+            ]
+          },
+          "_meta": {
+            "_fastmcp": {
+              "tags": [
+                "On-call",
+                "cortex-api",
+                "on-call",
+                "openapi"
+              ]
+            }
+          }
+        },
+        {
+          "name": "getEntityDescriptor",
+          "description": "Cortex Catalog API - Access and manage your service catalog, teams, domains, and resources",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "yaml": {
+                "type": "boolean",
+                "description": "When true, returns the YAML representation of the descriptor"
+              },
+              "tagOrId": {
+                "type": "string",
+                "description": "Entity identifier - can be a tag or CID"
+              },
+              "context": {
+                "type": "string",
+                "description": "\n                Explain why you're invoking this tool now and how its output will be used.\n                Then state how this call supports your *overall objective* and fits into your broader plan across all tool calls (e.g., why this tool vs. others, and what step it unblocks).\n                Never share any personal details or sensitive information.\n                "
+              }
+            },
+            "required": [
+              "tagOrId",
+              "context"
+            ]
+          },
+          "_meta": {
+            "_fastmcp": {
+              "tags": [
+                "Catalog Entities",
+                "catalog entities",
+                "cortex-api",
+                "openapi"
+              ]
+            }
+          }
+        },
+        {
+          "name": "listEntityDestinationsForRelationshipType",
+          "description": "List all destinations for a certain relationship type & entity. Use the listRelationshipTypes tool to find the relevant relationshipTypeTag.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "tagOrId": {
+                "type": "string",
+                "description": "Entity identifier - can be a tag or CID"
+              },
+              "relationshipTypeTag": {
+                "type": "string"
+              },
+              "depth": {
+                "type": "string",
+                "description": "Maximum depth to traverse in the relationship hierarchy. Defaults to 1 (i.e., direct relationships only)."
+              },
+              "includeArchived": {
+                "type": "boolean",
+                "default": false,
+                "description": "If true will include relationships that traverse archived entities"
+              },
+              "context": {
+                "type": "string",
+                "description": "\n                Explain why you're invoking this tool now and how its output will be used.\n                Then state how this call supports your *overall objective* and fits into your broader plan across all tool calls (e.g., why this tool vs. others, and what step it unblocks).\n                Never share any personal details or sensitive information.\n                "
+              }
+            },
+            "required": [
+              "tagOrId",
+              "relationshipTypeTag",
+              "context"
+            ]
+          },
+          "_meta": {
+            "_fastmcp": {
+              "tags": [
+                "Entity Relationships [Beta]",
+                "cortex-api",
+                "entity relationships [beta]",
+                "openapi"
+              ]
+            }
+          }
+        },
+        {
+          "name": "listEntitySourcesForRelationshipType",
+          "description": "List all sources for a certain relationship type & entity. Use the listRelationshipTypes tool to find the relevant relationshipTypeTag.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "tagOrId": {
+                "type": "string",
+                "description": "Entity identifier - can be a tag or CID"
+              },
+              "relationshipTypeTag": {
+                "type": "string"
+              },
+              "depth": {
+                "type": "string",
+                "description": "Maximum depth to traverse in the relationship hierarchy. Defaults to 1 (i.e., direct relationships only)."
+              },
+              "includeArchived": {
+                "type": "boolean",
+                "default": false,
+                "description": "If true will include relationships that traverse archived entities"
+              },
+              "context": {
+                "type": "string",
+                "description": "\n                Explain why you're invoking this tool now and how its output will be used.\n                Then state how this call supports your *overall objective* and fits into your broader plan across all tool calls (e.g., why this tool vs. others, and what step it unblocks).\n                Never share any personal details or sensitive information.\n                "
+              }
+            },
+            "required": [
+              "tagOrId",
+              "relationshipTypeTag",
+              "context"
+            ]
+          },
+          "_meta": {
+            "_fastmcp": {
+              "tags": [
+                "Entity Relationships [Beta]",
+                "cortex-api",
+                "entity relationships [beta]",
+                "openapi"
+              ]
+            }
+          }
+        },
+        {
+          "name": "getCustomMetricData",
+          "description": "Retrieve custom metric data points for an entity. Returns paginated time-series data for a specific custom metric, with optional filtering by date range to analyze trends and patterns",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "customMetricKey": {
+                "type": "string",
+                "description": "Key for the custom metric filter"
+              },
+              "tagOrId": {
+                "type": "string",
+                "description": "Entity identifier - can be a tag or CID"
+              },
+              "startDate": {
+                "type": "string",
+                "format": "date-time",
+                "description": "Start date for the filter (inclusive). Default: 6 months"
+              },
+              "endDate": {
+                "type": "string",
+                "format": "date-time",
+                "description": "End date for the filter (inclusive)"
+              },
+              "pageSize": {
+                "type": "integer",
+                "format": "int32",
+                "default": 250,
+                "description": "Number of results to return per page, between 1 and 1000. Default 250."
+              },
+              "page": {
+                "type": "integer",
+                "format": "int32",
+                "default": 0,
+                "description": "Page number to return, 0-indexed. Default 0."
+              },
+              "context": {
+                "type": "string",
+                "description": "\n                Explain why you're invoking this tool now and how its output will be used.\n                Then state how this call supports your *overall objective* and fits into your broader plan across all tool calls (e.g., why this tool vs. others, and what step it unblocks).\n                Never share any personal details or sensitive information.\n                "
+              }
+            },
+            "required": [
+              "customMetricKey",
+              "tagOrId",
+              "pageSize",
+              "page",
+              "context"
+            ]
+          },
+          "_meta": {
+            "_fastmcp": {
+              "tags": [
+                "Custom Metrics",
+                "cortex-api",
+                "custom metrics",
+                "openapi"
+              ]
+            }
+          }
+        },
+        {
+          "name": "queryPointInTimeMetrics",
+          "description": "Execute point-in-time queries for one or more engineering metrics.\n\n        Returns current metric values for specified time periods, with support for batch queries\n        and optional period-over-period comparisons. Time range (startTime/endTime) cannot exceed 6 months (180 days).\n\n        PREREQUISITES - Follow this workflow:\n        1. Discover all available metrics ONCE: Call listMetricDefinitions (view='basic') - cache this response\n        2. Get metric query metadata ONCE per metric: Call listMetricDefinitions (view='full', key=METRIC_KEY)\n           - supportedAggregations: Valid aggregation methods\n           - orderByAttribute: Attribute path for sorting by metric values\n           - groupByOptions[].key: Valid groupBy keys (use exact values, do NOT guess)\n           - filterOptions[].key: Valid filter keys (use exact values, do NOT guess)\n           Cache the full view response for each metric. Reuse the metadata from cached responses for subsequent queries on the same metric.\n        3. Construct query: Use the query metadata from the full view responses in step 2 to build valid point-in-time requests\n\n        IMPORTANT: Cache only results from listMetricDefinitions. Do NOT cache point-in-time query results - always execute fresh queries for current data.\n        Only refresh cached listMetricDefinitions responses if no longer in your context window or explicitly requested.\n        Do NOT guess attribute names - always use exact values from listMetricDefinitions responses.\n\n        Response includes:\n        - Lightweight metadata: Column definitions optimized for programmatic use\n        - Row data: Actual metric values and dimensional data\n        - No heavy schemas: Source definitions excluded (get from listMetricDefinitions instead)\n\n        Error responses:\n        - 400: Invalid metric names, date range, validation errors, or unsupported metric combinations\n        - 403: Feature not enabled (contact help@cortex.io)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "comparison": {
+                "oneOf": [
+                  {
+                    "required": [
+                      "alias",
+                      "name",
+                      "ordinal",
+                      "windowSize"
+                    ],
+                    "type": "object",
+                    "allOf": [
+                      {
+                        "required": [
+                          "alias",
+                          "name",
+                          "ordinal",
+                          "type"
+                        ],
+                        "type": "object",
+                        "properties": {
+                          "alias": {
+                            "type": "string"
+                          },
+                          "category": {
+                            "type": "string"
+                          },
+                          "description": {
+                            "type": "string"
+                          },
+                          "name": {
+                            "type": "string"
+                          },
+                          "ordinal": {
+                            "type": "integer",
+                            "format": "int32"
+                          },
+                          "type": {
+                            "type": "string"
+                          }
+                        },
+                        "description": "List of column definitions describing each field in the result rows",
+                        "discriminator": {
+                          "propertyName": "type"
+                        }
+                      },
+                      {
+                        "type": "object",
+                        "properties": {
+                          "ordinal": {
+                            "type": "integer",
+                            "description": "Zero-based column position in the result data rows - use this to map column metadata to actual row data values",
+                            "format": "int32"
+                          },
+                          "windowSize": {
+                            "type": "object",
+                            "properties": {
+                              "nano": {
+                                "type": "integer",
+                                "format": "int32"
+                              },
+                              "negative": {
+                                "type": "boolean"
+                              },
+                              "positive": {
+                                "type": "boolean"
+                              },
+                              "seconds": {
+                                "type": "integer",
+                                "format": "int64"
+                              },
+                              "units": {
+                                "type": "array",
+                                "items": {
+                                  "type": "object",
+                                  "properties": {
+                                    "dateBased": {
+                                      "type": "boolean"
+                                    },
+                                    "duration": {
+                                      "type": "object",
+                                      "properties": {
+                                        "nano": {
+                                          "type": "integer",
+                                          "format": "int32"
+                                        },
+                                        "negative": {
+                                          "type": "boolean"
+                                        },
+                                        "positive": {
+                                          "type": "boolean"
+                                        },
+                                        "seconds": {
+                                          "type": "integer",
+                                          "format": "int64"
+                                        },
+                                        "zero": {
+                                          "type": "boolean"
+                                        }
+                                      }
+                                    },
+                                    "durationEstimated": {
+                                      "type": "boolean"
+                                    },
+                                    "timeBased": {
+                                      "type": "boolean"
+                                    }
+                                  }
+                                }
+                              },
+                              "zero": {
+                                "type": "boolean"
+                              }
+                            },
+                            "description": "Duration of the time window represented by this column"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              "endTime": {
+                "type": "string",
+                "description": "End time for the query period",
+                "format": "date-time"
+              },
+              "filters": {
+                "type": "array",
+                "items": {
+                  "required": [
+                    "attribute",
+                    "operator",
+                    "predicate"
+                  ],
+                  "type": "object",
+                  "properties": {
+                    "attribute": {
+                      "type": "string"
+                    },
+                    "operator": {
+                      "enum": [
+                        "ANY",
+                        "BETWEEN",
+                        "CONTAINS",
+                        "EQUAL",
+                        "GREATER_THAN",
+                        "GREATER_THAN_OR_EQUAL",
+                        "IN",
+                        "IS_NOT_NULL",
+                        "IS_NULL",
+                        "LESS_THAN",
+                        "LESS_THAN_OR_EQUAL",
+                        "LIKE",
+                        "NOT_EQUAL",
+                        "NOT_IN",
+                        "NOT_LIKE"
+                      ],
+                      "type": "string"
+                    },
+                    "predicate": {
+                      "type": "object"
+                    }
+                  },
+                  "description": "Filters to apply to the data"
+                },
+                "description": "Filters to apply to the data"
+              },
+              "groupBy": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "description": "Fields to group results by"
+                },
+                "description": "Fields to group results by"
+              },
+              "limit": {
+                "type": "integer",
+                "description": "Maximum number of results to return",
+                "format": "int32"
+              },
+              "metrics": {
+                "type": "array",
+                "items": {
+                  "required": [
+                    "aggregation",
+                    "metric"
+                  ],
+                  "type": "object",
+                  "properties": {
+                    "aggregation": {
+                      "enum": [
+                        "SUM",
+                        "AVG",
+                        "COUNT",
+                        "RATIO",
+                        "MIN",
+                        "MAX",
+                        "P50",
+                        "P95",
+                        "RANKING"
+                      ],
+                      "type": "string"
+                    },
+                    "metric": {
+                      "type": "string"
+                    }
+                  },
+                  "description": "Optional nested metrics for advanced queries"
+                },
+                "description": "List of metrics to query with their aggregation functions"
+              },
+              "nestedGroupBy": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "description": "Fields to group nested results by"
+                },
+                "description": "Fields to group nested results by"
+              },
+              "nestedMetrics": {
+                "type": "array",
+                "items": {
+                  "required": [
+                    "aggregation",
+                    "metric"
+                  ],
+                  "type": "object",
+                  "properties": {
+                    "aggregation": {
+                      "enum": [
+                        "SUM",
+                        "AVG",
+                        "COUNT",
+                        "RATIO",
+                        "MIN",
+                        "MAX",
+                        "P50",
+                        "P95",
+                        "RANKING"
+                      ],
+                      "type": "string"
+                    },
+                    "metric": {
+                      "type": "string"
+                    }
+                  },
+                  "description": "Optional nested metrics for advanced queries"
+                },
+                "description": "Optional nested metrics for advanced queries"
+              },
+              "nestedTimeAttribute": {
+                "type": "string",
+                "description": "Time attribute for nested queries"
+              },
+              "nextPage": {
+                "type": "string",
+                "description": "Pagination token for next page of results"
+              },
+              "orderBy": {
+                "type": "array",
+                "items": {
+                  "required": [
+                    "attribute",
+                    "direction"
+                  ],
+                  "type": "object",
+                  "properties": {
+                    "attribute": {
+                      "type": "string"
+                    },
+                    "direction": {
+                      "enum": [
+                        "ASC",
+                        "DESC"
+                      ],
+                      "type": "string"
+                    }
+                  },
+                  "description": "Sort order for results"
+                },
+                "description": "Sort order for results"
+              },
+              "startTime": {
+                "type": "string",
+                "description": "Start time for the query period",
+                "format": "date-time"
+              },
+              "timeAttribute": {
+                "type": "string",
+                "description": "Time attribute to use for queries"
+              },
+              "context": {
+                "type": "string",
+                "description": "\n                Explain why you're invoking this tool now and how its output will be used.\n                Then state how this call supports your *overall objective* and fits into your broader plan across all tool calls (e.g., why this tool vs. others, and what step it unblocks).\n                Never share any personal details or sensitive information.\n                "
+              }
+            },
+            "required": [
+              "endTime",
+              "filters",
+              "groupBy",
+              "limit",
+              "metrics",
+              "orderBy",
+              "startTime",
+              "context"
+            ]
+          },
+          "_meta": {
+            "_fastmcp": {
+              "tags": [
+                "Eng Intel: 2-Metrics",
+                "cortex-api",
+                "eng intel: 2-metrics",
+                "openapi"
+              ]
+            }
+          }
+        },
+        {
+          "name": "listMetricDefinitions",
+          "description": "List all available engineering metric definitions.\n\n        USAGE - Call this endpoint BEFORE querying metrics (queryPointInTimeMetrics):\n        1. Once at start: Call with view='basic' to discover all available metrics - cache this response\n        2. Once per metric: Call with view='full' and key=METRIC_KEY to get detailed metadata - cache each response\n        3. Use cached metadata to construct valid point-in-time queries\n\n        Cache responses in your context. Only refresh if no longer in your context window or explicitly requested (ex to check if metric readiness has changed).\n\n        Query parameters:\n        - view: 'basic' (default) returns minimal info, 'full' includes sources and query metadata\n        - key: Filter metrics by key (supports multiple values and comma-separated lists)\n\n        Full view provides query construction metadata:\n        - supportedAggregations: Valid aggregation methods for the metric\n        - orderByAttribute: Attribute path for sorting by metric values\n        - groupByOptions[].key: Valid groupBy keys (use exact values, do NOT guess)\n        - filterOptions[].key: Valid filter keys (use exact values, do NOT guess)\n\n        Valid orderBy attributes for metric queries:\n        - orderByAttribute: The metric value itself (returned in full view)\n        - Source attributes: Any attribute from the metric's source (e.g., \"source_name.attribute_name\")\n        - Dimension attributes: Any attribute from related dimensions (e.g., \"source_name.dimension_name.attribute_name\")\n\n        Filter operators by type (for constructing queries):\n        - STRING: EQUAL, NOT_EQUAL, IS_NULL, IS_NOT_NULL, LIKE, NOT_LIKE, IN, NOT_IN, ANY\n        - INTEGER/DECIMAL/DOUBLE: EQUAL, NOT_EQUAL, IS_NULL, IS_NOT_NULL, GREATER_THAN, LESS_THAN, GREATER_THAN_OR_EQUAL, LESS_THAN_OR_EQUAL, IN, NOT_IN, BETWEEN, ANY\n        - DATETIME/DATE: EQUAL, NOT_EQUAL, IS_NULL, IS_NOT_NULL, GREATER_THAN, LESS_THAN, GREATER_THAN_OR_EQUAL, LESS_THAN_OR_EQUAL, BETWEEN\n        - BOOLEAN: EQUAL, NOT_EQUAL, IS_NULL, IS_NOT_NULL, IN, NOT_IN\n        - ARRAY: EQUAL, CONTAINS, IN\n\n        Error responses:\n        - 400: Invalid view parameter (must be 'basic' or 'full')\n        - 403: Restricted Feature (contact help@cortex.io)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "view": {
+                "type": "string",
+                "default": "basic"
+              },
+              "key": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "context": {
+                "type": "string",
+                "description": "\n                Explain why you're invoking this tool now and how its output will be used.\n                Then state how this call supports your *overall objective* and fits into your broader plan across all tool calls (e.g., why this tool vs. others, and what step it unblocks).\n                Never share any personal details or sensitive information.\n                "
+              }
+            },
+            "required": [
+              "context"
+            ]
+          },
+          "_meta": {
+            "_fastmcp": {
+              "tags": [
+                "Eng Intel: 1-Registry",
+                "cortex-api",
+                "eng intel: 1-registry",
+                "openapi"
+              ]
+            }
+          }
+        },
+        {
+          "name": "listInitiatives",
+          "description": "List all initiatives in the organization with optional filters for draft and expired initiatives. View active improvement programs, strategic projects, and their current status to understand organizational priorities and track progress",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "includeDrafts": {
+                "type": "boolean",
+                "default": false,
+                "description": "Whether or not to include draft Initiatives in the response"
+              },
+              "includeExpired": {
+                "type": "boolean",
+                "default": false,
+                "description": "Whether or not to include expired Initiatives in the response"
+              },
+              "pageSize": {
+                "type": "integer",
+                "format": "int32",
+                "default": 250,
+                "description": "Number of results to return per page, between 1 and 1000. Default 250."
+              },
+              "page": {
+                "type": "integer",
+                "format": "int32",
+                "default": 0,
+                "description": "Page number to return, 0-indexed. Default 0."
+              },
+              "context": {
+                "type": "string",
+                "description": "\n                Explain why you're invoking this tool now and how its output will be used.\n                Then state how this call supports your *overall objective* and fits into your broader plan across all tool calls (e.g., why this tool vs. others, and what step it unblocks).\n                Never share any personal details or sensitive information.\n                "
+              }
+            },
+            "required": [
+              "pageSize",
+              "page",
+              "context"
+            ]
+          },
+          "_meta": {
+            "_fastmcp": {
+              "tags": [
+                "Initiatives",
+                "cortex-api",
+                "initiatives",
+                "openapi"
+              ]
+            }
+          }
+        },
+        {
+          "name": "getInitiative",
+          "description": "Retrieve detailed information about a specific initiative including its goals, timeline, affected entities, scorecard targets, and current progress. Essential for understanding initiative scope and tracking achievement of objectives",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "cid": {
+                "type": "string"
+              },
+              "context": {
+                "type": "string",
+                "description": "\n                Explain why you're invoking this tool now and how its output will be used.\n                Then state how this call supports your *overall objective* and fits into your broader plan across all tool calls (e.g., why this tool vs. others, and what step it unblocks).\n                Never share any personal details or sensitive information.\n                "
+              }
+            },
+            "required": [
+              "cid",
+              "context"
+            ]
+          },
+          "_meta": {
+            "_fastmcp": {
+              "tags": [
+                "Initiatives",
+                "cortex-api",
+                "initiatives",
+                "openapi"
+              ]
+            }
+          }
+        },
+        {
+          "name": "getMyWorkspace",
+          "description": "TOOL for retrieving current user's owned resources and work items across the Cortex workspace.\n\n        FLEXIBLE REQUEST STRUCTURE:\n        The request accepts an object with optional fields for each resource type:\n        - myEntitiesRequest: Fetch entities (services, resources, domains) owned by the user\n        - myTeamsRequest: Fetch teams the user belongs to\n        - myScorecardsRequest: Fetch scorecards associated with user's entities\n        - myOpenPRsRequest: Fetch user's open pull requests across all Git repositories\n        - myRequestedReviewsRequest: Fetch PRs where user is requested as a reviewer\n        - myWorkItemsRequest: Fetch work items (Jira, Linear, Azure DevOps) assigned to the user\n\n        Set one or more fields to fetch multiple resource types in a single call.\n        All results are combined into a single response array with mixed item types.\n\n        RESPONSE STRUCTURE:\n        Returns a single array of items where each item has an 'itemType' field indicating its type:\n        - 'entity': Catalog entities (services, resources, domains)\n        - 'team': Teams the user belongs to\n        - 'scorecard': Scorecards for user's entities\n        - 'pull_request': Open pull requests authored by the user\n        - 'review_request': Pull requests where user is requested as reviewer\n        - 'work_item': Work items (issues/tickets) assigned to the user\n\n        EXAMPLES:\n        1. Fetch only services:\n           {\"myEntitiesRequest\": {\"entityTypes\": [\"service\"]}}\n\n        2. Fetch teams and their entities:\n           {\"myTeamsRequest\": {\"includeMembers\": true}, \"myEntitiesRequest\": {}}\n\n        3. Get all work (PRs, reviews, Jira tickets):\n           {\"myOpenPRsRequest\": {}, \"myRequestedReviewsRequest\": {}, \"myWorkItemsRequest\": {}}\n\n        4. Search entities with filters:\n           {\"myEntitiesRequest\": {\"query\": \"payment\", \"ownershipSource\": \"DIRECT\", \"entityTypes\": [\"service\", \"resource\"]}}\n        ",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "myEntitiesRequest": {
+                "required": [
+                  "includeArchived",
+                  "ownershipSource",
+                  "page",
+                  "pageSize"
+                ],
+                "type": "object",
+                "properties": {
+                  "entityTypes": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "description": "Filter by entity types",
+                      "example": "[\"service\",\"resource\",\"domain\"]"
+                    },
+                    "description": "Filter by entity types",
+                    "example": [
+                      "service",
+                      "resource",
+                      "domain"
+                    ]
+                  },
+                  "includeArchived": {
+                    "type": "boolean",
+                    "description": "Include archived entities"
+                  },
+                  "ownershipSource": {
+                    "enum": [
+                      "DIRECT",
+                      "TEAM_HIERARCHY"
+                    ],
+                    "type": "string",
+                    "description": "Source of ownership (DIRECT, INHERITED, ALL)"
+                  },
+                  "page": {
+                    "type": "integer",
+                    "description": "Page number to return, 0-indexed. Default 0.",
+                    "format": "int32",
+                    "example": 0
+                  },
+                  "pageSize": {
+                    "type": "integer",
+                    "description": "Number of results to return per page, between 1 and 1000. Default 250.",
+                    "format": "int32",
+                    "example": 250
+                  },
+                  "query": {
+                    "type": "string",
+                    "description": "Optional search query to filter entities by name or other properties"
+                  }
+                },
+                "description": "Request for all entities (services, resources, domains) owned by the user"
+              },
+              "myOpenPRsRequest": {
+                "required": [
+                  "placeholder"
+                ],
+                "type": "object",
+                "properties": {
+                  "placeholder": {
+                    "type": "boolean",
+                    "description": "No additional parameters required - returns all open PRs for the user"
+                  }
+                },
+                "description": "Request for user's open pull requests across all Git repositories"
+              },
+              "myRequestedReviewsRequest": {
+                "required": [
+                  "placeholder"
+                ],
+                "type": "object",
+                "properties": {
+                  "placeholder": {
+                    "type": "boolean",
+                    "description": "No additional parameters required - returns all review requests for the user"
+                  }
+                },
+                "description": "Request for pull requests where the user is requested as a reviewer"
+              },
+              "myScorecardsRequest": {
+                "required": [
+                  "ownershipSource"
+                ],
+                "type": "object",
+                "properties": {
+                  "ownershipSource": {
+                    "enum": [
+                      "DIRECT",
+                      "TEAM_HIERARCHY"
+                    ],
+                    "type": "string",
+                    "description": "Source of ownership (DIRECT, INHERITED, ALL)"
+                  }
+                },
+                "description": "Request for scorecards associated with the user's entities"
+              },
+              "myTeamsRequest": {
+                "required": [
+                  "includeMembers",
+                  "page",
+                  "pageSize"
+                ],
+                "type": "object",
+                "properties": {
+                  "includeMembers": {
+                    "type": "boolean",
+                    "description": "Include team member details (name, email, description)"
+                  },
+                  "page": {
+                    "type": "integer",
+                    "description": "Page number to return, 0-indexed. Default 0.",
+                    "format": "int32",
+                    "example": 0
+                  },
+                  "pageSize": {
+                    "type": "integer",
+                    "description": "Number of results to return per page, between 1 and 1000. Default 250.",
+                    "format": "int32",
+                    "example": 250
+                  }
+                },
+                "description": "Request for teams the user belongs to"
+              },
+              "myWorkItemsRequest": {
+                "required": [
+                  "page",
+                  "pageSize"
+                ],
+                "type": "object",
+                "properties": {
+                  "page": {
+                    "type": "integer",
+                    "description": "Page number for pagination (0-indexed)",
+                    "format": "int32",
+                    "example": 0
+                  },
+                  "pageSize": {
+                    "type": "integer",
+                    "description": "Maximum number of work items to return",
+                    "format": "int32",
+                    "example": 50
+                  }
+                },
+                "description": "Request for work items (Jira, Linear, Azure DevOps issues) assigned to the user"
+              },
+              "context": {
+                "type": "string",
+                "description": "\n                Explain why you're invoking this tool now and how its output will be used.\n                Then state how this call supports your *overall objective* and fits into your broader plan across all tool calls (e.g., why this tool vs. others, and what step it unblocks).\n                Never share any personal details or sensitive information.\n                "
+              }
+            },
+            "required": [
+              "context"
+            ]
+          },
+          "_meta": {
+            "_fastmcp": {
+              "tags": [
+                "My Workspace",
+                "cortex-api",
+                "my workspace",
+                "openapi"
+              ]
+            }
+          }
+        },
+        {
+          "name": "listRelationshipTypes",
+          "description": "List all available relationship types with pagination. View relationship type configurations to understand what kinds of relationships can be created between entities like services, resources, domains, and teams",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "pageSize": {
+                "type": "integer",
+                "format": "int32",
+                "default": 250,
+                "description": "Number of results to return per page, between 1 and 1000. Default 250."
+              },
+              "page": {
+                "type": "integer",
+                "format": "int32",
+                "default": 0,
+                "description": "Page number to return, 0-indexed. Default 0."
+              },
+              "context": {
+                "type": "string",
+                "description": "\n                Explain why you're invoking this tool now and how its output will be used.\n                Then state how this call supports your *overall objective* and fits into your broader plan across all tool calls (e.g., why this tool vs. others, and what step it unblocks).\n                Never share any personal details or sensitive information.\n                "
+              }
+            },
+            "required": [
+              "pageSize",
+              "page",
+              "context"
+            ]
+          },
+          "_meta": {
+            "_fastmcp": {
+              "tags": [
+                "Entity Relationship Types [Beta]",
+                "cortex-api",
+                "entity relationship types [beta]",
+                "openapi"
+              ]
+            }
+          }
+        },
+        {
+          "name": "getRelationshipTypeDetails",
+          "description": "Get complete details of a specific relationship type including its configuration, rules, source/destination filters, and inheritance settings. Essential for understanding how entities can be connected and what validation rules apply",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "relationshipTypeTag": {
+                "type": "string"
+              },
+              "context": {
+                "type": "string",
+                "description": "\n                Explain why you're invoking this tool now and how its output will be used.\n                Then state how this call supports your *overall objective* and fits into your broader plan across all tool calls (e.g., why this tool vs. others, and what step it unblocks).\n                Never share any personal details or sensitive information.\n                "
+              }
+            },
+            "required": [
+              "relationshipTypeTag",
+              "context"
+            ]
+          },
+          "_meta": {
+            "_fastmcp": {
+              "tags": [
+                "Entity Relationship Types [Beta]",
+                "cortex-api",
+                "entity relationship types [beta]",
+                "openapi"
+              ]
+            }
+          }
+        },
+        {
+          "name": "listEntityRelationships",
+          "description": "List all entity relationships/full graph for a specific relationship type across the entire organization. Returns paginated results showing all source-destination pairs, useful for understanding the complete relationship graph and finding all connections of a particular type",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "relationshipTypeTag": {
+                "type": "string"
+              },
+              "pageSize": {
+                "type": "integer",
+                "format": "int32",
+                "default": 250,
+                "description": "Number of results to return per page, between 1 and 1000. Default 250."
+              },
+              "page": {
+                "type": "integer",
+                "format": "int32",
+                "default": 0,
+                "description": "Page number to return, 0-indexed. Default 0."
+              },
+              "context": {
+                "type": "string",
+                "description": "\n                Explain why you're invoking this tool now and how its output will be used.\n                Then state how this call supports your *overall objective* and fits into your broader plan across all tool calls (e.g., why this tool vs. others, and what step it unblocks).\n                Never share any personal details or sensitive information.\n                "
+              }
+            },
+            "required": [
+              "relationshipTypeTag",
+              "pageSize",
+              "page",
+              "context"
+            ]
+          },
+          "_meta": {
+            "_fastmcp": {
+              "tags": [
+                "Entity Relationships [Beta]",
+                "cortex-api",
+                "entity relationships [beta]",
+                "openapi"
+              ]
+            }
+          }
+        },
+        {
+          "name": "listScorecards",
+          "description": "List all scorecards in the organization with optional filtering. View scorecard configurations to understand quality standards, compliance requirements, and maturity models. Supports filtering by groups, entities, and teams to find relevant scorecards",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "showDrafts": {
+                "type": "boolean"
+              },
+              "groups": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "Filter based on groups, which correspond to the `x-cortex-groups` field in the Catalog Descriptor. Accepts a comma-delimited list of groups"
+              },
+              "entities": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "description": "Entity identifier - can be a tag or CID"
+                },
+                "description": "Filter based on entity (either tags or CIDs). Accepts a comma-delimited list of entity tag or CIDs, please use only one type of identifier"
+              },
+              "teams": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "description": "Entity identifier - can be a tag or CID"
+                },
+                "description": "Filter based on team (either tags or CIDs). Accepts a comma-delimited list of team tag or CIDs, please use only one type of identifier"
+              },
+              "page": {
+                "type": "integer",
+                "format": "int32",
+                "default": 0,
+                "description": "Page number to return, 0-indexed. Default 0."
+              },
+              "pageSize": {
+                "type": "integer",
+                "format": "int32",
+                "default": 250,
+                "description": "Number of results to return per page, between 1 and 1000. Default 250."
+              },
+              "context": {
+                "type": "string",
+                "description": "\n                Explain why you're invoking this tool now and how its output will be used.\n                Then state how this call supports your *overall objective* and fits into your broader plan across all tool calls (e.g., why this tool vs. others, and what step it unblocks).\n                Never share any personal details or sensitive information.\n                "
+              }
+            },
+            "required": [
+              "page",
+              "pageSize",
+              "context"
+            ]
+          },
+          "_meta": {
+            "_fastmcp": {
+              "tags": [
+                "Scorecards",
+                "cortex-api",
+                "openapi",
+                "scorecards"
+              ]
+            }
+          }
+        },
+        {
+          "name": "getScorecard",
+          "description": "Get complete details of a scorecard including its configuration, rules, levels, weights, exemption settings, and evaluation criteria. Essential for understanding how services are evaluated and what standards they must meet",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "tag": {
+                "type": "string",
+                "description": "Unique tag for the Scorecard"
+              },
+              "context": {
+                "type": "string",
+                "description": "\n                Explain why you're invoking this tool now and how its output will be used.\n                Then state how this call supports your *overall objective* and fits into your broader plan across all tool calls (e.g., why this tool vs. others, and what step it unblocks).\n                Never share any personal details or sensitive information.\n                "
+              }
+            },
+            "required": [
+              "tag",
+              "context"
+            ]
+          },
+          "_meta": {
+            "_fastmcp": {
+              "tags": [
+                "Scorecards",
+                "cortex-api",
+                "openapi",
+                "scorecards"
+              ]
+            }
+          }
+        },
+        {
+          "name": "getScorecardNextStepsForEntity",
+          "description": "Get actionable next steps for an entity to improve its scorecard performance. Shows which rules need to be satisfied to reach the next maturity level, helping teams prioritize improvements and track progress toward compliance goals",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "tag": {
+                "type": "string",
+                "description": "Unique tag for the Scorecard"
+              },
+              "entityTag": {
+                "type": "string",
+                "description": "The entity tag (`x-cortex-tag`) that identifies the entity."
+              },
+              "context": {
+                "type": "string",
+                "description": "\n                Explain why you're invoking this tool now and how its output will be used.\n                Then state how this call supports your *overall objective* and fits into your broader plan across all tool calls (e.g., why this tool vs. others, and what step it unblocks).\n                Never share any personal details or sensitive information.\n                "
+              }
+            },
+            "required": [
+              "tag",
+              "entityTag",
+              "context"
+            ]
+          },
+          "_meta": {
+            "_fastmcp": {
+              "tags": [
+                "Scorecards",
+                "cortex-api",
+                "openapi",
+                "scorecards"
+              ]
+            }
+          }
+        },
+        {
+          "name": "listScorecardScores",
+          "description": "Retrieve scores for all entities evaluated by a specific scorecard. Returns paginated results showing how each service, resource, or domain performs against the scorecard's rules, including individual rule scores and overall scorecard scores",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "entityTag": {
+                "type": "string",
+                "description": "Entity tag (x-cortex-tag)"
+              },
+              "tag": {
+                "type": "string",
+                "description": "Unique tag for the Scorecard"
+              },
+              "pageSize": {
+                "type": "integer",
+                "format": "int32",
+                "default": 250,
+                "description": "Number of results to return per page, between 1 and 1000. Default 250."
+              },
+              "page": {
+                "type": "integer",
+                "format": "int32",
+                "default": 0,
+                "description": "Page number to return, 0-indexed. Default 0."
+              },
+              "context": {
+                "type": "string",
+                "description": "\n                Explain why you're invoking this tool now and how its output will be used.\n                Then state how this call supports your *overall objective* and fits into your broader plan across all tool calls (e.g., why this tool vs. others, and what step it unblocks).\n                Never share any personal details or sensitive information.\n                "
+              }
+            },
+            "required": [
+              "tag",
+              "pageSize",
+              "page",
+              "context"
+            ]
+          },
+          "_meta": {
+            "_fastmcp": {
+              "tags": [
+                "Scorecards",
+                "cortex-api",
+                "openapi",
+                "scorecards"
+              ]
+            }
+          }
+        },
+        {
+          "name": "getTeamDetails",
+          "description": "Retrieve detailed information about a specific team by its tag or ID. Returns complete team data including members, slack channels, metadata, and whether it's backed by an identity provider group",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "tagOrId": {
+                "type": "string",
+                "description": "Entity identifier - can be a tag or CID"
+              },
+              "context": {
+                "type": "string",
+                "description": "\n                Explain why you're invoking this tool now and how its output will be used.\n                Then state how this call supports your *overall objective* and fits into your broader plan across all tool calls (e.g., why this tool vs. others, and what step it unblocks).\n                Never share any personal details or sensitive information.\n                "
+              }
+            },
+            "required": [
+              "tagOrId",
+              "context"
+            ]
+          },
+          "_meta": {
+            "_fastmcp": {
+              "tags": [
+                "Teams",
+                "cortex-api",
+                "openapi",
+                "teams"
+              ]
+            }
+          }
+        },
+        {
+          "name": "query_docs",
+          "description": "Query the Cortex knowledge base for answers.\n\nArgs:\n    query: The question to ask Cortex docs\n    \nReturns:\n    Response from Cortex including answer and metadata",
+          "inputSchema": {
+            "properties": {
+              "query": {
+                "title": "Query",
+                "type": "string"
+              },
+              "context": {
+                "type": "string",
+                "description": "\n                Explain why you're invoking this tool now and how its output will be used.\n                Then state how this call supports your *overall objective* and fits into your broader plan across all tool calls (e.g., why this tool vs. others, and what step it unblocks).\n                Never share any personal details or sensitive information.\n                "
+              }
+            },
+            "required": [
+              "query",
+              "context"
+            ],
+            "type": "object"
+          },
+          "outputSchema": {
+            "additionalProperties": true,
+            "type": "object"
+          },
+          "_meta": {
+            "_fastmcp": {
+              "tags": []
+            }
+          }
+        },
+        {
+          "name": "get_more_tools",
+          "description": "Check for additional tools whenever your task might benefit from specialized capabilities - even if existing tools could work as a fallback.",
+          "inputSchema": {
+            "properties": {
+              "context": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": "",
+                "title": "Context"
+              }
+            },
+            "type": "object"
+          },
+          "outputSchema": {
+            "properties": {
+              "result": {
+                "title": "Result",
+                "type": "string"
+              }
+            },
+            "required": [
+              "result"
+            ],
+            "title": "_WrappedResult",
+            "type": "object",
+            "x-fastmcp-wrap-result": true
+          },
+          "_meta": {
+            "_fastmcp": {
+              "tags": []
+            }
+          }
+        }
+      ],
+      "tool_count": 30,
+      "tool_names": [
+        "listAllEntities",
+        "listEntityDescriptors",
+        "listDependenciesForEntity",
+        "getDependency",
+        "getEntityDetails",
+        "getCustomDataForEntity",
+        "getCustomDataForEntityByKey",
+        "listCustomEventsForEntity",
+        "getCustomEventForEntityByUuid",
+        "getDeploysForEntity",
+        "getCurrentOncallForEntity",
+        "getEntityDescriptor",
+        "listEntityDestinationsForRelationshipType",
+        "listEntitySourcesForRelationshipType",
+        "getCustomMetricData",
+        "queryPointInTimeMetrics",
+        "listMetricDefinitions",
+        "listInitiatives",
+        "getInitiative",
+        "getMyWorkspace",
+        "listRelationshipTypes",
+        "getRelationshipTypeDetails",
+        "listEntityRelationships",
+        "listScorecards",
+        "getScorecard",
+        "getScorecardNextStepsForEntity",
+        "listScorecardScores",
+        "getTeamDetails",
+        "query_docs",
+        "get_more_tools"
+      ]
+    },
+    "server_info_crawled": {
+      "id": 29,
+      "name": "Cortex",
+      "author": "",
+      "overview": "Cortex - Data Analysis & Processing server with 30 tools. The MCP Server \"Cortex\" provides 30 tools focused on data analysis & processing tasks. Core capabili",
+      "repository_url": "",
+      "homepage": "https://mcp.cortex.io/mcp",
+      "remote_or_local": "Remote",
+      "license": "",
+      "usage_count": "8,550",
+      "success_rate": "100%",
+      "tags": [
+        "data-analysis-processing",
+        "web-search-research",
+        "development-tools"
+      ],
+      "categories": [
+        "data analysis & processing",
+        "web search & research",
+        "development tools"
+      ],
+      "tools_count": 30,
+      "tools": [
+        {
+          "name": "listAllEntities",
+          "description": "List and filter catalog entities with support for pagination, search, and various filters including groups, types, owners, and git repositories. If the client is trying to fetch data for teams, use 'type': 'team' in these APIs.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "groups": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "default": [],
+                "description": "Filter based on groups, which correspond to the `x-cortex-groups` field in the Catalog Descriptor. Accepts a comma-delimited list of groups"
+              },
+              "owners": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "default": [],
+                "description": "Filter based on owner group names, which correspond to the `x-cortex-owners` field in the Catalog Descriptor. Accepts a comma-delimited list of owner group names"
+              },
+              "hierarchyDepth": {
+                "type": "string",
+                "default": "full",
+                "description": "Depth of the parent / children hierarchy nodes. Can be 'full' or a valid integer"
+              },
+              "gitRepositories": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "default": [],
+                "description": "Supports only GitHub repositories in the `org/repo` format"
+              },
+              "includeHierarchyFields": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "List of sub fields to include for hierarchies. Only supports 'groups'"
+              },
+              "types": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "default": [],
+                "description": "Filter the response to specific types of entities. By default, this includes services, resources, and domains. Corresponds to the `x-cortex-type` field in the entity descriptor."
+              },
+              "query": {
+                "type": "string",
+                "default": "",
+                "description": "Filter based on a [search query](https://docs.cortex.io/settings/search). This will search across entity properties. If provided, results will be sorted by relevance."
+              },
+              "includeArchived": {
+                "type": "boolean",
+                "default": false,
+                "description": "Whether to include archived entities in the response"
+              },
+              "includeMetadata": {
+                "type": "boolean",
+                "default": false,
+                "description": "Whether to include custom data for each entity in the response"
+              },
+              "includeLinks": {
+                "type": "boolean",
+                "default": false,
+                "description": "Whether to include links for each entity in the response"
+              },
+              "includeSlackChannels": {
+                "type": "boolean",
+                "description": "Whether to include Slack channels for each entity in the response"
+              },
+              "includeOwners": {
+                "type": "boolean",
+                "default": false,
+                "description": "Whether to include ownership information for each entity in the response"
+              },
+              "includeNestedFields": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "List of sub fields to include for different types"
+              },
+              "pageSize": {
+                "type": "integer",
+                "format": "int32",
+                "default": 250,
+                "description": "Number of results to return per page, between 1 and 1000. Default 250."
+              },
+              "page": {
+                "type": "integer",
+                "format": "int32",
+                "default": 0,
+                "description": "Page number to return, 0-indexed. Default 0."
+              },
+              "context": {
+                "type": "string",
+                "description": "\n                Explain why you're invoking this tool now and how its output will be used.\n                Then state how this call supports your *overall objective* and fits into your broader plan across all tool calls (e.g., why this tool vs. others, and what step it unblocks).\n                Never share any personal details or sensitive information.\n                "
+              }
+            },
+            "required": [
+              "pageSize",
+              "page",
+              "context"
+            ]
+          },
+          "_meta": {
+            "_fastmcp": {
+              "tags": [
+                "Catalog Entities",
+                "catalog entities",
+                "cortex-api",
+                "openapi"
+              ]
+            }
+          }
+        },
+        {
+          "name": "listEntityDescriptors",
+          "description": "Cortex Catalog API - Access and manage your service catalog, teams, domains, and resources",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "yaml": {
+                "type": "boolean",
+                "description": "When true, returns the YAML representation of the descriptors"
+              },
+              "types": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "Filter the response to specific types of entities. By default, this includes services, resources, and domains. Corresponds to the `x-cortex-type` field in the entity descriptor."
+              },
+              "pageSize": {
+                "type": "integer",
+                "format": "int32",
+                "description": "Number of entities to return per page"
+              },
+              "page": {
+                "type": "integer",
+                "format": "int32",
+                "description": "Page number to return, 0 indexed"
+              },
+              "context": {
+                "type": "string",
+                "description": "\n                Explain why you're invoking this tool now and how its output will be used.\n                Then state how this call supports your *overall objective* and fits into your broader plan across all tool calls (e.g., why this tool vs. others, and what step it unblocks).\n                Never share any personal details or sensitive information.\n                "
+              }
+            },
+            "required": [
+              "pageSize",
+              "page",
+              "context"
+            ]
+          },
+          "_meta": {
+            "_fastmcp": {
+              "tags": [
+                "Catalog Entities",
+                "catalog entities",
+                "cortex-api",
+                "openapi"
+              ]
+            }
+          }
+        },
+        {
+          "name": "listDependenciesForEntity",
+          "description": "List all dependencies for an entity including both incoming (who depends on this service) and outgoing (what this service depends on) relationships. Essential for understanding service interactions, planning changes, and assessing blast radius",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "callerTag": {
+                "type": "string"
+              },
+              "includeOutgoing": {
+                "type": "boolean",
+                "default": true
+              },
+              "includeIncoming": {
+                "type": "boolean",
+                "default": false
+              },
+              "pageSize": {
+                "type": "integer",
+                "format": "int32",
+                "default": 250,
+                "description": "Number of results to return per page, between 1 and 1000. Default 250."
+              },
+              "page": {
+                "type": "integer",
+                "format": "int32",
+                "default": 0,
+                "description": "Page number to return, 0-indexed. Default 0."
+              },
+              "context": {
+                "type": "string",
+                "description": "\n                Explain why you're invoking this tool now and how its output will be used.\n                Then state how this call supports your *overall objective* and fits into your broader plan across all tool calls (e.g., why this tool vs. others, and what step it unblocks).\n                Never share any personal details or sensitive information.\n                "
+              }
+            },
+            "required": [
+              "callerTag",
+              "pageSize",
+              "page",
+              "context"
+            ]
+          },
+          "_meta": {
+            "_fastmcp": {
+              "tags": [
+                "Dependencies",
+                "cortex-api",
+                "dependencies",
+                "openapi"
+              ]
+            }
+          }
+        },
+        {
+          "name": "getDependency",
+          "description": "Get specific dependency details between two entities including method, path, and metadata. Useful for understanding the nature of the relationship, API contracts, and communication patterns between services",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "callerTag": {
+                "type": "string"
+              },
+              "calleeTag": {
+                "type": "string"
+              },
+              "method": {
+                "type": "string"
+              },
+              "path": {
+                "type": "string"
+              },
+              "context": {
+                "type": "string",
+                "description": "\n                Explain why you're invoking this tool now and how its output will be used.\n                Then state how this call supports your *overall objective* and fits into your broader plan across all tool calls (e.g., why this tool vs. others, and what step it unblocks).\n                Never share any personal details or sensitive information.\n                "
+              }
+            },
+            "required": [
+              "callerTag",
+              "calleeTag",
+              "context"
+            ]
+          },
+          "_meta": {
+            "_fastmcp": {
+              "tags": [
+                "Dependencies",
+                "cortex-api",
+                "dependencies",
+                "openapi"
+              ]
+            }
+          }
+        },
+        {
+          "name": "getEntityDetails",
+          "description": "Retrieve comprehensive details about a specific entity including its metadata, ownership, hierarchies, and relationships. This is the primary method for getting complete information about services, teams, or domains.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "tagOrId": {
+                "type": "string",
+                "description": "Entity identifier - can be a tag or CID"
+              },
+              "hierarchyDepth": {
+                "type": "string",
+                "default": "full",
+                "description": "Depth of the parent / children hierarchy nodes. Can be 'full' or a valid integer"
+              },
+              "includeHierarchyFields": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "List of sub fields to include for hierarchies. Only supports 'groups'"
+              },
+              "includeOwners": {
+                "type": "boolean",
+                "description": "Include ownership information, default is true"
+              },
+              "context": {
+                "type": "string",
+                "description": "\n                Explain why you're invoking this tool now and how its output will be used.\n                Then state how this call supports your *overall objective* and fits into your broader plan across all tool calls (e.g., why this tool vs. others, and what step it unblocks).\n                Never share any personal details or sensitive information.\n                "
+              }
+            },
+            "required": [
+              "tagOrId",
+              "context"
+            ]
+          },
+          "_meta": {
+            "_fastmcp": {
+              "tags": [
+                "Catalog Entities",
+                "catalog entities",
+                "cortex-api",
+                "openapi"
+              ]
+            }
+          }
+        },
+        {
+          "name": "getCustomDataForEntity",
+          "description": "List all custom data key-value pairs associated with an entity. Retrieve metadata, configuration settings, and custom attributes stored for services, resources, or domains. Supports pagination for entities with large amounts of custom data",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "tagOrId": {
+                "type": "string",
+                "description": "Entity identifier - can be a tag or CID"
+              },
+              "pageSize": {
+                "type": "integer",
+                "format": "int32",
+                "default": 250,
+                "description": "Number of results to return per page, between 1 and 1000. Default 250."
+              },
+              "page": {
+                "type": "integer",
+                "format": "int32",
+                "default": 0,
+                "description": "Page number to return, 0-indexed. Default 0."
+              },
+              "context": {
+                "type": "string",
+                "description": "\n                Explain why you're invoking this tool now and how its output will be used.\n                Then state how this call supports your *overall objective* and fits into your broader plan across all tool calls (e.g., why this tool vs. others, and what step it unblocks).\n                Never share any personal details or sensitive information.\n                "
+              }
+            },
+            "required": [
+              "tagOrId",
+              "pageSize",
+              "page",
+              "context"
+            ]
+          },
+          "_meta": {
+            "_fastmcp": {
+              "tags": [
+                "Custom Data",
+                "cortex-api",
+                "custom data",
+                "openapi"
+              ]
+            }
+          }
+        },
+        {
+          "name": "getCustomDataForEntityByKey",
+          "description": "Retrieve a specific custom data value by key for an entity. Efficiently access individual metadata attributes, configuration values, or custom properties without fetching all custom data",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "tagOrId": {
+                "type": "string",
+                "description": "Entity identifier - can be a tag or CID"
+              },
+              "key": {
+                "type": "string"
+              },
+              "context": {
+                "type": "string",
+                "description": "\n                Explain why you're invoking this tool now and how its output will be used.\n                Then state how this call supports your *overall objective* and fits into your broader plan across all tool calls (e.g., why this tool vs. others, and what step it unblocks).\n                Never share any personal details or sensitive information.\n                "
+              }
+            },
+            "required": [
+              "tagOrId",
+              "key",
+              "context"
+            ]
+          },
+          "_meta": {
+            "_fastmcp": {
+              "tags": [
+                "Custom Data",
+                "cortex-api",
+                "custom data",
+                "openapi"
+              ]
+            }
+          }
+        },
+        {
+          "name": "listCustomEventsForEntity",
+          "description": "List custom events for an entity with optional filtering by type and time range. Supports pagination and filtering by event type, start time, and end time to retrieve historical event data",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "tagOrId": {
+                "type": "string",
+                "description": "Entity identifier - can be a tag or CID"
+              },
+              "type": {
+                "type": "string"
+              },
+              "timestamp": {
+                "type": "string",
+                "format": "date-time",
+                "description": "Use 'startTime' instead"
+              },
+              "startTime": {
+                "type": "string",
+                "format": "date-time",
+                "description": "If provided, events with greater than or equal to timestamp will be returned (a date-time without a time-zone in the ISO-8601 calendar system)"
+              },
+              "endTime": {
+                "type": "string",
+                "format": "date-time",
+                "description": "If provided, events with less than or equal to timestamp will be returned (a date-time without a time-zone in the ISO-8601 calendar system)"
+              },
+              "pageSize": {
+                "type": "integer",
+                "format": "int32",
+                "default": 250,
+                "description": "Number of results to return per page, between 1 and 1000. Default 250."
+              },
+              "page": {
+                "type": "integer",
+                "format": "int32",
+                "default": 0,
+                "description": "Page number to return, 0-indexed. Default 0."
+              },
+              "context": {
+                "type": "string",
+                "description": "\n                Explain why you're invoking this tool now and how its output will be used.\n                Then state how this call supports your *overall objective* and fits into your broader plan across all tool calls (e.g., why this tool vs. others, and what step it unblocks).\n                Never share any personal details or sensitive information.\n                "
+              }
+            },
+            "required": [
+              "tagOrId",
+              "pageSize",
+              "page",
+              "context"
+            ]
+          },
+          "_meta": {
+            "_fastmcp": {
+              "tags": [
+                "Custom Events",
+                "cortex-api",
+                "custom events",
+                "openapi"
+              ]
+            }
+          }
+        },
+        {
+          "name": "getCustomEventForEntityByUuid",
+          "description": "Retrieve a specific custom event by its UUID. Returns event details including title, description, timestamp, type, and any custom data associated with the event",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "tagOrId": {
+                "type": "string",
+                "description": "Entity identifier - can be a tag or CID"
+              },
+              "uuid": {
+                "type": "string",
+                "format": "uuid"
+              },
+              "context": {
+                "type": "string",
+                "description": "\n                Explain why you're invoking this tool now and how its output will be used.\n                Then state how this call supports your *overall objective* and fits into your broader plan across all tool calls (e.g., why this tool vs. others, and what step it unblocks).\n                Never share any personal details or sensitive information.\n                "
+              }
+            },
+            "required": [
+              "tagOrId",
+              "uuid",
+              "context"
+            ]
+          },
+          "_meta": {
+            "_fastmcp": {
+              "tags": [
+                "Custom Events",
+                "cortex-api",
+                "custom events",
+                "openapi"
+              ]
+            }
+          }
+        },
+        {
+          "name": "getDeploysForEntity",
+          "description": "List all deployments for a specific catalog entity. Returns deployment history including timestamps, environments, SHAs, and deployment types in paginated format",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "tagOrId": {
+                "type": "string",
+                "description": "Entity identifier - can be a tag or CID"
+              },
+              "pageSize": {
+                "type": "integer",
+                "format": "int32",
+                "default": 250,
+                "description": "Number of results to return per page, between 1 and 1000. Default 250."
+              },
+              "page": {
+                "type": "integer",
+                "format": "int32",
+                "default": 0,
+                "description": "Page number to return, 0-indexed. Default 0."
+              },
+              "context": {
+                "type": "string",
+                "description": "\n                Explain why you're invoking this tool now and how its output will be used.\n                Then state how this call supports your *overall objective* and fits into your broader plan across all tool calls (e.g., why this tool vs. others, and what step it unblocks).\n                Never share any personal details or sensitive information.\n                "
+              }
+            },
+            "required": [
+              "tagOrId",
+              "pageSize",
+              "page",
+              "context"
+            ]
+          },
+          "_meta": {
+            "_fastmcp": {
+              "tags": [
+                "Deploys",
+                "cortex-api",
+                "deploys",
+                "openapi"
+              ]
+            }
+          }
+        },
+        {
+          "name": "getCurrentOncallForEntity",
+          "description": "Retrieve the current on-call personnel for an entity in real-time. Shows who is actively responsible for incident response, including primary and secondary on-call, contact information, and rotation schedules",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "tagOrId": {
+                "type": "string",
+                "description": "Entity identifier - can be a tag or CID"
+              },
+              "context": {
+                "type": "string",
+                "description": "\n                Explain why you're invoking this tool now and how its output will be used.\n                Then state how this call supports your *overall objective* and fits into your broader plan across all tool calls (e.g., why this tool vs. others, and what step it unblocks).\n                Never share any personal details or sensitive information.\n                "
+              }
+            },
+            "required": [
+              "tagOrId",
+              "context"
+            ]
+          },
+          "_meta": {
+            "_fastmcp": {
+              "tags": [
+                "On-call",
+                "cortex-api",
+                "on-call",
+                "openapi"
+              ]
+            }
+          }
+        },
+        {
+          "name": "getEntityDescriptor",
+          "description": "Cortex Catalog API - Access and manage your service catalog, teams, domains, and resources",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "yaml": {
+                "type": "boolean",
+                "description": "When true, returns the YAML representation of the descriptor"
+              },
+              "tagOrId": {
+                "type": "string",
+                "description": "Entity identifier - can be a tag or CID"
+              },
+              "context": {
+                "type": "string",
+                "description": "\n                Explain why you're invoking this tool now and how its output will be used.\n                Then state how this call supports your *overall objective* and fits into your broader plan across all tool calls (e.g., why this tool vs. others, and what step it unblocks).\n                Never share any personal details or sensitive information.\n                "
+              }
+            },
+            "required": [
+              "tagOrId",
+              "context"
+            ]
+          },
+          "_meta": {
+            "_fastmcp": {
+              "tags": [
+                "Catalog Entities",
+                "catalog entities",
+                "cortex-api",
+                "openapi"
+              ]
+            }
+          }
+        },
+        {
+          "name": "listEntityDestinationsForRelationshipType",
+          "description": "List all destinations for a certain relationship type & entity. Use the listRelationshipTypes tool to find the relevant relationshipTypeTag.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "tagOrId": {
+                "type": "string",
+                "description": "Entity identifier - can be a tag or CID"
+              },
+              "relationshipTypeTag": {
+                "type": "string"
+              },
+              "depth": {
+                "type": "string",
+                "description": "Maximum depth to traverse in the relationship hierarchy. Defaults to 1 (i.e., direct relationships only)."
+              },
+              "includeArchived": {
+                "type": "boolean",
+                "default": false,
+                "description": "If true will include relationships that traverse archived entities"
+              },
+              "context": {
+                "type": "string",
+                "description": "\n                Explain why you're invoking this tool now and how its output will be used.\n                Then state how this call supports your *overall objective* and fits into your broader plan across all tool calls (e.g., why this tool vs. others, and what step it unblocks).\n                Never share any personal details or sensitive information.\n                "
+              }
+            },
+            "required": [
+              "tagOrId",
+              "relationshipTypeTag",
+              "context"
+            ]
+          },
+          "_meta": {
+            "_fastmcp": {
+              "tags": [
+                "Entity Relationships [Beta]",
+                "cortex-api",
+                "entity relationships [beta]",
+                "openapi"
+              ]
+            }
+          }
+        },
+        {
+          "name": "listEntitySourcesForRelationshipType",
+          "description": "List all sources for a certain relationship type & entity. Use the listRelationshipTypes tool to find the relevant relationshipTypeTag.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "tagOrId": {
+                "type": "string",
+                "description": "Entity identifier - can be a tag or CID"
+              },
+              "relationshipTypeTag": {
+                "type": "string"
+              },
+              "depth": {
+                "type": "string",
+                "description": "Maximum depth to traverse in the relationship hierarchy. Defaults to 1 (i.e., direct relationships only)."
+              },
+              "includeArchived": {
+                "type": "boolean",
+                "default": false,
+                "description": "If true will include relationships that traverse archived entities"
+              },
+              "context": {
+                "type": "string",
+                "description": "\n                Explain why you're invoking this tool now and how its output will be used.\n                Then state how this call supports your *overall objective* and fits into your broader plan across all tool calls (e.g., why this tool vs. others, and what step it unblocks).\n                Never share any personal details or sensitive information.\n                "
+              }
+            },
+            "required": [
+              "tagOrId",
+              "relationshipTypeTag",
+              "context"
+            ]
+          },
+          "_meta": {
+            "_fastmcp": {
+              "tags": [
+                "Entity Relationships [Beta]",
+                "cortex-api",
+                "entity relationships [beta]",
+                "openapi"
+              ]
+            }
+          }
+        },
+        {
+          "name": "getCustomMetricData",
+          "description": "Retrieve custom metric data points for an entity. Returns paginated time-series data for a specific custom metric, with optional filtering by date range to analyze trends and patterns",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "customMetricKey": {
+                "type": "string",
+                "description": "Key for the custom metric filter"
+              },
+              "tagOrId": {
+                "type": "string",
+                "description": "Entity identifier - can be a tag or CID"
+              },
+              "startDate": {
+                "type": "string",
+                "format": "date-time",
+                "description": "Start date for the filter (inclusive). Default: 6 months"
+              },
+              "endDate": {
+                "type": "string",
+                "format": "date-time",
+                "description": "End date for the filter (inclusive)"
+              },
+              "pageSize": {
+                "type": "integer",
+                "format": "int32",
+                "default": 250,
+                "description": "Number of results to return per page, between 1 and 1000. Default 250."
+              },
+              "page": {
+                "type": "integer",
+                "format": "int32",
+                "default": 0,
+                "description": "Page number to return, 0-indexed. Default 0."
+              },
+              "context": {
+                "type": "string",
+                "description": "\n                Explain why you're invoking this tool now and how its output will be used.\n                Then state how this call supports your *overall objective* and fits into your broader plan across all tool calls (e.g., why this tool vs. others, and what step it unblocks).\n                Never share any personal details or sensitive information.\n                "
+              }
+            },
+            "required": [
+              "customMetricKey",
+              "tagOrId",
+              "pageSize",
+              "page",
+              "context"
+            ]
+          },
+          "_meta": {
+            "_fastmcp": {
+              "tags": [
+                "Custom Metrics",
+                "cortex-api",
+                "custom metrics",
+                "openapi"
+              ]
+            }
+          }
+        },
+        {
+          "name": "queryPointInTimeMetrics",
+          "description": "Execute point-in-time queries for one or more engineering metrics.\n\n        Returns current metric values for specified time periods, with support for batch queries\n        and optional period-over-period comparisons. Time range (startTime/endTime) cannot exceed 6 months (180 days).\n\n        PREREQUISITES - Follow this workflow:\n        1. Discover all available metrics ONCE: Call listMetricDefinitions (view='basic') - cache this response\n        2. Get metric query metadata ONCE per metric: Call listMetricDefinitions (view='full', key=METRIC_KEY)\n           - supportedAggregations: Valid aggregation methods\n           - orderByAttribute: Attribute path for sorting by metric values\n           - groupByOptions[].key: Valid groupBy keys (use exact values, do NOT guess)\n           - filterOptions[].key: Valid filter keys (use exact values, do NOT guess)\n           Cache the full view response for each metric. Reuse the metadata from cached responses for subsequent queries on the same metric.\n        3. Construct query: Use the query metadata from the full view responses in step 2 to build valid point-in-time requests\n\n        IMPORTANT: Cache only results from listMetricDefinitions. Do NOT cache point-in-time query results - always execute fresh queries for current data.\n        Only refresh cached listMetricDefinitions responses if no longer in your context window or explicitly requested.\n        Do NOT guess attribute names - always use exact values from listMetricDefinitions responses.\n\n        Response includes:\n        - Lightweight metadata: Column definitions optimized for programmatic use\n        - Row data: Actual metric values and dimensional data\n        - No heavy schemas: Source definitions excluded (get from listMetricDefinitions instead)\n\n        Error responses:\n        - 400: Invalid metric names, date range, validation errors, or unsupported metric combinations\n        - 403: Feature not enabled (contact help@cortex.io)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "comparison": {
+                "oneOf": [
+                  {
+                    "required": [
+                      "alias",
+                      "name",
+                      "ordinal",
+                      "windowSize"
+                    ],
+                    "type": "object",
+                    "allOf": [
+                      {
+                        "required": [
+                          "alias",
+                          "name",
+                          "ordinal",
+                          "type"
+                        ],
+                        "type": "object",
+                        "properties": {
+                          "alias": {
+                            "type": "string"
+                          },
+                          "category": {
+                            "type": "string"
+                          },
+                          "description": {
+                            "type": "string"
+                          },
+                          "name": {
+                            "type": "string"
+                          },
+                          "ordinal": {
+                            "type": "integer",
+                            "format": "int32"
+                          },
+                          "type": {
+                            "type": "string"
+                          }
+                        },
+                        "description": "List of column definitions describing each field in the result rows",
+                        "discriminator": {
+                          "propertyName": "type"
+                        }
+                      },
+                      {
+                        "type": "object",
+                        "properties": {
+                          "ordinal": {
+                            "type": "integer",
+                            "description": "Zero-based column position in the result data rows - use this to map column metadata to actual row data values",
+                            "format": "int32"
+                          },
+                          "windowSize": {
+                            "type": "object",
+                            "properties": {
+                              "nano": {
+                                "type": "integer",
+                                "format": "int32"
+                              },
+                              "negative": {
+                                "type": "boolean"
+                              },
+                              "positive": {
+                                "type": "boolean"
+                              },
+                              "seconds": {
+                                "type": "integer",
+                                "format": "int64"
+                              },
+                              "units": {
+                                "type": "array",
+                                "items": {
+                                  "type": "object",
+                                  "properties": {
+                                    "dateBased": {
+                                      "type": "boolean"
+                                    },
+                                    "duration": {
+                                      "type": "object",
+                                      "properties": {
+                                        "nano": {
+                                          "type": "integer",
+                                          "format": "int32"
+                                        },
+                                        "negative": {
+                                          "type": "boolean"
+                                        },
+                                        "positive": {
+                                          "type": "boolean"
+                                        },
+                                        "seconds": {
+                                          "type": "integer",
+                                          "format": "int64"
+                                        },
+                                        "zero": {
+                                          "type": "boolean"
+                                        }
+                                      }
+                                    },
+                                    "durationEstimated": {
+                                      "type": "boolean"
+                                    },
+                                    "timeBased": {
+                                      "type": "boolean"
+                                    }
+                                  }
+                                }
+                              },
+                              "zero": {
+                                "type": "boolean"
+                              }
+                            },
+                            "description": "Duration of the time window represented by this column"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              "endTime": {
+                "type": "string",
+                "description": "End time for the query period",
+                "format": "date-time"
+              },
+              "filters": {
+                "type": "array",
+                "items": {
+                  "required": [
+                    "attribute",
+                    "operator",
+                    "predicate"
+                  ],
+                  "type": "object",
+                  "properties": {
+                    "attribute": {
+                      "type": "string"
+                    },
+                    "operator": {
+                      "enum": [
+                        "ANY",
+                        "BETWEEN",
+                        "CONTAINS",
+                        "EQUAL",
+                        "GREATER_THAN",
+                        "GREATER_THAN_OR_EQUAL",
+                        "IN",
+                        "IS_NOT_NULL",
+                        "IS_NULL",
+                        "LESS_THAN",
+                        "LESS_THAN_OR_EQUAL",
+                        "LIKE",
+                        "NOT_EQUAL",
+                        "NOT_IN",
+                        "NOT_LIKE"
+                      ],
+                      "type": "string"
+                    },
+                    "predicate": {
+                      "type": "object"
+                    }
+                  },
+                  "description": "Filters to apply to the data"
+                },
+                "description": "Filters to apply to the data"
+              },
+              "groupBy": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "description": "Fields to group results by"
+                },
+                "description": "Fields to group results by"
+              },
+              "limit": {
+                "type": "integer",
+                "description": "Maximum number of results to return",
+                "format": "int32"
+              },
+              "metrics": {
+                "type": "array",
+                "items": {
+                  "required": [
+                    "aggregation",
+                    "metric"
+                  ],
+                  "type": "object",
+                  "properties": {
+                    "aggregation": {
+                      "enum": [
+                        "SUM",
+                        "AVG",
+                        "COUNT",
+                        "RATIO",
+                        "MIN",
+                        "MAX",
+                        "P50",
+                        "P95",
+                        "RANKING"
+                      ],
+                      "type": "string"
+                    },
+                    "metric": {
+                      "type": "string"
+                    }
+                  },
+                  "description": "Optional nested metrics for advanced queries"
+                },
+                "description": "List of metrics to query with their aggregation functions"
+              },
+              "nestedGroupBy": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "description": "Fields to group nested results by"
+                },
+                "description": "Fields to group nested results by"
+              },
+              "nestedMetrics": {
+                "type": "array",
+                "items": {
+                  "required": [
+                    "aggregation",
+                    "metric"
+                  ],
+                  "type": "object",
+                  "properties": {
+                    "aggregation": {
+                      "enum": [
+                        "SUM",
+                        "AVG",
+                        "COUNT",
+                        "RATIO",
+                        "MIN",
+                        "MAX",
+                        "P50",
+                        "P95",
+                        "RANKING"
+                      ],
+                      "type": "string"
+                    },
+                    "metric": {
+                      "type": "string"
+                    }
+                  },
+                  "description": "Optional nested metrics for advanced queries"
+                },
+                "description": "Optional nested metrics for advanced queries"
+              },
+              "nestedTimeAttribute": {
+                "type": "string",
+                "description": "Time attribute for nested queries"
+              },
+              "nextPage": {
+                "type": "string",
+                "description": "Pagination token for next page of results"
+              },
+              "orderBy": {
+                "type": "array",
+                "items": {
+                  "required": [
+                    "attribute",
+                    "direction"
+                  ],
+                  "type": "object",
+                  "properties": {
+                    "attribute": {
+                      "type": "string"
+                    },
+                    "direction": {
+                      "enum": [
+                        "ASC",
+                        "DESC"
+                      ],
+                      "type": "string"
+                    }
+                  },
+                  "description": "Sort order for results"
+                },
+                "description": "Sort order for results"
+              },
+              "startTime": {
+                "type": "string",
+                "description": "Start time for the query period",
+                "format": "date-time"
+              },
+              "timeAttribute": {
+                "type": "string",
+                "description": "Time attribute to use for queries"
+              },
+              "context": {
+                "type": "string",
+                "description": "\n                Explain why you're invoking this tool now and how its output will be used.\n                Then state how this call supports your *overall objective* and fits into your broader plan across all tool calls (e.g., why this tool vs. others, and what step it unblocks).\n                Never share any personal details or sensitive information.\n                "
+              }
+            },
+            "required": [
+              "endTime",
+              "filters",
+              "groupBy",
+              "limit",
+              "metrics",
+              "orderBy",
+              "startTime",
+              "context"
+            ]
+          },
+          "_meta": {
+            "_fastmcp": {
+              "tags": [
+                "Eng Intel: 2-Metrics",
+                "cortex-api",
+                "eng intel: 2-metrics",
+                "openapi"
+              ]
+            }
+          }
+        },
+        {
+          "name": "listMetricDefinitions",
+          "description": "List all available engineering metric definitions.\n\n        USAGE - Call this endpoint BEFORE querying metrics (queryPointInTimeMetrics):\n        1. Once at start: Call with view='basic' to discover all available metrics - cache this response\n        2. Once per metric: Call with view='full' and key=METRIC_KEY to get detailed metadata - cache each response\n        3. Use cached metadata to construct valid point-in-time queries\n\n        Cache responses in your context. Only refresh if no longer in your context window or explicitly requested (ex to check if metric readiness has changed).\n\n        Query parameters:\n        - view: 'basic' (default) returns minimal info, 'full' includes sources and query metadata\n        - key: Filter metrics by key (supports multiple values and comma-separated lists)\n\n        Full view provides query construction metadata:\n        - supportedAggregations: Valid aggregation methods for the metric\n        - orderByAttribute: Attribute path for sorting by metric values\n        - groupByOptions[].key: Valid groupBy keys (use exact values, do NOT guess)\n        - filterOptions[].key: Valid filter keys (use exact values, do NOT guess)\n\n        Valid orderBy attributes for metric queries:\n        - orderByAttribute: The metric value itself (returned in full view)\n        - Source attributes: Any attribute from the metric's source (e.g., \"source_name.attribute_name\")\n        - Dimension attributes: Any attribute from related dimensions (e.g., \"source_name.dimension_name.attribute_name\")\n\n        Filter operators by type (for constructing queries):\n        - STRING: EQUAL, NOT_EQUAL, IS_NULL, IS_NOT_NULL, LIKE, NOT_LIKE, IN, NOT_IN, ANY\n        - INTEGER/DECIMAL/DOUBLE: EQUAL, NOT_EQUAL, IS_NULL, IS_NOT_NULL, GREATER_THAN, LESS_THAN, GREATER_THAN_OR_EQUAL, LESS_THAN_OR_EQUAL, IN, NOT_IN, BETWEEN, ANY\n        - DATETIME/DATE: EQUAL, NOT_EQUAL, IS_NULL, IS_NOT_NULL, GREATER_THAN, LESS_THAN, GREATER_THAN_OR_EQUAL, LESS_THAN_OR_EQUAL, BETWEEN\n        - BOOLEAN: EQUAL, NOT_EQUAL, IS_NULL, IS_NOT_NULL, IN, NOT_IN\n        - ARRAY: EQUAL, CONTAINS, IN\n\n        Error responses:\n        - 400: Invalid view parameter (must be 'basic' or 'full')\n        - 403: Restricted Feature (contact help@cortex.io)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "view": {
+                "type": "string",
+                "default": "basic"
+              },
+              "key": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "context": {
+                "type": "string",
+                "description": "\n                Explain why you're invoking this tool now and how its output will be used.\n                Then state how this call supports your *overall objective* and fits into your broader plan across all tool calls (e.g., why this tool vs. others, and what step it unblocks).\n                Never share any personal details or sensitive information.\n                "
+              }
+            },
+            "required": [
+              "context"
+            ]
+          },
+          "_meta": {
+            "_fastmcp": {
+              "tags": [
+                "Eng Intel: 1-Registry",
+                "cortex-api",
+                "eng intel: 1-registry",
+                "openapi"
+              ]
+            }
+          }
+        },
+        {
+          "name": "listInitiatives",
+          "description": "List all initiatives in the organization with optional filters for draft and expired initiatives. View active improvement programs, strategic projects, and their current status to understand organizational priorities and track progress",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "includeDrafts": {
+                "type": "boolean",
+                "default": false,
+                "description": "Whether or not to include draft Initiatives in the response"
+              },
+              "includeExpired": {
+                "type": "boolean",
+                "default": false,
+                "description": "Whether or not to include expired Initiatives in the response"
+              },
+              "pageSize": {
+                "type": "integer",
+                "format": "int32",
+                "default": 250,
+                "description": "Number of results to return per page, between 1 and 1000. Default 250."
+              },
+              "page": {
+                "type": "integer",
+                "format": "int32",
+                "default": 0,
+                "description": "Page number to return, 0-indexed. Default 0."
+              },
+              "context": {
+                "type": "string",
+                "description": "\n                Explain why you're invoking this tool now and how its output will be used.\n                Then state how this call supports your *overall objective* and fits into your broader plan across all tool calls (e.g., why this tool vs. others, and what step it unblocks).\n                Never share any personal details or sensitive information.\n                "
+              }
+            },
+            "required": [
+              "pageSize",
+              "page",
+              "context"
+            ]
+          },
+          "_meta": {
+            "_fastmcp": {
+              "tags": [
+                "Initiatives",
+                "cortex-api",
+                "initiatives",
+                "openapi"
+              ]
+            }
+          }
+        },
+        {
+          "name": "getInitiative",
+          "description": "Retrieve detailed information about a specific initiative including its goals, timeline, affected entities, scorecard targets, and current progress. Essential for understanding initiative scope and tracking achievement of objectives",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "cid": {
+                "type": "string"
+              },
+              "context": {
+                "type": "string",
+                "description": "\n                Explain why you're invoking this tool now and how its output will be used.\n                Then state how this call supports your *overall objective* and fits into your broader plan across all tool calls (e.g., why this tool vs. others, and what step it unblocks).\n                Never share any personal details or sensitive information.\n                "
+              }
+            },
+            "required": [
+              "cid",
+              "context"
+            ]
+          },
+          "_meta": {
+            "_fastmcp": {
+              "tags": [
+                "Initiatives",
+                "cortex-api",
+                "initiatives",
+                "openapi"
+              ]
+            }
+          }
+        },
+        {
+          "name": "getMyWorkspace",
+          "description": "TOOL for retrieving current user's owned resources and work items across the Cortex workspace.\n\n        FLEXIBLE REQUEST STRUCTURE:\n        The request accepts an object with optional fields for each resource type:\n        - myEntitiesRequest: Fetch entities (services, resources, domains) owned by the user\n        - myTeamsRequest: Fetch teams the user belongs to\n        - myScorecardsRequest: Fetch scorecards associated with user's entities\n        - myOpenPRsRequest: Fetch user's open pull requests across all Git repositories\n        - myRequestedReviewsRequest: Fetch PRs where user is requested as a reviewer\n        - myWorkItemsRequest: Fetch work items (Jira, Linear, Azure DevOps) assigned to the user\n\n        Set one or more fields to fetch multiple resource types in a single call.\n        All results are combined into a single response array with mixed item types.\n\n        RESPONSE STRUCTURE:\n        Returns a single array of items where each item has an 'itemType' field indicating its type:\n        - 'entity': Catalog entities (services, resources, domains)\n        - 'team': Teams the user belongs to\n        - 'scorecard': Scorecards for user's entities\n        - 'pull_request': Open pull requests authored by the user\n        - 'review_request': Pull requests where user is requested as reviewer\n        - 'work_item': Work items (issues/tickets) assigned to the user\n\n        EXAMPLES:\n        1. Fetch only services:\n           {\"myEntitiesRequest\": {\"entityTypes\": [\"service\"]}}\n\n        2. Fetch teams and their entities:\n           {\"myTeamsRequest\": {\"includeMembers\": true}, \"myEntitiesRequest\": {}}\n\n        3. Get all work (PRs, reviews, Jira tickets):\n           {\"myOpenPRsRequest\": {}, \"myRequestedReviewsRequest\": {}, \"myWorkItemsRequest\": {}}\n\n        4. Search entities with filters:\n           {\"myEntitiesRequest\": {\"query\": \"payment\", \"ownershipSource\": \"DIRECT\", \"entityTypes\": [\"service\", \"resource\"]}}\n        ",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "myEntitiesRequest": {
+                "required": [
+                  "includeArchived",
+                  "ownershipSource",
+                  "page",
+                  "pageSize"
+                ],
+                "type": "object",
+                "properties": {
+                  "entityTypes": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "description": "Filter by entity types",
+                      "example": "[\"service\",\"resource\",\"domain\"]"
+                    },
+                    "description": "Filter by entity types",
+                    "example": [
+                      "service",
+                      "resource",
+                      "domain"
+                    ]
+                  },
+                  "includeArchived": {
+                    "type": "boolean",
+                    "description": "Include archived entities"
+                  },
+                  "ownershipSource": {
+                    "enum": [
+                      "DIRECT",
+                      "TEAM_HIERARCHY"
+                    ],
+                    "type": "string",
+                    "description": "Source of ownership (DIRECT, INHERITED, ALL)"
+                  },
+                  "page": {
+                    "type": "integer",
+                    "description": "Page number to return, 0-indexed. Default 0.",
+                    "format": "int32",
+                    "example": 0
+                  },
+                  "pageSize": {
+                    "type": "integer",
+                    "description": "Number of results to return per page, between 1 and 1000. Default 250.",
+                    "format": "int32",
+                    "example": 250
+                  },
+                  "query": {
+                    "type": "string",
+                    "description": "Optional search query to filter entities by name or other properties"
+                  }
+                },
+                "description": "Request for all entities (services, resources, domains) owned by the user"
+              },
+              "myOpenPRsRequest": {
+                "required": [
+                  "placeholder"
+                ],
+                "type": "object",
+                "properties": {
+                  "placeholder": {
+                    "type": "boolean",
+                    "description": "No additional parameters required - returns all open PRs for the user"
+                  }
+                },
+                "description": "Request for user's open pull requests across all Git repositories"
+              },
+              "myRequestedReviewsRequest": {
+                "required": [
+                  "placeholder"
+                ],
+                "type": "object",
+                "properties": {
+                  "placeholder": {
+                    "type": "boolean",
+                    "description": "No additional parameters required - returns all review requests for the user"
+                  }
+                },
+                "description": "Request for pull requests where the user is requested as a reviewer"
+              },
+              "myScorecardsRequest": {
+                "required": [
+                  "ownershipSource"
+                ],
+                "type": "object",
+                "properties": {
+                  "ownershipSource": {
+                    "enum": [
+                      "DIRECT",
+                      "TEAM_HIERARCHY"
+                    ],
+                    "type": "string",
+                    "description": "Source of ownership (DIRECT, INHERITED, ALL)"
+                  }
+                },
+                "description": "Request for scorecards associated with the user's entities"
+              },
+              "myTeamsRequest": {
+                "required": [
+                  "includeMembers",
+                  "page",
+                  "pageSize"
+                ],
+                "type": "object",
+                "properties": {
+                  "includeMembers": {
+                    "type": "boolean",
+                    "description": "Include team member details (name, email, description)"
+                  },
+                  "page": {
+                    "type": "integer",
+                    "description": "Page number to return, 0-indexed. Default 0.",
+                    "format": "int32",
+                    "example": 0
+                  },
+                  "pageSize": {
+                    "type": "integer",
+                    "description": "Number of results to return per page, between 1 and 1000. Default 250.",
+                    "format": "int32",
+                    "example": 250
+                  }
+                },
+                "description": "Request for teams the user belongs to"
+              },
+              "myWorkItemsRequest": {
+                "required": [
+                  "page",
+                  "pageSize"
+                ],
+                "type": "object",
+                "properties": {
+                  "page": {
+                    "type": "integer",
+                    "description": "Page number for pagination (0-indexed)",
+                    "format": "int32",
+                    "example": 0
+                  },
+                  "pageSize": {
+                    "type": "integer",
+                    "description": "Maximum number of work items to return",
+                    "format": "int32",
+                    "example": 50
+                  }
+                },
+                "description": "Request for work items (Jira, Linear, Azure DevOps issues) assigned to the user"
+              },
+              "context": {
+                "type": "string",
+                "description": "\n                Explain why you're invoking this tool now and how its output will be used.\n                Then state how this call supports your *overall objective* and fits into your broader plan across all tool calls (e.g., why this tool vs. others, and what step it unblocks).\n                Never share any personal details or sensitive information.\n                "
+              }
+            },
+            "required": [
+              "context"
+            ]
+          },
+          "_meta": {
+            "_fastmcp": {
+              "tags": [
+                "My Workspace",
+                "cortex-api",
+                "my workspace",
+                "openapi"
+              ]
+            }
+          }
+        },
+        {
+          "name": "listRelationshipTypes",
+          "description": "List all available relationship types with pagination. View relationship type configurations to understand what kinds of relationships can be created between entities like services, resources, domains, and teams",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "pageSize": {
+                "type": "integer",
+                "format": "int32",
+                "default": 250,
+                "description": "Number of results to return per page, between 1 and 1000. Default 250."
+              },
+              "page": {
+                "type": "integer",
+                "format": "int32",
+                "default": 0,
+                "description": "Page number to return, 0-indexed. Default 0."
+              },
+              "context": {
+                "type": "string",
+                "description": "\n                Explain why you're invoking this tool now and how its output will be used.\n                Then state how this call supports your *overall objective* and fits into your broader plan across all tool calls (e.g., why this tool vs. others, and what step it unblocks).\n                Never share any personal details or sensitive information.\n                "
+              }
+            },
+            "required": [
+              "pageSize",
+              "page",
+              "context"
+            ]
+          },
+          "_meta": {
+            "_fastmcp": {
+              "tags": [
+                "Entity Relationship Types [Beta]",
+                "cortex-api",
+                "entity relationship types [beta]",
+                "openapi"
+              ]
+            }
+          }
+        },
+        {
+          "name": "getRelationshipTypeDetails",
+          "description": "Get complete details of a specific relationship type including its configuration, rules, source/destination filters, and inheritance settings. Essential for understanding how entities can be connected and what validation rules apply",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "relationshipTypeTag": {
+                "type": "string"
+              },
+              "context": {
+                "type": "string",
+                "description": "\n                Explain why you're invoking this tool now and how its output will be used.\n                Then state how this call supports your *overall objective* and fits into your broader plan across all tool calls (e.g., why this tool vs. others, and what step it unblocks).\n                Never share any personal details or sensitive information.\n                "
+              }
+            },
+            "required": [
+              "relationshipTypeTag",
+              "context"
+            ]
+          },
+          "_meta": {
+            "_fastmcp": {
+              "tags": [
+                "Entity Relationship Types [Beta]",
+                "cortex-api",
+                "entity relationship types [beta]",
+                "openapi"
+              ]
+            }
+          }
+        },
+        {
+          "name": "listEntityRelationships",
+          "description": "List all entity relationships/full graph for a specific relationship type across the entire organization. Returns paginated results showing all source-destination pairs, useful for understanding the complete relationship graph and finding all connections of a particular type",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "relationshipTypeTag": {
+                "type": "string"
+              },
+              "pageSize": {
+                "type": "integer",
+                "format": "int32",
+                "default": 250,
+                "description": "Number of results to return per page, between 1 and 1000. Default 250."
+              },
+              "page": {
+                "type": "integer",
+                "format": "int32",
+                "default": 0,
+                "description": "Page number to return, 0-indexed. Default 0."
+              },
+              "context": {
+                "type": "string",
+                "description": "\n                Explain why you're invoking this tool now and how its output will be used.\n                Then state how this call supports your *overall objective* and fits into your broader plan across all tool calls (e.g., why this tool vs. others, and what step it unblocks).\n                Never share any personal details or sensitive information.\n                "
+              }
+            },
+            "required": [
+              "relationshipTypeTag",
+              "pageSize",
+              "page",
+              "context"
+            ]
+          },
+          "_meta": {
+            "_fastmcp": {
+              "tags": [
+                "Entity Relationships [Beta]",
+                "cortex-api",
+                "entity relationships [beta]",
+                "openapi"
+              ]
+            }
+          }
+        },
+        {
+          "name": "listScorecards",
+          "description": "List all scorecards in the organization with optional filtering. View scorecard configurations to understand quality standards, compliance requirements, and maturity models. Supports filtering by groups, entities, and teams to find relevant scorecards",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "showDrafts": {
+                "type": "boolean"
+              },
+              "groups": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "Filter based on groups, which correspond to the `x-cortex-groups` field in the Catalog Descriptor. Accepts a comma-delimited list of groups"
+              },
+              "entities": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "description": "Entity identifier - can be a tag or CID"
+                },
+                "description": "Filter based on entity (either tags or CIDs). Accepts a comma-delimited list of entity tag or CIDs, please use only one type of identifier"
+              },
+              "teams": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "description": "Entity identifier - can be a tag or CID"
+                },
+                "description": "Filter based on team (either tags or CIDs). Accepts a comma-delimited list of team tag or CIDs, please use only one type of identifier"
+              },
+              "page": {
+                "type": "integer",
+                "format": "int32",
+                "default": 0,
+                "description": "Page number to return, 0-indexed. Default 0."
+              },
+              "pageSize": {
+                "type": "integer",
+                "format": "int32",
+                "default": 250,
+                "description": "Number of results to return per page, between 1 and 1000. Default 250."
+              },
+              "context": {
+                "type": "string",
+                "description": "\n                Explain why you're invoking this tool now and how its output will be used.\n                Then state how this call supports your *overall objective* and fits into your broader plan across all tool calls (e.g., why this tool vs. others, and what step it unblocks).\n                Never share any personal details or sensitive information.\n                "
+              }
+            },
+            "required": [
+              "page",
+              "pageSize",
+              "context"
+            ]
+          },
+          "_meta": {
+            "_fastmcp": {
+              "tags": [
+                "Scorecards",
+                "cortex-api",
+                "openapi",
+                "scorecards"
+              ]
+            }
+          }
+        },
+        {
+          "name": "getScorecard",
+          "description": "Get complete details of a scorecard including its configuration, rules, levels, weights, exemption settings, and evaluation criteria. Essential for understanding how services are evaluated and what standards they must meet",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "tag": {
+                "type": "string",
+                "description": "Unique tag for the Scorecard"
+              },
+              "context": {
+                "type": "string",
+                "description": "\n                Explain why you're invoking this tool now and how its output will be used.\n                Then state how this call supports your *overall objective* and fits into your broader plan across all tool calls (e.g., why this tool vs. others, and what step it unblocks).\n                Never share any personal details or sensitive information.\n                "
+              }
+            },
+            "required": [
+              "tag",
+              "context"
+            ]
+          },
+          "_meta": {
+            "_fastmcp": {
+              "tags": [
+                "Scorecards",
+                "cortex-api",
+                "openapi",
+                "scorecards"
+              ]
+            }
+          }
+        },
+        {
+          "name": "getScorecardNextStepsForEntity",
+          "description": "Get actionable next steps for an entity to improve its scorecard performance. Shows which rules need to be satisfied to reach the next maturity level, helping teams prioritize improvements and track progress toward compliance goals",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "tag": {
+                "type": "string",
+                "description": "Unique tag for the Scorecard"
+              },
+              "entityTag": {
+                "type": "string",
+                "description": "The entity tag (`x-cortex-tag`) that identifies the entity."
+              },
+              "context": {
+                "type": "string",
+                "description": "\n                Explain why you're invoking this tool now and how its output will be used.\n                Then state how this call supports your *overall objective* and fits into your broader plan across all tool calls (e.g., why this tool vs. others, and what step it unblocks).\n                Never share any personal details or sensitive information.\n                "
+              }
+            },
+            "required": [
+              "tag",
+              "entityTag",
+              "context"
+            ]
+          },
+          "_meta": {
+            "_fastmcp": {
+              "tags": [
+                "Scorecards",
+                "cortex-api",
+                "openapi",
+                "scorecards"
+              ]
+            }
+          }
+        },
+        {
+          "name": "listScorecardScores",
+          "description": "Retrieve scores for all entities evaluated by a specific scorecard. Returns paginated results showing how each service, resource, or domain performs against the scorecard's rules, including individual rule scores and overall scorecard scores",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "entityTag": {
+                "type": "string",
+                "description": "Entity tag (x-cortex-tag)"
+              },
+              "tag": {
+                "type": "string",
+                "description": "Unique tag for the Scorecard"
+              },
+              "pageSize": {
+                "type": "integer",
+                "format": "int32",
+                "default": 250,
+                "description": "Number of results to return per page, between 1 and 1000. Default 250."
+              },
+              "page": {
+                "type": "integer",
+                "format": "int32",
+                "default": 0,
+                "description": "Page number to return, 0-indexed. Default 0."
+              },
+              "context": {
+                "type": "string",
+                "description": "\n                Explain why you're invoking this tool now and how its output will be used.\n                Then state how this call supports your *overall objective* and fits into your broader plan across all tool calls (e.g., why this tool vs. others, and what step it unblocks).\n                Never share any personal details or sensitive information.\n                "
+              }
+            },
+            "required": [
+              "tag",
+              "pageSize",
+              "page",
+              "context"
+            ]
+          },
+          "_meta": {
+            "_fastmcp": {
+              "tags": [
+                "Scorecards",
+                "cortex-api",
+                "openapi",
+                "scorecards"
+              ]
+            }
+          }
+        },
+        {
+          "name": "getTeamDetails",
+          "description": "Retrieve detailed information about a specific team by its tag or ID. Returns complete team data including members, slack channels, metadata, and whether it's backed by an identity provider group",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "tagOrId": {
+                "type": "string",
+                "description": "Entity identifier - can be a tag or CID"
+              },
+              "context": {
+                "type": "string",
+                "description": "\n                Explain why you're invoking this tool now and how its output will be used.\n                Then state how this call supports your *overall objective* and fits into your broader plan across all tool calls (e.g., why this tool vs. others, and what step it unblocks).\n                Never share any personal details or sensitive information.\n                "
+              }
+            },
+            "required": [
+              "tagOrId",
+              "context"
+            ]
+          },
+          "_meta": {
+            "_fastmcp": {
+              "tags": [
+                "Teams",
+                "cortex-api",
+                "openapi",
+                "teams"
+              ]
+            }
+          }
+        },
+        {
+          "name": "query_docs",
+          "description": "Query the Cortex knowledge base for answers.\n\nArgs:\n    query: The question to ask Cortex docs\n    \nReturns:\n    Response from Cortex including answer and metadata",
+          "inputSchema": {
+            "properties": {
+              "query": {
+                "title": "Query",
+                "type": "string"
+              },
+              "context": {
+                "type": "string",
+                "description": "\n                Explain why you're invoking this tool now and how its output will be used.\n                Then state how this call supports your *overall objective* and fits into your broader plan across all tool calls (e.g., why this tool vs. others, and what step it unblocks).\n                Never share any personal details or sensitive information.\n                "
+              }
+            },
+            "required": [
+              "query",
+              "context"
+            ],
+            "type": "object"
+          },
+          "outputSchema": {
+            "additionalProperties": true,
+            "type": "object"
+          },
+          "_meta": {
+            "_fastmcp": {
+              "tags": []
+            }
+          }
+        },
+        {
+          "name": "get_more_tools",
+          "description": "Check for additional tools whenever your task might benefit from specialized capabilities - even if existing tools could work as a fallback.",
+          "inputSchema": {
+            "properties": {
+              "context": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": "",
+                "title": "Context"
+              }
+            },
+            "type": "object"
+          },
+          "outputSchema": {
+            "properties": {
+              "result": {
+                "title": "Result",
+                "type": "string"
+              }
+            },
+            "required": [
+              "result"
+            ],
+            "title": "_WrappedResult",
+            "type": "object",
+            "x-fastmcp-wrap-result": true
+          },
+          "_meta": {
+            "_fastmcp": {
+              "tags": []
+            }
+          }
+        }
+      ],
+      "python_sdk_url": "https://mcp.cortex.io/mcp",
+      "python_sdk_config": "{\"debug\": false}"
+    },
+    "source_filename": "0029.Cortex_labeled.json",
+    "processed_timestamp": 1772876337,
+    "processing_mode": "gateway",
+    "rank": 30
+  }
+}

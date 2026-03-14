@@ -1,0 +1,67 @@
+{
+  "labels": {
+    "analysis": "The MCP Server is focused on interacting with Notion, a collaborative workspace platform. Its core functionality revolves around managing Notion databases, pages, blocks, and comments. The tools enable users to list, query, create, update, and retrieve Notion content, as well as search and comment within the platform. The server acts as an interface to programmatically manipulate and retrieve information from Notion workspaces.",
+    "reasoning": "The primary label \"Database Operations\" was chosen because the server heavily interacts with Notion databases, allowing querying, creation, and updates. The secondary label \"Content Management\" was added because the tools handle page manipulation and content organization, which aligns with content management systems. The custom label \"Notion Integration\" was created to highlight the server's specialized focus on Notion's platform.",
+    "primary_label": "Database Operations",
+    "secondary_labels": [
+      "File Management",
+      "Browser Automation"
+    ],
+    "custom_label": "Notion Integration",
+    "is_connected": false,
+    "is_remote_tool_valid": false,
+    "featured_server": false,
+    "tool_verified": false,
+    "tool_verified_status": "broken",
+    "tool_verified_at": "2026-03-14T20:39:42.909472+00:00",
+    "tool_verified_tool": null,
+    "tool_verified_reason": "no tools defined"
+  },
+  "metadata": {
+    "server_id": 350,
+    "server_name": "Notion",
+    "rank_by_usage": 3,
+    "usage_count": "52,946",
+    "original_file": "toucan_live#@smithery/notion",
+    "mode": "toucan",
+    "timestamp": 1772876338,
+    "remote_server_response": {
+      "url": "https://server.smithery.ai/@smithery/notion/mcp",
+      "is_success": true,
+      "error": null,
+      "tools": [],
+      "tool_count": 0,
+      "tool_names": []
+    },
+    "server_info_crawled": {
+      "id": 350,
+      "name": "Notion",
+      "author": "",
+      "overview": "A Notion workspace is a collaborative environment where teams can organize work, manage projects, and store information in a highly customizable way.",
+      "repository_url": "",
+      "homepage": "https://server.smithery.ai/@smithery/notion/mcp",
+      "remote_or_local": "Remote",
+      "license": "",
+      "usage_count": "52,946",
+      "success_rate": "98.34%",
+      "tags": [
+        "search",
+        "web",
+        "api",
+        "mcp"
+      ],
+      "categories": [
+        "search",
+        "api"
+      ],
+      "tools_count": 0,
+      "tools": [],
+      "python_sdk_url": "https://server.smithery.ai/@smithery/notion/mcp",
+      "python_sdk_config": "{\"debug\": false}"
+    },
+    "source_filename": "0350.Notion_labeled.json",
+    "processed_timestamp": 1772876338,
+    "processing_mode": "toucan",
+    "rank": 3
+  }
+}

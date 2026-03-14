@@ -1,0 +1,306 @@
+{
+  "labels": {
+    "analysis": "The MCP Server is primarily designed for fetching web content in various formats, enabling users to retrieve data from websites and APIs. Its tools focus on extracting content in HTML, Markdown, plain text, and JSON, making it useful for web scraping, content conversion, and data aggregation. This suggests its core functionality revolves around retrieving and transforming web-based data.",
+    "reasoning": "The primary label is Web Search & Research as the server enables gathering information from the web in multiple formats. Secondary labels include Browser Automation and Data Analysis & Processing due to its capability to fetch and transform web content. No custom label is needed as the predefined categories adequately cover its functionality.",
+    "primary_label": "Web Search & Research",
+    "secondary_labels": [
+      "Browser Automation",
+      "Data Analysis & Processing"
+    ],
+    "custom_label": null,
+    "is_connected": true,
+    "is_remote_tool_valid": true,
+    "featured_server": false,
+    "tool_verified": false,
+    "tool_verified_status": "broken",
+    "tool_verified_at": "2026-03-14T20:38:50.252799+00:00",
+    "tool_verified_tool": "fetch_html",
+    "tool_verified_reason": "client timeout after 20002ms"
+  },
+  "metadata": {
+    "server_id": 278,
+    "server_name": "Fetch MCP Server",
+    "rank_by_usage": 51,
+    "usage_count": "2,083",
+    "original_file": "toucan_live#fetch-mcp",
+    "mode": "toucan",
+    "timestamp": 1772876338,
+    "remote_server_response": {
+      "url": "https://server.smithery.ai/fetch-mcp/mcp",
+      "is_success": true,
+      "error": null,
+      "tools": [
+        {
+          "name": "fetch_html",
+          "description": "Fetch a website and return the content as HTML",
+          "input_schema": {
+            "type": "object",
+            "properties": {
+              "url": {
+                "type": "string",
+                "description": "URL of the website to fetch"
+              },
+              "headers": {
+                "type": "object",
+                "description": "Optional headers to include in the request"
+              },
+              "max_length": {
+                "type": "number",
+                "description": "Maximum number of characters to return (default: 5000)"
+              },
+              "start_index": {
+                "type": "number",
+                "description": "Start content from this character index (default: 0)"
+              }
+            },
+            "required": [
+              "url"
+            ]
+          },
+          "annotations": null
+        },
+        {
+          "name": "fetch_markdown",
+          "description": "Fetch a website and return the content as Markdown",
+          "input_schema": {
+            "type": "object",
+            "properties": {
+              "url": {
+                "type": "string",
+                "description": "URL of the website to fetch"
+              },
+              "headers": {
+                "type": "object",
+                "description": "Optional headers to include in the request"
+              },
+              "max_length": {
+                "type": "number",
+                "description": "Maximum number of characters to return (default: 5000)"
+              },
+              "start_index": {
+                "type": "number",
+                "description": "Start content from this character index (default: 0)"
+              }
+            },
+            "required": [
+              "url"
+            ]
+          },
+          "annotations": null
+        },
+        {
+          "name": "fetch_txt",
+          "description": "Fetch a website, return the content as plain text (no HTML)",
+          "input_schema": {
+            "type": "object",
+            "properties": {
+              "url": {
+                "type": "string",
+                "description": "URL of the website to fetch"
+              },
+              "headers": {
+                "type": "object",
+                "description": "Optional headers to include in the request"
+              },
+              "max_length": {
+                "type": "number",
+                "description": "Maximum number of characters to return (default: 5000)"
+              },
+              "start_index": {
+                "type": "number",
+                "description": "Start content from this character index (default: 0)"
+              }
+            },
+            "required": [
+              "url"
+            ]
+          },
+          "annotations": null
+        },
+        {
+          "name": "fetch_json",
+          "description": "Fetch a JSON file from a URL",
+          "input_schema": {
+            "type": "object",
+            "properties": {
+              "url": {
+                "type": "string",
+                "description": "URL of the JSON to fetch"
+              },
+              "headers": {
+                "type": "object",
+                "description": "Optional headers to include in the request"
+              },
+              "max_length": {
+                "type": "number",
+                "description": "Maximum number of characters to return (default: 5000)"
+              },
+              "start_index": {
+                "type": "number",
+                "description": "Start content from this character index (default: 0)"
+              }
+            },
+            "required": [
+              "url"
+            ]
+          },
+          "annotations": null
+        }
+      ],
+      "tool_count": 4,
+      "tool_names": [
+        "fetch_html",
+        "fetch_markdown",
+        "fetch_txt",
+        "fetch_json"
+      ]
+    },
+    "server_info_crawled": {
+      "id": 278,
+      "name": "Fetch MCP Server",
+      "author": "",
+      "overview": "Fetch web content in various formats such as HTML, JSON, plain text, and Markdown.",
+      "repository_url": "",
+      "homepage": "https://server.smithery.ai/fetch-mcp/mcp",
+      "remote_or_local": "Remote",
+      "license": "",
+      "usage_count": "2,083",
+      "success_rate": "99.35%",
+      "tags": [
+        "search",
+        "web",
+        "api",
+        "mcp"
+      ],
+      "categories": [
+        "search",
+        "api"
+      ],
+      "tools_count": 4,
+      "tools": [
+        {
+          "name": "fetch_html",
+          "description": "Fetch a website and return the content as HTML",
+          "input_schema": {
+            "type": "object",
+            "properties": {
+              "url": {
+                "type": "string",
+                "description": "URL of the website to fetch"
+              },
+              "headers": {
+                "type": "object",
+                "description": "Optional headers to include in the request"
+              },
+              "max_length": {
+                "type": "number",
+                "description": "Maximum number of characters to return (default: 5000)"
+              },
+              "start_index": {
+                "type": "number",
+                "description": "Start content from this character index (default: 0)"
+              }
+            },
+            "required": [
+              "url"
+            ]
+          },
+          "annotations": null
+        },
+        {
+          "name": "fetch_markdown",
+          "description": "Fetch a website and return the content as Markdown",
+          "input_schema": {
+            "type": "object",
+            "properties": {
+              "url": {
+                "type": "string",
+                "description": "URL of the website to fetch"
+              },
+              "headers": {
+                "type": "object",
+                "description": "Optional headers to include in the request"
+              },
+              "max_length": {
+                "type": "number",
+                "description": "Maximum number of characters to return (default: 5000)"
+              },
+              "start_index": {
+                "type": "number",
+                "description": "Start content from this character index (default: 0)"
+              }
+            },
+            "required": [
+              "url"
+            ]
+          },
+          "annotations": null
+        },
+        {
+          "name": "fetch_txt",
+          "description": "Fetch a website, return the content as plain text (no HTML)",
+          "input_schema": {
+            "type": "object",
+            "properties": {
+              "url": {
+                "type": "string",
+                "description": "URL of the website to fetch"
+              },
+              "headers": {
+                "type": "object",
+                "description": "Optional headers to include in the request"
+              },
+              "max_length": {
+                "type": "number",
+                "description": "Maximum number of characters to return (default: 5000)"
+              },
+              "start_index": {
+                "type": "number",
+                "description": "Start content from this character index (default: 0)"
+              }
+            },
+            "required": [
+              "url"
+            ]
+          },
+          "annotations": null
+        },
+        {
+          "name": "fetch_json",
+          "description": "Fetch a JSON file from a URL",
+          "input_schema": {
+            "type": "object",
+            "properties": {
+              "url": {
+                "type": "string",
+                "description": "URL of the JSON to fetch"
+              },
+              "headers": {
+                "type": "object",
+                "description": "Optional headers to include in the request"
+              },
+              "max_length": {
+                "type": "number",
+                "description": "Maximum number of characters to return (default: 5000)"
+              },
+              "start_index": {
+                "type": "number",
+                "description": "Start content from this character index (default: 0)"
+              }
+            },
+            "required": [
+              "url"
+            ]
+          },
+          "annotations": null
+        }
+      ],
+      "python_sdk_url": "https://server.smithery.ai/fetch-mcp/mcp",
+      "python_sdk_config": "{\"debug\": false}"
+    },
+    "source_filename": "0278.Fetch-MCP-Server_labeled.json",
+    "processed_timestamp": 1772876338,
+    "processing_mode": "toucan",
+    "rank": 51
+  }
+}

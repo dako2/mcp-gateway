@@ -1,0 +1,187 @@
+{
+  "labels": {
+    "analysis": "The MCP Server \"Unknown\" provides 3 tools focused on api integration tasks. Core capabilities include data access and reading, search and retrieval. Key tools: ApolloConnectorsSpec, ApolloDocsRead, ApolloDocsSearch.",
+    "reasoning": "Primary label \"API Integration\" assigned based on strong keyword matches in tool names and descriptions: connector, graphql.",
+    "primary_label": "API Integration",
+    "secondary_labels": [
+      "Web Search & Research",
+      "File Management"
+    ],
+    "custom_label": "Search - ",
+    "is_connected": true,
+    "is_remote_tool_valid": true,
+    "featured_server": false,
+    "tool_verified": true,
+    "tool_verified_status": "verified",
+    "tool_verified_at": "2026-03-14T20:38:19.708071+00:00",
+    "tool_verified_tool": "ApolloConnectorsSpec",
+    "tool_verified_reason": "response received"
+  },
+  "metadata": {
+    "server_id": 208,
+    "server_name": "mcp.apollographql.com",
+    "rank_by_usage": 209,
+    "usage_count": "10",
+    "original_file": "tools.json#208",
+    "mode": "gateway",
+    "timestamp": 1772876338,
+    "remote_server_response": {
+      "url": "https://mcp.apollographql.com/sse",
+      "is_success": true,
+      "error": null,
+      "tools": [
+        {
+          "name": "ApolloConnectorsSpec",
+          "description": "This tool provides the agent with the specification which describes how to use Apollo Connectors in a graphql schema to send an HTTP request or use any REST API with a graph. A user may refer to an Apollo Connector as 'Apollo Connector', 'REST Connector', or even just 'Connector'. Treat these all as synonyms for the same thing. You MUST ALWAYS call this tool to use this specification as a guide BEFORE planning, making, or proposing ANY edits or additions to a connectors schema file and/or a graphql file containing @connect or @source. This tool is to provide the agent with guidance, not the user.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {}
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false
+          }
+        },
+        {
+          "name": "ApolloDocsRead",
+          "description": "Fetches the complete markdown content of an Apollo documentation page using its slug, or everything after https://apollographql.com/docs. Documentation slugs can be obtained from the SearchDocs tool results. Use this after ApolloDocsSearch to read full pages rather than just excerpts. Content will be given in chunks with the totalCount field specifying the total number of chunks. Start with a chunkIndex of 0 and fetch each chunk.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "slug": {
+                "description": "The slug returned from the ApolloDocsSearch tool",
+                "type": "string"
+              },
+              "chunkIndex": {
+                "description": "The character index to start reading from, will return up to the next 10000 characters",
+                "type": "number"
+              }
+            },
+            "required": [
+              "slug",
+              "chunkIndex"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false
+          }
+        },
+        {
+          "name": "ApolloDocsSearch",
+          "description": "Searches official Apollo GraphQL documentation (Apollo GraphQL, GraphOS, Apollo Router, Apollo Client, API orchestration, MCP Server, schema design, deployment best practices, connectors, and platform usage). Returns url, slug, and markdown content excerpts. For complete page content, you MUST use the returned slug with the ApolloDocsRead tool. Use this tool when you need technical information, configuration examples, best practices, and troubleshooting guides for any Apollo GraphQL technology.\n\n Use the ApolloDocsRead tool to get all of the content for a given search result using the slug, don't use a WebSearch.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "query": {
+                "description": "Use terms that would lead to broad result with a maximum of 2 keywords.",
+                "type": "string"
+              }
+            },
+            "required": [
+              "query"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false
+          }
+        }
+      ],
+      "tool_count": 3,
+      "tool_names": [
+        "ApolloConnectorsSpec",
+        "ApolloDocsRead",
+        "ApolloDocsSearch"
+      ]
+    },
+    "server_info_crawled": {
+      "id": 208,
+      "name": "mcp.apollographql.com",
+      "author": "",
+      "overview": "mcp.apollographql.com - API Integration server with 3 tools. The MCP Server \"Unknown\" provides 3 tools focused on api integration tasks. Core capabilities includ",
+      "repository_url": "",
+      "homepage": "https://mcp.apollographql.com/sse",
+      "remote_or_local": "Remote",
+      "license": "",
+      "usage_count": "10",
+      "success_rate": "100%",
+      "tags": [
+        "api-integration",
+        "web-search-research",
+        "file-management"
+      ],
+      "categories": [
+        "api integration",
+        "web search & research",
+        "file management"
+      ],
+      "tools_count": 3,
+      "tools": [
+        {
+          "name": "ApolloConnectorsSpec",
+          "description": "This tool provides the agent with the specification which describes how to use Apollo Connectors in a graphql schema to send an HTTP request or use any REST API with a graph. A user may refer to an Apollo Connector as 'Apollo Connector', 'REST Connector', or even just 'Connector'. Treat these all as synonyms for the same thing. You MUST ALWAYS call this tool to use this specification as a guide BEFORE planning, making, or proposing ANY edits or additions to a connectors schema file and/or a graphql file containing @connect or @source. This tool is to provide the agent with guidance, not the user.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {}
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false
+          }
+        },
+        {
+          "name": "ApolloDocsRead",
+          "description": "Fetches the complete markdown content of an Apollo documentation page using its slug, or everything after https://apollographql.com/docs. Documentation slugs can be obtained from the SearchDocs tool results. Use this after ApolloDocsSearch to read full pages rather than just excerpts. Content will be given in chunks with the totalCount field specifying the total number of chunks. Start with a chunkIndex of 0 and fetch each chunk.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "slug": {
+                "description": "The slug returned from the ApolloDocsSearch tool",
+                "type": "string"
+              },
+              "chunkIndex": {
+                "description": "The character index to start reading from, will return up to the next 10000 characters",
+                "type": "number"
+              }
+            },
+            "required": [
+              "slug",
+              "chunkIndex"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false
+          }
+        },
+        {
+          "name": "ApolloDocsSearch",
+          "description": "Searches official Apollo GraphQL documentation (Apollo GraphQL, GraphOS, Apollo Router, Apollo Client, API orchestration, MCP Server, schema design, deployment best practices, connectors, and platform usage). Returns url, slug, and markdown content excerpts. For complete page content, you MUST use the returned slug with the ApolloDocsRead tool. Use this tool when you need technical information, configuration examples, best practices, and troubleshooting guides for any Apollo GraphQL technology.\n\n Use the ApolloDocsRead tool to get all of the content for a given search result using the slug, don't use a WebSearch.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "query": {
+                "description": "Use terms that would lead to broad result with a maximum of 2 keywords.",
+                "type": "string"
+              }
+            },
+            "required": [
+              "query"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false
+          }
+        }
+      ],
+      "python_sdk_url": "https://mcp.apollographql.com/sse",
+      "python_sdk_config": "{\"debug\": false}"
+    },
+    "source_filename": "0208.mcpapollographqlcom_labeled.json",
+    "processed_timestamp": 1772876338,
+    "processing_mode": "gateway",
+    "rank": 209
+  }
+}

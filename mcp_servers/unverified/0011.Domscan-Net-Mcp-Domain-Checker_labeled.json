@@ -1,0 +1,2118 @@
+{
+  "labels": {
+    "analysis": "The MCP Server \"Domscan Net Mcp Domain Checker\" provides 46 tools focused on dns & networking tasks. Core capabilities include analysis and computation, creation and generation, data access and reading, modification and updates. Key tools: get_status, bulk_status, coverage, suggest_domains, domain_valuation.",
+    "reasoning": "Primary label \"DNS & Networking\" assigned based on strong keyword matches in tool names and descriptions: dns, domain, nameserver.",
+    "primary_label": "DNS & Networking",
+    "secondary_labels": [
+      "Database Operations",
+      "Development Tools"
+    ],
+    "custom_label": "Data Access - Domscan Net Mcp Domain Checker",
+    "is_connected": true,
+    "is_remote_tool_valid": true,
+    "featured_server": true,
+    "tool_verified": false,
+    "tool_verified_status": "auth_required",
+    "tool_verified_at": "2026-03-14T20:38:10.349261+00:00",
+    "tool_verified_tool": "ip_lookup",
+    "tool_verified_reason": "auth error in response: {\"jsonrpc\": \"2.0\", \"id\": 12968, \"error\": {\"code\": -32001, \"message\": \"Authentication required. Provi"
+  },
+  "metadata": {
+    "server_id": 11,
+    "server_name": "Domscan Net Mcp Domain Checker",
+    "rank_by_usage": 12,
+    "usage_count": "9,450",
+    "original_file": "tools.json#11",
+    "mode": "gateway",
+    "timestamp": 1772876337,
+    "remote_server_response": {
+      "url": "https://domscan.net/mcp",
+      "is_success": true,
+      "error": null,
+      "tools": [
+        {
+          "name": "get_status",
+          "description": "Check if a domain name is available across multiple TLDs. The \"name\" parameter is the domain label WITHOUT the TLD (e.g., \"google\" not \"google.com\"). The \"tlds\" parameter is an array of TLD extensions. (costs 1 credit)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "Domain label WITHOUT TLD. Example: \"google\" or \"myapp\""
+              },
+              "tlds": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "Array of TLD strings. Example: [\"com\",\"net\",\"org\"]"
+              },
+              "prefer_cache": {
+                "type": "boolean",
+                "description": "Prefer cached results for faster response"
+              },
+              "skip_cache": {
+                "type": "boolean",
+                "description": "Force fresh RDAP lookup"
+              }
+            },
+            "required": [
+              "name",
+              "tlds"
+            ]
+          }
+        },
+        {
+          "name": "bulk_status",
+          "description": "Check multiple complete domain names at once. Each domain must include the TLD (e.g., \"google.com\"). (1 credit base + 0.5 credits per item)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "domains": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "Array of complete domain names. Example: [\"google.com\",\"facebook.net\"]"
+              },
+              "options": {
+                "type": "object",
+                "properties": {
+                  "prefer_cache": {
+                    "type": "boolean"
+                  },
+                  "skip_cache": {
+                    "type": "boolean"
+                  }
+                }
+              }
+            },
+            "required": [
+              "domains"
+            ]
+          }
+        },
+        {
+          "name": "coverage",
+          "description": "Get information about which TLDs are supported by this API. (costs 1 credit)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "live": {
+                "type": "boolean",
+                "description": "Perform live health checks on RDAP servers"
+              }
+            }
+          }
+        },
+        {
+          "name": "suggest_domains",
+          "description": "Generate domain name suggestions based on keywords. Great for brainstorming available domains. (costs 2 credits)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "keywords": {
+                "type": "string",
+                "description": "Keywords to generate suggestions for (e.g., \"coffee shop\")"
+              },
+              "tlds": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "TLDs to check (default: com, io, ai, co, app)"
+              },
+              "limit": {
+                "type": "number",
+                "description": "Maximum suggestions to return (default: 20, max: 100)"
+              },
+              "language": {
+                "type": "string",
+                "description": "Language for suggestions (default: en). Supports 30 languages."
+              }
+            },
+            "required": [
+              "keywords"
+            ]
+          }
+        },
+        {
+          "name": "domain_valuation",
+          "description": "Estimate the market value of a domain name based on length, keywords, TLD, brandability, and market factors. (costs 1 credit)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "domain": {
+                "type": "string",
+                "description": "Domain to value (e.g., \"startup.com\")"
+              }
+            },
+            "required": [
+              "domain"
+            ]
+          }
+        },
+        {
+          "name": "domain_health",
+          "description": "Run comprehensive health checks on a domain including DNS, SSL, redirects, and web server status. (costs 2 credits)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "domain": {
+                "type": "string",
+                "description": "Domain to check health for (e.g., \"example.com\")"
+              }
+            },
+            "required": [
+              "domain"
+            ]
+          }
+        },
+        {
+          "name": "compare_domains",
+          "description": "Compare multiple domains side-by-side. Returns availability, valuation, brand score, and recommendations. (costs 2 credits)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "domains": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "Array of complete domain names to compare. Example: [\"startup.com\",\"startup.io\",\"startup.ai\"]"
+              }
+            },
+            "required": [
+              "domains"
+            ]
+          }
+        },
+        {
+          "name": "dns_lookup",
+          "description": "Lookup DNS records for a domain. Returns A, AAAA, MX, TXT, NS, CNAME, and other record types. (costs 1 credit)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "domain": {
+                "type": "string",
+                "description": "Domain to lookup DNS records for (e.g., \"example.com\")"
+              },
+              "type": {
+                "type": "string",
+                "enum": [
+                  "A",
+                  "AAAA",
+                  "MX",
+                  "TXT",
+                  "NS",
+                  "CNAME",
+                  "SOA",
+                  "CAA"
+                ],
+                "description": "Specific record type to query (optional, returns all if not specified)"
+              }
+            },
+            "required": [
+              "domain"
+            ]
+          }
+        },
+        {
+          "name": "dns_security",
+          "description": "Analyze DNS security configuration including SPF, DKIM, DMARC, DNSSEC, and CAA records. (costs 2 credits)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "domain": {
+                "type": "string",
+                "description": "Domain to analyze. Example: \"example.com\""
+              }
+            },
+            "required": [
+              "domain"
+            ]
+          }
+        },
+        {
+          "name": "dns_propagation",
+          "description": "Check DNS propagation across multiple global DNS servers. (costs 2 credits)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "domain": {
+                "type": "string",
+                "description": "Domain to check. Example: \"example.com\""
+              },
+              "type": {
+                "type": "string",
+                "enum": [
+                  "A",
+                  "AAAA",
+                  "CNAME",
+                  "MX",
+                  "TXT",
+                  "NS"
+                ],
+                "description": "DNS record type to check (default: A)"
+              },
+              "expected": {
+                "type": "string",
+                "description": "Expected value to check for"
+              }
+            },
+            "required": [
+              "domain"
+            ]
+          }
+        },
+        {
+          "name": "reverse_ns_lookup",
+          "description": "Find domains that use a specific nameserver. Useful for discovering related domains and infrastructure analysis. (costs 1 credit)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "nameserver": {
+                "type": "string",
+                "description": "Nameserver hostname (e.g., \"ns1.cloudflare.com\")"
+              },
+              "limit": {
+                "type": "number",
+                "description": "Maximum domains to return (default: 100, max: 1000)"
+              }
+            },
+            "required": [
+              "nameserver"
+            ]
+          }
+        },
+        {
+          "name": "dns_history",
+          "description": "Get DNS record history for a domain showing how records have changed over time. (costs 2 credits)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "domain": {
+                "type": "string",
+                "description": "Domain to get DNS history for (e.g., \"example.com\")"
+              },
+              "type": {
+                "type": "string",
+                "description": "Filter by record type (A, AAAA, MX, TXT, etc.)"
+              },
+              "from": {
+                "type": "string",
+                "description": "Start date (YYYY-MM-DD)"
+              },
+              "to": {
+                "type": "string",
+                "description": "End date (YYYY-MM-DD)"
+              }
+            },
+            "required": [
+              "domain"
+            ]
+          }
+        },
+        {
+          "name": "dns_diff",
+          "description": "Compare DNS records between two dates to identify what changed. (costs 2 credits)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "domain": {
+                "type": "string",
+                "description": "Domain to compare (e.g., \"example.com\")"
+              },
+              "date1": {
+                "type": "string",
+                "description": "First date (YYYY-MM-DD)"
+              },
+              "date2": {
+                "type": "string",
+                "description": "Second date (YYYY-MM-DD)"
+              }
+            },
+            "required": [
+              "domain",
+              "date1",
+              "date2"
+            ]
+          }
+        },
+        {
+          "name": "spf_build",
+          "description": "Build an SPF record from configuration options. (costs 1 credit)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "all": {
+                "type": "string",
+                "enum": [
+                  "pass",
+                  "fail",
+                  "softfail",
+                  "neutral"
+                ],
+                "description": "Default action for non-matching senders"
+              },
+              "include": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "Domains to include (e.g., [\"_spf.google.com\"])"
+              },
+              "ip4": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "IPv4 addresses or ranges"
+              },
+              "ip6": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "IPv6 addresses or ranges"
+              },
+              "a": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "Domains whose A records are authorized"
+              },
+              "mx": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "Domains whose MX records are authorized"
+              }
+            },
+            "required": [
+              "all"
+            ]
+          }
+        },
+        {
+          "name": "spf_validate",
+          "description": "Validate an SPF record syntax and check for common issues. (costs 1 credit)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "domain": {
+                "type": "string",
+                "description": "Domain to fetch and validate SPF for"
+              },
+              "record": {
+                "type": "string",
+                "description": "SPF record string to validate directly"
+              }
+            }
+          }
+        },
+        {
+          "name": "spf_flatten",
+          "description": "Flatten an SPF record by resolving includes to IP addresses. (costs 2 credits)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "domain": {
+                "type": "string",
+                "description": "Domain to flatten SPF for"
+              }
+            },
+            "required": [
+              "domain"
+            ]
+          }
+        },
+        {
+          "name": "dmarc_build",
+          "description": "Build a DMARC record from configuration options. (costs 1 credit)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "policy": {
+                "type": "string",
+                "enum": [
+                  "none",
+                  "quarantine",
+                  "reject"
+                ],
+                "description": "DMARC policy for failing messages"
+              },
+              "subdomain_policy": {
+                "type": "string",
+                "enum": [
+                  "none",
+                  "quarantine",
+                  "reject"
+                ],
+                "description": "Policy for subdomains"
+              },
+              "rua": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "Aggregate report email addresses"
+              },
+              "ruf": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "Forensic report email addresses"
+              },
+              "percentage": {
+                "type": "number",
+                "description": "Percentage of messages to apply policy (1-100)"
+              },
+              "dkim_alignment": {
+                "type": "string",
+                "enum": [
+                  "r",
+                  "s"
+                ],
+                "description": "DKIM alignment mode (r=relaxed, s=strict)"
+              },
+              "spf_alignment": {
+                "type": "string",
+                "enum": [
+                  "r",
+                  "s"
+                ],
+                "description": "SPF alignment mode (r=relaxed, s=strict)"
+              }
+            },
+            "required": [
+              "policy"
+            ]
+          }
+        },
+        {
+          "name": "dmarc_validate",
+          "description": "Validate a DMARC record syntax and configuration. (costs 1 credit)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "domain": {
+                "type": "string",
+                "description": "Domain to fetch and validate DMARC for"
+              },
+              "record": {
+                "type": "string",
+                "description": "DMARC record string to validate directly"
+              }
+            }
+          }
+        },
+        {
+          "name": "dkim_check",
+          "description": "Check a DKIM selector and validate the public key record. (costs 1 credit)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "domain": {
+                "type": "string",
+                "description": "Domain to check DKIM for"
+              },
+              "selector": {
+                "type": "string",
+                "description": "DKIM selector to check (e.g., \"google\", \"selector1\")"
+              }
+            },
+            "required": [
+              "domain",
+              "selector"
+            ]
+          }
+        },
+        {
+          "name": "dkim_discover",
+          "description": "Discover DKIM selectors by checking common selector names. (costs 2 credits)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "domain": {
+                "type": "string",
+                "description": "Domain to discover DKIM selectors for"
+              }
+            },
+            "required": [
+              "domain"
+            ]
+          }
+        },
+        {
+          "name": "typosquatting_check",
+          "description": "Detect potential typosquatting domains for a given domain and check which are registered. (costs 2 credits)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "domain": {
+                "type": "string",
+                "description": "Domain to check. Example: \"example.com\""
+              },
+              "limit": {
+                "type": "number",
+                "description": "Max permutations to check (default: 100, max: 500)"
+              }
+            },
+            "required": [
+              "domain"
+            ]
+          }
+        },
+        {
+          "name": "protection_score",
+          "description": "Calculate how vulnerable a domain is to typosquatting attacks. Returns a protection score and recommendations. (costs 1 credit)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "domain": {
+                "type": "string",
+                "description": "Domain to score. Example: \"example.com\""
+              },
+              "check_registered": {
+                "type": "boolean",
+                "description": "Check registered typos to factor into score (slower)"
+              }
+            },
+            "required": [
+              "domain"
+            ]
+          }
+        },
+        {
+          "name": "domain_reputation",
+          "description": "Calculate a comprehensive reputation/trust score for a domain based on DNS security, SSL, web presence, email configuration, and other factors. (costs 2 credits)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "domain": {
+                "type": "string",
+                "description": "Domain to calculate reputation for (e.g., \"example.com\")"
+              }
+            },
+            "required": [
+              "domain"
+            ]
+          }
+        },
+        {
+          "name": "search_certificates",
+          "description": "Search Certificate Transparency logs to find all SSL certificates issued for a domain. Useful for discovering subdomains, monitoring certificate issuance, and security auditing. (costs 2 credits)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "domain": {
+                "type": "string",
+                "description": "Domain to search certificates for (e.g., \"example.com\")"
+              },
+              "include_subdomains": {
+                "type": "boolean",
+                "description": "Include certificates for subdomains (default: true)"
+              },
+              "limit": {
+                "type": "number",
+                "description": "Maximum number of certificates to return (default: 100, max: 1000)"
+              }
+            },
+            "required": [
+              "domain"
+            ]
+          }
+        },
+        {
+          "name": "ssl_grade",
+          "description": "Analyze SSL/TLS configuration for a domain and get a letter grade with detailed scoring. (costs 2 credits)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "domain": {
+                "type": "string",
+                "description": "Domain to analyze (e.g., \"example.com\")"
+              }
+            },
+            "required": [
+              "domain"
+            ]
+          }
+        },
+        {
+          "name": "ssl_chain",
+          "description": "Get certificate chain details including issuer, validity dates, and trust chain. (costs 2 credits)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "domain": {
+                "type": "string",
+                "description": "Domain to analyze (e.g., \"example.com\")"
+              }
+            },
+            "required": [
+              "domain"
+            ]
+          }
+        },
+        {
+          "name": "ssl_expiring",
+          "description": "Check if a domain SSL certificate is expiring soon. (costs 1 credit)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "domain": {
+                "type": "string",
+                "description": "Domain to check (e.g., \"example.com\")"
+              },
+              "days": {
+                "type": "number",
+                "description": "Alert threshold in days (default: 30)"
+              }
+            },
+            "required": [
+              "domain"
+            ]
+          }
+        },
+        {
+          "name": "enumerate_subdomains",
+          "description": "Discover subdomains for a domain using Certificate Transparency logs. Useful for attack surface mapping and security reconnaissance. (costs 3 credits)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "domain": {
+                "type": "string",
+                "description": "Domain to enumerate subdomains for (e.g., \"example.com\")"
+              },
+              "verify": {
+                "type": "boolean",
+                "description": "Verify subdomains resolve via DNS (slower but more accurate)"
+              },
+              "limit": {
+                "type": "number",
+                "description": "Maximum subdomains to return (default: 500, max: 5000)"
+              }
+            },
+            "required": [
+              "domain"
+            ]
+          }
+        },
+        {
+          "name": "email_security",
+          "description": "Check email authentication configuration (SPF, DKIM, DMARC) for a domain. (costs 2 credits)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "domain": {
+                "type": "string",
+                "description": "Domain to check email security for (e.g., \"example.com\")"
+              }
+            },
+            "required": [
+              "domain"
+            ]
+          }
+        },
+        {
+          "name": "verify_email",
+          "description": "Verify if an email address is real and deliverable. Checks syntax, MX records, disposable domains, and optionally SMTP mailbox existence. (1 credit; With full=true (SMTP verification), costs 5 credits total)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "email": {
+                "type": "string",
+                "description": "Email address to verify (e.g., \"user@example.com\")"
+              },
+              "full": {
+                "type": "boolean",
+                "description": "Enable full SMTP verification for 5 credits total (default: false)"
+              }
+            },
+            "required": [
+              "email"
+            ]
+          }
+        },
+        {
+          "name": "tech_stack",
+          "description": "Detect technologies used by a website including CMS, frameworks, analytics, hosting, and security tools. (costs 2 credits)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "domain": {
+                "type": "string",
+                "description": "Domain to analyze (e.g., \"example.com\")"
+              }
+            },
+            "required": [
+              "domain"
+            ]
+          }
+        },
+        {
+          "name": "company_lookup",
+          "description": "Lookup company/organization information associated with a domain. Extracts data from website meta tags, WHOIS, and other public sources. (costs 2 credits)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "domain": {
+                "type": "string",
+                "description": "Domain to lookup company information for (e.g., \"example.com\")"
+              }
+            },
+            "required": [
+              "domain"
+            ]
+          }
+        },
+        {
+          "name": "hosting_detection",
+          "description": "Detect hosting provider, CDN, WAF, DNS provider, and email infrastructure for a domain. (costs 2 credits)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "domain": {
+                "type": "string",
+                "description": "Domain to analyze (e.g., \"example.com\")"
+              }
+            },
+            "required": [
+              "domain"
+            ]
+          }
+        },
+        {
+          "name": "parking_detection",
+          "description": "Check if a domain is parked, showing placeholder/ad pages, or listed for sale on aftermarket platforms like Sedo, Afternic, Dan.com, etc. (costs 2 credits)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "domain": {
+                "type": "string",
+                "description": "Domain to check (e.g., \"example.com\")"
+              }
+            },
+            "required": [
+              "domain"
+            ]
+          }
+        },
+        {
+          "name": "ip_lookup",
+          "description": "Get detailed information about an IP address or domain, including geolocation, ASN, network info, and security indicators. (costs 1 credit)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "ip": {
+                "type": "string",
+                "description": "IP address to lookup (e.g., \"8.8.8.8\")"
+              },
+              "domain": {
+                "type": "string",
+                "description": "Domain name to resolve and lookup (alternative to ip)"
+              }
+            }
+          }
+        },
+        {
+          "name": "lookup_mac",
+          "description": "Lookup MAC address metadata and vendor/OUI information. (costs 1 credit)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "mac": {
+                "type": "string",
+                "description": "MAC address string to lookup"
+              }
+            },
+            "required": [
+              "mac"
+            ]
+          }
+        },
+        {
+          "name": "reverse_mx_lookup",
+          "description": "Find domains that use a specific mail server. Useful for discovering related domains. (costs 2 credits)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "mailserver": {
+                "type": "string",
+                "description": "Mail server hostname (e.g., \"aspmx.l.google.com\")"
+              },
+              "limit": {
+                "type": "number",
+                "description": "Maximum domains to return (default: 100, max: 1000)"
+              }
+            },
+            "required": [
+              "mailserver"
+            ]
+          }
+        },
+        {
+          "name": "reverse_ip_lookup",
+          "description": "Find domains hosted on a specific IP address. Useful for discovering co-hosted sites. (costs 2 credits)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "ip": {
+                "type": "string",
+                "description": "IP address to lookup (e.g., \"93.184.216.34\")"
+              },
+              "limit": {
+                "type": "number",
+                "description": "Maximum domains to return (default: 100, max: 1000)"
+              }
+            },
+            "required": [
+              "ip"
+            ]
+          }
+        },
+        {
+          "name": "domain_graph",
+          "description": "Build a relationship graph showing connections between domains via shared IPs, nameservers, mail servers, and registrant info. (costs 3 credits)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "seed": {
+                "type": "string",
+                "description": "Domain or IP to analyze connections for (e.g., \"example.com\")"
+              },
+              "include": {
+                "type": "string",
+                "description": "Relationship types to include: ns, mx, ip, asn, registrant (CSV)"
+              },
+              "limit_per_type": {
+                "type": "number",
+                "description": "Max results per relationship type (default: 200)"
+              }
+            },
+            "required": [
+              "seed"
+            ]
+          }
+        },
+        {
+          "name": "whois_lookup",
+          "description": "Get WHOIS/RDAP registration data for a domain including registrar, dates, nameservers, and status. (costs 2 credits)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "domain": {
+                "type": "string",
+                "description": "Domain to lookup WHOIS data for (e.g., \"example.com\")"
+              }
+            },
+            "required": [
+              "domain"
+            ]
+          }
+        },
+        {
+          "name": "whois_history",
+          "description": "Get historical WHOIS snapshots showing how registration data has changed over time, including registrar transfers, nameserver changes, and privacy toggles. (costs 2 credits)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "domain": {
+                "type": "string",
+                "description": "Domain to get history for (e.g., \"example.com\")"
+              },
+              "limit": {
+                "type": "number",
+                "description": "Maximum snapshots to return (default: 50, max: 100)"
+              }
+            },
+            "required": [
+              "domain"
+            ]
+          }
+        },
+        {
+          "name": "domain_lifecycle",
+          "description": "Get domain lifecycle information including registration date, expiration date, domain age, days until expiry, and current lifecycle phase. (costs 2 credits)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "domain": {
+                "type": "string",
+                "description": "Domain to check lifecycle for (e.g., \"example.com\")"
+              }
+            },
+            "required": [
+              "domain"
+            ]
+          }
+        },
+        {
+          "name": "social_handles",
+          "description": "Check availability of a username across major social media platforms. (costs 2 credits)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "handle": {
+                "type": "string",
+                "description": "Username/handle to check availability for"
+              },
+              "platforms": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "Platforms to check (default: all major platforms)"
+              }
+            },
+            "required": [
+              "handle"
+            ]
+          }
+        },
+        {
+          "name": "list_tlds",
+          "description": "List all supported TLDs with optional filtering by type or trust tier. (costs 1 credit)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": [
+                  "gTLD",
+                  "ccTLD",
+                  "newTLD",
+                  "idn"
+                ],
+                "description": "Filter by TLD type"
+              },
+              "trust_tier": {
+                "type": "string",
+                "enum": [
+                  "premium",
+                  "standard",
+                  "economy"
+                ],
+                "description": "Filter by trust tier"
+              },
+              "use_case": {
+                "type": "string",
+                "description": "Get TLDs for a specific use case. Example: \"startup\" or \"tech\""
+              }
+            }
+          }
+        },
+        {
+          "name": "tld_info",
+          "description": "Get detailed information about a TLD including pricing, restrictions, trust score, and use cases. (costs 1 credit)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "tld": {
+                "type": "string",
+                "description": "TLD to get info for. Example: \"io\" or \"com\""
+              }
+            },
+            "required": [
+              "tld"
+            ]
+          }
+        },
+        {
+          "name": "metrics",
+          "description": "Get API performance statistics. (costs 0 credits)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {}
+          }
+        }
+      ],
+      "tool_count": 46,
+      "tool_names": [
+        "get_status",
+        "bulk_status",
+        "coverage",
+        "suggest_domains",
+        "domain_valuation",
+        "domain_health",
+        "compare_domains",
+        "dns_lookup",
+        "dns_security",
+        "dns_propagation",
+        "reverse_ns_lookup",
+        "dns_history",
+        "dns_diff",
+        "spf_build",
+        "spf_validate",
+        "spf_flatten",
+        "dmarc_build",
+        "dmarc_validate",
+        "dkim_check",
+        "dkim_discover",
+        "typosquatting_check",
+        "protection_score",
+        "domain_reputation",
+        "search_certificates",
+        "ssl_grade",
+        "ssl_chain",
+        "ssl_expiring",
+        "enumerate_subdomains",
+        "email_security",
+        "verify_email",
+        "tech_stack",
+        "company_lookup",
+        "hosting_detection",
+        "parking_detection",
+        "ip_lookup",
+        "lookup_mac",
+        "reverse_mx_lookup",
+        "reverse_ip_lookup",
+        "domain_graph",
+        "whois_lookup",
+        "whois_history",
+        "domain_lifecycle",
+        "social_handles",
+        "list_tlds",
+        "tld_info",
+        "metrics"
+      ]
+    },
+    "server_info_crawled": {
+      "id": 11,
+      "name": "Domscan Net Mcp Domain Checker",
+      "author": "",
+      "overview": "Domscan Net Mcp Domain Checker - DNS & Networking server with 46 tools. The MCP Server \"Domscan Net Mcp Domain Checker\" provides 46 tools focused on dns & networking tasks.",
+      "repository_url": "",
+      "homepage": "https://domscan.net/mcp",
+      "remote_or_local": "Remote",
+      "license": "",
+      "usage_count": "9,450",
+      "success_rate": "100%",
+      "tags": [
+        "dns-networking",
+        "database-operations",
+        "development-tools"
+      ],
+      "categories": [
+        "dns & networking",
+        "database operations",
+        "development tools"
+      ],
+      "tools_count": 46,
+      "tools": [
+        {
+          "name": "get_status",
+          "description": "Check if a domain name is available across multiple TLDs. The \"name\" parameter is the domain label WITHOUT the TLD (e.g., \"google\" not \"google.com\"). The \"tlds\" parameter is an array of TLD extensions. (costs 1 credit)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "Domain label WITHOUT TLD. Example: \"google\" or \"myapp\""
+              },
+              "tlds": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "Array of TLD strings. Example: [\"com\",\"net\",\"org\"]"
+              },
+              "prefer_cache": {
+                "type": "boolean",
+                "description": "Prefer cached results for faster response"
+              },
+              "skip_cache": {
+                "type": "boolean",
+                "description": "Force fresh RDAP lookup"
+              }
+            },
+            "required": [
+              "name",
+              "tlds"
+            ]
+          }
+        },
+        {
+          "name": "bulk_status",
+          "description": "Check multiple complete domain names at once. Each domain must include the TLD (e.g., \"google.com\"). (1 credit base + 0.5 credits per item)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "domains": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "Array of complete domain names. Example: [\"google.com\",\"facebook.net\"]"
+              },
+              "options": {
+                "type": "object",
+                "properties": {
+                  "prefer_cache": {
+                    "type": "boolean"
+                  },
+                  "skip_cache": {
+                    "type": "boolean"
+                  }
+                }
+              }
+            },
+            "required": [
+              "domains"
+            ]
+          }
+        },
+        {
+          "name": "coverage",
+          "description": "Get information about which TLDs are supported by this API. (costs 1 credit)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "live": {
+                "type": "boolean",
+                "description": "Perform live health checks on RDAP servers"
+              }
+            }
+          }
+        },
+        {
+          "name": "suggest_domains",
+          "description": "Generate domain name suggestions based on keywords. Great for brainstorming available domains. (costs 2 credits)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "keywords": {
+                "type": "string",
+                "description": "Keywords to generate suggestions for (e.g., \"coffee shop\")"
+              },
+              "tlds": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "TLDs to check (default: com, io, ai, co, app)"
+              },
+              "limit": {
+                "type": "number",
+                "description": "Maximum suggestions to return (default: 20, max: 100)"
+              },
+              "language": {
+                "type": "string",
+                "description": "Language for suggestions (default: en). Supports 30 languages."
+              }
+            },
+            "required": [
+              "keywords"
+            ]
+          }
+        },
+        {
+          "name": "domain_valuation",
+          "description": "Estimate the market value of a domain name based on length, keywords, TLD, brandability, and market factors. (costs 1 credit)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "domain": {
+                "type": "string",
+                "description": "Domain to value (e.g., \"startup.com\")"
+              }
+            },
+            "required": [
+              "domain"
+            ]
+          }
+        },
+        {
+          "name": "domain_health",
+          "description": "Run comprehensive health checks on a domain including DNS, SSL, redirects, and web server status. (costs 2 credits)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "domain": {
+                "type": "string",
+                "description": "Domain to check health for (e.g., \"example.com\")"
+              }
+            },
+            "required": [
+              "domain"
+            ]
+          }
+        },
+        {
+          "name": "compare_domains",
+          "description": "Compare multiple domains side-by-side. Returns availability, valuation, brand score, and recommendations. (costs 2 credits)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "domains": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "Array of complete domain names to compare. Example: [\"startup.com\",\"startup.io\",\"startup.ai\"]"
+              }
+            },
+            "required": [
+              "domains"
+            ]
+          }
+        },
+        {
+          "name": "dns_lookup",
+          "description": "Lookup DNS records for a domain. Returns A, AAAA, MX, TXT, NS, CNAME, and other record types. (costs 1 credit)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "domain": {
+                "type": "string",
+                "description": "Domain to lookup DNS records for (e.g., \"example.com\")"
+              },
+              "type": {
+                "type": "string",
+                "enum": [
+                  "A",
+                  "AAAA",
+                  "MX",
+                  "TXT",
+                  "NS",
+                  "CNAME",
+                  "SOA",
+                  "CAA"
+                ],
+                "description": "Specific record type to query (optional, returns all if not specified)"
+              }
+            },
+            "required": [
+              "domain"
+            ]
+          }
+        },
+        {
+          "name": "dns_security",
+          "description": "Analyze DNS security configuration including SPF, DKIM, DMARC, DNSSEC, and CAA records. (costs 2 credits)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "domain": {
+                "type": "string",
+                "description": "Domain to analyze. Example: \"example.com\""
+              }
+            },
+            "required": [
+              "domain"
+            ]
+          }
+        },
+        {
+          "name": "dns_propagation",
+          "description": "Check DNS propagation across multiple global DNS servers. (costs 2 credits)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "domain": {
+                "type": "string",
+                "description": "Domain to check. Example: \"example.com\""
+              },
+              "type": {
+                "type": "string",
+                "enum": [
+                  "A",
+                  "AAAA",
+                  "CNAME",
+                  "MX",
+                  "TXT",
+                  "NS"
+                ],
+                "description": "DNS record type to check (default: A)"
+              },
+              "expected": {
+                "type": "string",
+                "description": "Expected value to check for"
+              }
+            },
+            "required": [
+              "domain"
+            ]
+          }
+        },
+        {
+          "name": "reverse_ns_lookup",
+          "description": "Find domains that use a specific nameserver. Useful for discovering related domains and infrastructure analysis. (costs 1 credit)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "nameserver": {
+                "type": "string",
+                "description": "Nameserver hostname (e.g., \"ns1.cloudflare.com\")"
+              },
+              "limit": {
+                "type": "number",
+                "description": "Maximum domains to return (default: 100, max: 1000)"
+              }
+            },
+            "required": [
+              "nameserver"
+            ]
+          }
+        },
+        {
+          "name": "dns_history",
+          "description": "Get DNS record history for a domain showing how records have changed over time. (costs 2 credits)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "domain": {
+                "type": "string",
+                "description": "Domain to get DNS history for (e.g., \"example.com\")"
+              },
+              "type": {
+                "type": "string",
+                "description": "Filter by record type (A, AAAA, MX, TXT, etc.)"
+              },
+              "from": {
+                "type": "string",
+                "description": "Start date (YYYY-MM-DD)"
+              },
+              "to": {
+                "type": "string",
+                "description": "End date (YYYY-MM-DD)"
+              }
+            },
+            "required": [
+              "domain"
+            ]
+          }
+        },
+        {
+          "name": "dns_diff",
+          "description": "Compare DNS records between two dates to identify what changed. (costs 2 credits)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "domain": {
+                "type": "string",
+                "description": "Domain to compare (e.g., \"example.com\")"
+              },
+              "date1": {
+                "type": "string",
+                "description": "First date (YYYY-MM-DD)"
+              },
+              "date2": {
+                "type": "string",
+                "description": "Second date (YYYY-MM-DD)"
+              }
+            },
+            "required": [
+              "domain",
+              "date1",
+              "date2"
+            ]
+          }
+        },
+        {
+          "name": "spf_build",
+          "description": "Build an SPF record from configuration options. (costs 1 credit)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "all": {
+                "type": "string",
+                "enum": [
+                  "pass",
+                  "fail",
+                  "softfail",
+                  "neutral"
+                ],
+                "description": "Default action for non-matching senders"
+              },
+              "include": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "Domains to include (e.g., [\"_spf.google.com\"])"
+              },
+              "ip4": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "IPv4 addresses or ranges"
+              },
+              "ip6": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "IPv6 addresses or ranges"
+              },
+              "a": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "Domains whose A records are authorized"
+              },
+              "mx": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "Domains whose MX records are authorized"
+              }
+            },
+            "required": [
+              "all"
+            ]
+          }
+        },
+        {
+          "name": "spf_validate",
+          "description": "Validate an SPF record syntax and check for common issues. (costs 1 credit)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "domain": {
+                "type": "string",
+                "description": "Domain to fetch and validate SPF for"
+              },
+              "record": {
+                "type": "string",
+                "description": "SPF record string to validate directly"
+              }
+            }
+          }
+        },
+        {
+          "name": "spf_flatten",
+          "description": "Flatten an SPF record by resolving includes to IP addresses. (costs 2 credits)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "domain": {
+                "type": "string",
+                "description": "Domain to flatten SPF for"
+              }
+            },
+            "required": [
+              "domain"
+            ]
+          }
+        },
+        {
+          "name": "dmarc_build",
+          "description": "Build a DMARC record from configuration options. (costs 1 credit)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "policy": {
+                "type": "string",
+                "enum": [
+                  "none",
+                  "quarantine",
+                  "reject"
+                ],
+                "description": "DMARC policy for failing messages"
+              },
+              "subdomain_policy": {
+                "type": "string",
+                "enum": [
+                  "none",
+                  "quarantine",
+                  "reject"
+                ],
+                "description": "Policy for subdomains"
+              },
+              "rua": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "Aggregate report email addresses"
+              },
+              "ruf": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "Forensic report email addresses"
+              },
+              "percentage": {
+                "type": "number",
+                "description": "Percentage of messages to apply policy (1-100)"
+              },
+              "dkim_alignment": {
+                "type": "string",
+                "enum": [
+                  "r",
+                  "s"
+                ],
+                "description": "DKIM alignment mode (r=relaxed, s=strict)"
+              },
+              "spf_alignment": {
+                "type": "string",
+                "enum": [
+                  "r",
+                  "s"
+                ],
+                "description": "SPF alignment mode (r=relaxed, s=strict)"
+              }
+            },
+            "required": [
+              "policy"
+            ]
+          }
+        },
+        {
+          "name": "dmarc_validate",
+          "description": "Validate a DMARC record syntax and configuration. (costs 1 credit)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "domain": {
+                "type": "string",
+                "description": "Domain to fetch and validate DMARC for"
+              },
+              "record": {
+                "type": "string",
+                "description": "DMARC record string to validate directly"
+              }
+            }
+          }
+        },
+        {
+          "name": "dkim_check",
+          "description": "Check a DKIM selector and validate the public key record. (costs 1 credit)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "domain": {
+                "type": "string",
+                "description": "Domain to check DKIM for"
+              },
+              "selector": {
+                "type": "string",
+                "description": "DKIM selector to check (e.g., \"google\", \"selector1\")"
+              }
+            },
+            "required": [
+              "domain",
+              "selector"
+            ]
+          }
+        },
+        {
+          "name": "dkim_discover",
+          "description": "Discover DKIM selectors by checking common selector names. (costs 2 credits)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "domain": {
+                "type": "string",
+                "description": "Domain to discover DKIM selectors for"
+              }
+            },
+            "required": [
+              "domain"
+            ]
+          }
+        },
+        {
+          "name": "typosquatting_check",
+          "description": "Detect potential typosquatting domains for a given domain and check which are registered. (costs 2 credits)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "domain": {
+                "type": "string",
+                "description": "Domain to check. Example: \"example.com\""
+              },
+              "limit": {
+                "type": "number",
+                "description": "Max permutations to check (default: 100, max: 500)"
+              }
+            },
+            "required": [
+              "domain"
+            ]
+          }
+        },
+        {
+          "name": "protection_score",
+          "description": "Calculate how vulnerable a domain is to typosquatting attacks. Returns a protection score and recommendations. (costs 1 credit)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "domain": {
+                "type": "string",
+                "description": "Domain to score. Example: \"example.com\""
+              },
+              "check_registered": {
+                "type": "boolean",
+                "description": "Check registered typos to factor into score (slower)"
+              }
+            },
+            "required": [
+              "domain"
+            ]
+          }
+        },
+        {
+          "name": "domain_reputation",
+          "description": "Calculate a comprehensive reputation/trust score for a domain based on DNS security, SSL, web presence, email configuration, and other factors. (costs 2 credits)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "domain": {
+                "type": "string",
+                "description": "Domain to calculate reputation for (e.g., \"example.com\")"
+              }
+            },
+            "required": [
+              "domain"
+            ]
+          }
+        },
+        {
+          "name": "search_certificates",
+          "description": "Search Certificate Transparency logs to find all SSL certificates issued for a domain. Useful for discovering subdomains, monitoring certificate issuance, and security auditing. (costs 2 credits)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "domain": {
+                "type": "string",
+                "description": "Domain to search certificates for (e.g., \"example.com\")"
+              },
+              "include_subdomains": {
+                "type": "boolean",
+                "description": "Include certificates for subdomains (default: true)"
+              },
+              "limit": {
+                "type": "number",
+                "description": "Maximum number of certificates to return (default: 100, max: 1000)"
+              }
+            },
+            "required": [
+              "domain"
+            ]
+          }
+        },
+        {
+          "name": "ssl_grade",
+          "description": "Analyze SSL/TLS configuration for a domain and get a letter grade with detailed scoring. (costs 2 credits)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "domain": {
+                "type": "string",
+                "description": "Domain to analyze (e.g., \"example.com\")"
+              }
+            },
+            "required": [
+              "domain"
+            ]
+          }
+        },
+        {
+          "name": "ssl_chain",
+          "description": "Get certificate chain details including issuer, validity dates, and trust chain. (costs 2 credits)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "domain": {
+                "type": "string",
+                "description": "Domain to analyze (e.g., \"example.com\")"
+              }
+            },
+            "required": [
+              "domain"
+            ]
+          }
+        },
+        {
+          "name": "ssl_expiring",
+          "description": "Check if a domain SSL certificate is expiring soon. (costs 1 credit)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "domain": {
+                "type": "string",
+                "description": "Domain to check (e.g., \"example.com\")"
+              },
+              "days": {
+                "type": "number",
+                "description": "Alert threshold in days (default: 30)"
+              }
+            },
+            "required": [
+              "domain"
+            ]
+          }
+        },
+        {
+          "name": "enumerate_subdomains",
+          "description": "Discover subdomains for a domain using Certificate Transparency logs. Useful for attack surface mapping and security reconnaissance. (costs 3 credits)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "domain": {
+                "type": "string",
+                "description": "Domain to enumerate subdomains for (e.g., \"example.com\")"
+              },
+              "verify": {
+                "type": "boolean",
+                "description": "Verify subdomains resolve via DNS (slower but more accurate)"
+              },
+              "limit": {
+                "type": "number",
+                "description": "Maximum subdomains to return (default: 500, max: 5000)"
+              }
+            },
+            "required": [
+              "domain"
+            ]
+          }
+        },
+        {
+          "name": "email_security",
+          "description": "Check email authentication configuration (SPF, DKIM, DMARC) for a domain. (costs 2 credits)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "domain": {
+                "type": "string",
+                "description": "Domain to check email security for (e.g., \"example.com\")"
+              }
+            },
+            "required": [
+              "domain"
+            ]
+          }
+        },
+        {
+          "name": "verify_email",
+          "description": "Verify if an email address is real and deliverable. Checks syntax, MX records, disposable domains, and optionally SMTP mailbox existence. (1 credit; With full=true (SMTP verification), costs 5 credits total)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "email": {
+                "type": "string",
+                "description": "Email address to verify (e.g., \"user@example.com\")"
+              },
+              "full": {
+                "type": "boolean",
+                "description": "Enable full SMTP verification for 5 credits total (default: false)"
+              }
+            },
+            "required": [
+              "email"
+            ]
+          }
+        },
+        {
+          "name": "tech_stack",
+          "description": "Detect technologies used by a website including CMS, frameworks, analytics, hosting, and security tools. (costs 2 credits)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "domain": {
+                "type": "string",
+                "description": "Domain to analyze (e.g., \"example.com\")"
+              }
+            },
+            "required": [
+              "domain"
+            ]
+          }
+        },
+        {
+          "name": "company_lookup",
+          "description": "Lookup company/organization information associated with a domain. Extracts data from website meta tags, WHOIS, and other public sources. (costs 2 credits)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "domain": {
+                "type": "string",
+                "description": "Domain to lookup company information for (e.g., \"example.com\")"
+              }
+            },
+            "required": [
+              "domain"
+            ]
+          }
+        },
+        {
+          "name": "hosting_detection",
+          "description": "Detect hosting provider, CDN, WAF, DNS provider, and email infrastructure for a domain. (costs 2 credits)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "domain": {
+                "type": "string",
+                "description": "Domain to analyze (e.g., \"example.com\")"
+              }
+            },
+            "required": [
+              "domain"
+            ]
+          }
+        },
+        {
+          "name": "parking_detection",
+          "description": "Check if a domain is parked, showing placeholder/ad pages, or listed for sale on aftermarket platforms like Sedo, Afternic, Dan.com, etc. (costs 2 credits)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "domain": {
+                "type": "string",
+                "description": "Domain to check (e.g., \"example.com\")"
+              }
+            },
+            "required": [
+              "domain"
+            ]
+          }
+        },
+        {
+          "name": "ip_lookup",
+          "description": "Get detailed information about an IP address or domain, including geolocation, ASN, network info, and security indicators. (costs 1 credit)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "ip": {
+                "type": "string",
+                "description": "IP address to lookup (e.g., \"8.8.8.8\")"
+              },
+              "domain": {
+                "type": "string",
+                "description": "Domain name to resolve and lookup (alternative to ip)"
+              }
+            }
+          }
+        },
+        {
+          "name": "lookup_mac",
+          "description": "Lookup MAC address metadata and vendor/OUI information. (costs 1 credit)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "mac": {
+                "type": "string",
+                "description": "MAC address string to lookup"
+              }
+            },
+            "required": [
+              "mac"
+            ]
+          }
+        },
+        {
+          "name": "reverse_mx_lookup",
+          "description": "Find domains that use a specific mail server. Useful for discovering related domains. (costs 2 credits)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "mailserver": {
+                "type": "string",
+                "description": "Mail server hostname (e.g., \"aspmx.l.google.com\")"
+              },
+              "limit": {
+                "type": "number",
+                "description": "Maximum domains to return (default: 100, max: 1000)"
+              }
+            },
+            "required": [
+              "mailserver"
+            ]
+          }
+        },
+        {
+          "name": "reverse_ip_lookup",
+          "description": "Find domains hosted on a specific IP address. Useful for discovering co-hosted sites. (costs 2 credits)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "ip": {
+                "type": "string",
+                "description": "IP address to lookup (e.g., \"93.184.216.34\")"
+              },
+              "limit": {
+                "type": "number",
+                "description": "Maximum domains to return (default: 100, max: 1000)"
+              }
+            },
+            "required": [
+              "ip"
+            ]
+          }
+        },
+        {
+          "name": "domain_graph",
+          "description": "Build a relationship graph showing connections between domains via shared IPs, nameservers, mail servers, and registrant info. (costs 3 credits)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "seed": {
+                "type": "string",
+                "description": "Domain or IP to analyze connections for (e.g., \"example.com\")"
+              },
+              "include": {
+                "type": "string",
+                "description": "Relationship types to include: ns, mx, ip, asn, registrant (CSV)"
+              },
+              "limit_per_type": {
+                "type": "number",
+                "description": "Max results per relationship type (default: 200)"
+              }
+            },
+            "required": [
+              "seed"
+            ]
+          }
+        },
+        {
+          "name": "whois_lookup",
+          "description": "Get WHOIS/RDAP registration data for a domain including registrar, dates, nameservers, and status. (costs 2 credits)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "domain": {
+                "type": "string",
+                "description": "Domain to lookup WHOIS data for (e.g., \"example.com\")"
+              }
+            },
+            "required": [
+              "domain"
+            ]
+          }
+        },
+        {
+          "name": "whois_history",
+          "description": "Get historical WHOIS snapshots showing how registration data has changed over time, including registrar transfers, nameserver changes, and privacy toggles. (costs 2 credits)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "domain": {
+                "type": "string",
+                "description": "Domain to get history for (e.g., \"example.com\")"
+              },
+              "limit": {
+                "type": "number",
+                "description": "Maximum snapshots to return (default: 50, max: 100)"
+              }
+            },
+            "required": [
+              "domain"
+            ]
+          }
+        },
+        {
+          "name": "domain_lifecycle",
+          "description": "Get domain lifecycle information including registration date, expiration date, domain age, days until expiry, and current lifecycle phase. (costs 2 credits)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "domain": {
+                "type": "string",
+                "description": "Domain to check lifecycle for (e.g., \"example.com\")"
+              }
+            },
+            "required": [
+              "domain"
+            ]
+          }
+        },
+        {
+          "name": "social_handles",
+          "description": "Check availability of a username across major social media platforms. (costs 2 credits)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "handle": {
+                "type": "string",
+                "description": "Username/handle to check availability for"
+              },
+              "platforms": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "Platforms to check (default: all major platforms)"
+              }
+            },
+            "required": [
+              "handle"
+            ]
+          }
+        },
+        {
+          "name": "list_tlds",
+          "description": "List all supported TLDs with optional filtering by type or trust tier. (costs 1 credit)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": [
+                  "gTLD",
+                  "ccTLD",
+                  "newTLD",
+                  "idn"
+                ],
+                "description": "Filter by TLD type"
+              },
+              "trust_tier": {
+                "type": "string",
+                "enum": [
+                  "premium",
+                  "standard",
+                  "economy"
+                ],
+                "description": "Filter by trust tier"
+              },
+              "use_case": {
+                "type": "string",
+                "description": "Get TLDs for a specific use case. Example: \"startup\" or \"tech\""
+              }
+            }
+          }
+        },
+        {
+          "name": "tld_info",
+          "description": "Get detailed information about a TLD including pricing, restrictions, trust score, and use cases. (costs 1 credit)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "tld": {
+                "type": "string",
+                "description": "TLD to get info for. Example: \"io\" or \"com\""
+              }
+            },
+            "required": [
+              "tld"
+            ]
+          }
+        },
+        {
+          "name": "metrics",
+          "description": "Get API performance statistics. (costs 0 credits)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {}
+          }
+        }
+      ],
+      "python_sdk_url": "https://domscan.net/mcp",
+      "python_sdk_config": "{\"debug\": false}"
+    },
+    "source_filename": "0011.Domscan-Net-Mcp-Domain-Checker_labeled.json",
+    "processed_timestamp": 1772876337,
+    "processing_mode": "gateway",
+    "rank": 12
+  }
+}

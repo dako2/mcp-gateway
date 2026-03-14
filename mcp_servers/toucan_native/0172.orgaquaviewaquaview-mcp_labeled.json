@@ -1,0 +1,788 @@
+{
+  "labels": {
+    "analysis": "The MCP Server \"org.aquaview/aquaview-mcp\" provides 4 tools focused on database operations tasks. Core capabilities include data access and reading, modification and updates, search and retrieval. Key tools: search_datasets, get_item, list_collections, aggregate.",
+    "reasoning": "Primary label \"Database Operations\" assigned based on strong keyword matches in tool names and descriptions: collection.",
+    "primary_label": "Database Operations",
+    "secondary_labels": [
+      "Web Search & Research",
+      "Data Analysis & Processing"
+    ],
+    "custom_label": "Data Access & Search - org.aquaview/aquaview-mcp",
+    "is_connected": true,
+    "is_remote_tool_valid": true,
+    "featured_server": false,
+    "tool_verified": true,
+    "tool_verified_status": "verified",
+    "tool_verified_at": "2026-03-14T20:38:17.845951+00:00",
+    "tool_verified_tool": "search_datasets",
+    "tool_verified_reason": "response received"
+  },
+  "metadata": {
+    "server_id": 172,
+    "server_name": "org.aquaview/aquaview-mcp",
+    "rank_by_usage": 173,
+    "usage_count": "10",
+    "original_file": "tools.json#172",
+    "mode": "gateway",
+    "timestamp": 1772876337,
+    "remote_server_response": {
+      "url": "https://mcp.aquaview.org/mcp",
+      "is_success": true,
+      "error": null,
+      "tools": [
+        {
+          "name": "search_datasets",
+          "description": "Search the AQUAVIEW catalog — a comprehensive collection of 268K+ global oceanographic, atmospheric, and marine datasets from 15 sources (NOAA, NDBC, IOOS, WOD, CoastWatch, etc.), intended for scientific research, data analysis, and environmental monitoring.\n\nYou must provide at least one of: q, bbox, datetime, collections, filter, or token.\nHint: When the user asks for a region, prefer the 'bbox' parameter over including region name in 'q'. Use the geo_hints resource for common bounding boxes.\n\nArgs:\n    q: Free-text search across title, description, and keywords (e.g., \"sea surface temperature\"). Case-insensitive, OR logic across terms.\n    bbox: Bounding box as \"west,south,east,north\" (e.g., \"-98,24,-80,31\" for Gulf of Mexico).\n    datetime: Temporal filter. Single datetime, range (\"2020-01-01T00:00:00Z/2024-12-31T23:59:59Z\"), or open-ended (\"../2024-01-01T00:00:00Z\" or \"2020-01-01T00:00:00Z/..\").\n    collections: Comma-separated collection IDs to search within (e.g., \"NOAA,NDBC,WOD\"). Use list_collections to see available IDs.\n    filter: CQL2-JSON filter as a JSON string for advanced property filtering. Example: '{\"op\": \"=\", \"args\": [{\"property\": \"aquaview:institution\"}, \"NOAA/NCEI\"]}'. Supports operators: =, <>, <, >, <=, >=, like, between, in, and, or, not.\n    sortby: Sort specification as \"+field,-field\" (e.g., \"+properties.datetime,-id\"). + = ascending, - = descending.\n    limit: Number of results to return, 1-100. Defaults to 10.\n    token: Pagination token from a previous response's 'next_token' field. Pass this to get the next page of results.\n    fields: Comma-separated list of fields to include in results (e.g., \"id,geometry,properties.title\"). Reduces response size.\n    output_format: \"toon\" (default, Token-Oriented Object Notation, 30-60% fewer tokens) or \"json\".\n\nReturns:\n    Search results with: total (matched count), returned (this page count), next_token (for pagination), and items (array of STAC features with geometry, properties, and assets/download links).",
+          "inputSchema": {
+            "additionalProperties": false,
+            "properties": {
+              "q": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "bbox": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "datetime": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "collections": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "filter": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "sortby": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "limit": {
+                "default": 10,
+                "type": "integer"
+              },
+              "token": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "fields": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "output_format": {
+                "default": "toon",
+                "enum": [
+                  "json",
+                  "toon"
+                ],
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "outputSchema": {
+            "properties": {
+              "result": {
+                "anyOf": [
+                  {
+                    "additionalProperties": true,
+                    "type": "object"
+                  },
+                  {
+                    "type": "string"
+                  }
+                ]
+              }
+            },
+            "required": [
+              "result"
+            ],
+            "type": "object",
+            "x-fastmcp-wrap-result": true
+          },
+          "_meta": {
+            "fastmcp": {
+              "tags": []
+            }
+          }
+        },
+        {
+          "name": "get_item",
+          "description": "Fetch a single AQUAVIEW dataset item with full details, properties, and download links (assets).\n\nSTAC items embed assets inline — each asset includes an href (download URL) and media type, so there is no need for a separate \"files\" call.\n\nArgs:\n    collection: The collection ID the item belongs to (e.g., \"NOAA\", \"NDBC\", \"WOD\"). Available from search results or list_collections.\n    item_id: The unique item identifier (e.g., \"wod_xbt_ZZ144579\"). Available from search results.\n    output_format: \"toon\" (default) or \"json\".\n\nReturns:\n    Full STAC item with geometry, properties (title, description, datetime, institution, variables, etc.), and assets (download links with media types).",
+          "inputSchema": {
+            "additionalProperties": false,
+            "properties": {
+              "collection": {
+                "type": "string"
+              },
+              "item_id": {
+                "type": "string"
+              },
+              "output_format": {
+                "default": "toon",
+                "enum": [
+                  "json",
+                  "toon"
+                ],
+                "type": "string"
+              }
+            },
+            "required": [
+              "collection",
+              "item_id"
+            ],
+            "type": "object"
+          },
+          "outputSchema": {
+            "properties": {
+              "result": {
+                "anyOf": [
+                  {
+                    "additionalProperties": true,
+                    "type": "object"
+                  },
+                  {
+                    "type": "string"
+                  }
+                ]
+              }
+            },
+            "required": [
+              "result"
+            ],
+            "type": "object",
+            "x-fastmcp-wrap-result": true
+          },
+          "_meta": {
+            "fastmcp": {
+              "tags": []
+            }
+          }
+        },
+        {
+          "name": "list_collections",
+          "description": "List all available AQUAVIEW data collections (sources).\n\nReturns a summary of each collection with ID, title, description, spatial/temporal extent, and keywords. Use collection IDs to filter searches.\n\nArgs:\n    output_format: \"toon\" (default) or \"json\".\n\nReturns:\n    List of collections with count.",
+          "inputSchema": {
+            "additionalProperties": false,
+            "properties": {
+              "output_format": {
+                "default": "toon",
+                "enum": [
+                  "json",
+                  "toon"
+                ],
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "outputSchema": {
+            "properties": {
+              "result": {
+                "anyOf": [
+                  {
+                    "additionalProperties": true,
+                    "type": "object"
+                  },
+                  {
+                    "type": "string"
+                  }
+                ]
+              }
+            },
+            "required": [
+              "result"
+            ],
+            "type": "object",
+            "x-fastmcp-wrap-result": true
+          },
+          "_meta": {
+            "fastmcp": {
+              "tags": []
+            }
+          }
+        },
+        {
+          "name": "aggregate",
+          "description": "Run aggregation queries on the AQUAVIEW catalog — get counts, spatial distributions, temporal distributions, and per-collection breakdowns without fetching individual items.\n\nArgs:\n    aggregations: Comma-separated aggregation types (required). Valid types: total_count, datetime_max, datetime_min, datetime_frequency, collection_frequency, geometry_geohash_grid_frequency, geometry_geotile_grid_frequency.\n    collections: Comma-separated collection IDs to scope the aggregation (e.g., \"NOAA,NDBC\").\n    bbox: Bounding box as \"west,south,east,north\".\n    datetime: Temporal filter (same format as search_datasets).\n    q: Free-text search to scope the aggregation. Automatically converted to CQL2 LIKE filter on title/description.\n    filter: CQL2-JSON filter object for advanced filtering (e.g., {\"op\": \"=\", \"args\": [{\"property\": \"aquaview:institution\"}, \"NOAA\"]}). Note: aggregate POST requires CQL2-JSON, not CQL2-text.\n    precision: Grid precision for geo aggregations (1-12, higher = finer grid). Applied to whichever geo aggregation type is requested.\n    datetime_frequency_interval: Interval for datetime_frequency (e.g., \"month\", \"year\", \"day\").\n    output_format: \"toon\" (default) or \"json\".\n\nReturns:\n    Aggregation results. Each requested aggregation returns its name, data_type, and value/buckets.",
+          "inputSchema": {
+            "additionalProperties": false,
+            "properties": {
+              "aggregations": {
+                "type": "string"
+              },
+              "collections": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "bbox": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "datetime": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "q": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "filter": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "precision": {
+                "anyOf": [
+                  {
+                    "type": "integer"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "datetime_frequency_interval": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "output_format": {
+                "default": "toon",
+                "enum": [
+                  "json",
+                  "toon"
+                ],
+                "type": "string"
+              }
+            },
+            "required": [
+              "aggregations"
+            ],
+            "type": "object"
+          },
+          "outputSchema": {
+            "properties": {
+              "result": {
+                "anyOf": [
+                  {
+                    "additionalProperties": true,
+                    "type": "object"
+                  },
+                  {
+                    "type": "string"
+                  }
+                ]
+              }
+            },
+            "required": [
+              "result"
+            ],
+            "type": "object",
+            "x-fastmcp-wrap-result": true
+          },
+          "_meta": {
+            "fastmcp": {
+              "tags": []
+            }
+          }
+        }
+      ],
+      "tool_count": 4,
+      "tool_names": [
+        "search_datasets",
+        "get_item",
+        "list_collections",
+        "aggregate"
+      ]
+    },
+    "server_info_crawled": {
+      "id": 172,
+      "name": "org.aquaview/aquaview-mcp",
+      "author": "",
+      "overview": "org.aquaview/aquaview-mcp - Database Operations server with 4 tools. The MCP Server \"org.aquaview/aquaview-mcp\" provides 4 tools focused on database operations tasks. Co",
+      "repository_url": "",
+      "homepage": "https://mcp.aquaview.org/mcp",
+      "remote_or_local": "Remote",
+      "license": "",
+      "usage_count": "10",
+      "success_rate": "100%",
+      "tags": [
+        "database-operations",
+        "web-search-research",
+        "data-analysis-processing"
+      ],
+      "categories": [
+        "database operations",
+        "web search & research",
+        "data analysis & processing"
+      ],
+      "tools_count": 4,
+      "tools": [
+        {
+          "name": "search_datasets",
+          "description": "Search the AQUAVIEW catalog — a comprehensive collection of 268K+ global oceanographic, atmospheric, and marine datasets from 15 sources (NOAA, NDBC, IOOS, WOD, CoastWatch, etc.), intended for scientific research, data analysis, and environmental monitoring.\n\nYou must provide at least one of: q, bbox, datetime, collections, filter, or token.\nHint: When the user asks for a region, prefer the 'bbox' parameter over including region name in 'q'. Use the geo_hints resource for common bounding boxes.\n\nArgs:\n    q: Free-text search across title, description, and keywords (e.g., \"sea surface temperature\"). Case-insensitive, OR logic across terms.\n    bbox: Bounding box as \"west,south,east,north\" (e.g., \"-98,24,-80,31\" for Gulf of Mexico).\n    datetime: Temporal filter. Single datetime, range (\"2020-01-01T00:00:00Z/2024-12-31T23:59:59Z\"), or open-ended (\"../2024-01-01T00:00:00Z\" or \"2020-01-01T00:00:00Z/..\").\n    collections: Comma-separated collection IDs to search within (e.g., \"NOAA,NDBC,WOD\"). Use list_collections to see available IDs.\n    filter: CQL2-JSON filter as a JSON string for advanced property filtering. Example: '{\"op\": \"=\", \"args\": [{\"property\": \"aquaview:institution\"}, \"NOAA/NCEI\"]}'. Supports operators: =, <>, <, >, <=, >=, like, between, in, and, or, not.\n    sortby: Sort specification as \"+field,-field\" (e.g., \"+properties.datetime,-id\"). + = ascending, - = descending.\n    limit: Number of results to return, 1-100. Defaults to 10.\n    token: Pagination token from a previous response's 'next_token' field. Pass this to get the next page of results.\n    fields: Comma-separated list of fields to include in results (e.g., \"id,geometry,properties.title\"). Reduces response size.\n    output_format: \"toon\" (default, Token-Oriented Object Notation, 30-60% fewer tokens) or \"json\".\n\nReturns:\n    Search results with: total (matched count), returned (this page count), next_token (for pagination), and items (array of STAC features with geometry, properties, and assets/download links).",
+          "inputSchema": {
+            "additionalProperties": false,
+            "properties": {
+              "q": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "bbox": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "datetime": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "collections": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "filter": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "sortby": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "limit": {
+                "default": 10,
+                "type": "integer"
+              },
+              "token": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "fields": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "output_format": {
+                "default": "toon",
+                "enum": [
+                  "json",
+                  "toon"
+                ],
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "outputSchema": {
+            "properties": {
+              "result": {
+                "anyOf": [
+                  {
+                    "additionalProperties": true,
+                    "type": "object"
+                  },
+                  {
+                    "type": "string"
+                  }
+                ]
+              }
+            },
+            "required": [
+              "result"
+            ],
+            "type": "object",
+            "x-fastmcp-wrap-result": true
+          },
+          "_meta": {
+            "fastmcp": {
+              "tags": []
+            }
+          }
+        },
+        {
+          "name": "get_item",
+          "description": "Fetch a single AQUAVIEW dataset item with full details, properties, and download links (assets).\n\nSTAC items embed assets inline — each asset includes an href (download URL) and media type, so there is no need for a separate \"files\" call.\n\nArgs:\n    collection: The collection ID the item belongs to (e.g., \"NOAA\", \"NDBC\", \"WOD\"). Available from search results or list_collections.\n    item_id: The unique item identifier (e.g., \"wod_xbt_ZZ144579\"). Available from search results.\n    output_format: \"toon\" (default) or \"json\".\n\nReturns:\n    Full STAC item with geometry, properties (title, description, datetime, institution, variables, etc.), and assets (download links with media types).",
+          "inputSchema": {
+            "additionalProperties": false,
+            "properties": {
+              "collection": {
+                "type": "string"
+              },
+              "item_id": {
+                "type": "string"
+              },
+              "output_format": {
+                "default": "toon",
+                "enum": [
+                  "json",
+                  "toon"
+                ],
+                "type": "string"
+              }
+            },
+            "required": [
+              "collection",
+              "item_id"
+            ],
+            "type": "object"
+          },
+          "outputSchema": {
+            "properties": {
+              "result": {
+                "anyOf": [
+                  {
+                    "additionalProperties": true,
+                    "type": "object"
+                  },
+                  {
+                    "type": "string"
+                  }
+                ]
+              }
+            },
+            "required": [
+              "result"
+            ],
+            "type": "object",
+            "x-fastmcp-wrap-result": true
+          },
+          "_meta": {
+            "fastmcp": {
+              "tags": []
+            }
+          }
+        },
+        {
+          "name": "list_collections",
+          "description": "List all available AQUAVIEW data collections (sources).\n\nReturns a summary of each collection with ID, title, description, spatial/temporal extent, and keywords. Use collection IDs to filter searches.\n\nArgs:\n    output_format: \"toon\" (default) or \"json\".\n\nReturns:\n    List of collections with count.",
+          "inputSchema": {
+            "additionalProperties": false,
+            "properties": {
+              "output_format": {
+                "default": "toon",
+                "enum": [
+                  "json",
+                  "toon"
+                ],
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "outputSchema": {
+            "properties": {
+              "result": {
+                "anyOf": [
+                  {
+                    "additionalProperties": true,
+                    "type": "object"
+                  },
+                  {
+                    "type": "string"
+                  }
+                ]
+              }
+            },
+            "required": [
+              "result"
+            ],
+            "type": "object",
+            "x-fastmcp-wrap-result": true
+          },
+          "_meta": {
+            "fastmcp": {
+              "tags": []
+            }
+          }
+        },
+        {
+          "name": "aggregate",
+          "description": "Run aggregation queries on the AQUAVIEW catalog — get counts, spatial distributions, temporal distributions, and per-collection breakdowns without fetching individual items.\n\nArgs:\n    aggregations: Comma-separated aggregation types (required). Valid types: total_count, datetime_max, datetime_min, datetime_frequency, collection_frequency, geometry_geohash_grid_frequency, geometry_geotile_grid_frequency.\n    collections: Comma-separated collection IDs to scope the aggregation (e.g., \"NOAA,NDBC\").\n    bbox: Bounding box as \"west,south,east,north\".\n    datetime: Temporal filter (same format as search_datasets).\n    q: Free-text search to scope the aggregation. Automatically converted to CQL2 LIKE filter on title/description.\n    filter: CQL2-JSON filter object for advanced filtering (e.g., {\"op\": \"=\", \"args\": [{\"property\": \"aquaview:institution\"}, \"NOAA\"]}). Note: aggregate POST requires CQL2-JSON, not CQL2-text.\n    precision: Grid precision for geo aggregations (1-12, higher = finer grid). Applied to whichever geo aggregation type is requested.\n    datetime_frequency_interval: Interval for datetime_frequency (e.g., \"month\", \"year\", \"day\").\n    output_format: \"toon\" (default) or \"json\".\n\nReturns:\n    Aggregation results. Each requested aggregation returns its name, data_type, and value/buckets.",
+          "inputSchema": {
+            "additionalProperties": false,
+            "properties": {
+              "aggregations": {
+                "type": "string"
+              },
+              "collections": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "bbox": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "datetime": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "q": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "filter": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "precision": {
+                "anyOf": [
+                  {
+                    "type": "integer"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "datetime_frequency_interval": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "output_format": {
+                "default": "toon",
+                "enum": [
+                  "json",
+                  "toon"
+                ],
+                "type": "string"
+              }
+            },
+            "required": [
+              "aggregations"
+            ],
+            "type": "object"
+          },
+          "outputSchema": {
+            "properties": {
+              "result": {
+                "anyOf": [
+                  {
+                    "additionalProperties": true,
+                    "type": "object"
+                  },
+                  {
+                    "type": "string"
+                  }
+                ]
+              }
+            },
+            "required": [
+              "result"
+            ],
+            "type": "object",
+            "x-fastmcp-wrap-result": true
+          },
+          "_meta": {
+            "fastmcp": {
+              "tags": []
+            }
+          }
+        }
+      ],
+      "python_sdk_url": "https://mcp.aquaview.org/mcp",
+      "python_sdk_config": "{\"debug\": false}"
+    },
+    "source_filename": "0172.orgaquaviewaquaview-mcp_labeled.json",
+    "processed_timestamp": 1772876337,
+    "processing_mode": "gateway",
+    "rank": 173
+  }
+}

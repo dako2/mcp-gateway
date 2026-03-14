@@ -1,0 +1,494 @@
+{
+  "labels": {
+    "analysis": "The MCP Server for Hugging Face provides tools primarily focused on accessing, searching, and retrieving information about models, datasets, research papers, and other resources available on the Hugging Face Hub. It enables users to efficiently explore and interact with AI/ML resources, making it particularly useful for researchers, developers, and data scientists who need to stay updated with the latest models, datasets, and academic research in the AI field.",
+    "reasoning": "The primary functionality of this server revolves around accessing and managing AI/ML resources, which aligns closely with the **AI/ML Tools** category. The tools provide direct interaction with models, datasets, and research papers, which are core components of machine learning workflows. The server also facilitates research and discovery, which could be considered a secondary function tied to **Web Search & Research** and **Data Analysis & Processing**.",
+    "primary_label": "AI/ML Tools",
+    "secondary_labels": [
+      "Web Search & Research",
+      "Data Analysis & Processing"
+    ],
+    "custom_label": "AI/ML Resource Hub Management",
+    "is_connected": true,
+    "is_remote_tool_valid": true,
+    "featured_server": false,
+    "tool_verified": false,
+    "tool_verified_status": "broken",
+    "tool_verified_at": "2026-03-14T20:39:02.897534+00:00",
+    "tool_verified_tool": "search-models",
+    "tool_verified_reason": "client timeout after 20004ms"
+  },
+  "metadata": {
+    "server_id": 291,
+    "server_name": "Hugging Face MCP Server",
+    "rank_by_usage": 232,
+    "usage_count": "187",
+    "original_file": "toucan_live#@shreyaskarnik/huggingface-mcp-server",
+    "mode": "toucan",
+    "timestamp": 1772876338,
+    "remote_server_response": {
+      "url": "https://server.smithery.ai/@shreyaskarnik/huggingface-mcp-server/mcp",
+      "is_success": true,
+      "error": null,
+      "tools": [
+        {
+          "name": "search-models",
+          "description": "Search for models on Hugging Face Hub",
+          "input_schema": {
+            "type": "object",
+            "properties": {
+              "query": {
+                "type": "string",
+                "description": "Search term (e.g., 'bert', 'gpt')"
+              },
+              "author": {
+                "type": "string",
+                "description": "Filter by author/organization (e.g., 'huggingface', 'google')"
+              },
+              "tags": {
+                "type": "string",
+                "description": "Filter by tags (e.g., 'text-classification', 'translation')"
+              },
+              "limit": {
+                "type": "integer",
+                "description": "Maximum number of results to return"
+              }
+            }
+          },
+          "annotations": null
+        },
+        {
+          "name": "get-model-info",
+          "description": "Get detailed information about a specific model",
+          "input_schema": {
+            "type": "object",
+            "properties": {
+              "model_id": {
+                "type": "string",
+                "description": "The ID of the model (e.g., 'google/bert-base-uncased')"
+              }
+            },
+            "required": [
+              "model_id"
+            ]
+          },
+          "annotations": null
+        },
+        {
+          "name": "search-datasets",
+          "description": "Search for datasets on Hugging Face Hub",
+          "input_schema": {
+            "type": "object",
+            "properties": {
+              "query": {
+                "type": "string",
+                "description": "Search term"
+              },
+              "author": {
+                "type": "string",
+                "description": "Filter by author/organization"
+              },
+              "tags": {
+                "type": "string",
+                "description": "Filter by tags"
+              },
+              "limit": {
+                "type": "integer",
+                "description": "Maximum number of results to return"
+              }
+            }
+          },
+          "annotations": null
+        },
+        {
+          "name": "get-dataset-info",
+          "description": "Get detailed information about a specific dataset",
+          "input_schema": {
+            "type": "object",
+            "properties": {
+              "dataset_id": {
+                "type": "string",
+                "description": "The ID of the dataset (e.g., 'squad')"
+              }
+            },
+            "required": [
+              "dataset_id"
+            ]
+          },
+          "annotations": null
+        },
+        {
+          "name": "search-spaces",
+          "description": "Search for Spaces on Hugging Face Hub",
+          "input_schema": {
+            "type": "object",
+            "properties": {
+              "query": {
+                "type": "string",
+                "description": "Search term"
+              },
+              "author": {
+                "type": "string",
+                "description": "Filter by author/organization"
+              },
+              "tags": {
+                "type": "string",
+                "description": "Filter by tags"
+              },
+              "sdk": {
+                "type": "string",
+                "description": "Filter by SDK (e.g., 'streamlit', 'gradio', 'docker')"
+              },
+              "limit": {
+                "type": "integer",
+                "description": "Maximum number of results to return"
+              }
+            }
+          },
+          "annotations": null
+        },
+        {
+          "name": "get-space-info",
+          "description": "Get detailed information about a specific Space",
+          "input_schema": {
+            "type": "object",
+            "properties": {
+              "space_id": {
+                "type": "string",
+                "description": "The ID of the Space (e.g., 'huggingface/diffusers-demo')"
+              }
+            },
+            "required": [
+              "space_id"
+            ]
+          },
+          "annotations": null
+        },
+        {
+          "name": "get-paper-info",
+          "description": "Get information about a specific paper on Hugging Face",
+          "input_schema": {
+            "type": "object",
+            "properties": {
+              "arxiv_id": {
+                "type": "string",
+                "description": "The arXiv ID of the paper (e.g., '1810.04805')"
+              }
+            },
+            "required": [
+              "arxiv_id"
+            ]
+          },
+          "annotations": null
+        },
+        {
+          "name": "get-daily-papers",
+          "description": "Get the list of daily papers curated by Hugging Face",
+          "input_schema": {
+            "type": "object",
+            "properties": {}
+          },
+          "annotations": null
+        },
+        {
+          "name": "search-collections",
+          "description": "Search for collections on Hugging Face Hub",
+          "input_schema": {
+            "type": "object",
+            "properties": {
+              "owner": {
+                "type": "string",
+                "description": "Filter by owner"
+              },
+              "item": {
+                "type": "string",
+                "description": "Filter by item (e.g., 'models/teknium/OpenHermes-2.5-Mistral-7B')"
+              },
+              "query": {
+                "type": "string",
+                "description": "Search term for titles and descriptions"
+              },
+              "limit": {
+                "type": "integer",
+                "description": "Maximum number of results to return"
+              }
+            }
+          },
+          "annotations": null
+        },
+        {
+          "name": "get-collection-info",
+          "description": "Get detailed information about a specific collection",
+          "input_schema": {
+            "type": "object",
+            "properties": {
+              "namespace": {
+                "type": "string",
+                "description": "The namespace of the collection (user or organization)"
+              },
+              "collection_id": {
+                "type": "string",
+                "description": "The ID part of the collection"
+              }
+            },
+            "required": [
+              "namespace",
+              "collection_id"
+            ]
+          },
+          "annotations": null
+        }
+      ],
+      "tool_count": 10,
+      "tool_names": [
+        "search-models",
+        "get-model-info",
+        "search-datasets",
+        "get-dataset-info",
+        "search-spaces",
+        "get-space-info",
+        "get-paper-info",
+        "get-daily-papers",
+        "search-collections",
+        "get-collection-info"
+      ]
+    },
+    "server_info_crawled": {
+      "id": 291,
+      "name": "Hugging Face MCP Server",
+      "author": "",
+      "overview": "Access Hugging Face's models, datasets, and research papers seamlessly. Interact with a wide range of resources and tools to enhance your LLM's capabilities. Utilize prompt templates for efficient model comparisons and paper summaries.",
+      "repository_url": "",
+      "homepage": "https://server.smithery.ai/@shreyaskarnik/huggingface-mcp-server/mcp",
+      "remote_or_local": "Remote",
+      "license": "",
+      "usage_count": "187",
+      "success_rate": "99.52%",
+      "tags": [
+        "search",
+        "web",
+        "api",
+        "mcp"
+      ],
+      "categories": [
+        "search",
+        "api"
+      ],
+      "tools_count": 10,
+      "tools": [
+        {
+          "name": "search-models",
+          "description": "Search for models on Hugging Face Hub",
+          "input_schema": {
+            "type": "object",
+            "properties": {
+              "query": {
+                "type": "string",
+                "description": "Search term (e.g., 'bert', 'gpt')"
+              },
+              "author": {
+                "type": "string",
+                "description": "Filter by author/organization (e.g., 'huggingface', 'google')"
+              },
+              "tags": {
+                "type": "string",
+                "description": "Filter by tags (e.g., 'text-classification', 'translation')"
+              },
+              "limit": {
+                "type": "integer",
+                "description": "Maximum number of results to return"
+              }
+            }
+          },
+          "annotations": null
+        },
+        {
+          "name": "get-model-info",
+          "description": "Get detailed information about a specific model",
+          "input_schema": {
+            "type": "object",
+            "properties": {
+              "model_id": {
+                "type": "string",
+                "description": "The ID of the model (e.g., 'google/bert-base-uncased')"
+              }
+            },
+            "required": [
+              "model_id"
+            ]
+          },
+          "annotations": null
+        },
+        {
+          "name": "search-datasets",
+          "description": "Search for datasets on Hugging Face Hub",
+          "input_schema": {
+            "type": "object",
+            "properties": {
+              "query": {
+                "type": "string",
+                "description": "Search term"
+              },
+              "author": {
+                "type": "string",
+                "description": "Filter by author/organization"
+              },
+              "tags": {
+                "type": "string",
+                "description": "Filter by tags"
+              },
+              "limit": {
+                "type": "integer",
+                "description": "Maximum number of results to return"
+              }
+            }
+          },
+          "annotations": null
+        },
+        {
+          "name": "get-dataset-info",
+          "description": "Get detailed information about a specific dataset",
+          "input_schema": {
+            "type": "object",
+            "properties": {
+              "dataset_id": {
+                "type": "string",
+                "description": "The ID of the dataset (e.g., 'squad')"
+              }
+            },
+            "required": [
+              "dataset_id"
+            ]
+          },
+          "annotations": null
+        },
+        {
+          "name": "search-spaces",
+          "description": "Search for Spaces on Hugging Face Hub",
+          "input_schema": {
+            "type": "object",
+            "properties": {
+              "query": {
+                "type": "string",
+                "description": "Search term"
+              },
+              "author": {
+                "type": "string",
+                "description": "Filter by author/organization"
+              },
+              "tags": {
+                "type": "string",
+                "description": "Filter by tags"
+              },
+              "sdk": {
+                "type": "string",
+                "description": "Filter by SDK (e.g., 'streamlit', 'gradio', 'docker')"
+              },
+              "limit": {
+                "type": "integer",
+                "description": "Maximum number of results to return"
+              }
+            }
+          },
+          "annotations": null
+        },
+        {
+          "name": "get-space-info",
+          "description": "Get detailed information about a specific Space",
+          "input_schema": {
+            "type": "object",
+            "properties": {
+              "space_id": {
+                "type": "string",
+                "description": "The ID of the Space (e.g., 'huggingface/diffusers-demo')"
+              }
+            },
+            "required": [
+              "space_id"
+            ]
+          },
+          "annotations": null
+        },
+        {
+          "name": "get-paper-info",
+          "description": "Get information about a specific paper on Hugging Face",
+          "input_schema": {
+            "type": "object",
+            "properties": {
+              "arxiv_id": {
+                "type": "string",
+                "description": "The arXiv ID of the paper (e.g., '1810.04805')"
+              }
+            },
+            "required": [
+              "arxiv_id"
+            ]
+          },
+          "annotations": null
+        },
+        {
+          "name": "get-daily-papers",
+          "description": "Get the list of daily papers curated by Hugging Face",
+          "input_schema": {
+            "type": "object",
+            "properties": {}
+          },
+          "annotations": null
+        },
+        {
+          "name": "search-collections",
+          "description": "Search for collections on Hugging Face Hub",
+          "input_schema": {
+            "type": "object",
+            "properties": {
+              "owner": {
+                "type": "string",
+                "description": "Filter by owner"
+              },
+              "item": {
+                "type": "string",
+                "description": "Filter by item (e.g., 'models/teknium/OpenHermes-2.5-Mistral-7B')"
+              },
+              "query": {
+                "type": "string",
+                "description": "Search term for titles and descriptions"
+              },
+              "limit": {
+                "type": "integer",
+                "description": "Maximum number of results to return"
+              }
+            }
+          },
+          "annotations": null
+        },
+        {
+          "name": "get-collection-info",
+          "description": "Get detailed information about a specific collection",
+          "input_schema": {
+            "type": "object",
+            "properties": {
+              "namespace": {
+                "type": "string",
+                "description": "The namespace of the collection (user or organization)"
+              },
+              "collection_id": {
+                "type": "string",
+                "description": "The ID part of the collection"
+              }
+            },
+            "required": [
+              "namespace",
+              "collection_id"
+            ]
+          },
+          "annotations": null
+        }
+      ],
+      "python_sdk_url": "https://server.smithery.ai/@shreyaskarnik/huggingface-mcp-server/mcp",
+      "python_sdk_config": "{\"debug\": false}"
+    },
+    "source_filename": "0291.Hugging-Face-MCP-Server_labeled.json",
+    "processed_timestamp": 1772876338,
+    "processing_mode": "toucan",
+    "rank": 232
+  }
+}

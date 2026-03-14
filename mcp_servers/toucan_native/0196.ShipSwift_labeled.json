@@ -1,0 +1,239 @@
+{
+  "labels": {
+    "analysis": "The MCP Server \"ShipSwift\" provides 3 tools focused on development tools tasks. Core capabilities include data access and reading, search and retrieval. Key tools: listRecipes, getRecipe, searchRecipes.",
+    "reasoning": "Primary label \"Development Tools\" assigned based on strong keyword matches in tool names and descriptions: code.",
+    "primary_label": "Development Tools",
+    "secondary_labels": [
+      "Web Search & Research",
+      "Data Analysis & Processing"
+    ],
+    "custom_label": "Data Access & Search - ShipSwift",
+    "is_connected": true,
+    "is_remote_tool_valid": true,
+    "featured_server": false,
+    "tool_verified": true,
+    "tool_verified_status": "verified",
+    "tool_verified_at": "2026-03-14T20:38:19.160746+00:00",
+    "tool_verified_tool": "listRecipes",
+    "tool_verified_reason": "response received"
+  },
+  "metadata": {
+    "server_id": 196,
+    "server_name": "ShipSwift",
+    "rank_by_usage": 197,
+    "usage_count": "10",
+    "original_file": "tools.json#196",
+    "mode": "gateway",
+    "timestamp": 1772876338,
+    "remote_server_response": {
+      "url": "https://api.shipswift.app/mcp",
+      "is_success": true,
+      "error": null,
+      "tools": [
+        {
+          "name": "listRecipes",
+          "description": "List production-ready SwiftUI code recipes. Each recipe is a complete, copy-paste-ready implementation — not a tutorial. Covers native iOS features (SwiftUI, Swift Charts, SpriteKit, Vision, AVFoundation, StoreKit 2, NavigationStack) and backend infrastructure (AWS CDK, Hono, Node.js, Cognito, DynamoDB). Categories: animations, charts, UI components, and full-stack modules including auth, camera, subscriptions, chat, and settings.",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {
+              "category": {
+                "default": "all",
+                "description": "Filter recipes by category. Defaults to 'all'.",
+                "type": "string",
+                "enum": [
+                  "animation",
+                  "chart",
+                  "component",
+                  "module",
+                  "all"
+                ]
+              }
+            }
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "getRecipe",
+          "description": "Get a recipe by ID. Returns complete, copy-paste-ready Swift source code with architecture explanation and implementation steps. Module recipes may also include backend code (Hono/Node.js + AWS CDK).",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "description": "Recipe ID, e.g. 'animation-shimmer' or 'auth-cognito'"
+              }
+            },
+            "required": [
+              "id"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "searchRecipes",
+          "description": "Search recipes by keyword across titles, descriptions, tags, and full source code. Use for any iOS, SwiftUI, or backend topic — e.g. subscription, authentication, camera, animation, chart, onboarding, paywall, infrastructure.",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {
+              "query": {
+                "type": "string",
+                "description": "Search keyword, e.g. 'shimmer', 'authentication', 'chart'"
+              }
+            },
+            "required": [
+              "query"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        }
+      ],
+      "tool_count": 3,
+      "tool_names": [
+        "listRecipes",
+        "getRecipe",
+        "searchRecipes"
+      ]
+    },
+    "server_info_crawled": {
+      "id": 196,
+      "name": "ShipSwift",
+      "author": "",
+      "overview": "ShipSwift - Development Tools server with 3 tools. The MCP Server \"ShipSwift\" provides 3 tools focused on development tools tasks. Core capabilities in",
+      "repository_url": "",
+      "homepage": "https://api.shipswift.app/mcp",
+      "remote_or_local": "Remote",
+      "license": "",
+      "usage_count": "10",
+      "success_rate": "100%",
+      "tags": [
+        "development-tools",
+        "web-search-research",
+        "data-analysis-processing"
+      ],
+      "categories": [
+        "development tools",
+        "web search & research",
+        "data analysis & processing"
+      ],
+      "tools_count": 3,
+      "tools": [
+        {
+          "name": "listRecipes",
+          "description": "List production-ready SwiftUI code recipes. Each recipe is a complete, copy-paste-ready implementation — not a tutorial. Covers native iOS features (SwiftUI, Swift Charts, SpriteKit, Vision, AVFoundation, StoreKit 2, NavigationStack) and backend infrastructure (AWS CDK, Hono, Node.js, Cognito, DynamoDB). Categories: animations, charts, UI components, and full-stack modules including auth, camera, subscriptions, chat, and settings.",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {
+              "category": {
+                "default": "all",
+                "description": "Filter recipes by category. Defaults to 'all'.",
+                "type": "string",
+                "enum": [
+                  "animation",
+                  "chart",
+                  "component",
+                  "module",
+                  "all"
+                ]
+              }
+            }
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "getRecipe",
+          "description": "Get a recipe by ID. Returns complete, copy-paste-ready Swift source code with architecture explanation and implementation steps. Module recipes may also include backend code (Hono/Node.js + AWS CDK).",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "description": "Recipe ID, e.g. 'animation-shimmer' or 'auth-cognito'"
+              }
+            },
+            "required": [
+              "id"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "searchRecipes",
+          "description": "Search recipes by keyword across titles, descriptions, tags, and full source code. Use for any iOS, SwiftUI, or backend topic — e.g. subscription, authentication, camera, animation, chart, onboarding, paywall, infrastructure.",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {
+              "query": {
+                "type": "string",
+                "description": "Search keyword, e.g. 'shimmer', 'authentication', 'chart'"
+              }
+            },
+            "required": [
+              "query"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        }
+      ],
+      "python_sdk_url": "https://api.shipswift.app/mcp",
+      "python_sdk_config": "{\"debug\": false}"
+    },
+    "source_filename": "0196.ShipSwift_labeled.json",
+    "processed_timestamp": 1772876338,
+    "processing_mode": "gateway",
+    "rank": 197
+  }
+}

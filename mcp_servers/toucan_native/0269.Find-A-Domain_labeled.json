@@ -1,0 +1,88 @@
+{
+  "labels": {
+    "analysis": "Public MCP server \"Find-A-Domain\" with 2 tools. Added from awesome-remote-mcp-servers list.",
+    "reasoning": "Verified as publicly accessible with no authentication required.",
+    "primary_label": "Public API",
+    "secondary_labels": [],
+    "custom_label": "Public API - Find-A-Domain",
+    "is_connected": true,
+    "is_remote_tool_valid": true,
+    "featured_server": false,
+    "tool_verified": true,
+    "tool_verified_status": "verified",
+    "tool_verified_at": "2026-03-14T20:58:49.485762+00:00",
+    "tool_verified_tool": "check_domain",
+    "tool_verified_reason": "tools/list returned valid tools via direct MCP connection"
+  },
+  "metadata": {
+    "server_id": 269,
+    "server_name": "Find-A-Domain",
+    "rank_by_usage": null,
+    "usage_count": null,
+    "original_file": "awesome-remote-mcp-servers",
+    "mode": "gateway",
+    "timestamp": 1773521929,
+    "remote_server_response": {
+      "url": "https://api.findadomain.dev/mcp",
+      "is_success": true,
+      "error": null,
+      "tools": [
+        {
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": true,
+            "idempotentHint": false,
+            "openWorldHint": true
+          },
+          "description": "Check if a domain is available for a specific TLD",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "description": "Domain name to check (without TLD)",
+                "type": "string"
+              },
+              "tld": {
+                "description": "Top-level domain (e.g., com, org, net)",
+                "type": "string"
+              },
+              "whois": {
+                "description": "Whether to perform WHOIS check",
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "name",
+              "tld"
+            ]
+          },
+          "name": "check_domain"
+        },
+        {
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": true,
+            "idempotentHint": false,
+            "openWorldHint": true
+          },
+          "description": "Get a list of all available top-level domains (TLDs)",
+          "inputSchema": {
+            "type": "object"
+          },
+          "name": "list_tlds"
+        }
+      ],
+      "tool_count": 2,
+      "tool_names": [
+        "check_domain",
+        "list_tlds"
+      ]
+    },
+    "server_info_crawled": {
+      "name": "Find-A-Domain",
+      "overview": "Public MCP server providing 2 tools",
+      "remote_or_local": "Remote",
+      "python_sdk_url": "https://api.findadomain.dev/mcp"
+    }
+  }
+}

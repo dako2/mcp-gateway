@@ -1,0 +1,595 @@
+{
+  "labels": {
+    "analysis": "The MCP Server \"OpenZeppelin Stellar Contracts\" provides 3 tools focused on development tools tasks. Core capabilities include various operations. Key tools: stellar-fungible, stellar-stablecoin, stellar-non-fungible.",
+    "reasoning": "Primary label \"Development Tools\" assigned based on strong keyword matches in tool names and descriptions: code.",
+    "primary_label": "Development Tools",
+    "secondary_labels": [
+      "Cryptocurrency & Blockchain",
+      "Database Operations"
+    ],
+    "custom_label": "Development Tools - OpenZeppelin Stellar Contracts",
+    "is_connected": true,
+    "is_remote_tool_valid": true,
+    "featured_server": false,
+    "tool_verified": true,
+    "tool_verified_status": "verified",
+    "tool_verified_at": "2026-03-14T20:38:19.040164+00:00",
+    "tool_verified_tool": "stellar-fungible",
+    "tool_verified_reason": "response received"
+  },
+  "metadata": {
+    "server_id": 198,
+    "server_name": "OpenZeppelin Stellar Contracts",
+    "rank_by_usage": 199,
+    "usage_count": "10",
+    "original_file": "tools.json#198",
+    "mode": "gateway",
+    "timestamp": 1772876338,
+    "remote_server_response": {
+      "url": "https://mcp.openzeppelin.com/contracts/stellar/mcp",
+      "is_success": true,
+      "error": null,
+      "tools": [
+        {
+          "name": "stellar-fungible",
+          "description": "Make a fungible token per the Fungible Token Standard, compatible with SEP-41, similar to ERC-20.\n\nReturns the source code of the generated contract, formatted in a Markdown code block. Does not write to disk.",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "The name of the contract"
+              },
+              "symbol": {
+                "type": "string",
+                "description": "The short symbol for the token"
+              },
+              "burnable": {
+                "description": "Whether token holders will be able to destroy their tokens",
+                "type": "boolean"
+              },
+              "pausable": {
+                "description": "Whether privileged accounts will be able to pause specifically marked functionality. Useful for emergency response.",
+                "type": "boolean"
+              },
+              "premint": {
+                "description": "The number of tokens to premint for the deployer.",
+                "type": "string"
+              },
+              "mintable": {
+                "description": "Whether privileged accounts will be able to create more supply or emit more tokens",
+                "type": "boolean"
+              },
+              "access": {
+                "description": "The type of access control to provision. Ownable is a simple mechanism with a single account authorized for all privileged actions. Roles is a flexible mechanism with a separate role for each privileged action. A role can have many authorized accounts.",
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "const": "ownable"
+                  },
+                  {
+                    "type": "string",
+                    "const": "roles"
+                  }
+                ]
+              },
+              "explicitImplementations": {
+                "description": "Whether the contract should use explicit trait implementations instead of using the default ones provided by the library.",
+                "type": "boolean"
+              },
+              "upgradeable": {
+                "description": "Whether the contract can be upgraded.",
+                "type": "boolean"
+              },
+              "info": {
+                "description": "Metadata about the contract and author",
+                "type": "object",
+                "properties": {
+                  "securityContact": {
+                    "description": "Email where people can contact you to report security issues. Will only be visible if contract source code is verified.",
+                    "type": "string"
+                  },
+                  "license": {
+                    "description": "The license used by the contract, default is \"MIT\"",
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "required": [
+              "name",
+              "symbol"
+            ]
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "stellar-stablecoin",
+          "description": "Make a stablecoin that uses Fungible Token Standard, compatible with SEP-41.\n\nReturns the source code of the generated contract, formatted in a Markdown code block. Does not write to disk.",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "The name of the contract"
+              },
+              "symbol": {
+                "type": "string",
+                "description": "The short symbol for the token"
+              },
+              "burnable": {
+                "description": "Whether token holders will be able to destroy their tokens",
+                "type": "boolean"
+              },
+              "pausable": {
+                "description": "Whether privileged accounts will be able to pause specifically marked functionality. Useful for emergency response.",
+                "type": "boolean"
+              },
+              "premint": {
+                "description": "The number of tokens to premint for the deployer.",
+                "type": "string"
+              },
+              "mintable": {
+                "description": "Whether privileged accounts will be able to create more supply or emit more tokens",
+                "type": "boolean"
+              },
+              "access": {
+                "description": "The type of access control to provision. Ownable is a simple mechanism with a single account authorized for all privileged actions. Roles is a flexible mechanism with a separate role for each privileged action. A role can have many authorized accounts.",
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "const": "ownable"
+                  },
+                  {
+                    "type": "string",
+                    "const": "roles"
+                  }
+                ]
+              },
+              "explicitImplementations": {
+                "description": "Whether the contract should use explicit trait implementations instead of using the default ones provided by the library.",
+                "type": "boolean"
+              },
+              "upgradeable": {
+                "description": "Whether the contract can be upgraded.",
+                "type": "boolean"
+              },
+              "info": {
+                "description": "Metadata about the contract and author",
+                "type": "object",
+                "properties": {
+                  "securityContact": {
+                    "description": "Email where people can contact you to report security issues. Will only be visible if contract source code is verified.",
+                    "type": "string"
+                  },
+                  "license": {
+                    "description": "The license used by the contract, default is \"MIT\"",
+                    "type": "string"
+                  }
+                }
+              },
+              "limitations": {
+                "description": "Whether to restrict certain users from transferring tokens, either via allowing or blocking them.",
+                "anyOf": [
+                  {
+                    "anyOf": [
+                      {
+                        "type": "boolean",
+                        "const": false
+                      },
+                      {
+                        "type": "string",
+                        "const": "allowlist"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "string",
+                    "const": "blocklist"
+                  }
+                ]
+              }
+            },
+            "required": [
+              "name",
+              "symbol"
+            ]
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "stellar-non-fungible",
+          "description": "Make a non-fungible token per the Non-Fungible Token Standard, compatible with SEP-50, similar to ERC-721.\n\nReturns the source code of the generated contract, formatted in a Markdown code block. Does not write to disk.",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "The name of the contract"
+              },
+              "symbol": {
+                "type": "string",
+                "description": "The short symbol for the token"
+              },
+              "tokenUri": {
+                "description": "The metadata URI returned by the token contract for every NFT.",
+                "type": "string"
+              },
+              "burnable": {
+                "description": "Whether token holders will be able to destroy their tokens",
+                "type": "boolean"
+              },
+              "enumerable": {
+                "description": "Whether the NFTs are enumerable (can be iterated over).",
+                "type": "boolean"
+              },
+              "consecutive": {
+                "description": "To batch mint NFTs instead of minting them individually (sequential minting is mandatory).",
+                "type": "boolean"
+              },
+              "pausable": {
+                "description": "Whether privileged accounts will be able to pause specifically marked functionality. Useful for emergency response.",
+                "type": "boolean"
+              },
+              "mintable": {
+                "description": "Whether privileged accounts will be able to create more supply or emit more tokens",
+                "type": "boolean"
+              },
+              "sequential": {
+                "description": "Whether the IDs of the minted NFTs will be sequential.",
+                "type": "boolean"
+              },
+              "access": {
+                "description": "The type of access control to provision. Ownable is a simple mechanism with a single account authorized for all privileged actions. Roles is a flexible mechanism with a separate role for each privileged action. A role can have many authorized accounts.",
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "const": "ownable"
+                  },
+                  {
+                    "type": "string",
+                    "const": "roles"
+                  }
+                ]
+              },
+              "explicitImplementations": {
+                "description": "Whether the contract should use explicit trait implementations instead of using the default ones provided by the library.",
+                "type": "boolean"
+              },
+              "upgradeable": {
+                "description": "Whether the contract can be upgraded.",
+                "type": "boolean"
+              },
+              "info": {
+                "description": "Metadata about the contract and author",
+                "type": "object",
+                "properties": {
+                  "securityContact": {
+                    "description": "Email where people can contact you to report security issues. Will only be visible if contract source code is verified.",
+                    "type": "string"
+                  },
+                  "license": {
+                    "description": "The license used by the contract, default is \"MIT\"",
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "required": [
+              "name",
+              "symbol"
+            ]
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        }
+      ],
+      "tool_count": 3,
+      "tool_names": [
+        "stellar-fungible",
+        "stellar-stablecoin",
+        "stellar-non-fungible"
+      ]
+    },
+    "server_info_crawled": {
+      "id": 198,
+      "name": "OpenZeppelin Stellar Contracts",
+      "author": "",
+      "overview": "OpenZeppelin Stellar Contracts - Development Tools server with 3 tools. The MCP Server \"OpenZeppelin Stellar Contracts\" provides 3 tools focused on development tools tasks.",
+      "repository_url": "",
+      "homepage": "https://mcp.openzeppelin.com/contracts/stellar/mcp",
+      "remote_or_local": "Remote",
+      "license": "",
+      "usage_count": "10",
+      "success_rate": "100%",
+      "tags": [
+        "development-tools",
+        "cryptocurrency-blockchain",
+        "database-operations"
+      ],
+      "categories": [
+        "development tools",
+        "cryptocurrency & blockchain",
+        "database operations"
+      ],
+      "tools_count": 3,
+      "tools": [
+        {
+          "name": "stellar-fungible",
+          "description": "Make a fungible token per the Fungible Token Standard, compatible with SEP-41, similar to ERC-20.\n\nReturns the source code of the generated contract, formatted in a Markdown code block. Does not write to disk.",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "The name of the contract"
+              },
+              "symbol": {
+                "type": "string",
+                "description": "The short symbol for the token"
+              },
+              "burnable": {
+                "description": "Whether token holders will be able to destroy their tokens",
+                "type": "boolean"
+              },
+              "pausable": {
+                "description": "Whether privileged accounts will be able to pause specifically marked functionality. Useful for emergency response.",
+                "type": "boolean"
+              },
+              "premint": {
+                "description": "The number of tokens to premint for the deployer.",
+                "type": "string"
+              },
+              "mintable": {
+                "description": "Whether privileged accounts will be able to create more supply or emit more tokens",
+                "type": "boolean"
+              },
+              "access": {
+                "description": "The type of access control to provision. Ownable is a simple mechanism with a single account authorized for all privileged actions. Roles is a flexible mechanism with a separate role for each privileged action. A role can have many authorized accounts.",
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "const": "ownable"
+                  },
+                  {
+                    "type": "string",
+                    "const": "roles"
+                  }
+                ]
+              },
+              "explicitImplementations": {
+                "description": "Whether the contract should use explicit trait implementations instead of using the default ones provided by the library.",
+                "type": "boolean"
+              },
+              "upgradeable": {
+                "description": "Whether the contract can be upgraded.",
+                "type": "boolean"
+              },
+              "info": {
+                "description": "Metadata about the contract and author",
+                "type": "object",
+                "properties": {
+                  "securityContact": {
+                    "description": "Email where people can contact you to report security issues. Will only be visible if contract source code is verified.",
+                    "type": "string"
+                  },
+                  "license": {
+                    "description": "The license used by the contract, default is \"MIT\"",
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "required": [
+              "name",
+              "symbol"
+            ]
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "stellar-stablecoin",
+          "description": "Make a stablecoin that uses Fungible Token Standard, compatible with SEP-41.\n\nReturns the source code of the generated contract, formatted in a Markdown code block. Does not write to disk.",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "The name of the contract"
+              },
+              "symbol": {
+                "type": "string",
+                "description": "The short symbol for the token"
+              },
+              "burnable": {
+                "description": "Whether token holders will be able to destroy their tokens",
+                "type": "boolean"
+              },
+              "pausable": {
+                "description": "Whether privileged accounts will be able to pause specifically marked functionality. Useful for emergency response.",
+                "type": "boolean"
+              },
+              "premint": {
+                "description": "The number of tokens to premint for the deployer.",
+                "type": "string"
+              },
+              "mintable": {
+                "description": "Whether privileged accounts will be able to create more supply or emit more tokens",
+                "type": "boolean"
+              },
+              "access": {
+                "description": "The type of access control to provision. Ownable is a simple mechanism with a single account authorized for all privileged actions. Roles is a flexible mechanism with a separate role for each privileged action. A role can have many authorized accounts.",
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "const": "ownable"
+                  },
+                  {
+                    "type": "string",
+                    "const": "roles"
+                  }
+                ]
+              },
+              "explicitImplementations": {
+                "description": "Whether the contract should use explicit trait implementations instead of using the default ones provided by the library.",
+                "type": "boolean"
+              },
+              "upgradeable": {
+                "description": "Whether the contract can be upgraded.",
+                "type": "boolean"
+              },
+              "info": {
+                "description": "Metadata about the contract and author",
+                "type": "object",
+                "properties": {
+                  "securityContact": {
+                    "description": "Email where people can contact you to report security issues. Will only be visible if contract source code is verified.",
+                    "type": "string"
+                  },
+                  "license": {
+                    "description": "The license used by the contract, default is \"MIT\"",
+                    "type": "string"
+                  }
+                }
+              },
+              "limitations": {
+                "description": "Whether to restrict certain users from transferring tokens, either via allowing or blocking them.",
+                "anyOf": [
+                  {
+                    "anyOf": [
+                      {
+                        "type": "boolean",
+                        "const": false
+                      },
+                      {
+                        "type": "string",
+                        "const": "allowlist"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "string",
+                    "const": "blocklist"
+                  }
+                ]
+              }
+            },
+            "required": [
+              "name",
+              "symbol"
+            ]
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "stellar-non-fungible",
+          "description": "Make a non-fungible token per the Non-Fungible Token Standard, compatible with SEP-50, similar to ERC-721.\n\nReturns the source code of the generated contract, formatted in a Markdown code block. Does not write to disk.",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "The name of the contract"
+              },
+              "symbol": {
+                "type": "string",
+                "description": "The short symbol for the token"
+              },
+              "tokenUri": {
+                "description": "The metadata URI returned by the token contract for every NFT.",
+                "type": "string"
+              },
+              "burnable": {
+                "description": "Whether token holders will be able to destroy their tokens",
+                "type": "boolean"
+              },
+              "enumerable": {
+                "description": "Whether the NFTs are enumerable (can be iterated over).",
+                "type": "boolean"
+              },
+              "consecutive": {
+                "description": "To batch mint NFTs instead of minting them individually (sequential minting is mandatory).",
+                "type": "boolean"
+              },
+              "pausable": {
+                "description": "Whether privileged accounts will be able to pause specifically marked functionality. Useful for emergency response.",
+                "type": "boolean"
+              },
+              "mintable": {
+                "description": "Whether privileged accounts will be able to create more supply or emit more tokens",
+                "type": "boolean"
+              },
+              "sequential": {
+                "description": "Whether the IDs of the minted NFTs will be sequential.",
+                "type": "boolean"
+              },
+              "access": {
+                "description": "The type of access control to provision. Ownable is a simple mechanism with a single account authorized for all privileged actions. Roles is a flexible mechanism with a separate role for each privileged action. A role can have many authorized accounts.",
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "const": "ownable"
+                  },
+                  {
+                    "type": "string",
+                    "const": "roles"
+                  }
+                ]
+              },
+              "explicitImplementations": {
+                "description": "Whether the contract should use explicit trait implementations instead of using the default ones provided by the library.",
+                "type": "boolean"
+              },
+              "upgradeable": {
+                "description": "Whether the contract can be upgraded.",
+                "type": "boolean"
+              },
+              "info": {
+                "description": "Metadata about the contract and author",
+                "type": "object",
+                "properties": {
+                  "securityContact": {
+                    "description": "Email where people can contact you to report security issues. Will only be visible if contract source code is verified.",
+                    "type": "string"
+                  },
+                  "license": {
+                    "description": "The license used by the contract, default is \"MIT\"",
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "required": [
+              "name",
+              "symbol"
+            ]
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        }
+      ],
+      "python_sdk_url": "https://mcp.openzeppelin.com/contracts/stellar/mcp",
+      "python_sdk_config": "{\"debug\": false}"
+    },
+    "source_filename": "0198.OpenZeppelin-Stellar-Contracts_labeled.json",
+    "processed_timestamp": 1772876338,
+    "processing_mode": "gateway",
+    "rank": 199
+  }
+}

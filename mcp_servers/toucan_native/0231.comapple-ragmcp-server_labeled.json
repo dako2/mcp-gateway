@@ -1,0 +1,160 @@
+{
+  "labels": {
+    "analysis": "The MCP Server \"com.apple-rag/mcp-server\" provides 2 tools focused on web search & research tasks. Core capabilities include search and retrieval. Key tools: search, fetch.",
+    "reasoning": "Primary label \"Web Search & Research\" assigned based on strong keyword matches in tool names and descriptions: search, fetch.",
+    "primary_label": "Web Search & Research",
+    "secondary_labels": [
+      "File Management",
+      "Content Creation"
+    ],
+    "custom_label": "Search - com.apple-rag/mcp-server",
+    "is_connected": true,
+    "is_remote_tool_valid": true,
+    "featured_server": false,
+    "tool_verified": true,
+    "tool_verified_status": "verified",
+    "tool_verified_at": "2026-03-14T20:38:23.112273+00:00",
+    "tool_verified_tool": "search",
+    "tool_verified_reason": "tool call succeeded"
+  },
+  "metadata": {
+    "server_id": 231,
+    "server_name": "com.apple-rag/mcp-server",
+    "rank_by_usage": 232,
+    "usage_count": "10",
+    "original_file": "tools.json#231",
+    "mode": "gateway",
+    "timestamp": 1772876338,
+    "remote_server_response": {
+      "url": "https://mcp.apple-rag.com",
+      "is_success": true,
+      "error": null,
+      "tools": [
+        {
+          "name": "search",
+          "description": "Search Apple's official developer documentation and video content using advanced RAG technology. Returns relevant content from Apple's technical documentation, frameworks, APIs, design guidelines, and educational resources.",
+          "inputSchema": {
+            "$schema": "https://json-schema.org/draft/2020-12/schema",
+            "type": "object",
+            "properties": {
+              "query": {
+                "type": "string",
+                "description": "Search query for Apple's official developer documentation and video content. Queries must be written in English and focus on technical concepts, APIs, frameworks, features, and version numbers rather than temporal information.",
+                "minLength": 1,
+                "maxLength": 10000
+              },
+              "result_count": {
+                "type": "number",
+                "description": "Number of results to return (1-10)",
+                "minimum": 1,
+                "maximum": 10,
+                "default": 4
+              }
+            },
+            "required": [
+              "query"
+            ]
+          }
+        },
+        {
+          "name": "fetch",
+          "description": "Retrieve complete cleaned content for a specific Apple developer documentation or video by URL. Returns the full processed content from Apple's official knowledge base.",
+          "inputSchema": {
+            "$schema": "https://json-schema.org/draft/2020-12/schema",
+            "type": "object",
+            "properties": {
+              "url": {
+                "type": "string",
+                "description": "URL of the Apple developer documentation or video to retrieve content for",
+                "minLength": 1
+              }
+            },
+            "required": [
+              "url"
+            ]
+          }
+        }
+      ],
+      "tool_count": 2,
+      "tool_names": [
+        "search",
+        "fetch"
+      ]
+    },
+    "server_info_crawled": {
+      "id": 231,
+      "name": "com.apple-rag/mcp-server",
+      "author": "",
+      "overview": "com.apple-rag/mcp-server - Web Search & Research server with 2 tools. The MCP Server \"com.apple-rag/mcp-server\" provides 2 tools focused on web search & research tasks. C",
+      "repository_url": "",
+      "homepage": "https://mcp.apple-rag.com",
+      "remote_or_local": "Remote",
+      "license": "",
+      "usage_count": "10",
+      "success_rate": "100%",
+      "tags": [
+        "web-search-research",
+        "file-management",
+        "content-creation"
+      ],
+      "categories": [
+        "web search & research",
+        "file management",
+        "content creation"
+      ],
+      "tools_count": 2,
+      "tools": [
+        {
+          "name": "search",
+          "description": "Search Apple's official developer documentation and video content using advanced RAG technology. Returns relevant content from Apple's technical documentation, frameworks, APIs, design guidelines, and educational resources.",
+          "inputSchema": {
+            "$schema": "https://json-schema.org/draft/2020-12/schema",
+            "type": "object",
+            "properties": {
+              "query": {
+                "type": "string",
+                "description": "Search query for Apple's official developer documentation and video content. Queries must be written in English and focus on technical concepts, APIs, frameworks, features, and version numbers rather than temporal information.",
+                "minLength": 1,
+                "maxLength": 10000
+              },
+              "result_count": {
+                "type": "number",
+                "description": "Number of results to return (1-10)",
+                "minimum": 1,
+                "maximum": 10,
+                "default": 4
+              }
+            },
+            "required": [
+              "query"
+            ]
+          }
+        },
+        {
+          "name": "fetch",
+          "description": "Retrieve complete cleaned content for a specific Apple developer documentation or video by URL. Returns the full processed content from Apple's official knowledge base.",
+          "inputSchema": {
+            "$schema": "https://json-schema.org/draft/2020-12/schema",
+            "type": "object",
+            "properties": {
+              "url": {
+                "type": "string",
+                "description": "URL of the Apple developer documentation or video to retrieve content for",
+                "minLength": 1
+              }
+            },
+            "required": [
+              "url"
+            ]
+          }
+        }
+      ],
+      "python_sdk_url": "https://mcp.apple-rag.com",
+      "python_sdk_config": "{\"debug\": false}"
+    },
+    "source_filename": "0231.comapple-ragmcp-server_labeled.json",
+    "processed_timestamp": 1772876338,
+    "processing_mode": "gateway",
+    "rank": 232
+  }
+}

@@ -1,0 +1,131 @@
+{
+  "labels": {
+    "analysis": "The MCP Server \"Unknown\" provides 2 tools focused on development tools tasks. Core capabilities include data access and reading, search and retrieval. Key tools: clerk_sdk_snippet, list_clerk_sdk_snippets.",
+    "reasoning": "Primary label \"Development Tools\" assigned based on strong keyword matches in tool names and descriptions: code, sdk, snippet.",
+    "primary_label": "Development Tools",
+    "secondary_labels": [],
+    "custom_label": "Data Access - ",
+    "is_connected": true,
+    "is_remote_tool_valid": true,
+    "featured_server": false,
+    "tool_verified": true,
+    "tool_verified_status": "verified",
+    "tool_verified_at": "2026-03-14T20:38:21.011380+00:00",
+    "tool_verified_tool": "list_clerk_sdk_snippets",
+    "tool_verified_reason": "response received"
+  },
+  "metadata": {
+    "server_id": 237,
+    "server_name": "mcp.clerk.com",
+    "rank_by_usage": 238,
+    "usage_count": "10",
+    "original_file": "tools.json#237",
+    "mode": "gateway",
+    "timestamp": 1772876338,
+    "remote_server_response": {
+      "url": "https://mcp.clerk.com/mcp",
+      "is_success": true,
+      "error": null,
+      "tools": [
+        {
+          "name": "clerk_sdk_snippet",
+          "title": "Clerk SDK snippet",
+          "description": "Get Clerk SDK code snippets and patterns.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "slug": {
+                "type": "string",
+                "description": "SDK snippet slug (e.g. \"use-user\", \"use-auth\") OR bundle name (e.g. \"b2b-saas\", \"organizations\").",
+                "default": "b2b-saas"
+              }
+            },
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          }
+        },
+        {
+          "name": "list_clerk_sdk_snippets",
+          "title": "List Clerk SDK snippets",
+          "description": "List all available Clerk SDK snippets and bundles. Filter by tag to find specific functionality.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "tag": {
+                "type": "string",
+                "description": "Filter snippets by tag (e.g. \"auth\", \"organizations\", \"b2b\", \"billing\")"
+              }
+            },
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          }
+        }
+      ],
+      "tool_count": 2,
+      "tool_names": [
+        "clerk_sdk_snippet",
+        "list_clerk_sdk_snippets"
+      ]
+    },
+    "server_info_crawled": {
+      "id": 237,
+      "name": "mcp.clerk.com",
+      "author": "",
+      "overview": "mcp.clerk.com - Development Tools server with 2 tools. The MCP Server \"Unknown\" provides 2 tools focused on development tools tasks. Core capabilities incl",
+      "repository_url": "",
+      "homepage": "https://mcp.clerk.com/mcp",
+      "remote_or_local": "Remote",
+      "license": "",
+      "usage_count": "10",
+      "success_rate": "100%",
+      "tags": [
+        "development-tools"
+      ],
+      "categories": [
+        "development tools"
+      ],
+      "tools_count": 2,
+      "tools": [
+        {
+          "name": "clerk_sdk_snippet",
+          "title": "Clerk SDK snippet",
+          "description": "Get Clerk SDK code snippets and patterns.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "slug": {
+                "type": "string",
+                "description": "SDK snippet slug (e.g. \"use-user\", \"use-auth\") OR bundle name (e.g. \"b2b-saas\", \"organizations\").",
+                "default": "b2b-saas"
+              }
+            },
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          }
+        },
+        {
+          "name": "list_clerk_sdk_snippets",
+          "title": "List Clerk SDK snippets",
+          "description": "List all available Clerk SDK snippets and bundles. Filter by tag to find specific functionality.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "tag": {
+                "type": "string",
+                "description": "Filter snippets by tag (e.g. \"auth\", \"organizations\", \"b2b\", \"billing\")"
+              }
+            },
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          }
+        }
+      ],
+      "python_sdk_url": "https://mcp.clerk.com/mcp",
+      "python_sdk_config": "{\"debug\": false}"
+    },
+    "source_filename": "0237.mcpclerkcom_labeled.json",
+    "processed_timestamp": 1772876338,
+    "processing_mode": "gateway",
+    "rank": 238
+  }
+}

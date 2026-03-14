@@ -1,0 +1,2119 @@
+{
+  "labels": {
+    "analysis": "The MCP Server \"Achriom\" provides 29 tools focused on web search & research tasks. Core capabilities include creation and generation, data access and reading, deletion and cleanup, modification and updates. Key tools: search, get_details, get_stats, update_status, update_rating.",
+    "reasoning": "Primary label \"Web Search & Research\" assigned based on strong keyword matches in tool names and descriptions: search, fetch.",
+    "primary_label": "Web Search & Research",
+    "secondary_labels": [
+      "Data Analysis & Processing",
+      "Database Operations"
+    ],
+    "custom_label": "Data Access & Management - Achriom",
+    "is_connected": true,
+    "is_remote_tool_valid": true,
+    "featured_server": true,
+    "tool_verified": false,
+    "tool_verified_status": "auth_required",
+    "tool_verified_at": "2026-03-14T20:38:10.957024+00:00",
+    "tool_verified_tool": "get_stats",
+    "tool_verified_reason": "auth error in response: event: message\ndata: {\"result\":{\"content\":[{\"type\":\"text\",\"text\":\"Authentication required. Please co"
+  },
+  "metadata": {
+    "server_id": 31,
+    "server_name": "Achriom",
+    "rank_by_usage": 32,
+    "usage_count": "12,675",
+    "original_file": "tools.json#31",
+    "mode": "gateway",
+    "timestamp": 1772876337,
+    "remote_server_response": {
+      "url": "https://mcp.achriom.com/mcp",
+      "is_success": true,
+      "error": null,
+      "tools": [
+        {
+          "name": "search",
+          "description": "Search the USER'S COLLECTION by title, creator, genre, or theme. Returns items they own with status, ratings, and for box sets, the list of contained albums. Use this to answer questions about what the user has.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "media_type": {
+                "type": "string",
+                "enum": [
+                  "book",
+                  "movie",
+                  "album",
+                  "show",
+                  "anime"
+                ],
+                "description": "Type of media to search"
+              },
+              "query": {
+                "type": "string",
+                "description": "Search query (matches title, author/artist/director/creator, genres, or themes)"
+              },
+              "filter": {
+                "type": "string",
+                "description": "Filter by status or rating. Books: all, reading, finished, unread, abandoned, rated, unrated. Movies/shows/anime: all, watching, watched, unwatched, abandoned, rated, unrated. Albums: all, listening, played, unheard, saved, rated, unrated."
+              }
+            },
+            "required": [
+              "media_type",
+              "query"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          },
+          "_meta": {
+            "ui": {
+              "resourceUri": "https://api.achriom.com/widgets/library-grid.html"
+            },
+            "openai/outputTemplate": "https://api.achriom.com/widgets/library-grid.html"
+          }
+        },
+        {
+          "name": "get_details",
+          "description": "Get FULL details of an item FROM THE USER'S COLLECTION including AI analysis, user notes, rating, timeline, and all metadata. For albums: includes track list with durations. For box sets: lists ALL contained albums. Use this to answer specific questions about items the user owns.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "media_type": {
+                "type": "string",
+                "enum": [
+                  "book",
+                  "movie",
+                  "album",
+                  "show",
+                  "anime"
+                ],
+                "description": "Type of media"
+              },
+              "title": {
+                "type": "string",
+                "description": "The title to look up (partial match supported)"
+              }
+            },
+            "required": [
+              "media_type",
+              "title"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          },
+          "_meta": {
+            "ui": {
+              "resourceUri": "https://api.achriom.com/widgets/item-detail.html"
+            },
+            "openai/outputTemplate": "https://api.achriom.com/widgets/item-detail.html"
+          }
+        },
+        {
+          "name": "get_stats",
+          "description": "Get collection statistics including progress, rating distribution, genre/theme breakdown, and timeline. If no media_type specified, returns combined stats.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "media_type": {
+                "type": "string",
+                "enum": [
+                  "book",
+                  "movie",
+                  "album",
+                  "show",
+                  "anime"
+                ],
+                "description": "Type of media (optional - omit for all)"
+              }
+            }
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          },
+          "_meta": {
+            "ui": {
+              "resourceUri": "https://api.achriom.com/widgets/stats-card.html"
+            },
+            "openai/outputTemplate": "https://api.achriom.com/widgets/stats-card.html"
+          }
+        },
+        {
+          "name": "update_status",
+          "description": "Update status. Books: unread, reading, finished, abandoned. Movies/shows/anime: unwatched, watching, watched, abandoned. Albums: unheard, listening, played, saved.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "media_type": {
+                "type": "string",
+                "enum": [
+                  "book",
+                  "movie",
+                  "album",
+                  "show",
+                  "anime"
+                ],
+                "description": "Type of media"
+              },
+              "title": {
+                "type": "string",
+                "description": "The title to update (partial match supported)"
+              },
+              "status": {
+                "type": "string",
+                "description": "New status value"
+              }
+            },
+            "required": [
+              "media_type",
+              "title",
+              "status"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": false,
+            "idempotentHint": false,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "update_rating",
+          "description": "Set or update user rating (1-5 stars).",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "media_type": {
+                "type": "string",
+                "enum": [
+                  "book",
+                  "movie",
+                  "album",
+                  "show",
+                  "anime"
+                ],
+                "description": "Type of media"
+              },
+              "title": {
+                "type": "string",
+                "description": "The title to rate (partial match supported)"
+              },
+              "rating": {
+                "type": "number",
+                "minimum": 1,
+                "maximum": 5,
+                "description": "Rating from 1 to 5 stars"
+              }
+            },
+            "required": [
+              "media_type",
+              "title",
+              "rating"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": false,
+            "idempotentHint": false,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "update_notes",
+          "description": "Add or update personal notes for an item.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "media_type": {
+                "type": "string",
+                "enum": [
+                  "book",
+                  "movie",
+                  "album",
+                  "show",
+                  "anime"
+                ],
+                "description": "Type of media"
+              },
+              "title": {
+                "type": "string",
+                "description": "The title (partial match supported)"
+              },
+              "notes": {
+                "type": "string",
+                "description": "The notes to save (replaces existing notes)"
+              }
+            },
+            "required": [
+              "media_type",
+              "title",
+              "notes"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": false,
+            "idempotentHint": false,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "get_by_rating",
+          "description": "Get items filtered by user rating range.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "media_type": {
+                "type": "string",
+                "enum": [
+                  "book",
+                  "movie",
+                  "album",
+                  "show",
+                  "anime"
+                ],
+                "description": "Type of media"
+              },
+              "min_rating": {
+                "type": "number",
+                "minimum": 1,
+                "maximum": 5,
+                "description": "Minimum rating (1-5)"
+              },
+              "max_rating": {
+                "type": "number",
+                "minimum": 1,
+                "maximum": 5,
+                "description": "Maximum rating (1-5)"
+              }
+            },
+            "required": [
+              "media_type"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          },
+          "_meta": {
+            "ui": {
+              "resourceUri": "https://api.achriom.com/widgets/library-grid.html"
+            },
+            "openai/outputTemplate": "https://api.achriom.com/widgets/library-grid.html"
+          }
+        },
+        {
+          "name": "get_by_status",
+          "description": "Get items filtered by status. Books: unread, reading, finished, abandoned. Movies/shows/anime: unwatched, watching, watched, abandoned. Albums: unheard, listening, played, saved.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "media_type": {
+                "type": "string",
+                "enum": [
+                  "book",
+                  "movie",
+                  "album",
+                  "show",
+                  "anime"
+                ],
+                "description": "Type of media"
+              },
+              "status": {
+                "type": "string",
+                "description": "Status to filter by"
+              },
+              "limit": {
+                "type": "number",
+                "description": "Maximum number of results (default 50)"
+              }
+            },
+            "required": [
+              "media_type",
+              "status"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          },
+          "_meta": {
+            "ui": {
+              "resourceUri": "https://api.achriom.com/widgets/library-grid.html"
+            },
+            "openai/outputTemplate": "https://api.achriom.com/widgets/library-grid.html"
+          }
+        },
+        {
+          "name": "get_timeline",
+          "description": "Get timeline showing items started and finished over time.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "media_type": {
+                "type": "string",
+                "enum": [
+                  "book",
+                  "movie",
+                  "album",
+                  "show",
+                  "anime"
+                ],
+                "description": "Type of media"
+              }
+            },
+            "required": [
+              "media_type"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "edit_item",
+          "description": "Edit metadata (title, creator, external ID). Use new_external_id to re-link to correct database entry, then call re_enrich to fetch correct metadata.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "media_type": {
+                "type": "string",
+                "enum": [
+                  "book",
+                  "movie",
+                  "album",
+                  "show",
+                  "anime"
+                ],
+                "description": "Type of media"
+              },
+              "title": {
+                "type": "string",
+                "description": "Current title (partial match supported)"
+              },
+              "new_title": {
+                "type": "string",
+                "description": "New title (if changing)"
+              },
+              "new_creator": {
+                "type": "string",
+                "description": "New author/artist/director/creator (if changing)"
+              },
+              "new_external_id": {
+                "type": "string",
+                "description": "New external ID to re-link item"
+              }
+            },
+            "required": [
+              "media_type",
+              "title"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": false,
+            "idempotentHint": false,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "lookup_item",
+          "description": "Search EXTERNAL databases (NOT the user's collection) to find items BEFORE adding them. Use search/get_details for items the user already owns. Data sources: Books=OpenLibrary, Movies/Shows=TMDB, Albums=Discogs, Anime=AniList. Use anime (not show) for Japanese animation.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "media_type": {
+                "type": "string",
+                "enum": [
+                  "book",
+                  "movie",
+                  "album",
+                  "show",
+                  "anime"
+                ],
+                "description": "Type of media to search. Use anime for Japanese animation, show for live-action/Western series."
+              },
+              "title": {
+                "type": "string",
+                "description": "Title to search for"
+              },
+              "creator": {
+                "type": "string",
+                "description": "Author/artist/director to narrow search"
+              },
+              "year": {
+                "type": "number",
+                "description": "Release/publication year to narrow search"
+              }
+            },
+            "required": [
+              "media_type",
+              "title"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": true
+          },
+          "_meta": {
+            "ui": {
+              "resourceUri": "https://api.achriom.com/widgets/lookup-results.html"
+            },
+            "openai/outputTemplate": "https://api.achriom.com/widgets/lookup-results.html"
+          }
+        },
+        {
+          "name": "add_item",
+          "description": "Add a new item to the library. For best results, use lookup_item first to get the external_id. IMPORTANT: Use anime (not show) for ALL Japanese animation including series, movies, OVAs.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "media_type": {
+                "type": "string",
+                "enum": [
+                  "book",
+                  "movie",
+                  "album",
+                  "show",
+                  "anime"
+                ],
+                "description": "Type of media. Use anime for Japanese animation (Cowboy Bebop, Spirited Away, etc), show for live-action/Western animation."
+              },
+              "title": {
+                "type": "string",
+                "description": "The title to add"
+              },
+              "creator": {
+                "type": "string",
+                "description": "Author/artist/director/creator"
+              },
+              "year": {
+                "type": "number",
+                "description": "Release year"
+              },
+              "external_id": {
+                "type": "string",
+                "description": "External database ID for exact matching"
+              }
+            },
+            "required": [
+              "media_type",
+              "title"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": false,
+            "idempotentHint": false,
+            "openWorldHint": true
+          }
+        },
+        {
+          "name": "delete_item",
+          "description": "Delete an item from the library.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "media_type": {
+                "type": "string",
+                "enum": [
+                  "book",
+                  "movie",
+                  "album",
+                  "show",
+                  "anime"
+                ],
+                "description": "Type of media"
+              },
+              "title": {
+                "type": "string",
+                "description": "The title to delete (partial match supported)"
+              }
+            },
+            "required": [
+              "media_type",
+              "title"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": true,
+            "idempotentHint": false,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "re_enrich",
+          "description": "Re-fetch all metadata from external sources. Use when item has wrong data.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "media_type": {
+                "type": "string",
+                "enum": [
+                  "book",
+                  "movie",
+                  "album",
+                  "show",
+                  "anime"
+                ],
+                "description": "Type of media"
+              },
+              "title": {
+                "type": "string",
+                "description": "The title to re-enrich (partial match supported)"
+              }
+            },
+            "required": [
+              "media_type",
+              "title"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": false,
+            "idempotentHint": false,
+            "openWorldHint": true
+          }
+        },
+        {
+          "name": "search_youtube",
+          "description": "Search YouTube for relevant videos (interviews, trailers, analysis, music videos).",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "query": {
+                "type": "string",
+                "description": "Search query for YouTube"
+              },
+              "max_results": {
+                "type": "number",
+                "description": "Number of videos to return (1-5, default 3)"
+              }
+            },
+            "required": [
+              "query"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": true
+          },
+          "_meta": {
+            "ui": {
+              "resourceUri": "https://api.achriom.com/widgets/youtube-results.html"
+            },
+            "openai/outputTemplate": "https://api.achriom.com/widgets/youtube-results.html"
+          }
+        },
+        {
+          "name": "get_track_previews",
+          "description": "Get playable 30-second audio previews for tracks from an album IN THE USER'S LIBRARY.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "album_title": {
+                "type": "string",
+                "description": "Album title (partial match supported)"
+              },
+              "track_numbers": {
+                "type": "array",
+                "items": {
+                  "type": "number"
+                },
+                "description": "Specific track numbers (optional)"
+              },
+              "max_tracks": {
+                "type": "number",
+                "description": "Maximum tracks to return (default 5)"
+              }
+            },
+            "required": [
+              "album_title"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          },
+          "_meta": {
+            "ui": {
+              "resourceUri": "https://api.achriom.com/widgets/track-previews.html"
+            },
+            "openai/outputTemplate": "https://api.achriom.com/widgets/track-previews.html"
+          }
+        },
+        {
+          "name": "preview_album",
+          "description": "Preview any album from Apple Music WITHOUT adding to library. Use this to sample before committing to add. Returns playable 30-second previews.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "title": {
+                "type": "string",
+                "description": "Album title"
+              },
+              "artist": {
+                "type": "string",
+                "description": "Artist name"
+              },
+              "max_tracks": {
+                "type": "number",
+                "description": "Maximum tracks to preview (default 5)"
+              }
+            },
+            "required": [
+              "title",
+              "artist"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": true
+          },
+          "_meta": {
+            "ui": {
+              "resourceUri": "https://api.achriom.com/widgets/track-previews.html"
+            },
+            "openai/outputTemplate": "https://api.achriom.com/widgets/track-previews.html"
+          }
+        },
+        {
+          "name": "search_book_content",
+          "description": "Semantic search within an uploaded book (EPUB/PDF). Uses AI embeddings to find relevant passages.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "book_title": {
+                "type": "string",
+                "description": "Book title (partial match supported)"
+              },
+              "query": {
+                "type": "string",
+                "description": "What to search for"
+              },
+              "limit": {
+                "type": "number",
+                "description": "Number of results (default 5, max 10)"
+              }
+            },
+            "required": [
+              "book_title",
+              "query"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "read_book_section",
+          "description": "Read a specific section of an uploaded book by line numbers.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "book_title": {
+                "type": "string",
+                "description": "Book title (partial match supported)"
+              },
+              "start_line": {
+                "type": "number",
+                "description": "Starting line number"
+              },
+              "end_line": {
+                "type": "number",
+                "description": "Ending line number (max 200 lines)"
+              }
+            },
+            "required": [
+              "book_title",
+              "start_line",
+              "end_line"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "bulk_update_status",
+          "description": "Update status for multiple items at once.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "media_type": {
+                "type": "string",
+                "enum": [
+                  "book",
+                  "movie",
+                  "album",
+                  "show",
+                  "anime"
+                ],
+                "description": "Type of media"
+              },
+              "status": {
+                "type": "string",
+                "description": "New status"
+              },
+              "filter": {
+                "type": "string",
+                "enum": [
+                  "all",
+                  "unrated",
+                  "rated"
+                ],
+                "description": "Which items to update"
+              }
+            },
+            "required": [
+              "media_type",
+              "status"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": false,
+            "idempotentHint": false,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "random_pick",
+          "description": "Pick random item(s) for serendipitous discovery.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "media_type": {
+                "type": "string",
+                "enum": [
+                  "book",
+                  "movie",
+                  "album",
+                  "show",
+                  "anime"
+                ],
+                "description": "Type of media"
+              },
+              "filter": {
+                "type": "string",
+                "enum": [
+                  "all",
+                  "unstarted",
+                  "in_progress",
+                  "highly_rated",
+                  "unrated"
+                ],
+                "description": "Filter which items to pick from (default: all)"
+              },
+              "count": {
+                "type": "number",
+                "description": "How many items (1-5, default 1)"
+              }
+            },
+            "required": [
+              "media_type"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "expand_research_scope",
+          "description": "Add an item to the current research corpus (focused research mode only).",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "title": {
+                "type": "string",
+                "description": "Title of the item to add"
+              },
+              "media_type": {
+                "type": "string",
+                "enum": [
+                  "book",
+                  "movie",
+                  "album",
+                  "show",
+                  "anime"
+                ],
+                "description": "Type of media to add to the research scope"
+              }
+            },
+            "required": [
+              "title",
+              "media_type"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": false,
+            "idempotentHint": false,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "get_scope_info",
+          "description": "Get information about the current research scope.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {}
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "get_context",
+          "description": "Get user context for adaptive conversation. Returns lifecycle stage and behavioral signals.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {}
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "get_signals",
+          "description": "Get behavioral signals: theme repetition, consumption gaps, and recent activity.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {}
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "search_conversations",
+          "description": "Search past conversations with this user. Supports semantic search - finds conceptually related conversations, not just keyword matches.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "query": {
+                "type": "string",
+                "description": "What to search for"
+              },
+              "limit": {
+                "type": "number",
+                "description": "Max results (default 5)"
+              }
+            },
+            "required": [
+              "query"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "save_insight",
+          "description": "Save a lasting insight about the user to their persistent profile. Use when you discover meaningful patterns, preferences, personal connections to media, or cross-media themes.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "category": {
+                "type": "string",
+                "enum": [
+                  "taste_pattern",
+                  "key_fact",
+                  "cross_media_connection",
+                  "preference"
+                ],
+                "description": "Category: taste_pattern (recurring themes/patterns), key_fact (personal context), cross_media_connection (links between media types), preference (how they want to interact)"
+              },
+              "insight": {
+                "type": "string",
+                "description": "The insight to save. Be concise but specific."
+              }
+            },
+            "required": [
+              "category",
+              "insight"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": false,
+            "idempotentHint": false,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "get_user_profile",
+          "description": "Get the persistent profile built from past conversations. Shows taste patterns, key facts, cross-media connections, and preferences.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {}
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "show_item",
+          "description": "ALWAYS use this tool when users say \"show me\", \"open\", \"go to\", \"take me to\", or \"pull up\" an item. This navigates them to the item's detail page. Works on ALL clients (web app, iOS app, Claude Desktop) - triggers navigation or returns clickable URL. Do NOT just describe the item when they want to SEE it.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "media_type": {
+                "type": "string",
+                "enum": [
+                  "book",
+                  "movie",
+                  "album",
+                  "show",
+                  "anime"
+                ],
+                "description": "Type of media"
+              },
+              "title": {
+                "type": "string",
+                "description": "The title to show (partial match supported)"
+              }
+            },
+            "required": [
+              "media_type",
+              "title"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          },
+          "_meta": {
+            "ui": {
+              "resourceUri": "https://api.achriom.com/widgets/item-preview.html"
+            },
+            "openai/outputTemplate": "https://api.achriom.com/widgets/item-preview.html"
+          }
+        }
+      ],
+      "tool_count": 29,
+      "tool_names": [
+        "search",
+        "get_details",
+        "get_stats",
+        "update_status",
+        "update_rating",
+        "update_notes",
+        "get_by_rating",
+        "get_by_status",
+        "get_timeline",
+        "edit_item",
+        "lookup_item",
+        "add_item",
+        "delete_item",
+        "re_enrich",
+        "search_youtube",
+        "get_track_previews",
+        "preview_album",
+        "search_book_content",
+        "read_book_section",
+        "bulk_update_status",
+        "random_pick",
+        "expand_research_scope",
+        "get_scope_info",
+        "get_context",
+        "get_signals",
+        "search_conversations",
+        "save_insight",
+        "get_user_profile",
+        "show_item"
+      ]
+    },
+    "server_info_crawled": {
+      "id": 31,
+      "name": "Achriom",
+      "author": "",
+      "overview": "Achriom - Web Search & Research server with 29 tools. The MCP Server \"Achriom\" provides 29 tools focused on web search & research tasks. Core capabilities",
+      "repository_url": "",
+      "homepage": "https://mcp.achriom.com/mcp",
+      "remote_or_local": "Remote",
+      "license": "",
+      "usage_count": "12,675",
+      "success_rate": "100%",
+      "tags": [
+        "web-search-research",
+        "data-analysis-processing",
+        "database-operations"
+      ],
+      "categories": [
+        "web search & research",
+        "data analysis & processing",
+        "database operations"
+      ],
+      "tools_count": 29,
+      "tools": [
+        {
+          "name": "search",
+          "description": "Search the USER'S COLLECTION by title, creator, genre, or theme. Returns items they own with status, ratings, and for box sets, the list of contained albums. Use this to answer questions about what the user has.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "media_type": {
+                "type": "string",
+                "enum": [
+                  "book",
+                  "movie",
+                  "album",
+                  "show",
+                  "anime"
+                ],
+                "description": "Type of media to search"
+              },
+              "query": {
+                "type": "string",
+                "description": "Search query (matches title, author/artist/director/creator, genres, or themes)"
+              },
+              "filter": {
+                "type": "string",
+                "description": "Filter by status or rating. Books: all, reading, finished, unread, abandoned, rated, unrated. Movies/shows/anime: all, watching, watched, unwatched, abandoned, rated, unrated. Albums: all, listening, played, unheard, saved, rated, unrated."
+              }
+            },
+            "required": [
+              "media_type",
+              "query"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          },
+          "_meta": {
+            "ui": {
+              "resourceUri": "https://api.achriom.com/widgets/library-grid.html"
+            },
+            "openai/outputTemplate": "https://api.achriom.com/widgets/library-grid.html"
+          }
+        },
+        {
+          "name": "get_details",
+          "description": "Get FULL details of an item FROM THE USER'S COLLECTION including AI analysis, user notes, rating, timeline, and all metadata. For albums: includes track list with durations. For box sets: lists ALL contained albums. Use this to answer specific questions about items the user owns.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "media_type": {
+                "type": "string",
+                "enum": [
+                  "book",
+                  "movie",
+                  "album",
+                  "show",
+                  "anime"
+                ],
+                "description": "Type of media"
+              },
+              "title": {
+                "type": "string",
+                "description": "The title to look up (partial match supported)"
+              }
+            },
+            "required": [
+              "media_type",
+              "title"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          },
+          "_meta": {
+            "ui": {
+              "resourceUri": "https://api.achriom.com/widgets/item-detail.html"
+            },
+            "openai/outputTemplate": "https://api.achriom.com/widgets/item-detail.html"
+          }
+        },
+        {
+          "name": "get_stats",
+          "description": "Get collection statistics including progress, rating distribution, genre/theme breakdown, and timeline. If no media_type specified, returns combined stats.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "media_type": {
+                "type": "string",
+                "enum": [
+                  "book",
+                  "movie",
+                  "album",
+                  "show",
+                  "anime"
+                ],
+                "description": "Type of media (optional - omit for all)"
+              }
+            }
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          },
+          "_meta": {
+            "ui": {
+              "resourceUri": "https://api.achriom.com/widgets/stats-card.html"
+            },
+            "openai/outputTemplate": "https://api.achriom.com/widgets/stats-card.html"
+          }
+        },
+        {
+          "name": "update_status",
+          "description": "Update status. Books: unread, reading, finished, abandoned. Movies/shows/anime: unwatched, watching, watched, abandoned. Albums: unheard, listening, played, saved.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "media_type": {
+                "type": "string",
+                "enum": [
+                  "book",
+                  "movie",
+                  "album",
+                  "show",
+                  "anime"
+                ],
+                "description": "Type of media"
+              },
+              "title": {
+                "type": "string",
+                "description": "The title to update (partial match supported)"
+              },
+              "status": {
+                "type": "string",
+                "description": "New status value"
+              }
+            },
+            "required": [
+              "media_type",
+              "title",
+              "status"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": false,
+            "idempotentHint": false,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "update_rating",
+          "description": "Set or update user rating (1-5 stars).",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "media_type": {
+                "type": "string",
+                "enum": [
+                  "book",
+                  "movie",
+                  "album",
+                  "show",
+                  "anime"
+                ],
+                "description": "Type of media"
+              },
+              "title": {
+                "type": "string",
+                "description": "The title to rate (partial match supported)"
+              },
+              "rating": {
+                "type": "number",
+                "minimum": 1,
+                "maximum": 5,
+                "description": "Rating from 1 to 5 stars"
+              }
+            },
+            "required": [
+              "media_type",
+              "title",
+              "rating"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": false,
+            "idempotentHint": false,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "update_notes",
+          "description": "Add or update personal notes for an item.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "media_type": {
+                "type": "string",
+                "enum": [
+                  "book",
+                  "movie",
+                  "album",
+                  "show",
+                  "anime"
+                ],
+                "description": "Type of media"
+              },
+              "title": {
+                "type": "string",
+                "description": "The title (partial match supported)"
+              },
+              "notes": {
+                "type": "string",
+                "description": "The notes to save (replaces existing notes)"
+              }
+            },
+            "required": [
+              "media_type",
+              "title",
+              "notes"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": false,
+            "idempotentHint": false,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "get_by_rating",
+          "description": "Get items filtered by user rating range.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "media_type": {
+                "type": "string",
+                "enum": [
+                  "book",
+                  "movie",
+                  "album",
+                  "show",
+                  "anime"
+                ],
+                "description": "Type of media"
+              },
+              "min_rating": {
+                "type": "number",
+                "minimum": 1,
+                "maximum": 5,
+                "description": "Minimum rating (1-5)"
+              },
+              "max_rating": {
+                "type": "number",
+                "minimum": 1,
+                "maximum": 5,
+                "description": "Maximum rating (1-5)"
+              }
+            },
+            "required": [
+              "media_type"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          },
+          "_meta": {
+            "ui": {
+              "resourceUri": "https://api.achriom.com/widgets/library-grid.html"
+            },
+            "openai/outputTemplate": "https://api.achriom.com/widgets/library-grid.html"
+          }
+        },
+        {
+          "name": "get_by_status",
+          "description": "Get items filtered by status. Books: unread, reading, finished, abandoned. Movies/shows/anime: unwatched, watching, watched, abandoned. Albums: unheard, listening, played, saved.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "media_type": {
+                "type": "string",
+                "enum": [
+                  "book",
+                  "movie",
+                  "album",
+                  "show",
+                  "anime"
+                ],
+                "description": "Type of media"
+              },
+              "status": {
+                "type": "string",
+                "description": "Status to filter by"
+              },
+              "limit": {
+                "type": "number",
+                "description": "Maximum number of results (default 50)"
+              }
+            },
+            "required": [
+              "media_type",
+              "status"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          },
+          "_meta": {
+            "ui": {
+              "resourceUri": "https://api.achriom.com/widgets/library-grid.html"
+            },
+            "openai/outputTemplate": "https://api.achriom.com/widgets/library-grid.html"
+          }
+        },
+        {
+          "name": "get_timeline",
+          "description": "Get timeline showing items started and finished over time.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "media_type": {
+                "type": "string",
+                "enum": [
+                  "book",
+                  "movie",
+                  "album",
+                  "show",
+                  "anime"
+                ],
+                "description": "Type of media"
+              }
+            },
+            "required": [
+              "media_type"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "edit_item",
+          "description": "Edit metadata (title, creator, external ID). Use new_external_id to re-link to correct database entry, then call re_enrich to fetch correct metadata.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "media_type": {
+                "type": "string",
+                "enum": [
+                  "book",
+                  "movie",
+                  "album",
+                  "show",
+                  "anime"
+                ],
+                "description": "Type of media"
+              },
+              "title": {
+                "type": "string",
+                "description": "Current title (partial match supported)"
+              },
+              "new_title": {
+                "type": "string",
+                "description": "New title (if changing)"
+              },
+              "new_creator": {
+                "type": "string",
+                "description": "New author/artist/director/creator (if changing)"
+              },
+              "new_external_id": {
+                "type": "string",
+                "description": "New external ID to re-link item"
+              }
+            },
+            "required": [
+              "media_type",
+              "title"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": false,
+            "idempotentHint": false,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "lookup_item",
+          "description": "Search EXTERNAL databases (NOT the user's collection) to find items BEFORE adding them. Use search/get_details for items the user already owns. Data sources: Books=OpenLibrary, Movies/Shows=TMDB, Albums=Discogs, Anime=AniList. Use anime (not show) for Japanese animation.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "media_type": {
+                "type": "string",
+                "enum": [
+                  "book",
+                  "movie",
+                  "album",
+                  "show",
+                  "anime"
+                ],
+                "description": "Type of media to search. Use anime for Japanese animation, show for live-action/Western series."
+              },
+              "title": {
+                "type": "string",
+                "description": "Title to search for"
+              },
+              "creator": {
+                "type": "string",
+                "description": "Author/artist/director to narrow search"
+              },
+              "year": {
+                "type": "number",
+                "description": "Release/publication year to narrow search"
+              }
+            },
+            "required": [
+              "media_type",
+              "title"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": true
+          },
+          "_meta": {
+            "ui": {
+              "resourceUri": "https://api.achriom.com/widgets/lookup-results.html"
+            },
+            "openai/outputTemplate": "https://api.achriom.com/widgets/lookup-results.html"
+          }
+        },
+        {
+          "name": "add_item",
+          "description": "Add a new item to the library. For best results, use lookup_item first to get the external_id. IMPORTANT: Use anime (not show) for ALL Japanese animation including series, movies, OVAs.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "media_type": {
+                "type": "string",
+                "enum": [
+                  "book",
+                  "movie",
+                  "album",
+                  "show",
+                  "anime"
+                ],
+                "description": "Type of media. Use anime for Japanese animation (Cowboy Bebop, Spirited Away, etc), show for live-action/Western animation."
+              },
+              "title": {
+                "type": "string",
+                "description": "The title to add"
+              },
+              "creator": {
+                "type": "string",
+                "description": "Author/artist/director/creator"
+              },
+              "year": {
+                "type": "number",
+                "description": "Release year"
+              },
+              "external_id": {
+                "type": "string",
+                "description": "External database ID for exact matching"
+              }
+            },
+            "required": [
+              "media_type",
+              "title"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": false,
+            "idempotentHint": false,
+            "openWorldHint": true
+          }
+        },
+        {
+          "name": "delete_item",
+          "description": "Delete an item from the library.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "media_type": {
+                "type": "string",
+                "enum": [
+                  "book",
+                  "movie",
+                  "album",
+                  "show",
+                  "anime"
+                ],
+                "description": "Type of media"
+              },
+              "title": {
+                "type": "string",
+                "description": "The title to delete (partial match supported)"
+              }
+            },
+            "required": [
+              "media_type",
+              "title"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": true,
+            "idempotentHint": false,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "re_enrich",
+          "description": "Re-fetch all metadata from external sources. Use when item has wrong data.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "media_type": {
+                "type": "string",
+                "enum": [
+                  "book",
+                  "movie",
+                  "album",
+                  "show",
+                  "anime"
+                ],
+                "description": "Type of media"
+              },
+              "title": {
+                "type": "string",
+                "description": "The title to re-enrich (partial match supported)"
+              }
+            },
+            "required": [
+              "media_type",
+              "title"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": false,
+            "idempotentHint": false,
+            "openWorldHint": true
+          }
+        },
+        {
+          "name": "search_youtube",
+          "description": "Search YouTube for relevant videos (interviews, trailers, analysis, music videos).",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "query": {
+                "type": "string",
+                "description": "Search query for YouTube"
+              },
+              "max_results": {
+                "type": "number",
+                "description": "Number of videos to return (1-5, default 3)"
+              }
+            },
+            "required": [
+              "query"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": true
+          },
+          "_meta": {
+            "ui": {
+              "resourceUri": "https://api.achriom.com/widgets/youtube-results.html"
+            },
+            "openai/outputTemplate": "https://api.achriom.com/widgets/youtube-results.html"
+          }
+        },
+        {
+          "name": "get_track_previews",
+          "description": "Get playable 30-second audio previews for tracks from an album IN THE USER'S LIBRARY.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "album_title": {
+                "type": "string",
+                "description": "Album title (partial match supported)"
+              },
+              "track_numbers": {
+                "type": "array",
+                "items": {
+                  "type": "number"
+                },
+                "description": "Specific track numbers (optional)"
+              },
+              "max_tracks": {
+                "type": "number",
+                "description": "Maximum tracks to return (default 5)"
+              }
+            },
+            "required": [
+              "album_title"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          },
+          "_meta": {
+            "ui": {
+              "resourceUri": "https://api.achriom.com/widgets/track-previews.html"
+            },
+            "openai/outputTemplate": "https://api.achriom.com/widgets/track-previews.html"
+          }
+        },
+        {
+          "name": "preview_album",
+          "description": "Preview any album from Apple Music WITHOUT adding to library. Use this to sample before committing to add. Returns playable 30-second previews.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "title": {
+                "type": "string",
+                "description": "Album title"
+              },
+              "artist": {
+                "type": "string",
+                "description": "Artist name"
+              },
+              "max_tracks": {
+                "type": "number",
+                "description": "Maximum tracks to preview (default 5)"
+              }
+            },
+            "required": [
+              "title",
+              "artist"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": true
+          },
+          "_meta": {
+            "ui": {
+              "resourceUri": "https://api.achriom.com/widgets/track-previews.html"
+            },
+            "openai/outputTemplate": "https://api.achriom.com/widgets/track-previews.html"
+          }
+        },
+        {
+          "name": "search_book_content",
+          "description": "Semantic search within an uploaded book (EPUB/PDF). Uses AI embeddings to find relevant passages.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "book_title": {
+                "type": "string",
+                "description": "Book title (partial match supported)"
+              },
+              "query": {
+                "type": "string",
+                "description": "What to search for"
+              },
+              "limit": {
+                "type": "number",
+                "description": "Number of results (default 5, max 10)"
+              }
+            },
+            "required": [
+              "book_title",
+              "query"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "read_book_section",
+          "description": "Read a specific section of an uploaded book by line numbers.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "book_title": {
+                "type": "string",
+                "description": "Book title (partial match supported)"
+              },
+              "start_line": {
+                "type": "number",
+                "description": "Starting line number"
+              },
+              "end_line": {
+                "type": "number",
+                "description": "Ending line number (max 200 lines)"
+              }
+            },
+            "required": [
+              "book_title",
+              "start_line",
+              "end_line"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "bulk_update_status",
+          "description": "Update status for multiple items at once.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "media_type": {
+                "type": "string",
+                "enum": [
+                  "book",
+                  "movie",
+                  "album",
+                  "show",
+                  "anime"
+                ],
+                "description": "Type of media"
+              },
+              "status": {
+                "type": "string",
+                "description": "New status"
+              },
+              "filter": {
+                "type": "string",
+                "enum": [
+                  "all",
+                  "unrated",
+                  "rated"
+                ],
+                "description": "Which items to update"
+              }
+            },
+            "required": [
+              "media_type",
+              "status"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": false,
+            "idempotentHint": false,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "random_pick",
+          "description": "Pick random item(s) for serendipitous discovery.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "media_type": {
+                "type": "string",
+                "enum": [
+                  "book",
+                  "movie",
+                  "album",
+                  "show",
+                  "anime"
+                ],
+                "description": "Type of media"
+              },
+              "filter": {
+                "type": "string",
+                "enum": [
+                  "all",
+                  "unstarted",
+                  "in_progress",
+                  "highly_rated",
+                  "unrated"
+                ],
+                "description": "Filter which items to pick from (default: all)"
+              },
+              "count": {
+                "type": "number",
+                "description": "How many items (1-5, default 1)"
+              }
+            },
+            "required": [
+              "media_type"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "expand_research_scope",
+          "description": "Add an item to the current research corpus (focused research mode only).",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "title": {
+                "type": "string",
+                "description": "Title of the item to add"
+              },
+              "media_type": {
+                "type": "string",
+                "enum": [
+                  "book",
+                  "movie",
+                  "album",
+                  "show",
+                  "anime"
+                ],
+                "description": "Type of media to add to the research scope"
+              }
+            },
+            "required": [
+              "title",
+              "media_type"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": false,
+            "idempotentHint": false,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "get_scope_info",
+          "description": "Get information about the current research scope.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {}
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "get_context",
+          "description": "Get user context for adaptive conversation. Returns lifecycle stage and behavioral signals.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {}
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "get_signals",
+          "description": "Get behavioral signals: theme repetition, consumption gaps, and recent activity.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {}
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "search_conversations",
+          "description": "Search past conversations with this user. Supports semantic search - finds conceptually related conversations, not just keyword matches.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "query": {
+                "type": "string",
+                "description": "What to search for"
+              },
+              "limit": {
+                "type": "number",
+                "description": "Max results (default 5)"
+              }
+            },
+            "required": [
+              "query"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "save_insight",
+          "description": "Save a lasting insight about the user to their persistent profile. Use when you discover meaningful patterns, preferences, personal connections to media, or cross-media themes.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "category": {
+                "type": "string",
+                "enum": [
+                  "taste_pattern",
+                  "key_fact",
+                  "cross_media_connection",
+                  "preference"
+                ],
+                "description": "Category: taste_pattern (recurring themes/patterns), key_fact (personal context), cross_media_connection (links between media types), preference (how they want to interact)"
+              },
+              "insight": {
+                "type": "string",
+                "description": "The insight to save. Be concise but specific."
+              }
+            },
+            "required": [
+              "category",
+              "insight"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": false,
+            "idempotentHint": false,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "get_user_profile",
+          "description": "Get the persistent profile built from past conversations. Shows taste patterns, key facts, cross-media connections, and preferences.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {}
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "show_item",
+          "description": "ALWAYS use this tool when users say \"show me\", \"open\", \"go to\", \"take me to\", or \"pull up\" an item. This navigates them to the item's detail page. Works on ALL clients (web app, iOS app, Claude Desktop) - triggers navigation or returns clickable URL. Do NOT just describe the item when they want to SEE it.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "media_type": {
+                "type": "string",
+                "enum": [
+                  "book",
+                  "movie",
+                  "album",
+                  "show",
+                  "anime"
+                ],
+                "description": "Type of media"
+              },
+              "title": {
+                "type": "string",
+                "description": "The title to show (partial match supported)"
+              }
+            },
+            "required": [
+              "media_type",
+              "title"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          },
+          "_meta": {
+            "ui": {
+              "resourceUri": "https://api.achriom.com/widgets/item-preview.html"
+            },
+            "openai/outputTemplate": "https://api.achriom.com/widgets/item-preview.html"
+          }
+        }
+      ],
+      "python_sdk_url": "https://mcp.achriom.com/mcp",
+      "python_sdk_config": "{\"debug\": false}"
+    },
+    "source_filename": "0031.Achriom_labeled.json",
+    "processed_timestamp": 1772876337,
+    "processing_mode": "gateway",
+    "rank": 32
+  }
+}

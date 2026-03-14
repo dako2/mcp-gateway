@@ -1,0 +1,496 @@
+{
+  "labels": {
+    "analysis": "The MCP Server \"xyz.actiongate.api/actiongate\" provides 3 tools focused on gaming tasks. Core capabilities include various operations. Key tools: risk_score, simulate, policy_gate.",
+    "reasoning": "Primary label \"Gaming\" assigned based on strong keyword matches in tool names and descriptions: score.",
+    "primary_label": "Gaming",
+    "secondary_labels": [
+      "Database Operations"
+    ],
+    "custom_label": "Gaming - xyz.actiongate.api/actiongate",
+    "is_connected": true,
+    "is_remote_tool_valid": true,
+    "featured_server": false,
+    "tool_verified": true,
+    "tool_verified_status": "verified",
+    "tool_verified_at": "2026-03-14T20:38:19.043729+00:00",
+    "tool_verified_tool": "risk_score",
+    "tool_verified_reason": "response received"
+  },
+  "metadata": {
+    "server_id": 194,
+    "server_name": "xyz.actiongate.api/actiongate",
+    "rank_by_usage": 195,
+    "usage_count": "10",
+    "original_file": "tools.json#194",
+    "mode": "gateway",
+    "timestamp": 1772876338,
+    "remote_server_response": {
+      "url": "https://api.actiongate.xyz/mcp",
+      "is_success": true,
+      "error": null,
+      "tools": [
+        {
+          "name": "risk_score",
+          "title": "Risk Score",
+          "description": "Score the risk of a proposed agent action before execution. Paid via x402.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "request_id": {
+                "type": "string",
+                "description": "Optional caller-supplied request identifier for tracing and receipts."
+              },
+              "actor": {
+                "type": "object",
+                "properties": {
+                  "actor_id": {
+                    "type": "string",
+                    "minLength": 1,
+                    "description": "Stable actor identifier for the agent or wallet operator."
+                  },
+                  "wallet_address": {
+                    "type": "string",
+                    "description": "Optional onchain wallet address associated with the acting agent."
+                  }
+                },
+                "required": [
+                  "actor_id"
+                ],
+                "additionalProperties": false,
+                "description": "Actor metadata for the agent proposing the action."
+              },
+              "action": {
+                "type": "object",
+                "properties": {
+                  "action_type": {
+                    "type": "string",
+                    "minLength": 1,
+                    "description": "The proposed action category, such as transfer, swap, or approve."
+                  }
+                },
+                "required": [
+                  "action_type"
+                ],
+                "additionalProperties": true,
+                "description": "Action payload to evaluate. Additional action-specific fields are accepted as passthrough."
+              },
+              "context": {
+                "type": "object",
+                "additionalProperties": {},
+                "description": "Optional execution context such as chain state, balances, or treasury metadata."
+              }
+            },
+            "required": [
+              "actor",
+              "action"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "annotations": {
+            "title": "Risk Score",
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "simulate",
+          "title": "Simulate",
+          "description": "Estimate cost, failure risk, and notable side effects for a proposed action. Paid via x402.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "request_id": {
+                "type": "string",
+                "description": "Optional caller-supplied request identifier for tracing and receipts."
+              },
+              "actor": {
+                "type": "object",
+                "properties": {
+                  "actor_id": {
+                    "type": "string",
+                    "minLength": 1,
+                    "description": "Stable actor identifier for the agent or wallet operator."
+                  },
+                  "wallet_address": {
+                    "type": "string",
+                    "description": "Optional onchain wallet address associated with the acting agent."
+                  }
+                },
+                "required": [
+                  "actor_id"
+                ],
+                "additionalProperties": false,
+                "description": "Actor metadata for the agent proposing the action."
+              },
+              "action": {
+                "type": "object",
+                "properties": {
+                  "action_type": {
+                    "type": "string",
+                    "minLength": 1,
+                    "description": "The proposed action category, such as transfer, swap, or approve."
+                  }
+                },
+                "required": [
+                  "action_type"
+                ],
+                "additionalProperties": true,
+                "description": "Action payload to evaluate. Additional action-specific fields are accepted as passthrough."
+              },
+              "context": {
+                "type": "object",
+                "additionalProperties": {},
+                "description": "Optional execution context such as chain state, balances, or treasury metadata."
+              }
+            },
+            "required": [
+              "actor",
+              "action"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "annotations": {
+            "title": "Simulate",
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "policy_gate",
+          "title": "Policy Gate",
+          "description": "Apply treasury policy to a proposed action and return allow, deny, or allow-with-limits. Paid via x402.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "request_id": {
+                "type": "string",
+                "description": "Optional caller-supplied request identifier for tracing and receipts."
+              },
+              "actor": {
+                "type": "object",
+                "properties": {
+                  "actor_id": {
+                    "type": "string",
+                    "minLength": 1,
+                    "description": "Stable actor identifier for the agent or wallet operator."
+                  },
+                  "wallet_address": {
+                    "type": "string",
+                    "description": "Optional onchain wallet address associated with the acting agent."
+                  }
+                },
+                "required": [
+                  "actor_id"
+                ],
+                "additionalProperties": false,
+                "description": "Actor metadata for the agent proposing the action."
+              },
+              "action": {
+                "type": "object",
+                "properties": {
+                  "action_type": {
+                    "type": "string",
+                    "minLength": 1,
+                    "description": "The proposed action category, such as transfer, swap, or approve."
+                  }
+                },
+                "required": [
+                  "action_type"
+                ],
+                "additionalProperties": true,
+                "description": "Action payload to evaluate. Additional action-specific fields are accepted as passthrough."
+              },
+              "policy": {
+                "type": "object",
+                "additionalProperties": {},
+                "description": "Policy pack input, including policy_id and any policy-specific override values."
+              },
+              "context": {
+                "type": "object",
+                "additionalProperties": {},
+                "description": "Optional execution context such as chain state, balances, or treasury metadata."
+              }
+            },
+            "required": [
+              "actor",
+              "action",
+              "policy"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "annotations": {
+            "title": "Policy Gate",
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        }
+      ],
+      "tool_count": 3,
+      "tool_names": [
+        "risk_score",
+        "simulate",
+        "policy_gate"
+      ]
+    },
+    "server_info_crawled": {
+      "id": 194,
+      "name": "xyz.actiongate.api/actiongate",
+      "author": "",
+      "overview": "xyz.actiongate.api/actiongate - Gaming server with 3 tools. The MCP Server \"xyz.actiongate.api/actiongate\" provides 3 tools focused on gaming tasks. Core capabi",
+      "repository_url": "",
+      "homepage": "https://api.actiongate.xyz/mcp",
+      "remote_or_local": "Remote",
+      "license": "",
+      "usage_count": "10",
+      "success_rate": "100%",
+      "tags": [
+        "gaming",
+        "database-operations"
+      ],
+      "categories": [
+        "gaming",
+        "database operations"
+      ],
+      "tools_count": 3,
+      "tools": [
+        {
+          "name": "risk_score",
+          "title": "Risk Score",
+          "description": "Score the risk of a proposed agent action before execution. Paid via x402.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "request_id": {
+                "type": "string",
+                "description": "Optional caller-supplied request identifier for tracing and receipts."
+              },
+              "actor": {
+                "type": "object",
+                "properties": {
+                  "actor_id": {
+                    "type": "string",
+                    "minLength": 1,
+                    "description": "Stable actor identifier for the agent or wallet operator."
+                  },
+                  "wallet_address": {
+                    "type": "string",
+                    "description": "Optional onchain wallet address associated with the acting agent."
+                  }
+                },
+                "required": [
+                  "actor_id"
+                ],
+                "additionalProperties": false,
+                "description": "Actor metadata for the agent proposing the action."
+              },
+              "action": {
+                "type": "object",
+                "properties": {
+                  "action_type": {
+                    "type": "string",
+                    "minLength": 1,
+                    "description": "The proposed action category, such as transfer, swap, or approve."
+                  }
+                },
+                "required": [
+                  "action_type"
+                ],
+                "additionalProperties": true,
+                "description": "Action payload to evaluate. Additional action-specific fields are accepted as passthrough."
+              },
+              "context": {
+                "type": "object",
+                "additionalProperties": {},
+                "description": "Optional execution context such as chain state, balances, or treasury metadata."
+              }
+            },
+            "required": [
+              "actor",
+              "action"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "annotations": {
+            "title": "Risk Score",
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "simulate",
+          "title": "Simulate",
+          "description": "Estimate cost, failure risk, and notable side effects for a proposed action. Paid via x402.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "request_id": {
+                "type": "string",
+                "description": "Optional caller-supplied request identifier for tracing and receipts."
+              },
+              "actor": {
+                "type": "object",
+                "properties": {
+                  "actor_id": {
+                    "type": "string",
+                    "minLength": 1,
+                    "description": "Stable actor identifier for the agent or wallet operator."
+                  },
+                  "wallet_address": {
+                    "type": "string",
+                    "description": "Optional onchain wallet address associated with the acting agent."
+                  }
+                },
+                "required": [
+                  "actor_id"
+                ],
+                "additionalProperties": false,
+                "description": "Actor metadata for the agent proposing the action."
+              },
+              "action": {
+                "type": "object",
+                "properties": {
+                  "action_type": {
+                    "type": "string",
+                    "minLength": 1,
+                    "description": "The proposed action category, such as transfer, swap, or approve."
+                  }
+                },
+                "required": [
+                  "action_type"
+                ],
+                "additionalProperties": true,
+                "description": "Action payload to evaluate. Additional action-specific fields are accepted as passthrough."
+              },
+              "context": {
+                "type": "object",
+                "additionalProperties": {},
+                "description": "Optional execution context such as chain state, balances, or treasury metadata."
+              }
+            },
+            "required": [
+              "actor",
+              "action"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "annotations": {
+            "title": "Simulate",
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "policy_gate",
+          "title": "Policy Gate",
+          "description": "Apply treasury policy to a proposed action and return allow, deny, or allow-with-limits. Paid via x402.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "request_id": {
+                "type": "string",
+                "description": "Optional caller-supplied request identifier for tracing and receipts."
+              },
+              "actor": {
+                "type": "object",
+                "properties": {
+                  "actor_id": {
+                    "type": "string",
+                    "minLength": 1,
+                    "description": "Stable actor identifier for the agent or wallet operator."
+                  },
+                  "wallet_address": {
+                    "type": "string",
+                    "description": "Optional onchain wallet address associated with the acting agent."
+                  }
+                },
+                "required": [
+                  "actor_id"
+                ],
+                "additionalProperties": false,
+                "description": "Actor metadata for the agent proposing the action."
+              },
+              "action": {
+                "type": "object",
+                "properties": {
+                  "action_type": {
+                    "type": "string",
+                    "minLength": 1,
+                    "description": "The proposed action category, such as transfer, swap, or approve."
+                  }
+                },
+                "required": [
+                  "action_type"
+                ],
+                "additionalProperties": true,
+                "description": "Action payload to evaluate. Additional action-specific fields are accepted as passthrough."
+              },
+              "policy": {
+                "type": "object",
+                "additionalProperties": {},
+                "description": "Policy pack input, including policy_id and any policy-specific override values."
+              },
+              "context": {
+                "type": "object",
+                "additionalProperties": {},
+                "description": "Optional execution context such as chain state, balances, or treasury metadata."
+              }
+            },
+            "required": [
+              "actor",
+              "action",
+              "policy"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "annotations": {
+            "title": "Policy Gate",
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        }
+      ],
+      "python_sdk_url": "https://api.actiongate.xyz/mcp",
+      "python_sdk_config": "{\"debug\": false}"
+    },
+    "source_filename": "0194.xyzactiongateapiactiongate_labeled.json",
+    "processed_timestamp": 1772876338,
+    "processing_mode": "gateway",
+    "rank": 195
+  }
+}

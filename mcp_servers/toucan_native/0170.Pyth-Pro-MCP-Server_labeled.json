@@ -1,0 +1,500 @@
+{
+  "labels": {
+    "analysis": "The MCP Server \"Pyth Pro MCP Server\" provides 4 tools focused on news & media tasks. Core capabilities include data access and reading, search and retrieval. Key tools: get_symbols, get_candlestick_data, get_historical_price, get_latest_price.",
+    "reasoning": "Primary label \"News & Media\" assigned based on strong keyword matches in tool names and descriptions: feed.",
+    "primary_label": "News & Media",
+    "secondary_labels": [
+      "Data Analysis & Processing",
+      "Cryptocurrency & Blockchain"
+    ],
+    "custom_label": "Data Access - Pyth Pro MCP Server",
+    "is_connected": true,
+    "is_remote_tool_valid": true,
+    "featured_server": false,
+    "tool_verified": true,
+    "tool_verified_status": "verified",
+    "tool_verified_at": "2026-03-14T20:38:18.069699+00:00",
+    "tool_verified_tool": "get_symbols",
+    "tool_verified_reason": "tool call succeeded"
+  },
+  "metadata": {
+    "server_id": 170,
+    "server_name": "Pyth Pro MCP Server",
+    "rank_by_usage": 171,
+    "usage_count": "10",
+    "original_file": "tools.json#170",
+    "mode": "gateway",
+    "timestamp": 1772876337,
+    "remote_server_response": {
+      "url": "https://mcp.pyth.network/mcp",
+      "is_success": true,
+      "error": null,
+      "tools": [
+        {
+          "name": "get_symbols",
+          "description": "List available Pyth Pro price feeds. Use this FIRST to discover what feeds exist before calling get_latest_price, get_historical_price, or get_candlestick_data. Filter by asset_type (crypto, equity, fx, metal, rates, commodity, funding-rate) or search by name/symbol. Returns feed metadata including pyth_lazer_id (needed for get_historical_price), symbol, asset_type, and exponent.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "asset_type": {
+                "type": "string",
+                "enum": [
+                  "crypto",
+                  "fx",
+                  "equity",
+                  "metal",
+                  "rates",
+                  "commodity",
+                  "funding-rate"
+                ],
+                "description": "Filter by asset type: crypto, fx, equity, metal, rates, commodity, funding-rate"
+              },
+              "limit": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 200,
+                "default": 50,
+                "description": "Results per page (default 50, max 200)"
+              },
+              "offset": {
+                "type": "integer",
+                "minimum": 0,
+                "default": 0,
+                "description": "Pagination offset (default 0)"
+              },
+              "query": {
+                "type": "string",
+                "description": "Text filter (e.g. 'BTC', 'gold', 'AAPL')"
+              }
+            },
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "annotations": {
+            "destructiveHint": false,
+            "readOnlyHint": true
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "get_candlestick_data",
+          "description": "Fetch OHLC candlestick data for a symbol. Use for charting, technical analysis, backtesting. IMPORTANT: The symbol must be the full name from get_symbols including the asset type prefix (e.g. 'Crypto.BTC/USD', 'Equity.US.AAPL', 'FX.EUR/USD') — never use bare names like 'BTC/USD'. Historical data is available from April 2025 onward — do not request timestamps before that. Resolutions: 1/5/15/30/60 minutes, 120/240/360/720 (multi-hour), D (daily), W (weekly), M (monthly). Timestamps are Unix seconds.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "channel": {
+                "type": "string",
+                "pattern": "^(real_time|fixed_rate@\\d+ms)$",
+                "description": "Override default channel (e.g. fixed_rate@200ms, real_time, fixed_rate@50ms, fixed_rate@1000ms)"
+              },
+              "from": {
+                "type": "integer",
+                "exclusiveMinimum": 0,
+                "description": "Start time (Unix seconds)"
+              },
+              "resolution": {
+                "type": "string",
+                "enum": [
+                  "1",
+                  "5",
+                  "15",
+                  "30",
+                  "60",
+                  "120",
+                  "240",
+                  "360",
+                  "720",
+                  "D",
+                  "W",
+                  "M"
+                ],
+                "description": "Candle size: 1, 5, 15, 30, 60 (minutes), 120, 240, 360, 720 (hours), D (daily), W (weekly), M (monthly)"
+              },
+              "symbol": {
+                "type": "string",
+                "minLength": 1,
+                "description": "Full symbol from get_symbols including asset type prefix (e.g. 'Crypto.BTC/USD', not 'BTC/USD')"
+              },
+              "to": {
+                "type": "integer",
+                "exclusiveMinimum": 0,
+                "description": "End time (Unix seconds)"
+              }
+            },
+            "required": [
+              "from",
+              "resolution",
+              "symbol",
+              "to"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "annotations": {
+            "destructiveHint": false,
+            "readOnlyHint": true
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "get_historical_price",
+          "description": "Get price data for specific feeds at a historical timestamp. Use get_symbols first to find feed IDs or symbols. If both price_feed_ids and symbols are provided, only price_feed_ids are used. Accepts Unix seconds, milliseconds, or microseconds (auto-detected). Historical data is available from April 2025 onward — do not request timestamps before that. The timestamp is internally converted to microseconds and aligned (rounded down) to the channel rate — e.g. for fixed_rate@200ms, it must be divisible by 200,000μs. Prices are integers with an exponent field — human-readable price = price * 10^exponent. Pre-computed display_price fields are included for convenience.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "channel": {
+                "type": "string",
+                "pattern": "^(real_time|fixed_rate@\\d+ms)$",
+                "description": "Override default channel (e.g. fixed_rate@200ms, real_time, fixed_rate@50ms, fixed_rate@1000ms)"
+              },
+              "price_feed_ids": {
+                "type": "array",
+                "items": {
+                  "type": "integer",
+                  "exclusiveMinimum": 0
+                },
+                "maxItems": 50,
+                "description": "Numeric feed IDs from get_symbols"
+              },
+              "symbols": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "maxItems": 50,
+                "description": "Full symbol names from get_symbols including asset type prefix (e.g. ['Crypto.BTC/USD', 'Equity.US.AAPL/USD'])"
+              },
+              "timestamp": {
+                "type": "number",
+                "exclusiveMinimum": 0,
+                "description": "Unix timestamp — accepts seconds, milliseconds, or microseconds (auto-detected by magnitude)"
+              }
+            },
+            "required": [
+              "timestamp"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "annotations": {
+            "destructiveHint": false,
+            "readOnlyHint": true
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "get_latest_price",
+          "description": "Get the most recent real-time price for one or more feeds. Requires an `access_token` parameter (get one at https://docs.pyth.network/price-feeds/pro/acquire-access-token). Use get_symbols first to find symbols or feed IDs. IMPORTANT: symbols must be the full name including asset type prefix (e.g. 'Crypto.BTC/USD', not 'BTC/USD'). If both price_feed_ids and symbols are provided, only price_feed_ids are used. Prices are integers with an exponent field — human-readable price = price * 10^exponent. Pre-computed display_price fields are included for convenience.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "access_token": {
+                "type": "string",
+                "minLength": 1,
+                "description": "Pyth Pro access token. Get one at https://pyth.network/pricing"
+              },
+              "channel": {
+                "type": "string",
+                "pattern": "^(real_time|fixed_rate@\\d+ms)$",
+                "description": "Override default channel (e.g. fixed_rate@200ms, real_time, fixed_rate@50ms, fixed_rate@1000ms)"
+              },
+              "price_feed_ids": {
+                "type": "array",
+                "items": {
+                  "type": "integer",
+                  "exclusiveMinimum": 0
+                },
+                "maxItems": 100,
+                "description": "Numeric feed IDs from get_symbols"
+              },
+              "properties": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "Properties to return. Default: price, bestBidPrice, bestAskPrice, confidence, exponent, publisherCount"
+              },
+              "symbols": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "maxItems": 100,
+                "description": "Full symbol names from get_symbols including asset type prefix (e.g. ['Crypto.BTC/USD', 'Equity.US.AAPL/USD'])"
+              }
+            },
+            "required": [
+              "access_token"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "annotations": {
+            "destructiveHint": false,
+            "readOnlyHint": true
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        }
+      ],
+      "tool_count": 4,
+      "tool_names": [
+        "get_symbols",
+        "get_candlestick_data",
+        "get_historical_price",
+        "get_latest_price"
+      ]
+    },
+    "server_info_crawled": {
+      "id": 170,
+      "name": "Pyth Pro MCP Server",
+      "author": "",
+      "overview": "Pyth Pro MCP Server - News & Media server with 4 tools. The MCP Server \"Pyth Pro MCP Server\" provides 4 tools focused on news & media tasks. Core capabiliti",
+      "repository_url": "",
+      "homepage": "https://mcp.pyth.network/mcp",
+      "remote_or_local": "Remote",
+      "license": "",
+      "usage_count": "10",
+      "success_rate": "100%",
+      "tags": [
+        "news-media",
+        "data-analysis-processing",
+        "cryptocurrency-blockchain"
+      ],
+      "categories": [
+        "news & media",
+        "data analysis & processing",
+        "cryptocurrency & blockchain"
+      ],
+      "tools_count": 4,
+      "tools": [
+        {
+          "name": "get_symbols",
+          "description": "List available Pyth Pro price feeds. Use this FIRST to discover what feeds exist before calling get_latest_price, get_historical_price, or get_candlestick_data. Filter by asset_type (crypto, equity, fx, metal, rates, commodity, funding-rate) or search by name/symbol. Returns feed metadata including pyth_lazer_id (needed for get_historical_price), symbol, asset_type, and exponent.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "asset_type": {
+                "type": "string",
+                "enum": [
+                  "crypto",
+                  "fx",
+                  "equity",
+                  "metal",
+                  "rates",
+                  "commodity",
+                  "funding-rate"
+                ],
+                "description": "Filter by asset type: crypto, fx, equity, metal, rates, commodity, funding-rate"
+              },
+              "limit": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 200,
+                "default": 50,
+                "description": "Results per page (default 50, max 200)"
+              },
+              "offset": {
+                "type": "integer",
+                "minimum": 0,
+                "default": 0,
+                "description": "Pagination offset (default 0)"
+              },
+              "query": {
+                "type": "string",
+                "description": "Text filter (e.g. 'BTC', 'gold', 'AAPL')"
+              }
+            },
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "annotations": {
+            "destructiveHint": false,
+            "readOnlyHint": true
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "get_candlestick_data",
+          "description": "Fetch OHLC candlestick data for a symbol. Use for charting, technical analysis, backtesting. IMPORTANT: The symbol must be the full name from get_symbols including the asset type prefix (e.g. 'Crypto.BTC/USD', 'Equity.US.AAPL', 'FX.EUR/USD') — never use bare names like 'BTC/USD'. Historical data is available from April 2025 onward — do not request timestamps before that. Resolutions: 1/5/15/30/60 minutes, 120/240/360/720 (multi-hour), D (daily), W (weekly), M (monthly). Timestamps are Unix seconds.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "channel": {
+                "type": "string",
+                "pattern": "^(real_time|fixed_rate@\\d+ms)$",
+                "description": "Override default channel (e.g. fixed_rate@200ms, real_time, fixed_rate@50ms, fixed_rate@1000ms)"
+              },
+              "from": {
+                "type": "integer",
+                "exclusiveMinimum": 0,
+                "description": "Start time (Unix seconds)"
+              },
+              "resolution": {
+                "type": "string",
+                "enum": [
+                  "1",
+                  "5",
+                  "15",
+                  "30",
+                  "60",
+                  "120",
+                  "240",
+                  "360",
+                  "720",
+                  "D",
+                  "W",
+                  "M"
+                ],
+                "description": "Candle size: 1, 5, 15, 30, 60 (minutes), 120, 240, 360, 720 (hours), D (daily), W (weekly), M (monthly)"
+              },
+              "symbol": {
+                "type": "string",
+                "minLength": 1,
+                "description": "Full symbol from get_symbols including asset type prefix (e.g. 'Crypto.BTC/USD', not 'BTC/USD')"
+              },
+              "to": {
+                "type": "integer",
+                "exclusiveMinimum": 0,
+                "description": "End time (Unix seconds)"
+              }
+            },
+            "required": [
+              "from",
+              "resolution",
+              "symbol",
+              "to"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "annotations": {
+            "destructiveHint": false,
+            "readOnlyHint": true
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "get_historical_price",
+          "description": "Get price data for specific feeds at a historical timestamp. Use get_symbols first to find feed IDs or symbols. If both price_feed_ids and symbols are provided, only price_feed_ids are used. Accepts Unix seconds, milliseconds, or microseconds (auto-detected). Historical data is available from April 2025 onward — do not request timestamps before that. The timestamp is internally converted to microseconds and aligned (rounded down) to the channel rate — e.g. for fixed_rate@200ms, it must be divisible by 200,000μs. Prices are integers with an exponent field — human-readable price = price * 10^exponent. Pre-computed display_price fields are included for convenience.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "channel": {
+                "type": "string",
+                "pattern": "^(real_time|fixed_rate@\\d+ms)$",
+                "description": "Override default channel (e.g. fixed_rate@200ms, real_time, fixed_rate@50ms, fixed_rate@1000ms)"
+              },
+              "price_feed_ids": {
+                "type": "array",
+                "items": {
+                  "type": "integer",
+                  "exclusiveMinimum": 0
+                },
+                "maxItems": 50,
+                "description": "Numeric feed IDs from get_symbols"
+              },
+              "symbols": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "maxItems": 50,
+                "description": "Full symbol names from get_symbols including asset type prefix (e.g. ['Crypto.BTC/USD', 'Equity.US.AAPL/USD'])"
+              },
+              "timestamp": {
+                "type": "number",
+                "exclusiveMinimum": 0,
+                "description": "Unix timestamp — accepts seconds, milliseconds, or microseconds (auto-detected by magnitude)"
+              }
+            },
+            "required": [
+              "timestamp"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "annotations": {
+            "destructiveHint": false,
+            "readOnlyHint": true
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "get_latest_price",
+          "description": "Get the most recent real-time price for one or more feeds. Requires an `access_token` parameter (get one at https://docs.pyth.network/price-feeds/pro/acquire-access-token). Use get_symbols first to find symbols or feed IDs. IMPORTANT: symbols must be the full name including asset type prefix (e.g. 'Crypto.BTC/USD', not 'BTC/USD'). If both price_feed_ids and symbols are provided, only price_feed_ids are used. Prices are integers with an exponent field — human-readable price = price * 10^exponent. Pre-computed display_price fields are included for convenience.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "access_token": {
+                "type": "string",
+                "minLength": 1,
+                "description": "Pyth Pro access token. Get one at https://pyth.network/pricing"
+              },
+              "channel": {
+                "type": "string",
+                "pattern": "^(real_time|fixed_rate@\\d+ms)$",
+                "description": "Override default channel (e.g. fixed_rate@200ms, real_time, fixed_rate@50ms, fixed_rate@1000ms)"
+              },
+              "price_feed_ids": {
+                "type": "array",
+                "items": {
+                  "type": "integer",
+                  "exclusiveMinimum": 0
+                },
+                "maxItems": 100,
+                "description": "Numeric feed IDs from get_symbols"
+              },
+              "properties": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "Properties to return. Default: price, bestBidPrice, bestAskPrice, confidence, exponent, publisherCount"
+              },
+              "symbols": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "maxItems": 100,
+                "description": "Full symbol names from get_symbols including asset type prefix (e.g. ['Crypto.BTC/USD', 'Equity.US.AAPL/USD'])"
+              }
+            },
+            "required": [
+              "access_token"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "annotations": {
+            "destructiveHint": false,
+            "readOnlyHint": true
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        }
+      ],
+      "python_sdk_url": "https://mcp.pyth.network/mcp",
+      "python_sdk_config": "{\"debug\": false}"
+    },
+    "source_filename": "0170.Pyth-Pro-MCP-Server_labeled.json",
+    "processed_timestamp": 1772876337,
+    "processing_mode": "gateway",
+    "rank": 171
+  }
+}

@@ -1,0 +1,67 @@
+{
+  "labels": {
+    "analysis": "The MCP Server for COTI Blockchain primarily focuses on blockchain interaction, allowing users to manage COTI accounts, create and manage both private ERC20 tokens and ERC721 NFTs, perform native COTI token transactions, and interact with smart contracts. It provides tools for encryption/decryption, signing/verifying messages, transferring assets, and querying blockchain data. The server's functionality is heavily centered around blockchain operations, particularly the COTI ecosystem.",
+    "reasoning": "The primary label of \"Cryptocurrency & Blockchain\" is chosen because the server's core functionality revolves around interacting with the COTI blockchain, managing accounts, tokens, and NFTs, and performing blockchain transactions. The secondary labels of \"Security & Authentication\" and \"API Integration\" are included because the server provides tools for message signing/verification and contract interactions, which are closely related to security and API operations. No custom label is needed as the predefined categories sufficiently cover the server's functionality.",
+    "primary_label": "Cryptocurrency & Blockchain",
+    "secondary_labels": [
+      "Security & Authentication",
+      "API Integration"
+    ],
+    "custom_label": null,
+    "is_connected": false,
+    "is_remote_tool_valid": false,
+    "featured_server": false,
+    "tool_verified": false,
+    "tool_verified_status": "broken",
+    "tool_verified_at": "2026-03-14T20:39:42.910436+00:00",
+    "tool_verified_tool": null,
+    "tool_verified_reason": "no tools defined"
+  },
+  "metadata": {
+    "server_id": 352,
+    "server_name": "COTI Blockchain MCP Server",
+    "rank_by_usage": 128,
+    "usage_count": "479",
+    "original_file": "toucan_live#@davibauer/coti-mcp",
+    "mode": "toucan",
+    "timestamp": 1772876338,
+    "remote_server_response": {
+      "url": "https://server.smithery.ai/@davibauer/coti-mcp/mcp",
+      "is_success": true,
+      "error": null,
+      "tools": [],
+      "tool_count": 0,
+      "tool_names": []
+    },
+    "server_info_crawled": {
+      "id": 352,
+      "name": "COTI Blockchain MCP Server",
+      "author": "",
+      "overview": "This tool lets you play with the COTI blockchain right from your AI assistant.",
+      "repository_url": "",
+      "homepage": "https://server.smithery.ai/@davibauer/coti-mcp/mcp",
+      "remote_or_local": "Remote",
+      "license": "",
+      "usage_count": "479",
+      "success_rate": "99.70%",
+      "tags": [
+        "search",
+        "web",
+        "api",
+        "mcp"
+      ],
+      "categories": [
+        "search",
+        "api"
+      ],
+      "tools_count": 0,
+      "tools": [],
+      "python_sdk_url": "https://server.smithery.ai/@davibauer/coti-mcp/mcp",
+      "python_sdk_config": "{\"debug\": false}"
+    },
+    "source_filename": "0352.COTI-Blockchain-MCP-Server_labeled.json",
+    "processed_timestamp": 1772876338,
+    "processing_mode": "toucan",
+    "rank": 128
+  }
+}

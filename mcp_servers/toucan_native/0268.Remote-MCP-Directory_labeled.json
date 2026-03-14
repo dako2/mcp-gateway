@@ -1,0 +1,66 @@
+{
+  "labels": {
+    "analysis": "Public MCP server \"Remote MCP Directory\" with 1 tools. Added from awesome-remote-mcp-servers list.",
+    "reasoning": "Verified as publicly accessible with no authentication required.",
+    "primary_label": "Public API",
+    "secondary_labels": [],
+    "custom_label": "Public API - Remote MCP Directory",
+    "is_connected": true,
+    "is_remote_tool_valid": true,
+    "featured_server": false,
+    "tool_verified": true,
+    "tool_verified_status": "verified",
+    "tool_verified_at": "2026-03-14T20:58:49.485465+00:00",
+    "tool_verified_tool": "ListRemoteMCPServers",
+    "tool_verified_reason": "tools/list returned valid tools via direct MCP connection"
+  },
+  "metadata": {
+    "server_id": 268,
+    "server_name": "Remote MCP Directory",
+    "rank_by_usage": null,
+    "usage_count": null,
+    "original_file": "awesome-remote-mcp-servers",
+    "mode": "gateway",
+    "timestamp": 1773521929,
+    "remote_server_response": {
+      "url": "https://mcp.remote-mcp.com",
+      "is_success": true,
+      "error": null,
+      "tools": [
+        {
+          "name": "ListRemoteMCPServers",
+          "description": "List and search for trusted Remote MCP Servers from https://github.com/jaw9c/awesome-remote-mcp-servers and https://remote-mcp.com",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {
+              "query": {
+                "type": "string"
+              }
+            }
+          },
+          "annotations": {
+            "title": "List and search for trusted Remote MCP Servers",
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        }
+      ],
+      "tool_count": 1,
+      "tool_names": [
+        "ListRemoteMCPServers"
+      ]
+    },
+    "server_info_crawled": {
+      "name": "Remote MCP Directory",
+      "overview": "Public MCP server providing 1 tools",
+      "remote_or_local": "Remote",
+      "python_sdk_url": "https://mcp.remote-mcp.com"
+    }
+  }
+}

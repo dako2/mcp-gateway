@@ -1,0 +1,302 @@
+{
+  "labels": {
+    "analysis": "The MCP Server \"io.github.Whitemarmot/copyright01\" provides 6 tools focused on security & authentication tasks. Core capabilities include creation and generation, data access and reading, modification and updates. Key tools: create-deposit-tool, list-deposits-tool, get-deposit-tool, verify-hash-tool, verify-certificate-tool.",
+    "reasoning": "Primary label \"Security & Authentication\" assigned based on strong keyword matches in tool names and descriptions: certificate.",
+    "primary_label": "Security & Authentication",
+    "secondary_labels": [
+      "Development Tools",
+      "Social Media"
+    ],
+    "custom_label": "Data Access & Generation - io.github.Whitemarmot/copyright01",
+    "is_connected": true,
+    "is_remote_tool_valid": true,
+    "featured_server": true,
+    "tool_verified": false,
+    "tool_verified_status": "broken",
+    "tool_verified_at": "2026-03-14T20:38:30.247362+00:00",
+    "tool_verified_tool": "list-deposits-tool",
+    "tool_verified_reason": "gateway timeout: Target server timed out"
+  },
+  "metadata": {
+    "server_id": 124,
+    "server_name": "io.github.Whitemarmot/copyright01",
+    "rank_by_usage": 125,
+    "usage_count": "100",
+    "original_file": "tools.json#124",
+    "mode": "gateway",
+    "timestamp": 1772876337,
+    "remote_server_response": {
+      "url": "https://www.copyright01.com/mcp",
+      "is_success": true,
+      "error": null,
+      "tools": [
+        {
+          "name": "create-deposit-tool",
+          "title": "Create Deposit Tool",
+          "description": "    Create a new copyright deposit. Supported types: text, website, youtube, social, github.\n    For text deposits, provide content_text. For other types, provide website_url.\n    Returns the deposit details with certificate verification code.",
+          "inputSchema": {
+            "properties": {
+              "type": {
+                "description": "Deposit type: text, website, youtube, social, or github",
+                "type": "string"
+              },
+              "title": {
+                "description": "Title for the deposit (3-255 characters)",
+                "type": "string"
+              },
+              "description": {
+                "description": "Optional description (max 2000 characters)",
+                "type": "string"
+              },
+              "content_text": {
+                "description": "Text content to protect (required for type=text, min 10 characters)",
+                "type": "string"
+              },
+              "website_url": {
+                "description": "URL to protect (required for website/youtube/social/github types)",
+                "type": "string"
+              },
+              "is_public": {
+                "description": "Whether the deposit is publicly visible (default: true)",
+                "type": "boolean"
+              }
+            },
+            "type": "object"
+          },
+          "annotations": {}
+        },
+        {
+          "name": "list-deposits-tool",
+          "title": "List Deposits Tool",
+          "description": "    List your copyright deposits with optional filtering and pagination.\n    Returns up to 20 deposits per page.",
+          "inputSchema": {
+            "properties": {
+              "type": {
+                "description": "Filter by deposit type: text, website, youtube, social, github",
+                "type": "string"
+              },
+              "status": {
+                "description": "Filter by status: pending, certified, failed",
+                "type": "string"
+              },
+              "page": {
+                "description": "Page number (default: 1, 20 results per page)",
+                "type": "integer"
+              }
+            },
+            "type": "object"
+          },
+          "annotations": {}
+        },
+        {
+          "name": "get-deposit-tool",
+          "title": "Get Deposit Tool",
+          "description": "    Get details of a specific deposit by its ID.\n    Only returns deposits owned by the authenticated user (IDOR-protected).",
+          "inputSchema": {
+            "properties": {
+              "id": {
+                "description": "The deposit ID to retrieve",
+                "type": "integer"
+              }
+            },
+            "type": "object"
+          },
+          "annotations": {}
+        },
+        {
+          "name": "verify-hash-tool",
+          "title": "Verify Hash Tool",
+          "description": "    Verify a SHA-256 hash against all deposits.\n    Checks your own deposits and public deposits.\n    Returns the matching deposit if found.",
+          "inputSchema": {
+            "properties": {
+              "hash": {
+                "description": "SHA-256 hash to verify (64 hex characters)",
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "annotations": {}
+        },
+        {
+          "name": "verify-certificate-tool",
+          "title": "Verify Certificate Tool",
+          "description": "    Verify a certificate by its verification code.\n    Returns the associated deposit details if found.\n    Works for public deposits and your own private deposits.",
+          "inputSchema": {
+            "properties": {
+              "code": {
+                "description": "Certificate verification code (e.g. XXXX-XXXX-XXXX)",
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "annotations": {}
+        },
+        {
+          "name": "get-profile-tool",
+          "title": "Get Profile Tool",
+          "description": "    Get your profile information including plan, credits remaining,\n    storage usage, and deposit count.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {}
+          },
+          "annotations": {}
+        }
+      ],
+      "tool_count": 6,
+      "tool_names": [
+        "create-deposit-tool",
+        "list-deposits-tool",
+        "get-deposit-tool",
+        "verify-hash-tool",
+        "verify-certificate-tool",
+        "get-profile-tool"
+      ]
+    },
+    "server_info_crawled": {
+      "id": 124,
+      "name": "io.github.Whitemarmot/copyright01",
+      "author": "",
+      "overview": "io.github.Whitemarmot/copyright01 - Security & Authentication server with 6 tools. The MCP Server \"io.github.Whitemarmot/copyright01\" provides 6 tools focused on security & authentica",
+      "repository_url": "",
+      "homepage": "https://www.copyright01.com/mcp",
+      "remote_or_local": "Remote",
+      "license": "",
+      "usage_count": "100",
+      "success_rate": "100%",
+      "tags": [
+        "security-authentication",
+        "development-tools",
+        "social-media"
+      ],
+      "categories": [
+        "security & authentication",
+        "development tools",
+        "social media"
+      ],
+      "tools_count": 6,
+      "tools": [
+        {
+          "name": "create-deposit-tool",
+          "title": "Create Deposit Tool",
+          "description": "    Create a new copyright deposit. Supported types: text, website, youtube, social, github.\n    For text deposits, provide content_text. For other types, provide website_url.\n    Returns the deposit details with certificate verification code.",
+          "inputSchema": {
+            "properties": {
+              "type": {
+                "description": "Deposit type: text, website, youtube, social, or github",
+                "type": "string"
+              },
+              "title": {
+                "description": "Title for the deposit (3-255 characters)",
+                "type": "string"
+              },
+              "description": {
+                "description": "Optional description (max 2000 characters)",
+                "type": "string"
+              },
+              "content_text": {
+                "description": "Text content to protect (required for type=text, min 10 characters)",
+                "type": "string"
+              },
+              "website_url": {
+                "description": "URL to protect (required for website/youtube/social/github types)",
+                "type": "string"
+              },
+              "is_public": {
+                "description": "Whether the deposit is publicly visible (default: true)",
+                "type": "boolean"
+              }
+            },
+            "type": "object"
+          },
+          "annotations": {}
+        },
+        {
+          "name": "list-deposits-tool",
+          "title": "List Deposits Tool",
+          "description": "    List your copyright deposits with optional filtering and pagination.\n    Returns up to 20 deposits per page.",
+          "inputSchema": {
+            "properties": {
+              "type": {
+                "description": "Filter by deposit type: text, website, youtube, social, github",
+                "type": "string"
+              },
+              "status": {
+                "description": "Filter by status: pending, certified, failed",
+                "type": "string"
+              },
+              "page": {
+                "description": "Page number (default: 1, 20 results per page)",
+                "type": "integer"
+              }
+            },
+            "type": "object"
+          },
+          "annotations": {}
+        },
+        {
+          "name": "get-deposit-tool",
+          "title": "Get Deposit Tool",
+          "description": "    Get details of a specific deposit by its ID.\n    Only returns deposits owned by the authenticated user (IDOR-protected).",
+          "inputSchema": {
+            "properties": {
+              "id": {
+                "description": "The deposit ID to retrieve",
+                "type": "integer"
+              }
+            },
+            "type": "object"
+          },
+          "annotations": {}
+        },
+        {
+          "name": "verify-hash-tool",
+          "title": "Verify Hash Tool",
+          "description": "    Verify a SHA-256 hash against all deposits.\n    Checks your own deposits and public deposits.\n    Returns the matching deposit if found.",
+          "inputSchema": {
+            "properties": {
+              "hash": {
+                "description": "SHA-256 hash to verify (64 hex characters)",
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "annotations": {}
+        },
+        {
+          "name": "verify-certificate-tool",
+          "title": "Verify Certificate Tool",
+          "description": "    Verify a certificate by its verification code.\n    Returns the associated deposit details if found.\n    Works for public deposits and your own private deposits.",
+          "inputSchema": {
+            "properties": {
+              "code": {
+                "description": "Certificate verification code (e.g. XXXX-XXXX-XXXX)",
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "annotations": {}
+        },
+        {
+          "name": "get-profile-tool",
+          "title": "Get Profile Tool",
+          "description": "    Get your profile information including plan, credits remaining,\n    storage usage, and deposit count.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {}
+          },
+          "annotations": {}
+        }
+      ],
+      "python_sdk_url": "https://www.copyright01.com/mcp",
+      "python_sdk_config": "{\"debug\": false}"
+    },
+    "source_filename": "0124.iogithubWhitemarmotcopyright01_labeled.json",
+    "processed_timestamp": 1772876337,
+    "processing_mode": "gateway",
+    "rank": 125
+  }
+}

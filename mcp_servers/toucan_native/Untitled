@@ -1,0 +1,27 @@
+Name,Category,Server URL (copy-paste ready),Description / What it gives your AI,Maintainer / Notes
+DeepWiki (by Devin),Codebase RAG / Docs,https://mcp.deepwiki.com/mcp (or /sse),"AI-powered codebase context, architecture diagrams, docs, and Q&A for any public GitHub repo. The most popular no-auth server.",Devin / Cognition – completely free & official
+Exa Search,Web Search,https://mcp.exa.ai/mcp,High-quality web search results directly into your AI,Exa.ai
+Semgrep,Code Security,https://mcp.semgrep.ai/sse,"Static code analysis, security & quality scans",Semgrep
+Hugging Face,ML Models / Datasets,https://hf.co/mcp,"Access to models, datasets, spaces, and HF Hub info",Hugging Face (official)
+Cloudflare Docs,Documentation,https://docs.mcp.cloudflare.com/sse,Full Cloudflare documentation & knowledge base,Cloudflare
+Astro Docs,Documentation,https://mcp.docs.astro.build/mcp,Astro framework docs and examples,Astro
+AWS Knowledge,Docs / AWS,https://knowledge-mcp.global.api.aws,AWS documentation & knowledge base,AWS
+CoinGecko,Crypto / Finance,(listed as open on mcpservers.org; use search in directory if needed),"Real-time cryptocurrency prices, market data (public API wrapper)",CoinGecko
+Fetch,Web Scraping / Content,(open on mcpservers.org),Fetch any webpage → clean markdown + metadata (no keys),Community
+Sequential Thinking,Reasoning Tool,(open on mcpservers.org),Structured step-by-step problem-solving tool,Community
+EdgeOne Pages,Hosting / Deployment,(open on mcpservers.org),Deploy HTML instantly and get public URL,Tencent EdgeOne
+Find-A-Domain,Productivity,https://api.findadomain.dev/mcp,Domain availability & WHOIS lookups,Find-A-Domain
+LiveScore MCP,Sports,https://livescoremcp.com/sse,Live sports scores & data,LiveScore
+Peek.com,Travel / Other,https://mcp.peek.com,Travel & booking data,Peek.com
+TweetSave,Social,https://mcp.tweetsave.org/sse,Twitter/X post saving & archiving,TweetSave
+WebZum,Hosting,https://webzum.com/api/mcp,Website hosting & deployment tools,WebZum
+Context Awesome,Datasets,https://www.context-awesome.com/api/mcp,Curated context & datasets,Context Awesome
+OpenMesh,Service Discovery,https://api.openmesh.dev/mcp,Decentralized service discovery,OpenMesh
+OpenZeppelin Contracts (multiple),Smart Contracts,"https://mcp.openzeppelin.com/contracts/cairo/mcp (and /solidity, /stellar, /stylus variants)","Cairo, Solidity, Stellar, Stylus contract libraries & docs",OpenZeppelin
+LLM Text,Text / Data,https://mcp.llmtxt.dev/sse,Text processing & analysis tools,LLM Text
+GitMCP,Git / Code,https://gitmcp.io (docs link leads to endpoint),Git repository tools,GitMCP
+zip1.io,Utilities,https://zip1.io/mcp,URL shortener with analytics,zip1.io
+Manifold,Forecasting,https://api.manifold.markets/v0/mcp,Prediction market data,Manifold Markets
+Javadocs,Java Docs,https://www.javadocs.dev/mcp,Java library documentation,Javadocs.dev
+Ferryhopper,Travel,https://mcp.ferryhopper.com/mcp,Ferry & travel schedules,Ferryhopper
+SubwayInfo NYC,Transit,https://subwayinfo.nyc/mcp,NYC subway real-time info,SubwayInfo NYC

@@ -1,0 +1,235 @@
+{
+  "labels": {
+    "analysis": "The MCP Server \"com.sonatype/dependency-management-mcp-server\" provides 3 tools focused on development tools tasks. Core capabilities include various operations. Key tools: getComponentVersion, getLatestComponentVersion, getRecommendedComponentVersions.",
+    "reasoning": "Primary label \"Development Tools\" assigned based on strong keyword matches in tool names and descriptions: package, dependency.",
+    "primary_label": "Development Tools",
+    "secondary_labels": [
+      "Data Analysis & Processing",
+      "Security & Authentication"
+    ],
+    "custom_label": "Data Access - com.sonatype/dependency-management-mcp-server",
+    "is_connected": true,
+    "is_remote_tool_valid": true,
+    "featured_server": false,
+    "tool_verified": true,
+    "tool_verified_status": "verified",
+    "tool_verified_at": "2026-03-14T20:38:19.377221+00:00",
+    "tool_verified_tool": "getComponentVersion",
+    "tool_verified_reason": "tool call succeeded"
+  },
+  "metadata": {
+    "server_id": 200,
+    "server_name": "com.sonatype/dependency-management-mcp-server",
+    "rank_by_usage": 201,
+    "usage_count": "10",
+    "original_file": "tools.json#200",
+    "mode": "gateway",
+    "timestamp": 1772876338,
+    "remote_server_response": {
+      "url": "https://mcp.guide.sonatype.com/mcp",
+      "is_success": true,
+      "error": null,
+      "tools": [
+        {
+          "name": "getComponentVersion",
+          "title": "getComponentVersion",
+          "description": "Returns detailed analysis of a specific dependency or multiple dependencies with metadata about quality, license\nand security. Dependencies can be referred to as packages, components or libraries. They\ncan be transitive (brought in by other dependencies) or direct (explicitly added to the\nproject).",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "packageUrls": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "Package URL (PURL) or list of PURLs identifying the component(s). Maven requires namespace (groupId). Version\nis required. When providing multiple package URLs, limit to 20 maximum."
+              }
+            },
+            "required": [
+              "packageUrls"
+            ]
+          },
+          "annotations": {
+            "title": "",
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "getLatestComponentVersion",
+          "title": "getLatestComponentVersion",
+          "description": "Returns the latest version of a dependency or multiple dependencies with quality, license and security data.\nDependencies can be referred to as packages, components or libraries. They can be\ntransitive (brought in by other dependencies) or direct (explicitly added to the\nproject).\n",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "packageUrls": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "Package URL (PURL) or list of PURLs identifying the component(s). Maven requires namespace (groupId). Version\nis optional. When providing multiple package URLs, limit to 20 maximum."
+              }
+            },
+            "required": [
+              "packageUrls"
+            ]
+          },
+          "annotations": {
+            "title": "",
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "getRecommendedComponentVersions",
+          "title": "getRecommendedComponentVersions",
+          "description": "Returns top dependency version recommendations ranked by Developer Trust Score with\nsecurity, licensing, and quality analysis. Developer Trust Score is a measure of quality,\nsecurity, licensing, and maintainability. Use this when selecting a new component to add\nto a project (without version) or when upgrading an existing component (with version).\nDependencies can be referred to as packages, components or libraries. They can be\ntransitive (brought in by other dependencies) or direct (explicitly added to the\nproject).",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "packageUrls": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "Package URL (PURL) or list of PURLs identifying the component(s). Maven requires namespace (groupId).\nVersion is optional: omit for new component recommendations (returns the best versions\nto start with), include for upgrade recommendations (returns better versions than the\none specified). When providing multiple package URLs, limit to 20 maximum."
+              }
+            },
+            "required": [
+              "packageUrls"
+            ]
+          },
+          "annotations": {
+            "title": "",
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        }
+      ],
+      "tool_count": 3,
+      "tool_names": [
+        "getComponentVersion",
+        "getLatestComponentVersion",
+        "getRecommendedComponentVersions"
+      ]
+    },
+    "server_info_crawled": {
+      "id": 200,
+      "name": "com.sonatype/dependency-management-mcp-server",
+      "author": "",
+      "overview": "com.sonatype/dependency-management-mcp-server - Development Tools server with 3 tools. The MCP Server \"com.sonatype/dependency-management-mcp-server\" provides 3 tools focused on developme",
+      "repository_url": "",
+      "homepage": "https://mcp.guide.sonatype.com/mcp",
+      "remote_or_local": "Remote",
+      "license": "",
+      "usage_count": "10",
+      "success_rate": "100%",
+      "tags": [
+        "development-tools",
+        "data-analysis-processing",
+        "security-authentication"
+      ],
+      "categories": [
+        "development tools",
+        "data analysis & processing",
+        "security & authentication"
+      ],
+      "tools_count": 3,
+      "tools": [
+        {
+          "name": "getComponentVersion",
+          "title": "getComponentVersion",
+          "description": "Returns detailed analysis of a specific dependency or multiple dependencies with metadata about quality, license\nand security. Dependencies can be referred to as packages, components or libraries. They\ncan be transitive (brought in by other dependencies) or direct (explicitly added to the\nproject).",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "packageUrls": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "Package URL (PURL) or list of PURLs identifying the component(s). Maven requires namespace (groupId). Version\nis required. When providing multiple package URLs, limit to 20 maximum."
+              }
+            },
+            "required": [
+              "packageUrls"
+            ]
+          },
+          "annotations": {
+            "title": "",
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "getLatestComponentVersion",
+          "title": "getLatestComponentVersion",
+          "description": "Returns the latest version of a dependency or multiple dependencies with quality, license and security data.\nDependencies can be referred to as packages, components or libraries. They can be\ntransitive (brought in by other dependencies) or direct (explicitly added to the\nproject).\n",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "packageUrls": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "Package URL (PURL) or list of PURLs identifying the component(s). Maven requires namespace (groupId). Version\nis optional. When providing multiple package URLs, limit to 20 maximum."
+              }
+            },
+            "required": [
+              "packageUrls"
+            ]
+          },
+          "annotations": {
+            "title": "",
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "getRecommendedComponentVersions",
+          "title": "getRecommendedComponentVersions",
+          "description": "Returns top dependency version recommendations ranked by Developer Trust Score with\nsecurity, licensing, and quality analysis. Developer Trust Score is a measure of quality,\nsecurity, licensing, and maintainability. Use this when selecting a new component to add\nto a project (without version) or when upgrading an existing component (with version).\nDependencies can be referred to as packages, components or libraries. They can be\ntransitive (brought in by other dependencies) or direct (explicitly added to the\nproject).",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "packageUrls": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "Package URL (PURL) or list of PURLs identifying the component(s). Maven requires namespace (groupId).\nVersion is optional: omit for new component recommendations (returns the best versions\nto start with), include for upgrade recommendations (returns better versions than the\none specified). When providing multiple package URLs, limit to 20 maximum."
+              }
+            },
+            "required": [
+              "packageUrls"
+            ]
+          },
+          "annotations": {
+            "title": "",
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        }
+      ],
+      "python_sdk_url": "https://mcp.guide.sonatype.com/mcp",
+      "python_sdk_config": "{\"debug\": false}"
+    },
+    "source_filename": "0200.comsonatypedependency-management-mcp-server_labeled.json",
+    "processed_timestamp": 1772876338,
+    "processing_mode": "gateway",
+    "rank": 201
+  }
+}

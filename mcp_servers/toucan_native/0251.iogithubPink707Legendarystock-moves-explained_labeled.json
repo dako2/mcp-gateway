@@ -1,0 +1,143 @@
+{
+  "labels": {
+    "analysis": "The MCP Server \"io.github.Pink707Legendary/stock-moves-explained\" provides 1 tools focused on financial services tasks. Core capabilities include various operations. Key tools: stock-moves-explained.",
+    "reasoning": "Primary label \"Financial Services\" assigned based on strong keyword matches in tool names and descriptions: stock, forex.",
+    "primary_label": "Financial Services",
+    "secondary_labels": [
+      "Data Analysis & Processing",
+      "Cryptocurrency & Blockchain"
+    ],
+    "custom_label": "Financial Services - io.github.Pink707Legendary/stock-moves-explained",
+    "is_connected": true,
+    "is_remote_tool_valid": true,
+    "featured_server": false,
+    "tool_verified": true,
+    "tool_verified_status": "verified",
+    "tool_verified_at": "2026-03-14T20:38:22.304910+00:00",
+    "tool_verified_tool": "stock-moves-explained",
+    "tool_verified_reason": "tool call succeeded"
+  },
+  "metadata": {
+    "server_id": 251,
+    "server_name": "io.github.Pink707Legendary/stock-moves-explained",
+    "rank_by_usage": 252,
+    "usage_count": "10",
+    "original_file": "tools.json#251",
+    "mode": "gateway",
+    "timestamp": 1772876338,
+    "remote_server_response": {
+      "url": "https://api.justhappened.wtf/mcp",
+      "is_success": true,
+      "error": null,
+      "tools": [
+        {
+          "name": "stock-moves-explained",
+          "description": "Explains why US stocks had significant price moves. Provides AI analysis citing news catalysts, earnings reports, and analyst actions. Covers S&P 500, NASDAQ 100, Dow 30 (~550 stocks). IMPORTANT: Pass a stock ticker (TSLA) or company name (Tesla) as the ticker parameter - do NOT pass the user's full question. NOT for: price quotes, trading advice, predictions, crypto, or forex. If you cannot make POST requests, visit https://justhappened.wtf/api-help for alternative access methods.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "ticker": {
+                "type": "string",
+                "description": "The stock ticker symbol or company name to look up. Extract the ticker or company name from the user's question before calling. Examples: 'TSLA', 'Tesla', 'AAPL', 'Apple', 'GOOGL', 'Google'. Do NOT pass full sentences like 'why did Tesla drop' - just pass 'Tesla' or 'TSLA'."
+              },
+              "date": {
+                "type": "string",
+                "description": "Date to query (YYYY-MM-DD format). Defaults to today. Max 7 days back."
+              },
+              "move_type": {
+                "type": "string",
+                "enum": [
+                  "drop",
+                  "surge",
+                  "all"
+                ],
+                "description": "Filter by move direction: 'drop' for declines, 'surge' for gains, 'all' for any significant move. Defaults to 'all'."
+              }
+            },
+            "required": [
+              "ticker"
+            ]
+          },
+          "annotations": {
+            "title": "Stock Moves Explained",
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        }
+      ],
+      "tool_count": 1,
+      "tool_names": [
+        "stock-moves-explained"
+      ]
+    },
+    "server_info_crawled": {
+      "id": 251,
+      "name": "io.github.Pink707Legendary/stock-moves-explained",
+      "author": "",
+      "overview": "io.github.Pink707Legendary/stock-moves-explained - Financial Services server with 1 tools. The MCP Server \"io.github.Pink707Legendary/stock-moves-explained\" provides 1 tools focused on financ",
+      "repository_url": "",
+      "homepage": "https://api.justhappened.wtf/mcp",
+      "remote_or_local": "Remote",
+      "license": "",
+      "usage_count": "10",
+      "success_rate": "100%",
+      "tags": [
+        "financial-services",
+        "data-analysis-processing",
+        "cryptocurrency-blockchain"
+      ],
+      "categories": [
+        "financial services",
+        "data analysis & processing",
+        "cryptocurrency & blockchain"
+      ],
+      "tools_count": 1,
+      "tools": [
+        {
+          "name": "stock-moves-explained",
+          "description": "Explains why US stocks had significant price moves. Provides AI analysis citing news catalysts, earnings reports, and analyst actions. Covers S&P 500, NASDAQ 100, Dow 30 (~550 stocks). IMPORTANT: Pass a stock ticker (TSLA) or company name (Tesla) as the ticker parameter - do NOT pass the user's full question. NOT for: price quotes, trading advice, predictions, crypto, or forex. If you cannot make POST requests, visit https://justhappened.wtf/api-help for alternative access methods.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "ticker": {
+                "type": "string",
+                "description": "The stock ticker symbol or company name to look up. Extract the ticker or company name from the user's question before calling. Examples: 'TSLA', 'Tesla', 'AAPL', 'Apple', 'GOOGL', 'Google'. Do NOT pass full sentences like 'why did Tesla drop' - just pass 'Tesla' or 'TSLA'."
+              },
+              "date": {
+                "type": "string",
+                "description": "Date to query (YYYY-MM-DD format). Defaults to today. Max 7 days back."
+              },
+              "move_type": {
+                "type": "string",
+                "enum": [
+                  "drop",
+                  "surge",
+                  "all"
+                ],
+                "description": "Filter by move direction: 'drop' for declines, 'surge' for gains, 'all' for any significant move. Defaults to 'all'."
+              }
+            },
+            "required": [
+              "ticker"
+            ]
+          },
+          "annotations": {
+            "title": "Stock Moves Explained",
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        }
+      ],
+      "python_sdk_url": "https://api.justhappened.wtf/mcp",
+      "python_sdk_config": "{\"debug\": false}"
+    },
+    "source_filename": "0251.iogithubPink707Legendarystock-moves-explained_labeled.json",
+    "processed_timestamp": 1772876338,
+    "processing_mode": "gateway",
+    "rank": 252
+  }
+}

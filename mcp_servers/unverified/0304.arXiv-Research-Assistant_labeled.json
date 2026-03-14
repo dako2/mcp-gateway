@@ -1,0 +1,244 @@
+{
+  "labels": {
+    "analysis": "The MCP Server functions as a research assistant for arXiv.org, focusing on efficient search, exploration, and analysis of academic papers. Its core functionality includes crawling recent papers, keyword-based searches, retrieving paper metadata, and analyzing trends in specific research categories. The tools are designed to facilitate academic research by providing structured access to arXiv's content and enabling trend analysis.",
+    "reasoning": "The primary label is selected because the server's main purpose is to assist with research activities, particularly in searching and analyzing academic papers. Secondary labels are chosen to reflect the server's capabilities in web scraping and trend analysis, which are integral to its research assistant functionality. No custom label is needed as the predefined categories adequately cover the server's features.",
+    "primary_label": "Web Search & Research",
+    "secondary_labels": [
+      "Browser Automation",
+      "Data Analysis & Processing"
+    ],
+    "custom_label": null,
+    "is_connected": true,
+    "is_remote_tool_valid": true,
+    "featured_server": false,
+    "tool_verified": false,
+    "tool_verified_status": "broken",
+    "tool_verified_at": "2026-03-14T20:39:21.001060+00:00",
+    "tool_verified_tool": "search_papers",
+    "tool_verified_reason": "client timeout after 20003ms"
+  },
+  "metadata": {
+    "server_id": 304,
+    "server_name": "arXiv Research Assistant",
+    "rank_by_usage": 413,
+    "usage_count": "54",
+    "original_file": "toucan_live#@daheepk/arxiv-paper-mcp",
+    "mode": "toucan",
+    "timestamp": 1772876338,
+    "remote_server_response": {
+      "url": "https://server.smithery.ai/@daheepk/arxiv-paper-mcp/mcp",
+      "is_success": true,
+      "error": null,
+      "tools": [
+        {
+          "name": "scrape_recent_category_papers",
+          "description": "[크롤링] 특정 카테고리의 'recent' 페이지를 스크랩하여 최신 논문 목록을 가져옵니다.",
+          "input_schema": {
+            "properties": {
+              "category": {
+                "title": "Category",
+                "type": "string"
+              },
+              "max_results": {
+                "default": 10,
+                "title": "Max Results",
+                "type": "integer"
+              }
+            },
+            "required": [
+              "category"
+            ],
+            "title": "scrape_recent_category_papersArguments",
+            "type": "object"
+          },
+          "annotations": null
+        },
+        {
+          "name": "search_papers",
+          "description": "키워드로 arXiv 논문을 검색합니다.",
+          "input_schema": {
+            "properties": {
+              "keyword": {
+                "title": "Keyword",
+                "type": "string"
+              },
+              "max_results": {
+                "default": 5,
+                "title": "Max Results",
+                "type": "integer"
+              }
+            },
+            "required": [
+              "keyword"
+            ],
+            "title": "search_papersArguments",
+            "type": "object"
+          },
+          "annotations": null
+        },
+        {
+          "name": "get_paper_info",
+          "description": "논문 ID로 상세 정보를 가져옵니다.",
+          "input_schema": {
+            "properties": {
+              "paper_id": {
+                "title": "Paper Id",
+                "type": "string"
+              }
+            },
+            "required": [
+              "paper_id"
+            ],
+            "title": "get_paper_infoArguments",
+            "type": "object"
+          },
+          "annotations": null
+        },
+        {
+          "name": "analyze_trends",
+          "description": "특정 카테고리의 최신 트렌드를 분석합니다.",
+          "input_schema": {
+            "properties": {
+              "category": {
+                "default": "cs.AI",
+                "title": "Category",
+                "type": "string"
+              },
+              "days": {
+                "default": 30,
+                "title": "Days",
+                "type": "integer"
+              }
+            },
+            "title": "analyze_trendsArguments",
+            "type": "object"
+          },
+          "annotations": null
+        }
+      ],
+      "tool_count": 4,
+      "tool_names": [
+        "scrape_recent_category_papers",
+        "search_papers",
+        "get_paper_info",
+        "analyze_trends"
+      ]
+    },
+    "server_info_crawled": {
+      "id": 304,
+      "name": "arXiv Research Assistant",
+      "author": "",
+      "overview": "Enable efficient search, exploration, and comparison of arXiv.org research papers through a local MCP server. Access detailed paper metadata, perform keyword and author-based searches, and generate prompts for summarization and comparison. Stay updated with trending topics in various research categories.",
+      "repository_url": "",
+      "homepage": "https://server.smithery.ai/@daheepk/arxiv-paper-mcp/mcp",
+      "remote_or_local": "Remote",
+      "license": "",
+      "usage_count": "54",
+      "success_rate": "Not available",
+      "tags": [
+        "search",
+        "web",
+        "api",
+        "mcp"
+      ],
+      "categories": [
+        "search",
+        "api"
+      ],
+      "tools_count": 4,
+      "tools": [
+        {
+          "name": "scrape_recent_category_papers",
+          "description": "[크롤링] 특정 카테고리의 'recent' 페이지를 스크랩하여 최신 논문 목록을 가져옵니다.",
+          "input_schema": {
+            "properties": {
+              "category": {
+                "title": "Category",
+                "type": "string"
+              },
+              "max_results": {
+                "default": 10,
+                "title": "Max Results",
+                "type": "integer"
+              }
+            },
+            "required": [
+              "category"
+            ],
+            "title": "scrape_recent_category_papersArguments",
+            "type": "object"
+          },
+          "annotations": null
+        },
+        {
+          "name": "search_papers",
+          "description": "키워드로 arXiv 논문을 검색합니다.",
+          "input_schema": {
+            "properties": {
+              "keyword": {
+                "title": "Keyword",
+                "type": "string"
+              },
+              "max_results": {
+                "default": 5,
+                "title": "Max Results",
+                "type": "integer"
+              }
+            },
+            "required": [
+              "keyword"
+            ],
+            "title": "search_papersArguments",
+            "type": "object"
+          },
+          "annotations": null
+        },
+        {
+          "name": "get_paper_info",
+          "description": "논문 ID로 상세 정보를 가져옵니다.",
+          "input_schema": {
+            "properties": {
+              "paper_id": {
+                "title": "Paper Id",
+                "type": "string"
+              }
+            },
+            "required": [
+              "paper_id"
+            ],
+            "title": "get_paper_infoArguments",
+            "type": "object"
+          },
+          "annotations": null
+        },
+        {
+          "name": "analyze_trends",
+          "description": "특정 카테고리의 최신 트렌드를 분석합니다.",
+          "input_schema": {
+            "properties": {
+              "category": {
+                "default": "cs.AI",
+                "title": "Category",
+                "type": "string"
+              },
+              "days": {
+                "default": 30,
+                "title": "Days",
+                "type": "integer"
+              }
+            },
+            "title": "analyze_trendsArguments",
+            "type": "object"
+          },
+          "annotations": null
+        }
+      ],
+      "python_sdk_url": "https://server.smithery.ai/@daheepk/arxiv-paper-mcp/mcp",
+      "python_sdk_config": "{\"debug\": false}"
+    },
+    "source_filename": "0304.arXiv-Research-Assistant_labeled.json",
+    "processed_timestamp": 1772876338,
+    "processing_mode": "toucan",
+    "rank": 413
+  }
+}

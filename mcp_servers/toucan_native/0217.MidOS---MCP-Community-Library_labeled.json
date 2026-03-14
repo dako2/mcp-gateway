@@ -1,0 +1,218 @@
+{
+  "labels": {
+    "analysis": "The MCP Server \"MidOS - MCP Community Library\" provides 2 tools focused on web search & research tasks. Core capabilities include data access and reading, search and retrieval. Key tools: search, stats.",
+    "reasoning": "Primary label \"Web Search & Research\" assigned based on strong keyword matches in tool names and descriptions: search.",
+    "primary_label": "Web Search & Research",
+    "secondary_labels": [
+      "DNS & Networking",
+      "Gaming"
+    ],
+    "custom_label": "Search - MidOS - MCP Community Library",
+    "is_connected": true,
+    "is_remote_tool_valid": true,
+    "featured_server": false,
+    "tool_verified": true,
+    "tool_verified_status": "verified",
+    "tool_verified_at": "2026-03-14T20:38:20.983217+00:00",
+    "tool_verified_tool": "search",
+    "tool_verified_reason": "response received"
+  },
+  "metadata": {
+    "server_id": 217,
+    "server_name": "MidOS - MCP Community Library",
+    "rank_by_usage": 218,
+    "usage_count": "10",
+    "original_file": "tools.json#217",
+    "mode": "gateway",
+    "timestamp": 1772876338,
+    "remote_server_response": {
+      "url": "https://midos.dev/mcp",
+      "is_success": true,
+      "error": null,
+      "tools": [
+        {
+          "name": "search",
+          "description": "Search MidOS knowledge base for relevant information.\n\nUse this as your FIRST tool to discover what knowledge is available.\nReturns ranked results with titles, snippets, and quality scores.\n\nArgs:\n    query: Search query (keywords or topic)\n    limit: Max results (1-20, default 5)\n    domain: Filter by domain (engineering, security, architecture, devops, ai_ml)\n\nReturns:\n    JSON array of matching atoms with title, snippet, score, and source",
+          "inputSchema": {
+            "properties": {
+              "query": {
+                "type": "string"
+              },
+              "limit": {
+                "default": 5,
+                "type": "integer"
+              },
+              "domain": {
+                "default": null,
+                "type": "string"
+              }
+            },
+            "required": [
+              "query"
+            ],
+            "type": "object"
+          },
+          "outputSchema": {
+            "properties": {
+              "result": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "result"
+            ],
+            "type": "object",
+            "x-fastmcp-wrap-result": true
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "idempotentHint": true
+          },
+          "_meta": {
+            "_fastmcp": {
+              "tags": []
+            }
+          }
+        },
+        {
+          "name": "stats",
+          "description": "Get MidOS knowledge base statistics and health metrics.\n\nReturns total atom count, breakdown by type and domain, top contributors,\nand system health indicators. Use to understand the scope of available knowledge.\n\nReturns:\n    JSON with counts by type, domain, contributor rankings, and health status",
+          "inputSchema": {
+            "properties": {},
+            "type": "object"
+          },
+          "outputSchema": {
+            "properties": {
+              "result": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "result"
+            ],
+            "type": "object",
+            "x-fastmcp-wrap-result": true
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "idempotentHint": true
+          },
+          "_meta": {
+            "_fastmcp": {
+              "tags": []
+            }
+          }
+        }
+      ],
+      "tool_count": 2,
+      "tool_names": [
+        "search",
+        "stats"
+      ]
+    },
+    "server_info_crawled": {
+      "id": 217,
+      "name": "MidOS - MCP Community Library",
+      "author": "",
+      "overview": "MidOS - MCP Community Library - Web Search & Research server with 2 tools. The MCP Server \"MidOS - MCP Community Library\" provides 2 tools focused on web search & research tas",
+      "repository_url": "",
+      "homepage": "https://midos.dev/mcp",
+      "remote_or_local": "Remote",
+      "license": "",
+      "usage_count": "10",
+      "success_rate": "100%",
+      "tags": [
+        "web-search-research",
+        "dns-networking",
+        "gaming"
+      ],
+      "categories": [
+        "web search & research",
+        "dns & networking",
+        "gaming"
+      ],
+      "tools_count": 2,
+      "tools": [
+        {
+          "name": "search",
+          "description": "Search MidOS knowledge base for relevant information.\n\nUse this as your FIRST tool to discover what knowledge is available.\nReturns ranked results with titles, snippets, and quality scores.\n\nArgs:\n    query: Search query (keywords or topic)\n    limit: Max results (1-20, default 5)\n    domain: Filter by domain (engineering, security, architecture, devops, ai_ml)\n\nReturns:\n    JSON array of matching atoms with title, snippet, score, and source",
+          "inputSchema": {
+            "properties": {
+              "query": {
+                "type": "string"
+              },
+              "limit": {
+                "default": 5,
+                "type": "integer"
+              },
+              "domain": {
+                "default": null,
+                "type": "string"
+              }
+            },
+            "required": [
+              "query"
+            ],
+            "type": "object"
+          },
+          "outputSchema": {
+            "properties": {
+              "result": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "result"
+            ],
+            "type": "object",
+            "x-fastmcp-wrap-result": true
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "idempotentHint": true
+          },
+          "_meta": {
+            "_fastmcp": {
+              "tags": []
+            }
+          }
+        },
+        {
+          "name": "stats",
+          "description": "Get MidOS knowledge base statistics and health metrics.\n\nReturns total atom count, breakdown by type and domain, top contributors,\nand system health indicators. Use to understand the scope of available knowledge.\n\nReturns:\n    JSON with counts by type, domain, contributor rankings, and health status",
+          "inputSchema": {
+            "properties": {},
+            "type": "object"
+          },
+          "outputSchema": {
+            "properties": {
+              "result": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "result"
+            ],
+            "type": "object",
+            "x-fastmcp-wrap-result": true
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "idempotentHint": true
+          },
+          "_meta": {
+            "_fastmcp": {
+              "tags": []
+            }
+          }
+        }
+      ],
+      "python_sdk_url": "https://midos.dev/mcp",
+      "python_sdk_config": "{\"debug\": false}"
+    },
+    "source_filename": "0217.MidOS---MCP-Community-Library_labeled.json",
+    "processed_timestamp": 1772876338,
+    "processing_mode": "gateway",
+    "rank": 218
+  }
+}

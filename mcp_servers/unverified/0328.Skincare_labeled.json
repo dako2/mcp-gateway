@@ -1,0 +1,108 @@
+{
+  "labels": {
+    "analysis": "The MCP Server is specialized for skincare, with tools that analyze selfie images to provide skincare-related insights. It integrates skincare knowledge into AI-driven environments, facilitating dynamic access to skincare data and tools. The core functionality involves image analysis to support skincare recommendations and enhanced user interactions.",
+    "reasoning": "The primary label is \"Health & Fitness\" because the server focuses on skincare, which falls under personal health. The secondary label \"AI/ML Tools\" is included since it involves image analysis, a common AI/ML task. No custom label is needed as the predefined labels adequately cover the server's functionality.",
+    "primary_label": "Health & Fitness",
+    "secondary_labels": [
+      "AI/ML Tools"
+    ],
+    "custom_label": null,
+    "is_connected": true,
+    "is_remote_tool_valid": true,
+    "featured_server": false,
+    "tool_verified": false,
+    "tool_verified_status": "broken",
+    "tool_verified_at": "2026-03-14T20:39:42.800342+00:00",
+    "tool_verified_tool": "get-selfie-analysis",
+    "tool_verified_reason": "client timeout after 20003ms"
+  },
+  "metadata": {
+    "server_id": 328,
+    "server_name": "Skincare",
+    "rank_by_usage": 793,
+    "usage_count": "7",
+    "original_file": "toucan_live#@leegentle/skincare-mcp",
+    "mode": "toucan",
+    "timestamp": 1772876338,
+    "remote_server_response": {
+      "url": "https://server.smithery.ai/@leegentle/skincare-mcp/mcp",
+      "is_success": true,
+      "error": null,
+      "tools": [
+        {
+          "name": "get-selfie-analysis",
+          "description": "이미지URL을 받아 분석 결과를 반환합니다.",
+          "input_schema": {
+            "type": "object",
+            "properties": {
+              "imageUrl": {
+                "type": "string",
+                "description": "분석할 이미지의 URL"
+              }
+            },
+            "required": [
+              "imageUrl"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "annotations": null
+        }
+      ],
+      "tool_count": 1,
+      "tool_names": [
+        "get-selfie-analysis"
+      ]
+    },
+    "server_info_crawled": {
+      "id": 328,
+      "name": "Skincare",
+      "author": "",
+      "overview": "Provide a specialized MCP server that integrates with skincare-related data and tools, enabling enhanced context and actions for LLM applications focused on skincare. Facilitate dynamic access to skincare resources and operations to improve user interactions and workflows. Simplify the integration of skincare knowledge into AI-driven environments.",
+      "repository_url": "",
+      "homepage": "https://server.smithery.ai/@leegentle/skincare-mcp/mcp",
+      "remote_or_local": "Remote",
+      "license": "",
+      "usage_count": "7",
+      "success_rate": "Not available",
+      "tags": [
+        "search",
+        "web",
+        "api",
+        "mcp"
+      ],
+      "categories": [
+        "search",
+        "api"
+      ],
+      "tools_count": 1,
+      "tools": [
+        {
+          "name": "get-selfie-analysis",
+          "description": "이미지URL을 받아 분석 결과를 반환합니다.",
+          "input_schema": {
+            "type": "object",
+            "properties": {
+              "imageUrl": {
+                "type": "string",
+                "description": "분석할 이미지의 URL"
+              }
+            },
+            "required": [
+              "imageUrl"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "annotations": null
+        }
+      ],
+      "python_sdk_url": "https://server.smithery.ai/@leegentle/skincare-mcp/mcp",
+      "python_sdk_config": "{\"debug\": false}"
+    },
+    "source_filename": "0328.Skincare_labeled.json",
+    "processed_timestamp": 1772876338,
+    "processing_mode": "toucan",
+    "rank": 793
+  }
+}

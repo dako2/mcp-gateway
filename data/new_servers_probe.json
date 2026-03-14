@@ -1,0 +1,706 @@
+[
+  {
+    "name": "DeepWiki",
+    "url": "https://mcp.deepwiki.com/mcp",
+    "status": "ok",
+    "tools": [
+      {
+        "name": "read_wiki_structure",
+        "description": "Get a list of documentation topics for a GitHub repository.\n\nArgs:\n    repoName: GitHub repository in owner/repo format (e.g. \"facebook/react\")",
+        "inputSchema": {
+          "properties": {
+            "repoName": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "repoName"
+          ],
+          "type": "object"
+        },
+        "outputSchema": {
+          "properties": {
+            "result": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "result"
+          ],
+          "type": "object",
+          "x-fastmcp-wrap-result": true
+        },
+        "_meta": {
+          "_fastmcp": {
+            "tags": []
+          }
+        }
+      },
+      {
+        "name": "read_wiki_contents",
+        "description": "View documentation about a GitHub repository.\n\nArgs:\n    repoName: GitHub repository in owner/repo format (e.g. \"facebook/react\")",
+        "inputSchema": {
+          "properties": {
+            "repoName": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "repoName"
+          ],
+          "type": "object"
+        },
+        "outputSchema": {
+          "properties": {
+            "result": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "result"
+          ],
+          "type": "object",
+          "x-fastmcp-wrap-result": true
+        },
+        "_meta": {
+          "_fastmcp": {
+            "tags": []
+          }
+        }
+      },
+      {
+        "name": "ask_question",
+        "description": "Ask any question about a GitHub repository and get an AI-powered, context-grounded response.\n\nArgs:\n    repoName: GitHub repository or list of repositories (max 10) in owner/repo format\n    question: The question to ask about the repository",
+        "inputSchema": {
+          "properties": {
+            "repoName": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "items": {
+                    "type": "string"
+                  },
+                  "type": "array"
+                }
+              ]
+            },
+            "question": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "repoName",
+            "question"
+          ],
+          "type": "object"
+        },
+        "outputSchema": {
+          "properties": {
+            "result": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "result"
+          ],
+          "type": "object",
+          "x-fastmcp-wrap-result": true
+        },
+        "_meta": {
+          "_fastmcp": {
+            "tags": []
+          }
+        }
+      }
+    ]
+  },
+  {
+    "name": "Peek.com",
+    "url": "https://mcp.peek.com",
+    "status": "no_tools",
+    "note": "{\"error\":{\"code\":-32600,\"data\":{\"message\":\"Server not initialized\"},\"message\":\"Invalid Request\"},\"id\":\"err_GJzQwobr3VPv_4BNR5w=\",\"jsonrpc\":\"2.0\"}\n"
+  },
+  {
+    "name": "Hugging Face",
+    "url": "https://hf.co/mcp",
+    "status": "ok",
+    "tools": [
+      {
+        "name": "hf_whoami",
+        "description": "Hugging Face tools are being used anonymously and may be rate limited. Call this tool for instructions on joining and authenticating.",
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {}
+        },
+        "annotations": {
+          "readOnlyHint": true,
+          "openWorldHint": false,
+          "title": "Hugging Face User Info"
+        },
+        "execution": {
+          "taskSupport": "forbidden"
+        }
+      },
+      {
+        "name": "space_search",
+        "description": "Find Hugging Face Spaces using semantic search. IMPORTANT Only MCP Servers can be used with the dynamic_space toolInclude links to the Space when presenting the results.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "query": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 100,
+              "description": "Semantic Search Query"
+            },
+            "limit": {
+              "type": "number",
+              "default": 10,
+              "description": "Number of results to return"
+            },
+            "mcp": {
+              "type": "boolean",
+              "default": false,
+              "description": "Only return MCP Server enabled Spaces"
+            }
+          },
+          "required": [
+            "query"
+          ],
+          "additionalProperties": false,
+          "$schema": "http://json-schema.org/draft-07/schema#"
+        },
+        "annotations": {
+          "title": "Hugging Face Space Search",
+          "destructiveHint": false,
+          "readOnlyHint": true,
+          "openWorldHint": true
+        },
+        "execution": {
+          "taskSupport": "forbidden"
+        }
+      },
+      {
+        "name": "hub_repo_search",
+        "description": "Search Hugging Face repositories with a shared query interface. You can target models, datasets, spaces, or aggregate across multiple repo types in one call. Use space_search for semantic-first discovery of Spaces. Include links to repositories in your response.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "query": {
+              "type": "string",
+              "description": "Search term. Leave blank and specify sort + limit to browse trending or recent repositories."
+            },
+            "repo_types": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "model",
+                  "dataset",
+                  "space"
+                ]
+              },
+              "minItems": 1,
+              "maxItems": 3,
+              "default": [
+                "model",
+                "dataset"
+              ],
+              "description": "Repository types to search. Defaults to [\"model\", \"dataset\"]. space uses keyword search via /api/spaces."
+            },
+            "author": {
+              "type": "string",
+              "description": "Organization or user namespace to filter by (e.g. 'google', 'meta-llama', 'huggingface')."
+            },
+            "filters": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "Optional hub filter tags. Applied to each selected repo type (e.g. [\"text-generation\"], [\"language:en\"], [\"mcp-server\"])."
+            },
+            "sort": {
+              "type": "string",
+              "enum": [
+                "trendingScore",
+                "downloads",
+                "likes",
+                "createdAt",
+                "lastModified"
+              ],
+              "description": "Sort order (descending): trendingScore, downloads, likes, createdAt, lastModified"
+            },
+            "limit": {
+              "type": "number",
+              "minimum": 1,
+              "maximum": 100,
+              "default": 20,
+              "description": "Maximum number of results to return per selected repo type"
+            }
+          },
+          "additionalProperties": false,
+          "$schema": "http://json-schema.org/draft-07/schema#"
+        },
+        "annotations": {
+          "title": "Repo Search",
+          "destructiveHint": false,
+          "readOnlyHint": true,
+          "openWorldHint": true
+        },
+        "execution": {
+          "taskSupport": "forbidden"
+        }
+      },
+      {
+        "name": "paper_search",
+        "description": "Find Machine Learning research papers on the Hugging Face hub. Include 'Link to paper' When presenting the results. Consider whether tabulating results matches user intent.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "query": {
+              "type": "string",
+              "minLength": 3,
+              "maxLength": 200,
+              "description": "Semantic Search query"
+            },
+            "results_limit": {
+              "type": "number",
+              "default": 12,
+              "description": "Number of results to return"
+            },
+            "concise_only": {
+              "type": "boolean",
+              "default": false,
+              "description": "Return a 2 sentence summary of the abstract. Use for broad search terms which may return a lot of results. Check with User if unsure."
+            }
+          },
+          "required": [
+            "query"
+          ],
+          "additionalProperties": false,
+          "$schema": "http://json-schema.org/draft-07/schema#"
+        },
+        "annotations": {
+          "title": "Paper Search",
+          "destructiveHint": false,
+          "readOnlyHint": true,
+          "openWorldHint": true
+        },
+        "execution": {
+          "taskSupport": "forbidden"
+        }
+      },
+      {
+        "name": "hub_repo_details",
+        "description": "Get details for one or more Hugging Face repos (model, dataset, or space). Auto-detects type unless specified.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "repo_ids": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              },
+              "minItems": 1,
+              "maxItems": 10,
+              "description": "Repo IDs for (models|dataset/space) - usually in author/name format (e.g. openai/gpt-oss-120b)"
+            },
+            "repo_type": {
+              "type": "string",
+              "enum": [
+                "model",
+                "dataset",
+                "space"
+              ],
+              "description": "Specify lookup type; otherwise auto-detects"
+            }
+          },
+          "required": [
+            "repo_ids"
+          ],
+          "additionalProperties": false,
+          "$schema": "http://json-schema.org/draft-07/schema#"
+        },
+        "annotations": {
+          "title": "Hub Repo Details",
+          "destructiveHint": false,
+          "readOnlyHint": true,
+          "openWorldHint": false
+        },
+        "execution": {
+          "taskSupport": "forbidden"
+        }
+      },
+      {
+        "name": "hf_doc_search",
+        "description": "Search and Discover Hugging Face Product and Library documentation. Send an empty query to discover structure and navigation instructions. Knowledge up-to-date as at 11 March 2026. Combine with the Product filter to focus results.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "query": {
+              "type": "string",
+              "maxLength": 200,
+              "description": "Start with an empty query for structure, endpoint discovery and navigation tips. Use semantic queries for targetted searches."
+            },
+            "product": {
+              "type": "string",
+              "description": "Filter by Product. Supply when known for focused results"
+            }
+          },
+          "required": [
+            "query"
+          ],
+          "additionalProperties": false,
+          "$schema": "http://json-schema.org/draft-07/schema#"
+        },
+        "annotations": {
+          "title": "Hugging Face Documentation Search",
+          "destructiveHint": false,
+          "readOnlyHint": true,
+          "openWorldHint": true
+        },
+        "execution": {
+          "taskSupport": "forbidden"
+        }
+      },
+      {
+        "name": "hf_doc_fetch",
+        "description": "Fetch a document from the Hugging Face or Gradio documentation library. For large documents, use offset to get subsequent chunks.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "doc_url": {
+              "type": "string",
+              "maxLength": 200,
+              "description": "Documentation URL (Hugging Face or Gradio)"
+            },
+            "offset": {
+              "type": "number",
+              "minimum": 0,
+              "description": "Token offset for large documents (use the offset from truncation message)"
+            }
+          },
+          "required": [
+            "doc_url"
+          ],
+          "additionalProperties": false,
+          "$schema": "http://json-schema.org/draft-07/schema#"
+        },
+        "annotations": {
+          "title": "Fetch a document from the Hugging Face documentation library",
+          "destructiveHint": false,
+          "readOnlyHint": true,
+          "openWorldHint": true
+        },
+        "execution": {
+          "taskSupport": "forbidden"
+        }
+      },
+      {
+        "name": "gr1_z_image_turbo_generate",
+        "description": "Generate an image using the Z-Image model based on the provided prompt and settings. This function is triggered when the user clicks the \"Generate\" button. It processes the input prompt (optionally enhancing it), configures generation parameters, and produces an image using the Z-Image diffusion transformer pipeline. Returns: tuple: (gallery_images, seed_str, seed_int), - seed_str: String representation of the seed used for generation, - seed_int: Integer representation of the seed used for generation (from mcp-tools/Z-Image-Turbo)",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "prompt": {
+              "type": "string",
+              "description": "Text prompt describing the desired image content"
+            },
+            "resolution": {
+              "type": "string",
+              "enum": [
+                "1024x1024 ( 1:1 )",
+                "1152x896 ( 9:7 )",
+                "896x1152 ( 7:9 )",
+                "1152x864 ( 4:3 )",
+                "864x1152 ( 3:4 )",
+                "1248x832 ( 3:2 )",
+                "832x1248 ( 2:3 )",
+                "1280x720 ( 16:9 )",
+                "720x1280 ( 9:16 )",
+                "1344x576 ( 21:9 )",
+                "576x1344 ( 9:21 )",
+                "1280x1280 ( 1:1 )",
+                "1440x1120 ( 9:7 )",
+                "1120x1440 ( 7:9 )",
+                "1472x1104 ( 4:3 )",
+                "1104x1472 ( 3:4 )",
+                "1536x1024 ( 3:2 )",
+                "1024x1536 ( 2:3 )",
+                "1536x864 ( 16:9 )",
+                "864x1536 ( 9:16 )",
+                "1680x720 ( 21:9 )",
+                "720x1680 ( 9:21 )",
+                "1536x1536 ( 1:1 )",
+                "1728x1344 ( 9:7 )",
+                "1344x1728 ( 7:9 )",
+                "1728x1296 ( 4:3 )",
+                "1296x1728 ( 3:4 )",
+                "1872x1248 ( 3:2 )",
+                "1248x1872 ( 2:3 )",
+                "2048x1152 ( 16:9 )",
+                "1152x2048 ( 9:16 )",
+                "2016x864 ( 21:9 )",
+                "864x2016 ( 9:21 )"
+              ],
+              "description": "Output resolution in format \"WIDTHxHEIGHT ( RATIO )\" (e.g., \"1024x1024 ( 1:1 )\")",
+              "default": "1024x1024 ( 1:1 )"
+            },
+            "seed": {
+              "type": "integer",
+              "description": "Seed for reproducible generation",
+              "default": 42
+            },
+            "steps": {
+              "type": "number",
+              "description": "Number of inference steps for the diffusion process",
+              "default": 8
+            },
+            "shift": {
+              "type": "number",
+              "description": "Time shift parameter for the flow matching scheduler",
+              "default": 3
+            },
+            "random_seed": {
+              "type": "boolean",
+              "description": "Whether to generate a new random seed, if True will ignore the seed input",
+              "default": true
+            }
+          },
+          "additionalProperties": false,
+          "$schema": "http://json-schema.org/draft-07/schema#"
+        },
+        "annotations": {
+          "openWorldHint": true,
+          "title": "mcp-tools/Z-Image-Turbo - Z_Image_Turbo_generate \ud83d\uddbc\ufe0f"
+        },
+        "execution": {
+          "taskSupport": "forbidden"
+        }
+      }
+    ]
+  },
+  {
+    "name": "GitMCP",
+    "url": "https://gitmcp.io/docs",
+    "status": "ok",
+    "tools": [
+      {
+        "name": "match_common_libs_owner_repo_mapping",
+        "description": "Match a library name to an owner/repo. Don't use it if you have an owner and repo already. Use this first if only a library name was provided. If found - you can use owner and repo to call other tools. If not found - try to use the library name directly in other tools.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "library": {
+              "type": "string",
+              "description": "The name of the library to try and match to an owner/repo."
+            }
+          },
+          "required": [
+            "library"
+          ],
+          "additionalProperties": false,
+          "$schema": "http://json-schema.org/draft-07/schema#"
+        }
+      },
+      {
+        "name": "fetch_generic_documentation",
+        "description": "Fetch documentation for any GitHub repository by providing owner and project name",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "owner": {
+              "type": "string",
+              "description": "The GitHub repository owner (username or organization)"
+            },
+            "repo": {
+              "type": "string",
+              "description": "The GitHub repository name"
+            }
+          },
+          "required": [
+            "owner",
+            "repo"
+          ],
+          "additionalProperties": false,
+          "$schema": "http://json-schema.org/draft-07/schema#"
+        }
+      },
+      {
+        "name": "search_generic_documentation",
+        "description": "Semantically search in documentation for any GitHub repository by providing owner, project name, and search query. Useful for specific queries.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "owner": {
+              "type": "string",
+              "description": "The GitHub repository owner (username or organization)"
+            },
+            "repo": {
+              "type": "string",
+              "description": "The GitHub repository name"
+            },
+            "query": {
+              "type": "string",
+              "description": "The search query to find relevant documentation"
+            }
+          },
+          "required": [
+            "owner",
+            "repo",
+            "query"
+          ],
+          "additionalProperties": false,
+          "$schema": "http://json-schema.org/draft-07/schema#"
+        }
+      },
+      {
+        "name": "search_generic_code",
+        "description": "Search for code in any GitHub repository by providing owner, project name, and search query. Returns matching files. Supports pagination with 30 results per page.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "owner": {
+              "type": "string",
+              "description": "The GitHub repository owner (username or organization)"
+            },
+            "repo": {
+              "type": "string",
+              "description": "The GitHub repository name"
+            },
+            "query": {
+              "type": "string",
+              "description": "The search query to find relevant code files"
+            },
+            "page": {
+              "type": "number",
+              "description": "Page number to retrieve (starting from 1). Each page contains 30 results."
+            }
+          },
+          "required": [
+            "owner",
+            "repo",
+            "query"
+          ],
+          "additionalProperties": false,
+          "$schema": "http://json-schema.org/draft-07/schema#"
+        }
+      },
+      {
+        "name": "fetch_generic_url_content",
+        "description": "Generic tool to fetch content from any absolute URL, respecting robots.txt rules. Use this to retrieve referenced urls (absolute urls) that were mentioned in previously fetched documentation.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "url": {
+              "type": "string",
+              "description": "The URL of the document or page to fetch"
+            }
+          },
+          "required": [
+            "url"
+          ],
+          "additionalProperties": false,
+          "$schema": "http://json-schema.org/draft-07/schema#"
+        }
+      }
+    ]
+  },
+  {
+    "name": "Context Awesome",
+    "url": "https://www.context-awesome.com/api/mcp",
+    "status": "no_tools",
+    "note": "{\"jsonrpc\":\"2.0\",\"error\":{\"code\":-32000,\"message\":\"Not Acceptable: Client must accept both application/json and text/event-stream\"},\"id\":null}"
+  },
+  {
+    "name": "Remote MCP Directory",
+    "url": "https://mcp.remote-mcp.com",
+    "status": "ok",
+    "tools": [
+      {
+        "name": "ListRemoteMCPServers",
+        "description": "List and search for trusted Remote MCP Servers from https://github.com/jaw9c/awesome-remote-mcp-servers and https://remote-mcp.com",
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {
+            "query": {
+              "type": "string"
+            }
+          }
+        },
+        "annotations": {
+          "title": "List and search for trusted Remote MCP Servers",
+          "readOnlyHint": true,
+          "destructiveHint": false,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "execution": {
+          "taskSupport": "forbidden"
+        }
+      }
+    ]
+  },
+  {
+    "name": "Find-A-Domain",
+    "url": "https://api.findadomain.dev/mcp",
+    "status": "ok",
+    "tools": [
+      {
+        "annotations": {
+          "readOnlyHint": false,
+          "destructiveHint": true,
+          "idempotentHint": false,
+          "openWorldHint": true
+        },
+        "description": "Check if a domain is available for a specific TLD",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "description": "Domain name to check (without TLD)",
+              "type": "string"
+            },
+            "tld": {
+              "description": "Top-level domain (e.g., com, org, net)",
+              "type": "string"
+            },
+            "whois": {
+              "description": "Whether to perform WHOIS check",
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "name",
+            "tld"
+          ]
+        },
+        "name": "check_domain"
+      },
+      {
+        "annotations": {
+          "readOnlyHint": false,
+          "destructiveHint": true,
+          "idempotentHint": false,
+          "openWorldHint": true
+        },
+        "description": "Get a list of all available top-level domains (TLDs)",
+        "inputSchema": {
+          "type": "object"
+        },
+        "name": "list_tlds"
+      }
+    ]
+  },
+  {
+    "name": "Turkish Airlines",
+    "url": "https://mcp.turkishtechlab.com/mcp",
+    "status": "no_tools",
+    "note": "{\"error\":\"invalid_token\",\"error_description\":\"Missing or invalid access token\"}"
+  }
+]

@@ -1,0 +1,748 @@
+{
+  "labels": {
+    "analysis": "The MCP Server \"io.github.365xbusiness/vigo-mcp\" provides 10 tools focused on security & authentication tasks. Core capabilities include analysis and computation, data access and reading, modification and updates, search and retrieval. Key tools: query_regulation, search_enforcement, latest_updates, get_license_guide, compliance_check.",
+    "reasoning": "Primary label \"Security & Authentication\" assigned based on strong keyword matches in tool names and descriptions: compliance.",
+    "primary_label": "Security & Authentication",
+    "secondary_labels": [
+      "Web Search & Research",
+      "Gaming"
+    ],
+    "custom_label": "Data Access & Management - io.github.365xbusiness/vigo-mcp",
+    "is_connected": true,
+    "is_remote_tool_valid": true,
+    "featured_server": true,
+    "tool_verified": true,
+    "tool_verified_status": "verified",
+    "tool_verified_at": "2026-03-14T20:38:15.235251+00:00",
+    "tool_verified_tool": "query_regulation",
+    "tool_verified_reason": "tool call succeeded"
+  },
+  "metadata": {
+    "server_id": 83,
+    "server_name": "io.github.365xbusiness/vigo-mcp",
+    "rank_by_usage": 84,
+    "usage_count": "340",
+    "original_file": "tools.json#83",
+    "mode": "gateway",
+    "timestamp": 1772876337,
+    "remote_server_response": {
+      "url": "https://lsoatzzwpltpydwyfqqv.supabase.co/functions/v1/vigo-mcp",
+      "is_success": true,
+      "error": null,
+      "tools": [
+        {
+          "name": "query_regulation",
+          "description": "Query Hong Kong SFC regulatory knowledge. Covers licensing (Type 1-13), compliance, exams, CPD/CPT, AML/CFT, virtual assets (VATP/ASPIRe), and more. Supports English and Chinese.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "question": {
+                "type": "string",
+                "description": "Your regulatory question in English or Chinese"
+              },
+              "language": {
+                "type": "string",
+                "enum": [
+                  "en",
+                  "zh",
+                  "auto"
+                ],
+                "description": "Response language",
+                "default": "auto"
+              },
+              "license_type": {
+                "type": "string",
+                "description": "Optional: SFC license type filter, e.g. 'Type 1', 'Type 9'"
+              }
+            },
+            "required": [
+              "question"
+            ]
+          },
+          "annotations": {
+            "title": "VIGO Regulatory Query",
+            "readOnlyHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "search_enforcement",
+          "description": "Search SFC enforcement actions including fines, suspensions, bans, and prosecutions. Search by company, person, or violation type.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "query": {
+                "type": "string",
+                "description": "Search term: company name, person, or violation type"
+              },
+              "year": {
+                "type": "number",
+                "description": "Optional year filter (e.g. 2025)"
+              }
+            },
+            "required": [
+              "query"
+            ]
+          },
+          "annotations": {
+            "title": "SFC Enforcement Search",
+            "readOnlyHint": true
+          }
+        },
+        {
+          "name": "latest_updates",
+          "description": "Get latest SFC regulatory updates: circulars, enforcement news, VATP developments, consultation papers.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "category": {
+                "type": "string",
+                "enum": [
+                  "circular",
+                  "enforcement",
+                  "vatp",
+                  "consultation",
+                  "all"
+                ],
+                "default": "all"
+              },
+              "count": {
+                "type": "number",
+                "description": "Number of results, 1-10",
+                "default": 5
+              }
+            }
+          },
+          "annotations": {
+            "title": "SFC Latest Updates",
+            "readOnlyHint": true
+          }
+        },
+        {
+          "name": "get_license_guide",
+          "description": "Comprehensive guide for a specific SFC license type: exam papers, capital requirements, fit-and-proper criteria, CPD hours.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "license_type": {
+                "type": "string",
+                "description": "License type: 'Type 1' through 'Type 13'"
+              },
+              "aspect": {
+                "type": "string",
+                "enum": [
+                  "overview",
+                  "exam",
+                  "capital",
+                  "fit_and_proper"
+                ],
+                "default": "overview"
+              }
+            },
+            "required": [
+              "license_type"
+            ]
+          },
+          "annotations": {
+            "title": "SFC License Guide",
+            "readOnlyHint": true
+          }
+        },
+        {
+          "name": "compliance_check",
+          "description": "Perform a compliance health check for a licensed corporation. Input company profile, get a compliance risk assessment covering FRR capital, RO configuration, MIC roles, annual obligations, and regulatory focus areas.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "license_types": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "License types held, e.g. ['Type 1', 'Type 9']"
+              },
+              "aum": {
+                "type": "string",
+                "description": "Assets under management, e.g. '500M HKD'"
+              },
+              "num_ros": {
+                "type": "number",
+                "description": "Number of Responsible Officers"
+              },
+              "num_staff": {
+                "type": "number",
+                "description": "Total number of staff"
+              },
+              "has_vatp": {
+                "type": "boolean",
+                "description": "Whether the firm deals with virtual assets",
+                "default": false
+              },
+              "business_areas": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "Business areas, e.g. ['securities dealing', 'asset management']"
+              }
+            },
+            "required": [
+              "license_types"
+            ]
+          },
+          "annotations": {
+            "title": "Compliance Health Check",
+            "readOnlyHint": true
+          }
+        },
+        {
+          "name": "risk_assessment",
+          "description": "Assess compliance risk of a planned business activity. Returns Red/Yellow/Green risk rating with regulatory basis and recommended actions.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "description": {
+                "type": "string",
+                "description": "Description of the planned business activity"
+              },
+              "license_types": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "Relevant license types"
+              },
+              "urgency": {
+                "type": "string",
+                "enum": [
+                  "immediate",
+                  "planned",
+                  "exploratory"
+                ],
+                "description": "How urgent is this activity",
+                "default": "planned"
+              }
+            },
+            "required": [
+              "description"
+            ]
+          },
+          "annotations": {
+            "title": "Risk Assessment",
+            "readOnlyHint": true
+          }
+        },
+        {
+          "name": "autonomous_task",
+          "description": "Execute a complex multi-step regulatory task autonomously. VIGO will plan the execution strategy, gather information from multiple sources (regulations, enforcement, knowledge graph), and synthesize a comprehensive report. Use for due diligence, compliance planning, license acquisition roadmaps, or any task requiring multiple analysis steps.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "task": {
+                "type": "string",
+                "description": "High-level task description, e.g. 'Perform due diligence on applying for Type 9 license with virtual asset management'"
+              },
+              "context": {
+                "type": "string",
+                "description": "Optional background context about the company or situation"
+              },
+              "output_format": {
+                "type": "string",
+                "enum": [
+                  "report",
+                  "action_plan",
+                  "risk_matrix",
+                  "timeline"
+                ],
+                "description": "Desired output format",
+                "default": "report"
+              }
+            },
+            "required": [
+              "task"
+            ]
+          },
+          "annotations": {
+            "title": "VIGO Autonomous Task",
+            "readOnlyHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "checklist_lookup",
+          "description": "Search the SFC compliance checklist by topic, licence type, or MIC function (CF1-CF8). Returns compliance items with legal references, SOP guidance, case law, and grey area analysis. Use for questions about regulatory obligations, MIC responsibilities, procedural guidance, or compliance requirements.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "query": {
+                "type": "string",
+                "description": "Search query in Chinese or English (e.g., 'FRR月報提交', 'MIC CF7 duties', 'complaint handling')"
+              },
+              "licence_type": {
+                "type": "string",
+                "description": "Optional: filter by licence type (e.g., 'Type 1', 'Type 9')"
+              },
+              "category": {
+                "type": "string",
+                "enum": [
+                  "capital",
+                  "reporting",
+                  "aml",
+                  "conduct",
+                  "va",
+                  "governance",
+                  "mic",
+                  "sop",
+                  "legal",
+                  "enforcement",
+                  "grey_area",
+                  "insurance",
+                  "record_keeping",
+                  "client_asset",
+                  "notification",
+                  "exam_cpt"
+                ],
+                "description": "Optional: filter by compliance category"
+              }
+            },
+            "required": [
+              "query"
+            ]
+          },
+          "annotations": {
+            "title": "Compliance Checklist Lookup",
+            "readOnlyHint": true
+          }
+        },
+        {
+          "name": "sop_guide",
+          "description": "Get step-by-step Standard Operating Procedure (SOP) guidance for common compliance processes. Available SOPs: KYC onboarding, FRR monthly return, complaint handling, STR filing. Returns detailed steps with responsible person, legal basis, and estimated time.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "process": {
+                "type": "string",
+                "enum": [
+                  "kyc_onboarding",
+                  "frr_monthly",
+                  "complaint_handling",
+                  "str_filing"
+                ],
+                "description": "Which SOP process to retrieve"
+              },
+              "licence_type": {
+                "type": "string",
+                "description": "Optional: licence type for context"
+              }
+            },
+            "required": [
+              "process"
+            ]
+          },
+          "annotations": {
+            "title": "SOP Process Guide",
+            "readOnlyHint": true
+          }
+        },
+        {
+          "name": "compliance_score",
+          "description": "Calculate compliance health score for a company. Requires company_id from the Portal system. Returns total items, completed, overdue, and score percentage.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "company_id": {
+                "type": "string",
+                "description": "Company UUID from OrphicOne Portal"
+              }
+            },
+            "required": [
+              "company_id"
+            ]
+          },
+          "annotations": {
+            "title": "Compliance Score",
+            "readOnlyHint": true
+          }
+        }
+      ],
+      "tool_count": 10,
+      "tool_names": [
+        "query_regulation",
+        "search_enforcement",
+        "latest_updates",
+        "get_license_guide",
+        "compliance_check",
+        "risk_assessment",
+        "autonomous_task",
+        "checklist_lookup",
+        "sop_guide",
+        "compliance_score"
+      ]
+    },
+    "server_info_crawled": {
+      "id": 83,
+      "name": "io.github.365xbusiness/vigo-mcp",
+      "author": "",
+      "overview": "io.github.365xbusiness/vigo-mcp - Security & Authentication server with 10 tools. The MCP Server \"io.github.365xbusiness/vigo-mcp\" provides 10 tools focused on security & authenticat",
+      "repository_url": "",
+      "homepage": "https://lsoatzzwpltpydwyfqqv.supabase.co/functions/v1/vigo-mcp",
+      "remote_or_local": "Remote",
+      "license": "",
+      "usage_count": "340",
+      "success_rate": "100%",
+      "tags": [
+        "security-authentication",
+        "web-search-research",
+        "gaming"
+      ],
+      "categories": [
+        "security & authentication",
+        "web search & research",
+        "gaming"
+      ],
+      "tools_count": 10,
+      "tools": [
+        {
+          "name": "query_regulation",
+          "description": "Query Hong Kong SFC regulatory knowledge. Covers licensing (Type 1-13), compliance, exams, CPD/CPT, AML/CFT, virtual assets (VATP/ASPIRe), and more. Supports English and Chinese.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "question": {
+                "type": "string",
+                "description": "Your regulatory question in English or Chinese"
+              },
+              "language": {
+                "type": "string",
+                "enum": [
+                  "en",
+                  "zh",
+                  "auto"
+                ],
+                "description": "Response language",
+                "default": "auto"
+              },
+              "license_type": {
+                "type": "string",
+                "description": "Optional: SFC license type filter, e.g. 'Type 1', 'Type 9'"
+              }
+            },
+            "required": [
+              "question"
+            ]
+          },
+          "annotations": {
+            "title": "VIGO Regulatory Query",
+            "readOnlyHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "search_enforcement",
+          "description": "Search SFC enforcement actions including fines, suspensions, bans, and prosecutions. Search by company, person, or violation type.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "query": {
+                "type": "string",
+                "description": "Search term: company name, person, or violation type"
+              },
+              "year": {
+                "type": "number",
+                "description": "Optional year filter (e.g. 2025)"
+              }
+            },
+            "required": [
+              "query"
+            ]
+          },
+          "annotations": {
+            "title": "SFC Enforcement Search",
+            "readOnlyHint": true
+          }
+        },
+        {
+          "name": "latest_updates",
+          "description": "Get latest SFC regulatory updates: circulars, enforcement news, VATP developments, consultation papers.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "category": {
+                "type": "string",
+                "enum": [
+                  "circular",
+                  "enforcement",
+                  "vatp",
+                  "consultation",
+                  "all"
+                ],
+                "default": "all"
+              },
+              "count": {
+                "type": "number",
+                "description": "Number of results, 1-10",
+                "default": 5
+              }
+            }
+          },
+          "annotations": {
+            "title": "SFC Latest Updates",
+            "readOnlyHint": true
+          }
+        },
+        {
+          "name": "get_license_guide",
+          "description": "Comprehensive guide for a specific SFC license type: exam papers, capital requirements, fit-and-proper criteria, CPD hours.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "license_type": {
+                "type": "string",
+                "description": "License type: 'Type 1' through 'Type 13'"
+              },
+              "aspect": {
+                "type": "string",
+                "enum": [
+                  "overview",
+                  "exam",
+                  "capital",
+                  "fit_and_proper"
+                ],
+                "default": "overview"
+              }
+            },
+            "required": [
+              "license_type"
+            ]
+          },
+          "annotations": {
+            "title": "SFC License Guide",
+            "readOnlyHint": true
+          }
+        },
+        {
+          "name": "compliance_check",
+          "description": "Perform a compliance health check for a licensed corporation. Input company profile, get a compliance risk assessment covering FRR capital, RO configuration, MIC roles, annual obligations, and regulatory focus areas.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "license_types": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "License types held, e.g. ['Type 1', 'Type 9']"
+              },
+              "aum": {
+                "type": "string",
+                "description": "Assets under management, e.g. '500M HKD'"
+              },
+              "num_ros": {
+                "type": "number",
+                "description": "Number of Responsible Officers"
+              },
+              "num_staff": {
+                "type": "number",
+                "description": "Total number of staff"
+              },
+              "has_vatp": {
+                "type": "boolean",
+                "description": "Whether the firm deals with virtual assets",
+                "default": false
+              },
+              "business_areas": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "Business areas, e.g. ['securities dealing', 'asset management']"
+              }
+            },
+            "required": [
+              "license_types"
+            ]
+          },
+          "annotations": {
+            "title": "Compliance Health Check",
+            "readOnlyHint": true
+          }
+        },
+        {
+          "name": "risk_assessment",
+          "description": "Assess compliance risk of a planned business activity. Returns Red/Yellow/Green risk rating with regulatory basis and recommended actions.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "description": {
+                "type": "string",
+                "description": "Description of the planned business activity"
+              },
+              "license_types": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "Relevant license types"
+              },
+              "urgency": {
+                "type": "string",
+                "enum": [
+                  "immediate",
+                  "planned",
+                  "exploratory"
+                ],
+                "description": "How urgent is this activity",
+                "default": "planned"
+              }
+            },
+            "required": [
+              "description"
+            ]
+          },
+          "annotations": {
+            "title": "Risk Assessment",
+            "readOnlyHint": true
+          }
+        },
+        {
+          "name": "autonomous_task",
+          "description": "Execute a complex multi-step regulatory task autonomously. VIGO will plan the execution strategy, gather information from multiple sources (regulations, enforcement, knowledge graph), and synthesize a comprehensive report. Use for due diligence, compliance planning, license acquisition roadmaps, or any task requiring multiple analysis steps.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "task": {
+                "type": "string",
+                "description": "High-level task description, e.g. 'Perform due diligence on applying for Type 9 license with virtual asset management'"
+              },
+              "context": {
+                "type": "string",
+                "description": "Optional background context about the company or situation"
+              },
+              "output_format": {
+                "type": "string",
+                "enum": [
+                  "report",
+                  "action_plan",
+                  "risk_matrix",
+                  "timeline"
+                ],
+                "description": "Desired output format",
+                "default": "report"
+              }
+            },
+            "required": [
+              "task"
+            ]
+          },
+          "annotations": {
+            "title": "VIGO Autonomous Task",
+            "readOnlyHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "checklist_lookup",
+          "description": "Search the SFC compliance checklist by topic, licence type, or MIC function (CF1-CF8). Returns compliance items with legal references, SOP guidance, case law, and grey area analysis. Use for questions about regulatory obligations, MIC responsibilities, procedural guidance, or compliance requirements.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "query": {
+                "type": "string",
+                "description": "Search query in Chinese or English (e.g., 'FRR月報提交', 'MIC CF7 duties', 'complaint handling')"
+              },
+              "licence_type": {
+                "type": "string",
+                "description": "Optional: filter by licence type (e.g., 'Type 1', 'Type 9')"
+              },
+              "category": {
+                "type": "string",
+                "enum": [
+                  "capital",
+                  "reporting",
+                  "aml",
+                  "conduct",
+                  "va",
+                  "governance",
+                  "mic",
+                  "sop",
+                  "legal",
+                  "enforcement",
+                  "grey_area",
+                  "insurance",
+                  "record_keeping",
+                  "client_asset",
+                  "notification",
+                  "exam_cpt"
+                ],
+                "description": "Optional: filter by compliance category"
+              }
+            },
+            "required": [
+              "query"
+            ]
+          },
+          "annotations": {
+            "title": "Compliance Checklist Lookup",
+            "readOnlyHint": true
+          }
+        },
+        {
+          "name": "sop_guide",
+          "description": "Get step-by-step Standard Operating Procedure (SOP) guidance for common compliance processes. Available SOPs: KYC onboarding, FRR monthly return, complaint handling, STR filing. Returns detailed steps with responsible person, legal basis, and estimated time.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "process": {
+                "type": "string",
+                "enum": [
+                  "kyc_onboarding",
+                  "frr_monthly",
+                  "complaint_handling",
+                  "str_filing"
+                ],
+                "description": "Which SOP process to retrieve"
+              },
+              "licence_type": {
+                "type": "string",
+                "description": "Optional: licence type for context"
+              }
+            },
+            "required": [
+              "process"
+            ]
+          },
+          "annotations": {
+            "title": "SOP Process Guide",
+            "readOnlyHint": true
+          }
+        },
+        {
+          "name": "compliance_score",
+          "description": "Calculate compliance health score for a company. Requires company_id from the Portal system. Returns total items, completed, overdue, and score percentage.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "company_id": {
+                "type": "string",
+                "description": "Company UUID from OrphicOne Portal"
+              }
+            },
+            "required": [
+              "company_id"
+            ]
+          },
+          "annotations": {
+            "title": "Compliance Score",
+            "readOnlyHint": true
+          }
+        }
+      ],
+      "python_sdk_url": "https://lsoatzzwpltpydwyfqqv.supabase.co/functions/v1/vigo-mcp",
+      "python_sdk_config": "{\"debug\": false}"
+    },
+    "source_filename": "0083.iogithub365xbusinessvigo-mcp_labeled.json",
+    "processed_timestamp": 1772876337,
+    "processing_mode": "gateway",
+    "rank": 84
+  }
+}

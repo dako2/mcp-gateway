@@ -1,0 +1,774 @@
+{
+  "labels": {
+    "analysis": "The MCP Server \"OpenAI Tools MCP Server\" provides 9 tools focused on ai/ml tools tasks. Core capabilities include creation and generation, data access and reading, deletion and cleanup, modification and updates. Key tools: createImage, createImageEdit, createImageVariation, createTranscription, createTranslation.",
+    "reasoning": "Primary label \"AI/ML Tools\" assigned based on strong keyword matches in tool names and descriptions: prompt.",
+    "primary_label": "AI/ML Tools",
+    "secondary_labels": [
+      "Content Creation"
+    ],
+    "custom_label": "Data Access & Generation - OpenAI Tools MCP Server",
+    "is_connected": true,
+    "is_remote_tool_valid": true,
+    "featured_server": true,
+    "tool_verified": false,
+    "tool_verified_status": "auth_required",
+    "tool_verified_at": "2026-03-14T20:38:13.710830+00:00",
+    "tool_verified_tool": "listModels",
+    "tool_verified_reason": "HTTP 401"
+  },
+  "metadata": {
+    "server_id": 89,
+    "server_name": "OpenAI Tools MCP Server",
+    "rank_by_usage": 90,
+    "usage_count": "220",
+    "original_file": "tools.json#89",
+    "mode": "gateway",
+    "timestamp": 1772876337,
+    "remote_server_response": {
+      "url": "https://openai-tools.run.mcp.com.ai/mcp",
+      "is_success": true,
+      "error": null,
+      "tools": [
+        {
+          "name": "createImage",
+          "description": "Creates an image given a prompt.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "createImageBody": {
+                "type": "object",
+                "properties": {
+                  "prompt": {
+                    "type": "string",
+                    "description": "A text description of the desired image(s). The maximum length is 1000 characters."
+                  },
+                  "n": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 10,
+                    "description": "The number of images to generate. Must be between 1 and 10."
+                  },
+                  "size": {
+                    "type": "string",
+                    "enum": [
+                      "256x256",
+                      "512x512",
+                      "1024x1024"
+                    ],
+                    "description": "The size of the generated images. Must be one of `256x256`, `512x512`, or `1024x1024`."
+                  },
+                  "response_format": {
+                    "type": "string",
+                    "enum": [
+                      "url",
+                      "b64_json"
+                    ],
+                    "description": "The format in which the generated images are returned. Must be one of `url` or `b64_json`."
+                  },
+                  "user": {
+                    "type": "string",
+                    "description": "A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids).\n"
+                  }
+                },
+                "required": [
+                  "prompt"
+                ]
+              },
+              "x-hapi-auth-state": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "createImageBody"
+            ]
+          }
+        },
+        {
+          "name": "createImageEdit",
+          "description": "Creates an edited or extended image given an original image and a prompt.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "createImageEditBody": {
+                "type": "object",
+                "properties": {
+                  "image": {
+                    "type": "string",
+                    "format": "binary",
+                    "description": "The image to edit. Must be a valid PNG file, less than 4MB, and square. If mask is not provided, image must have transparency, which will be used as the mask."
+                  },
+                  "mask": {
+                    "type": "string",
+                    "format": "binary",
+                    "description": "An additional image whose fully transparent areas (e.g. where alpha is zero) indicate where `image` should be edited. Must be a valid PNG file, less than 4MB, and have the same dimensions as `image`."
+                  },
+                  "prompt": {
+                    "type": "string",
+                    "description": "A text description of the desired image(s). The maximum length is 1000 characters."
+                  },
+                  "n": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 10,
+                    "description": "The number of images to generate. Must be between 1 and 10."
+                  },
+                  "size": {
+                    "type": "string",
+                    "enum": [
+                      "256x256",
+                      "512x512",
+                      "1024x1024"
+                    ],
+                    "description": "The size of the generated images. Must be one of `256x256`, `512x512`, or `1024x1024`."
+                  },
+                  "response_format": {
+                    "type": "string",
+                    "enum": [
+                      "url",
+                      "b64_json"
+                    ],
+                    "description": "The format in which the generated images are returned. Must be one of `url` or `b64_json`."
+                  },
+                  "user": {
+                    "type": "string",
+                    "description": "A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids).\n"
+                  }
+                },
+                "required": [
+                  "prompt",
+                  "image"
+                ]
+              },
+              "x-hapi-auth-state": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "createImageEditBody"
+            ]
+          }
+        },
+        {
+          "name": "createImageVariation",
+          "description": "Creates a variation of a given image.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "createImageVariationBody": {
+                "type": "object",
+                "properties": {
+                  "image": {
+                    "type": "string",
+                    "format": "binary",
+                    "description": "The image to use as the basis for the variation(s). Must be a valid PNG file, less than 4MB, and square."
+                  },
+                  "n": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 10,
+                    "description": "The number of images to generate. Must be between 1 and 10."
+                  },
+                  "size": {
+                    "type": "string",
+                    "enum": [
+                      "256x256",
+                      "512x512",
+                      "1024x1024"
+                    ],
+                    "description": "The size of the generated images. Must be one of `256x256`, `512x512`, or `1024x1024`."
+                  },
+                  "response_format": {
+                    "type": "string",
+                    "enum": [
+                      "url",
+                      "b64_json"
+                    ],
+                    "description": "The format in which the generated images are returned. Must be one of `url` or `b64_json`."
+                  },
+                  "user": {
+                    "type": "string",
+                    "description": "A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids).\n"
+                  }
+                },
+                "required": [
+                  "image"
+                ]
+              },
+              "x-hapi-auth-state": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "createImageVariationBody"
+            ]
+          }
+        },
+        {
+          "name": "createTranscription",
+          "description": "Transcribes audio into the input language.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "createTranscriptionBody": {
+                "type": "object",
+                "properties": {
+                  "file": {
+                    "type": "string",
+                    "format": "binary",
+                    "description": "The audio file object (not file name) to transcribe, in one of these formats: mp3, mp4, mpeg, mpga, m4a, wav, or webm.\n"
+                  },
+                  "model": {
+                    "type": "string",
+                    "description": "ID of the model to use. Only `whisper-1` is currently available.\n"
+                  },
+                  "prompt": {
+                    "type": "string",
+                    "description": "An optional text to guide the model's style or continue a previous audio segment. The [prompt](/docs/guides/speech-to-text/prompting) should match the audio language.\n"
+                  },
+                  "response_format": {
+                    "type": "string",
+                    "description": "The format of the transcript output, in one of these options: json, text, srt, verbose_json, or vtt.\n"
+                  },
+                  "temperature": {
+                    "type": "number",
+                    "description": "The sampling temperature, between 0 and 1. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. If set to 0, the model will use [log probability](https://en.wikipedia.org/wiki/Log_probability) to automatically increase the temperature until certain thresholds are hit.\n"
+                  },
+                  "language": {
+                    "type": "string",
+                    "description": "The language of the input audio. Supplying the input language in [ISO-639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) format will improve accuracy and latency.\n"
+                  }
+                },
+                "required": [
+                  "file",
+                  "model"
+                ],
+                "additionalProperties": false
+              },
+              "x-hapi-auth-state": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "createTranscriptionBody"
+            ]
+          }
+        },
+        {
+          "name": "createTranslation",
+          "description": "Translates audio into English.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "createTranslationBody": {
+                "type": "object",
+                "properties": {
+                  "file": {
+                    "type": "string",
+                    "format": "binary",
+                    "description": "The audio file object (not file name) translate, in one of these formats: mp3, mp4, mpeg, mpga, m4a, wav, or webm.\n"
+                  },
+                  "model": {
+                    "type": "string",
+                    "description": "ID of the model to use. Only `whisper-1` is currently available.\n"
+                  },
+                  "prompt": {
+                    "type": "string",
+                    "description": "An optional text to guide the model's style or continue a previous audio segment. The [prompt](/docs/guides/speech-to-text/prompting) should be in English.\n"
+                  },
+                  "response_format": {
+                    "type": "string",
+                    "description": "The format of the transcript output, in one of these options: json, text, srt, verbose_json, or vtt.\n"
+                  },
+                  "temperature": {
+                    "type": "number",
+                    "description": "The sampling temperature, between 0 and 1. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. If set to 0, the model will use [log probability](https://en.wikipedia.org/wiki/Log_probability) to automatically increase the temperature until certain thresholds are hit.\n"
+                  }
+                },
+                "required": [
+                  "file",
+                  "model"
+                ],
+                "additionalProperties": false
+              },
+              "x-hapi-auth-state": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "createTranslationBody"
+            ]
+          }
+        },
+        {
+          "name": "listModels",
+          "description": "Lists the currently available models, and provides basic information about each one such as the owner and availability.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "x-hapi-auth-state": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        {
+          "name": "retrieveModel",
+          "description": "Retrieves a model instance, providing basic information about the model such as the owner and permissioning.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "model": {
+                "type": "string"
+              },
+              "x-hapi-auth-state": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "model"
+            ]
+          }
+        },
+        {
+          "name": "deleteModel",
+          "description": "Delete a fine-tuned model. You must have the Owner role in your organization.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "model": {
+                "type": "string"
+              },
+              "x-hapi-auth-state": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "model"
+            ]
+          }
+        },
+        {
+          "name": "createModeration",
+          "description": "Classifies if text violates OpenAI's Content Policy",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "createModerationBody": {
+                "type": "object",
+                "properties": {
+                  "input": {
+                    "type": "string",
+                    "description": "The input text to classify"
+                  },
+                  "model": {
+                    "type": "string",
+                    "description": "Two content moderations models are available: `text-moderation-stable` and `text-moderation-latest`.\n\nThe default is `text-moderation-latest` which will be automatically upgraded over time. This ensures you are always using our most accurate model. If you use `text-moderation-stable`, we will provide advanced notice before updating the model. Accuracy of `text-moderation-stable` may be slightly lower than for `text-moderation-latest`.\n"
+                  }
+                },
+                "required": [
+                  "input"
+                ]
+              },
+              "x-hapi-auth-state": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "createModerationBody"
+            ]
+          }
+        }
+      ],
+      "tool_count": 9,
+      "tool_names": [
+        "createImage",
+        "createImageEdit",
+        "createImageVariation",
+        "createTranscription",
+        "createTranslation",
+        "listModels",
+        "retrieveModel",
+        "deleteModel",
+        "createModeration"
+      ]
+    },
+    "server_info_crawled": {
+      "id": 89,
+      "name": "OpenAI Tools MCP Server",
+      "author": "",
+      "overview": "OpenAI Tools MCP Server - AI/ML Tools server with 9 tools. The MCP Server \"OpenAI Tools MCP Server\" provides 9 tools focused on ai/ml tools tasks. Core capabil",
+      "repository_url": "",
+      "homepage": "https://openai-tools.run.mcp.com.ai/mcp",
+      "remote_or_local": "Remote",
+      "license": "",
+      "usage_count": "220",
+      "success_rate": "100%",
+      "tags": [
+        "ai/ml-tools",
+        "content-creation"
+      ],
+      "categories": [
+        "ai/ml tools",
+        "content creation"
+      ],
+      "tools_count": 9,
+      "tools": [
+        {
+          "name": "createImage",
+          "description": "Creates an image given a prompt.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "createImageBody": {
+                "type": "object",
+                "properties": {
+                  "prompt": {
+                    "type": "string",
+                    "description": "A text description of the desired image(s). The maximum length is 1000 characters."
+                  },
+                  "n": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 10,
+                    "description": "The number of images to generate. Must be between 1 and 10."
+                  },
+                  "size": {
+                    "type": "string",
+                    "enum": [
+                      "256x256",
+                      "512x512",
+                      "1024x1024"
+                    ],
+                    "description": "The size of the generated images. Must be one of `256x256`, `512x512`, or `1024x1024`."
+                  },
+                  "response_format": {
+                    "type": "string",
+                    "enum": [
+                      "url",
+                      "b64_json"
+                    ],
+                    "description": "The format in which the generated images are returned. Must be one of `url` or `b64_json`."
+                  },
+                  "user": {
+                    "type": "string",
+                    "description": "A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids).\n"
+                  }
+                },
+                "required": [
+                  "prompt"
+                ]
+              },
+              "x-hapi-auth-state": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "createImageBody"
+            ]
+          }
+        },
+        {
+          "name": "createImageEdit",
+          "description": "Creates an edited or extended image given an original image and a prompt.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "createImageEditBody": {
+                "type": "object",
+                "properties": {
+                  "image": {
+                    "type": "string",
+                    "format": "binary",
+                    "description": "The image to edit. Must be a valid PNG file, less than 4MB, and square. If mask is not provided, image must have transparency, which will be used as the mask."
+                  },
+                  "mask": {
+                    "type": "string",
+                    "format": "binary",
+                    "description": "An additional image whose fully transparent areas (e.g. where alpha is zero) indicate where `image` should be edited. Must be a valid PNG file, less than 4MB, and have the same dimensions as `image`."
+                  },
+                  "prompt": {
+                    "type": "string",
+                    "description": "A text description of the desired image(s). The maximum length is 1000 characters."
+                  },
+                  "n": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 10,
+                    "description": "The number of images to generate. Must be between 1 and 10."
+                  },
+                  "size": {
+                    "type": "string",
+                    "enum": [
+                      "256x256",
+                      "512x512",
+                      "1024x1024"
+                    ],
+                    "description": "The size of the generated images. Must be one of `256x256`, `512x512`, or `1024x1024`."
+                  },
+                  "response_format": {
+                    "type": "string",
+                    "enum": [
+                      "url",
+                      "b64_json"
+                    ],
+                    "description": "The format in which the generated images are returned. Must be one of `url` or `b64_json`."
+                  },
+                  "user": {
+                    "type": "string",
+                    "description": "A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids).\n"
+                  }
+                },
+                "required": [
+                  "prompt",
+                  "image"
+                ]
+              },
+              "x-hapi-auth-state": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "createImageEditBody"
+            ]
+          }
+        },
+        {
+          "name": "createImageVariation",
+          "description": "Creates a variation of a given image.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "createImageVariationBody": {
+                "type": "object",
+                "properties": {
+                  "image": {
+                    "type": "string",
+                    "format": "binary",
+                    "description": "The image to use as the basis for the variation(s). Must be a valid PNG file, less than 4MB, and square."
+                  },
+                  "n": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 10,
+                    "description": "The number of images to generate. Must be between 1 and 10."
+                  },
+                  "size": {
+                    "type": "string",
+                    "enum": [
+                      "256x256",
+                      "512x512",
+                      "1024x1024"
+                    ],
+                    "description": "The size of the generated images. Must be one of `256x256`, `512x512`, or `1024x1024`."
+                  },
+                  "response_format": {
+                    "type": "string",
+                    "enum": [
+                      "url",
+                      "b64_json"
+                    ],
+                    "description": "The format in which the generated images are returned. Must be one of `url` or `b64_json`."
+                  },
+                  "user": {
+                    "type": "string",
+                    "description": "A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids).\n"
+                  }
+                },
+                "required": [
+                  "image"
+                ]
+              },
+              "x-hapi-auth-state": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "createImageVariationBody"
+            ]
+          }
+        },
+        {
+          "name": "createTranscription",
+          "description": "Transcribes audio into the input language.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "createTranscriptionBody": {
+                "type": "object",
+                "properties": {
+                  "file": {
+                    "type": "string",
+                    "format": "binary",
+                    "description": "The audio file object (not file name) to transcribe, in one of these formats: mp3, mp4, mpeg, mpga, m4a, wav, or webm.\n"
+                  },
+                  "model": {
+                    "type": "string",
+                    "description": "ID of the model to use. Only `whisper-1` is currently available.\n"
+                  },
+                  "prompt": {
+                    "type": "string",
+                    "description": "An optional text to guide the model's style or continue a previous audio segment. The [prompt](/docs/guides/speech-to-text/prompting) should match the audio language.\n"
+                  },
+                  "response_format": {
+                    "type": "string",
+                    "description": "The format of the transcript output, in one of these options: json, text, srt, verbose_json, or vtt.\n"
+                  },
+                  "temperature": {
+                    "type": "number",
+                    "description": "The sampling temperature, between 0 and 1. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. If set to 0, the model will use [log probability](https://en.wikipedia.org/wiki/Log_probability) to automatically increase the temperature until certain thresholds are hit.\n"
+                  },
+                  "language": {
+                    "type": "string",
+                    "description": "The language of the input audio. Supplying the input language in [ISO-639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) format will improve accuracy and latency.\n"
+                  }
+                },
+                "required": [
+                  "file",
+                  "model"
+                ],
+                "additionalProperties": false
+              },
+              "x-hapi-auth-state": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "createTranscriptionBody"
+            ]
+          }
+        },
+        {
+          "name": "createTranslation",
+          "description": "Translates audio into English.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "createTranslationBody": {
+                "type": "object",
+                "properties": {
+                  "file": {
+                    "type": "string",
+                    "format": "binary",
+                    "description": "The audio file object (not file name) translate, in one of these formats: mp3, mp4, mpeg, mpga, m4a, wav, or webm.\n"
+                  },
+                  "model": {
+                    "type": "string",
+                    "description": "ID of the model to use. Only `whisper-1` is currently available.\n"
+                  },
+                  "prompt": {
+                    "type": "string",
+                    "description": "An optional text to guide the model's style or continue a previous audio segment. The [prompt](/docs/guides/speech-to-text/prompting) should be in English.\n"
+                  },
+                  "response_format": {
+                    "type": "string",
+                    "description": "The format of the transcript output, in one of these options: json, text, srt, verbose_json, or vtt.\n"
+                  },
+                  "temperature": {
+                    "type": "number",
+                    "description": "The sampling temperature, between 0 and 1. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. If set to 0, the model will use [log probability](https://en.wikipedia.org/wiki/Log_probability) to automatically increase the temperature until certain thresholds are hit.\n"
+                  }
+                },
+                "required": [
+                  "file",
+                  "model"
+                ],
+                "additionalProperties": false
+              },
+              "x-hapi-auth-state": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "createTranslationBody"
+            ]
+          }
+        },
+        {
+          "name": "listModels",
+          "description": "Lists the currently available models, and provides basic information about each one such as the owner and availability.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "x-hapi-auth-state": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        {
+          "name": "retrieveModel",
+          "description": "Retrieves a model instance, providing basic information about the model such as the owner and permissioning.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "model": {
+                "type": "string"
+              },
+              "x-hapi-auth-state": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "model"
+            ]
+          }
+        },
+        {
+          "name": "deleteModel",
+          "description": "Delete a fine-tuned model. You must have the Owner role in your organization.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "model": {
+                "type": "string"
+              },
+              "x-hapi-auth-state": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "model"
+            ]
+          }
+        },
+        {
+          "name": "createModeration",
+          "description": "Classifies if text violates OpenAI's Content Policy",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "createModerationBody": {
+                "type": "object",
+                "properties": {
+                  "input": {
+                    "type": "string",
+                    "description": "The input text to classify"
+                  },
+                  "model": {
+                    "type": "string",
+                    "description": "Two content moderations models are available: `text-moderation-stable` and `text-moderation-latest`.\n\nThe default is `text-moderation-latest` which will be automatically upgraded over time. This ensures you are always using our most accurate model. If you use `text-moderation-stable`, we will provide advanced notice before updating the model. Accuracy of `text-moderation-stable` may be slightly lower than for `text-moderation-latest`.\n"
+                  }
+                },
+                "required": [
+                  "input"
+                ]
+              },
+              "x-hapi-auth-state": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "createModerationBody"
+            ]
+          }
+        }
+      ],
+      "python_sdk_url": "https://openai-tools.run.mcp.com.ai/mcp",
+      "python_sdk_config": "{\"debug\": false}"
+    },
+    "source_filename": "0089.OpenAI-Tools-MCP-Server_labeled.json",
+    "processed_timestamp": 1772876337,
+    "processing_mode": "gateway",
+    "rank": 90
+  }
+}

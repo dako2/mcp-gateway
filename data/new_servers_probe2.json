@@ -1,0 +1,194 @@
+[
+  {
+    "name": "Fetch (mcpservers.org)",
+    "url": "https://remote.mcpservers.org/fetch/mcp",
+    "status": "ok",
+    "tools": [
+      {
+        "name": "fetch",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "url": {
+              "type": "string"
+            },
+            "max_length": {
+              "type": "number",
+              "default": 5000
+            },
+            "start_index": {
+              "type": "number",
+              "default": 0
+            },
+            "raw": {
+              "type": "boolean",
+              "default": false
+            }
+          },
+          "required": [
+            "url"
+          ],
+          "additionalProperties": false,
+          "$schema": "http://json-schema.org/draft-07/schema#"
+        }
+      }
+    ]
+  },
+  {
+    "name": "Sequential Thinking",
+    "url": "https://remote.mcpservers.org/sequentialthinking/mcp",
+    "status": "ok",
+    "tools": [
+      {
+        "name": "sequentialthinking",
+        "description": "A detailed tool for dynamic and reflective problem-solving through thoughts.\nThis tool helps analyze problems through a flexible thinking process that can adapt and evolve.\nEach thought can build on, question, or revise previous insights as understanding deepens.\n\nWhen to use this tool:\n- Breaking down complex problems into steps\n- Planning and design with room for revision\n- Analysis that might need course correction\n- Problems where the full scope might not be clear initially\n- Problems that require a multi-step solution\n- Tasks that need to maintain context over multiple steps\n- Situations where irrelevant information needs to be filtered out\n\nKey features:\n- You can adjust total_thoughts up or down as you progress\n- You can question or revise previous thoughts\n- You can add more thoughts even after reaching what seemed like the end\n- You can express uncertainty and explore alternative approaches\n- Not every thought needs to build linearly - you can branch or backtrack\n- Generates a solution hypothesis\n- Verifies the hypothesis based on the Chain of Thought steps\n- Repeats the process until satisfied\n- Provides a correct answer\n\nParameters explained:\n- thought: Your current thinking step, which can include:\n* Regular analytical steps\n* Revisions of previous thoughts\n* Questions about previous decisions\n* Realizations about needing more analysis\n* Changes in approach\n* Hypothesis generation\n* Hypothesis verification\n- next_thought_needed: True if you need more thinking, even if at what seemed like the end\n- thought_number: Current number in sequence (can go beyond initial total if needed)\n- total_thoughts: Current estimate of thoughts needed (can be adjusted up/down)\n- is_revision: A boolean indicating if this thought revises previous thinking\n- revises_thought: If is_revision is true, which thought number is being reconsidered\n- branch_from_thought: If branching, which thought number is the branching point\n- branch_id: Identifier for the current branch (if any)\n- needs_more_thoughts: If reaching end but realizing more thoughts needed\n\nYou should:\n1. Start with an initial estimate of needed thoughts, but be ready to adjust\n2. Feel free to question or revise previous thoughts\n3. Don't hesitate to add more thoughts if needed, even at the \"end\"\n4. Express uncertainty when present\n5. Mark thoughts that revise previous thinking or branch into new paths\n6. Ignore information that is irrelevant to the current step\n7. Generate a solution hypothesis when appropriate\n8. Verify the hypothesis based on the Chain of Thought steps\n9. Repeat the process until satisfied with the solution\n10. Provide a single, ideally correct answer as the final output\n11. Only set next_thought_needed to false when truly done and a satisfactory answer is reached",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "thought": {
+              "type": "string",
+              "description": "Your current thinking step"
+            },
+            "nextThoughtNeeded": {
+              "type": "boolean",
+              "description": "Whether another thought step is needed"
+            },
+            "thoughtNumber": {
+              "type": "integer",
+              "description": "Current thought number",
+              "minimum": 1
+            },
+            "totalThoughts": {
+              "type": "integer",
+              "description": "Estimated total thoughts needed",
+              "minimum": 1
+            },
+            "isRevision": {
+              "type": "boolean",
+              "description": "Whether this revises previous thinking"
+            },
+            "revisesThought": {
+              "type": "integer",
+              "description": "Which thought is being reconsidered",
+              "minimum": 1
+            },
+            "branchFromThought": {
+              "type": "integer",
+              "description": "Branching point thought number",
+              "minimum": 1
+            },
+            "branchId": {
+              "type": "string",
+              "description": "Branch identifier"
+            },
+            "needsMoreThoughts": {
+              "type": "boolean",
+              "description": "If more thoughts are needed"
+            }
+          },
+          "required": [
+            "thought",
+            "nextThoughtNeeded",
+            "thoughtNumber",
+            "totalThoughts"
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "name": "CoinGecko",
+    "url": "https://remote.mcpservers.org/coingecko/mcp",
+    "status": "no_tools",
+    "tools": [],
+    "note": "404 Not Found"
+  },
+  {
+    "name": "EdgeOne Pages",
+    "url": "https://remote.mcpservers.org/edgeonepages/mcp",
+    "status": "no_tools",
+    "tools": [],
+    "note": "404 Not Found"
+  },
+  {
+    "name": "Semgrep (retry /mcp)",
+    "url": "https://mcp.semgrep.ai/mcp",
+    "status": "no_tools",
+    "tools": [],
+    "note": "{\"error\": \"invalid_token\", \"error_description\": \"Authentication required\"}"
+  },
+  {
+    "name": "Cloudflare Docs (/mcp)",
+    "url": "https://docs.mcp.cloudflare.com/mcp",
+    "status": "ok",
+    "tools": [
+      {
+        "name": "search_cloudflare_documentation",
+        "description": "Search the Cloudflare documentation.\n\n\t\tThis tool should be used to answer any question about Cloudflare products or features, including:\n\t\t- Workers, Pages, R2, Images, Stream, D1, Durable Objects, KV, Workflows, Hyperdrive, Queues\n\t\t- AI Search, Workers AI, Vectorize, AI Gateway, Browser Rendering\n\t\t- Zero Trust, Access, Tunnel, Gateway, Browser Isolation, WARP, DDOS, Magic Transit, Magic WAN\n\t\t- CDN, Cache, DNS, Zaraz, Argo, Rulesets, Terraform, Account and Billing\n\n\t\tResults are returned as semantically similar chunks to the query.\n\t\t",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "query": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "query"
+          ],
+          "additionalProperties": false,
+          "$schema": "http://json-schema.org/draft-07/schema#"
+        },
+        "annotations": {
+          "title": "Search Cloudflare docs",
+          "annotations": {
+            "readOnlyHint": true
+          }
+        }
+      },
+      {
+        "name": "migrate_pages_to_workers_guide",
+        "description": "ALWAYS read this guide before migrating Pages projects to Workers.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {},
+          "additionalProperties": false,
+          "$schema": "http://json-schema.org/draft-07/schema#"
+        },
+        "annotations": {
+          "title": "Get Pages migration guide",
+          "annotations": {
+            "readOnlyHint": true
+          }
+        }
+      }
+    ]
+  },
+  {
+    "name": "LiveScore (/mcp)",
+    "url": "https://livescoremcp.com/mcp",
+    "status": "no_tools",
+    "tools": [],
+    "note": "404 page not found\n"
+  },
+  {
+    "name": "Peek.com (/mcp)",
+    "url": "https://mcp.peek.com/mcp",
+    "status": "no_tools",
+    "tools": [],
+    "note": "{\"error\":{\"code\":-32600,\"data\":{\"message\":\"Server not initialized\"},\"message\":\"Invalid Request\"},\"id\":\"err_GJzRBDZexKHv_"
+  },
+  {
+    "name": "TweetSave (/mcp)",
+    "url": "https://mcp.tweetsave.org/mcp",
+    "status": "no_tools",
+    "tools": [],
+    "note": "{\"error\":\"Not found\",\"endpoints\":{\"/health\":\"Health check\",\"/sse\":\"SSE endpoint for MCP clients (GET)\",\"/messages?sessio"
+  },
+  {
+    "name": "Context Awesome (retry)",
+    "url": "https://www.context-awesome.com/api/mcp",
+    "status": "no_tools",
+    "tools": [],
+    "note": "{\"jsonrpc\":\"2.0\",\"error\":{\"code\":-32000,\"message\":\"Not Acceptable: Client must accept both application/json and text/eve"
+  }
+]

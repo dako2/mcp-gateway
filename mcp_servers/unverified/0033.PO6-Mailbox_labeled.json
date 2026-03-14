@@ -1,0 +1,1686 @@
+{
+  "labels": {
+    "analysis": "The MCP Server \"PO6 Mailbox\" provides 26 tools focused on communication tools tasks. Core capabilities include creation and generation, data access and reading, deletion and cleanup, search and retrieval. Key tools: list_mailboxes, get_mailbox_stats, list_emails, get_email, search_emails.",
+    "reasoning": "Primary label \"Communication Tools\" assigned based on strong keyword matches in tool names and descriptions: email, mail.",
+    "primary_label": "Communication Tools",
+    "secondary_labels": [
+      "Web Search & Research",
+      "Data Analysis & Processing"
+    ],
+    "custom_label": "Data Access & Search - PO6 Mailbox",
+    "is_connected": true,
+    "is_remote_tool_valid": true,
+    "featured_server": true,
+    "tool_verified": false,
+    "tool_verified_status": "auth_required",
+    "tool_verified_at": "2026-03-14T20:38:11.284876+00:00",
+    "tool_verified_tool": "list_mailboxes",
+    "tool_verified_reason": "HTTP 401"
+  },
+  "metadata": {
+    "server_id": 33,
+    "server_name": "PO6 Mailbox",
+    "rank_by_usage": 34,
+    "usage_count": "8,350",
+    "original_file": "tools.json#33",
+    "mode": "gateway",
+    "timestamp": 1772876337,
+    "remote_server_response": {
+      "url": "https://mcp.po6.com",
+      "is_success": true,
+      "error": null,
+      "tools": [
+        {
+          "name": "list_mailboxes",
+          "description": "List all mailboxes the API key has access to, with basic stats for each",
+          "inputSchema": {
+            "type": "object",
+            "properties": {}
+          },
+          "annotations": {
+            "title": "List Mailboxes",
+            "readOnlyHint": true
+          }
+        },
+        {
+          "name": "get_mailbox_stats",
+          "description": "Get detailed statistics for a specific mailbox including email counts, storage usage, and folder breakdown",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "mailbox_id": {
+                "type": "string",
+                "description": "The mailbox ID to get stats for"
+              }
+            },
+            "required": [
+              "mailbox_id"
+            ]
+          },
+          "annotations": {
+            "title": "Get Mailbox Stats",
+            "readOnlyHint": true
+          }
+        },
+        {
+          "name": "list_emails",
+          "description": "List emails in a mailbox with optional filtering. Returns email metadata without full content.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "mailbox_id": {
+                "type": "string",
+                "description": "The mailbox ID to list emails from"
+              },
+              "folder": {
+                "type": "string",
+                "description": "Filter by folder (inbox, spam, archive, trash, or custom folder name)",
+                "default": "inbox"
+              },
+              "limit": {
+                "type": "number",
+                "description": "Maximum number of emails to return (1-100)",
+                "default": 20
+              },
+              "offset": {
+                "type": "number",
+                "description": "Number of emails to skip for pagination",
+                "default": 0
+              },
+              "unread_only": {
+                "type": "boolean",
+                "description": "Only return unread emails",
+                "default": false
+              },
+              "starred_only": {
+                "type": "boolean",
+                "description": "Only return starred emails",
+                "default": false
+              },
+              "from_filter": {
+                "type": "string",
+                "description": "Filter by sender email address (partial match)"
+              },
+              "subject_contains": {
+                "type": "string",
+                "description": "Filter by subject containing this text"
+              },
+              "since": {
+                "type": "string",
+                "description": "Only return emails received after this ISO 8601 date"
+              },
+              "until": {
+                "type": "string",
+                "description": "Only return emails received before this ISO 8601 date"
+              },
+              "has_attachments": {
+                "type": "boolean",
+                "description": "Only return emails with attachments"
+              }
+            },
+            "required": [
+              "mailbox_id"
+            ]
+          },
+          "annotations": {
+            "title": "List Emails",
+            "readOnlyHint": true
+          }
+        },
+        {
+          "name": "get_email",
+          "description": "Get the full content of a specific email including body text, HTML, headers, and attachment metadata",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "mailbox_id": {
+                "type": "string",
+                "description": "The mailbox ID containing the email"
+              },
+              "email_id": {
+                "type": "string",
+                "description": "The email ID to retrieve"
+              },
+              "mark_as_read": {
+                "type": "boolean",
+                "description": "Automatically mark the email as read when retrieved",
+                "default": false
+              }
+            },
+            "required": [
+              "mailbox_id",
+              "email_id"
+            ]
+          },
+          "annotations": {
+            "title": "Read Email",
+            "readOnlyHint": false,
+            "destructiveHint": false,
+            "idempotentHint": true
+          }
+        },
+        {
+          "name": "search_emails",
+          "description": "Search emails across one or all accessible mailboxes using text search",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "query": {
+                "type": "string",
+                "description": "Search query to match against sender, subject, and snippet"
+              },
+              "mailbox_id": {
+                "type": "string",
+                "description": "Optional: limit search to a specific mailbox"
+              },
+              "limit": {
+                "type": "number",
+                "description": "Maximum number of results (1-50)",
+                "default": 20
+              }
+            },
+            "required": [
+              "query"
+            ]
+          },
+          "annotations": {
+            "title": "Search Emails",
+            "readOnlyHint": true
+          }
+        },
+        {
+          "name": "mark_email",
+          "description": "Mark an email as read/unread or starred/unstarred",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "mailbox_id": {
+                "type": "string",
+                "description": "The mailbox ID containing the email"
+              },
+              "email_id": {
+                "type": "string",
+                "description": "The email ID to mark"
+              },
+              "is_read": {
+                "type": "boolean",
+                "description": "Set read status (true = read, false = unread)"
+              },
+              "is_starred": {
+                "type": "boolean",
+                "description": "Set starred status (true = starred, false = unstarred)"
+              }
+            },
+            "required": [
+              "mailbox_id",
+              "email_id"
+            ]
+          },
+          "annotations": {
+            "title": "Mark Email",
+            "readOnlyHint": false,
+            "destructiveHint": false,
+            "idempotentHint": true
+          }
+        },
+        {
+          "name": "move_email",
+          "description": "Move an email to a different folder",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "mailbox_id": {
+                "type": "string",
+                "description": "The mailbox ID containing the email"
+              },
+              "email_id": {
+                "type": "string",
+                "description": "The email ID to move"
+              },
+              "folder": {
+                "type": "string",
+                "description": "Target folder (inbox, spam, archive, trash, or custom folder name)"
+              }
+            },
+            "required": [
+              "mailbox_id",
+              "email_id",
+              "folder"
+            ]
+          },
+          "annotations": {
+            "title": "Move Email",
+            "readOnlyHint": false,
+            "destructiveHint": false,
+            "idempotentHint": true
+          }
+        },
+        {
+          "name": "delete_email",
+          "description": "Permanently delete an email. This action cannot be undone. Consider moving to trash first. Requires a two-step confirmation: first call returns a confirmation_token, second call with the token performs the deletion.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "mailbox_id": {
+                "type": "string",
+                "description": "The mailbox ID containing the email"
+              },
+              "email_id": {
+                "type": "string",
+                "description": "The email ID to delete"
+              },
+              "confirmation_token": {
+                "type": "string",
+                "description": "Confirmation token from the first call. Required to actually perform the deletion."
+              }
+            },
+            "required": [
+              "mailbox_id",
+              "email_id"
+            ]
+          },
+          "annotations": {
+            "title": "Delete Email",
+            "readOnlyHint": false,
+            "destructiveHint": true,
+            "idempotentHint": false
+          }
+        },
+        {
+          "name": "list_folders",
+          "description": "List all folders in a mailbox including system folders and custom folders",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "mailbox_id": {
+                "type": "string",
+                "description": "The mailbox ID to list folders for"
+              }
+            },
+            "required": [
+              "mailbox_id"
+            ]
+          },
+          "annotations": {
+            "title": "List Folders",
+            "readOnlyHint": true
+          }
+        },
+        {
+          "name": "list_email_lists",
+          "description": "List all email contact lists for the user. Email lists help organize contacts for outreach campaigns and bulk operations. Requires a paid plan (Standard or Plus).",
+          "inputSchema": {
+            "type": "object",
+            "properties": {}
+          },
+          "annotations": {
+            "title": "List Email Lists",
+            "readOnlyHint": true
+          }
+        },
+        {
+          "name": "get_email_list_contacts",
+          "description": "Get contacts from a specific email list. Returns contact details including email, name, company, and status. Only active contacts can receive emails.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "list_id": {
+                "type": "string",
+                "description": "The email list ID to get contacts from"
+              },
+              "status": {
+                "type": "string",
+                "description": "Filter by contact status (active, unsubscribed, bounced). Default: all statuses.",
+                "enum": [
+                  "active",
+                  "unsubscribed",
+                  "bounced"
+                ]
+              },
+              "limit": {
+                "type": "number",
+                "description": "Maximum number of contacts to return (1-200)",
+                "default": 50
+              },
+              "offset": {
+                "type": "number",
+                "description": "Number of contacts to skip for pagination",
+                "default": 0
+              }
+            },
+            "required": [
+              "list_id"
+            ]
+          },
+          "annotations": {
+            "title": "Get Email List Contacts",
+            "readOnlyHint": true
+          }
+        },
+        {
+          "name": "compose_email",
+          "description": "Compose and send a new email to one or more recipients. Requires a paid plan (Standard or Plus). Rate limits vary by plan (Standard: 30/hr, 200/day; Plus: 60/hr, 500/day).",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "mailbox_id": {
+                "type": "string",
+                "description": "The mailbox ID to send from"
+              },
+              "to_addresses": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "List of recipient email addresses"
+              },
+              "subject": {
+                "type": "string",
+                "description": "Email subject line"
+              },
+              "body_text": {
+                "type": "string",
+                "description": "Plain text body of the email"
+              },
+              "body_html": {
+                "type": "string",
+                "description": "Optional HTML body. If not provided, body_text will be converted to HTML."
+              }
+            },
+            "required": [
+              "mailbox_id",
+              "to_addresses",
+              "subject",
+              "body_text"
+            ]
+          },
+          "annotations": {
+            "title": "Compose New Email",
+            "readOnlyHint": false,
+            "destructiveHint": false,
+            "idempotentHint": false,
+            "openWorldHint": true
+          }
+        },
+        {
+          "name": "reply_email",
+          "description": "Reply to an email. The reply will be sent from the mailbox's email address to the original sender. Rate limited per plan (Standard: 30/hr, Plus: 60/hr).",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "mailbox_id": {
+                "type": "string",
+                "description": "The mailbox ID containing the email to reply to"
+              },
+              "email_id": {
+                "type": "string",
+                "description": "The email ID to reply to"
+              },
+              "body_text": {
+                "type": "string",
+                "description": "Plain text body of the reply"
+              },
+              "body_html": {
+                "type": "string",
+                "description": "Optional HTML body of the reply. If not provided, body_text will be used."
+              }
+            },
+            "required": [
+              "mailbox_id",
+              "email_id",
+              "body_text"
+            ]
+          },
+          "annotations": {
+            "title": "Reply to Email",
+            "readOnlyHint": false,
+            "destructiveHint": false,
+            "idempotentHint": false,
+            "openWorldHint": true
+          }
+        },
+        {
+          "name": "forward_email",
+          "description": "Forward an email to one or more recipients. The forward will be sent from the mailbox's email address. Rate limited per plan (Standard: 30/hr, Plus: 60/hr). Max recipients per plan (Standard: 5, Plus: 10).",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "mailbox_id": {
+                "type": "string",
+                "description": "The mailbox ID containing the email to forward"
+              },
+              "email_id": {
+                "type": "string",
+                "description": "The email ID to forward"
+              },
+              "to_addresses": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "List of email addresses to forward to (max 5)"
+              },
+              "message": {
+                "type": "string",
+                "description": "Optional message to include above the forwarded email"
+              }
+            },
+            "required": [
+              "mailbox_id",
+              "email_id",
+              "to_addresses"
+            ]
+          },
+          "annotations": {
+            "title": "Forward Email",
+            "readOnlyHint": false,
+            "destructiveHint": false,
+            "idempotentHint": false,
+            "openWorldHint": true
+          }
+        },
+        {
+          "name": "list_templates",
+          "description": "List email templates available for composing emails. Templates contain pre-written subject and body content with optional variables like {{first_name}} that can be filled in.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "mailbox_id": {
+                "type": "string",
+                "description": "Optional: filter templates for a specific mailbox. If omitted, returns all templates."
+              },
+              "category": {
+                "type": "string",
+                "description": "Optional: filter by category (general, outreach, followup, newsletter)"
+              }
+            }
+          },
+          "annotations": {
+            "title": "List Email Templates",
+            "readOnlyHint": true
+          }
+        },
+        {
+          "name": "get_template",
+          "description": "Get the full content of an email template including subject, body, and variables.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "template_id": {
+                "type": "string",
+                "description": "The template ID to retrieve"
+              }
+            },
+            "required": [
+              "template_id"
+            ]
+          },
+          "annotations": {
+            "title": "Get Email Template",
+            "readOnlyHint": true
+          }
+        },
+        {
+          "name": "create_draft",
+          "description": "Create a draft email for the user to review and approve before sending. This is the preferred way for AI agents to compose emails - the user can review, edit, and approve drafts from the web dashboard. Drafts expire after 72 hours if not acted on. Rate limited per plan.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "mailbox_id": {
+                "type": "string",
+                "description": "The mailbox ID to create the draft for"
+              },
+              "to_addresses": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "List of recipient email addresses"
+              },
+              "subject": {
+                "type": "string",
+                "description": "Email subject line"
+              },
+              "body_text": {
+                "type": "string",
+                "description": "Plain text body of the email"
+              },
+              "body_html": {
+                "type": "string",
+                "description": "Optional HTML body. If not provided, body_text will be converted to HTML."
+              },
+              "template_id": {
+                "type": "string",
+                "description": "Optional: template ID to base the draft on"
+              },
+              "scheduled_at": {
+                "type": "string",
+                "description": "Optional: ISO 8601 date to schedule the send for (e.g., \"2025-01-15T09:00:00Z\"). If set, the email will be sent at this time after approval."
+              }
+            },
+            "required": [
+              "mailbox_id",
+              "to_addresses",
+              "subject",
+              "body_text"
+            ]
+          },
+          "annotations": {
+            "title": "Create Draft Email",
+            "readOnlyHint": false,
+            "destructiveHint": false,
+            "idempotentHint": false
+          }
+        },
+        {
+          "name": "list_drafts",
+          "description": "List draft emails pending review. Shows drafts created by AI agents that the user can approve or reject.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "mailbox_id": {
+                "type": "string",
+                "description": "The mailbox ID to list drafts for"
+              },
+              "status": {
+                "type": "string",
+                "description": "Filter by status: pending_review, approved, rejected, sent, expired",
+                "enum": [
+                  "pending_review",
+                  "approved",
+                  "rejected",
+                  "sent",
+                  "expired"
+                ]
+              },
+              "limit": {
+                "type": "number",
+                "description": "Maximum number of drafts to return (1-50)",
+                "default": 20
+              }
+            },
+            "required": [
+              "mailbox_id"
+            ]
+          },
+          "annotations": {
+            "title": "List Draft Emails",
+            "readOnlyHint": true
+          }
+        },
+        {
+          "name": "list_sent_emails",
+          "description": "List emails sent from a mailbox. Shows all sent emails whether sent by the user (web), AI agent (MCP), or API. Includes delivery status and sent_via source.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "mailbox_id": {
+                "type": "string",
+                "description": "The mailbox ID to list sent emails for"
+              },
+              "sent_via": {
+                "type": "string",
+                "description": "Optional: filter by how the email was sent",
+                "enum": [
+                  "web",
+                  "mcp",
+                  "api"
+                ]
+              },
+              "limit": {
+                "type": "number",
+                "description": "Maximum number of emails to return (1-100)",
+                "default": 20
+              },
+              "offset": {
+                "type": "number",
+                "description": "Number of emails to skip for pagination",
+                "default": 0
+              }
+            },
+            "required": [
+              "mailbox_id"
+            ]
+          },
+          "annotations": {
+            "title": "List Sent Emails",
+            "readOnlyHint": true
+          }
+        },
+        {
+          "name": "list_aliases",
+          "description": "List all @po6.com forwarding aliases owned by the user. Returns alias address, forwarding destination, subscription plan, active status, and plus addressing settings.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "active_only": {
+                "type": "boolean",
+                "description": "Only return active aliases",
+                "default": false
+              }
+            }
+          },
+          "annotations": {
+            "title": "List Aliases",
+            "readOnlyHint": true
+          }
+        },
+        {
+          "name": "get_alias",
+          "description": "Get detailed information about a specific @po6.com alias including forwarding destination, verification status, subscription plan, plus addressing, and URL redirect settings.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "alias_id": {
+                "type": "string",
+                "description": "The alias ID to retrieve"
+              }
+            },
+            "required": [
+              "alias_id"
+            ]
+          },
+          "annotations": {
+            "title": "Get Alias Details",
+            "readOnlyHint": true
+          }
+        },
+        {
+          "name": "update_alias",
+          "description": "Update a @po6.com alias settings. Can change forwarding address (triggers re-verification), toggle active status, or configure plus addressing. Cannot create or delete aliases.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "alias_id": {
+                "type": "string",
+                "description": "The alias ID to update"
+              },
+              "forward_to": {
+                "type": "string",
+                "description": "New forwarding email address (will require re-verification)"
+              },
+              "is_active": {
+                "type": "boolean",
+                "description": "Enable or disable the alias (requires active subscription)"
+              },
+              "plus_addressing_enabled": {
+                "type": "boolean",
+                "description": "Enable or disable plus addressing (e.g. alias+tag@po6.com)"
+              },
+              "plus_tag_auto_label": {
+                "type": "boolean",
+                "description": "Automatically label forwarded emails with the plus tag"
+              }
+            },
+            "required": [
+              "alias_id"
+            ]
+          },
+          "annotations": {
+            "title": "Update Alias",
+            "destructiveHint": false,
+            "idempotentHint": true
+          }
+        },
+        {
+          "name": "list_domains",
+          "description": "List all custom (BYOD) domains owned by the user. Returns domain name, verification status, catchall config, alias count, and BYOD subscription plan with limits.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {}
+          },
+          "annotations": {
+            "title": "List Domains",
+            "readOnlyHint": true
+          }
+        },
+        {
+          "name": "get_domain",
+          "description": "Get detailed information about a custom domain including verification status, MX records, catchall configuration, aliases, and BYOD plan limits.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "domain_id": {
+                "type": "string",
+                "description": "The domain ID to retrieve"
+              }
+            },
+            "required": [
+              "domain_id"
+            ]
+          },
+          "annotations": {
+            "title": "Get Domain Details",
+            "readOnlyHint": true
+          }
+        },
+        {
+          "name": "update_domain_alias",
+          "description": "Update a domain alias settings. Can change forwarding address (triggers re-verification), toggle active status (subject to plan limits), or configure plus addressing.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "domain_id": {
+                "type": "string",
+                "description": "The domain ID containing the alias"
+              },
+              "alias_id": {
+                "type": "string",
+                "description": "The domain alias ID to update"
+              },
+              "forward_to": {
+                "type": "string",
+                "description": "New forwarding email address (will require re-verification)"
+              },
+              "is_active": {
+                "type": "boolean",
+                "description": "Enable or disable the alias (subject to plan active alias limit)"
+              },
+              "plus_addressing_enabled": {
+                "type": "boolean",
+                "description": "Enable or disable plus addressing"
+              },
+              "plus_tag_auto_label": {
+                "type": "boolean",
+                "description": "Automatically label forwarded emails with the plus tag"
+              }
+            },
+            "required": [
+              "domain_id",
+              "alias_id"
+            ]
+          },
+          "annotations": {
+            "title": "Update Domain Alias",
+            "destructiveHint": false,
+            "idempotentHint": true
+          }
+        },
+        {
+          "name": "update_catchall",
+          "description": "Enable, disable, or update the catchall configuration for a custom domain. Catchall forwards all unmatched emails to a specified address. Changing the forward address requires re-verification.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "domain_id": {
+                "type": "string",
+                "description": "The domain ID to configure catchall for"
+              },
+              "enabled": {
+                "type": "boolean",
+                "description": "Enable or disable catchall"
+              },
+              "forward_to": {
+                "type": "string",
+                "description": "Email address to forward catchall emails to (required when enabling)"
+              }
+            },
+            "required": [
+              "domain_id"
+            ]
+          },
+          "annotations": {
+            "title": "Update Catchall",
+            "destructiveHint": false,
+            "idempotentHint": true
+          }
+        }
+      ],
+      "tool_count": 26,
+      "tool_names": [
+        "list_mailboxes",
+        "get_mailbox_stats",
+        "list_emails",
+        "get_email",
+        "search_emails",
+        "mark_email",
+        "move_email",
+        "delete_email",
+        "list_folders",
+        "list_email_lists",
+        "get_email_list_contacts",
+        "compose_email",
+        "reply_email",
+        "forward_email",
+        "list_templates",
+        "get_template",
+        "create_draft",
+        "list_drafts",
+        "list_sent_emails",
+        "list_aliases",
+        "get_alias",
+        "update_alias",
+        "list_domains",
+        "get_domain",
+        "update_domain_alias",
+        "update_catchall"
+      ]
+    },
+    "server_info_crawled": {
+      "id": 33,
+      "name": "PO6 Mailbox",
+      "author": "",
+      "overview": "PO6 Mailbox - Communication Tools server with 26 tools. The MCP Server \"PO6 Mailbox\" provides 26 tools focused on communication tools tasks. Core capabiliti",
+      "repository_url": "",
+      "homepage": "https://mcp.po6.com",
+      "remote_or_local": "Remote",
+      "license": "",
+      "usage_count": "8,350",
+      "success_rate": "100%",
+      "tags": [
+        "communication-tools",
+        "web-search-research",
+        "data-analysis-processing"
+      ],
+      "categories": [
+        "communication tools",
+        "web search & research",
+        "data analysis & processing"
+      ],
+      "tools_count": 26,
+      "tools": [
+        {
+          "name": "list_mailboxes",
+          "description": "List all mailboxes the API key has access to, with basic stats for each",
+          "inputSchema": {
+            "type": "object",
+            "properties": {}
+          },
+          "annotations": {
+            "title": "List Mailboxes",
+            "readOnlyHint": true
+          }
+        },
+        {
+          "name": "get_mailbox_stats",
+          "description": "Get detailed statistics for a specific mailbox including email counts, storage usage, and folder breakdown",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "mailbox_id": {
+                "type": "string",
+                "description": "The mailbox ID to get stats for"
+              }
+            },
+            "required": [
+              "mailbox_id"
+            ]
+          },
+          "annotations": {
+            "title": "Get Mailbox Stats",
+            "readOnlyHint": true
+          }
+        },
+        {
+          "name": "list_emails",
+          "description": "List emails in a mailbox with optional filtering. Returns email metadata without full content.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "mailbox_id": {
+                "type": "string",
+                "description": "The mailbox ID to list emails from"
+              },
+              "folder": {
+                "type": "string",
+                "description": "Filter by folder (inbox, spam, archive, trash, or custom folder name)",
+                "default": "inbox"
+              },
+              "limit": {
+                "type": "number",
+                "description": "Maximum number of emails to return (1-100)",
+                "default": 20
+              },
+              "offset": {
+                "type": "number",
+                "description": "Number of emails to skip for pagination",
+                "default": 0
+              },
+              "unread_only": {
+                "type": "boolean",
+                "description": "Only return unread emails",
+                "default": false
+              },
+              "starred_only": {
+                "type": "boolean",
+                "description": "Only return starred emails",
+                "default": false
+              },
+              "from_filter": {
+                "type": "string",
+                "description": "Filter by sender email address (partial match)"
+              },
+              "subject_contains": {
+                "type": "string",
+                "description": "Filter by subject containing this text"
+              },
+              "since": {
+                "type": "string",
+                "description": "Only return emails received after this ISO 8601 date"
+              },
+              "until": {
+                "type": "string",
+                "description": "Only return emails received before this ISO 8601 date"
+              },
+              "has_attachments": {
+                "type": "boolean",
+                "description": "Only return emails with attachments"
+              }
+            },
+            "required": [
+              "mailbox_id"
+            ]
+          },
+          "annotations": {
+            "title": "List Emails",
+            "readOnlyHint": true
+          }
+        },
+        {
+          "name": "get_email",
+          "description": "Get the full content of a specific email including body text, HTML, headers, and attachment metadata",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "mailbox_id": {
+                "type": "string",
+                "description": "The mailbox ID containing the email"
+              },
+              "email_id": {
+                "type": "string",
+                "description": "The email ID to retrieve"
+              },
+              "mark_as_read": {
+                "type": "boolean",
+                "description": "Automatically mark the email as read when retrieved",
+                "default": false
+              }
+            },
+            "required": [
+              "mailbox_id",
+              "email_id"
+            ]
+          },
+          "annotations": {
+            "title": "Read Email",
+            "readOnlyHint": false,
+            "destructiveHint": false,
+            "idempotentHint": true
+          }
+        },
+        {
+          "name": "search_emails",
+          "description": "Search emails across one or all accessible mailboxes using text search",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "query": {
+                "type": "string",
+                "description": "Search query to match against sender, subject, and snippet"
+              },
+              "mailbox_id": {
+                "type": "string",
+                "description": "Optional: limit search to a specific mailbox"
+              },
+              "limit": {
+                "type": "number",
+                "description": "Maximum number of results (1-50)",
+                "default": 20
+              }
+            },
+            "required": [
+              "query"
+            ]
+          },
+          "annotations": {
+            "title": "Search Emails",
+            "readOnlyHint": true
+          }
+        },
+        {
+          "name": "mark_email",
+          "description": "Mark an email as read/unread or starred/unstarred",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "mailbox_id": {
+                "type": "string",
+                "description": "The mailbox ID containing the email"
+              },
+              "email_id": {
+                "type": "string",
+                "description": "The email ID to mark"
+              },
+              "is_read": {
+                "type": "boolean",
+                "description": "Set read status (true = read, false = unread)"
+              },
+              "is_starred": {
+                "type": "boolean",
+                "description": "Set starred status (true = starred, false = unstarred)"
+              }
+            },
+            "required": [
+              "mailbox_id",
+              "email_id"
+            ]
+          },
+          "annotations": {
+            "title": "Mark Email",
+            "readOnlyHint": false,
+            "destructiveHint": false,
+            "idempotentHint": true
+          }
+        },
+        {
+          "name": "move_email",
+          "description": "Move an email to a different folder",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "mailbox_id": {
+                "type": "string",
+                "description": "The mailbox ID containing the email"
+              },
+              "email_id": {
+                "type": "string",
+                "description": "The email ID to move"
+              },
+              "folder": {
+                "type": "string",
+                "description": "Target folder (inbox, spam, archive, trash, or custom folder name)"
+              }
+            },
+            "required": [
+              "mailbox_id",
+              "email_id",
+              "folder"
+            ]
+          },
+          "annotations": {
+            "title": "Move Email",
+            "readOnlyHint": false,
+            "destructiveHint": false,
+            "idempotentHint": true
+          }
+        },
+        {
+          "name": "delete_email",
+          "description": "Permanently delete an email. This action cannot be undone. Consider moving to trash first. Requires a two-step confirmation: first call returns a confirmation_token, second call with the token performs the deletion.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "mailbox_id": {
+                "type": "string",
+                "description": "The mailbox ID containing the email"
+              },
+              "email_id": {
+                "type": "string",
+                "description": "The email ID to delete"
+              },
+              "confirmation_token": {
+                "type": "string",
+                "description": "Confirmation token from the first call. Required to actually perform the deletion."
+              }
+            },
+            "required": [
+              "mailbox_id",
+              "email_id"
+            ]
+          },
+          "annotations": {
+            "title": "Delete Email",
+            "readOnlyHint": false,
+            "destructiveHint": true,
+            "idempotentHint": false
+          }
+        },
+        {
+          "name": "list_folders",
+          "description": "List all folders in a mailbox including system folders and custom folders",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "mailbox_id": {
+                "type": "string",
+                "description": "The mailbox ID to list folders for"
+              }
+            },
+            "required": [
+              "mailbox_id"
+            ]
+          },
+          "annotations": {
+            "title": "List Folders",
+            "readOnlyHint": true
+          }
+        },
+        {
+          "name": "list_email_lists",
+          "description": "List all email contact lists for the user. Email lists help organize contacts for outreach campaigns and bulk operations. Requires a paid plan (Standard or Plus).",
+          "inputSchema": {
+            "type": "object",
+            "properties": {}
+          },
+          "annotations": {
+            "title": "List Email Lists",
+            "readOnlyHint": true
+          }
+        },
+        {
+          "name": "get_email_list_contacts",
+          "description": "Get contacts from a specific email list. Returns contact details including email, name, company, and status. Only active contacts can receive emails.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "list_id": {
+                "type": "string",
+                "description": "The email list ID to get contacts from"
+              },
+              "status": {
+                "type": "string",
+                "description": "Filter by contact status (active, unsubscribed, bounced). Default: all statuses.",
+                "enum": [
+                  "active",
+                  "unsubscribed",
+                  "bounced"
+                ]
+              },
+              "limit": {
+                "type": "number",
+                "description": "Maximum number of contacts to return (1-200)",
+                "default": 50
+              },
+              "offset": {
+                "type": "number",
+                "description": "Number of contacts to skip for pagination",
+                "default": 0
+              }
+            },
+            "required": [
+              "list_id"
+            ]
+          },
+          "annotations": {
+            "title": "Get Email List Contacts",
+            "readOnlyHint": true
+          }
+        },
+        {
+          "name": "compose_email",
+          "description": "Compose and send a new email to one or more recipients. Requires a paid plan (Standard or Plus). Rate limits vary by plan (Standard: 30/hr, 200/day; Plus: 60/hr, 500/day).",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "mailbox_id": {
+                "type": "string",
+                "description": "The mailbox ID to send from"
+              },
+              "to_addresses": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "List of recipient email addresses"
+              },
+              "subject": {
+                "type": "string",
+                "description": "Email subject line"
+              },
+              "body_text": {
+                "type": "string",
+                "description": "Plain text body of the email"
+              },
+              "body_html": {
+                "type": "string",
+                "description": "Optional HTML body. If not provided, body_text will be converted to HTML."
+              }
+            },
+            "required": [
+              "mailbox_id",
+              "to_addresses",
+              "subject",
+              "body_text"
+            ]
+          },
+          "annotations": {
+            "title": "Compose New Email",
+            "readOnlyHint": false,
+            "destructiveHint": false,
+            "idempotentHint": false,
+            "openWorldHint": true
+          }
+        },
+        {
+          "name": "reply_email",
+          "description": "Reply to an email. The reply will be sent from the mailbox's email address to the original sender. Rate limited per plan (Standard: 30/hr, Plus: 60/hr).",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "mailbox_id": {
+                "type": "string",
+                "description": "The mailbox ID containing the email to reply to"
+              },
+              "email_id": {
+                "type": "string",
+                "description": "The email ID to reply to"
+              },
+              "body_text": {
+                "type": "string",
+                "description": "Plain text body of the reply"
+              },
+              "body_html": {
+                "type": "string",
+                "description": "Optional HTML body of the reply. If not provided, body_text will be used."
+              }
+            },
+            "required": [
+              "mailbox_id",
+              "email_id",
+              "body_text"
+            ]
+          },
+          "annotations": {
+            "title": "Reply to Email",
+            "readOnlyHint": false,
+            "destructiveHint": false,
+            "idempotentHint": false,
+            "openWorldHint": true
+          }
+        },
+        {
+          "name": "forward_email",
+          "description": "Forward an email to one or more recipients. The forward will be sent from the mailbox's email address. Rate limited per plan (Standard: 30/hr, Plus: 60/hr). Max recipients per plan (Standard: 5, Plus: 10).",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "mailbox_id": {
+                "type": "string",
+                "description": "The mailbox ID containing the email to forward"
+              },
+              "email_id": {
+                "type": "string",
+                "description": "The email ID to forward"
+              },
+              "to_addresses": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "List of email addresses to forward to (max 5)"
+              },
+              "message": {
+                "type": "string",
+                "description": "Optional message to include above the forwarded email"
+              }
+            },
+            "required": [
+              "mailbox_id",
+              "email_id",
+              "to_addresses"
+            ]
+          },
+          "annotations": {
+            "title": "Forward Email",
+            "readOnlyHint": false,
+            "destructiveHint": false,
+            "idempotentHint": false,
+            "openWorldHint": true
+          }
+        },
+        {
+          "name": "list_templates",
+          "description": "List email templates available for composing emails. Templates contain pre-written subject and body content with optional variables like {{first_name}} that can be filled in.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "mailbox_id": {
+                "type": "string",
+                "description": "Optional: filter templates for a specific mailbox. If omitted, returns all templates."
+              },
+              "category": {
+                "type": "string",
+                "description": "Optional: filter by category (general, outreach, followup, newsletter)"
+              }
+            }
+          },
+          "annotations": {
+            "title": "List Email Templates",
+            "readOnlyHint": true
+          }
+        },
+        {
+          "name": "get_template",
+          "description": "Get the full content of an email template including subject, body, and variables.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "template_id": {
+                "type": "string",
+                "description": "The template ID to retrieve"
+              }
+            },
+            "required": [
+              "template_id"
+            ]
+          },
+          "annotations": {
+            "title": "Get Email Template",
+            "readOnlyHint": true
+          }
+        },
+        {
+          "name": "create_draft",
+          "description": "Create a draft email for the user to review and approve before sending. This is the preferred way for AI agents to compose emails - the user can review, edit, and approve drafts from the web dashboard. Drafts expire after 72 hours if not acted on. Rate limited per plan.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "mailbox_id": {
+                "type": "string",
+                "description": "The mailbox ID to create the draft for"
+              },
+              "to_addresses": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "List of recipient email addresses"
+              },
+              "subject": {
+                "type": "string",
+                "description": "Email subject line"
+              },
+              "body_text": {
+                "type": "string",
+                "description": "Plain text body of the email"
+              },
+              "body_html": {
+                "type": "string",
+                "description": "Optional HTML body. If not provided, body_text will be converted to HTML."
+              },
+              "template_id": {
+                "type": "string",
+                "description": "Optional: template ID to base the draft on"
+              },
+              "scheduled_at": {
+                "type": "string",
+                "description": "Optional: ISO 8601 date to schedule the send for (e.g., \"2025-01-15T09:00:00Z\"). If set, the email will be sent at this time after approval."
+              }
+            },
+            "required": [
+              "mailbox_id",
+              "to_addresses",
+              "subject",
+              "body_text"
+            ]
+          },
+          "annotations": {
+            "title": "Create Draft Email",
+            "readOnlyHint": false,
+            "destructiveHint": false,
+            "idempotentHint": false
+          }
+        },
+        {
+          "name": "list_drafts",
+          "description": "List draft emails pending review. Shows drafts created by AI agents that the user can approve or reject.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "mailbox_id": {
+                "type": "string",
+                "description": "The mailbox ID to list drafts for"
+              },
+              "status": {
+                "type": "string",
+                "description": "Filter by status: pending_review, approved, rejected, sent, expired",
+                "enum": [
+                  "pending_review",
+                  "approved",
+                  "rejected",
+                  "sent",
+                  "expired"
+                ]
+              },
+              "limit": {
+                "type": "number",
+                "description": "Maximum number of drafts to return (1-50)",
+                "default": 20
+              }
+            },
+            "required": [
+              "mailbox_id"
+            ]
+          },
+          "annotations": {
+            "title": "List Draft Emails",
+            "readOnlyHint": true
+          }
+        },
+        {
+          "name": "list_sent_emails",
+          "description": "List emails sent from a mailbox. Shows all sent emails whether sent by the user (web), AI agent (MCP), or API. Includes delivery status and sent_via source.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "mailbox_id": {
+                "type": "string",
+                "description": "The mailbox ID to list sent emails for"
+              },
+              "sent_via": {
+                "type": "string",
+                "description": "Optional: filter by how the email was sent",
+                "enum": [
+                  "web",
+                  "mcp",
+                  "api"
+                ]
+              },
+              "limit": {
+                "type": "number",
+                "description": "Maximum number of emails to return (1-100)",
+                "default": 20
+              },
+              "offset": {
+                "type": "number",
+                "description": "Number of emails to skip for pagination",
+                "default": 0
+              }
+            },
+            "required": [
+              "mailbox_id"
+            ]
+          },
+          "annotations": {
+            "title": "List Sent Emails",
+            "readOnlyHint": true
+          }
+        },
+        {
+          "name": "list_aliases",
+          "description": "List all @po6.com forwarding aliases owned by the user. Returns alias address, forwarding destination, subscription plan, active status, and plus addressing settings.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "active_only": {
+                "type": "boolean",
+                "description": "Only return active aliases",
+                "default": false
+              }
+            }
+          },
+          "annotations": {
+            "title": "List Aliases",
+            "readOnlyHint": true
+          }
+        },
+        {
+          "name": "get_alias",
+          "description": "Get detailed information about a specific @po6.com alias including forwarding destination, verification status, subscription plan, plus addressing, and URL redirect settings.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "alias_id": {
+                "type": "string",
+                "description": "The alias ID to retrieve"
+              }
+            },
+            "required": [
+              "alias_id"
+            ]
+          },
+          "annotations": {
+            "title": "Get Alias Details",
+            "readOnlyHint": true
+          }
+        },
+        {
+          "name": "update_alias",
+          "description": "Update a @po6.com alias settings. Can change forwarding address (triggers re-verification), toggle active status, or configure plus addressing. Cannot create or delete aliases.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "alias_id": {
+                "type": "string",
+                "description": "The alias ID to update"
+              },
+              "forward_to": {
+                "type": "string",
+                "description": "New forwarding email address (will require re-verification)"
+              },
+              "is_active": {
+                "type": "boolean",
+                "description": "Enable or disable the alias (requires active subscription)"
+              },
+              "plus_addressing_enabled": {
+                "type": "boolean",
+                "description": "Enable or disable plus addressing (e.g. alias+tag@po6.com)"
+              },
+              "plus_tag_auto_label": {
+                "type": "boolean",
+                "description": "Automatically label forwarded emails with the plus tag"
+              }
+            },
+            "required": [
+              "alias_id"
+            ]
+          },
+          "annotations": {
+            "title": "Update Alias",
+            "destructiveHint": false,
+            "idempotentHint": true
+          }
+        },
+        {
+          "name": "list_domains",
+          "description": "List all custom (BYOD) domains owned by the user. Returns domain name, verification status, catchall config, alias count, and BYOD subscription plan with limits.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {}
+          },
+          "annotations": {
+            "title": "List Domains",
+            "readOnlyHint": true
+          }
+        },
+        {
+          "name": "get_domain",
+          "description": "Get detailed information about a custom domain including verification status, MX records, catchall configuration, aliases, and BYOD plan limits.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "domain_id": {
+                "type": "string",
+                "description": "The domain ID to retrieve"
+              }
+            },
+            "required": [
+              "domain_id"
+            ]
+          },
+          "annotations": {
+            "title": "Get Domain Details",
+            "readOnlyHint": true
+          }
+        },
+        {
+          "name": "update_domain_alias",
+          "description": "Update a domain alias settings. Can change forwarding address (triggers re-verification), toggle active status (subject to plan limits), or configure plus addressing.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "domain_id": {
+                "type": "string",
+                "description": "The domain ID containing the alias"
+              },
+              "alias_id": {
+                "type": "string",
+                "description": "The domain alias ID to update"
+              },
+              "forward_to": {
+                "type": "string",
+                "description": "New forwarding email address (will require re-verification)"
+              },
+              "is_active": {
+                "type": "boolean",
+                "description": "Enable or disable the alias (subject to plan active alias limit)"
+              },
+              "plus_addressing_enabled": {
+                "type": "boolean",
+                "description": "Enable or disable plus addressing"
+              },
+              "plus_tag_auto_label": {
+                "type": "boolean",
+                "description": "Automatically label forwarded emails with the plus tag"
+              }
+            },
+            "required": [
+              "domain_id",
+              "alias_id"
+            ]
+          },
+          "annotations": {
+            "title": "Update Domain Alias",
+            "destructiveHint": false,
+            "idempotentHint": true
+          }
+        },
+        {
+          "name": "update_catchall",
+          "description": "Enable, disable, or update the catchall configuration for a custom domain. Catchall forwards all unmatched emails to a specified address. Changing the forward address requires re-verification.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "domain_id": {
+                "type": "string",
+                "description": "The domain ID to configure catchall for"
+              },
+              "enabled": {
+                "type": "boolean",
+                "description": "Enable or disable catchall"
+              },
+              "forward_to": {
+                "type": "string",
+                "description": "Email address to forward catchall emails to (required when enabling)"
+              }
+            },
+            "required": [
+              "domain_id"
+            ]
+          },
+          "annotations": {
+            "title": "Update Catchall",
+            "destructiveHint": false,
+            "idempotentHint": true
+          }
+        }
+      ],
+      "python_sdk_url": "https://mcp.po6.com",
+      "python_sdk_config": "{\"debug\": false}"
+    },
+    "source_filename": "0033.PO6-Mailbox_labeled.json",
+    "processed_timestamp": 1772876337,
+    "processing_mode": "gateway",
+    "rank": 34
+  }
+}

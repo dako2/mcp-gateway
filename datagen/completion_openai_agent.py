@@ -97,6 +97,11 @@ def get_args():
     parser.add_argument("--enable_tool_hint", action="store_true", help="Enable tool hint (default: off)")
     parser.add_argument("--enable_irrelevant_warning", action="store_true", help="Enable irrelevant warning (default: off)")
     parser.add_argument("--max_turns", type=int, default=10, help="Maximum number of turns for agent inference (default: 10)")
+
+    # Gateway proxy mode (bypasses Smithery, routes through local gateway)
+    parser.add_argument("--use_gateway", action="store_true", help="Route MCP connections through the local gateway proxy")
+    parser.add_argument("--gateway_url", type=str, default="http://localhost:8000", help="Gateway base URL")
+    parser.add_argument("--server_url_map", type=str, default="../data/server_url_map.json", help="Path to server URL map (from resolve_urls.py)")
     return parser.parse_args()
 
 args = get_args()
@@ -168,6 +173,23 @@ elif args.engine == "openrouter_api":
 
 # Global API pool variable
 smithery_api_pool = None
+
+# Global server URL map (loaded when --use_gateway is set)
+_server_url_map: dict | None = None
+
+
+def _load_server_url_map(path: str) -> dict:
+    """Load the server URL map produced by resolve_urls.py."""
+    if not os.path.exists(path):
+        raise FileNotFoundError(f"Server URL map not found: {path}\nRun: cd src && python resolve_urls.py")
+    with open(path) as f:
+        return json.load(f)
+
+
+def construct_gateway_proxy_url(direct_url: str, gateway_url: str) -> str:
+    """Wrap a direct MCP server URL through the gateway's transparent proxy."""
+    b64 = base64.urlsafe_b64encode(direct_url.encode()).decode().rstrip("=")
+    return f"{gateway_url}/proxy/{b64}"
 
 def load_and_validate_smithery_api_pool(pool_file_path):
     """Load and validate Smithery API pool from JSON file, keeping only valid keys"""
@@ -261,24 +283,40 @@ def get_api_key_for_worker(worker_id):
     else:
         return args.smithery_api_key, args.smithery_profile
 
-def construct_mcp_server_url(server_info, api_key=None, profile=None):
+def construct_mcp_server_url(server_info, api_key=None, profile=None, server_id=None):
     """
     Construct MCP server URL from server info.
+    When --use_gateway is set, resolves direct URLs and wraps them through
+    the gateway's transparent proxy.  Falls back to Smithery when no
+    direct URL is available.
     """
     if not server_info:
         return None
-        
+
+    # ---- Gateway proxy mode ----
+    if args.use_gateway and _server_url_map is not None:
+        # Look up direct URL from the pre-built map
+        direct_url = None
+        if server_id is not None and str(server_id) in _server_url_map:
+            entry = _server_url_map[str(server_id)]
+            direct_url = entry.get("url", "")
+        if not direct_url:
+            # Fall back to remote_server_response.url stored alongside server_info
+            direct_url = server_info.get("python_sdk_url", "")
+        if not direct_url:
+            return None
+        return construct_gateway_proxy_url(direct_url, args.gateway_url)
+
+    # ---- Legacy Smithery mode ----
     server_url = server_info.get('python_sdk_url', '')
     if not server_url:
         return None
     
-    # Use provided api_key and profile, or fall back to args
     if api_key is None:
         api_key = args.smithery_api_key
     if profile is None:
         profile = args.smithery_profile
     
-    # Get or create default config
     mcp_config = server_info.get('python_sdk_config', "")
     if mcp_config == "":
         mcp_config = {"debug": False}
@@ -288,7 +326,6 @@ def construct_mcp_server_url(server_info, api_key=None, profile=None):
         except json.JSONDecodeError:
             mcp_config = {"debug": False}
     
-    # Replace URL placeholders
     config_b64 = base64.b64encode(json.dumps(mcp_config).encode()).decode()
     if "{config_b64}" in server_url:
         server_url = server_url.replace("{config_b64}", config_b64)
@@ -497,9 +534,9 @@ def create_agent_for_item(item, api_key=None, profile=None):
     for server_info in mcp_servers:
         server_name = server_info.get('server_name', 'unknown-server')
         server_details = server_info.get('server_info', {})
+        server_id = server_info.get('server_id')
         
-        # Construct MCP server URL with provided api_key and profile
-        server_url = construct_mcp_server_url(server_details, api_key, profile)
+        server_url = construct_mcp_server_url(server_details, api_key, profile, server_id=server_id)
         if not server_url:
             print(f"Failed to construct URL for server {server_name}")
             continue
@@ -1149,8 +1186,20 @@ def generate_and_update(dataset, checkpoint_file):
 
 # Main function to control workflow
 def main():
-    # Load and validate Smithery API pool
-    api_pool = load_and_validate_smithery_api_pool(args.smithery_api_pool)
+    global _server_url_map
+
+    if args.use_gateway:
+        # Gateway mode: load URL map, skip Smithery pool
+        _server_url_map = _load_server_url_map(args.server_url_map)
+        print(f"[gateway] Loaded URL map with {len(_server_url_map)} servers from {args.server_url_map}")
+        print(f"[gateway] Routing MCP traffic through {args.gateway_url}")
+        # Create a dummy pool so worker count logic works
+        api_pool = [{"profile": "gateway", "api_key": "unused"}]
+        global smithery_api_pool
+        smithery_api_pool = api_pool
+    else:
+        # Legacy Smithery mode
+        api_pool = load_and_validate_smithery_api_pool(args.smithery_api_pool)
     
     # Display dynamic processing info
     effective_workers = args.max_workers or len(api_pool)

@@ -1,0 +1,622 @@
+{
+  "labels": {
+    "analysis": "The MCP Server \"io.github.greetwell/mcp\" provides 4 tools focused on web search & research tasks. Core capabilities include data access and reading, search and retrieval. Key tools: search_activities, get_activity_details, get_activity_availability, get_complementary_recommendation.",
+    "reasoning": "Primary label \"Web Search & Research\" assigned based on strong keyword matches in tool names and descriptions: search.",
+    "primary_label": "Web Search & Research",
+    "secondary_labels": [
+      "Real Estate",
+      "E-Commerce"
+    ],
+    "custom_label": "Data Access & Search - io.github.greetwell/mcp",
+    "is_connected": true,
+    "is_remote_tool_valid": true,
+    "featured_server": false,
+    "tool_verified": true,
+    "tool_verified_status": "verified",
+    "tool_verified_at": "2026-03-14T20:38:18.566030+00:00",
+    "tool_verified_tool": "search_activities",
+    "tool_verified_reason": "tool call succeeded"
+  },
+  "metadata": {
+    "server_id": 183,
+    "server_name": "io.github.greetwell/mcp",
+    "rank_by_usage": 184,
+    "usage_count": "10",
+    "original_file": "tools.json#183",
+    "mode": "gateway",
+    "timestamp": 1772876337,
+    "remote_server_response": {
+      "url": "https://mcp.greetwell.com/mcp",
+      "is_success": true,
+      "error": null,
+      "tools": [
+        {
+          "name": "search_activities",
+          "description": "Read-only search for activities by location/query/date. Each result includes `booking_link` and a standardized `item_card`.",
+          "inputSchema": {
+            "properties": {
+              "location": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "additionalProperties": {
+                      "type": "number"
+                    },
+                    "type": "object"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Location"
+              },
+              "query": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Query"
+              },
+              "date": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Date"
+              },
+              "radius_miles": {
+                "default": 30,
+                "title": "Radius Miles",
+                "type": "number"
+              },
+              "party_size": {
+                "anyOf": [
+                  {
+                    "type": "integer"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Party Size"
+              },
+              "has_children": {
+                "anyOf": [
+                  {
+                    "type": "boolean"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Has Children"
+              },
+              "includes_children": {
+                "anyOf": [
+                  {
+                    "type": "boolean"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Includes Children"
+              },
+              "limit": {
+                "default": 10,
+                "title": "Limit",
+                "type": "integer"
+              }
+            },
+            "title": "search_activitiesArguments",
+            "type": "object"
+          },
+          "outputSchema": {
+            "additionalProperties": true,
+            "title": "search_activitiesDictOutput",
+            "type": "object"
+          }
+        },
+        {
+          "name": "get_activity_details",
+          "description": "Read-only details for a single activity/product. Response includes `booking_link` and a standardized `item_card`.",
+          "inputSchema": {
+            "properties": {
+              "product_id": {
+                "title": "Product Id",
+                "type": "string"
+              }
+            },
+            "required": [
+              "product_id"
+            ],
+            "title": "get_activity_detailsArguments",
+            "type": "object"
+          },
+          "outputSchema": {
+            "additionalProperties": true,
+            "title": "get_activity_detailsDictOutput",
+            "type": "object"
+          }
+        },
+        {
+          "name": "get_activity_availability",
+          "description": "Read-only availability for an activity on a date (YYYY-MM-DD).",
+          "inputSchema": {
+            "properties": {
+              "product_id": {
+                "title": "Product Id",
+                "type": "string"
+              },
+              "date": {
+                "title": "Date",
+                "type": "string"
+              },
+              "party_size": {
+                "anyOf": [
+                  {
+                    "type": "integer"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Party Size"
+              }
+            },
+            "required": [
+              "product_id",
+              "date"
+            ],
+            "title": "get_activity_availabilityArguments",
+            "type": "object"
+          },
+          "outputSchema": {
+            "additionalProperties": true,
+            "title": "get_activity_availabilityDictOutput",
+            "type": "object"
+          }
+        },
+        {
+          "name": "get_complementary_recommendation",
+          "description": "Read-only ranked complementary activities anchored to a source product_id. Each recommendation includes `booking_link` and a standardized `item_card`.",
+          "inputSchema": {
+            "properties": {
+              "product_id": {
+                "title": "Product Id",
+                "type": "string"
+              },
+              "party_size": {
+                "anyOf": [
+                  {
+                    "type": "integer"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Party Size"
+              },
+              "has_children": {
+                "anyOf": [
+                  {
+                    "type": "boolean"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Has Children"
+              },
+              "includes_children": {
+                "anyOf": [
+                  {
+                    "type": "boolean"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Includes Children"
+              },
+              "date": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Date"
+              },
+              "time_slot": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Time Slot"
+              },
+              "location": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "additionalProperties": {
+                      "type": "number"
+                    },
+                    "type": "object"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Location"
+              },
+              "max_recommendations": {
+                "default": 3,
+                "title": "Max Recommendations",
+                "type": "integer"
+              },
+              "radius_miles": {
+                "default": 30,
+                "title": "Radius Miles",
+                "type": "number"
+              }
+            },
+            "required": [
+              "product_id"
+            ],
+            "title": "get_complementary_recommendationArguments",
+            "type": "object"
+          },
+          "outputSchema": {
+            "additionalProperties": true,
+            "title": "get_complementary_recommendationDictOutput",
+            "type": "object"
+          }
+        }
+      ],
+      "tool_count": 4,
+      "tool_names": [
+        "search_activities",
+        "get_activity_details",
+        "get_activity_availability",
+        "get_complementary_recommendation"
+      ]
+    },
+    "server_info_crawled": {
+      "id": 183,
+      "name": "io.github.greetwell/mcp",
+      "author": "",
+      "overview": "io.github.greetwell/mcp - Web Search & Research server with 4 tools. The MCP Server \"io.github.greetwell/mcp\" provides 4 tools focused on web search & research tasks. Co",
+      "repository_url": "",
+      "homepage": "https://mcp.greetwell.com/mcp",
+      "remote_or_local": "Remote",
+      "license": "",
+      "usage_count": "10",
+      "success_rate": "100%",
+      "tags": [
+        "web-search-research",
+        "real-estate",
+        "e-commerce"
+      ],
+      "categories": [
+        "web search & research",
+        "real estate",
+        "e-commerce"
+      ],
+      "tools_count": 4,
+      "tools": [
+        {
+          "name": "search_activities",
+          "description": "Read-only search for activities by location/query/date. Each result includes `booking_link` and a standardized `item_card`.",
+          "inputSchema": {
+            "properties": {
+              "location": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "additionalProperties": {
+                      "type": "number"
+                    },
+                    "type": "object"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Location"
+              },
+              "query": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Query"
+              },
+              "date": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Date"
+              },
+              "radius_miles": {
+                "default": 30,
+                "title": "Radius Miles",
+                "type": "number"
+              },
+              "party_size": {
+                "anyOf": [
+                  {
+                    "type": "integer"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Party Size"
+              },
+              "has_children": {
+                "anyOf": [
+                  {
+                    "type": "boolean"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Has Children"
+              },
+              "includes_children": {
+                "anyOf": [
+                  {
+                    "type": "boolean"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Includes Children"
+              },
+              "limit": {
+                "default": 10,
+                "title": "Limit",
+                "type": "integer"
+              }
+            },
+            "title": "search_activitiesArguments",
+            "type": "object"
+          },
+          "outputSchema": {
+            "additionalProperties": true,
+            "title": "search_activitiesDictOutput",
+            "type": "object"
+          }
+        },
+        {
+          "name": "get_activity_details",
+          "description": "Read-only details for a single activity/product. Response includes `booking_link` and a standardized `item_card`.",
+          "inputSchema": {
+            "properties": {
+              "product_id": {
+                "title": "Product Id",
+                "type": "string"
+              }
+            },
+            "required": [
+              "product_id"
+            ],
+            "title": "get_activity_detailsArguments",
+            "type": "object"
+          },
+          "outputSchema": {
+            "additionalProperties": true,
+            "title": "get_activity_detailsDictOutput",
+            "type": "object"
+          }
+        },
+        {
+          "name": "get_activity_availability",
+          "description": "Read-only availability for an activity on a date (YYYY-MM-DD).",
+          "inputSchema": {
+            "properties": {
+              "product_id": {
+                "title": "Product Id",
+                "type": "string"
+              },
+              "date": {
+                "title": "Date",
+                "type": "string"
+              },
+              "party_size": {
+                "anyOf": [
+                  {
+                    "type": "integer"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Party Size"
+              }
+            },
+            "required": [
+              "product_id",
+              "date"
+            ],
+            "title": "get_activity_availabilityArguments",
+            "type": "object"
+          },
+          "outputSchema": {
+            "additionalProperties": true,
+            "title": "get_activity_availabilityDictOutput",
+            "type": "object"
+          }
+        },
+        {
+          "name": "get_complementary_recommendation",
+          "description": "Read-only ranked complementary activities anchored to a source product_id. Each recommendation includes `booking_link` and a standardized `item_card`.",
+          "inputSchema": {
+            "properties": {
+              "product_id": {
+                "title": "Product Id",
+                "type": "string"
+              },
+              "party_size": {
+                "anyOf": [
+                  {
+                    "type": "integer"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Party Size"
+              },
+              "has_children": {
+                "anyOf": [
+                  {
+                    "type": "boolean"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Has Children"
+              },
+              "includes_children": {
+                "anyOf": [
+                  {
+                    "type": "boolean"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Includes Children"
+              },
+              "date": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Date"
+              },
+              "time_slot": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Time Slot"
+              },
+              "location": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "additionalProperties": {
+                      "type": "number"
+                    },
+                    "type": "object"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Location"
+              },
+              "max_recommendations": {
+                "default": 3,
+                "title": "Max Recommendations",
+                "type": "integer"
+              },
+              "radius_miles": {
+                "default": 30,
+                "title": "Radius Miles",
+                "type": "number"
+              }
+            },
+            "required": [
+              "product_id"
+            ],
+            "title": "get_complementary_recommendationArguments",
+            "type": "object"
+          },
+          "outputSchema": {
+            "additionalProperties": true,
+            "title": "get_complementary_recommendationDictOutput",
+            "type": "object"
+          }
+        }
+      ],
+      "python_sdk_url": "https://mcp.greetwell.com/mcp",
+      "python_sdk_config": "{\"debug\": false}"
+    },
+    "source_filename": "0183.iogithubgreetwellmcp_labeled.json",
+    "processed_timestamp": 1772876337,
+    "processing_mode": "gateway",
+    "rank": 184
+  }
+}

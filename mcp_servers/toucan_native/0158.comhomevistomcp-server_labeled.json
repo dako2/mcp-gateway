@@ -1,0 +1,385 @@
+{
+  "labels": {
+    "analysis": "The MCP Server \"com.homevisto/mcp-server\" provides 5 tools focused on web search & research tasks. Core capabilities include creation and generation, data access and reading, search and retrieval. Key tools: list_missions, get_mission, search_missions, get_nearby_missions, get_mission_stats.",
+    "reasoning": "Primary label \"Web Search & Research\" assigned based on strong keyword matches in tool names and descriptions: search, browse.",
+    "primary_label": "Web Search & Research",
+    "secondary_labels": [
+      "Real Estate",
+      "Maps & Location"
+    ],
+    "custom_label": "Data Access & Search - com.homevisto/mcp-server",
+    "is_connected": true,
+    "is_remote_tool_valid": true,
+    "featured_server": true,
+    "tool_verified": true,
+    "tool_verified_status": "verified",
+    "tool_verified_at": "2026-03-14T20:38:17.795694+00:00",
+    "tool_verified_tool": "list_missions",
+    "tool_verified_reason": "tool call succeeded"
+  },
+  "metadata": {
+    "server_id": 158,
+    "server_name": "com.homevisto/mcp-server",
+    "rank_by_usage": 159,
+    "usage_count": "150",
+    "original_file": "tools.json#158",
+    "mode": "gateway",
+    "timestamp": 1772876337,
+    "remote_server_response": {
+      "url": "https://mcp.homevisto.com/mcp",
+      "is_success": true,
+      "error": null,
+      "tools": [
+        {
+          "name": "list_missions",
+          "description": "List property verification missions with optional filtering. Returns paginated results sorted by creation date (newest first). Use this to browse available missions on the HomeVisto platform.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "status": {
+                "type": "string",
+                "enum": [
+                  "OPEN",
+                  "ASSIGNED",
+                  "IN_PROGRESS",
+                  "LIVE",
+                  "COMPLETED",
+                  "PAID",
+                  "CANCELLED"
+                ],
+                "description": "Filter by mission status. OPEN = available for scouts, COMPLETED = finished missions."
+              },
+              "limit": {
+                "type": "number",
+                "description": "Maximum number of missions to return. Default: 20, Maximum: 100."
+              },
+              "offset": {
+                "type": "number",
+                "description": "Number of missions to skip for pagination. Default: 0."
+              }
+            },
+            "additionalProperties": false
+          },
+          "annotations": {
+            "title": "List Missions",
+            "readOnlyHint": true,
+            "idempotentHint": true
+          }
+        },
+        {
+          "name": "get_mission",
+          "description": "Get detailed information about a specific property verification mission by its ID. Returns mission details including property address, bounty amount, status, checklist items, and viewer/scout information.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "description": "The mission UUID to retrieve."
+              }
+            },
+            "required": [
+              "id"
+            ],
+            "additionalProperties": false
+          },
+          "annotations": {
+            "title": "Get Mission Details",
+            "readOnlyHint": true,
+            "idempotentHint": true
+          }
+        },
+        {
+          "name": "search_missions",
+          "description": "Search for missions by keyword. Searches across mission title, description, and property address fields. Useful for finding missions in specific locations or with specific requirements.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "query": {
+                "type": "string",
+                "description": "Search query to match against title, description, or address. Example: 'apartment Berlin' or 'Dublin 2BR'."
+              },
+              "status": {
+                "type": "string",
+                "enum": [
+                  "OPEN",
+                  "ASSIGNED",
+                  "IN_PROGRESS",
+                  "LIVE",
+                  "COMPLETED",
+                  "PAID",
+                  "CANCELLED"
+                ],
+                "description": "Filter results by mission status."
+              },
+              "limit": {
+                "type": "number",
+                "description": "Maximum results to return. Default: 20, Maximum: 100."
+              }
+            },
+            "required": [
+              "query"
+            ],
+            "additionalProperties": false
+          },
+          "annotations": {
+            "title": "Search Missions",
+            "readOnlyHint": true,
+            "idempotentHint": true
+          }
+        },
+        {
+          "name": "get_nearby_missions",
+          "description": "Find property verification missions within a geographic radius. Useful for scouts looking for missions near their location or for finding missions in a specific area.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "latitude": {
+                "type": "number",
+                "description": "Latitude of the center point (-90 to 90)."
+              },
+              "longitude": {
+                "type": "number",
+                "description": "Longitude of the center point (-180 to 180)."
+              },
+              "radiusKm": {
+                "type": "number",
+                "description": "Search radius in kilometers. Default: 10km, Maximum: 100km."
+              },
+              "status": {
+                "type": "string",
+                "enum": [
+                  "OPEN",
+                  "ASSIGNED",
+                  "IN_PROGRESS",
+                  "LIVE",
+                  "COMPLETED",
+                  "PAID",
+                  "CANCELLED"
+                ],
+                "description": "Filter by mission status. Default: OPEN."
+              }
+            },
+            "required": [
+              "latitude",
+              "longitude"
+            ],
+            "additionalProperties": false
+          },
+          "annotations": {
+            "title": "Get Nearby Missions",
+            "readOnlyHint": true,
+            "idempotentHint": true
+          }
+        },
+        {
+          "name": "get_mission_stats",
+          "description": "Get aggregate statistics about missions on the HomeVisto platform. Returns total counts, status breakdown, and average bounty information. Useful for understanding platform activity.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {},
+            "additionalProperties": false
+          },
+          "annotations": {
+            "title": "Get Mission Statistics",
+            "readOnlyHint": true,
+            "idempotentHint": true
+          }
+        }
+      ],
+      "tool_count": 5,
+      "tool_names": [
+        "list_missions",
+        "get_mission",
+        "search_missions",
+        "get_nearby_missions",
+        "get_mission_stats"
+      ]
+    },
+    "server_info_crawled": {
+      "id": 158,
+      "name": "com.homevisto/mcp-server",
+      "author": "",
+      "overview": "com.homevisto/mcp-server - Web Search & Research server with 5 tools. The MCP Server \"com.homevisto/mcp-server\" provides 5 tools focused on web search & research tasks. C",
+      "repository_url": "",
+      "homepage": "https://mcp.homevisto.com/mcp",
+      "remote_or_local": "Remote",
+      "license": "",
+      "usage_count": "150",
+      "success_rate": "100%",
+      "tags": [
+        "web-search-research",
+        "real-estate",
+        "maps-location"
+      ],
+      "categories": [
+        "web search & research",
+        "real estate",
+        "maps & location"
+      ],
+      "tools_count": 5,
+      "tools": [
+        {
+          "name": "list_missions",
+          "description": "List property verification missions with optional filtering. Returns paginated results sorted by creation date (newest first). Use this to browse available missions on the HomeVisto platform.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "status": {
+                "type": "string",
+                "enum": [
+                  "OPEN",
+                  "ASSIGNED",
+                  "IN_PROGRESS",
+                  "LIVE",
+                  "COMPLETED",
+                  "PAID",
+                  "CANCELLED"
+                ],
+                "description": "Filter by mission status. OPEN = available for scouts, COMPLETED = finished missions."
+              },
+              "limit": {
+                "type": "number",
+                "description": "Maximum number of missions to return. Default: 20, Maximum: 100."
+              },
+              "offset": {
+                "type": "number",
+                "description": "Number of missions to skip for pagination. Default: 0."
+              }
+            },
+            "additionalProperties": false
+          },
+          "annotations": {
+            "title": "List Missions",
+            "readOnlyHint": true,
+            "idempotentHint": true
+          }
+        },
+        {
+          "name": "get_mission",
+          "description": "Get detailed information about a specific property verification mission by its ID. Returns mission details including property address, bounty amount, status, checklist items, and viewer/scout information.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "description": "The mission UUID to retrieve."
+              }
+            },
+            "required": [
+              "id"
+            ],
+            "additionalProperties": false
+          },
+          "annotations": {
+            "title": "Get Mission Details",
+            "readOnlyHint": true,
+            "idempotentHint": true
+          }
+        },
+        {
+          "name": "search_missions",
+          "description": "Search for missions by keyword. Searches across mission title, description, and property address fields. Useful for finding missions in specific locations or with specific requirements.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "query": {
+                "type": "string",
+                "description": "Search query to match against title, description, or address. Example: 'apartment Berlin' or 'Dublin 2BR'."
+              },
+              "status": {
+                "type": "string",
+                "enum": [
+                  "OPEN",
+                  "ASSIGNED",
+                  "IN_PROGRESS",
+                  "LIVE",
+                  "COMPLETED",
+                  "PAID",
+                  "CANCELLED"
+                ],
+                "description": "Filter results by mission status."
+              },
+              "limit": {
+                "type": "number",
+                "description": "Maximum results to return. Default: 20, Maximum: 100."
+              }
+            },
+            "required": [
+              "query"
+            ],
+            "additionalProperties": false
+          },
+          "annotations": {
+            "title": "Search Missions",
+            "readOnlyHint": true,
+            "idempotentHint": true
+          }
+        },
+        {
+          "name": "get_nearby_missions",
+          "description": "Find property verification missions within a geographic radius. Useful for scouts looking for missions near their location or for finding missions in a specific area.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "latitude": {
+                "type": "number",
+                "description": "Latitude of the center point (-90 to 90)."
+              },
+              "longitude": {
+                "type": "number",
+                "description": "Longitude of the center point (-180 to 180)."
+              },
+              "radiusKm": {
+                "type": "number",
+                "description": "Search radius in kilometers. Default: 10km, Maximum: 100km."
+              },
+              "status": {
+                "type": "string",
+                "enum": [
+                  "OPEN",
+                  "ASSIGNED",
+                  "IN_PROGRESS",
+                  "LIVE",
+                  "COMPLETED",
+                  "PAID",
+                  "CANCELLED"
+                ],
+                "description": "Filter by mission status. Default: OPEN."
+              }
+            },
+            "required": [
+              "latitude",
+              "longitude"
+            ],
+            "additionalProperties": false
+          },
+          "annotations": {
+            "title": "Get Nearby Missions",
+            "readOnlyHint": true,
+            "idempotentHint": true
+          }
+        },
+        {
+          "name": "get_mission_stats",
+          "description": "Get aggregate statistics about missions on the HomeVisto platform. Returns total counts, status breakdown, and average bounty information. Useful for understanding platform activity.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {},
+            "additionalProperties": false
+          },
+          "annotations": {
+            "title": "Get Mission Statistics",
+            "readOnlyHint": true,
+            "idempotentHint": true
+          }
+        }
+      ],
+      "python_sdk_url": "https://mcp.homevisto.com/mcp",
+      "python_sdk_config": "{\"debug\": false}"
+    },
+    "source_filename": "0158.comhomevistomcp-server_labeled.json",
+    "processed_timestamp": 1772876337,
+    "processing_mode": "gateway",
+    "rank": 159
+  }
+}

@@ -1,0 +1,114 @@
+{
+  "labels": {
+    "analysis": "The MCP Server \"SMARD Energy Prices (x402)\" provides 1 tools focused on development tools tasks. Core capabilities include data access and reading. Key tools: smard_prices.",
+    "reasoning": "Default category assigned; no strong keyword matches found for smard energy prices (x402).",
+    "primary_label": "Development Tools",
+    "secondary_labels": [],
+    "custom_label": "Development Tools - SMARD Energy Prices (x402)",
+    "is_connected": true,
+    "is_remote_tool_valid": true,
+    "featured_server": false,
+    "tool_verified": true,
+    "tool_verified_status": "verified",
+    "tool_verified_at": "2026-03-14T20:38:22.717486+00:00",
+    "tool_verified_tool": "smard_prices",
+    "tool_verified_reason": "response received"
+  },
+  "metadata": {
+    "server_id": 263,
+    "server_name": "SMARD Energy Prices (x402)",
+    "rank_by_usage": 264,
+    "usage_count": "10",
+    "original_file": "tools.json#263",
+    "mode": "gateway",
+    "timestamp": 1772876338,
+    "remote_server_response": {
+      "url": "https://smard-energy-prices-x402.favo.workers.dev/mcp",
+      "is_success": true,
+      "error": null,
+      "tools": [
+        {
+          "name": "smard_prices",
+          "description": "Get latest SMARD day-ahead prices (DE-LU)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "region": {
+                "type": "string"
+              },
+              "seriesId": {
+                "type": "string"
+              }
+            },
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "annotations": {},
+          "execution": {
+            "taskSupport": "forbidden"
+          },
+          "_meta": {
+            "agents-x402/paymentRequired": true,
+            "agents-x402/priceUSD": 0.01
+          }
+        }
+      ],
+      "tool_count": 1,
+      "tool_names": [
+        "smard_prices"
+      ]
+    },
+    "server_info_crawled": {
+      "id": 263,
+      "name": "SMARD Energy Prices (x402)",
+      "author": "",
+      "overview": "SMARD Energy Prices (x402) - Development Tools server with 1 tools. The MCP Server \"SMARD Energy Prices (x402)\" provides 1 tools focused on development tools tasks. Cor",
+      "repository_url": "",
+      "homepage": "https://smard-energy-prices-x402.favo.workers.dev/mcp",
+      "remote_or_local": "Remote",
+      "license": "",
+      "usage_count": "10",
+      "success_rate": "100%",
+      "tags": [
+        "development-tools"
+      ],
+      "categories": [
+        "development tools"
+      ],
+      "tools_count": 1,
+      "tools": [
+        {
+          "name": "smard_prices",
+          "description": "Get latest SMARD day-ahead prices (DE-LU)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "region": {
+                "type": "string"
+              },
+              "seriesId": {
+                "type": "string"
+              }
+            },
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "annotations": {},
+          "execution": {
+            "taskSupport": "forbidden"
+          },
+          "_meta": {
+            "agents-x402/paymentRequired": true,
+            "agents-x402/priceUSD": 0.01
+          }
+        }
+      ],
+      "python_sdk_url": "https://smard-energy-prices-x402.favo.workers.dev/mcp",
+      "python_sdk_config": "{\"debug\": false}"
+    },
+    "source_filename": "0263.SMARD-Energy-Prices-x402_labeled.json",
+    "processed_timestamp": 1772876338,
+    "processing_mode": "gateway",
+    "rank": 264
+  }
+}

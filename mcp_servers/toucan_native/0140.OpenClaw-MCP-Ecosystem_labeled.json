@@ -1,0 +1,384 @@
+{
+  "labels": {
+    "analysis": "The MCP Server \"OpenClaw MCP Ecosystem\" provides 6 tools focused on ai/ml tools tasks. Core capabilities include analysis and computation, creation and generation, data access and reading. Key tools: enhance_prompt, analyze_prompt, convert_prompt_format, generate_system_prompt, prompt_template_library.",
+    "reasoning": "Primary label \"AI/ML Tools\" assigned based on strong keyword matches in tool names and descriptions: generat, prompt.",
+    "primary_label": "AI/ML Tools",
+    "secondary_labels": [
+      "File Management",
+      "Gaming"
+    ],
+    "custom_label": "Analytics & Generation - OpenClaw MCP Ecosystem",
+    "is_connected": true,
+    "is_remote_tool_valid": true,
+    "featured_server": true,
+    "tool_verified": true,
+    "tool_verified_status": "verified",
+    "tool_verified_at": "2026-03-14T20:38:16.287523+00:00",
+    "tool_verified_tool": "convert_prompt_format",
+    "tool_verified_reason": "tool call succeeded"
+  },
+  "metadata": {
+    "server_id": 140,
+    "server_name": "OpenClaw MCP Ecosystem",
+    "rank_by_usage": 141,
+    "usage_count": "100",
+    "original_file": "tools.json#140",
+    "mode": "gateway",
+    "timestamp": 1772876337,
+    "remote_server_response": {
+      "url": "https://prompt-enhancer-mcp.yagami8095.workers.dev/mcp",
+      "is_success": true,
+      "error": null,
+      "tools": [
+        {
+          "name": "enhance_prompt",
+          "description": "Take a basic prompt and return an optimized, enhanced version with clearer instructions, better structure, added constraints, and example format. FREE tool.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "prompt": {
+                "type": "string",
+                "description": "The original prompt to enhance."
+              },
+              "style": {
+                "type": "string",
+                "enum": [
+                  "concise",
+                  "detailed",
+                  "structured",
+                  "creative"
+                ],
+                "description": "Enhancement style. Default: structured."
+              }
+            },
+            "required": [
+              "prompt"
+            ]
+          }
+        },
+        {
+          "name": "analyze_prompt",
+          "description": "Analyze a prompt for quality: clarity score (0-100), specificity score, potential issues, and improvement suggestions. FREE tool.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "prompt": {
+                "type": "string",
+                "description": "The prompt to analyze."
+              }
+            },
+            "required": [
+              "prompt"
+            ]
+          }
+        },
+        {
+          "name": "convert_prompt_format",
+          "description": "Convert a prompt between formats: plain, xml, markdown, json. FREE tool.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "prompt": {
+                "type": "string",
+                "description": "The prompt to convert."
+              },
+              "from_format": {
+                "type": "string",
+                "enum": [
+                  "plain",
+                  "xml",
+                  "markdown",
+                  "json"
+                ],
+                "description": "Source format."
+              },
+              "to_format": {
+                "type": "string",
+                "enum": [
+                  "plain",
+                  "xml",
+                  "markdown",
+                  "json"
+                ],
+                "description": "Target format."
+              }
+            },
+            "required": [
+              "prompt",
+              "from_format",
+              "to_format"
+            ]
+          }
+        },
+        {
+          "name": "generate_system_prompt",
+          "description": "Generate a high-quality system prompt for a given role and task. FREE tool.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "role": {
+                "type": "string",
+                "description": "The AI role (e.g. \"senior software engineer\", \"copywriter\")."
+              },
+              "task": {
+                "type": "string",
+                "description": "The primary task or purpose."
+              },
+              "constraints": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "Optional list of constraints."
+              },
+              "tone": {
+                "type": "string",
+                "description": "Desired tone (e.g. \"professional\", \"friendly\", \"concise\"). Default: professional."
+              }
+            },
+            "required": [
+              "role",
+              "task"
+            ]
+          }
+        },
+        {
+          "name": "prompt_template_library",
+          "description": "Browse 30+ curated, production-ready prompt templates by category (coding, analysis, writing, translation, debugging, data-extraction). PRO tool — requires api_key.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "category": {
+                "type": "string",
+                "enum": [
+                  "coding",
+                  "analysis",
+                  "writing",
+                  "translation",
+                  "debugging",
+                  "data-extraction"
+                ],
+                "description": "Template category."
+              },
+              "api_key": {
+                "type": "string",
+                "description": "Pro API key ($9 one-time — see purchase_pro_key)."
+              }
+            },
+            "required": [
+              "category",
+              "api_key"
+            ]
+          }
+        },
+        {
+          "name": "purchase_pro_key",
+          "description": "Get purchase instructions for a Pro API key ($9 one-time). Unlocks prompt_template_library and higher rate limits (1000 req/day). FREE tool.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "payment_method": {
+                "type": "string",
+                "description": "Preferred payment method (optional)."
+              }
+            }
+          }
+        }
+      ],
+      "tool_count": 6,
+      "tool_names": [
+        "enhance_prompt",
+        "analyze_prompt",
+        "convert_prompt_format",
+        "generate_system_prompt",
+        "prompt_template_library",
+        "purchase_pro_key"
+      ]
+    },
+    "server_info_crawled": {
+      "id": 140,
+      "name": "OpenClaw MCP Ecosystem",
+      "author": "",
+      "overview": "OpenClaw MCP Ecosystem - AI/ML Tools server with 6 tools. The MCP Server \"OpenClaw MCP Ecosystem\" provides 6 tools focused on ai/ml tools tasks. Core capabili",
+      "repository_url": "",
+      "homepage": "https://prompt-enhancer-mcp.yagami8095.workers.dev/mcp",
+      "remote_or_local": "Remote",
+      "license": "",
+      "usage_count": "100",
+      "success_rate": "100%",
+      "tags": [
+        "ai/ml-tools",
+        "file-management",
+        "gaming"
+      ],
+      "categories": [
+        "ai/ml tools",
+        "file management",
+        "gaming"
+      ],
+      "tools_count": 6,
+      "tools": [
+        {
+          "name": "enhance_prompt",
+          "description": "Take a basic prompt and return an optimized, enhanced version with clearer instructions, better structure, added constraints, and example format. FREE tool.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "prompt": {
+                "type": "string",
+                "description": "The original prompt to enhance."
+              },
+              "style": {
+                "type": "string",
+                "enum": [
+                  "concise",
+                  "detailed",
+                  "structured",
+                  "creative"
+                ],
+                "description": "Enhancement style. Default: structured."
+              }
+            },
+            "required": [
+              "prompt"
+            ]
+          }
+        },
+        {
+          "name": "analyze_prompt",
+          "description": "Analyze a prompt for quality: clarity score (0-100), specificity score, potential issues, and improvement suggestions. FREE tool.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "prompt": {
+                "type": "string",
+                "description": "The prompt to analyze."
+              }
+            },
+            "required": [
+              "prompt"
+            ]
+          }
+        },
+        {
+          "name": "convert_prompt_format",
+          "description": "Convert a prompt between formats: plain, xml, markdown, json. FREE tool.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "prompt": {
+                "type": "string",
+                "description": "The prompt to convert."
+              },
+              "from_format": {
+                "type": "string",
+                "enum": [
+                  "plain",
+                  "xml",
+                  "markdown",
+                  "json"
+                ],
+                "description": "Source format."
+              },
+              "to_format": {
+                "type": "string",
+                "enum": [
+                  "plain",
+                  "xml",
+                  "markdown",
+                  "json"
+                ],
+                "description": "Target format."
+              }
+            },
+            "required": [
+              "prompt",
+              "from_format",
+              "to_format"
+            ]
+          }
+        },
+        {
+          "name": "generate_system_prompt",
+          "description": "Generate a high-quality system prompt for a given role and task. FREE tool.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "role": {
+                "type": "string",
+                "description": "The AI role (e.g. \"senior software engineer\", \"copywriter\")."
+              },
+              "task": {
+                "type": "string",
+                "description": "The primary task or purpose."
+              },
+              "constraints": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "Optional list of constraints."
+              },
+              "tone": {
+                "type": "string",
+                "description": "Desired tone (e.g. \"professional\", \"friendly\", \"concise\"). Default: professional."
+              }
+            },
+            "required": [
+              "role",
+              "task"
+            ]
+          }
+        },
+        {
+          "name": "prompt_template_library",
+          "description": "Browse 30+ curated, production-ready prompt templates by category (coding, analysis, writing, translation, debugging, data-extraction). PRO tool — requires api_key.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "category": {
+                "type": "string",
+                "enum": [
+                  "coding",
+                  "analysis",
+                  "writing",
+                  "translation",
+                  "debugging",
+                  "data-extraction"
+                ],
+                "description": "Template category."
+              },
+              "api_key": {
+                "type": "string",
+                "description": "Pro API key ($9 one-time — see purchase_pro_key)."
+              }
+            },
+            "required": [
+              "category",
+              "api_key"
+            ]
+          }
+        },
+        {
+          "name": "purchase_pro_key",
+          "description": "Get purchase instructions for a Pro API key ($9 one-time). Unlocks prompt_template_library and higher rate limits (1000 req/day). FREE tool.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "payment_method": {
+                "type": "string",
+                "description": "Preferred payment method (optional)."
+              }
+            }
+          }
+        }
+      ],
+      "python_sdk_url": "https://prompt-enhancer-mcp.yagami8095.workers.dev/mcp",
+      "python_sdk_config": "{\"debug\": false}"
+    },
+    "source_filename": "0140.OpenClaw-MCP-Ecosystem_labeled.json",
+    "processed_timestamp": 1772876337,
+    "processing_mode": "gateway",
+    "rank": 141
+  }
+}

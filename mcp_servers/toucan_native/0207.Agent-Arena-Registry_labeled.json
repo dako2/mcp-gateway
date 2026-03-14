@@ -1,0 +1,283 @@
+{
+  "labels": {
+    "analysis": "The MCP Server \"Agent Arena Registry\" provides 3 tools focused on development tools tasks. Core capabilities include data access and reading, search and retrieval. Key tools: search_agents, get_agent_profile, register_agent.",
+    "reasoning": "Primary label \"Development Tools\" assigned based on strong keyword matches in tool names and descriptions: endpoint, registry.",
+    "primary_label": "Development Tools",
+    "secondary_labels": [
+      "Web Search & Research",
+      "Financial Services"
+    ],
+    "custom_label": "Data Access & Search - Agent Arena Registry",
+    "is_connected": true,
+    "is_remote_tool_valid": true,
+    "featured_server": false,
+    "tool_verified": true,
+    "tool_verified_status": "verified",
+    "tool_verified_at": "2026-03-14T20:38:19.585861+00:00",
+    "tool_verified_tool": "search_agents",
+    "tool_verified_reason": "tool call succeeded"
+  },
+  "metadata": {
+    "server_id": 207,
+    "server_name": "Agent Arena Registry",
+    "rank_by_usage": 208,
+    "usage_count": "10",
+    "original_file": "tools.json#207",
+    "mode": "gateway",
+    "timestamp": 1772876338,
+    "remote_server_response": {
+      "url": "https://agentarena.site/api/mcp",
+      "is_success": true,
+      "error": null,
+      "tools": [
+        {
+          "name": "search_agents",
+          "description": "Search the Agent Arena registry for AI agents by capability, name, or description. Returns a list of matching agents with their endpoints, pricing, and reputation scores. Requires $0.001 USDC payment via x402 on Base mainnet.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "query": {
+                "type": "string",
+                "description": "Search query — capability keywords, agent name, or description terms"
+              },
+              "limit": {
+                "type": "number",
+                "description": "Max results to return (default 10, max 50)",
+                "default": 10
+              },
+              "minScore": {
+                "type": "number",
+                "description": "Minimum reputation score filter (0-100)"
+              },
+              "chain": {
+                "type": "string",
+                "description": "Filter by chain name, e.g. 'base', 'ethereum', 'polygon'"
+              }
+            },
+            "required": [
+              "query"
+            ]
+          }
+        },
+        {
+          "name": "get_agent_profile",
+          "description": "Retrieve the full profile of a specific agent by their on-chain ID. Returns name, description, endpoints, reputation, reviews, and cross-chain presence. Free endpoint.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "chainId": {
+                "type": "number",
+                "description": "Chain ID where the agent is registered (e.g. 8453 for Base)"
+              },
+              "agentId": {
+                "type": "string",
+                "description": "On-chain agent ID (token ID from the ERC-8004 registry)"
+              }
+            },
+            "required": [
+              "chainId",
+              "agentId"
+            ]
+          }
+        },
+        {
+          "name": "register_agent",
+          "description": "Register a new AI agent on the Base blockchain ERC-8004 registry. Mints an on-chain identity NFT and indexes the agent for discovery. Requires $0.05 USDC payment via x402 on Base mainnet.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "Agent display name"
+              },
+              "description": {
+                "type": "string",
+                "description": "Full agent description"
+              },
+              "capabilities": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "Lowercase capability tags"
+              },
+              "services": {
+                "type": "array",
+                "description": "Service endpoints",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string"
+                    },
+                    "endpoint": {
+                      "type": "string"
+                    }
+                  }
+                }
+              },
+              "x402Support": {
+                "type": "boolean",
+                "description": "Whether agent accepts x402 payments"
+              },
+              "agentWallet": {
+                "type": "string",
+                "description": "Wallet address to receive payments"
+              },
+              "preferredChain": {
+                "type": "string",
+                "description": "Chain to register on (default: base)"
+              }
+            },
+            "required": [
+              "name",
+              "description"
+            ]
+          }
+        }
+      ],
+      "tool_count": 3,
+      "tool_names": [
+        "search_agents",
+        "get_agent_profile",
+        "register_agent"
+      ]
+    },
+    "server_info_crawled": {
+      "id": 207,
+      "name": "Agent Arena Registry",
+      "author": "",
+      "overview": "Agent Arena Registry - Development Tools server with 3 tools. The MCP Server \"Agent Arena Registry\" provides 3 tools focused on development tools tasks. Core capa",
+      "repository_url": "",
+      "homepage": "https://agentarena.site/api/mcp",
+      "remote_or_local": "Remote",
+      "license": "",
+      "usage_count": "10",
+      "success_rate": "100%",
+      "tags": [
+        "development-tools",
+        "web-search-research",
+        "financial-services"
+      ],
+      "categories": [
+        "development tools",
+        "web search & research",
+        "financial services"
+      ],
+      "tools_count": 3,
+      "tools": [
+        {
+          "name": "search_agents",
+          "description": "Search the Agent Arena registry for AI agents by capability, name, or description. Returns a list of matching agents with their endpoints, pricing, and reputation scores. Requires $0.001 USDC payment via x402 on Base mainnet.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "query": {
+                "type": "string",
+                "description": "Search query — capability keywords, agent name, or description terms"
+              },
+              "limit": {
+                "type": "number",
+                "description": "Max results to return (default 10, max 50)",
+                "default": 10
+              },
+              "minScore": {
+                "type": "number",
+                "description": "Minimum reputation score filter (0-100)"
+              },
+              "chain": {
+                "type": "string",
+                "description": "Filter by chain name, e.g. 'base', 'ethereum', 'polygon'"
+              }
+            },
+            "required": [
+              "query"
+            ]
+          }
+        },
+        {
+          "name": "get_agent_profile",
+          "description": "Retrieve the full profile of a specific agent by their on-chain ID. Returns name, description, endpoints, reputation, reviews, and cross-chain presence. Free endpoint.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "chainId": {
+                "type": "number",
+                "description": "Chain ID where the agent is registered (e.g. 8453 for Base)"
+              },
+              "agentId": {
+                "type": "string",
+                "description": "On-chain agent ID (token ID from the ERC-8004 registry)"
+              }
+            },
+            "required": [
+              "chainId",
+              "agentId"
+            ]
+          }
+        },
+        {
+          "name": "register_agent",
+          "description": "Register a new AI agent on the Base blockchain ERC-8004 registry. Mints an on-chain identity NFT and indexes the agent for discovery. Requires $0.05 USDC payment via x402 on Base mainnet.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "Agent display name"
+              },
+              "description": {
+                "type": "string",
+                "description": "Full agent description"
+              },
+              "capabilities": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "Lowercase capability tags"
+              },
+              "services": {
+                "type": "array",
+                "description": "Service endpoints",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string"
+                    },
+                    "endpoint": {
+                      "type": "string"
+                    }
+                  }
+                }
+              },
+              "x402Support": {
+                "type": "boolean",
+                "description": "Whether agent accepts x402 payments"
+              },
+              "agentWallet": {
+                "type": "string",
+                "description": "Wallet address to receive payments"
+              },
+              "preferredChain": {
+                "type": "string",
+                "description": "Chain to register on (default: base)"
+              }
+            },
+            "required": [
+              "name",
+              "description"
+            ]
+          }
+        }
+      ],
+      "python_sdk_url": "https://agentarena.site/api/mcp",
+      "python_sdk_config": "{\"debug\": false}"
+    },
+    "source_filename": "0207.Agent-Arena-Registry_labeled.json",
+    "processed_timestamp": 1772876338,
+    "processing_mode": "gateway",
+    "rank": 208
+  }
+}

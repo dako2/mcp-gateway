@@ -1,0 +1,571 @@
+{
+  "labels": {
+    "analysis": "The MCP Server \"ImmoStage Virtual Staging\" provides 5 tools focused on data analysis & processing tasks. Core capabilities include creation and generation, data access and reading. Key tools: stage_room, beautify_floor_plan, classify_room, optimize_listing, suggest_style.",
+    "reasoning": "Primary label \"Data Analysis & Processing\" assigned based on strong keyword matches in tool names and descriptions: data, metric, transform.",
+    "primary_label": "Data Analysis & Processing",
+    "secondary_labels": [
+      "Real Estate",
+      "Development Tools"
+    ],
+    "custom_label": "Data Access - ImmoStage Virtual Staging",
+    "is_connected": true,
+    "is_remote_tool_valid": true,
+    "featured_server": true,
+    "tool_verified": true,
+    "tool_verified_status": "verified",
+    "tool_verified_at": "2026-03-14T20:38:17.017104+00:00",
+    "tool_verified_tool": "beautify_floor_plan",
+    "tool_verified_reason": "response received"
+  },
+  "metadata": {
+    "server_id": 159,
+    "server_name": "ImmoStage Virtual Staging",
+    "rank_by_usage": 160,
+    "usage_count": "150",
+    "original_file": "tools.json#159",
+    "mode": "gateway",
+    "timestamp": 1772876337,
+    "remote_server_response": {
+      "url": "https://mcp.immostage.ai/api/mcp",
+      "is_success": true,
+      "error": null,
+      "tools": [
+        {
+          "name": "stage_room",
+          "description": "AI virtual staging - transform empty room photos into beautifully furnished spaces. Provide either a public image URL or a base64-encoded image.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "image_url": {
+                "type": "string",
+                "format": "uri",
+                "description": "Public URL of the room image to stage"
+              },
+              "image_base64": {
+                "type": "string",
+                "description": "Base64-encoded image data (with or without data URI prefix). Use this when the user pastes/uploads an image directly."
+              },
+              "style": {
+                "type": "string",
+                "enum": [
+                  "modern",
+                  "scandinavian",
+                  "classic",
+                  "minimal",
+                  "luxury"
+                ],
+                "description": "Interior design style"
+              },
+              "room_type": {
+                "type": "string",
+                "enum": [
+                  "living_room",
+                  "bedroom",
+                  "kitchen",
+                  "bathroom",
+                  "office",
+                  "other"
+                ],
+                "description": "Type of room"
+              },
+              "quality": {
+                "type": "string",
+                "enum": [
+                  "medium",
+                  "high"
+                ],
+                "default": "medium",
+                "description": "Output quality. medium=faster/cheaper, high=better detail"
+              }
+            },
+            "required": [
+              "style",
+              "room_type"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": false,
+            "idempotentHint": false,
+            "openWorldHint": true
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "beautify_floor_plan",
+          "description": "Transform 2D floor plans into stunning 3D isometric architectural renders. Provide either a public image URL or a base64-encoded image.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "image_url": {
+                "type": "string",
+                "format": "uri",
+                "description": "Public URL of the floor plan image"
+              },
+              "image_base64": {
+                "type": "string",
+                "description": "Base64-encoded image data (with or without data URI prefix). Use this when the user pastes/uploads an image directly."
+              },
+              "quality": {
+                "type": "string",
+                "enum": [
+                  "medium",
+                  "high"
+                ],
+                "default": "medium",
+                "description": "Output quality. medium=faster/cheaper, high=better detail"
+              }
+            },
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": false,
+            "idempotentHint": false,
+            "openWorldHint": true
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "classify_room",
+          "description": "Classify room images - detect room type, empty/furnished, quality, suggest style. Provide either a public image URL or a base64-encoded image.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "image_url": {
+                "type": "string",
+                "format": "uri",
+                "description": "Public URL of the image to classify"
+              },
+              "image_base64": {
+                "type": "string",
+                "description": "Base64-encoded image data (with or without data URI prefix). Use this when the user pastes/uploads an image directly."
+              }
+            },
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": true
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "optimize_listing",
+          "description": "Generate professional German property descriptions from basic listing data.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "property_name": {
+                "type": "string",
+                "description": "Name or title of the property"
+              },
+              "address": {
+                "type": "string",
+                "description": "Property address or location"
+              },
+              "area_sqm": {
+                "type": "number",
+                "exclusiveMinimum": 0,
+                "description": "Living area in square meters"
+              },
+              "rooms": {
+                "type": "number",
+                "exclusiveMinimum": 0,
+                "description": "Number of rooms"
+              },
+              "floor": {
+                "type": "number",
+                "description": "Floor number (optional)"
+              },
+              "features": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "List of features (e.g. balcony, garage)"
+              },
+              "notes": {
+                "type": "string",
+                "description": "Additional notes about the property"
+              }
+            },
+            "required": [
+              "property_name",
+              "address",
+              "area_sqm",
+              "rooms"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": false,
+            "openWorldHint": true
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "suggest_style",
+          "description": "Get staging style recommendations based on room type and target audience.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "room_type": {
+                "type": "string",
+                "enum": [
+                  "living_room",
+                  "bedroom",
+                  "kitchen",
+                  "bathroom",
+                  "office",
+                  "other"
+                ],
+                "description": "Type of room to stage"
+              },
+              "target_audience": {
+                "type": "string",
+                "enum": [
+                  "young_professionals",
+                  "families",
+                  "luxury_buyers",
+                  "investors",
+                  "seniors"
+                ],
+                "description": "Target buyer demographic"
+              },
+              "property_type": {
+                "type": "string",
+                "enum": [
+                  "apartment",
+                  "house",
+                  "penthouse",
+                  "loft",
+                  "studio"
+                ],
+                "description": "Type of property"
+              }
+            },
+            "required": [
+              "room_type"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        }
+      ],
+      "tool_count": 5,
+      "tool_names": [
+        "stage_room",
+        "beautify_floor_plan",
+        "classify_room",
+        "optimize_listing",
+        "suggest_style"
+      ]
+    },
+    "server_info_crawled": {
+      "id": 159,
+      "name": "ImmoStage Virtual Staging",
+      "author": "",
+      "overview": "ImmoStage Virtual Staging - Data Analysis & Processing server with 5 tools. The MCP Server \"ImmoStage Virtual Staging\" provides 5 tools focused on data analysis & processing ta",
+      "repository_url": "",
+      "homepage": "https://mcp.immostage.ai/api/mcp",
+      "remote_or_local": "Remote",
+      "license": "",
+      "usage_count": "150",
+      "success_rate": "100%",
+      "tags": [
+        "data-analysis-processing",
+        "real-estate",
+        "development-tools"
+      ],
+      "categories": [
+        "data analysis & processing",
+        "real estate",
+        "development tools"
+      ],
+      "tools_count": 5,
+      "tools": [
+        {
+          "name": "stage_room",
+          "description": "AI virtual staging - transform empty room photos into beautifully furnished spaces. Provide either a public image URL or a base64-encoded image.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "image_url": {
+                "type": "string",
+                "format": "uri",
+                "description": "Public URL of the room image to stage"
+              },
+              "image_base64": {
+                "type": "string",
+                "description": "Base64-encoded image data (with or without data URI prefix). Use this when the user pastes/uploads an image directly."
+              },
+              "style": {
+                "type": "string",
+                "enum": [
+                  "modern",
+                  "scandinavian",
+                  "classic",
+                  "minimal",
+                  "luxury"
+                ],
+                "description": "Interior design style"
+              },
+              "room_type": {
+                "type": "string",
+                "enum": [
+                  "living_room",
+                  "bedroom",
+                  "kitchen",
+                  "bathroom",
+                  "office",
+                  "other"
+                ],
+                "description": "Type of room"
+              },
+              "quality": {
+                "type": "string",
+                "enum": [
+                  "medium",
+                  "high"
+                ],
+                "default": "medium",
+                "description": "Output quality. medium=faster/cheaper, high=better detail"
+              }
+            },
+            "required": [
+              "style",
+              "room_type"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": false,
+            "idempotentHint": false,
+            "openWorldHint": true
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "beautify_floor_plan",
+          "description": "Transform 2D floor plans into stunning 3D isometric architectural renders. Provide either a public image URL or a base64-encoded image.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "image_url": {
+                "type": "string",
+                "format": "uri",
+                "description": "Public URL of the floor plan image"
+              },
+              "image_base64": {
+                "type": "string",
+                "description": "Base64-encoded image data (with or without data URI prefix). Use this when the user pastes/uploads an image directly."
+              },
+              "quality": {
+                "type": "string",
+                "enum": [
+                  "medium",
+                  "high"
+                ],
+                "default": "medium",
+                "description": "Output quality. medium=faster/cheaper, high=better detail"
+              }
+            },
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": false,
+            "idempotentHint": false,
+            "openWorldHint": true
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "classify_room",
+          "description": "Classify room images - detect room type, empty/furnished, quality, suggest style. Provide either a public image URL or a base64-encoded image.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "image_url": {
+                "type": "string",
+                "format": "uri",
+                "description": "Public URL of the image to classify"
+              },
+              "image_base64": {
+                "type": "string",
+                "description": "Base64-encoded image data (with or without data URI prefix). Use this when the user pastes/uploads an image directly."
+              }
+            },
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": true
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "optimize_listing",
+          "description": "Generate professional German property descriptions from basic listing data.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "property_name": {
+                "type": "string",
+                "description": "Name or title of the property"
+              },
+              "address": {
+                "type": "string",
+                "description": "Property address or location"
+              },
+              "area_sqm": {
+                "type": "number",
+                "exclusiveMinimum": 0,
+                "description": "Living area in square meters"
+              },
+              "rooms": {
+                "type": "number",
+                "exclusiveMinimum": 0,
+                "description": "Number of rooms"
+              },
+              "floor": {
+                "type": "number",
+                "description": "Floor number (optional)"
+              },
+              "features": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "List of features (e.g. balcony, garage)"
+              },
+              "notes": {
+                "type": "string",
+                "description": "Additional notes about the property"
+              }
+            },
+            "required": [
+              "property_name",
+              "address",
+              "area_sqm",
+              "rooms"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": false,
+            "openWorldHint": true
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "suggest_style",
+          "description": "Get staging style recommendations based on room type and target audience.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "room_type": {
+                "type": "string",
+                "enum": [
+                  "living_room",
+                  "bedroom",
+                  "kitchen",
+                  "bathroom",
+                  "office",
+                  "other"
+                ],
+                "description": "Type of room to stage"
+              },
+              "target_audience": {
+                "type": "string",
+                "enum": [
+                  "young_professionals",
+                  "families",
+                  "luxury_buyers",
+                  "investors",
+                  "seniors"
+                ],
+                "description": "Target buyer demographic"
+              },
+              "property_type": {
+                "type": "string",
+                "enum": [
+                  "apartment",
+                  "house",
+                  "penthouse",
+                  "loft",
+                  "studio"
+                ],
+                "description": "Type of property"
+              }
+            },
+            "required": [
+              "room_type"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        }
+      ],
+      "python_sdk_url": "https://mcp.immostage.ai/api/mcp",
+      "python_sdk_config": "{\"debug\": false}"
+    },
+    "source_filename": "0159.ImmoStage-Virtual-Staging_labeled.json",
+    "processed_timestamp": 1772876337,
+    "processing_mode": "gateway",
+    "rank": 160
+  }
+}

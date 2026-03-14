@@ -1,0 +1,463 @@
+{
+  "labels": {
+    "analysis": "The MCP Server \"LimitGuard Trust Intelligence\" provides 5 tools focused on cryptocurrency & blockchain tasks. Core capabilities include data access and reading, search and retrieval. Key tools: check_entity, check_agent, get_trust_score, verify_wallet, get_risk_score.",
+    "reasoning": "Primary label \"Cryptocurrency & Blockchain\" assigned based on strong keyword matches in tool names and descriptions: crypto, wallet, solana, blockchain, chain_.",
+    "primary_label": "Cryptocurrency & Blockchain",
+    "secondary_labels": [
+      "Gaming",
+      "Development Tools"
+    ],
+    "custom_label": "Data Access - LimitGuard Trust Intelligence",
+    "is_connected": true,
+    "is_remote_tool_valid": true,
+    "featured_server": true,
+    "tool_verified": false,
+    "tool_verified_status": "auth_required",
+    "tool_verified_at": "2026-03-14T20:38:16.616715+00:00",
+    "tool_verified_tool": "get_trust_score",
+    "tool_verified_reason": "auth error in response: event: message\r\ndata: {\"jsonrpc\":\"2.0\",\"id\":98239,\"result\":{\"content\":[{\"type\":\"text\",\"text\":\"Error "
+  },
+  "metadata": {
+    "server_id": 145,
+    "server_name": "LimitGuard Trust Intelligence",
+    "rank_by_usage": 146,
+    "usage_count": "100",
+    "original_file": "tools.json#145",
+    "mode": "gateway",
+    "timestamp": 1772876337,
+    "remote_server_response": {
+      "url": "https://api.limitguard.ai/mcp",
+      "is_success": true,
+      "error": null,
+      "tools": [
+        {
+          "name": "check_entity",
+          "description": "Check entity trust score via LimitGuard API.\n\n        Full trust intelligence check on a business entity.\n        Returns trust score (0-100), risk level, and recommendation.\n\n        Args:\n            entity_name: Full legal name of the entity\n            country: ISO 3166-1 alpha-2 country code (e.g., NL, BE, DE)\n            kvk_number: Optional Dutch KVK registration number (8 digits)\n            domain: Optional company website domain\n        ",
+          "inputSchema": {
+            "properties": {
+              "entity_name": {
+                "title": "Entity Name",
+                "type": "string"
+              },
+              "country": {
+                "title": "Country",
+                "type": "string"
+              },
+              "kvk_number": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Kvk Number"
+              },
+              "domain": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Domain"
+              }
+            },
+            "required": [
+              "entity_name",
+              "country"
+            ],
+            "title": "check_entityArguments",
+            "type": "object"
+          },
+          "outputSchema": {
+            "properties": {
+              "result": {
+                "title": "Result",
+                "type": "string"
+              }
+            },
+            "required": [
+              "result"
+            ],
+            "title": "check_entityOutput",
+            "type": "object"
+          }
+        },
+        {
+          "name": "check_agent",
+          "description": "Verify AI agent trust via LimitGuard.\n\n        Checks if an AI agent is trusted based on its identifier.\n        Used for multi-agent systems to verify delegation targets.\n\n        Args:\n            agent_id: Unique agent identifier\n            agent_name: Human-readable agent name\n        ",
+          "inputSchema": {
+            "properties": {
+              "agent_id": {
+                "title": "Agent Id",
+                "type": "string"
+              },
+              "agent_name": {
+                "title": "Agent Name",
+                "type": "string"
+              }
+            },
+            "required": [
+              "agent_id",
+              "agent_name"
+            ],
+            "title": "check_agentArguments",
+            "type": "object"
+          },
+          "outputSchema": {
+            "properties": {
+              "result": {
+                "title": "Result",
+                "type": "string"
+              }
+            },
+            "required": [
+              "result"
+            ],
+            "title": "check_agentOutput",
+            "type": "object"
+          }
+        },
+        {
+          "name": "get_trust_score",
+          "description": "Quick trust score lookup by entity ID.\n\n        Fast lookup for previously checked entities.\n        Returns cached score if available.\n\n        Args:\n            entity_id: Entity identifier (KVK number, domain, or hash)\n        ",
+          "inputSchema": {
+            "properties": {
+              "entity_id": {
+                "title": "Entity Id",
+                "type": "string"
+              }
+            },
+            "required": [
+              "entity_id"
+            ],
+            "title": "get_trust_scoreArguments",
+            "type": "object"
+          },
+          "outputSchema": {
+            "properties": {
+              "result": {
+                "title": "Result",
+                "type": "string"
+              }
+            },
+            "required": [
+              "result"
+            ],
+            "title": "get_trust_scoreOutput",
+            "type": "object"
+          }
+        },
+        {
+          "name": "verify_wallet",
+          "description": "Check wallet trust score for crypto payments.\n\n        Verifies wallet against scam lists and transaction patterns.\n        Supports EVM (0x...) and Solana (base58) addresses.\n\n        Args:\n            wallet_address: Blockchain wallet address\n            chain_id: CAIP-2 chain ID (default: eip155:8453 for Base)\n        ",
+          "inputSchema": {
+            "properties": {
+              "wallet_address": {
+                "title": "Wallet Address",
+                "type": "string"
+              },
+              "chain_id": {
+                "default": "eip155:8453",
+                "title": "Chain Id",
+                "type": "string"
+              }
+            },
+            "required": [
+              "wallet_address"
+            ],
+            "title": "verify_walletArguments",
+            "type": "object"
+          },
+          "outputSchema": {
+            "properties": {
+              "result": {
+                "title": "Result",
+                "type": "string"
+              }
+            },
+            "required": [
+              "result"
+            ],
+            "title": "verify_walletOutput",
+            "type": "object"
+          }
+        },
+        {
+          "name": "get_risk_score",
+          "description": "Quick risk assessment without full trust check.\n\n        Faster endpoint that focuses on risk signals only.\n        Use when you only need basic risk evaluation.\n\n        Args:\n            entity_name: Full legal name of the entity\n            country: ISO 3166-1 alpha-2 country code\n        ",
+          "inputSchema": {
+            "properties": {
+              "entity_name": {
+                "title": "Entity Name",
+                "type": "string"
+              },
+              "country": {
+                "title": "Country",
+                "type": "string"
+              }
+            },
+            "required": [
+              "entity_name",
+              "country"
+            ],
+            "title": "get_risk_scoreArguments",
+            "type": "object"
+          },
+          "outputSchema": {
+            "properties": {
+              "result": {
+                "title": "Result",
+                "type": "string"
+              }
+            },
+            "required": [
+              "result"
+            ],
+            "title": "get_risk_scoreOutput",
+            "type": "object"
+          }
+        }
+      ],
+      "tool_count": 5,
+      "tool_names": [
+        "check_entity",
+        "check_agent",
+        "get_trust_score",
+        "verify_wallet",
+        "get_risk_score"
+      ]
+    },
+    "server_info_crawled": {
+      "id": 145,
+      "name": "LimitGuard Trust Intelligence",
+      "author": "",
+      "overview": "LimitGuard Trust Intelligence - Cryptocurrency & Blockchain server with 5 tools. The MCP Server \"LimitGuard Trust Intelligence\" provides 5 tools focused on cryptocurrency & blockcha",
+      "repository_url": "",
+      "homepage": "https://api.limitguard.ai/mcp",
+      "remote_or_local": "Remote",
+      "license": "",
+      "usage_count": "100",
+      "success_rate": "100%",
+      "tags": [
+        "cryptocurrency-blockchain",
+        "gaming",
+        "development-tools"
+      ],
+      "categories": [
+        "cryptocurrency & blockchain",
+        "gaming",
+        "development tools"
+      ],
+      "tools_count": 5,
+      "tools": [
+        {
+          "name": "check_entity",
+          "description": "Check entity trust score via LimitGuard API.\n\n        Full trust intelligence check on a business entity.\n        Returns trust score (0-100), risk level, and recommendation.\n\n        Args:\n            entity_name: Full legal name of the entity\n            country: ISO 3166-1 alpha-2 country code (e.g., NL, BE, DE)\n            kvk_number: Optional Dutch KVK registration number (8 digits)\n            domain: Optional company website domain\n        ",
+          "inputSchema": {
+            "properties": {
+              "entity_name": {
+                "title": "Entity Name",
+                "type": "string"
+              },
+              "country": {
+                "title": "Country",
+                "type": "string"
+              },
+              "kvk_number": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Kvk Number"
+              },
+              "domain": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Domain"
+              }
+            },
+            "required": [
+              "entity_name",
+              "country"
+            ],
+            "title": "check_entityArguments",
+            "type": "object"
+          },
+          "outputSchema": {
+            "properties": {
+              "result": {
+                "title": "Result",
+                "type": "string"
+              }
+            },
+            "required": [
+              "result"
+            ],
+            "title": "check_entityOutput",
+            "type": "object"
+          }
+        },
+        {
+          "name": "check_agent",
+          "description": "Verify AI agent trust via LimitGuard.\n\n        Checks if an AI agent is trusted based on its identifier.\n        Used for multi-agent systems to verify delegation targets.\n\n        Args:\n            agent_id: Unique agent identifier\n            agent_name: Human-readable agent name\n        ",
+          "inputSchema": {
+            "properties": {
+              "agent_id": {
+                "title": "Agent Id",
+                "type": "string"
+              },
+              "agent_name": {
+                "title": "Agent Name",
+                "type": "string"
+              }
+            },
+            "required": [
+              "agent_id",
+              "agent_name"
+            ],
+            "title": "check_agentArguments",
+            "type": "object"
+          },
+          "outputSchema": {
+            "properties": {
+              "result": {
+                "title": "Result",
+                "type": "string"
+              }
+            },
+            "required": [
+              "result"
+            ],
+            "title": "check_agentOutput",
+            "type": "object"
+          }
+        },
+        {
+          "name": "get_trust_score",
+          "description": "Quick trust score lookup by entity ID.\n\n        Fast lookup for previously checked entities.\n        Returns cached score if available.\n\n        Args:\n            entity_id: Entity identifier (KVK number, domain, or hash)\n        ",
+          "inputSchema": {
+            "properties": {
+              "entity_id": {
+                "title": "Entity Id",
+                "type": "string"
+              }
+            },
+            "required": [
+              "entity_id"
+            ],
+            "title": "get_trust_scoreArguments",
+            "type": "object"
+          },
+          "outputSchema": {
+            "properties": {
+              "result": {
+                "title": "Result",
+                "type": "string"
+              }
+            },
+            "required": [
+              "result"
+            ],
+            "title": "get_trust_scoreOutput",
+            "type": "object"
+          }
+        },
+        {
+          "name": "verify_wallet",
+          "description": "Check wallet trust score for crypto payments.\n\n        Verifies wallet against scam lists and transaction patterns.\n        Supports EVM (0x...) and Solana (base58) addresses.\n\n        Args:\n            wallet_address: Blockchain wallet address\n            chain_id: CAIP-2 chain ID (default: eip155:8453 for Base)\n        ",
+          "inputSchema": {
+            "properties": {
+              "wallet_address": {
+                "title": "Wallet Address",
+                "type": "string"
+              },
+              "chain_id": {
+                "default": "eip155:8453",
+                "title": "Chain Id",
+                "type": "string"
+              }
+            },
+            "required": [
+              "wallet_address"
+            ],
+            "title": "verify_walletArguments",
+            "type": "object"
+          },
+          "outputSchema": {
+            "properties": {
+              "result": {
+                "title": "Result",
+                "type": "string"
+              }
+            },
+            "required": [
+              "result"
+            ],
+            "title": "verify_walletOutput",
+            "type": "object"
+          }
+        },
+        {
+          "name": "get_risk_score",
+          "description": "Quick risk assessment without full trust check.\n\n        Faster endpoint that focuses on risk signals only.\n        Use when you only need basic risk evaluation.\n\n        Args:\n            entity_name: Full legal name of the entity\n            country: ISO 3166-1 alpha-2 country code\n        ",
+          "inputSchema": {
+            "properties": {
+              "entity_name": {
+                "title": "Entity Name",
+                "type": "string"
+              },
+              "country": {
+                "title": "Country",
+                "type": "string"
+              }
+            },
+            "required": [
+              "entity_name",
+              "country"
+            ],
+            "title": "get_risk_scoreArguments",
+            "type": "object"
+          },
+          "outputSchema": {
+            "properties": {
+              "result": {
+                "title": "Result",
+                "type": "string"
+              }
+            },
+            "required": [
+              "result"
+            ],
+            "title": "get_risk_scoreOutput",
+            "type": "object"
+          }
+        }
+      ],
+      "python_sdk_url": "https://api.limitguard.ai/mcp",
+      "python_sdk_config": "{\"debug\": false}"
+    },
+    "source_filename": "0145.LimitGuard-Trust-Intelligence_labeled.json",
+    "processed_timestamp": 1772876337,
+    "processing_mode": "gateway",
+    "rank": 146
+  }
+}

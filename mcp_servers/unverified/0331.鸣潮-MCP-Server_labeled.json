@@ -1,0 +1,180 @@
+{
+  "labels": {
+    "analysis": "The MCP Server for \"鸣潮\" primarily serves as a database and information retrieval system for a game-related ecosystem. It provides tools to query detailed information about game roles (characters), their skills, equipment (声骸), background stories, and team composition strategies. The tools return organized data in Markdown format, making it useful for both casual players and dedicated fans seeking in-depth character pointers and lore.",
+    "reasoning": "The primary label \"Gaming\" is chosen because the server's core functionality revolves around delivering game-specific data, strategies, and lore for a particular game. \"Database Operations\" is a secondary label due to the structured querying of character and artifact information. There is no need for a custom label as the predefined categories sufficiently describe the server's functionality.",
+    "primary_label": "Gaming",
+    "secondary_labels": [
+      "Database Operations"
+    ],
+    "custom_label": null,
+    "is_connected": true,
+    "is_remote_tool_valid": true,
+    "featured_server": false,
+    "tool_verified": false,
+    "tool_verified_status": "broken",
+    "tool_verified_at": "2026-03-14T20:39:42.908673+00:00",
+    "tool_verified_tool": "get_artifact_info",
+    "tool_verified_reason": "client timeout after 20003ms"
+  },
+  "metadata": {
+    "server_id": 331,
+    "server_name": "鸣潮 MCP Server",
+    "rank_by_usage": 884,
+    "usage_count": "4",
+    "original_file": "toucan_live#@jacksmith3888/wuwa-mcp-server",
+    "mode": "toucan",
+    "timestamp": 1772876338,
+    "remote_server_response": {
+      "url": "https://server.smithery.ai/@jacksmith3888/wuwa-mcp-server/mcp",
+      "is_success": true,
+      "error": null,
+      "tools": [
+        {
+          "name": "get_artifact_info",
+          "description": "获取库街区上的声骸详细信息并以 Markdown 格式返回。\n\n    Args:\n        artifact_name: 要查询的声骸套装的中文名称。\n\n    Returns:\n        包含声骸信息的 Markdown 字符串，\n        或者在找不到声骸或获取数据失败时返回错误消息。\n    ",
+          "input_schema": {
+            "properties": {
+              "artifact_name": {
+                "title": "Artifact Name",
+                "type": "string"
+              }
+            },
+            "required": [
+              "artifact_name"
+            ],
+            "title": "get_artifact_infoArguments",
+            "type": "object"
+          },
+          "annotations": {}
+        },
+        {
+          "name": "get_character_info",
+          "description": "获取库街区上的角色详细信息包括角色技能，养成攻略等，并以 Markdown 格式返回。\n\n    Args:\n        character_name: 要查询的角色的中文名称。\n\n    Returns:\n        包含角色信息的 Markdown 字符串，\n        或者在找不到角色或获取数据失败时返回错误消息。\n    ",
+          "input_schema": {
+            "properties": {
+              "character_name": {
+                "title": "Character Name",
+                "type": "string"
+              }
+            },
+            "required": [
+              "character_name"
+            ],
+            "title": "get_character_infoArguments",
+            "type": "object"
+          },
+          "annotations": {}
+        },
+        {
+          "name": "get_character_profile",
+          "description": "获取库街区上的角色档案信息并以 Markdown 格式返回。\n\n    Args:\n        character_name: 要查询的角色的中文名称。\n\n    Returns:\n        包含角色档案信息的 Markdown 字符串，\n        或者在找不到角色或获取数据失败时返回错误消息。\n    ",
+          "input_schema": {
+            "properties": {
+              "character_name": {
+                "title": "Character Name",
+                "type": "string"
+              }
+            },
+            "required": [
+              "character_name"
+            ],
+            "title": "get_character_profileArguments",
+            "type": "object"
+          },
+          "annotations": {}
+        }
+      ],
+      "tool_count": 3,
+      "tool_names": [
+        "get_artifact_info",
+        "get_character_info",
+        "get_character_profile"
+      ]
+    },
+    "server_info_crawled": {
+      "id": 331,
+      "name": "鸣潮 MCP Server",
+      "author": "",
+      "overview": "一个提供查询鸣潮角色信息、配队、声骸、背景故事及攻略的MCP server 数据来自库街区",
+      "repository_url": "",
+      "homepage": "https://server.smithery.ai/@jacksmith3888/wuwa-mcp-server/mcp",
+      "remote_or_local": "Remote",
+      "license": "",
+      "usage_count": "4",
+      "success_rate": "Not available",
+      "tags": [
+        "search",
+        "web",
+        "api",
+        "mcp"
+      ],
+      "categories": [
+        "search",
+        "api"
+      ],
+      "tools_count": 3,
+      "tools": [
+        {
+          "name": "get_artifact_info",
+          "description": "获取库街区上的声骸详细信息并以 Markdown 格式返回。\n\n    Args:\n        artifact_name: 要查询的声骸套装的中文名称。\n\n    Returns:\n        包含声骸信息的 Markdown 字符串，\n        或者在找不到声骸或获取数据失败时返回错误消息。\n    ",
+          "input_schema": {
+            "properties": {
+              "artifact_name": {
+                "title": "Artifact Name",
+                "type": "string"
+              }
+            },
+            "required": [
+              "artifact_name"
+            ],
+            "title": "get_artifact_infoArguments",
+            "type": "object"
+          },
+          "annotations": {}
+        },
+        {
+          "name": "get_character_info",
+          "description": "获取库街区上的角色详细信息包括角色技能，养成攻略等，并以 Markdown 格式返回。\n\n    Args:\n        character_name: 要查询的角色的中文名称。\n\n    Returns:\n        包含角色信息的 Markdown 字符串，\n        或者在找不到角色或获取数据失败时返回错误消息。\n    ",
+          "input_schema": {
+            "properties": {
+              "character_name": {
+                "title": "Character Name",
+                "type": "string"
+              }
+            },
+            "required": [
+              "character_name"
+            ],
+            "title": "get_character_infoArguments",
+            "type": "object"
+          },
+          "annotations": {}
+        },
+        {
+          "name": "get_character_profile",
+          "description": "获取库街区上的角色档案信息并以 Markdown 格式返回。\n\n    Args:\n        character_name: 要查询的角色的中文名称。\n\n    Returns:\n        包含角色档案信息的 Markdown 字符串，\n        或者在找不到角色或获取数据失败时返回错误消息。\n    ",
+          "input_schema": {
+            "properties": {
+              "character_name": {
+                "title": "Character Name",
+                "type": "string"
+              }
+            },
+            "required": [
+              "character_name"
+            ],
+            "title": "get_character_profileArguments",
+            "type": "object"
+          },
+          "annotations": {}
+        }
+      ],
+      "python_sdk_url": "https://server.smithery.ai/@jacksmith3888/wuwa-mcp-server/mcp",
+      "python_sdk_config": "{\"debug\": false}"
+    },
+    "source_filename": "0331.鸣潮-MCP-Server_labeled.json",
+    "processed_timestamp": 1772876338,
+    "processing_mode": "toucan",
+    "rank": 884
+  }
+}

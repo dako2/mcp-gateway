@@ -1,0 +1,378 @@
+{
+  "labels": {
+    "analysis": "The MCP Server \"Phos Sales Engine\" provides 4 tools focused on gaming tasks. Core capabilities include creation and generation, data access and reading, modification and updates, search and retrieval. Key tools: find_prospects, score_prospect, generate_outreach, get_pipeline.",
+    "reasoning": "Primary label \"Gaming\" assigned based on strong keyword matches in tool names and descriptions: score.",
+    "primary_label": "Gaming",
+    "secondary_labels": [
+      "AI/ML Tools",
+      "Development Tools"
+    ],
+    "custom_label": "Data Access & Generation - Phos Sales Engine",
+    "is_connected": true,
+    "is_remote_tool_valid": true,
+    "featured_server": false,
+    "tool_verified": false,
+    "tool_verified_status": "auth_required",
+    "tool_verified_at": "2026-03-14T20:38:17.798026+00:00",
+    "tool_verified_tool": "get_pipeline",
+    "tool_verified_reason": "auth error in response: event: message\ndata: {\"result\":{\"content\":[{\"type\":\"text\",\"text\":\"Invalid API key\"}],\"isError\":true}"
+  },
+  "metadata": {
+    "server_id": 169,
+    "server_name": "Phos Sales Engine",
+    "rank_by_usage": 170,
+    "usage_count": "10",
+    "original_file": "tools.json#169",
+    "mode": "gateway",
+    "timestamp": 1772876337,
+    "remote_server_response": {
+      "url": "https://se.phos.nz/mcp",
+      "is_success": true,
+      "error": null,
+      "tools": [
+        {
+          "name": "find_prospects",
+          "description": "Find business prospects by industry and location in NZ. Uses Yellow Pages and other scrapers to discover real businesses, deduplicates against existing DB.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "industry": {
+                "type": "string",
+                "description": "Industry or business category (e.g. \"plumber\", \"cafe\", \"gym\")"
+              },
+              "location": {
+                "type": "string",
+                "description": "NZ city or region (e.g. \"Auckland\", \"Wellington\", \"Christchurch\")"
+              },
+              "limit": {
+                "type": "number",
+                "minimum": 1,
+                "maximum": 50,
+                "default": 10,
+                "description": "Max prospects to return (1-50)"
+              },
+              "api_key": {
+                "type": "string",
+                "description": "Your Sales Engine API key"
+              }
+            },
+            "required": [
+              "industry",
+              "location",
+              "api_key"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "score_prospect",
+          "description": "Score a prospect against your Ideal Customer Profile (ICP). Returns fit score 0-100 with detailed breakdown and contributing factors.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "prospect_data": {
+                "type": "object",
+                "properties": {
+                  "business_name": {
+                    "type": "string"
+                  },
+                  "industry": {
+                    "type": "string"
+                  },
+                  "location": {
+                    "type": "string"
+                  },
+                  "website": {
+                    "type": "string"
+                  },
+                  "email": {
+                    "type": "string"
+                  },
+                  "phone": {
+                    "type": "string"
+                  },
+                  "contact_name": {
+                    "type": "string"
+                  },
+                  "linkedin_url": {
+                    "type": "string"
+                  },
+                  "employee_count": {
+                    "type": "number"
+                  },
+                  "notes": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "business_name"
+                ],
+                "additionalProperties": false,
+                "description": "Prospect data to score"
+              },
+              "api_key": {
+                "type": "string",
+                "description": "Your Sales Engine API key"
+              }
+            },
+            "required": [
+              "prospect_data",
+              "api_key"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "generate_outreach",
+          "description": "Generate a personalized outreach message for a prospect using Claude AI sales brain. Returns subject, body, personalization points, and alternative subjects.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "prospect_id": {
+                "type": "string",
+                "description": "UUID of the prospect to generate outreach for"
+              },
+              "api_key": {
+                "type": "string",
+                "description": "Your Sales Engine API key"
+              }
+            },
+            "required": [
+              "prospect_id",
+              "api_key"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "get_pipeline",
+          "description": "Get pipeline statistics — prospects by stage, conversion rates, and daily metrics. Free (0 credits).",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "product": {
+                "type": "string",
+                "default": "phos",
+                "description": "Product name (default: phos)"
+              },
+              "api_key": {
+                "type": "string",
+                "description": "Your Sales Engine API key"
+              }
+            },
+            "required": [
+              "api_key"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        }
+      ],
+      "tool_count": 4,
+      "tool_names": [
+        "find_prospects",
+        "score_prospect",
+        "generate_outreach",
+        "get_pipeline"
+      ]
+    },
+    "server_info_crawled": {
+      "id": 169,
+      "name": "Phos Sales Engine",
+      "author": "",
+      "overview": "Phos Sales Engine - Gaming server with 4 tools. The MCP Server \"Phos Sales Engine\" provides 4 tools focused on gaming tasks. Core capabilities inclu",
+      "repository_url": "",
+      "homepage": "https://se.phos.nz/mcp",
+      "remote_or_local": "Remote",
+      "license": "",
+      "usage_count": "10",
+      "success_rate": "100%",
+      "tags": [
+        "gaming",
+        "ai/ml-tools",
+        "development-tools"
+      ],
+      "categories": [
+        "gaming",
+        "ai/ml tools",
+        "development tools"
+      ],
+      "tools_count": 4,
+      "tools": [
+        {
+          "name": "find_prospects",
+          "description": "Find business prospects by industry and location in NZ. Uses Yellow Pages and other scrapers to discover real businesses, deduplicates against existing DB.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "industry": {
+                "type": "string",
+                "description": "Industry or business category (e.g. \"plumber\", \"cafe\", \"gym\")"
+              },
+              "location": {
+                "type": "string",
+                "description": "NZ city or region (e.g. \"Auckland\", \"Wellington\", \"Christchurch\")"
+              },
+              "limit": {
+                "type": "number",
+                "minimum": 1,
+                "maximum": 50,
+                "default": 10,
+                "description": "Max prospects to return (1-50)"
+              },
+              "api_key": {
+                "type": "string",
+                "description": "Your Sales Engine API key"
+              }
+            },
+            "required": [
+              "industry",
+              "location",
+              "api_key"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "score_prospect",
+          "description": "Score a prospect against your Ideal Customer Profile (ICP). Returns fit score 0-100 with detailed breakdown and contributing factors.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "prospect_data": {
+                "type": "object",
+                "properties": {
+                  "business_name": {
+                    "type": "string"
+                  },
+                  "industry": {
+                    "type": "string"
+                  },
+                  "location": {
+                    "type": "string"
+                  },
+                  "website": {
+                    "type": "string"
+                  },
+                  "email": {
+                    "type": "string"
+                  },
+                  "phone": {
+                    "type": "string"
+                  },
+                  "contact_name": {
+                    "type": "string"
+                  },
+                  "linkedin_url": {
+                    "type": "string"
+                  },
+                  "employee_count": {
+                    "type": "number"
+                  },
+                  "notes": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "business_name"
+                ],
+                "additionalProperties": false,
+                "description": "Prospect data to score"
+              },
+              "api_key": {
+                "type": "string",
+                "description": "Your Sales Engine API key"
+              }
+            },
+            "required": [
+              "prospect_data",
+              "api_key"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "generate_outreach",
+          "description": "Generate a personalized outreach message for a prospect using Claude AI sales brain. Returns subject, body, personalization points, and alternative subjects.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "prospect_id": {
+                "type": "string",
+                "description": "UUID of the prospect to generate outreach for"
+              },
+              "api_key": {
+                "type": "string",
+                "description": "Your Sales Engine API key"
+              }
+            },
+            "required": [
+              "prospect_id",
+              "api_key"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "get_pipeline",
+          "description": "Get pipeline statistics — prospects by stage, conversion rates, and daily metrics. Free (0 credits).",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "product": {
+                "type": "string",
+                "default": "phos",
+                "description": "Product name (default: phos)"
+              },
+              "api_key": {
+                "type": "string",
+                "description": "Your Sales Engine API key"
+              }
+            },
+            "required": [
+              "api_key"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        }
+      ],
+      "python_sdk_url": "https://se.phos.nz/mcp",
+      "python_sdk_config": "{\"debug\": false}"
+    },
+    "source_filename": "0169.Phos-Sales-Engine_labeled.json",
+    "processed_timestamp": 1772876337,
+    "processing_mode": "gateway",
+    "rank": 170
+  }
+}

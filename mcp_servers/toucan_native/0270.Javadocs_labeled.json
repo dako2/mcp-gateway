@@ -1,0 +1,72 @@
+{
+  "labels": {
+    "analysis": "Public MCP server \"Javadocs\" with 6 tools.",
+    "reasoning": "Verified as publicly accessible with no authentication required.",
+    "primary_label": "Developer Tools",
+    "secondary_labels": [],
+    "custom_label": "Developer Tools - Javadocs",
+    "is_connected": true,
+    "is_remote_tool_valid": true,
+    "featured_server": true,
+    "tool_verified": true,
+    "tool_verified_status": "verified",
+    "tool_verified_at": "2026-03-14T21:00:38.773361+00:00",
+    "tool_verified_tool": "get_latest_version",
+    "tool_verified_reason": "tools/list returned valid tools via direct MCP connection"
+  },
+  "metadata": {
+    "server_id": 270,
+    "server_name": "Javadocs",
+    "rank_by_usage": null,
+    "usage_count": null,
+    "original_file": "awesome-remote-mcp-servers",
+    "mode": "gateway",
+    "timestamp": 1773522038,
+    "remote_server_response": {
+      "url": "https://www.javadocs.dev/mcp",
+      "is_success": true,
+      "error": null,
+      "tools": [
+        {
+          "name": "get_latest_version",
+          "description": "Get the latest version of a Java library"
+        },
+        {
+          "name": "get_javadoc_content_list",
+          "description": "Get list of Javadoc content"
+        },
+        {
+          "name": "get_javadoc_symbol_contents",
+          "description": "Get Javadoc symbol contents"
+        },
+        {
+          "name": "get_source_contents",
+          "description": "Get source code contents"
+        },
+        {
+          "name": "list_source_contents",
+          "description": "List source code contents"
+        },
+        {
+          "name": "search_javadoc_symbols",
+          "description": "Search Javadoc symbols"
+        }
+      ],
+      "tool_count": 6,
+      "tool_names": [
+        "get_latest_version",
+        "get_javadoc_content_list",
+        "get_javadoc_symbol_contents",
+        "get_source_contents",
+        "list_source_contents",
+        "search_javadoc_symbols"
+      ]
+    },
+    "server_info_crawled": {
+      "name": "Javadocs",
+      "overview": "Java library documentation server with 6 tools",
+      "remote_or_local": "Remote",
+      "python_sdk_url": "https://www.javadocs.dev/mcp"
+    }
+  }
+}

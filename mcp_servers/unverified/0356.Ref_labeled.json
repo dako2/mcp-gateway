@@ -1,0 +1,67 @@
+{
+  "labels": {
+    "analysis": "The MCP Server described provides tools for searching and retrieving documentation from APIs, services, libraries, and web pages. Its primary functionality is enabling fast, token-efficient access to technical documentation with both semantic and full-text search capabilities. This is particularly useful for developers and AI agents needing precise, up-to-date information for coding tasks. The server includes tools for searching documentation and reading URL content in markdown format, which facilitates easier integration with other AI coding tools or agents.",
+    "reasoning": "The primary label \"Web Search & Research\" was chosen because the server's core functionality revolves around searching for and retrieving information from documentation and web pages, which aligns with this category. The secondary label \"API Integration\" was selected because the server is particularly tailored for accessing and processing technical documentation, which often relates to API functionality. The secondary label \"Development Tools\" was also chosen due to the server's clear focus on aiding developers and AI agents with coding-related information.",
+    "primary_label": "Web Search & Research",
+    "secondary_labels": [
+      "API Integration",
+      "Development Tools"
+    ],
+    "custom_label": "Technical Documentation Search",
+    "is_connected": false,
+    "is_remote_tool_valid": false,
+    "featured_server": false,
+    "tool_verified": false,
+    "tool_verified_status": "broken",
+    "tool_verified_at": "2026-03-14T20:39:42.912625+00:00",
+    "tool_verified_tool": null,
+    "tool_verified_reason": "no tools defined"
+  },
+  "metadata": {
+    "server_id": 356,
+    "server_name": "Ref",
+    "rank_by_usage": 398,
+    "usage_count": "59",
+    "original_file": "toucan_live#@ref-tools/ref-tools-mcp",
+    "mode": "toucan",
+    "timestamp": 1772876338,
+    "remote_server_response": {
+      "url": "https://server.smithery.ai/@ref-tools/ref-tools-mcp/mcp",
+      "is_success": true,
+      "error": null,
+      "tools": [],
+      "tool_count": 0,
+      "tool_names": []
+    },
+    "server_info_crawled": {
+      "id": 356,
+      "name": "Ref",
+      "author": "",
+      "overview": "Provide your AI coding tools or agents with fast, token-efficient access to up-to-date technical documentation for APIs, services, libraries, and more. Enable powerful search and reading capabilities to help your agent find precise information from documentation and web pages.\n\nLearn more: https://ref.tools\n\nHow is this different from Context7? In a few ways!\nContext7 only indexes public Github repos where as Ref indexes public Github repos as well as documentation sites. Ref is like github + web search tuned for code documentation context.\nRef provides semantic search AND full-text search so results for specific phrases or terms are more accurate\nRef requires only a single search tool call to load documentation context and also provides a read_url tool for on-the-fly scraping\nRef requires you sign up for a free account.\nWhat's next? We're working to allow building private context search indices from private Github repos, PDFs and more. Reach out to hello@ref.tools if you're interested in joining the beta!",
+      "repository_url": "",
+      "homepage": "https://server.smithery.ai/@ref-tools/ref-tools-mcp/mcp",
+      "remote_or_local": "Remote",
+      "license": "",
+      "usage_count": "59",
+      "success_rate": "Not available",
+      "tags": [
+        "search",
+        "web",
+        "api",
+        "mcp"
+      ],
+      "categories": [
+        "search",
+        "api"
+      ],
+      "tools_count": 0,
+      "tools": [],
+      "python_sdk_url": "https://server.smithery.ai/@ref-tools/ref-tools-mcp/mcp",
+      "python_sdk_config": "{\"debug\": false}"
+    },
+    "source_filename": "0356.Ref_labeled.json",
+    "processed_timestamp": 1772876338,
+    "processing_mode": "toucan",
+    "rank": 398
+  }
+}

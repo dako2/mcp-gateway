@@ -1,0 +1,114 @@
+{
+  "labels": {
+    "analysis": "The MCP Server \"PDF Kit\" provides 1 tools focused on file management tasks. Core capabilities include creation and generation. Key tools: basestation.create_autofill_job.",
+    "reasoning": "Primary label \"File Management\" assigned based on strong keyword matches in tool names and descriptions: pdf.",
+    "primary_label": "File Management",
+    "secondary_labels": [],
+    "custom_label": "Generation - PDF Kit",
+    "is_connected": true,
+    "is_remote_tool_valid": true,
+    "featured_server": false,
+    "tool_verified": true,
+    "tool_verified_status": "verified",
+    "tool_verified_at": "2026-03-14T20:38:24.907000+00:00",
+    "tool_verified_tool": "basestation.create_autofill_job",
+    "tool_verified_reason": "response received"
+  },
+  "metadata": {
+    "server_id": 258,
+    "server_name": "PDF Kit",
+    "rank_by_usage": 259,
+    "usage_count": "10",
+    "original_file": "tools.json#258",
+    "mode": "gateway",
+    "timestamp": 1772876338,
+    "remote_server_response": {
+      "url": "https://mcp.hellobasestation.com/mcp",
+      "is_success": true,
+      "error": null,
+      "tools": [
+        {
+          "name": "basestation.create_autofill_job",
+          "description": "Create a PDF form filling job using AI to automatically fill out forms based on natural language instructions.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "instructions": {
+                "type": "string",
+                "description": "Natural language instructions for how to fill the form"
+              },
+              "formFile": {
+                "type": "string",
+                "description": "Base64-encoded PDF file to fill"
+              },
+              "callbackUrl": {
+                "type": "string",
+                "description": "Optional callback URL for job completion notification"
+              }
+            },
+            "required": [
+              "instructions",
+              "formFile"
+            ]
+          }
+        }
+      ],
+      "tool_count": 1,
+      "tool_names": [
+        "basestation.create_autofill_job"
+      ]
+    },
+    "server_info_crawled": {
+      "id": 258,
+      "name": "PDF Kit",
+      "author": "",
+      "overview": "PDF Kit - File Management server with 1 tools. The MCP Server \"PDF Kit\" provides 1 tools focused on file management tasks. Core capabilities includ",
+      "repository_url": "",
+      "homepage": "https://mcp.hellobasestation.com/mcp",
+      "remote_or_local": "Remote",
+      "license": "",
+      "usage_count": "10",
+      "success_rate": "100%",
+      "tags": [
+        "file-management"
+      ],
+      "categories": [
+        "file management"
+      ],
+      "tools_count": 1,
+      "tools": [
+        {
+          "name": "basestation.create_autofill_job",
+          "description": "Create a PDF form filling job using AI to automatically fill out forms based on natural language instructions.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "instructions": {
+                "type": "string",
+                "description": "Natural language instructions for how to fill the form"
+              },
+              "formFile": {
+                "type": "string",
+                "description": "Base64-encoded PDF file to fill"
+              },
+              "callbackUrl": {
+                "type": "string",
+                "description": "Optional callback URL for job completion notification"
+              }
+            },
+            "required": [
+              "instructions",
+              "formFile"
+            ]
+          }
+        }
+      ],
+      "python_sdk_url": "https://mcp.hellobasestation.com/mcp",
+      "python_sdk_config": "{\"debug\": false}"
+    },
+    "source_filename": "0258.PDF-Kit_labeled.json",
+    "processed_timestamp": 1772876338,
+    "processing_mode": "gateway",
+    "rank": 259
+  }
+}

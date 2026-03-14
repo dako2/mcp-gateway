@@ -1,0 +1,1887 @@
+{
+  "timestamp": "2026-03-14T20:40:23.020113+00:00",
+  "total_verified": 188,
+  "total_tools": 2025,
+  "servers": [
+    {
+      "server_name": "Contabo (VPS) MCP Server",
+      "server_url": "https://contabo.run.mcp.com.ai/mcp",
+      "tool_count": 124,
+      "tested_tool": "tool_search",
+      "latency_ms": 1809,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0000.Contabo-VPS-MCP-Server_labeled.json"
+    },
+    {
+      "server_name": "JobDoneBot",
+      "server_url": "https://jobdonebot.com/api/mcp",
+      "tool_count": 106,
+      "tested_tool": "csv-query",
+      "latency_ms": 1382,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0004.JobDoneBot_labeled.json"
+    },
+    {
+      "server_name": "Bitrise",
+      "server_url": "https://mcp.bitrise.io",
+      "tool_count": 67,
+      "tested_tool": "list_apps",
+      "latency_ms": 1374,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0005.Bitrise_labeled.json"
+    },
+    {
+      "server_name": "io.github.bnovik0v/moltdj",
+      "server_url": "https://api.moltdj.com/mcp",
+      "tool_count": 60,
+      "tested_tool": "get_trending",
+      "latency_ms": 2552,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0006.iogithubbnovik0vmoltdj_labeled.json"
+    },
+    {
+      "server_name": "Fabric Marketplace",
+      "server_url": "https://fabric-api-393345198409.us-west1.run.app/mcp",
+      "tool_count": 53,
+      "tested_tool": "fabric_get_meta",
+      "latency_ms": 1948,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0009.Fabric-Marketplace_labeled.json"
+    },
+    {
+      "server_name": "com.robtex/mcp",
+      "server_url": "https://mcp.robtex.com/mcp",
+      "tool_count": 49,
+      "tested_tool": "lookup_dns",
+      "latency_ms": 1739,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0010.comrobtexmcp_labeled.json"
+    },
+    {
+      "server_name": "MLB Stats Server",
+      "server_url": "https://server.smithery.ai/@etweisberg/mlb-mcp/mcp",
+      "tool_count": 46,
+      "tested_tool": "get_schedule",
+      "latency_ms": 2302,
+      "mode": "gateway",
+      "is_smithery": true,
+      "file": "0012.MLB-Stats-Server_labeled.json"
+    },
+    {
+      "server_name": "Resonance Reward Agent",
+      "server_url": "https://agent.rsnc.network/mcp",
+      "tool_count": 45,
+      "tested_tool": "rsnc_agent_list_brands",
+      "latency_ms": 2587,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0013.Resonance-Reward-Agent_labeled.json"
+    },
+    {
+      "server_name": "RationalBloks",
+      "server_url": "https://mcp.rationalbloks.com/mcp",
+      "tool_count": 44,
+      "tested_tool": "list_projects",
+      "latency_ms": 2095,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0015.RationalBloks_labeled.json"
+    },
+    {
+      "server_name": "io.github.davidmosiah/delx-mcp-a2a",
+      "server_url": "https://api.delx.ai/v1/mcp",
+      "tool_count": 43,
+      "tested_tool": "get_affirmation",
+      "latency_ms": 2655,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0019.iogithubdavidmosiahdelx-mcp-a2a_labeled.json"
+    },
+    {
+      "server_name": "app.himalayas/mcp",
+      "server_url": "https://mcp.himalayas.app/mcp",
+      "tool_count": 41,
+      "tested_tool": "get_jobs",
+      "latency_ms": 1211,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0020.apphimalayasmcp_labeled.json"
+    },
+    {
+      "server_name": "IO Aerospace MCP Server",
+      "server_url": "https://mcp.io-aerospace.org",
+      "tool_count": 37,
+      "tested_tool": "get_deep_space_station_planetodetic_coordinates",
+      "latency_ms": 640,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0021.IO-Aerospace-MCP-Server_labeled.json"
+    },
+    {
+      "server_name": "Payram Helper MCP Server",
+      "server_url": "https://mcp.payram.com/mcp",
+      "tool_count": 36,
+      "tested_tool": "get_payram_links",
+      "latency_ms": 442,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0022.Payram-Helper-MCP-Server_labeled.json"
+    },
+    {
+      "server_name": "PayRam Helper MCP Server",
+      "server_url": "https://mcp.payram.com",
+      "tool_count": 36,
+      "tested_tool": "get_payram_links",
+      "latency_ms": 401,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0023.PayRam-Helper-MCP-Server_labeled.json"
+    },
+    {
+      "server_name": "ComOS Federation Gateway",
+      "server_url": "https://mcp.comos-gateway.com/mcp",
+      "tool_count": 35,
+      "tested_tool": "federation_list_tenants",
+      "latency_ms": 605,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0025.ComOS-Federation-Gateway_labeled.json"
+    },
+    {
+      "server_name": "Riksdag & Regering MCP",
+      "server_url": "https://riksdag-regering-ai.onrender.com/mcp",
+      "tool_count": 32,
+      "tested_tool": "search_ledamoter",
+      "latency_ms": 11900,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0026.Riksdag-Regering-MCP_labeled.json"
+    },
+    {
+      "server_name": "Human Pages",
+      "server_url": "https://humanpages.ai/mcp",
+      "tool_count": 31,
+      "tested_tool": "search_humans",
+      "latency_ms": 785,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0027.Human-Pages_labeled.json"
+    },
+    {
+      "server_name": "Cortex",
+      "server_url": "https://mcp.cortex.io/mcp",
+      "tool_count": 30,
+      "tested_tool": "get_more_tools",
+      "latency_ms": 214,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0029.Cortex_labeled.json"
+    },
+    {
+      "server_name": "AgentDilemma",
+      "server_url": "https://www.agentdilemma.com/mcp",
+      "tool_count": 26,
+      "tested_tool": "get_recommendations",
+      "latency_ms": 526,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0034.AgentDilemma_labeled.json"
+    },
+    {
+      "server_name": "Service Public France",
+      "server_url": "https://mcp-service-public.nhaultcoeur.workers.dev/mcp",
+      "tool_count": 26,
+      "tested_tool": "rechercher_service_local",
+      "latency_ms": 1641,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0035.Service-Public-France_labeled.json"
+    },
+    {
+      "server_name": "Nansen",
+      "server_url": "https://mcp.nansen.ai/ra/mcp",
+      "tool_count": 24,
+      "tested_tool": "general_search",
+      "latency_ms": 419,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0036.Nansen_labeled.json"
+    },
+    {
+      "server_name": "SubwayInfo NYC",
+      "server_url": "https://subwayinfo.nyc/mcp",
+      "tool_count": 22,
+      "tested_tool": "mta_list_alerts",
+      "latency_ms": 755,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0037.SubwayInfo-NYC_labeled.json"
+    },
+    {
+      "server_name": "Pensiata - Bulgarian Pension Fund Analytics",
+      "server_url": "https://mcp.pensiata.me/mcp",
+      "tool_count": 21,
+      "tested_tool": "list_managers",
+      "latency_ms": 1553,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0038.Pensiata---Bulgarian-Pension-Fund-Analytics_labeled.json"
+    },
+    {
+      "server_name": "trade.neglect/mcp-server",
+      "server_url": "https://api.neglect.trade/mcp",
+      "tool_count": 20,
+      "tested_tool": "get-mcp-config",
+      "latency_ms": 357,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0040.tradeneglectmcp-server_labeled.json"
+    },
+    {
+      "server_name": "WaveGuard",
+      "server_url": "https://gpartin--waveguard-api-fastapi-app.modal.run/v2/mcp",
+      "tool_count": 19,
+      "tested_tool": "waveguard_health",
+      "latency_ms": 7032,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0041.WaveGuard_labeled.json"
+    },
+    {
+      "server_name": "WaveGuard",
+      "server_url": "https://gpartin--waveguard-api-fastapi-app.modal.run/mcp",
+      "tool_count": 19,
+      "tested_tool": "waveguard_health",
+      "latency_ms": 7046,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0042.WaveGuard_labeled.json"
+    },
+    {
+      "server_name": "io.github.vinaybhosle/freightgate-mcp-server",
+      "server_url": "https://mcp.shippingrates.org/mcp",
+      "tool_count": 19,
+      "tested_tool": "shippingrates_search",
+      "latency_ms": 980,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0043.iogithubvinaybhoslefreightgate-mcp-server_labeled.json"
+    },
+    {
+      "server_name": "io.github.cesco345/capital-equipment",
+      "server_url": "https://us-central1-capital-equipment-dev.cloudfunctions.net/mcpServer/mcp",
+      "tool_count": 19,
+      "tested_tool": "search_equipment",
+      "latency_ms": 268,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0046.iogithubcesco345capital-equipment_labeled.json"
+    },
+    {
+      "server_name": "mcp.myshipi.com",
+      "server_url": "https://mcp.myshipi.com/api/mcp",
+      "tool_count": 18,
+      "tested_tool": "list_shipments",
+      "latency_ms": 836,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0048.server-48_labeled.json"
+    },
+    {
+      "server_name": "Math MCP Learning",
+      "server_url": "https://math-mcp.fastmcp.app/mcp",
+      "tool_count": 17,
+      "tested_tool": "calculate",
+      "latency_ms": 740,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0050.Math-MCP-Learning_labeled.json"
+    },
+    {
+      "server_name": "Sats4AI - Bitcoin-Powered AI Tools",
+      "server_url": "https://sats4ai.com/api/mcp",
+      "tool_count": 17,
+      "tested_tool": "list_models",
+      "latency_ms": 359,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0051.Sats4AI---Bitcoin-Powered-AI-Tools_labeled.json"
+    },
+    {
+      "server_name": "CrossFin",
+      "server_url": "https://crossfin.dev/api/mcp",
+      "tool_count": 16,
+      "tested_tool": "get_kimchi_premium",
+      "latency_ms": 1494,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0052.CrossFin_labeled.json"
+    },
+    {
+      "server_name": "Kael MCP Server",
+      "server_url": "https://www.kael.ink/mcp/stream",
+      "tool_count": 16,
+      "tested_tool": "web_fetch",
+      "latency_ms": 875,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0053.Kael-MCP-Server_labeled.json"
+    },
+    {
+      "server_name": "com.blockscout/mcp-server",
+      "server_url": "https://mcp.blockscout.com/mcp",
+      "tool_count": 16,
+      "tested_tool": "get_chains_list",
+      "latency_ms": 1790,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0054.comblockscoutmcp-server_labeled.json"
+    },
+    {
+      "server_name": "Hive Intelligence",
+      "server_url": "https://hiveintelligence.xyz/mcp",
+      "tool_count": 16,
+      "tested_tool": "get_market_and_price_endpoints",
+      "latency_ms": 676,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0055.Hive-Intelligence_labeled.json"
+    },
+    {
+      "server_name": "io.github.klever-io/mcp-klever-vm",
+      "server_url": "https://mcp.klever.org/mcp",
+      "tool_count": 16,
+      "tested_tool": "query_context",
+      "latency_ms": 718,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0057.iogithubklever-iomcp-klever-vm_labeled.json"
+    },
+    {
+      "server_name": "io.github.gosodax/builders-mcp",
+      "server_url": "https://builders.sodax.com/mcp",
+      "tool_count": 15,
+      "tested_tool": "sodax_get_supported_chains",
+      "latency_ms": 2131,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0060.iogithubgosodaxbuilders-mcp_labeled.json"
+    },
+    {
+      "server_name": "biz.icecat/mcp",
+      "server_url": "https://mcp.icecat.biz",
+      "tool_count": 15,
+      "tested_tool": "product_analytics",
+      "latency_ms": 650,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0061.bizicecatmcp_labeled.json"
+    },
+    {
+      "server_name": "Canvs",
+      "server_url": "https://app.canvs.io/mcp",
+      "tool_count": 13,
+      "tested_tool": "get_guide",
+      "latency_ms": 358,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0068.Canvs_labeled.json"
+    },
+    {
+      "server_name": "Senzing",
+      "server_url": "https://mcp.senzing.com/mcp",
+      "tool_count": 13,
+      "tested_tool": "find_examples",
+      "latency_ms": 273,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0069.Senzing_labeled.json"
+    },
+    {
+      "server_name": "md.install/try",
+      "server_url": "https://install.md/mcp/try",
+      "tool_count": 13,
+      "tested_tool": "list_projects",
+      "latency_ms": 1274,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0070.mdinstalltry_labeled.json"
+    },
+    {
+      "server_name": "Intelligence Aeternum",
+      "server_url": "https://data-portal-172867820131.us-west1.run.app/mcp",
+      "tool_count": 13,
+      "tested_tool": "get_agent_guide",
+      "latency_ms": 163,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0071.Intelligence-Aeternum_labeled.json"
+    },
+    {
+      "server_name": "com.tableall/mcp",
+      "server_url": "https://mcp.tableall.com/sse",
+      "tool_count": 12,
+      "tested_tool": "search_restaurants",
+      "latency_ms": 2397,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0072.comtableallmcp_labeled.json"
+    },
+    {
+      "server_name": "Brandomica",
+      "server_url": "https://www.brandomica.com/mcp",
+      "tool_count": 12,
+      "tested_tool": "brandomica_check_all",
+      "latency_ms": 2628,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0073.Brandomica_labeled.json"
+    },
+    {
+      "server_name": "cloud.dchub/mcp-server",
+      "server_url": "https://dchub.cloud/mcp",
+      "tool_count": 11,
+      "tested_tool": "search_facilities",
+      "latency_ms": 2118,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0075.clouddchubmcp-server_labeled.json"
+    },
+    {
+      "server_name": "com.mcpcalc/calculator",
+      "server_url": "https://mcpcalc.com/api/v1/mcp",
+      "tool_count": 10,
+      "tested_tool": "list_calculators",
+      "latency_ms": 794,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0077.commcpcalccalculator_labeled.json"
+    },
+    {
+      "server_name": "Discovery Engine",
+      "server_url": "https://disco.leap-labs.com/mcp",
+      "tool_count": 10,
+      "tested_tool": "discovery_list_plans",
+      "latency_ms": 1587,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0078.Discovery-Engine_labeled.json"
+    },
+    {
+      "server_name": "Push Realm",
+      "server_url": "https://api.pushrealm.com/mcp/sse",
+      "tool_count": 10,
+      "tested_tool": "search_learnings",
+      "latency_ms": 664,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0079.Push-Realm_labeled.json"
+    },
+    {
+      "server_name": "io.github.f/prompts.chat-mcp",
+      "server_url": "https://prompts.chat/api/mcp",
+      "tool_count": 10,
+      "tested_tool": "search_prompts",
+      "latency_ms": 846,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0080.iogithubfpromptschat-mcp_labeled.json"
+    },
+    {
+      "server_name": "Push Realm",
+      "server_url": "https://api.pushrealm.com/mcp",
+      "tool_count": 10,
+      "tested_tool": "search_learnings",
+      "latency_ms": 816,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0081.Push-Realm_labeled.json"
+    },
+    {
+      "server_name": "Skiplagged MCP",
+      "server_url": "https://mcp.skiplagged.com/mcp",
+      "tool_count": 10,
+      "tested_tool": "sk_faq_search",
+      "latency_ms": 2257,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0082.Skiplagged-MCP_labeled.json"
+    },
+    {
+      "server_name": "io.github.365xbusiness/vigo-mcp",
+      "server_url": "https://lsoatzzwpltpydwyfqqv.supabase.co/functions/v1/vigo-mcp",
+      "tool_count": 10,
+      "tested_tool": "query_regulation",
+      "latency_ms": 2799,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0083.iogithub365xbusinessvigo-mcp_labeled.json"
+    },
+    {
+      "server_name": "Philidor DeFi Vault Risk Analytics",
+      "server_url": "https://mcp.philidor.io/api/mcp",
+      "tool_count": 10,
+      "tested_tool": "search_vaults",
+      "latency_ms": 1118,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0084.Philidor-DeFi-Vault-Risk-Analytics_labeled.json"
+    },
+    {
+      "server_name": "io.github.haim-barad/drinkedin",
+      "server_url": "https://ai.drinkedin.net/mcp",
+      "tool_count": 10,
+      "tested_tool": "drinkedin_list_venues",
+      "latency_ms": 565,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0086.iogithubhaim-baraddrinkedin_labeled.json"
+    },
+    {
+      "server_name": "Moneychoice_Mcp",
+      "server_url": "https://api.moneychoice.us/mcp",
+      "tool_count": 10,
+      "tested_tool": "forecast_commodities",
+      "latency_ms": 373,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0087.Moneychoice_Mcp_labeled.json"
+    },
+    {
+      "server_name": "com.vaadin/docs-mcp",
+      "server_url": "https://mcp.vaadin.com/docs",
+      "tool_count": 9,
+      "tested_tool": "get_vaadin_version",
+      "latency_ms": 429,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0088.comvaadindocs-mcp_labeled.json"
+    },
+    {
+      "server_name": "Renzo MCP Server",
+      "server_url": "https://mcp.renzoprotocol.com/mcp",
+      "tool_count": 9,
+      "tested_tool": "get_supported_chains",
+      "latency_ms": 1994,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0091.Renzo-MCP-Server_labeled.json"
+    },
+    {
+      "server_name": "Tarteel MCP Server",
+      "server_url": "https://mcp.tarteel.ai/mcp",
+      "tool_count": 9,
+      "tested_tool": "list_reciters",
+      "latency_ms": 222,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0092.Tarteel-MCP-Server_labeled.json"
+    },
+    {
+      "server_name": "PartsTable",
+      "server_url": "https://mcp.partstable.com/mcp",
+      "tool_count": 9,
+      "tested_tool": "search-parts",
+      "latency_ms": 683,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0094.PartsTable_labeled.json"
+    },
+    {
+      "server_name": "Canvas MCP",
+      "server_url": "https://server.smithery.ai/@aryankeluskar/canvas-mcp/mcp",
+      "tool_count": 9,
+      "tested_tool": "get_courses",
+      "latency_ms": 426,
+      "mode": "gateway",
+      "is_smithery": true,
+      "file": "0095.Canvas-MCP_labeled.json"
+    },
+    {
+      "server_name": "Deeprank Ai Docs Deeprank Mcp",
+      "server_url": "https://mcp.deeprank.ai/mcp",
+      "tool_count": 8,
+      "tested_tool": "get_deeprank_methodology",
+      "latency_ms": 577,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0097.Deeprank-Ai-Docs-Deeprank-Mcp_labeled.json"
+    },
+    {
+      "server_name": "ai.filegraph/document-processing",
+      "server_url": "https://api.filegraph.ai/mcp",
+      "tool_count": 8,
+      "tested_tool": "filegraph_api_overview",
+      "latency_ms": 575,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0098.aifilegraphdocument-processing_labeled.json"
+    },
+    {
+      "server_name": "OpenZeppelin Cairo Contracts",
+      "server_url": "https://mcp.openzeppelin.com/contracts/cairo/mcp",
+      "tool_count": 8,
+      "tested_tool": "cairo-account",
+      "latency_ms": 366,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0102.OpenZeppelin-Cairo-Contracts_labeled.json"
+    },
+    {
+      "server_name": "OpenZeppelin Solidity Contracts",
+      "server_url": "https://mcp.openzeppelin.com/contracts/solidity/mcp",
+      "tool_count": 8,
+      "tested_tool": "solidity-account",
+      "latency_ms": 338,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0103.OpenZeppelin-Solidity-Contracts_labeled.json"
+    },
+    {
+      "server_name": "Lenny Rachitsky Podcast Transcripts MCP Server",
+      "server_url": "https://lenny-rachitsky.run.mcp.com.ai/mcp",
+      "tool_count": 8,
+      "tested_tool": "getEpisodes",
+      "latency_ms": 1844,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0104.Lenny-Rachitsky-Podcast-Transcripts-MCP-Server_labeled.json"
+    },
+    {
+      "server_name": "io.sentinelsignal/scoring",
+      "server_url": "https://mcp.sentinelsignal.io/mcp",
+      "tool_count": 8,
+      "tested_tool": "get_limits",
+      "latency_ms": 6262,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0105.iosentinelsignalscoring_labeled.json"
+    },
+    {
+      "server_name": "eu.ansvar/us-law-mcp",
+      "server_url": "https://us-law-mcp.vercel.app/mcp",
+      "tool_count": 8,
+      "tested_tool": "list_sources",
+      "latency_ms": 384,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0107.euansvarus-law-mcp_labeled.json"
+    },
+    {
+      "server_name": "OpenClaw MCP Ecosystem",
+      "server_url": "https://moltbook-publisher-mcp.yagami8095.workers.dev/mcp",
+      "tool_count": 8,
+      "tested_tool": "get_trending_topics",
+      "latency_ms": 512,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0108.OpenClaw-MCP-Ecosystem_labeled.json"
+    },
+    {
+      "server_name": "ATOM Pricing Intelligence",
+      "server_url": "https://atom-mcp-server-production.up.railway.app/mcp",
+      "tool_count": 8,
+      "tested_tool": "search_models",
+      "latency_ms": 776,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0109.ATOM-Pricing-Intelligence_labeled.json"
+    },
+    {
+      "server_name": "com.textarttools/textarttools-mcp",
+      "server_url": "https://mcp.textarttools.com/sse",
+      "tool_count": 7,
+      "tested_tool": "list_available_styles",
+      "latency_ms": 1153,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0110.comtextarttoolstextarttools-mcp_labeled.json"
+    },
+    {
+      "server_name": "AutEng Document Publisher",
+      "server_url": "https://auteng.ai/mcp",
+      "tool_count": 7,
+      "tested_tool": "auteng_docs_list",
+      "latency_ms": 1205,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0111.AutEng-Document-Publisher_labeled.json"
+    },
+    {
+      "server_name": "com.textarttools/textarttools-mcp",
+      "server_url": "https://mcp.textarttools.com",
+      "tool_count": 7,
+      "tested_tool": "list_available_styles",
+      "latency_ms": 1116,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0112.comtextarttoolstextarttools-mcp_labeled.json"
+    },
+    {
+      "server_name": "Partle Marketplace",
+      "server_url": "https://partle.rubenayla.xyz/mcp",
+      "tool_count": 7,
+      "tested_tool": "search_stores",
+      "latency_ms": 1242,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0113.Partle-Marketplace_labeled.json"
+    },
+    {
+      "server_name": "WebZum - AI Website Generator",
+      "server_url": "https://webzum.com/api/mcp",
+      "tool_count": 7,
+      "tested_tool": "get_site_status",
+      "latency_ms": 750,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0114.WebZum---AI-Website-Generator_labeled.json"
+    },
+    {
+      "server_name": "AutEng MCP - Markdown Publishing & Document Share Links",
+      "server_url": "https://auteng.ai/mcp/docs",
+      "tool_count": 7,
+      "tested_tool": "auteng_docs_list",
+      "latency_ms": 968,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0115.AutEng-MCP---Markdown-Publishing-Document-Share-Links_labeled.json"
+    },
+    {
+      "server_name": "io.github.hebcal/hebcal",
+      "server_url": "https://www.hebcal.com/mcp",
+      "tool_count": 7,
+      "tested_tool": "convert-gregorian-to-hebrew",
+      "latency_ms": 327,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0117.iogithubhebcalhebcal_labeled.json"
+    },
+    {
+      "server_name": "io.github.Vonage/vonage-documentation-mcp",
+      "server_url": "https://documentation-mcp.vonage.dev/mcp",
+      "tool_count": 7,
+      "tested_tool": "vonage_docs_search",
+      "latency_ms": 7948,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0118.iogithubVonagevonage-documentation-mcp_labeled.json"
+    },
+    {
+      "server_name": "AIStatusDashboard",
+      "server_url": "https://aistatusdashboard.com/mcp",
+      "tool_count": 7,
+      "tested_tool": "status.get_health_matrix",
+      "latency_ms": 340,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0120.AIStatusDashboard_labeled.json"
+    },
+    {
+      "server_name": "SaaSforIT Directory",
+      "server_url": "https://fuechvghummojkgliyha.supabase.co/functions/v1/mcp",
+      "tool_count": 7,
+      "tested_tool": "search_saas",
+      "latency_ms": 450,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0121.SaaSforIT-Directory_labeled.json"
+    },
+    {
+      "server_name": "Philadelphia Restoration",
+      "server_url": "https://mcp.philadelphiarestoration.org/mcp",
+      "tool_count": 7,
+      "tested_tool": "get_local_info",
+      "latency_ms": 203,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0122.Philadelphia-Restoration_labeled.json"
+    },
+    {
+      "server_name": "La Palma 24 - Vacation Rentals",
+      "server_url": "https://mcp.la-palma24.net",
+      "tool_count": 6,
+      "tested_tool": "listar_propiedades",
+      "latency_ms": 1169,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0125.La-Palma-24---Vacation-Rentals_labeled.json"
+    },
+    {
+      "server_name": "searchcode",
+      "server_url": "https://api.searchcode.com/v1/mcp",
+      "tool_count": 6,
+      "tested_tool": "searchcode_get_findings",
+      "latency_ms": 681,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0126.searchcode_labeled.json"
+    },
+    {
+      "server_name": "com.exoquery/mcp-server",
+      "server_url": "https://backend.exoquery.com/mcp",
+      "tool_count": 6,
+      "tested_tool": "listExoQueryDocs",
+      "latency_ms": 537,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0127.comexoquerymcp-server_labeled.json"
+    },
+    {
+      "server_name": "io.github.Hoya25/nctr-mcp-server",
+      "server_url": "https://yhwcaodofmbusjurawhp.supabase.co/functions/v1/mcp/rpc",
+      "tool_count": 6,
+      "tested_tool": "search_bounties",
+      "latency_ms": 525,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0128.iogithubHoya25nctr-mcp-server_labeled.json"
+    },
+    {
+      "server_name": "ProofX - Content Protection for Creators",
+      "server_url": "https://proofx-mcp.fly.dev/mcp",
+      "tool_count": 6,
+      "tested_tool": "get_creator",
+      "latency_ms": 546,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0129.ProofX---Content-Protection-for-Creators_labeled.json"
+    },
+    {
+      "server_name": "OpenClaw MCP Ecosystem",
+      "server_url": "https://openclaw-intel-mcp.yagami8095.workers.dev/mcp",
+      "tool_count": 6,
+      "tested_tool": "get_ai_market_report",
+      "latency_ms": 1730,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0130.OpenClaw-MCP-Ecosystem_labeled.json"
+    },
+    {
+      "server_name": "xProof",
+      "server_url": "https://xproof.app/mcp",
+      "tool_count": 6,
+      "tested_tool": "get_proof",
+      "latency_ms": 388,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0133.xProof_labeled.json"
+    },
+    {
+      "server_name": "ai.meetlark/mcp-server",
+      "server_url": "https://meetlark.ai/mcp",
+      "tool_count": 6,
+      "tested_tool": "meetlark_get_results",
+      "latency_ms": 643,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0135.aimeetlarkmcp-server_labeled.json"
+    },
+    {
+      "server_name": "io.github.mcpcentral-io/mcp-time",
+      "server_url": "https://mcp.time.mcpcentral.io",
+      "tool_count": 6,
+      "tested_tool": "get_timestamp",
+      "latency_ms": 188,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0137.iogithubmcpcentral-iomcp-time_labeled.json"
+    },
+    {
+      "server_name": "Ragmap",
+      "server_url": "https://ragmap-api.web.app/mcp",
+      "tool_count": 6,
+      "tested_tool": "rag_find_servers",
+      "latency_ms": 4867,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0138.Ragmap_labeled.json"
+    },
+    {
+      "server_name": "io.github.Bluecraft-AI/machfive",
+      "server_url": "https://mcp.machfive.io/mcp",
+      "tool_count": 6,
+      "tested_tool": "list_campaigns",
+      "latency_ms": 297,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0139.iogithubBluecraft-AImachfive_labeled.json"
+    },
+    {
+      "server_name": "OpenClaw MCP Ecosystem",
+      "server_url": "https://prompt-enhancer-mcp.yagami8095.workers.dev/mcp",
+      "tool_count": 6,
+      "tested_tool": "convert_prompt_format",
+      "latency_ms": 565,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0140.OpenClaw-MCP-Ecosystem_labeled.json"
+    },
+    {
+      "server_name": "AgentBuilders",
+      "server_url": "https://api.agentbuilders.app/mcp",
+      "tool_count": 6,
+      "tested_tool": "list_apps",
+      "latency_ms": 190,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0141.AgentBuilders_labeled.json"
+    },
+    {
+      "server_name": "MTG Chinese Card Database - 大学院废墟(sbwsz.com)",
+      "server_url": "https://server.smithery.ai/@lieyanqzu/sbwsz-mcp/mcp",
+      "tool_count": 6,
+      "tested_tool": "get_sets",
+      "latency_ms": 2617,
+      "mode": "gateway",
+      "is_smithery": true,
+      "file": "0143.MTG-Chinese-Card-Database---大学院废墟sbwszcom_labeled.json"
+    },
+    {
+      "server_name": "io.github.Servicedsi/123elec-mcp",
+      "server_url": "https://mcp.123elec.com/mcp",
+      "tool_count": 5,
+      "tested_tool": "get_categories",
+      "latency_ms": 1205,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0146.iogithubServicedsi123elec-mcp_labeled.json"
+    },
+    {
+      "server_name": "AWS Knowledge",
+      "server_url": "https://knowledge-mcp.global.api.aws",
+      "tool_count": 5,
+      "tested_tool": "aws___list_regions",
+      "latency_ms": 885,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0150.AWS-Knowledge_labeled.json"
+    },
+    {
+      "server_name": "TweekIT MCP Server",
+      "server_url": "https://mcp.tweekit.io/mcp",
+      "tool_count": 5,
+      "tested_tool": "fetch",
+      "latency_ms": 515,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0151.TweekIT-MCP-Server_labeled.json"
+    },
+    {
+      "server_name": "OpenClaw MCP Ecosystem",
+      "server_url": "https://regex-engine-mcp.yagami8095.workers.dev/mcp",
+      "tool_count": 5,
+      "tested_tool": "regex_explain",
+      "latency_ms": 803,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0152.OpenClaw-MCP-Ecosystem_labeled.json"
+    },
+    {
+      "server_name": "Bitrix MCP",
+      "server_url": "https://mcp-dev.bitrix24.com/mcp",
+      "tool_count": 5,
+      "tested_tool": "bitrix-search",
+      "latency_ms": 832,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0153.Bitrix-MCP_labeled.json"
+    },
+    {
+      "server_name": "Shepherd Bible API",
+      "server_url": "https://bible.simplecohortllc.com/mcp",
+      "tool_count": 5,
+      "tested_tool": "bible_search",
+      "latency_ms": 662,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0154.Shepherd-Bible-API_labeled.json"
+    },
+    {
+      "server_name": "so.jinko/jinko-mcp",
+      "server_url": "https://mcp-remote.jinko.so/mcp",
+      "tool_count": 5,
+      "tested_tool": "get-filtering-metadata",
+      "latency_ms": 426,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0155.sojinkojinko-mcp_labeled.json"
+    },
+    {
+      "server_name": "Cpp_Guidelines_Mcp",
+      "server_url": "https://cpp-style-guide-mcp.fly.dev/mcp",
+      "tool_count": 5,
+      "tested_tool": "check_include_guard",
+      "latency_ms": 329,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0156.Cpp_Guidelines_Mcp_labeled.json"
+    },
+    {
+      "server_name": "Manifold",
+      "server_url": "https://api.manifold.markets/v0/mcp",
+      "tool_count": 5,
+      "tested_tool": "get-bets",
+      "latency_ms": 1294,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0157.Manifold_labeled.json"
+    },
+    {
+      "server_name": "com.homevisto/mcp-server",
+      "server_url": "https://mcp.homevisto.com/mcp",
+      "tool_count": 5,
+      "tested_tool": "list_missions",
+      "latency_ms": 1177,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0158.comhomevistomcp-server_labeled.json"
+    },
+    {
+      "server_name": "ImmoStage Virtual Staging",
+      "server_url": "https://mcp.immostage.ai/api/mcp",
+      "tool_count": 5,
+      "tested_tool": "beautify_floor_plan",
+      "latency_ms": 395,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0159.ImmoStage-Virtual-Staging_labeled.json"
+    },
+    {
+      "server_name": "A2ABench",
+      "server_url": "https://a2abench-mcp-remote-405318049509.us-central1.run.app/mcp",
+      "tool_count": 5,
+      "tested_tool": "search",
+      "latency_ms": 509,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0160.A2ABench_labeled.json"
+    },
+    {
+      "server_name": "A2ABench",
+      "server_url": "https://a2abench-mcp.web.app/mcp",
+      "tool_count": 5,
+      "tested_tool": "search",
+      "latency_ms": 818,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0161.A2ABench_labeled.json"
+    },
+    {
+      "server_name": "OpenClaw MCP Ecosystem",
+      "server_url": "https://agentforge-compare-mcp.yagami8095.workers.dev/mcp",
+      "tool_count": 5,
+      "tested_tool": "get_pricing_comparison",
+      "latency_ms": 467,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0162.OpenClaw-MCP-Ecosystem_labeled.json"
+    },
+    {
+      "server_name": "OpenClaw MCP Ecosystem",
+      "server_url": "https://color-palette-mcp.yagami8095.workers.dev/mcp",
+      "tool_count": 5,
+      "tested_tool": "color_convert",
+      "latency_ms": 805,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0163.OpenClaw-MCP-Ecosystem_labeled.json"
+    },
+    {
+      "server_name": "OpenClaw MCP Ecosystem",
+      "server_url": "https://timestamp-converter-mcp.yagami8095.workers.dev/mcp",
+      "tool_count": 5,
+      "tested_tool": "convert_timestamp",
+      "latency_ms": 575,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0164.OpenClaw-MCP-Ecosystem_labeled.json"
+    },
+    {
+      "server_name": "io.github.Speeron-Polska/speeron-next",
+      "server_url": "https://speeronnext-dev-chat-app.azurewebsites.net/mcp",
+      "tool_count": 4,
+      "tested_tool": "search_rooms_by_area",
+      "latency_ms": 2555,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0168.iogithubSpeeron-Polskaspeeron-next_labeled.json"
+    },
+    {
+      "server_name": "Pyth Pro MCP Server",
+      "server_url": "https://mcp.pyth.network/mcp",
+      "tool_count": 4,
+      "tested_tool": "get_symbols",
+      "latency_ms": 804,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0170.Pyth-Pro-MCP-Server_labeled.json"
+    },
+    {
+      "server_name": "Uno Platform",
+      "server_url": "https://mcp.platform.uno/v1",
+      "tool_count": 4,
+      "tested_tool": "uno_platform_docs_fetch",
+      "latency_ms": 595,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0171.Uno-Platform_labeled.json"
+    },
+    {
+      "server_name": "org.aquaview/aquaview-mcp",
+      "server_url": "https://mcp.aquaview.org/mcp",
+      "tool_count": 4,
+      "tested_tool": "search_datasets",
+      "latency_ms": 407,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0172.orgaquaviewaquaview-mcp_labeled.json"
+    },
+    {
+      "server_name": "zip1.io",
+      "server_url": "https://zip1.io/mcp",
+      "tool_count": 4,
+      "tested_tool": "get_url_stats",
+      "latency_ms": 683,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0173.zip1io_labeled.json"
+    },
+    {
+      "server_name": "Nova Scotia Data Explorer",
+      "server_url": "https://scotiasignal.ca/mcp",
+      "tool_count": 4,
+      "tested_tool": "list_categories",
+      "latency_ms": 2432,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0174.Nova-Scotia-Data-Explorer_labeled.json"
+    },
+    {
+      "server_name": "CleanSlice",
+      "server_url": "https://mcp.cleanslice.org/mcp",
+      "tool_count": 4,
+      "tested_tool": "get-started",
+      "latency_ms": 683,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0176.CleanSlice_labeled.json"
+    },
+    {
+      "server_name": "HefestoAI",
+      "server_url": "https://hefestoai.narapallc.com/api/mcp-protocol",
+      "tool_count": 4,
+      "tested_tool": "pricing",
+      "latency_ms": 1223,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0177.HefestoAI_labeled.json"
+    },
+    {
+      "server_name": "dev.svelte/mcp",
+      "server_url": "https://mcp.svelte.dev/mcp",
+      "tool_count": 4,
+      "tested_tool": "list-sections",
+      "latency_ms": 397,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0178.devsveltemcp_labeled.json"
+    },
+    {
+      "server_name": "SaaS Browser",
+      "server_url": "https://saasbrowser.com/mcp",
+      "tool_count": 4,
+      "tested_tool": "SearchSaasTool",
+      "latency_ms": 563,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0179.SaaS-Browser_labeled.json"
+    },
+    {
+      "server_name": "com.proxylink-mcp/mcp-server",
+      "server_url": "https://proxylink-mcp.com",
+      "tool_count": 4,
+      "tested_tool": "lookup_company",
+      "latency_ms": 851,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0181.comproxylink-mcpmcp-server_labeled.json"
+    },
+    {
+      "server_name": "io.github.tbrajkovic/fixatia-property-search",
+      "server_url": "https://mcp.fixatia.com/api/mcp",
+      "tool_count": 4,
+      "tested_tool": "search_properties",
+      "latency_ms": 381,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0182.iogithubtbrajkovicfixatia-property-search_labeled.json"
+    },
+    {
+      "server_name": "io.github.greetwell/mcp",
+      "server_url": "https://mcp.greetwell.com/mcp",
+      "tool_count": 4,
+      "tested_tool": "search_activities",
+      "latency_ms": 525,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0183.iogithubgreetwellmcp_labeled.json"
+    },
+    {
+      "server_name": "myagentinbox",
+      "server_url": "https://myagentinbox.com/mcp",
+      "tool_count": 4,
+      "tested_tool": "check_inbox",
+      "latency_ms": 459,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0184.myagentinbox_labeled.json"
+    },
+    {
+      "server_name": "co.heyspark.mcp/server",
+      "server_url": "https://mcp.heyspark.co/mcp",
+      "tool_count": 4,
+      "tested_tool": "search_businesses",
+      "latency_ms": 506,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0185.coheysparkmcpserver_labeled.json"
+    },
+    {
+      "server_name": "dev.lingo/main",
+      "server_url": "https://mcp.lingo.dev/main",
+      "tool_count": 4,
+      "tested_tool": "get_project_context",
+      "latency_ms": 547,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0186.devlingomain_labeled.json"
+    },
+    {
+      "server_name": "YeetIt",
+      "server_url": "https://yeetit.site/mcp",
+      "tool_count": 4,
+      "tested_tool": "get_website_status",
+      "latency_ms": 1177,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0187.YeetIt_labeled.json"
+    },
+    {
+      "server_name": "com.scrapingant/mcp",
+      "server_url": "https://api.scrapingant.com/mcp",
+      "tool_count": 3,
+      "tested_tool": "get_web_page_html",
+      "latency_ms": 1680,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0189.comscrapingantmcp_labeled.json"
+    },
+    {
+      "server_name": "Ferryhopper",
+      "server_url": "https://mcp.ferryhopper.com/mcp",
+      "tool_count": 3,
+      "tested_tool": "get_ports",
+      "latency_ms": 1533,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0190.Ferryhopper_labeled.json"
+    },
+    {
+      "server_name": "World Airfares Flight Search",
+      "server_url": "https://mcp.worldairfares.com",
+      "tool_count": 3,
+      "tested_tool": "get_more_results",
+      "latency_ms": 702,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0191.World-Airfares-Flight-Search_labeled.json"
+    },
+    {
+      "server_name": "xyz.actiongate.api/actiongate",
+      "server_url": "https://api.actiongate.xyz/mcp",
+      "tool_count": 3,
+      "tested_tool": "risk_score",
+      "latency_ms": 476,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0194.xyzactiongateapiactiongate_labeled.json"
+    },
+    {
+      "server_name": "Ragora",
+      "server_url": "https://mcp.ragora.app/mcp",
+      "tool_count": 3,
+      "tested_tool": "search",
+      "latency_ms": 469,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0195.Ragora_labeled.json"
+    },
+    {
+      "server_name": "ShipSwift",
+      "server_url": "https://api.shipswift.app/mcp",
+      "tool_count": 3,
+      "tested_tool": "listRecipes",
+      "latency_ms": 506,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0196.ShipSwift_labeled.json"
+    },
+    {
+      "server_name": "OpenZeppelin Stellar Contracts",
+      "server_url": "https://mcp.openzeppelin.com/contracts/stellar/mcp",
+      "tool_count": 3,
+      "tested_tool": "stellar-fungible",
+      "latency_ms": 173,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0198.OpenZeppelin-Stellar-Contracts_labeled.json"
+    },
+    {
+      "server_name": "OpenZeppelin Stylus Contracts",
+      "server_url": "https://mcp.openzeppelin.com/contracts/stylus/mcp",
+      "tool_count": 3,
+      "tested_tool": "stylus-erc20",
+      "latency_ms": 304,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0199.OpenZeppelin-Stylus-Contracts_labeled.json"
+    },
+    {
+      "server_name": "com.sonatype/dependency-management-mcp-server",
+      "server_url": "https://mcp.guide.sonatype.com/mcp",
+      "tool_count": 3,
+      "tested_tool": "getComponentVersion",
+      "latency_ms": 335,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0200.comsonatypedependency-management-mcp-server_labeled.json"
+    },
+    {
+      "server_name": "com.pga/pga-golf",
+      "server_url": "https://mcp.pga.com/mcp",
+      "tool_count": 3,
+      "tested_tool": "search_golf_coaches",
+      "latency_ms": 1863,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0201.compgapga-golf_labeled.json"
+    },
+    {
+      "server_name": "io.github.BalajSaleem/criterion",
+      "server_url": "https://criterion.life/api/mcp",
+      "tool_count": 3,
+      "tested_tool": "search_quran",
+      "latency_ms": 692,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0202.iogithubBalajSaleemcriterion_labeled.json"
+    },
+    {
+      "server_name": "MCP Registry Server",
+      "server_url": "https://registry.run.mcp.com.ai/mcp",
+      "tool_count": 3,
+      "tested_tool": "getV01Servers",
+      "latency_ms": 924,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0203.MCP-Registry-Server_labeled.json"
+    },
+    {
+      "server_name": "dev.promplate/hmr",
+      "server_url": "https://pyth-on-line.promplate.dev/hmr/mcp",
+      "tool_count": 3,
+      "tested_tool": "learn-hmr-basics",
+      "latency_ms": 298,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0205.devpromplatehmr_labeled.json"
+    },
+    {
+      "server_name": "Agent Arena Registry",
+      "server_url": "https://agentarena.site/api/mcp",
+      "tool_count": 3,
+      "tested_tool": "search_agents",
+      "latency_ms": 248,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0207.Agent-Arena-Registry_labeled.json"
+    },
+    {
+      "server_name": "mcp.apollographql.com",
+      "server_url": "https://mcp.apollographql.com/sse",
+      "tool_count": 3,
+      "tested_tool": "ApolloConnectorsSpec",
+      "latency_ms": 363,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0208.server-208_labeled.json"
+    },
+    {
+      "server_name": "You.com Web Access & AI",
+      "server_url": "https://api.you.com/mcp",
+      "tool_count": 3,
+      "tested_tool": "you-search",
+      "latency_ms": 1225,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0209.Youcom-Web-Access-AI_labeled.json"
+    },
+    {
+      "server_name": "AEO Audit",
+      "server_url": "https://aeo-mcp-server.amdal-dev.workers.dev/mcp",
+      "tool_count": 3,
+      "tested_tool": "get_aeo_score",
+      "latency_ms": 143,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0210.AEO-Audit_labeled.json"
+    },
+    {
+      "server_name": "OpenClaw MCP Ecosystem",
+      "server_url": "https://openclaw-fortune-mcp.yagami8095.workers.dev/mcp",
+      "tool_count": 3,
+      "tested_tool": "get_fortune_ranking",
+      "latency_ms": 502,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0211.OpenClaw-MCP-Ecosystem_labeled.json"
+    },
+    {
+      "server_name": "衍象坊 · 奇门遁甲 & 大六壬",
+      "server_url": "https://profound.fate-craft.com/api/mcp",
+      "tool_count": 2,
+      "tested_tool": "qimen_dunjia_calculate",
+      "latency_ms": 1053,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0214.衍象坊-奇门遁甲-大六壬_labeled.json"
+    },
+    {
+      "server_name": "com.getcims/mcp",
+      "server_url": "https://api.getcims.com/functions/v1/mcp",
+      "tool_count": 2,
+      "tested_tool": "get_creators",
+      "latency_ms": 10574,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0215.comgetcimsmcp_labeled.json"
+    },
+    {
+      "server_name": "com.findyourfivepm/mcp-server",
+      "server_url": "https://mcp.findyourfivepm.com",
+      "tool_count": 2,
+      "tested_tool": "find_random_fivepm_city",
+      "latency_ms": 3160,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0216.comfindyourfivepmmcp-server_labeled.json"
+    },
+    {
+      "server_name": "MidOS - MCP Community Library",
+      "server_url": "https://midos.dev/mcp",
+      "tool_count": 2,
+      "tested_tool": "search",
+      "latency_ms": 1162,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0217.MidOS---MCP-Community-Library_labeled.json"
+    },
+    {
+      "server_name": "Oh My Posh Validator",
+      "server_url": "https://ohmyposh.dev/api/mcp",
+      "tool_count": 2,
+      "tested_tool": "validate_config",
+      "latency_ms": 1036,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0218.Oh-My-Posh-Validator_labeled.json"
+    },
+    {
+      "server_name": "garden.stanislav.svelte-llm/svelte-llm-mcp",
+      "server_url": "https://svelte-llm.stanislav.garden/mcp/mcp",
+      "tool_count": 2,
+      "tested_tool": "list_sections",
+      "latency_ms": 722,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0219.gardenstanislavsvelte-llmsvelte-llm-mcp_labeled.json"
+    },
+    {
+      "server_name": "io.github.feedbk-ai/create-survey",
+      "server_url": "https://mcp.feedbk.ai/mcp",
+      "tool_count": 2,
+      "tested_tool": "start_survey",
+      "latency_ms": 547,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0220.iogithubfeedbk-aicreate-survey_labeled.json"
+    },
+    {
+      "server_name": "JxBrowser MCP Server",
+      "server_url": "https://jxbrowser.mcp.teamdev.com",
+      "tool_count": 2,
+      "tested_tool": "get-quickstart-guide",
+      "latency_ms": 749,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0222.JxBrowser-MCP-Server_labeled.json"
+    },
+    {
+      "server_name": "DevExpress Documentation",
+      "server_url": "https://api.devexpress.com/mcp/docs",
+      "tool_count": 2,
+      "tested_tool": "devexpress_docs_get_content",
+      "latency_ms": 469,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0223.DevExpress-Documentation_labeled.json"
+    },
+    {
+      "server_name": "Context7",
+      "server_url": "https://mcp.context7.com/mcp",
+      "tool_count": 2,
+      "tested_tool": "query-docs",
+      "latency_ms": 529,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0224.Context7_labeled.json"
+    },
+    {
+      "server_name": "Guardian Engine",
+      "server_url": "https://api.kaimeilabs.dev/mcp",
+      "tool_count": 2,
+      "tested_tool": "list_dishes",
+      "latency_ms": 507,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0225.Guardian-Engine_labeled.json"
+    },
+    {
+      "server_name": "io.github.timescale/pg-aiguide",
+      "server_url": "https://mcp.tigerdata.com/docs",
+      "tool_count": 2,
+      "tested_tool": "search_docs",
+      "latency_ms": 312,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0226.iogithubtimescalepg-aiguide_labeled.json"
+    },
+    {
+      "server_name": "ai.exa/exa",
+      "server_url": "https://mcp.exa.ai/mcp",
+      "tool_count": 2,
+      "tested_tool": "web_search_exa",
+      "latency_ms": 1508,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0227.aiexaexa_labeled.json"
+    },
+    {
+      "server_name": "com.docfork/docfork-mcp",
+      "server_url": "https://mcp.docfork.com/mcp",
+      "tool_count": 2,
+      "tested_tool": "fetch_doc",
+      "latency_ms": 411,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0229.comdocforkdocfork-mcp_labeled.json"
+    },
+    {
+      "server_name": "com.apple-rag/mcp-server",
+      "server_url": "https://mcp.apple-rag.com",
+      "tool_count": 2,
+      "tested_tool": "search",
+      "latency_ms": 2470,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0231.comapple-ragmcp-server_labeled.json"
+    },
+    {
+      "server_name": "io.fusionauth/mcp-docs",
+      "server_url": "https://ai.fusionauth.dev/mcp/docs",
+      "tool_count": 2,
+      "tested_tool": "search_fusionauth_sources",
+      "latency_ms": 633,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0232.iofusionauthmcp-docs_labeled.json"
+    },
+    {
+      "server_name": "mcp.exa.ai",
+      "server_url": "https://mcp.exa.ai",
+      "tool_count": 2,
+      "tested_tool": "web_search_exa",
+      "latency_ms": 1217,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0233.server-233_labeled.json"
+    },
+    {
+      "server_name": "io.github.wywy-llc/gas-library-hub",
+      "server_url": "https://appscripthub.com/api/mcp",
+      "tool_count": 2,
+      "tested_tool": "search_libraries",
+      "latency_ms": 955,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0234.iogithubwywy-llcgas-library-hub_labeled.json"
+    },
+    {
+      "server_name": "com.cloudflare.mcp/mcp",
+      "server_url": "https://docs.mcp.cloudflare.com/mcp",
+      "tool_count": 2,
+      "tested_tool": "search_cloudflare_documentation",
+      "latency_ms": 1209,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0235.comcloudflaremcpmcp_labeled.json"
+    },
+    {
+      "server_name": "ThousandEyes MCP",
+      "server_url": "https://api.thousandeyes.com/mcp-public",
+      "tool_count": 2,
+      "tested_tool": "get_public_network_outages",
+      "latency_ms": 304,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0236.ThousandEyes-MCP_labeled.json"
+    },
+    {
+      "server_name": "mcp.clerk.com",
+      "server_url": "https://mcp.clerk.com/mcp",
+      "tool_count": 2,
+      "tested_tool": "list_clerk_sdk_snippets",
+      "latency_ms": 139,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0237.server-237_labeled.json"
+    },
+    {
+      "server_name": "Context7",
+      "server_url": "https://server.smithery.ai/@upstash/context7-mcp/mcp",
+      "tool_count": 2,
+      "tested_tool": "query-docs",
+      "latency_ms": 358,
+      "mode": "gateway",
+      "is_smithery": true,
+      "file": "0238.Context7_labeled.json"
+    },
+    {
+      "server_name": "Context7",
+      "server_url": "https://server.smithery.ai/@geobio/context7/mcp",
+      "tool_count": 2,
+      "tested_tool": "get-library-docs",
+      "latency_ms": 697,
+      "mode": "gateway",
+      "is_smithery": true,
+      "file": "0241.Context7_labeled.json"
+    },
+    {
+      "server_name": "com.cryptorefills/mcp-server",
+      "server_url": "https://api.cryptorefills.com/mcp/sse",
+      "tool_count": 1,
+      "tested_tool": "purchaseElicitation",
+      "latency_ms": 760,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0244.comcryptorefillsmcp-server_labeled.json"
+    },
+    {
+      "server_name": "Vivid MCP",
+      "server_url": "https://api.prime.vivid.money/mcp",
+      "tool_count": 1,
+      "tested_tool": "build_onboarding_link",
+      "latency_ms": 826,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0245.Vivid-MCP_labeled.json"
+    },
+    {
+      "server_name": "iVisa MCP Server",
+      "server_url": "https://www.ivisa.com/mcp",
+      "tool_count": 1,
+      "tested_tool": "product-information-tool",
+      "latency_ms": 502,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0246.iVisa-MCP-Server_labeled.json"
+    },
+    {
+      "server_name": "com.wallet-connectors/wallet-verifier-mcp",
+      "server_url": "https://wallet-connectors.com/mcp",
+      "tool_count": 1,
+      "tested_tool": "create_account",
+      "latency_ms": 572,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0247.comwallet-connectorswallet-verifier-mcp_labeled.json"
+    },
+    {
+      "server_name": "iVisa MCP Server",
+      "server_url": "https://www.ivisa.com/mcp/chatgpt",
+      "tool_count": 1,
+      "tested_tool": "visa-availability-tool",
+      "latency_ms": 446,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0248.iVisa-MCP-Server_labeled.json"
+    },
+    {
+      "server_name": "io.github.holomodular/servicebricks",
+      "server_url": "https://servicebricks.com/api/mcp",
+      "tool_count": 1,
+      "tested_tool": "generate_microservice_zip",
+      "latency_ms": 2795,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0249.iogithubholomodularservicebricks_labeled.json"
+    },
+    {
+      "server_name": "docs.braingrid.ai",
+      "server_url": "https://docs.braingrid.ai/mcp",
+      "tool_count": 1,
+      "tested_tool": "SearchBrainGrid",
+      "latency_ms": 480,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0250.server-250_labeled.json"
+    },
+    {
+      "server_name": "io.github.Pink707Legendary/stock-moves-explained",
+      "server_url": "https://api.justhappened.wtf/mcp",
+      "tool_count": 1,
+      "tested_tool": "stock-moves-explained",
+      "latency_ms": 418,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0251.iogithubPink707Legendarystock-moves-explained_labeled.json"
+    },
+    {
+      "server_name": "io.github.stayce/icd-mcp",
+      "server_url": "https://icd-mcp-server.staycek.workers.dev/mcp",
+      "tool_count": 1,
+      "tested_tool": "icd",
+      "latency_ms": 294,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0252.iogithubstayceicd-mcp_labeled.json"
+    },
+    {
+      "server_name": "Dice MCP",
+      "server_url": "https://mcp.dice.com/mcp",
+      "tool_count": 1,
+      "tested_tool": "search_jobs",
+      "latency_ms": 942,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0253.Dice-MCP_labeled.json"
+    },
+    {
+      "server_name": "com.brokerchooser/broker-safety",
+      "server_url": "https://mcp.brokerchooser.com/servers/mcp",
+      "tool_count": 1,
+      "tested_tool": "is-broker-scam-tool",
+      "latency_ms": 365,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0255.combrokerchooserbroker-safety_labeled.json"
+    },
+    {
+      "server_name": "docs.mindsdb.com",
+      "server_url": "https://docs.mindsdb.com/mcp",
+      "tool_count": 1,
+      "tested_tool": "SearchMindsDb",
+      "latency_ms": 398,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0256.server-256_labeled.json"
+    },
+    {
+      "server_name": "io.github.ndkasndakn/refund-decide",
+      "server_url": "https://refund.decide.fyi/api/mcp",
+      "tool_count": 1,
+      "tested_tool": "refund_eligibility",
+      "latency_ms": 355,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0257.iogithubndkasndaknrefund-decide_labeled.json"
+    },
+    {
+      "server_name": "PDF Kit",
+      "server_url": "https://mcp.hellobasestation.com/mcp",
+      "tool_count": 1,
+      "tested_tool": "basestation.create_autofill_job",
+      "latency_ms": 2712,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0258.PDF-Kit_labeled.json"
+    },
+    {
+      "server_name": "com.redpanda/docs-mcp",
+      "server_url": "https://docs.redpanda.com/mcp",
+      "tool_count": 1,
+      "tested_tool": "ask_redpanda_question",
+      "latency_ms": 3524,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0259.comredpandadocs-mcp_labeled.json"
+    },
+    {
+      "server_name": "com.infobip/mcp",
+      "server_url": "https://mcp.infobip.com/search",
+      "tool_count": 1,
+      "tested_tool": "explore",
+      "latency_ms": 2318,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0260.cominfobipmcp_labeled.json"
+    },
+    {
+      "server_name": "SettlementWitness",
+      "server_url": "https://defaultverifier.com/mcp",
+      "tool_count": 1,
+      "tested_tool": "settlement_witness",
+      "latency_ms": 565,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0261.SettlementWitness_labeled.json"
+    },
+    {
+      "server_name": "Astro Docs",
+      "server_url": "https://mcp.docs.astro.build/mcp",
+      "tool_count": 1,
+      "tested_tool": "search_astro_docs",
+      "latency_ms": 407,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0262.Astro-Docs_labeled.json"
+    },
+    {
+      "server_name": "SMARD Energy Prices (x402)",
+      "server_url": "https://smard-energy-prices-x402.favo.workers.dev/mcp",
+      "tool_count": 1,
+      "tested_tool": "smard_prices",
+      "latency_ms": 323,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0263.SMARD-Energy-Prices-x402_labeled.json"
+    },
+    {
+      "server_name": "Gitprism",
+      "server_url": "https://gitprism.cloudemo.org/mcp",
+      "tool_count": 1,
+      "tested_tool": "ingest_repo",
+      "latency_ms": 413,
+      "mode": "gateway",
+      "is_smithery": false,
+      "file": "0264.Gitprism_labeled.json"
+    }
+  ]
+}

@@ -1,0 +1,500 @@
+{
+  "labels": {
+    "analysis": "The MCP Server \"Manifold\" provides 5 tools focused on web search & research tasks. Core capabilities include data access and reading, search and retrieval. Key tools: search-markets, get-market, get-user, get-bets, search-users.",
+    "reasoning": "Primary label \"Web Search & Research\" assigned based on strong keyword matches in tool names and descriptions: search.",
+    "primary_label": "Web Search & Research",
+    "secondary_labels": [],
+    "custom_label": "Data Access & Search - Manifold",
+    "is_connected": true,
+    "is_remote_tool_valid": true,
+    "featured_server": true,
+    "tool_verified": true,
+    "tool_verified_status": "verified",
+    "tool_verified_at": "2026-03-14T20:38:17.925969+00:00",
+    "tool_verified_tool": "get-bets",
+    "tool_verified_reason": "response received"
+  },
+  "metadata": {
+    "server_id": 157,
+    "server_name": "Manifold",
+    "rank_by_usage": 158,
+    "usage_count": "100",
+    "original_file": "tools.json#157",
+    "mode": "gateway",
+    "timestamp": 1772876337,
+    "remote_server_response": {
+      "url": "https://api.manifold.markets/v0/mcp",
+      "is_success": true,
+      "error": null,
+      "tools": [
+        {
+          "name": "search-markets",
+          "description": "Search for prediction markets with optional filters",
+          "title": "Search Markets",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "term": {
+                "type": "string",
+                "description": "Search query"
+              },
+              "contractType": {
+                "type": "string",
+                "enum": [
+                  "ALL",
+                  "BINARY",
+                  "MULTIPLE_CHOICE",
+                  "DEPENDENT_MULTIPLE_CHOICE",
+                  "INDEPENDENT_MULTIPLE_CHOICE",
+                  "POLL",
+                  "MULTI_NUMERIC",
+                  "DATE"
+                ],
+                "description": "Question type (default: ALL)"
+              },
+              "filter": {
+                "type": "string",
+                "enum": [
+                  "open",
+                  "resolved",
+                  "all"
+                ],
+                "description": "Filter by question state. Resolved means the event has happened. (default: all)"
+              },
+              "limit": {
+                "type": "number",
+                "minimum": 1,
+                "maximum": 1000,
+                "description": "Max number of results (default: 100)"
+              },
+              "offset": {
+                "type": "number",
+                "description": "Offset for pagination (default: 0)"
+              },
+              "creatorId": {
+                "type": "string",
+                "description": "Optional. Creator (user) ID to filter by"
+              },
+              "sort": {
+                "type": "string",
+                "enum": [
+                  "newest",
+                  "score",
+                  "liquidity"
+                ],
+                "description": "Sort order (default: score)"
+              }
+            },
+            "required": [
+              "term"
+            ]
+          }
+        },
+        {
+          "name": "get-market",
+          "title": "Get Market",
+          "description": "Get detailed information about a specific market",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "description": "Market ID"
+              }
+            },
+            "required": [
+              "id"
+            ]
+          }
+        },
+        {
+          "name": "get-user",
+          "title": "Get User",
+          "description": "Get user information by username",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "username": {
+                "type": "string",
+                "description": "Username"
+              }
+            },
+            "required": [
+              "username"
+            ]
+          }
+        },
+        {
+          "name": "get-bets",
+          "title": "Get Bets",
+          "description": "Get bets from markets or for users with various filtering options",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "description": "Optional. Bet ID to filter by"
+              },
+              "userId": {
+                "type": "string",
+                "description": "Optional. User ID to filter by"
+              },
+              "username": {
+                "type": "string",
+                "description": "Optional. Username to filter by"
+              },
+              "contractId": {
+                "oneOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                ],
+                "description": "Optional. Contract ID(s) to filter by"
+              },
+              "contractSlug": {
+                "type": "string",
+                "description": "Optional. Contract slug to filter by"
+              },
+              "answerId": {
+                "type": "string",
+                "description": "Optional. Answer ID to filter by"
+              },
+              "limit": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 10000,
+                "description": "Optional. Number of bets to return (default: 1000)"
+              },
+              "before": {
+                "type": "string",
+                "description": "Optional. Get bets before this bet ID"
+              },
+              "after": {
+                "type": "string",
+                "description": "Optional. Get bets after this bet ID"
+              },
+              "beforeTime": {
+                "type": "number",
+                "description": "Optional. Get bets before this timestamp"
+              },
+              "afterTime": {
+                "type": "number",
+                "description": "Optional. Get bets after this timestamp"
+              },
+              "order": {
+                "type": "string",
+                "enum": [
+                  "asc",
+                  "desc"
+                ],
+                "description": "Optional. Sort order by creation time"
+              },
+              "kinds": {
+                "type": "string",
+                "enum": [
+                  "open-limit"
+                ],
+                "description": "Optional. Filter by bet kind"
+              },
+              "minAmount": {
+                "type": "number",
+                "minimum": 0,
+                "description": "Optional. Minimum bet amount"
+              },
+              "filterRedemptions": {
+                "type": "boolean",
+                "description": "Optional. Filter redemptions"
+              }
+            },
+            "required": []
+          }
+        },
+        {
+          "name": "search-users",
+          "title": "Search Users",
+          "description": "Search for users by username or display name",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "term": {
+                "type": "string",
+                "description": "Search query for username or display name"
+              },
+              "limit": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1000,
+                "description": "Max number of results (default: 500)"
+              },
+              "page": {
+                "type": "number",
+                "minimum": 0,
+                "description": "Page number for pagination (default: 0)"
+              }
+            },
+            "required": [
+              "term"
+            ]
+          }
+        }
+      ],
+      "tool_count": 5,
+      "tool_names": [
+        "search-markets",
+        "get-market",
+        "get-user",
+        "get-bets",
+        "search-users"
+      ]
+    },
+    "server_info_crawled": {
+      "id": 157,
+      "name": "Manifold",
+      "author": "",
+      "overview": "Manifold - Web Search & Research server with 5 tools. The MCP Server \"Manifold\" provides 5 tools focused on web search & research tasks. Core capabilities",
+      "repository_url": "",
+      "homepage": "https://api.manifold.markets/v0/mcp",
+      "remote_or_local": "Remote",
+      "license": "",
+      "usage_count": "100",
+      "success_rate": "100%",
+      "tags": [
+        "web-search-research"
+      ],
+      "categories": [
+        "web search & research"
+      ],
+      "tools_count": 5,
+      "tools": [
+        {
+          "name": "search-markets",
+          "description": "Search for prediction markets with optional filters",
+          "title": "Search Markets",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "term": {
+                "type": "string",
+                "description": "Search query"
+              },
+              "contractType": {
+                "type": "string",
+                "enum": [
+                  "ALL",
+                  "BINARY",
+                  "MULTIPLE_CHOICE",
+                  "DEPENDENT_MULTIPLE_CHOICE",
+                  "INDEPENDENT_MULTIPLE_CHOICE",
+                  "POLL",
+                  "MULTI_NUMERIC",
+                  "DATE"
+                ],
+                "description": "Question type (default: ALL)"
+              },
+              "filter": {
+                "type": "string",
+                "enum": [
+                  "open",
+                  "resolved",
+                  "all"
+                ],
+                "description": "Filter by question state. Resolved means the event has happened. (default: all)"
+              },
+              "limit": {
+                "type": "number",
+                "minimum": 1,
+                "maximum": 1000,
+                "description": "Max number of results (default: 100)"
+              },
+              "offset": {
+                "type": "number",
+                "description": "Offset for pagination (default: 0)"
+              },
+              "creatorId": {
+                "type": "string",
+                "description": "Optional. Creator (user) ID to filter by"
+              },
+              "sort": {
+                "type": "string",
+                "enum": [
+                  "newest",
+                  "score",
+                  "liquidity"
+                ],
+                "description": "Sort order (default: score)"
+              }
+            },
+            "required": [
+              "term"
+            ]
+          }
+        },
+        {
+          "name": "get-market",
+          "title": "Get Market",
+          "description": "Get detailed information about a specific market",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "description": "Market ID"
+              }
+            },
+            "required": [
+              "id"
+            ]
+          }
+        },
+        {
+          "name": "get-user",
+          "title": "Get User",
+          "description": "Get user information by username",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "username": {
+                "type": "string",
+                "description": "Username"
+              }
+            },
+            "required": [
+              "username"
+            ]
+          }
+        },
+        {
+          "name": "get-bets",
+          "title": "Get Bets",
+          "description": "Get bets from markets or for users with various filtering options",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "description": "Optional. Bet ID to filter by"
+              },
+              "userId": {
+                "type": "string",
+                "description": "Optional. User ID to filter by"
+              },
+              "username": {
+                "type": "string",
+                "description": "Optional. Username to filter by"
+              },
+              "contractId": {
+                "oneOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                ],
+                "description": "Optional. Contract ID(s) to filter by"
+              },
+              "contractSlug": {
+                "type": "string",
+                "description": "Optional. Contract slug to filter by"
+              },
+              "answerId": {
+                "type": "string",
+                "description": "Optional. Answer ID to filter by"
+              },
+              "limit": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 10000,
+                "description": "Optional. Number of bets to return (default: 1000)"
+              },
+              "before": {
+                "type": "string",
+                "description": "Optional. Get bets before this bet ID"
+              },
+              "after": {
+                "type": "string",
+                "description": "Optional. Get bets after this bet ID"
+              },
+              "beforeTime": {
+                "type": "number",
+                "description": "Optional. Get bets before this timestamp"
+              },
+              "afterTime": {
+                "type": "number",
+                "description": "Optional. Get bets after this timestamp"
+              },
+              "order": {
+                "type": "string",
+                "enum": [
+                  "asc",
+                  "desc"
+                ],
+                "description": "Optional. Sort order by creation time"
+              },
+              "kinds": {
+                "type": "string",
+                "enum": [
+                  "open-limit"
+                ],
+                "description": "Optional. Filter by bet kind"
+              },
+              "minAmount": {
+                "type": "number",
+                "minimum": 0,
+                "description": "Optional. Minimum bet amount"
+              },
+              "filterRedemptions": {
+                "type": "boolean",
+                "description": "Optional. Filter redemptions"
+              }
+            },
+            "required": []
+          }
+        },
+        {
+          "name": "search-users",
+          "title": "Search Users",
+          "description": "Search for users by username or display name",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "term": {
+                "type": "string",
+                "description": "Search query for username or display name"
+              },
+              "limit": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1000,
+                "description": "Max number of results (default: 500)"
+              },
+              "page": {
+                "type": "number",
+                "minimum": 0,
+                "description": "Page number for pagination (default: 0)"
+              }
+            },
+            "required": [
+              "term"
+            ]
+          }
+        }
+      ],
+      "python_sdk_url": "https://api.manifold.markets/v0/mcp",
+      "python_sdk_config": "{\"debug\": false}"
+    },
+    "source_filename": "0157.Manifold_labeled.json",
+    "processed_timestamp": 1772876337,
+    "processing_mode": "gateway",
+    "rank": 158
+  }
+}

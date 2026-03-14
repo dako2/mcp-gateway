@@ -1,0 +1,768 @@
+{
+  "labels": {
+    "analysis": "The MCP Server \"OpenMandate\" provides 14 tools focused on gaming tasks. Core capabilities include creation and generation, data access and reading, deletion and cleanup, modification and updates. Key tools: openmandate_create_mandate, openmandate_submit_answers, openmandate_get_mandate, openmandate_list_mandates, openmandate_close_mandate.",
+    "reasoning": "Primary label \"Gaming\" assigned based on strong keyword matches in tool names and descriptions: score, match.",
+    "primary_label": "Gaming",
+    "secondary_labels": [
+      "Development Tools",
+      "Communication Tools"
+    ],
+    "custom_label": "Data Access & Generation - OpenMandate",
+    "is_connected": true,
+    "is_remote_tool_valid": true,
+    "featured_server": true,
+    "tool_verified": false,
+    "tool_verified_status": "auth_required",
+    "tool_verified_at": "2026-03-14T20:38:12.415366+00:00",
+    "tool_verified_tool": "openmandate_list_mandates",
+    "tool_verified_reason": "HTTP 401"
+  },
+  "metadata": {
+    "server_id": 65,
+    "server_name": "OpenMandate",
+    "rank_by_usage": 66,
+    "usage_count": "700",
+    "original_file": "tools.json#65",
+    "mode": "gateway",
+    "timestamp": 1772876337,
+    "remote_server_response": {
+      "url": "https://api.openmandate.ai/mcp",
+      "is_success": true,
+      "error": null,
+      "tools": [
+        {
+          "name": "openmandate_create_mandate",
+          "description": "Create a new mandate on OpenMandate. A mandate describes what your user is looking for (cofounder, service provider, investor, etc.) and what they offer. The user's verified contacts are automatically attached.\n\nReturns the mandate with initial intake questions. You MUST relay these questions to the user and collect their actual answers before calling openmandate_submit_answers. Do not answer intake questions on the user's behalf.\n\nIf the user has no verified contacts, they must add one first at https://openmandate.ai/settings or use openmandate_list_contacts to check.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "contact_ids": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "Optional list of verified contact IDs to attach. If empty, the user's primary contact is auto-selected. Use openmandate_list_contacts to see available contacts."
+              },
+              "category": {
+                "type": "string",
+                "description": "Optional category (e.g. 'cofounder', 'investor', 'service')."
+              }
+            },
+            "required": []
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": false
+          }
+        },
+        {
+          "name": "openmandate_submit_answers",
+          "description": "Submit the user's answers to pending intake questions. The mandate must be in 'intake' status with pending questions.\n\nIMPORTANT: Before calling this, you must show each pending question to the user and collect their real answer. Never fabricate or infer answers. OpenMandate may return more questions (2-3 rounds typical) — relay each round to the user until the mandate becomes active.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "mandate_id": {
+                "type": "string",
+                "description": "The mandate ID to submit answers for."
+              },
+              "answers": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "question_id": {
+                      "type": "string",
+                      "description": "Question ID from pending_questions."
+                    },
+                    "value": {
+                      "type": "string",
+                      "description": "Answer value. For text: your answer string. For single_select: the option value. For multi_select: comma-separated option values (e.g. 'python, go')."
+                    }
+                  },
+                  "required": [
+                    "question_id",
+                    "value"
+                  ]
+                },
+                "description": "Array of answers to pending questions."
+              }
+            },
+            "required": [
+              "mandate_id",
+              "answers"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": false
+          }
+        },
+        {
+          "name": "openmandate_get_mandate",
+          "description": "Get a mandate by ID. Returns the mandate's current status, any pending intake questions, and summary once active. Use this to check progress or retrieve questions after creating a mandate.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "mandate_id": {
+                "type": "string",
+                "description": "The mandate ID to retrieve."
+              }
+            },
+            "required": [
+              "mandate_id"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false
+          }
+        },
+        {
+          "name": "openmandate_list_mandates",
+          "description": "List mandates for the authenticated user. Optionally filter by status (intake, active, matched, closed). Returns up to `limit` mandates.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "status": {
+                "type": "string",
+                "description": "Filter by status: intake, active, matched, closed.",
+                "enum": [
+                  "intake",
+                  "active",
+                  "matched",
+                  "closed"
+                ]
+              },
+              "limit": {
+                "type": "integer",
+                "description": "Maximum number of mandates to return (default 20, max 100).",
+                "default": 20
+              }
+            },
+            "required": []
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false
+          }
+        },
+        {
+          "name": "openmandate_close_mandate",
+          "description": "Close (withdraw) a mandate. This is permanent — the mandate will stop matching and cannot be reopened. Only close if the user explicitly wants to withdraw.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "mandate_id": {
+                "type": "string",
+                "description": "The mandate ID to close."
+              }
+            },
+            "required": [
+              "mandate_id"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": true
+          }
+        },
+        {
+          "name": "openmandate_list_matches",
+          "description": "List matches for the authenticated user. Returns matches with compatibility scores, strengths, and concerns. Check this periodically after a mandate becomes active.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "limit": {
+                "type": "integer",
+                "description": "Maximum number of matches to return (default 20, max 100).",
+                "default": 20
+              }
+            },
+            "required": []
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false
+          }
+        },
+        {
+          "name": "openmandate_get_match",
+          "description": "Get detailed information about a specific match, including compatibility score, strengths, concerns, and — if both parties accepted — the counterparty's contact information.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "match_id": {
+                "type": "string",
+                "description": "The match ID to retrieve."
+              }
+            },
+            "required": [
+              "match_id"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false
+          }
+        },
+        {
+          "name": "openmandate_respond_to_match",
+          "description": "Accept or decline a match. If you accept and the other party also accepts, contact info is revealed to both sides. Declining is permanent for this match.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "match_id": {
+                "type": "string",
+                "description": "The match ID to respond to."
+              },
+              "action": {
+                "type": "string",
+                "description": "Either 'accept' or 'decline'.",
+                "enum": [
+                  "accept",
+                  "decline"
+                ]
+              }
+            },
+            "required": [
+              "match_id",
+              "action"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": false
+          }
+        },
+        {
+          "name": "openmandate_list_contacts",
+          "description": "List the user's verified contacts. These are the contacts that can be attached to mandates and revealed on match confirmation. Each contact has an ID, type (email, phone, telegram, whatsapp), display label, and verification status.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {},
+            "required": []
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false
+          }
+        },
+        {
+          "name": "openmandate_add_contact",
+          "description": "Add a new contact for the user. A verification code (OTP) will be sent to the contact address. The user must verify the contact using openmandate_verify_contact before it can be used on mandates.\n\nThe first contact added becomes the primary contact automatically.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "contact_type": {
+                "type": "string",
+                "description": "Contact type.",
+                "enum": [
+                  "email"
+                ]
+              },
+              "contact_value": {
+                "type": "string",
+                "description": "The contact address to add (e.g. email address)."
+              },
+              "display_label": {
+                "type": "string",
+                "description": "Optional human-readable label (e.g. 'Work email'). Defaults to the contact type."
+              }
+            },
+            "required": [
+              "contact_type",
+              "contact_value"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": false
+          }
+        },
+        {
+          "name": "openmandate_verify_contact",
+          "description": "Verify a contact by submitting the OTP code sent to it. The user must check their email for the 8-digit code. After verification, the contact can be used on mandates.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "contact_id": {
+                "type": "string",
+                "description": "The contact ID to verify."
+              },
+              "code": {
+                "type": "string",
+                "description": "The 8-digit verification code from the email."
+              }
+            },
+            "required": [
+              "contact_id",
+              "code"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": false
+          }
+        },
+        {
+          "name": "openmandate_update_contact",
+          "description": "Update a contact's display label or set it as the primary contact. Setting a contact as primary will unset any other primary contact.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "contact_id": {
+                "type": "string",
+                "description": "The contact ID to update."
+              },
+              "display_label": {
+                "type": "string",
+                "description": "New display label for the contact."
+              },
+              "is_primary": {
+                "type": "boolean",
+                "description": "Set to true to make this the primary contact."
+              }
+            },
+            "required": [
+              "contact_id"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": false
+          }
+        },
+        {
+          "name": "openmandate_delete_contact",
+          "description": "Delete a contact. If the deleted contact was primary, the next verified contact is automatically promoted. This is permanent.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "contact_id": {
+                "type": "string",
+                "description": "The contact ID to delete."
+              }
+            },
+            "required": [
+              "contact_id"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": true
+          }
+        },
+        {
+          "name": "openmandate_resend_otp",
+          "description": "Resend the verification code for a pending contact. Use this if the user didn't receive the code or it expired (codes expire after 10 minutes). Rate limited to 3 per contact per hour.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "contact_id": {
+                "type": "string",
+                "description": "The contact ID to resend verification for."
+              }
+            },
+            "required": [
+              "contact_id"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": false
+          }
+        }
+      ],
+      "tool_count": 14,
+      "tool_names": [
+        "openmandate_create_mandate",
+        "openmandate_submit_answers",
+        "openmandate_get_mandate",
+        "openmandate_list_mandates",
+        "openmandate_close_mandate",
+        "openmandate_list_matches",
+        "openmandate_get_match",
+        "openmandate_respond_to_match",
+        "openmandate_list_contacts",
+        "openmandate_add_contact",
+        "openmandate_verify_contact",
+        "openmandate_update_contact",
+        "openmandate_delete_contact",
+        "openmandate_resend_otp"
+      ]
+    },
+    "server_info_crawled": {
+      "id": 65,
+      "name": "OpenMandate",
+      "author": "",
+      "overview": "OpenMandate - Gaming server with 14 tools. The MCP Server \"OpenMandate\" provides 14 tools focused on gaming tasks. Core capabilities include cr",
+      "repository_url": "",
+      "homepage": "https://api.openmandate.ai/mcp",
+      "remote_or_local": "Remote",
+      "license": "",
+      "usage_count": "700",
+      "success_rate": "100%",
+      "tags": [
+        "gaming",
+        "development-tools",
+        "communication-tools"
+      ],
+      "categories": [
+        "gaming",
+        "development tools",
+        "communication tools"
+      ],
+      "tools_count": 14,
+      "tools": [
+        {
+          "name": "openmandate_create_mandate",
+          "description": "Create a new mandate on OpenMandate. A mandate describes what your user is looking for (cofounder, service provider, investor, etc.) and what they offer. The user's verified contacts are automatically attached.\n\nReturns the mandate with initial intake questions. You MUST relay these questions to the user and collect their actual answers before calling openmandate_submit_answers. Do not answer intake questions on the user's behalf.\n\nIf the user has no verified contacts, they must add one first at https://openmandate.ai/settings or use openmandate_list_contacts to check.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "contact_ids": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "Optional list of verified contact IDs to attach. If empty, the user's primary contact is auto-selected. Use openmandate_list_contacts to see available contacts."
+              },
+              "category": {
+                "type": "string",
+                "description": "Optional category (e.g. 'cofounder', 'investor', 'service')."
+              }
+            },
+            "required": []
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": false
+          }
+        },
+        {
+          "name": "openmandate_submit_answers",
+          "description": "Submit the user's answers to pending intake questions. The mandate must be in 'intake' status with pending questions.\n\nIMPORTANT: Before calling this, you must show each pending question to the user and collect their real answer. Never fabricate or infer answers. OpenMandate may return more questions (2-3 rounds typical) — relay each round to the user until the mandate becomes active.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "mandate_id": {
+                "type": "string",
+                "description": "The mandate ID to submit answers for."
+              },
+              "answers": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "question_id": {
+                      "type": "string",
+                      "description": "Question ID from pending_questions."
+                    },
+                    "value": {
+                      "type": "string",
+                      "description": "Answer value. For text: your answer string. For single_select: the option value. For multi_select: comma-separated option values (e.g. 'python, go')."
+                    }
+                  },
+                  "required": [
+                    "question_id",
+                    "value"
+                  ]
+                },
+                "description": "Array of answers to pending questions."
+              }
+            },
+            "required": [
+              "mandate_id",
+              "answers"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": false
+          }
+        },
+        {
+          "name": "openmandate_get_mandate",
+          "description": "Get a mandate by ID. Returns the mandate's current status, any pending intake questions, and summary once active. Use this to check progress or retrieve questions after creating a mandate.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "mandate_id": {
+                "type": "string",
+                "description": "The mandate ID to retrieve."
+              }
+            },
+            "required": [
+              "mandate_id"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false
+          }
+        },
+        {
+          "name": "openmandate_list_mandates",
+          "description": "List mandates for the authenticated user. Optionally filter by status (intake, active, matched, closed). Returns up to `limit` mandates.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "status": {
+                "type": "string",
+                "description": "Filter by status: intake, active, matched, closed.",
+                "enum": [
+                  "intake",
+                  "active",
+                  "matched",
+                  "closed"
+                ]
+              },
+              "limit": {
+                "type": "integer",
+                "description": "Maximum number of mandates to return (default 20, max 100).",
+                "default": 20
+              }
+            },
+            "required": []
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false
+          }
+        },
+        {
+          "name": "openmandate_close_mandate",
+          "description": "Close (withdraw) a mandate. This is permanent — the mandate will stop matching and cannot be reopened. Only close if the user explicitly wants to withdraw.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "mandate_id": {
+                "type": "string",
+                "description": "The mandate ID to close."
+              }
+            },
+            "required": [
+              "mandate_id"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": true
+          }
+        },
+        {
+          "name": "openmandate_list_matches",
+          "description": "List matches for the authenticated user. Returns matches with compatibility scores, strengths, and concerns. Check this periodically after a mandate becomes active.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "limit": {
+                "type": "integer",
+                "description": "Maximum number of matches to return (default 20, max 100).",
+                "default": 20
+              }
+            },
+            "required": []
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false
+          }
+        },
+        {
+          "name": "openmandate_get_match",
+          "description": "Get detailed information about a specific match, including compatibility score, strengths, concerns, and — if both parties accepted — the counterparty's contact information.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "match_id": {
+                "type": "string",
+                "description": "The match ID to retrieve."
+              }
+            },
+            "required": [
+              "match_id"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false
+          }
+        },
+        {
+          "name": "openmandate_respond_to_match",
+          "description": "Accept or decline a match. If you accept and the other party also accepts, contact info is revealed to both sides. Declining is permanent for this match.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "match_id": {
+                "type": "string",
+                "description": "The match ID to respond to."
+              },
+              "action": {
+                "type": "string",
+                "description": "Either 'accept' or 'decline'.",
+                "enum": [
+                  "accept",
+                  "decline"
+                ]
+              }
+            },
+            "required": [
+              "match_id",
+              "action"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": false
+          }
+        },
+        {
+          "name": "openmandate_list_contacts",
+          "description": "List the user's verified contacts. These are the contacts that can be attached to mandates and revealed on match confirmation. Each contact has an ID, type (email, phone, telegram, whatsapp), display label, and verification status.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {},
+            "required": []
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false
+          }
+        },
+        {
+          "name": "openmandate_add_contact",
+          "description": "Add a new contact for the user. A verification code (OTP) will be sent to the contact address. The user must verify the contact using openmandate_verify_contact before it can be used on mandates.\n\nThe first contact added becomes the primary contact automatically.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "contact_type": {
+                "type": "string",
+                "description": "Contact type.",
+                "enum": [
+                  "email"
+                ]
+              },
+              "contact_value": {
+                "type": "string",
+                "description": "The contact address to add (e.g. email address)."
+              },
+              "display_label": {
+                "type": "string",
+                "description": "Optional human-readable label (e.g. 'Work email'). Defaults to the contact type."
+              }
+            },
+            "required": [
+              "contact_type",
+              "contact_value"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": false
+          }
+        },
+        {
+          "name": "openmandate_verify_contact",
+          "description": "Verify a contact by submitting the OTP code sent to it. The user must check their email for the 8-digit code. After verification, the contact can be used on mandates.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "contact_id": {
+                "type": "string",
+                "description": "The contact ID to verify."
+              },
+              "code": {
+                "type": "string",
+                "description": "The 8-digit verification code from the email."
+              }
+            },
+            "required": [
+              "contact_id",
+              "code"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": false
+          }
+        },
+        {
+          "name": "openmandate_update_contact",
+          "description": "Update a contact's display label or set it as the primary contact. Setting a contact as primary will unset any other primary contact.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "contact_id": {
+                "type": "string",
+                "description": "The contact ID to update."
+              },
+              "display_label": {
+                "type": "string",
+                "description": "New display label for the contact."
+              },
+              "is_primary": {
+                "type": "boolean",
+                "description": "Set to true to make this the primary contact."
+              }
+            },
+            "required": [
+              "contact_id"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": false
+          }
+        },
+        {
+          "name": "openmandate_delete_contact",
+          "description": "Delete a contact. If the deleted contact was primary, the next verified contact is automatically promoted. This is permanent.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "contact_id": {
+                "type": "string",
+                "description": "The contact ID to delete."
+              }
+            },
+            "required": [
+              "contact_id"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": true
+          }
+        },
+        {
+          "name": "openmandate_resend_otp",
+          "description": "Resend the verification code for a pending contact. Use this if the user didn't receive the code or it expired (codes expire after 10 minutes). Rate limited to 3 per contact per hour.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "contact_id": {
+                "type": "string",
+                "description": "The contact ID to resend verification for."
+              }
+            },
+            "required": [
+              "contact_id"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": false
+          }
+        }
+      ],
+      "python_sdk_url": "https://api.openmandate.ai/mcp",
+      "python_sdk_config": "{\"debug\": false}"
+    },
+    "source_filename": "0065.OpenMandate_labeled.json",
+    "processed_timestamp": 1772876337,
+    "processing_mode": "gateway",
+    "rank": 66
+  }
+}

@@ -1,0 +1,155 @@
+{
+  "labels": {
+    "analysis": "Public MCP server \"DeepWiki\" with 3 tools. Added from awesome-remote-mcp-servers list.",
+    "reasoning": "Verified as publicly accessible with no authentication required.",
+    "primary_label": "Public API",
+    "secondary_labels": [],
+    "custom_label": "Public API - DeepWiki",
+    "is_connected": true,
+    "is_remote_tool_valid": true,
+    "featured_server": true,
+    "tool_verified": true,
+    "tool_verified_status": "verified",
+    "tool_verified_at": "2026-03-14T20:58:49.483800+00:00",
+    "tool_verified_tool": "read_wiki_structure",
+    "tool_verified_reason": "tools/list returned valid tools via direct MCP connection"
+  },
+  "metadata": {
+    "server_id": 265,
+    "server_name": "DeepWiki",
+    "rank_by_usage": null,
+    "usage_count": null,
+    "original_file": "awesome-remote-mcp-servers",
+    "mode": "gateway",
+    "timestamp": 1773521929,
+    "remote_server_response": {
+      "url": "https://mcp.deepwiki.com/mcp",
+      "is_success": true,
+      "error": null,
+      "tools": [
+        {
+          "name": "read_wiki_structure",
+          "description": "Get a list of documentation topics for a GitHub repository.\n\nArgs:\n    repoName: GitHub repository in owner/repo format (e.g. \"facebook/react\")",
+          "inputSchema": {
+            "properties": {
+              "repoName": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "repoName"
+            ],
+            "type": "object"
+          },
+          "outputSchema": {
+            "properties": {
+              "result": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "result"
+            ],
+            "type": "object",
+            "x-fastmcp-wrap-result": true
+          },
+          "_meta": {
+            "_fastmcp": {
+              "tags": []
+            }
+          }
+        },
+        {
+          "name": "read_wiki_contents",
+          "description": "View documentation about a GitHub repository.\n\nArgs:\n    repoName: GitHub repository in owner/repo format (e.g. \"facebook/react\")",
+          "inputSchema": {
+            "properties": {
+              "repoName": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "repoName"
+            ],
+            "type": "object"
+          },
+          "outputSchema": {
+            "properties": {
+              "result": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "result"
+            ],
+            "type": "object",
+            "x-fastmcp-wrap-result": true
+          },
+          "_meta": {
+            "_fastmcp": {
+              "tags": []
+            }
+          }
+        },
+        {
+          "name": "ask_question",
+          "description": "Ask any question about a GitHub repository and get an AI-powered, context-grounded response.\n\nArgs:\n    repoName: GitHub repository or list of repositories (max 10) in owner/repo format\n    question: The question to ask about the repository",
+          "inputSchema": {
+            "properties": {
+              "repoName": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "items": {
+                      "type": "string"
+                    },
+                    "type": "array"
+                  }
+                ]
+              },
+              "question": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "repoName",
+              "question"
+            ],
+            "type": "object"
+          },
+          "outputSchema": {
+            "properties": {
+              "result": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "result"
+            ],
+            "type": "object",
+            "x-fastmcp-wrap-result": true
+          },
+          "_meta": {
+            "_fastmcp": {
+              "tags": []
+            }
+          }
+        }
+      ],
+      "tool_count": 3,
+      "tool_names": [
+        "read_wiki_structure",
+        "read_wiki_contents",
+        "ask_question"
+      ]
+    },
+    "server_info_crawled": {
+      "name": "DeepWiki",
+      "overview": "Public MCP server providing 3 tools",
+      "remote_or_local": "Remote",
+      "python_sdk_url": "https://mcp.deepwiki.com/mcp"
+    }
+  }
+}

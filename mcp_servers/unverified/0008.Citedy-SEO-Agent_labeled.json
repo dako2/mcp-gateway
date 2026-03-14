@@ -1,0 +1,3879 @@
+{
+  "labels": {
+    "analysis": "The MCP Server \"Citedy SEO Agent\" provides 53 tools focused on ai/ml tools tasks. Core capabilities include creation and generation, data access and reading, modification and updates. Key tools: article.generate, article.get, article.list, leadmagnet.generate, leadmagnet.get.",
+    "reasoning": "Primary label \"AI/ML Tools\" assigned based on strong keyword matches in tool names and descriptions: generat.",
+    "primary_label": "AI/ML Tools",
+    "secondary_labels": [
+      "News & Media",
+      "Social Media"
+    ],
+    "custom_label": "Data Access & Generation - Citedy SEO Agent",
+    "is_connected": true,
+    "is_remote_tool_valid": true,
+    "featured_server": true,
+    "tool_verified": false,
+    "tool_verified_status": "auth_required",
+    "tool_verified_at": "2026-03-14T20:38:10.718952+00:00",
+    "tool_verified_tool": "article.list",
+    "tool_verified_reason": "HTTP 401"
+  },
+  "metadata": {
+    "server_id": 8,
+    "server_name": "Citedy SEO Agent",
+    "rank_by_usage": 9,
+    "usage_count": "49,200",
+    "original_file": "tools.json#8",
+    "mode": "gateway",
+    "timestamp": 1772876337,
+    "remote_server_response": {
+      "url": "https://mcp.citedy.com/mcp",
+      "is_success": true,
+      "error": null,
+      "tools": [
+        {
+          "name": "article.generate",
+          "description": "Generate a new article using the autopilot flow and current workspace settings.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "topic": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 500,
+                "description": "Article topic or title"
+              },
+              "source_urls": {
+                "minItems": 1,
+                "maxItems": 3,
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "format": "uri"
+                },
+                "description": "Source URLs to base the article on (1-3)"
+              },
+              "language": {
+                "default": "en",
+                "type": "string",
+                "description": "Article language code, e.g. en, es, de"
+              },
+              "size": {
+                "default": "standard",
+                "type": "string",
+                "enum": [
+                  "mini",
+                  "standard",
+                  "full",
+                  "pillar"
+                ],
+                "description": "Article size preset"
+              },
+              "mode": {
+                "default": "standard",
+                "type": "string",
+                "enum": [
+                  "standard",
+                  "turbo"
+                ],
+                "description": "Generation mode: standard or turbo"
+              },
+              "enable_search": {
+                "default": false,
+                "type": "boolean",
+                "description": "Enable web search (turbo mode only)"
+              },
+              "persona": {
+                "type": "string",
+                "maxLength": 50,
+                "description": "Writing persona slug from available personas"
+              },
+              "illustrations": {
+                "default": false,
+                "type": "boolean",
+                "description": "Generate illustrations for the article"
+              },
+              "audio": {
+                "default": false,
+                "type": "boolean",
+                "description": "Generate audio voice-over for the article"
+              },
+              "disable_competition": {
+                "default": false,
+                "type": "boolean",
+                "description": "Skip competitor analysis step"
+              },
+              "wait_for_completion": {
+                "default": true,
+                "type": "boolean",
+                "description": "Wait synchronously for article completion before returning"
+              }
+            },
+            "required": [
+              "language",
+              "size",
+              "mode",
+              "enable_search",
+              "illustrations",
+              "audio",
+              "disable_competition",
+              "wait_for_completion"
+            ],
+            "additionalProperties": false
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": false,
+            "idempotentHint": false,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "article.get",
+          "description": "Get queued article generation status or final generated article result by ID.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "format": "uuid",
+                "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$",
+                "description": "Unique identifier (UUID)"
+              }
+            },
+            "required": [
+              "id"
+            ],
+            "additionalProperties": false
+          }
+        },
+        {
+          "name": "article.list",
+          "description": "List previously generated articles for the current workspace.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "limit": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 100,
+                "description": "Max articles to return, 1-100"
+              },
+              "offset": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 9007199254740991,
+                "description": "Pagination offset"
+              },
+              "status": {
+                "type": "string",
+                "description": "Filter by article status"
+              }
+            },
+            "additionalProperties": false
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "leadmagnet.generate",
+          "description": "Start lead magnet generation (checklist/swipe/framework) and return polling instructions.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "topic": {
+                "type": "string",
+                "minLength": 3,
+                "maxLength": 200,
+                "description": "Lead magnet topic or subject"
+              },
+              "type": {
+                "type": "string",
+                "enum": [
+                  "checklist",
+                  "swipe_file",
+                  "framework"
+                ],
+                "description": "Lead magnet type"
+              },
+              "niche": {
+                "type": "string",
+                "maxLength": 100,
+                "description": "Target niche or industry"
+              },
+              "language": {
+                "default": "en",
+                "type": "string",
+                "enum": [
+                  "en",
+                  "pt",
+                  "de",
+                  "es",
+                  "fr",
+                  "it"
+                ],
+                "description": "Content language code"
+              },
+              "platform": {
+                "default": "twitter",
+                "type": "string",
+                "enum": [
+                  "twitter",
+                  "linkedin"
+                ],
+                "description": "Target social platform for distribution"
+              },
+              "generate_images": {
+                "default": false,
+                "type": "boolean",
+                "description": "Generate cover images for lead magnet"
+              },
+              "auto_publish": {
+                "default": false,
+                "type": "boolean",
+                "description": "Automatically publish after generation"
+              }
+            },
+            "required": [
+              "topic",
+              "type",
+              "language",
+              "platform",
+              "generate_images",
+              "auto_publish"
+            ],
+            "additionalProperties": false
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": false,
+            "idempotentHint": false,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "leadmagnet.get",
+          "description": "Fetch lead magnet status/result by ID.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "format": "uuid",
+                "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$",
+                "description": "Unique identifier (UUID)"
+              }
+            },
+            "required": [
+              "id"
+            ],
+            "additionalProperties": false
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "leadmagnet.publish",
+          "description": "Publish a lead magnet by ID.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "format": "uuid",
+                "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$",
+                "description": "Unique identifier (UUID)"
+              }
+            },
+            "required": [
+              "id"
+            ],
+            "additionalProperties": false
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "leadmagnet.archive",
+          "description": "Archive a lead magnet by ID.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "format": "uuid",
+                "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$",
+                "description": "Unique identifier (UUID)"
+              }
+            },
+            "required": [
+              "id"
+            ],
+            "additionalProperties": false
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "scout.x",
+          "description": "Run X/Twitter scout analysis. Returns processing status — poll scout.x.result for results.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "query": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 500,
+                "description": "Search query for X/Twitter scout"
+              },
+              "mode": {
+                "default": "fast",
+                "type": "string",
+                "enum": [
+                  "fast",
+                  "ultimate"
+                ],
+                "description": "Scout mode: fast or ultimate"
+              },
+              "limit": {
+                "default": 20,
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 50,
+                "description": "Max results to return, 1-50"
+              }
+            },
+            "required": [
+              "query",
+              "mode",
+              "limit"
+            ],
+            "additionalProperties": false
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": false,
+            "idempotentHint": false,
+            "openWorldHint": true
+          }
+        },
+        {
+          "name": "scout.x.result",
+          "description": "Get X scout run status and results by run ID.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "runId": {
+                "type": "string",
+                "format": "uuid",
+                "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$",
+                "description": "X scout run UUID"
+              }
+            },
+            "required": [
+              "runId"
+            ],
+            "additionalProperties": false
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "scout.reddit",
+          "description": "Run Reddit scout analysis. Returns processing status — poll scout.reddit.result for results.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "query": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 500,
+                "description": "Search query for Reddit scout"
+              },
+              "subreddits": {
+                "default": [],
+                "maxItems": 10,
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "Subreddit names to search within"
+              },
+              "limit": {
+                "default": 20,
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 50,
+                "description": "Max results to return, 1-50"
+              }
+            },
+            "required": [
+              "query",
+              "subreddits",
+              "limit"
+            ],
+            "additionalProperties": false
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": false,
+            "idempotentHint": false,
+            "openWorldHint": true
+          }
+        },
+        {
+          "name": "scout.reddit.result",
+          "description": "Get Reddit scout run status and results by run ID.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "runId": {
+                "type": "string",
+                "format": "uuid",
+                "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$",
+                "description": "Reddit scout run UUID"
+              }
+            },
+            "required": [
+              "runId"
+            ],
+            "additionalProperties": false
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "gaps.generate",
+          "description": "Generate SEO/GEO content gap opportunities.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "competitor_urls": {
+                "minItems": 1,
+                "maxItems": 5,
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "format": "uri"
+                },
+                "description": "Competitor website URLs to analyze (1-5)"
+              }
+            },
+            "required": [
+              "competitor_urls"
+            ],
+            "additionalProperties": false
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": false,
+            "idempotentHint": false,
+            "openWorldHint": true
+          }
+        },
+        {
+          "name": "gaps.list",
+          "description": "List saved content gaps.",
+          "inputSchema": {
+            "default": {},
+            "type": "object",
+            "additionalProperties": false
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "adapt.generate",
+          "description": "Generate social adaptations for an article.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "article_id": {
+                "type": "string",
+                "format": "uuid",
+                "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$",
+                "description": "UUID of the article to adapt"
+              },
+              "platforms": {
+                "minItems": 1,
+                "maxItems": 3,
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "enum": [
+                    "x_article",
+                    "x_thread",
+                    "linkedin",
+                    "facebook",
+                    "reddit",
+                    "threads",
+                    "instagram",
+                    "instagram_reels",
+                    "youtube_shorts"
+                  ]
+                },
+                "description": "Target social platforms (1-3)"
+              },
+              "include_ref_link": {
+                "default": true,
+                "type": "boolean",
+                "description": "Include reference link to original article"
+              }
+            },
+            "required": [
+              "article_id",
+              "platforms",
+              "include_ref_link"
+            ],
+            "additionalProperties": false
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": false,
+            "idempotentHint": false,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "ingest.create",
+          "description": "Create an ingestion job from a source URL.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "url": {
+                "type": "string",
+                "maxLength": 2048,
+                "format": "uri",
+                "description": "Source URL to ingest (YouTube, web, PDF, audio)"
+              },
+              "callback_url": {
+                "type": "string",
+                "maxLength": 2048,
+                "format": "uri",
+                "description": "Optional HTTPS webhook URL for completion notification"
+              }
+            },
+            "required": [
+              "url"
+            ],
+            "additionalProperties": false
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": false,
+            "idempotentHint": false,
+            "openWorldHint": true
+          }
+        },
+        {
+          "name": "ingest.get",
+          "description": "Get ingestion job status/result by ID.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "format": "uuid",
+                "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$",
+                "description": "Unique identifier (UUID)"
+              }
+            },
+            "required": [
+              "id"
+            ],
+            "additionalProperties": false
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "ingest.content.get",
+          "description": "Fetch extracted content payload for a completed ingestion job.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "format": "uuid",
+                "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$",
+                "description": "Unique identifier (UUID)"
+              }
+            },
+            "required": [
+              "id"
+            ],
+            "additionalProperties": false
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "session.create",
+          "description": "Create and start an autopilot session.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "categories": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "minItems": 1,
+                "description": "Content categories for the autopilot session"
+              },
+              "problems": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "Pain points or problems to address in content"
+              },
+              "languages": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "default": [
+                  "en"
+                ],
+                "description": "Language codes for content generation"
+              },
+              "interval_minutes": {
+                "type": "number",
+                "default": 720,
+                "description": "Minutes between autopilot article generation (60-10080)"
+              },
+              "article_size": {
+                "type": "string",
+                "enum": [
+                  "mini",
+                  "standard",
+                  "full",
+                  "pillar"
+                ],
+                "default": "mini",
+                "description": "Size preset for generated articles"
+              },
+              "disable_competition": {
+                "type": "boolean",
+                "default": false,
+                "description": "Skip competitor analysis during generation"
+              }
+            },
+            "required": [
+              "categories"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": false,
+            "idempotentHint": false,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "social.publish",
+          "description": "Publish, schedule, or cancel social adaptation publishing.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "adaptationId": {
+                "type": "string",
+                "format": "uuid",
+                "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$",
+                "description": "UUID of the social adaptation to publish"
+              },
+              "action": {
+                "type": "string",
+                "enum": [
+                  "now",
+                  "schedule",
+                  "cancel"
+                ],
+                "description": "Publish action: now, schedule, or cancel"
+              },
+              "scheduledAt": {
+                "type": "string",
+                "format": "date-time",
+                "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d(?::[0-5]\\d(?:\\.\\d+)?)?(?:Z))$",
+                "description": "ISO 8601 datetime for scheduled publishing"
+              },
+              "platform": {
+                "type": "string",
+                "enum": [
+                  "facebook",
+                  "linkedin",
+                  "x_article",
+                  "x_thread",
+                  "reddit",
+                  "threads",
+                  "instagram"
+                ],
+                "description": "Target social media platform"
+              },
+              "accountId": {
+                "type": "string",
+                "format": "uuid",
+                "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$",
+                "description": "UUID of the connected social account"
+              }
+            },
+            "required": [
+              "adaptationId",
+              "action",
+              "platform",
+              "accountId"
+            ],
+            "additionalProperties": false
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": false,
+            "idempotentHint": false,
+            "openWorldHint": true
+          }
+        },
+        {
+          "name": "schedule.list",
+          "description": "List upcoming article/post/social schedule timeline.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "from": {
+                "type": "string",
+                "description": "Start date filter (ISO 8601)"
+              },
+              "to": {
+                "type": "string",
+                "description": "End date filter (ISO 8601)"
+              },
+              "type": {
+                "type": "string",
+                "enum": [
+                  "all",
+                  "article",
+                  "post",
+                  "social"
+                ],
+                "description": "Filter by schedule entry type"
+              }
+            },
+            "additionalProperties": false
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "schedule.gaps",
+          "description": "List schedule gaps for upcoming days.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "days": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 30,
+                "description": "Number of upcoming days to check, 1-30"
+              },
+              "timezone": {
+                "type": "string",
+                "minLength": 1,
+                "description": "IANA timezone string, e.g. America/New_York"
+              }
+            },
+            "additionalProperties": false
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "ingest.batch",
+          "description": "Create ingestion jobs in batch mode for multiple URLs.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "urls": {
+                "minItems": 1,
+                "maxItems": 20,
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "maxLength": 2048,
+                  "format": "uri"
+                },
+                "description": "Array of 1-20 source URLs to ingest in batch"
+              },
+              "callback_url": {
+                "type": "string",
+                "maxLength": 2048,
+                "format": "uri",
+                "description": "Optional HTTPS webhook URL for batch completion"
+              }
+            },
+            "required": [
+              "urls"
+            ],
+            "additionalProperties": false
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": false,
+            "idempotentHint": false,
+            "openWorldHint": true
+          }
+        },
+        {
+          "name": "competitors.discover",
+          "description": "Discover competitors by keyword set.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "keywords": {
+                "minItems": 1,
+                "maxItems": 5,
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 100
+                },
+                "description": "Keywords to discover competitors for (1-5)"
+              }
+            },
+            "required": [
+              "keywords"
+            ],
+            "additionalProperties": false
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": false,
+            "idempotentHint": false,
+            "openWorldHint": true
+          }
+        },
+        {
+          "name": "competitors.scout",
+          "description": "Analyze a competitor domain.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "domain": {
+                "type": "string",
+                "format": "uri",
+                "description": "Competitor domain URL to analyze"
+              },
+              "mode": {
+                "default": "fast",
+                "type": "string",
+                "enum": [
+                  "fast",
+                  "ultimate"
+                ],
+                "description": "Analysis mode: fast or ultimate"
+              },
+              "topic": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 500,
+                "description": "Focus topic for competitor analysis"
+              },
+              "language": {
+                "default": "en",
+                "type": "string",
+                "minLength": 2,
+                "maxLength": 5,
+                "description": "Content language code, e.g. en, es, de"
+              }
+            },
+            "required": [
+              "domain",
+              "mode",
+              "language"
+            ],
+            "additionalProperties": false
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": false,
+            "idempotentHint": false,
+            "openWorldHint": true
+          }
+        },
+        {
+          "name": "webhooks.register",
+          "description": "Register webhook endpoint for agent events.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "url": {
+                "type": "string",
+                "minLength": 1,
+                "description": "Webhook endpoint URL"
+              },
+              "event_types": {
+                "maxItems": 32,
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "Event types to subscribe to"
+              },
+              "description": {
+                "type": "string",
+                "maxLength": 300,
+                "description": "Human-readable webhook description"
+              }
+            },
+            "required": [
+              "url"
+            ],
+            "additionalProperties": false
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": false,
+            "idempotentHint": false,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "webhooks.list",
+          "description": "List webhook endpoints for current agent.",
+          "inputSchema": {
+            "default": {},
+            "type": "object",
+            "additionalProperties": false
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "webhooks.deliveries",
+          "description": "List webhook delivery attempts.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "status": {
+                "type": "string",
+                "enum": [
+                  "queued",
+                  "delivering",
+                  "delivered",
+                  "failed",
+                  "dead_lettered"
+                ],
+                "description": "Filter by delivery status"
+              },
+              "limit": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 100,
+                "description": "Max results to return, 1-100"
+              },
+              "offset": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 9007199254740991,
+                "description": "Pagination offset"
+              }
+            },
+            "additionalProperties": false
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "webhooks.delete",
+          "description": "Delete a webhook endpoint by ID.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "format": "uuid",
+                "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$",
+                "description": "Unique identifier (UUID)"
+              }
+            },
+            "required": [
+              "id"
+            ],
+            "additionalProperties": false
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": true,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "agent.me",
+          "description": "Return agent profile, balances and limits.",
+          "inputSchema": {
+            "default": {},
+            "type": "object",
+            "additionalProperties": false
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "agent.health",
+          "description": "Return infrastructure health checks for agent platform.",
+          "inputSchema": {
+            "default": {},
+            "type": "object",
+            "additionalProperties": false
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "agent.status",
+          "description": "Return actionable operational status snapshot (credits, socials, schedule, knowledge, content).",
+          "inputSchema": {
+            "default": {},
+            "type": "object",
+            "additionalProperties": false
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "settings.get",
+          "description": "Get current agent settings.",
+          "inputSchema": {
+            "default": {},
+            "type": "object",
+            "additionalProperties": false
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "personas.list",
+          "description": "List available writing personas.",
+          "inputSchema": {
+            "default": {},
+            "type": "object",
+            "additionalProperties": false
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "products.create",
+          "description": "Upload product knowledge document.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "title": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 500,
+                "description": "Product/document title"
+              },
+              "content": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 500000,
+                "description": "Full product description or document text"
+              },
+              "source_type": {
+                "type": "string",
+                "enum": [
+                  "upload",
+                  "url",
+                  "manual"
+                ],
+                "description": "How the product was added"
+              },
+              "source_name": {
+                "type": "string",
+                "maxLength": 500,
+                "description": "Original source filename"
+              },
+              "source_url": {
+                "type": "string",
+                "maxLength": 2000,
+                "format": "uri",
+                "description": "Original source URL"
+              }
+            },
+            "required": [
+              "title",
+              "content"
+            ],
+            "additionalProperties": false
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": false,
+            "idempotentHint": false,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "products.list",
+          "description": "List product knowledge documents.",
+          "inputSchema": {
+            "default": {},
+            "type": "object",
+            "additionalProperties": false
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "products.delete",
+          "description": "Delete product knowledge document by ID.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "format": "uuid",
+                "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$",
+                "description": "Unique identifier (UUID)"
+              }
+            },
+            "required": [
+              "id"
+            ],
+            "additionalProperties": false
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": true,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "products.search",
+          "description": "Search product knowledge documents.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "query": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 2000,
+                "description": "Semantic search query against product knowledge base"
+              },
+              "limit": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 20,
+                "description": "Max results, 1-20"
+              }
+            },
+            "required": [
+              "query"
+            ],
+            "additionalProperties": false
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "seo.meta_tags.check",
+          "description": "Analyze meta tags for a target page URL.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "url": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 2000,
+                "format": "uri",
+                "description": "Target page URL to analyze"
+              }
+            },
+            "required": [
+              "url"
+            ],
+            "additionalProperties": false
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": true
+          }
+        },
+        {
+          "name": "seo.headings.check",
+          "description": "Analyze heading hierarchy (H1-H6) for a page.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "url": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 2000,
+                "format": "uri",
+                "description": "Target page URL to analyze"
+              }
+            },
+            "required": [
+              "url"
+            ],
+            "additionalProperties": false
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": true
+          }
+        },
+        {
+          "name": "seo.links.analyze",
+          "description": "Analyze internal/external links and link attributes.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "url": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 2000,
+                "format": "uri",
+                "description": "Target page URL to analyze"
+              }
+            },
+            "required": [
+              "url"
+            ],
+            "additionalProperties": false
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": true
+          }
+        },
+        {
+          "name": "seo.internal_links.plan",
+          "description": "Plan internal linking opportunities from source URL and target URLs/sitemap.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "url": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 2000,
+                "format": "uri",
+                "description": "Source page URL for internal linking analysis"
+              },
+              "targetUrls": {
+                "default": [],
+                "maxItems": 50,
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "format": "uri"
+                },
+                "description": "Array of target URLs to find linking opportunities"
+              },
+              "sitemapUrl": {
+                "type": "string",
+                "maxLength": 2000,
+                "format": "uri",
+                "description": "Optional sitemap URL to discover additional pages"
+              }
+            },
+            "required": [
+              "url",
+              "targetUrls"
+            ],
+            "additionalProperties": false
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": true
+          }
+        },
+        {
+          "name": "seo.og.preview",
+          "description": "Extract Open Graph and Twitter card preview metadata.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "url": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 2000,
+                "format": "uri",
+                "description": "Target page URL to analyze"
+              }
+            },
+            "required": [
+              "url"
+            ],
+            "additionalProperties": false
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": true
+          }
+        },
+        {
+          "name": "seo.schema.validate",
+          "description": "Validate JSON-LD schema markup for a page.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "url": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 2000,
+                "format": "uri",
+                "description": "Target page URL to analyze"
+              }
+            },
+            "required": [
+              "url"
+            ],
+            "additionalProperties": false
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": true
+          }
+        },
+        {
+          "name": "seo.robots.check",
+          "description": "Check robots.txt availability and parsed directives.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "url": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 2000,
+                "format": "uri",
+                "description": "Target page URL to analyze"
+              }
+            },
+            "required": [
+              "url"
+            ],
+            "additionalProperties": false
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": true
+          }
+        },
+        {
+          "name": "seo.sitemap.check",
+          "description": "Check sitemap availability and robots sitemap hints.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "url": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 2000,
+                "format": "uri",
+                "description": "Target page URL to analyze"
+              }
+            },
+            "required": [
+              "url"
+            ],
+            "additionalProperties": false
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": true
+          }
+        },
+        {
+          "name": "seo.og_image.generate",
+          "description": "Generate an Open Graph image artifact and return hosted URL for brand assets.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "brandName": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 100,
+                "description": "Brand or company name"
+              },
+              "brandDescription": {
+                "type": "string",
+                "maxLength": 1000,
+                "description": "Short brand description"
+              },
+              "primaryColor": {
+                "type": "string",
+                "pattern": "^#[0-9A-Fa-f]{6}$",
+                "description": "Brand primary color in hex format #RRGGBB"
+              },
+              "logoUrl": {
+                "type": "string",
+                "maxLength": 2000,
+                "format": "uri",
+                "description": "URL to brand logo image"
+              },
+              "template": {
+                "type": "string",
+                "enum": [
+                  "product",
+                  "blog_post",
+                  "comparison",
+                  "case_study"
+                ],
+                "description": "OG image template style"
+              },
+              "headline": {
+                "type": "string",
+                "maxLength": 120,
+                "description": "Main headline text"
+              },
+              "subheadline": {
+                "type": "string",
+                "maxLength": 180,
+                "description": "Secondary headline text"
+              }
+            },
+            "additionalProperties": false
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": false,
+            "idempotentHint": false,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "brand.scan",
+          "description": "Run AI brand visibility scan across major LLM providers (async, poll with brand.scan.get).",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "brandName": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 100,
+                "description": "Brand name to scan across LLM providers"
+              }
+            },
+            "required": [
+              "brandName"
+            ],
+            "additionalProperties": false
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": false,
+            "idempotentHint": false,
+            "openWorldHint": true
+          }
+        },
+        {
+          "name": "brand.scan.get",
+          "description": "Get brand scan status and final result payload by scan ID.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "format": "uuid",
+                "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$",
+                "description": "Unique identifier (UUID)"
+              }
+            },
+            "required": [
+              "id"
+            ],
+            "additionalProperties": false
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "shorts.generate",
+          "description": "Generate shorts video and return poll instructions until final video URL is ready.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "prompt": {
+                "type": "string",
+                "minLength": 10,
+                "maxLength": 2000,
+                "description": "Video generation prompt describing scene, style, and action"
+              },
+              "avatar_url": {
+                "type": "string",
+                "format": "uri",
+                "description": "URL of AI avatar image hosted on download.citedy.com"
+              },
+              "duration": {
+                "anyOf": [
+                  {
+                    "type": "number",
+                    "const": 5
+                  },
+                  {
+                    "type": "number",
+                    "const": 10
+                  },
+                  {
+                    "type": "number",
+                    "const": 15
+                  }
+                ],
+                "description": "Video duration in seconds: 5, 10, or 15"
+              },
+              "resolution": {
+                "type": "string",
+                "enum": [
+                  "480p",
+                  "720p"
+                ],
+                "description": "Video resolution"
+              },
+              "aspect_ratio": {
+                "type": "string",
+                "enum": [
+                  "9:16",
+                  "16:9",
+                  "1:1"
+                ],
+                "description": "Video aspect ratio"
+              },
+              "speech_text": {
+                "type": "string",
+                "minLength": 5,
+                "maxLength": 1000,
+                "description": "Text the avatar will speak with lip-sync"
+              }
+            },
+            "required": [
+              "prompt",
+              "avatar_url",
+              "duration"
+            ],
+            "additionalProperties": false
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": false,
+            "idempotentHint": false,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "shorts.get",
+          "description": "Get shorts generation status/result by ID.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "format": "uuid",
+                "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$",
+                "description": "Unique identifier (UUID)"
+              }
+            },
+            "required": [
+              "id"
+            ],
+            "additionalProperties": false
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "shorts.script",
+          "description": "Generate short-form video script text (hook/educational/cta styles).",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "topic": {
+                "type": "string",
+                "minLength": 3,
+                "maxLength": 500,
+                "description": "Topic or subject for the video script"
+              },
+              "product_id": {
+                "type": "string",
+                "format": "uuid",
+                "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$",
+                "description": "Optional product ID to reference in script"
+              },
+              "duration": {
+                "type": "string",
+                "enum": [
+                  "short",
+                  "long"
+                ],
+                "description": "Script length: short or long"
+              },
+              "style": {
+                "type": "string",
+                "enum": [
+                  "hook",
+                  "educational",
+                  "cta"
+                ],
+                "description": "Script style: hook, educational, or cta"
+              },
+              "language": {
+                "type": "string",
+                "minLength": 2,
+                "maxLength": 5,
+                "description": "Language code, e.g. en, es, de"
+              }
+            },
+            "required": [
+              "topic"
+            ],
+            "additionalProperties": false
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": false,
+            "idempotentHint": false,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "shorts.avatar",
+          "description": "Generate an AI avatar image for shorts and return hosted avatar URL.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "gender": {
+                "type": "string",
+                "enum": [
+                  "male",
+                  "female"
+                ],
+                "description": "Avatar gender"
+              },
+              "origin": {
+                "type": "string",
+                "enum": [
+                  "european",
+                  "asian",
+                  "african",
+                  "latin",
+                  "middle_eastern",
+                  "south_asian"
+                ],
+                "description": "Avatar ethnicity/appearance"
+              },
+              "age_range": {
+                "type": "string",
+                "enum": [
+                  "18-25",
+                  "26-35",
+                  "36-50"
+                ],
+                "description": "Avatar age range"
+              },
+              "type": {
+                "type": "string",
+                "enum": [
+                  "tech_founder",
+                  "vibe_coder",
+                  "student",
+                  "executive"
+                ],
+                "description": "Avatar character archetype"
+              },
+              "location": {
+                "type": "string",
+                "enum": [
+                  "coffee_shop",
+                  "dev_cave",
+                  "street",
+                  "car",
+                  "home_office",
+                  "podcast_studio",
+                  "glass_office",
+                  "rooftop",
+                  "bedroom",
+                  "park",
+                  "gym"
+                ],
+                "description": "Background setting for the avatar"
+              }
+            },
+            "required": [
+              "gender",
+              "origin"
+            ],
+            "additionalProperties": false
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": false,
+            "idempotentHint": false,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "shorts.merge",
+          "description": "Merge 2-4 short clips, apply subtitle phrases, and return final video URL.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "video_urls": {
+                "minItems": 2,
+                "maxItems": 4,
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "format": "uri"
+                },
+                "description": "Array of 2-4 video URLs to merge"
+              },
+              "phrases": {
+                "minItems": 1,
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "text": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 500,
+                      "description": "Subtitle text for this video segment"
+                    }
+                  },
+                  "required": [
+                    "text"
+                  ],
+                  "additionalProperties": false
+                },
+                "description": "Subtitle text for each video segment"
+              },
+              "config": {
+                "type": "object",
+                "properties": {
+                  "words_per_phrase": {
+                    "type": "integer",
+                    "minimum": 2,
+                    "maximum": 8,
+                    "description": "Words per subtitle phrase, 2-8"
+                  },
+                  "font_size": {
+                    "type": "integer",
+                    "minimum": 16,
+                    "maximum": 72,
+                    "description": "Subtitle font size in pixels, 16-72"
+                  },
+                  "position_from_bottom": {
+                    "type": "integer",
+                    "minimum": 50,
+                    "maximum": 300,
+                    "description": "Pixels from bottom edge, 50-300"
+                  },
+                  "text_color": {
+                    "type": "string",
+                    "pattern": "^#[0-9a-fA-F]{6}$|^[a-z]{3,20}$",
+                    "description": "Subtitle text color (hex or named)"
+                  },
+                  "stroke_color": {
+                    "type": "string",
+                    "pattern": "^#[0-9a-fA-F]{6}$|^[a-z]{3,20}$",
+                    "description": "Subtitle stroke/outline color (hex or named)"
+                  },
+                  "stroke_width": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 5,
+                    "description": "Stroke width in pixels, 0-5"
+                  }
+                },
+                "additionalProperties": false,
+                "description": "Optional subtitle styling configuration"
+              }
+            },
+            "required": [
+              "video_urls",
+              "phrases"
+            ],
+            "additionalProperties": false
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": false,
+            "idempotentHint": false,
+            "openWorldHint": false
+          }
+        }
+      ],
+      "tool_count": 53,
+      "tool_names": [
+        "article.generate",
+        "article.get",
+        "article.list",
+        "leadmagnet.generate",
+        "leadmagnet.get",
+        "leadmagnet.publish",
+        "leadmagnet.archive",
+        "scout.x",
+        "scout.x.result",
+        "scout.reddit",
+        "scout.reddit.result",
+        "gaps.generate",
+        "gaps.list",
+        "adapt.generate",
+        "ingest.create",
+        "ingest.get",
+        "ingest.content.get",
+        "session.create",
+        "social.publish",
+        "schedule.list",
+        "schedule.gaps",
+        "ingest.batch",
+        "competitors.discover",
+        "competitors.scout",
+        "webhooks.register",
+        "webhooks.list",
+        "webhooks.deliveries",
+        "webhooks.delete",
+        "agent.me",
+        "agent.health",
+        "agent.status",
+        "settings.get",
+        "personas.list",
+        "products.create",
+        "products.list",
+        "products.delete",
+        "products.search",
+        "seo.meta_tags.check",
+        "seo.headings.check",
+        "seo.links.analyze",
+        "seo.internal_links.plan",
+        "seo.og.preview",
+        "seo.schema.validate",
+        "seo.robots.check",
+        "seo.sitemap.check",
+        "seo.og_image.generate",
+        "brand.scan",
+        "brand.scan.get",
+        "shorts.generate",
+        "shorts.get",
+        "shorts.script",
+        "shorts.avatar",
+        "shorts.merge"
+      ]
+    },
+    "server_info_crawled": {
+      "id": 8,
+      "name": "Citedy SEO Agent",
+      "author": "",
+      "overview": "Citedy SEO Agent - AI/ML Tools server with 53 tools. The MCP Server \"Citedy SEO Agent\" provides 53 tools focused on ai/ml tools tasks. Core capabilities ",
+      "repository_url": "",
+      "homepage": "https://mcp.citedy.com/mcp",
+      "remote_or_local": "Remote",
+      "license": "",
+      "usage_count": "49,200",
+      "success_rate": "100%",
+      "tags": [
+        "ai/ml-tools",
+        "news-media",
+        "social-media"
+      ],
+      "categories": [
+        "ai/ml tools",
+        "news & media",
+        "social media"
+      ],
+      "tools_count": 53,
+      "tools": [
+        {
+          "name": "article.generate",
+          "description": "Generate a new article using the autopilot flow and current workspace settings.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "topic": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 500,
+                "description": "Article topic or title"
+              },
+              "source_urls": {
+                "minItems": 1,
+                "maxItems": 3,
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "format": "uri"
+                },
+                "description": "Source URLs to base the article on (1-3)"
+              },
+              "language": {
+                "default": "en",
+                "type": "string",
+                "description": "Article language code, e.g. en, es, de"
+              },
+              "size": {
+                "default": "standard",
+                "type": "string",
+                "enum": [
+                  "mini",
+                  "standard",
+                  "full",
+                  "pillar"
+                ],
+                "description": "Article size preset"
+              },
+              "mode": {
+                "default": "standard",
+                "type": "string",
+                "enum": [
+                  "standard",
+                  "turbo"
+                ],
+                "description": "Generation mode: standard or turbo"
+              },
+              "enable_search": {
+                "default": false,
+                "type": "boolean",
+                "description": "Enable web search (turbo mode only)"
+              },
+              "persona": {
+                "type": "string",
+                "maxLength": 50,
+                "description": "Writing persona slug from available personas"
+              },
+              "illustrations": {
+                "default": false,
+                "type": "boolean",
+                "description": "Generate illustrations for the article"
+              },
+              "audio": {
+                "default": false,
+                "type": "boolean",
+                "description": "Generate audio voice-over for the article"
+              },
+              "disable_competition": {
+                "default": false,
+                "type": "boolean",
+                "description": "Skip competitor analysis step"
+              },
+              "wait_for_completion": {
+                "default": true,
+                "type": "boolean",
+                "description": "Wait synchronously for article completion before returning"
+              }
+            },
+            "required": [
+              "language",
+              "size",
+              "mode",
+              "enable_search",
+              "illustrations",
+              "audio",
+              "disable_competition",
+              "wait_for_completion"
+            ],
+            "additionalProperties": false
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": false,
+            "idempotentHint": false,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "article.get",
+          "description": "Get queued article generation status or final generated article result by ID.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "format": "uuid",
+                "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$",
+                "description": "Unique identifier (UUID)"
+              }
+            },
+            "required": [
+              "id"
+            ],
+            "additionalProperties": false
+          }
+        },
+        {
+          "name": "article.list",
+          "description": "List previously generated articles for the current workspace.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "limit": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 100,
+                "description": "Max articles to return, 1-100"
+              },
+              "offset": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 9007199254740991,
+                "description": "Pagination offset"
+              },
+              "status": {
+                "type": "string",
+                "description": "Filter by article status"
+              }
+            },
+            "additionalProperties": false
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "leadmagnet.generate",
+          "description": "Start lead magnet generation (checklist/swipe/framework) and return polling instructions.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "topic": {
+                "type": "string",
+                "minLength": 3,
+                "maxLength": 200,
+                "description": "Lead magnet topic or subject"
+              },
+              "type": {
+                "type": "string",
+                "enum": [
+                  "checklist",
+                  "swipe_file",
+                  "framework"
+                ],
+                "description": "Lead magnet type"
+              },
+              "niche": {
+                "type": "string",
+                "maxLength": 100,
+                "description": "Target niche or industry"
+              },
+              "language": {
+                "default": "en",
+                "type": "string",
+                "enum": [
+                  "en",
+                  "pt",
+                  "de",
+                  "es",
+                  "fr",
+                  "it"
+                ],
+                "description": "Content language code"
+              },
+              "platform": {
+                "default": "twitter",
+                "type": "string",
+                "enum": [
+                  "twitter",
+                  "linkedin"
+                ],
+                "description": "Target social platform for distribution"
+              },
+              "generate_images": {
+                "default": false,
+                "type": "boolean",
+                "description": "Generate cover images for lead magnet"
+              },
+              "auto_publish": {
+                "default": false,
+                "type": "boolean",
+                "description": "Automatically publish after generation"
+              }
+            },
+            "required": [
+              "topic",
+              "type",
+              "language",
+              "platform",
+              "generate_images",
+              "auto_publish"
+            ],
+            "additionalProperties": false
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": false,
+            "idempotentHint": false,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "leadmagnet.get",
+          "description": "Fetch lead magnet status/result by ID.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "format": "uuid",
+                "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$",
+                "description": "Unique identifier (UUID)"
+              }
+            },
+            "required": [
+              "id"
+            ],
+            "additionalProperties": false
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "leadmagnet.publish",
+          "description": "Publish a lead magnet by ID.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "format": "uuid",
+                "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$",
+                "description": "Unique identifier (UUID)"
+              }
+            },
+            "required": [
+              "id"
+            ],
+            "additionalProperties": false
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "leadmagnet.archive",
+          "description": "Archive a lead magnet by ID.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "format": "uuid",
+                "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$",
+                "description": "Unique identifier (UUID)"
+              }
+            },
+            "required": [
+              "id"
+            ],
+            "additionalProperties": false
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "scout.x",
+          "description": "Run X/Twitter scout analysis. Returns processing status — poll scout.x.result for results.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "query": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 500,
+                "description": "Search query for X/Twitter scout"
+              },
+              "mode": {
+                "default": "fast",
+                "type": "string",
+                "enum": [
+                  "fast",
+                  "ultimate"
+                ],
+                "description": "Scout mode: fast or ultimate"
+              },
+              "limit": {
+                "default": 20,
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 50,
+                "description": "Max results to return, 1-50"
+              }
+            },
+            "required": [
+              "query",
+              "mode",
+              "limit"
+            ],
+            "additionalProperties": false
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": false,
+            "idempotentHint": false,
+            "openWorldHint": true
+          }
+        },
+        {
+          "name": "scout.x.result",
+          "description": "Get X scout run status and results by run ID.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "runId": {
+                "type": "string",
+                "format": "uuid",
+                "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$",
+                "description": "X scout run UUID"
+              }
+            },
+            "required": [
+              "runId"
+            ],
+            "additionalProperties": false
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "scout.reddit",
+          "description": "Run Reddit scout analysis. Returns processing status — poll scout.reddit.result for results.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "query": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 500,
+                "description": "Search query for Reddit scout"
+              },
+              "subreddits": {
+                "default": [],
+                "maxItems": 10,
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "Subreddit names to search within"
+              },
+              "limit": {
+                "default": 20,
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 50,
+                "description": "Max results to return, 1-50"
+              }
+            },
+            "required": [
+              "query",
+              "subreddits",
+              "limit"
+            ],
+            "additionalProperties": false
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": false,
+            "idempotentHint": false,
+            "openWorldHint": true
+          }
+        },
+        {
+          "name": "scout.reddit.result",
+          "description": "Get Reddit scout run status and results by run ID.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "runId": {
+                "type": "string",
+                "format": "uuid",
+                "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$",
+                "description": "Reddit scout run UUID"
+              }
+            },
+            "required": [
+              "runId"
+            ],
+            "additionalProperties": false
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "gaps.generate",
+          "description": "Generate SEO/GEO content gap opportunities.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "competitor_urls": {
+                "minItems": 1,
+                "maxItems": 5,
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "format": "uri"
+                },
+                "description": "Competitor website URLs to analyze (1-5)"
+              }
+            },
+            "required": [
+              "competitor_urls"
+            ],
+            "additionalProperties": false
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": false,
+            "idempotentHint": false,
+            "openWorldHint": true
+          }
+        },
+        {
+          "name": "gaps.list",
+          "description": "List saved content gaps.",
+          "inputSchema": {
+            "default": {},
+            "type": "object",
+            "additionalProperties": false
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "adapt.generate",
+          "description": "Generate social adaptations for an article.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "article_id": {
+                "type": "string",
+                "format": "uuid",
+                "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$",
+                "description": "UUID of the article to adapt"
+              },
+              "platforms": {
+                "minItems": 1,
+                "maxItems": 3,
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "enum": [
+                    "x_article",
+                    "x_thread",
+                    "linkedin",
+                    "facebook",
+                    "reddit",
+                    "threads",
+                    "instagram",
+                    "instagram_reels",
+                    "youtube_shorts"
+                  ]
+                },
+                "description": "Target social platforms (1-3)"
+              },
+              "include_ref_link": {
+                "default": true,
+                "type": "boolean",
+                "description": "Include reference link to original article"
+              }
+            },
+            "required": [
+              "article_id",
+              "platforms",
+              "include_ref_link"
+            ],
+            "additionalProperties": false
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": false,
+            "idempotentHint": false,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "ingest.create",
+          "description": "Create an ingestion job from a source URL.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "url": {
+                "type": "string",
+                "maxLength": 2048,
+                "format": "uri",
+                "description": "Source URL to ingest (YouTube, web, PDF, audio)"
+              },
+              "callback_url": {
+                "type": "string",
+                "maxLength": 2048,
+                "format": "uri",
+                "description": "Optional HTTPS webhook URL for completion notification"
+              }
+            },
+            "required": [
+              "url"
+            ],
+            "additionalProperties": false
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": false,
+            "idempotentHint": false,
+            "openWorldHint": true
+          }
+        },
+        {
+          "name": "ingest.get",
+          "description": "Get ingestion job status/result by ID.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "format": "uuid",
+                "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$",
+                "description": "Unique identifier (UUID)"
+              }
+            },
+            "required": [
+              "id"
+            ],
+            "additionalProperties": false
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "ingest.content.get",
+          "description": "Fetch extracted content payload for a completed ingestion job.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "format": "uuid",
+                "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$",
+                "description": "Unique identifier (UUID)"
+              }
+            },
+            "required": [
+              "id"
+            ],
+            "additionalProperties": false
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "session.create",
+          "description": "Create and start an autopilot session.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "categories": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "minItems": 1,
+                "description": "Content categories for the autopilot session"
+              },
+              "problems": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "Pain points or problems to address in content"
+              },
+              "languages": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "default": [
+                  "en"
+                ],
+                "description": "Language codes for content generation"
+              },
+              "interval_minutes": {
+                "type": "number",
+                "default": 720,
+                "description": "Minutes between autopilot article generation (60-10080)"
+              },
+              "article_size": {
+                "type": "string",
+                "enum": [
+                  "mini",
+                  "standard",
+                  "full",
+                  "pillar"
+                ],
+                "default": "mini",
+                "description": "Size preset for generated articles"
+              },
+              "disable_competition": {
+                "type": "boolean",
+                "default": false,
+                "description": "Skip competitor analysis during generation"
+              }
+            },
+            "required": [
+              "categories"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": false,
+            "idempotentHint": false,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "social.publish",
+          "description": "Publish, schedule, or cancel social adaptation publishing.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "adaptationId": {
+                "type": "string",
+                "format": "uuid",
+                "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$",
+                "description": "UUID of the social adaptation to publish"
+              },
+              "action": {
+                "type": "string",
+                "enum": [
+                  "now",
+                  "schedule",
+                  "cancel"
+                ],
+                "description": "Publish action: now, schedule, or cancel"
+              },
+              "scheduledAt": {
+                "type": "string",
+                "format": "date-time",
+                "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d(?::[0-5]\\d(?:\\.\\d+)?)?(?:Z))$",
+                "description": "ISO 8601 datetime for scheduled publishing"
+              },
+              "platform": {
+                "type": "string",
+                "enum": [
+                  "facebook",
+                  "linkedin",
+                  "x_article",
+                  "x_thread",
+                  "reddit",
+                  "threads",
+                  "instagram"
+                ],
+                "description": "Target social media platform"
+              },
+              "accountId": {
+                "type": "string",
+                "format": "uuid",
+                "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$",
+                "description": "UUID of the connected social account"
+              }
+            },
+            "required": [
+              "adaptationId",
+              "action",
+              "platform",
+              "accountId"
+            ],
+            "additionalProperties": false
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": false,
+            "idempotentHint": false,
+            "openWorldHint": true
+          }
+        },
+        {
+          "name": "schedule.list",
+          "description": "List upcoming article/post/social schedule timeline.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "from": {
+                "type": "string",
+                "description": "Start date filter (ISO 8601)"
+              },
+              "to": {
+                "type": "string",
+                "description": "End date filter (ISO 8601)"
+              },
+              "type": {
+                "type": "string",
+                "enum": [
+                  "all",
+                  "article",
+                  "post",
+                  "social"
+                ],
+                "description": "Filter by schedule entry type"
+              }
+            },
+            "additionalProperties": false
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "schedule.gaps",
+          "description": "List schedule gaps for upcoming days.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "days": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 30,
+                "description": "Number of upcoming days to check, 1-30"
+              },
+              "timezone": {
+                "type": "string",
+                "minLength": 1,
+                "description": "IANA timezone string, e.g. America/New_York"
+              }
+            },
+            "additionalProperties": false
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "ingest.batch",
+          "description": "Create ingestion jobs in batch mode for multiple URLs.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "urls": {
+                "minItems": 1,
+                "maxItems": 20,
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "maxLength": 2048,
+                  "format": "uri"
+                },
+                "description": "Array of 1-20 source URLs to ingest in batch"
+              },
+              "callback_url": {
+                "type": "string",
+                "maxLength": 2048,
+                "format": "uri",
+                "description": "Optional HTTPS webhook URL for batch completion"
+              }
+            },
+            "required": [
+              "urls"
+            ],
+            "additionalProperties": false
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": false,
+            "idempotentHint": false,
+            "openWorldHint": true
+          }
+        },
+        {
+          "name": "competitors.discover",
+          "description": "Discover competitors by keyword set.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "keywords": {
+                "minItems": 1,
+                "maxItems": 5,
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 100
+                },
+                "description": "Keywords to discover competitors for (1-5)"
+              }
+            },
+            "required": [
+              "keywords"
+            ],
+            "additionalProperties": false
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": false,
+            "idempotentHint": false,
+            "openWorldHint": true
+          }
+        },
+        {
+          "name": "competitors.scout",
+          "description": "Analyze a competitor domain.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "domain": {
+                "type": "string",
+                "format": "uri",
+                "description": "Competitor domain URL to analyze"
+              },
+              "mode": {
+                "default": "fast",
+                "type": "string",
+                "enum": [
+                  "fast",
+                  "ultimate"
+                ],
+                "description": "Analysis mode: fast or ultimate"
+              },
+              "topic": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 500,
+                "description": "Focus topic for competitor analysis"
+              },
+              "language": {
+                "default": "en",
+                "type": "string",
+                "minLength": 2,
+                "maxLength": 5,
+                "description": "Content language code, e.g. en, es, de"
+              }
+            },
+            "required": [
+              "domain",
+              "mode",
+              "language"
+            ],
+            "additionalProperties": false
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": false,
+            "idempotentHint": false,
+            "openWorldHint": true
+          }
+        },
+        {
+          "name": "webhooks.register",
+          "description": "Register webhook endpoint for agent events.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "url": {
+                "type": "string",
+                "minLength": 1,
+                "description": "Webhook endpoint URL"
+              },
+              "event_types": {
+                "maxItems": 32,
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "Event types to subscribe to"
+              },
+              "description": {
+                "type": "string",
+                "maxLength": 300,
+                "description": "Human-readable webhook description"
+              }
+            },
+            "required": [
+              "url"
+            ],
+            "additionalProperties": false
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": false,
+            "idempotentHint": false,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "webhooks.list",
+          "description": "List webhook endpoints for current agent.",
+          "inputSchema": {
+            "default": {},
+            "type": "object",
+            "additionalProperties": false
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "webhooks.deliveries",
+          "description": "List webhook delivery attempts.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "status": {
+                "type": "string",
+                "enum": [
+                  "queued",
+                  "delivering",
+                  "delivered",
+                  "failed",
+                  "dead_lettered"
+                ],
+                "description": "Filter by delivery status"
+              },
+              "limit": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 100,
+                "description": "Max results to return, 1-100"
+              },
+              "offset": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 9007199254740991,
+                "description": "Pagination offset"
+              }
+            },
+            "additionalProperties": false
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "webhooks.delete",
+          "description": "Delete a webhook endpoint by ID.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "format": "uuid",
+                "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$",
+                "description": "Unique identifier (UUID)"
+              }
+            },
+            "required": [
+              "id"
+            ],
+            "additionalProperties": false
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": true,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "agent.me",
+          "description": "Return agent profile, balances and limits.",
+          "inputSchema": {
+            "default": {},
+            "type": "object",
+            "additionalProperties": false
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "agent.health",
+          "description": "Return infrastructure health checks for agent platform.",
+          "inputSchema": {
+            "default": {},
+            "type": "object",
+            "additionalProperties": false
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "agent.status",
+          "description": "Return actionable operational status snapshot (credits, socials, schedule, knowledge, content).",
+          "inputSchema": {
+            "default": {},
+            "type": "object",
+            "additionalProperties": false
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "settings.get",
+          "description": "Get current agent settings.",
+          "inputSchema": {
+            "default": {},
+            "type": "object",
+            "additionalProperties": false
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "personas.list",
+          "description": "List available writing personas.",
+          "inputSchema": {
+            "default": {},
+            "type": "object",
+            "additionalProperties": false
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "products.create",
+          "description": "Upload product knowledge document.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "title": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 500,
+                "description": "Product/document title"
+              },
+              "content": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 500000,
+                "description": "Full product description or document text"
+              },
+              "source_type": {
+                "type": "string",
+                "enum": [
+                  "upload",
+                  "url",
+                  "manual"
+                ],
+                "description": "How the product was added"
+              },
+              "source_name": {
+                "type": "string",
+                "maxLength": 500,
+                "description": "Original source filename"
+              },
+              "source_url": {
+                "type": "string",
+                "maxLength": 2000,
+                "format": "uri",
+                "description": "Original source URL"
+              }
+            },
+            "required": [
+              "title",
+              "content"
+            ],
+            "additionalProperties": false
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": false,
+            "idempotentHint": false,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "products.list",
+          "description": "List product knowledge documents.",
+          "inputSchema": {
+            "default": {},
+            "type": "object",
+            "additionalProperties": false
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "products.delete",
+          "description": "Delete product knowledge document by ID.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "format": "uuid",
+                "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$",
+                "description": "Unique identifier (UUID)"
+              }
+            },
+            "required": [
+              "id"
+            ],
+            "additionalProperties": false
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": true,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "products.search",
+          "description": "Search product knowledge documents.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "query": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 2000,
+                "description": "Semantic search query against product knowledge base"
+              },
+              "limit": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 20,
+                "description": "Max results, 1-20"
+              }
+            },
+            "required": [
+              "query"
+            ],
+            "additionalProperties": false
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "seo.meta_tags.check",
+          "description": "Analyze meta tags for a target page URL.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "url": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 2000,
+                "format": "uri",
+                "description": "Target page URL to analyze"
+              }
+            },
+            "required": [
+              "url"
+            ],
+            "additionalProperties": false
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": true
+          }
+        },
+        {
+          "name": "seo.headings.check",
+          "description": "Analyze heading hierarchy (H1-H6) for a page.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "url": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 2000,
+                "format": "uri",
+                "description": "Target page URL to analyze"
+              }
+            },
+            "required": [
+              "url"
+            ],
+            "additionalProperties": false
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": true
+          }
+        },
+        {
+          "name": "seo.links.analyze",
+          "description": "Analyze internal/external links and link attributes.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "url": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 2000,
+                "format": "uri",
+                "description": "Target page URL to analyze"
+              }
+            },
+            "required": [
+              "url"
+            ],
+            "additionalProperties": false
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": true
+          }
+        },
+        {
+          "name": "seo.internal_links.plan",
+          "description": "Plan internal linking opportunities from source URL and target URLs/sitemap.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "url": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 2000,
+                "format": "uri",
+                "description": "Source page URL for internal linking analysis"
+              },
+              "targetUrls": {
+                "default": [],
+                "maxItems": 50,
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "format": "uri"
+                },
+                "description": "Array of target URLs to find linking opportunities"
+              },
+              "sitemapUrl": {
+                "type": "string",
+                "maxLength": 2000,
+                "format": "uri",
+                "description": "Optional sitemap URL to discover additional pages"
+              }
+            },
+            "required": [
+              "url",
+              "targetUrls"
+            ],
+            "additionalProperties": false
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": true
+          }
+        },
+        {
+          "name": "seo.og.preview",
+          "description": "Extract Open Graph and Twitter card preview metadata.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "url": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 2000,
+                "format": "uri",
+                "description": "Target page URL to analyze"
+              }
+            },
+            "required": [
+              "url"
+            ],
+            "additionalProperties": false
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": true
+          }
+        },
+        {
+          "name": "seo.schema.validate",
+          "description": "Validate JSON-LD schema markup for a page.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "url": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 2000,
+                "format": "uri",
+                "description": "Target page URL to analyze"
+              }
+            },
+            "required": [
+              "url"
+            ],
+            "additionalProperties": false
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": true
+          }
+        },
+        {
+          "name": "seo.robots.check",
+          "description": "Check robots.txt availability and parsed directives.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "url": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 2000,
+                "format": "uri",
+                "description": "Target page URL to analyze"
+              }
+            },
+            "required": [
+              "url"
+            ],
+            "additionalProperties": false
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": true
+          }
+        },
+        {
+          "name": "seo.sitemap.check",
+          "description": "Check sitemap availability and robots sitemap hints.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "url": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 2000,
+                "format": "uri",
+                "description": "Target page URL to analyze"
+              }
+            },
+            "required": [
+              "url"
+            ],
+            "additionalProperties": false
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": true
+          }
+        },
+        {
+          "name": "seo.og_image.generate",
+          "description": "Generate an Open Graph image artifact and return hosted URL for brand assets.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "brandName": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 100,
+                "description": "Brand or company name"
+              },
+              "brandDescription": {
+                "type": "string",
+                "maxLength": 1000,
+                "description": "Short brand description"
+              },
+              "primaryColor": {
+                "type": "string",
+                "pattern": "^#[0-9A-Fa-f]{6}$",
+                "description": "Brand primary color in hex format #RRGGBB"
+              },
+              "logoUrl": {
+                "type": "string",
+                "maxLength": 2000,
+                "format": "uri",
+                "description": "URL to brand logo image"
+              },
+              "template": {
+                "type": "string",
+                "enum": [
+                  "product",
+                  "blog_post",
+                  "comparison",
+                  "case_study"
+                ],
+                "description": "OG image template style"
+              },
+              "headline": {
+                "type": "string",
+                "maxLength": 120,
+                "description": "Main headline text"
+              },
+              "subheadline": {
+                "type": "string",
+                "maxLength": 180,
+                "description": "Secondary headline text"
+              }
+            },
+            "additionalProperties": false
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": false,
+            "idempotentHint": false,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "brand.scan",
+          "description": "Run AI brand visibility scan across major LLM providers (async, poll with brand.scan.get).",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "brandName": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 100,
+                "description": "Brand name to scan across LLM providers"
+              }
+            },
+            "required": [
+              "brandName"
+            ],
+            "additionalProperties": false
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": false,
+            "idempotentHint": false,
+            "openWorldHint": true
+          }
+        },
+        {
+          "name": "brand.scan.get",
+          "description": "Get brand scan status and final result payload by scan ID.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "format": "uuid",
+                "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$",
+                "description": "Unique identifier (UUID)"
+              }
+            },
+            "required": [
+              "id"
+            ],
+            "additionalProperties": false
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "shorts.generate",
+          "description": "Generate shorts video and return poll instructions until final video URL is ready.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "prompt": {
+                "type": "string",
+                "minLength": 10,
+                "maxLength": 2000,
+                "description": "Video generation prompt describing scene, style, and action"
+              },
+              "avatar_url": {
+                "type": "string",
+                "format": "uri",
+                "description": "URL of AI avatar image hosted on download.citedy.com"
+              },
+              "duration": {
+                "anyOf": [
+                  {
+                    "type": "number",
+                    "const": 5
+                  },
+                  {
+                    "type": "number",
+                    "const": 10
+                  },
+                  {
+                    "type": "number",
+                    "const": 15
+                  }
+                ],
+                "description": "Video duration in seconds: 5, 10, or 15"
+              },
+              "resolution": {
+                "type": "string",
+                "enum": [
+                  "480p",
+                  "720p"
+                ],
+                "description": "Video resolution"
+              },
+              "aspect_ratio": {
+                "type": "string",
+                "enum": [
+                  "9:16",
+                  "16:9",
+                  "1:1"
+                ],
+                "description": "Video aspect ratio"
+              },
+              "speech_text": {
+                "type": "string",
+                "minLength": 5,
+                "maxLength": 1000,
+                "description": "Text the avatar will speak with lip-sync"
+              }
+            },
+            "required": [
+              "prompt",
+              "avatar_url",
+              "duration"
+            ],
+            "additionalProperties": false
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": false,
+            "idempotentHint": false,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "shorts.get",
+          "description": "Get shorts generation status/result by ID.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "format": "uuid",
+                "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$",
+                "description": "Unique identifier (UUID)"
+              }
+            },
+            "required": [
+              "id"
+            ],
+            "additionalProperties": false
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "shorts.script",
+          "description": "Generate short-form video script text (hook/educational/cta styles).",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "topic": {
+                "type": "string",
+                "minLength": 3,
+                "maxLength": 500,
+                "description": "Topic or subject for the video script"
+              },
+              "product_id": {
+                "type": "string",
+                "format": "uuid",
+                "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$",
+                "description": "Optional product ID to reference in script"
+              },
+              "duration": {
+                "type": "string",
+                "enum": [
+                  "short",
+                  "long"
+                ],
+                "description": "Script length: short or long"
+              },
+              "style": {
+                "type": "string",
+                "enum": [
+                  "hook",
+                  "educational",
+                  "cta"
+                ],
+                "description": "Script style: hook, educational, or cta"
+              },
+              "language": {
+                "type": "string",
+                "minLength": 2,
+                "maxLength": 5,
+                "description": "Language code, e.g. en, es, de"
+              }
+            },
+            "required": [
+              "topic"
+            ],
+            "additionalProperties": false
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": false,
+            "idempotentHint": false,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "shorts.avatar",
+          "description": "Generate an AI avatar image for shorts and return hosted avatar URL.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "gender": {
+                "type": "string",
+                "enum": [
+                  "male",
+                  "female"
+                ],
+                "description": "Avatar gender"
+              },
+              "origin": {
+                "type": "string",
+                "enum": [
+                  "european",
+                  "asian",
+                  "african",
+                  "latin",
+                  "middle_eastern",
+                  "south_asian"
+                ],
+                "description": "Avatar ethnicity/appearance"
+              },
+              "age_range": {
+                "type": "string",
+                "enum": [
+                  "18-25",
+                  "26-35",
+                  "36-50"
+                ],
+                "description": "Avatar age range"
+              },
+              "type": {
+                "type": "string",
+                "enum": [
+                  "tech_founder",
+                  "vibe_coder",
+                  "student",
+                  "executive"
+                ],
+                "description": "Avatar character archetype"
+              },
+              "location": {
+                "type": "string",
+                "enum": [
+                  "coffee_shop",
+                  "dev_cave",
+                  "street",
+                  "car",
+                  "home_office",
+                  "podcast_studio",
+                  "glass_office",
+                  "rooftop",
+                  "bedroom",
+                  "park",
+                  "gym"
+                ],
+                "description": "Background setting for the avatar"
+              }
+            },
+            "required": [
+              "gender",
+              "origin"
+            ],
+            "additionalProperties": false
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": false,
+            "idempotentHint": false,
+            "openWorldHint": false
+          }
+        },
+        {
+          "name": "shorts.merge",
+          "description": "Merge 2-4 short clips, apply subtitle phrases, and return final video URL.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "video_urls": {
+                "minItems": 2,
+                "maxItems": 4,
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "format": "uri"
+                },
+                "description": "Array of 2-4 video URLs to merge"
+              },
+              "phrases": {
+                "minItems": 1,
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "text": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 500,
+                      "description": "Subtitle text for this video segment"
+                    }
+                  },
+                  "required": [
+                    "text"
+                  ],
+                  "additionalProperties": false
+                },
+                "description": "Subtitle text for each video segment"
+              },
+              "config": {
+                "type": "object",
+                "properties": {
+                  "words_per_phrase": {
+                    "type": "integer",
+                    "minimum": 2,
+                    "maximum": 8,
+                    "description": "Words per subtitle phrase, 2-8"
+                  },
+                  "font_size": {
+                    "type": "integer",
+                    "minimum": 16,
+                    "maximum": 72,
+                    "description": "Subtitle font size in pixels, 16-72"
+                  },
+                  "position_from_bottom": {
+                    "type": "integer",
+                    "minimum": 50,
+                    "maximum": 300,
+                    "description": "Pixels from bottom edge, 50-300"
+                  },
+                  "text_color": {
+                    "type": "string",
+                    "pattern": "^#[0-9a-fA-F]{6}$|^[a-z]{3,20}$",
+                    "description": "Subtitle text color (hex or named)"
+                  },
+                  "stroke_color": {
+                    "type": "string",
+                    "pattern": "^#[0-9a-fA-F]{6}$|^[a-z]{3,20}$",
+                    "description": "Subtitle stroke/outline color (hex or named)"
+                  },
+                  "stroke_width": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 5,
+                    "description": "Stroke width in pixels, 0-5"
+                  }
+                },
+                "additionalProperties": false,
+                "description": "Optional subtitle styling configuration"
+              }
+            },
+            "required": [
+              "video_urls",
+              "phrases"
+            ],
+            "additionalProperties": false
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": false,
+            "idempotentHint": false,
+            "openWorldHint": false
+          }
+        }
+      ],
+      "python_sdk_url": "https://mcp.citedy.com/mcp",
+      "python_sdk_config": "{\"debug\": false}"
+    },
+    "source_filename": "0008.Citedy-SEO-Agent_labeled.json",
+    "processed_timestamp": 1772876337,
+    "processing_mode": "gateway",
+    "rank": 9
+  }
+}

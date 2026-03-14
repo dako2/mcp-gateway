@@ -1,0 +1,2451 @@
+{
+  "labels": {
+    "analysis": "The MCP Server \"ComOS Federation Gateway\" provides 35 tools focused on e-commerce tasks. Core capabilities include creation and generation, data access and reading, deletion and cleanup, modification and updates. Key tools: federation_list_tenants, federation_tenant_info, federation_help, federation_list_agents, federation_run_agent.",
+    "reasoning": "Primary label \"E-Commerce\" assigned based on strong keyword matches in tool names and descriptions: shop, cart, product, catalog.",
+    "primary_label": "E-Commerce",
+    "secondary_labels": [
+      "Cryptocurrency & Blockchain",
+      "Communication Tools"
+    ],
+    "custom_label": "Data Access & Search - ComOS Federation Gateway",
+    "is_connected": true,
+    "is_remote_tool_valid": true,
+    "featured_server": true,
+    "tool_verified": true,
+    "tool_verified_status": "verified",
+    "tool_verified_at": "2026-03-14T20:38:10.960312+00:00",
+    "tool_verified_tool": "federation_list_tenants",
+    "tool_verified_reason": "response received"
+  },
+  "metadata": {
+    "server_id": 25,
+    "server_name": "ComOS Federation Gateway",
+    "rank_by_usage": 26,
+    "usage_count": "8,750",
+    "original_file": "tools.json#25",
+    "mode": "gateway",
+    "timestamp": 1772876337,
+    "remote_server_response": {
+      "url": "https://mcp.comos-gateway.com/mcp",
+      "is_success": true,
+      "error": null,
+      "tools": [
+        {
+          "name": "federation_list_tenants",
+          "description": "List all available tenants in the federation. Returns tenant IDs, names, and status.",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {}
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "federation_tenant_info",
+          "description": "Get detailed information about a specific tenant.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "tenant_id": {
+                "type": "string",
+                "description": "The tenant ID to get information for"
+              }
+            },
+            "required": [
+              "tenant_id"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "federation_help",
+          "description": "Get usage instructions for the MCP federation. Call this first to understand how to use the tools correctly.",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {}
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "federation_list_agents",
+          "description": "List all configured agents with their status and next scheduled run. Requires authentication via auth_token.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "auth_token": {
+                "type": "string",
+                "description": "JWT auth token for authentication"
+              },
+              "status": {
+                "type": "string",
+                "enum": [
+                  "enabled",
+                  "disabled",
+                  "all"
+                ],
+                "default": "all",
+                "description": "Filter by enabled status"
+              },
+              "agentType": {
+                "type": "string",
+                "description": "Filter by agent type name"
+              }
+            },
+            "required": [
+              "auth_token"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "federation_run_agent",
+          "description": "Manually trigger an agent to run immediately. Requires admin authentication via auth_token.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "auth_token": {
+                "type": "string",
+                "description": "JWT auth token with admin role"
+              },
+              "agentId": {
+                "type": "string",
+                "description": "The agent ID to run"
+              }
+            },
+            "required": [
+              "auth_token",
+              "agentId"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "federation_get_agent_runs",
+          "description": "Get execution history for an agent. Requires authentication via auth_token.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "auth_token": {
+                "type": "string",
+                "description": "JWT auth token for authentication"
+              },
+              "agentId": {
+                "type": "string",
+                "description": "The agent ID"
+              },
+              "limit": {
+                "type": "number",
+                "minimum": 1,
+                "maximum": 50,
+                "default": 10,
+                "description": "Maximum results to return"
+              },
+              "status": {
+                "type": "string",
+                "enum": [
+                  "success",
+                  "failure",
+                  "running",
+                  "all"
+                ],
+                "default": "all",
+                "description": "Filter by run status"
+              }
+            },
+            "required": [
+              "auth_token",
+              "agentId"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "federation_agent_status",
+          "description": "Get current status of all agents and the scheduler. Requires authentication via auth_token.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "auth_token": {
+                "type": "string",
+                "description": "JWT auth token for authentication"
+              }
+            },
+            "required": [
+              "auth_token"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "federation_list_agent_types",
+          "description": "List all available agent types that can be configured. Requires authentication via auth_token.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "auth_token": {
+                "type": "string",
+                "description": "JWT auth token for authentication"
+              }
+            },
+            "required": [
+              "auth_token"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "catalog_search",
+          "description": "Search for products by query, category, or browse all products. Use empty query to list all products. (Federated: requires tenant_id. For cart/orders, pass auth_token from POST /v1/auth/login. Product IDs are MongoDB ObjectIds from catalog_search.)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "tenant_id": {
+                "type": "string",
+                "description": "Target tenant ID (required). Use federation_list_tenants() to see available tenants."
+              },
+              "auth_token": {
+                "type": "string",
+                "description": "JWT auth token for authenticated operations (cart, orders). Get from api_call POST /v1/auth/login."
+              },
+              "query": {
+                "type": "string",
+                "description": "Search query (product name, description, etc.). Leave empty to browse all."
+              },
+              "category": {
+                "type": "string",
+                "description": "Filter by category (e.g., 'Electronics', 'Clothing')"
+              },
+              "limit": {
+                "type": "number",
+                "description": "Maximum number of results (1-50, default 20)"
+              },
+              "minPrice": {
+                "type": "number",
+                "description": "Minimum price filter"
+              },
+              "maxPrice": {
+                "type": "number",
+                "description": "Maximum price filter"
+              }
+            },
+            "required": [
+              "tenant_id"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "catalog_get_product",
+          "description": "Get detailed information about a specific product by its ID (Federated: requires tenant_id. For cart/orders, pass auth_token from POST /v1/auth/login. Product IDs are MongoDB ObjectIds from catalog_search.)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "tenant_id": {
+                "type": "string",
+                "description": "Target tenant ID (required). Use federation_list_tenants() to see available tenants."
+              },
+              "auth_token": {
+                "type": "string",
+                "description": "JWT auth token for authenticated operations (cart, orders). Get from api_call POST /v1/auth/login."
+              },
+              "productId": {
+                "type": "string",
+                "description": "The product ID to look up"
+              }
+            },
+            "required": [
+              "tenant_id",
+              "productId"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "catalog_categories",
+          "description": "List all product categories with hierarchy information and product counts (Federated: requires tenant_id. For cart/orders, pass auth_token from POST /v1/auth/login. Product IDs are MongoDB ObjectIds from catalog_search.)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "tenant_id": {
+                "type": "string",
+                "description": "Target tenant ID (required). Use federation_list_tenants() to see available tenants."
+              },
+              "auth_token": {
+                "type": "string",
+                "description": "JWT auth token for authenticated operations (cart, orders). Get from api_call POST /v1/auth/login."
+              },
+              "parentId": {
+                "type": "string",
+                "description": "Filter by parent category ID. Use 'null' for top-level only. Omit for all."
+              },
+              "showHierarchy": {
+                "type": "boolean",
+                "description": "Show hierarchical structure with indentation"
+              }
+            },
+            "required": [
+              "tenant_id"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "catalog_create_category",
+          "description": "Create a new product category (Federated: requires tenant_id. For cart/orders, pass auth_token from POST /v1/auth/login. Product IDs are MongoDB ObjectIds from catalog_search.)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "tenant_id": {
+                "type": "string",
+                "description": "Target tenant ID (required). Use federation_list_tenants() to see available tenants."
+              },
+              "auth_token": {
+                "type": "string",
+                "description": "JWT auth token for authenticated operations (cart, orders). Get from api_call POST /v1/auth/login."
+              },
+              "name": {
+                "type": "string",
+                "description": "Category name"
+              },
+              "slug": {
+                "type": "string",
+                "description": "URL-friendly slug (lowercase, hyphens)"
+              },
+              "description": {
+                "type": "string",
+                "description": "Category description"
+              },
+              "parentId": {
+                "type": "string",
+                "description": "Parent category ID for subcategories"
+              },
+              "displayOrder": {
+                "type": "number",
+                "description": "Display order (lower = first)"
+              },
+              "isActive": {
+                "type": "boolean",
+                "description": "Whether category is active"
+              }
+            },
+            "required": [
+              "tenant_id",
+              "name",
+              "slug"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "catalog_update_category",
+          "description": "Update an existing product category (Federated: requires tenant_id. For cart/orders, pass auth_token from POST /v1/auth/login. Product IDs are MongoDB ObjectIds from catalog_search.)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "tenant_id": {
+                "type": "string",
+                "description": "Target tenant ID (required). Use federation_list_tenants() to see available tenants."
+              },
+              "auth_token": {
+                "type": "string",
+                "description": "JWT auth token for authenticated operations (cart, orders). Get from api_call POST /v1/auth/login."
+              },
+              "categoryId": {
+                "type": "string",
+                "description": "Category ID to update"
+              },
+              "name": {
+                "type": "string",
+                "description": "New category name"
+              },
+              "slug": {
+                "type": "string",
+                "description": "New URL slug"
+              },
+              "description": {
+                "type": "string",
+                "description": "New description"
+              },
+              "parentId": {
+                "type": "string",
+                "description": "New parent ID (use empty string for top-level)"
+              },
+              "displayOrder": {
+                "type": "number",
+                "description": "New display order"
+              },
+              "isActive": {
+                "type": "boolean",
+                "description": "Active status"
+              }
+            },
+            "required": [
+              "tenant_id",
+              "categoryId"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "catalog_delete_category",
+          "description": "Delete a product category (cannot delete if it has children or products) (Federated: requires tenant_id. For cart/orders, pass auth_token from POST /v1/auth/login. Product IDs are MongoDB ObjectIds from catalog_search.)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "tenant_id": {
+                "type": "string",
+                "description": "Target tenant ID (required). Use federation_list_tenants() to see available tenants."
+              },
+              "auth_token": {
+                "type": "string",
+                "description": "JWT auth token for authenticated operations (cart, orders). Get from api_call POST /v1/auth/login."
+              },
+              "categoryId": {
+                "type": "string",
+                "description": "Category ID to delete"
+              }
+            },
+            "required": [
+              "tenant_id",
+              "categoryId"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "catalog_deals",
+          "description": "Find products that are currently on sale or have discounts. Also returns any email signup offer available. (Federated: requires tenant_id. For cart/orders, pass auth_token from POST /v1/auth/login. Product IDs are MongoDB ObjectIds from catalog_search.)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "tenant_id": {
+                "type": "string",
+                "description": "Target tenant ID (required). Use federation_list_tenants() to see available tenants."
+              },
+              "auth_token": {
+                "type": "string",
+                "description": "JWT auth token for authenticated operations (cart, orders). Get from api_call POST /v1/auth/login."
+              },
+              "limit": {
+                "type": "number",
+                "description": "Maximum number of results"
+              }
+            },
+            "required": [
+              "tenant_id"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "cart_view",
+          "description": "View the current shopping cart contents and total. REQUIRED: cartId must be provided on every call for cart persistence. Use customer email for authenticated users or a consistent ID like \"guest-abc123\" for guests. Also requires tenant_id.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "tenant_id": {
+                "type": "string",
+                "description": "Target tenant ID (required). Use federation_list_tenants() to see available tenants."
+              },
+              "auth_token": {
+                "type": "string",
+                "description": "JWT auth token for authenticated operations (cart, orders). Get from api_call POST /v1/auth/login."
+              },
+              "cartId": {
+                "type": "string",
+                "description": "REQUIRED for cart persistence. Use customer email for authenticated users, or a consistent ID like \"guest-abc123\" for guests. Without this, cart items will NOT persist between calls."
+              }
+            },
+            "required": [
+              "tenant_id",
+              "cartId"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "cart_add_item",
+          "description": "Add a product to the shopping cart. If the product is already in the cart, its quantity will be increased. REQUIRED: cartId must be provided on every call for cart persistence. Use customer email for authenticated users or a consistent ID like \"guest-abc123\" for guests. Also requires tenant_id.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "tenant_id": {
+                "type": "string",
+                "description": "Target tenant ID (required). Use federation_list_tenants() to see available tenants."
+              },
+              "auth_token": {
+                "type": "string",
+                "description": "JWT auth token for authenticated operations (cart, orders). Get from api_call POST /v1/auth/login."
+              },
+              "cartId": {
+                "type": "string",
+                "description": "REQUIRED for cart persistence. Use customer email for authenticated users, or a consistent ID like \"guest-abc123\" for guests. Without this, cart items will NOT persist between calls."
+              },
+              "productId": {
+                "type": "string",
+                "description": "Product ID to add to cart"
+              },
+              "quantity": {
+                "type": "number",
+                "description": "Quantity to add (default 1)"
+              }
+            },
+            "required": [
+              "tenant_id",
+              "cartId",
+              "productId"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "cart_update_quantity",
+          "description": "Update the quantity of an item in the cart. REQUIRED: cartId must be provided on every call for cart persistence. Use customer email for authenticated users or a consistent ID like \"guest-abc123\" for guests. Also requires tenant_id.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "tenant_id": {
+                "type": "string",
+                "description": "Target tenant ID (required). Use federation_list_tenants() to see available tenants."
+              },
+              "auth_token": {
+                "type": "string",
+                "description": "JWT auth token for authenticated operations (cart, orders). Get from api_call POST /v1/auth/login."
+              },
+              "cartId": {
+                "type": "string",
+                "description": "REQUIRED for cart persistence. Use customer email for authenticated users, or a consistent ID like \"guest-abc123\" for guests. Without this, cart items will NOT persist between calls."
+              },
+              "productId": {
+                "type": "string",
+                "description": "Product ID to update"
+              },
+              "quantity": {
+                "type": "number",
+                "description": "New quantity (1-99)"
+              }
+            },
+            "required": [
+              "tenant_id",
+              "cartId",
+              "productId",
+              "quantity"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "cart_remove_item",
+          "description": "Remove a product from the shopping cart. REQUIRED: cartId must be provided on every call for cart persistence. Use customer email for authenticated users or a consistent ID like \"guest-abc123\" for guests. Also requires tenant_id.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "tenant_id": {
+                "type": "string",
+                "description": "Target tenant ID (required). Use federation_list_tenants() to see available tenants."
+              },
+              "auth_token": {
+                "type": "string",
+                "description": "JWT auth token for authenticated operations (cart, orders). Get from api_call POST /v1/auth/login."
+              },
+              "cartId": {
+                "type": "string",
+                "description": "REQUIRED for cart persistence. Use customer email for authenticated users, or a consistent ID like \"guest-abc123\" for guests. Without this, cart items will NOT persist between calls."
+              },
+              "productId": {
+                "type": "string",
+                "description": "Product ID to remove from cart"
+              }
+            },
+            "required": [
+              "tenant_id",
+              "cartId",
+              "productId"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "cart_clear",
+          "description": "Remove all items from the shopping cart. REQUIRED: cartId must be provided on every call for cart persistence. Use customer email for authenticated users or a consistent ID like \"guest-abc123\" for guests. Also requires tenant_id.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "tenant_id": {
+                "type": "string",
+                "description": "Target tenant ID (required). Use federation_list_tenants() to see available tenants."
+              },
+              "auth_token": {
+                "type": "string",
+                "description": "JWT auth token for authenticated operations (cart, orders). Get from api_call POST /v1/auth/login."
+              },
+              "cartId": {
+                "type": "string",
+                "description": "REQUIRED for cart persistence. Use customer email for authenticated users, or a consistent ID like \"guest-abc123\" for guests. Without this, cart items will NOT persist between calls."
+              }
+            },
+            "required": [
+              "tenant_id",
+              "cartId"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "orders_list",
+          "description": "List customer orders with optional status filter (Federated: requires tenant_id. For cart/orders, pass auth_token from POST /v1/auth/login. Product IDs are MongoDB ObjectIds from catalog_search.)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "tenant_id": {
+                "type": "string",
+                "description": "Target tenant ID (required). Use federation_list_tenants() to see available tenants."
+              },
+              "auth_token": {
+                "type": "string",
+                "description": "JWT auth token for authenticated operations (cart, orders). Get from api_call POST /v1/auth/login."
+              },
+              "userId": {
+                "type": "string",
+                "description": "User ID (customer ID or session ID for anonymous users)"
+              },
+              "status": {
+                "type": "string",
+                "description": "Filter by order status"
+              },
+              "limit": {
+                "type": "number",
+                "description": "Maximum number of orders to return"
+              }
+            },
+            "required": [
+              "tenant_id",
+              "userId"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "orders_get",
+          "description": "Get detailed information about a specific order (Federated: requires tenant_id. For cart/orders, pass auth_token from POST /v1/auth/login. Product IDs are MongoDB ObjectIds from catalog_search.)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "tenant_id": {
+                "type": "string",
+                "description": "Target tenant ID (required). Use federation_list_tenants() to see available tenants."
+              },
+              "auth_token": {
+                "type": "string",
+                "description": "JWT auth token for authenticated operations (cart, orders). Get from api_call POST /v1/auth/login."
+              },
+              "orderId": {
+                "type": "string",
+                "description": "Order ID to look up"
+              }
+            },
+            "required": [
+              "tenant_id",
+              "orderId"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "orders_track",
+          "description": "Get tracking information and shipment status for an order (Federated: requires tenant_id. For cart/orders, pass auth_token from POST /v1/auth/login. Product IDs are MongoDB ObjectIds from catalog_search.)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "tenant_id": {
+                "type": "string",
+                "description": "Target tenant ID (required). Use federation_list_tenants() to see available tenants."
+              },
+              "auth_token": {
+                "type": "string",
+                "description": "JWT auth token for authenticated operations (cart, orders). Get from api_call POST /v1/auth/login."
+              },
+              "orderId": {
+                "type": "string",
+                "description": "Order ID to track"
+              }
+            },
+            "required": [
+              "tenant_id",
+              "orderId"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "orders_recent",
+          "description": "Get the most recent orders for a customer (shortcut for orders_list with default settings) (Federated: requires tenant_id. For cart/orders, pass auth_token from POST /v1/auth/login. Product IDs are MongoDB ObjectIds from catalog_search.)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "tenant_id": {
+                "type": "string",
+                "description": "Target tenant ID (required). Use federation_list_tenants() to see available tenants."
+              },
+              "auth_token": {
+                "type": "string",
+                "description": "JWT auth token for authenticated operations (cart, orders). Get from api_call POST /v1/auth/login."
+              },
+              "userId": {
+                "type": "string",
+                "description": "User ID (customer ID or session ID for anonymous users)"
+              },
+              "count": {
+                "type": "number",
+                "description": "Number of recent orders to show (default 5)"
+              }
+            },
+            "required": [
+              "tenant_id",
+              "userId"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "inventory_check",
+          "description": "Check stock availability for a product. Returns current stock level and availability status. (Federated: requires tenant_id. For cart/orders, pass auth_token from POST /v1/auth/login. Product IDs are MongoDB ObjectIds from catalog_search.)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "tenant_id": {
+                "type": "string",
+                "description": "Target tenant ID (required). Use federation_list_tenants() to see available tenants."
+              },
+              "auth_token": {
+                "type": "string",
+                "description": "JWT auth token for authenticated operations (cart, orders). Get from api_call POST /v1/auth/login."
+              },
+              "productId": {
+                "type": "string",
+                "description": "Product ID to check stock for"
+              },
+              "quantity": {
+                "type": "number",
+                "description": "Desired quantity (to check if enough in stock)"
+              }
+            },
+            "required": [
+              "tenant_id",
+              "productId"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "inventory_check_multiple",
+          "description": "Check stock availability for multiple products at once (Federated: requires tenant_id. For cart/orders, pass auth_token from POST /v1/auth/login. Product IDs are MongoDB ObjectIds from catalog_search.)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "tenant_id": {
+                "type": "string",
+                "description": "Target tenant ID (required). Use federation_list_tenants() to see available tenants."
+              },
+              "auth_token": {
+                "type": "string",
+                "description": "JWT auth token for authenticated operations (cart, orders). Get from api_call POST /v1/auth/login."
+              },
+              "productIds": {
+                "type": "array",
+                "items": {},
+                "description": "Array of product IDs to check (max 20)"
+              }
+            },
+            "required": [
+              "tenant_id",
+              "productIds"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "inventory_is_available",
+          "description": "Quick check if a product is available (in stock with at least the requested quantity) (Federated: requires tenant_id. For cart/orders, pass auth_token from POST /v1/auth/login. Product IDs are MongoDB ObjectIds from catalog_search.)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "tenant_id": {
+                "type": "string",
+                "description": "Target tenant ID (required). Use federation_list_tenants() to see available tenants."
+              },
+              "auth_token": {
+                "type": "string",
+                "description": "JWT auth token for authenticated operations (cart, orders). Get from api_call POST /v1/auth/login."
+              },
+              "productId": {
+                "type": "string",
+                "description": "Product ID to check"
+              },
+              "quantity": {
+                "type": "number",
+                "description": "Required quantity (default 1)"
+              }
+            },
+            "required": [
+              "tenant_id",
+              "productId"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "checkout_start",
+          "description": "Start a new checkout process from the user's cart.\n\n**DIGITAL vs PHYSICAL PRODUCTS:**\n- **Digital products** (e-books, software, downloads): NO shipping address needed\n- **Physical/material products**: Shipping address REQUIRED\n- **Mixed orders** (some digital, some physical): Shipping address REQUIRED\n\nThe system automatically determines shipping requirements based on the `productType` field in cart items.\n\n**Required Information:**\n1. **Email** - Required for order confirmation and digital delivery\n2. **Customer Name** - For order records\n3. **Shipping Address** - ONLY required if cart contains physical/material products\n\n**Checkout Flow (REAL Payments):**\n1. Collect email and name from user\n2. If cart has physical products, collect shipping address\n3. Call this tool WITHOUT paymentMethodId (creates a pending checkout, returns a sagaId)\n4. For physical products: optionally call `checkout_shipping_options` → `checkout_select_shipping`\n5. Call `checkout_create_payment_session` with the sagaId → returns a **Stripe payment URL**\n6. **Present the Stripe URL to the user** - they click it to enter card details on Stripe's secure page\n7. After payment, call `checkout_status` to confirm order completion\n\n**Example Stripe URL:** `https://checkout.stripe.com/c/pay/cs_live_...`\n\n**Testing Only:**\n- Pass paymentMethodId: \"pm_test_visa\" to skip real payment and process immediately\n\n**Guest Checkout:**\n- Just provide email - system creates a guest customer automatically\n\nThe checkout runs asynchronously. Use `checkout_status` with the sagaId to track progress. (Federated: requires tenant_id. For cart/orders, pass auth_token from POST /v1/auth/login. Product IDs are MongoDB ObjectIds from catalog_search.)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "tenant_id": {
+                "type": "string",
+                "description": "Tenant ID (required for multi-tenant checkout)"
+              },
+              "auth_token": {
+                "type": "string",
+                "description": "JWT auth token for authenticated operations (cart, orders). Get from api_call POST /v1/auth/login."
+              },
+              "userId": {
+                "type": "string",
+                "description": "User/Customer ID"
+              },
+              "cartId": {
+                "type": "string",
+                "description": "Cart ID to checkout"
+              },
+              "shippingAddress": {
+                "type": "object",
+                "additionalProperties": {},
+                "description": "Shipping address for delivery. Required for physical/material products, not needed for digital-only orders."
+              },
+              "paymentMethodId": {
+                "type": "string",
+                "description": "Payment method ID. Use 'pm_test_visa' for testing. Ask user for payment method if not provided."
+              },
+              "email": {
+                "type": "string",
+                "description": "Customer email (required for guest checkout and order confirmation)"
+              },
+              "customerName": {
+                "type": "string",
+                "description": "Customer name for the order"
+              },
+              "items": {
+                "type": "array",
+                "items": {},
+                "description": "Cart items with productType. Digital items don't require shipping."
+              },
+              "subtotal": {
+                "type": "number",
+                "description": "Cart subtotal (if known)"
+              },
+              "total": {
+                "type": "number",
+                "description": "Cart total (if known)"
+              }
+            },
+            "required": [
+              "tenant_id",
+              "userId",
+              "cartId"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "checkout_status",
+          "description": "Get the current status of a checkout saga, including completed steps, errors, and order details.\n\n**When to use:**\n- After `checkout_start` to track async saga progress\n- After customer completes Stripe payment to verify order completion\n- To debug failed checkouts and determine if retry is appropriate\n\n**Saga Status Values:**\n| Status | Meaning |\n|--------|---------|\n| `pending` | Checkout created, cart validated, awaiting processing |\n| `in_progress` | Saga actively executing (inventory reservation, order creation, etc.) |\n| `payment_pending` | Pre-payment steps complete, awaiting Stripe payment |\n| `completed` | Payment successful, order confirmed. Terminal success state |\n| `failed` | A step failed. Check `error` field for details |\n| `compensated` | Rollback complete (inventory released, refunds issued). Terminal failure state |\n\n**Saga Steps (execution order):**\n1. `validate_cart` - Verify cart exists and has items\n2. `reserve_inventory` - Place hold on product stock\n3. `create_order` - Create order record\n4. `process_payment` - Charge payment (or await Stripe session)\n5. `confirm_order` - Finalize order, trigger fulfillment\n6. `send_confirmation` - Email customer\n7. `clear_cart` - Remove purchased items\n\n**Response includes:** completedSteps, currentStep (if in_progress), error details (if failed), compensation info (if rolled back), and order/payment IDs (if created). (Federated: requires tenant_id. For cart/orders, pass auth_token from POST /v1/auth/login. Product IDs are MongoDB ObjectIds from catalog_search.)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "tenant_id": {
+                "type": "string",
+                "description": "Target tenant ID (required). Use federation_list_tenants() to see available tenants."
+              },
+              "auth_token": {
+                "type": "string",
+                "description": "JWT auth token for authenticated operations (cart, orders). Get from api_call POST /v1/auth/login."
+              },
+              "sagaId": {
+                "type": "string",
+                "description": "Checkout saga ID"
+              }
+            },
+            "required": [
+              "tenant_id",
+              "sagaId"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "checkout_list",
+          "description": "List checkout history for a user with optional status filtering.\n\n**When to use:**\n- Show order history to customer\n- Find abandoned checkouts (`payment_pending`) for recovery\n- Identify failed checkouts that may need retry\n- Debug checkout issues for a specific user\n\n**Status Filter Values:**\n| Status | Use Case |\n|--------|----------|\n| `pending` | Recently started, not yet processing |\n| `in_progress` | Currently processing (transient state) |\n| `payment_pending` | Abandoned carts awaiting payment |\n| `completed` | Successful orders |\n| `failed` | Failed checkouts (may be retryable) |\n| `compensating` | Currently rolling back (transient) |\n| `compensated` | Fully rolled back after failure |\n\n**Common Queries:**\n- Abandoned carts: filter by `payment_pending`\n- Order history: filter by `completed`\n- Retryable failures: filter by `failed`, then check each saga's error.retryable field (Federated: requires tenant_id. For cart/orders, pass auth_token from POST /v1/auth/login. Product IDs are MongoDB ObjectIds from catalog_search.)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "tenant_id": {
+                "type": "string",
+                "description": "Target tenant ID (required). Use federation_list_tenants() to see available tenants."
+              },
+              "auth_token": {
+                "type": "string",
+                "description": "JWT auth token for authenticated operations (cart, orders). Get from api_call POST /v1/auth/login."
+              },
+              "userId": {
+                "type": "string",
+                "description": "User ID to list checkouts for"
+              },
+              "status": {
+                "type": "string",
+                "description": "Filter by checkout status"
+              }
+            },
+            "required": [
+              "tenant_id",
+              "userId"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "checkout_shipping_options",
+          "description": "Get available shipping methods and rates for a checkout.\n\n**When to use:** After `checkout_start`, before `checkout_create_payment_session`, to let the customer choose shipping speed/carrier.\n\n**Prerequisites:**\n- Checkout must exist (valid sagaId from `checkout_start`)\n- Shipping address must be set (provided during `checkout_start`)\n\n**Returns:** List of shipping options with carrier, service, price, and estimated delivery days.\n\n**Important Notes:**\n- Rates are calculated based on shipping address, cart weight, and dimensions\n- If no options returned, tenant may lack shipping configuration or address is unserviceable\n- **This step is OPTIONAL.** If skipped, a default shipping method is automatically applied\n- Can be called multiple times (e.g., if address changes)\n\n**After getting options:** Use `checkout_select_shipping` with the desired carrierId and serviceId. (Federated: requires tenant_id. For cart/orders, pass auth_token from POST /v1/auth/login. Product IDs are MongoDB ObjectIds from catalog_search.)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "tenant_id": {
+                "type": "string",
+                "description": "Target tenant ID (required). Use federation_list_tenants() to see available tenants."
+              },
+              "auth_token": {
+                "type": "string",
+                "description": "JWT auth token for authenticated operations (cart, orders). Get from api_call POST /v1/auth/login."
+              },
+              "sagaId": {
+                "type": "string",
+                "description": "Checkout saga ID"
+              }
+            },
+            "required": [
+              "tenant_id",
+              "sagaId"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "checkout_select_shipping",
+          "description": "Select a shipping method for a checkout.\n\n**When to use:** After `checkout_shipping_options`, when customer has chosen their preferred shipping method.\n\n**Prerequisites:**\n- Must call `checkout_shipping_options` first to get valid carrierId/serviceId combinations\n- Checkout must be in `pending` or `payment_pending` status\n\n**Behavior:**\n- Updates the checkout's shipping method and recalculates total\n- Can be called multiple times to change selection (before payment)\n- Invalid carrierId/serviceId combinations will error\n\n**Returns:** Selected shipping details and updated order total.\n\n**This step is OPTIONAL.** If skipped entirely (no `checkout_shipping_options` or `checkout_select_shipping`), a default shipping method is applied automatically. (Federated: requires tenant_id. For cart/orders, pass auth_token from POST /v1/auth/login. Product IDs are MongoDB ObjectIds from catalog_search.)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "tenant_id": {
+                "type": "string",
+                "description": "Target tenant ID (required). Use federation_list_tenants() to see available tenants."
+              },
+              "auth_token": {
+                "type": "string",
+                "description": "JWT auth token for authenticated operations (cart, orders). Get from api_call POST /v1/auth/login."
+              },
+              "sagaId": {
+                "type": "string",
+                "description": "Checkout saga ID"
+              },
+              "carrierId": {
+                "type": "string",
+                "description": "Carrier ID from shipping options (e.g., 'fedex', 'ups')"
+              },
+              "serviceId": {
+                "type": "string",
+                "description": "Service ID from shipping options (e.g., 'ground', 'express')"
+              }
+            },
+            "required": [
+              "tenant_id",
+              "sagaId",
+              "carrierId",
+              "serviceId"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "checkout_create_payment_session",
+          "description": "Create a secure Stripe Checkout Session for payment collection. Returns a payment URL where the customer enters card details.\n\n**IMPORTANT: Use this for REAL payments instead of checkout_start with paymentMethodId.**\n\n**Recommended Flow:**\n1. Collect shipping address from user via conversation\n2. Start checkout with `checkout_start` (without paymentMethodId) → creates pending checkout\n3. Optionally: `checkout_shipping_options` → `checkout_select_shipping` for shipping choice\n4. Call this tool → returns Stripe payment URL\n5. Present URL to user (redirect, link, or embed)\n6. After payment, verify with `checkout_status`\n\n**Why this flow?**\n- Customer enters card on Stripe's PCI-compliant hosted page\n- Card numbers never touch your servers\n- Supports all Stripe methods (cards, Apple Pay, Google Pay, etc.)\n- Handles 3D Secure authentication automatically\n\n**Webhook Behavior:**\n- Order completes automatically when Stripe confirms payment via webhook\n- If webhook is delayed: poll `checkout_status` to verify (Stripe eventually delivers)\n- If webhook fails: saga remains `payment_pending`; manual intervention may be needed\n\n**Session Notes:**\n- URL is single-use; once customer starts, it cannot be reused\n- Sessions expire after ~24 hours; create new session if expired\n- Returns `payment_pending` status after successful creation (Federated: requires tenant_id. For cart/orders, pass auth_token from POST /v1/auth/login. Product IDs are MongoDB ObjectIds from catalog_search.)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "tenant_id": {
+                "type": "string",
+                "description": "Tenant ID (pass the same tenant_id used in checkout_start)"
+              },
+              "auth_token": {
+                "type": "string",
+                "description": "JWT auth token for authenticated operations (cart, orders). Get from api_call POST /v1/auth/login."
+              },
+              "sagaId": {
+                "type": "string",
+                "description": "Checkout saga ID from checkout_start"
+              }
+            },
+            "required": [
+              "tenant_id",
+              "sagaId"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "checkout_retry",
+          "description": "Retry a failed or compensated checkout by restarting the saga from the beginning.\n\n**When to use:** When a checkout failed due to a transient issue that has been resolved (service timeout, temporary stock shortage).\n\n**Prerequisites:**\n- Saga must be in `failed` or `compensated` status\n- Original cart must still exist with items\n- Check `checkout_status` first to verify error is `retryable: true`\n\n**Behavior:**\n1. Validates saga exists and is in retriable state\n2. Re-validates cart still has items\n3. Resets saga to `pending` status\n4. Clears previous error and compensation records\n5. Restarts saga execution from step 1\n\n**CAN retry (transient failures):**\n- `INVENTORY_SERVICE_ERROR` - Service was temporarily unavailable\n- `PAYMENT_SERVICE_ERROR` - Stripe API had temporary issues\n- `ORDER_SERVICE_ERROR` - Order service timeout\n- `SAGA_TIMEOUT` - Processing exceeded time limit\n\n**CANNOT retry (permanent failures):**\n- `PAYMENT_DECLINED` - Customer needs different payment method\n- `INVALID_ADDRESS` - Customer must correct address\n- `CART_EMPTY` / `CART_NOT_FOUND` - Cart was cleared or deleted\n- `INVENTORY_UNAVAILABLE` - Items still out of stock (check first)\n\n**Cannot retry these statuses:**\n- `completed` - Already succeeded (start new checkout instead)\n- `in_progress` / `payment_pending` - Still active (Federated: requires tenant_id. For cart/orders, pass auth_token from POST /v1/auth/login. Product IDs are MongoDB ObjectIds from catalog_search.)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "tenant_id": {
+                "type": "string",
+                "description": "Target tenant ID (required). Use federation_list_tenants() to see available tenants."
+              },
+              "auth_token": {
+                "type": "string",
+                "description": "JWT auth token for authenticated operations (cart, orders). Get from api_call POST /v1/auth/login."
+              },
+              "sagaId": {
+                "type": "string",
+                "description": "Checkout saga ID to retry"
+              }
+            },
+            "required": [
+              "tenant_id",
+              "sagaId"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "api_call",
+          "description": "Call any comAI API endpoint not covered by specific tools.\nUse this for: payments, shipping rates, recommendations, returns, user profiles, policies, help articles, and more.\nRead the 'api_documentation' resource first to see available endpoints and their parameters.\n\nIMPORTANT: For multi-tenant operations (checkout, cart, orders), you MUST specify the tenant_id parameter.\nThe tenant_id should match the tenant where the cart/customer data exists (e.g., 'vnm-sport', not 'test-test').\n\nCommon endpoints:\n- GET /v1/users/{userId} - Get user profile\n- GET /v1/recommendations/{userId} - Get personalized recommendations\n- GET /v1/shipping/rates - Calculate shipping rates\n- POST /v1/checkout - Process checkout (requires tenant_id)\n- GET /v1/returns/{returnId} - Check return status\n- POST /v1/returns - Request a return\n- GET /v1/help - Search help articles\n- GET /v1/policies - List store policies\n- GET /v1/api-keys - List user's API keys (requires auth)\n- POST /v1/api-keys - Create new API key (requires auth) (Federated: requires tenant_id. For cart/orders, pass auth_token from POST /v1/auth/login. Product IDs are MongoDB ObjectIds from catalog_search.)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "tenant_id": {
+                "type": "string",
+                "description": "Override tenant ID for multi-tenant operations. Required for checkout, cart, and order operations to ensure correct tenant context."
+              },
+              "auth_token": {
+                "type": "string",
+                "description": "JWT auth token for authenticated operations (cart, orders). Get from api_call POST /v1/auth/login."
+              },
+              "method": {
+                "type": "string",
+                "description": "HTTP method"
+              },
+              "path": {
+                "type": "string",
+                "description": "API path starting with /v1/ (e.g., '/v1/shipping/rates')"
+              },
+              "body": {
+                "type": "object",
+                "additionalProperties": {},
+                "description": "Request body for POST/PUT/PATCH requests"
+              },
+              "params": {
+                "type": "object",
+                "additionalProperties": {},
+                "description": "Query parameters as key-value pairs"
+              }
+            },
+            "required": [
+              "tenant_id",
+              "method",
+              "path"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        }
+      ],
+      "tool_count": 35,
+      "tool_names": [
+        "federation_list_tenants",
+        "federation_tenant_info",
+        "federation_help",
+        "federation_list_agents",
+        "federation_run_agent",
+        "federation_get_agent_runs",
+        "federation_agent_status",
+        "federation_list_agent_types",
+        "catalog_search",
+        "catalog_get_product",
+        "catalog_categories",
+        "catalog_create_category",
+        "catalog_update_category",
+        "catalog_delete_category",
+        "catalog_deals",
+        "cart_view",
+        "cart_add_item",
+        "cart_update_quantity",
+        "cart_remove_item",
+        "cart_clear",
+        "orders_list",
+        "orders_get",
+        "orders_track",
+        "orders_recent",
+        "inventory_check",
+        "inventory_check_multiple",
+        "inventory_is_available",
+        "checkout_start",
+        "checkout_status",
+        "checkout_list",
+        "checkout_shipping_options",
+        "checkout_select_shipping",
+        "checkout_create_payment_session",
+        "checkout_retry",
+        "api_call"
+      ]
+    },
+    "server_info_crawled": {
+      "id": 25,
+      "name": "ComOS Federation Gateway",
+      "author": "",
+      "overview": "ComOS Federation Gateway - E-Commerce server with 35 tools. The MCP Server \"ComOS Federation Gateway\" provides 35 tools focused on e-commerce tasks. Core capabi",
+      "repository_url": "",
+      "homepage": "https://mcp.comos-gateway.com/mcp",
+      "remote_or_local": "Remote",
+      "license": "",
+      "usage_count": "8,750",
+      "success_rate": "100%",
+      "tags": [
+        "e-commerce",
+        "cryptocurrency-blockchain",
+        "communication-tools"
+      ],
+      "categories": [
+        "e-commerce",
+        "cryptocurrency & blockchain",
+        "communication tools"
+      ],
+      "tools_count": 35,
+      "tools": [
+        {
+          "name": "federation_list_tenants",
+          "description": "List all available tenants in the federation. Returns tenant IDs, names, and status.",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {}
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "federation_tenant_info",
+          "description": "Get detailed information about a specific tenant.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "tenant_id": {
+                "type": "string",
+                "description": "The tenant ID to get information for"
+              }
+            },
+            "required": [
+              "tenant_id"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "federation_help",
+          "description": "Get usage instructions for the MCP federation. Call this first to understand how to use the tools correctly.",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {}
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "federation_list_agents",
+          "description": "List all configured agents with their status and next scheduled run. Requires authentication via auth_token.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "auth_token": {
+                "type": "string",
+                "description": "JWT auth token for authentication"
+              },
+              "status": {
+                "type": "string",
+                "enum": [
+                  "enabled",
+                  "disabled",
+                  "all"
+                ],
+                "default": "all",
+                "description": "Filter by enabled status"
+              },
+              "agentType": {
+                "type": "string",
+                "description": "Filter by agent type name"
+              }
+            },
+            "required": [
+              "auth_token"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "federation_run_agent",
+          "description": "Manually trigger an agent to run immediately. Requires admin authentication via auth_token.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "auth_token": {
+                "type": "string",
+                "description": "JWT auth token with admin role"
+              },
+              "agentId": {
+                "type": "string",
+                "description": "The agent ID to run"
+              }
+            },
+            "required": [
+              "auth_token",
+              "agentId"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "federation_get_agent_runs",
+          "description": "Get execution history for an agent. Requires authentication via auth_token.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "auth_token": {
+                "type": "string",
+                "description": "JWT auth token for authentication"
+              },
+              "agentId": {
+                "type": "string",
+                "description": "The agent ID"
+              },
+              "limit": {
+                "type": "number",
+                "minimum": 1,
+                "maximum": 50,
+                "default": 10,
+                "description": "Maximum results to return"
+              },
+              "status": {
+                "type": "string",
+                "enum": [
+                  "success",
+                  "failure",
+                  "running",
+                  "all"
+                ],
+                "default": "all",
+                "description": "Filter by run status"
+              }
+            },
+            "required": [
+              "auth_token",
+              "agentId"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "federation_agent_status",
+          "description": "Get current status of all agents and the scheduler. Requires authentication via auth_token.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "auth_token": {
+                "type": "string",
+                "description": "JWT auth token for authentication"
+              }
+            },
+            "required": [
+              "auth_token"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "federation_list_agent_types",
+          "description": "List all available agent types that can be configured. Requires authentication via auth_token.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "auth_token": {
+                "type": "string",
+                "description": "JWT auth token for authentication"
+              }
+            },
+            "required": [
+              "auth_token"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "catalog_search",
+          "description": "Search for products by query, category, or browse all products. Use empty query to list all products. (Federated: requires tenant_id. For cart/orders, pass auth_token from POST /v1/auth/login. Product IDs are MongoDB ObjectIds from catalog_search.)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "tenant_id": {
+                "type": "string",
+                "description": "Target tenant ID (required). Use federation_list_tenants() to see available tenants."
+              },
+              "auth_token": {
+                "type": "string",
+                "description": "JWT auth token for authenticated operations (cart, orders). Get from api_call POST /v1/auth/login."
+              },
+              "query": {
+                "type": "string",
+                "description": "Search query (product name, description, etc.). Leave empty to browse all."
+              },
+              "category": {
+                "type": "string",
+                "description": "Filter by category (e.g., 'Electronics', 'Clothing')"
+              },
+              "limit": {
+                "type": "number",
+                "description": "Maximum number of results (1-50, default 20)"
+              },
+              "minPrice": {
+                "type": "number",
+                "description": "Minimum price filter"
+              },
+              "maxPrice": {
+                "type": "number",
+                "description": "Maximum price filter"
+              }
+            },
+            "required": [
+              "tenant_id"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "catalog_get_product",
+          "description": "Get detailed information about a specific product by its ID (Federated: requires tenant_id. For cart/orders, pass auth_token from POST /v1/auth/login. Product IDs are MongoDB ObjectIds from catalog_search.)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "tenant_id": {
+                "type": "string",
+                "description": "Target tenant ID (required). Use federation_list_tenants() to see available tenants."
+              },
+              "auth_token": {
+                "type": "string",
+                "description": "JWT auth token for authenticated operations (cart, orders). Get from api_call POST /v1/auth/login."
+              },
+              "productId": {
+                "type": "string",
+                "description": "The product ID to look up"
+              }
+            },
+            "required": [
+              "tenant_id",
+              "productId"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "catalog_categories",
+          "description": "List all product categories with hierarchy information and product counts (Federated: requires tenant_id. For cart/orders, pass auth_token from POST /v1/auth/login. Product IDs are MongoDB ObjectIds from catalog_search.)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "tenant_id": {
+                "type": "string",
+                "description": "Target tenant ID (required). Use federation_list_tenants() to see available tenants."
+              },
+              "auth_token": {
+                "type": "string",
+                "description": "JWT auth token for authenticated operations (cart, orders). Get from api_call POST /v1/auth/login."
+              },
+              "parentId": {
+                "type": "string",
+                "description": "Filter by parent category ID. Use 'null' for top-level only. Omit for all."
+              },
+              "showHierarchy": {
+                "type": "boolean",
+                "description": "Show hierarchical structure with indentation"
+              }
+            },
+            "required": [
+              "tenant_id"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "catalog_create_category",
+          "description": "Create a new product category (Federated: requires tenant_id. For cart/orders, pass auth_token from POST /v1/auth/login. Product IDs are MongoDB ObjectIds from catalog_search.)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "tenant_id": {
+                "type": "string",
+                "description": "Target tenant ID (required). Use federation_list_tenants() to see available tenants."
+              },
+              "auth_token": {
+                "type": "string",
+                "description": "JWT auth token for authenticated operations (cart, orders). Get from api_call POST /v1/auth/login."
+              },
+              "name": {
+                "type": "string",
+                "description": "Category name"
+              },
+              "slug": {
+                "type": "string",
+                "description": "URL-friendly slug (lowercase, hyphens)"
+              },
+              "description": {
+                "type": "string",
+                "description": "Category description"
+              },
+              "parentId": {
+                "type": "string",
+                "description": "Parent category ID for subcategories"
+              },
+              "displayOrder": {
+                "type": "number",
+                "description": "Display order (lower = first)"
+              },
+              "isActive": {
+                "type": "boolean",
+                "description": "Whether category is active"
+              }
+            },
+            "required": [
+              "tenant_id",
+              "name",
+              "slug"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "catalog_update_category",
+          "description": "Update an existing product category (Federated: requires tenant_id. For cart/orders, pass auth_token from POST /v1/auth/login. Product IDs are MongoDB ObjectIds from catalog_search.)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "tenant_id": {
+                "type": "string",
+                "description": "Target tenant ID (required). Use federation_list_tenants() to see available tenants."
+              },
+              "auth_token": {
+                "type": "string",
+                "description": "JWT auth token for authenticated operations (cart, orders). Get from api_call POST /v1/auth/login."
+              },
+              "categoryId": {
+                "type": "string",
+                "description": "Category ID to update"
+              },
+              "name": {
+                "type": "string",
+                "description": "New category name"
+              },
+              "slug": {
+                "type": "string",
+                "description": "New URL slug"
+              },
+              "description": {
+                "type": "string",
+                "description": "New description"
+              },
+              "parentId": {
+                "type": "string",
+                "description": "New parent ID (use empty string for top-level)"
+              },
+              "displayOrder": {
+                "type": "number",
+                "description": "New display order"
+              },
+              "isActive": {
+                "type": "boolean",
+                "description": "Active status"
+              }
+            },
+            "required": [
+              "tenant_id",
+              "categoryId"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "catalog_delete_category",
+          "description": "Delete a product category (cannot delete if it has children or products) (Federated: requires tenant_id. For cart/orders, pass auth_token from POST /v1/auth/login. Product IDs are MongoDB ObjectIds from catalog_search.)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "tenant_id": {
+                "type": "string",
+                "description": "Target tenant ID (required). Use federation_list_tenants() to see available tenants."
+              },
+              "auth_token": {
+                "type": "string",
+                "description": "JWT auth token for authenticated operations (cart, orders). Get from api_call POST /v1/auth/login."
+              },
+              "categoryId": {
+                "type": "string",
+                "description": "Category ID to delete"
+              }
+            },
+            "required": [
+              "tenant_id",
+              "categoryId"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "catalog_deals",
+          "description": "Find products that are currently on sale or have discounts. Also returns any email signup offer available. (Federated: requires tenant_id. For cart/orders, pass auth_token from POST /v1/auth/login. Product IDs are MongoDB ObjectIds from catalog_search.)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "tenant_id": {
+                "type": "string",
+                "description": "Target tenant ID (required). Use federation_list_tenants() to see available tenants."
+              },
+              "auth_token": {
+                "type": "string",
+                "description": "JWT auth token for authenticated operations (cart, orders). Get from api_call POST /v1/auth/login."
+              },
+              "limit": {
+                "type": "number",
+                "description": "Maximum number of results"
+              }
+            },
+            "required": [
+              "tenant_id"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "cart_view",
+          "description": "View the current shopping cart contents and total. REQUIRED: cartId must be provided on every call for cart persistence. Use customer email for authenticated users or a consistent ID like \"guest-abc123\" for guests. Also requires tenant_id.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "tenant_id": {
+                "type": "string",
+                "description": "Target tenant ID (required). Use federation_list_tenants() to see available tenants."
+              },
+              "auth_token": {
+                "type": "string",
+                "description": "JWT auth token for authenticated operations (cart, orders). Get from api_call POST /v1/auth/login."
+              },
+              "cartId": {
+                "type": "string",
+                "description": "REQUIRED for cart persistence. Use customer email for authenticated users, or a consistent ID like \"guest-abc123\" for guests. Without this, cart items will NOT persist between calls."
+              }
+            },
+            "required": [
+              "tenant_id",
+              "cartId"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "cart_add_item",
+          "description": "Add a product to the shopping cart. If the product is already in the cart, its quantity will be increased. REQUIRED: cartId must be provided on every call for cart persistence. Use customer email for authenticated users or a consistent ID like \"guest-abc123\" for guests. Also requires tenant_id.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "tenant_id": {
+                "type": "string",
+                "description": "Target tenant ID (required). Use federation_list_tenants() to see available tenants."
+              },
+              "auth_token": {
+                "type": "string",
+                "description": "JWT auth token for authenticated operations (cart, orders). Get from api_call POST /v1/auth/login."
+              },
+              "cartId": {
+                "type": "string",
+                "description": "REQUIRED for cart persistence. Use customer email for authenticated users, or a consistent ID like \"guest-abc123\" for guests. Without this, cart items will NOT persist between calls."
+              },
+              "productId": {
+                "type": "string",
+                "description": "Product ID to add to cart"
+              },
+              "quantity": {
+                "type": "number",
+                "description": "Quantity to add (default 1)"
+              }
+            },
+            "required": [
+              "tenant_id",
+              "cartId",
+              "productId"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "cart_update_quantity",
+          "description": "Update the quantity of an item in the cart. REQUIRED: cartId must be provided on every call for cart persistence. Use customer email for authenticated users or a consistent ID like \"guest-abc123\" for guests. Also requires tenant_id.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "tenant_id": {
+                "type": "string",
+                "description": "Target tenant ID (required). Use federation_list_tenants() to see available tenants."
+              },
+              "auth_token": {
+                "type": "string",
+                "description": "JWT auth token for authenticated operations (cart, orders). Get from api_call POST /v1/auth/login."
+              },
+              "cartId": {
+                "type": "string",
+                "description": "REQUIRED for cart persistence. Use customer email for authenticated users, or a consistent ID like \"guest-abc123\" for guests. Without this, cart items will NOT persist between calls."
+              },
+              "productId": {
+                "type": "string",
+                "description": "Product ID to update"
+              },
+              "quantity": {
+                "type": "number",
+                "description": "New quantity (1-99)"
+              }
+            },
+            "required": [
+              "tenant_id",
+              "cartId",
+              "productId",
+              "quantity"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "cart_remove_item",
+          "description": "Remove a product from the shopping cart. REQUIRED: cartId must be provided on every call for cart persistence. Use customer email for authenticated users or a consistent ID like \"guest-abc123\" for guests. Also requires tenant_id.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "tenant_id": {
+                "type": "string",
+                "description": "Target tenant ID (required). Use federation_list_tenants() to see available tenants."
+              },
+              "auth_token": {
+                "type": "string",
+                "description": "JWT auth token for authenticated operations (cart, orders). Get from api_call POST /v1/auth/login."
+              },
+              "cartId": {
+                "type": "string",
+                "description": "REQUIRED for cart persistence. Use customer email for authenticated users, or a consistent ID like \"guest-abc123\" for guests. Without this, cart items will NOT persist between calls."
+              },
+              "productId": {
+                "type": "string",
+                "description": "Product ID to remove from cart"
+              }
+            },
+            "required": [
+              "tenant_id",
+              "cartId",
+              "productId"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "cart_clear",
+          "description": "Remove all items from the shopping cart. REQUIRED: cartId must be provided on every call for cart persistence. Use customer email for authenticated users or a consistent ID like \"guest-abc123\" for guests. Also requires tenant_id.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "tenant_id": {
+                "type": "string",
+                "description": "Target tenant ID (required). Use federation_list_tenants() to see available tenants."
+              },
+              "auth_token": {
+                "type": "string",
+                "description": "JWT auth token for authenticated operations (cart, orders). Get from api_call POST /v1/auth/login."
+              },
+              "cartId": {
+                "type": "string",
+                "description": "REQUIRED for cart persistence. Use customer email for authenticated users, or a consistent ID like \"guest-abc123\" for guests. Without this, cart items will NOT persist between calls."
+              }
+            },
+            "required": [
+              "tenant_id",
+              "cartId"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "orders_list",
+          "description": "List customer orders with optional status filter (Federated: requires tenant_id. For cart/orders, pass auth_token from POST /v1/auth/login. Product IDs are MongoDB ObjectIds from catalog_search.)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "tenant_id": {
+                "type": "string",
+                "description": "Target tenant ID (required). Use federation_list_tenants() to see available tenants."
+              },
+              "auth_token": {
+                "type": "string",
+                "description": "JWT auth token for authenticated operations (cart, orders). Get from api_call POST /v1/auth/login."
+              },
+              "userId": {
+                "type": "string",
+                "description": "User ID (customer ID or session ID for anonymous users)"
+              },
+              "status": {
+                "type": "string",
+                "description": "Filter by order status"
+              },
+              "limit": {
+                "type": "number",
+                "description": "Maximum number of orders to return"
+              }
+            },
+            "required": [
+              "tenant_id",
+              "userId"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "orders_get",
+          "description": "Get detailed information about a specific order (Federated: requires tenant_id. For cart/orders, pass auth_token from POST /v1/auth/login. Product IDs are MongoDB ObjectIds from catalog_search.)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "tenant_id": {
+                "type": "string",
+                "description": "Target tenant ID (required). Use federation_list_tenants() to see available tenants."
+              },
+              "auth_token": {
+                "type": "string",
+                "description": "JWT auth token for authenticated operations (cart, orders). Get from api_call POST /v1/auth/login."
+              },
+              "orderId": {
+                "type": "string",
+                "description": "Order ID to look up"
+              }
+            },
+            "required": [
+              "tenant_id",
+              "orderId"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "orders_track",
+          "description": "Get tracking information and shipment status for an order (Federated: requires tenant_id. For cart/orders, pass auth_token from POST /v1/auth/login. Product IDs are MongoDB ObjectIds from catalog_search.)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "tenant_id": {
+                "type": "string",
+                "description": "Target tenant ID (required). Use federation_list_tenants() to see available tenants."
+              },
+              "auth_token": {
+                "type": "string",
+                "description": "JWT auth token for authenticated operations (cart, orders). Get from api_call POST /v1/auth/login."
+              },
+              "orderId": {
+                "type": "string",
+                "description": "Order ID to track"
+              }
+            },
+            "required": [
+              "tenant_id",
+              "orderId"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "orders_recent",
+          "description": "Get the most recent orders for a customer (shortcut for orders_list with default settings) (Federated: requires tenant_id. For cart/orders, pass auth_token from POST /v1/auth/login. Product IDs are MongoDB ObjectIds from catalog_search.)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "tenant_id": {
+                "type": "string",
+                "description": "Target tenant ID (required). Use federation_list_tenants() to see available tenants."
+              },
+              "auth_token": {
+                "type": "string",
+                "description": "JWT auth token for authenticated operations (cart, orders). Get from api_call POST /v1/auth/login."
+              },
+              "userId": {
+                "type": "string",
+                "description": "User ID (customer ID or session ID for anonymous users)"
+              },
+              "count": {
+                "type": "number",
+                "description": "Number of recent orders to show (default 5)"
+              }
+            },
+            "required": [
+              "tenant_id",
+              "userId"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "inventory_check",
+          "description": "Check stock availability for a product. Returns current stock level and availability status. (Federated: requires tenant_id. For cart/orders, pass auth_token from POST /v1/auth/login. Product IDs are MongoDB ObjectIds from catalog_search.)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "tenant_id": {
+                "type": "string",
+                "description": "Target tenant ID (required). Use federation_list_tenants() to see available tenants."
+              },
+              "auth_token": {
+                "type": "string",
+                "description": "JWT auth token for authenticated operations (cart, orders). Get from api_call POST /v1/auth/login."
+              },
+              "productId": {
+                "type": "string",
+                "description": "Product ID to check stock for"
+              },
+              "quantity": {
+                "type": "number",
+                "description": "Desired quantity (to check if enough in stock)"
+              }
+            },
+            "required": [
+              "tenant_id",
+              "productId"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "inventory_check_multiple",
+          "description": "Check stock availability for multiple products at once (Federated: requires tenant_id. For cart/orders, pass auth_token from POST /v1/auth/login. Product IDs are MongoDB ObjectIds from catalog_search.)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "tenant_id": {
+                "type": "string",
+                "description": "Target tenant ID (required). Use federation_list_tenants() to see available tenants."
+              },
+              "auth_token": {
+                "type": "string",
+                "description": "JWT auth token for authenticated operations (cart, orders). Get from api_call POST /v1/auth/login."
+              },
+              "productIds": {
+                "type": "array",
+                "items": {},
+                "description": "Array of product IDs to check (max 20)"
+              }
+            },
+            "required": [
+              "tenant_id",
+              "productIds"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "inventory_is_available",
+          "description": "Quick check if a product is available (in stock with at least the requested quantity) (Federated: requires tenant_id. For cart/orders, pass auth_token from POST /v1/auth/login. Product IDs are MongoDB ObjectIds from catalog_search.)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "tenant_id": {
+                "type": "string",
+                "description": "Target tenant ID (required). Use federation_list_tenants() to see available tenants."
+              },
+              "auth_token": {
+                "type": "string",
+                "description": "JWT auth token for authenticated operations (cart, orders). Get from api_call POST /v1/auth/login."
+              },
+              "productId": {
+                "type": "string",
+                "description": "Product ID to check"
+              },
+              "quantity": {
+                "type": "number",
+                "description": "Required quantity (default 1)"
+              }
+            },
+            "required": [
+              "tenant_id",
+              "productId"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "checkout_start",
+          "description": "Start a new checkout process from the user's cart.\n\n**DIGITAL vs PHYSICAL PRODUCTS:**\n- **Digital products** (e-books, software, downloads): NO shipping address needed\n- **Physical/material products**: Shipping address REQUIRED\n- **Mixed orders** (some digital, some physical): Shipping address REQUIRED\n\nThe system automatically determines shipping requirements based on the `productType` field in cart items.\n\n**Required Information:**\n1. **Email** - Required for order confirmation and digital delivery\n2. **Customer Name** - For order records\n3. **Shipping Address** - ONLY required if cart contains physical/material products\n\n**Checkout Flow (REAL Payments):**\n1. Collect email and name from user\n2. If cart has physical products, collect shipping address\n3. Call this tool WITHOUT paymentMethodId (creates a pending checkout, returns a sagaId)\n4. For physical products: optionally call `checkout_shipping_options` → `checkout_select_shipping`\n5. Call `checkout_create_payment_session` with the sagaId → returns a **Stripe payment URL**\n6. **Present the Stripe URL to the user** - they click it to enter card details on Stripe's secure page\n7. After payment, call `checkout_status` to confirm order completion\n\n**Example Stripe URL:** `https://checkout.stripe.com/c/pay/cs_live_...`\n\n**Testing Only:**\n- Pass paymentMethodId: \"pm_test_visa\" to skip real payment and process immediately\n\n**Guest Checkout:**\n- Just provide email - system creates a guest customer automatically\n\nThe checkout runs asynchronously. Use `checkout_status` with the sagaId to track progress. (Federated: requires tenant_id. For cart/orders, pass auth_token from POST /v1/auth/login. Product IDs are MongoDB ObjectIds from catalog_search.)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "tenant_id": {
+                "type": "string",
+                "description": "Tenant ID (required for multi-tenant checkout)"
+              },
+              "auth_token": {
+                "type": "string",
+                "description": "JWT auth token for authenticated operations (cart, orders). Get from api_call POST /v1/auth/login."
+              },
+              "userId": {
+                "type": "string",
+                "description": "User/Customer ID"
+              },
+              "cartId": {
+                "type": "string",
+                "description": "Cart ID to checkout"
+              },
+              "shippingAddress": {
+                "type": "object",
+                "additionalProperties": {},
+                "description": "Shipping address for delivery. Required for physical/material products, not needed for digital-only orders."
+              },
+              "paymentMethodId": {
+                "type": "string",
+                "description": "Payment method ID. Use 'pm_test_visa' for testing. Ask user for payment method if not provided."
+              },
+              "email": {
+                "type": "string",
+                "description": "Customer email (required for guest checkout and order confirmation)"
+              },
+              "customerName": {
+                "type": "string",
+                "description": "Customer name for the order"
+              },
+              "items": {
+                "type": "array",
+                "items": {},
+                "description": "Cart items with productType. Digital items don't require shipping."
+              },
+              "subtotal": {
+                "type": "number",
+                "description": "Cart subtotal (if known)"
+              },
+              "total": {
+                "type": "number",
+                "description": "Cart total (if known)"
+              }
+            },
+            "required": [
+              "tenant_id",
+              "userId",
+              "cartId"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "checkout_status",
+          "description": "Get the current status of a checkout saga, including completed steps, errors, and order details.\n\n**When to use:**\n- After `checkout_start` to track async saga progress\n- After customer completes Stripe payment to verify order completion\n- To debug failed checkouts and determine if retry is appropriate\n\n**Saga Status Values:**\n| Status | Meaning |\n|--------|---------|\n| `pending` | Checkout created, cart validated, awaiting processing |\n| `in_progress` | Saga actively executing (inventory reservation, order creation, etc.) |\n| `payment_pending` | Pre-payment steps complete, awaiting Stripe payment |\n| `completed` | Payment successful, order confirmed. Terminal success state |\n| `failed` | A step failed. Check `error` field for details |\n| `compensated` | Rollback complete (inventory released, refunds issued). Terminal failure state |\n\n**Saga Steps (execution order):**\n1. `validate_cart` - Verify cart exists and has items\n2. `reserve_inventory` - Place hold on product stock\n3. `create_order` - Create order record\n4. `process_payment` - Charge payment (or await Stripe session)\n5. `confirm_order` - Finalize order, trigger fulfillment\n6. `send_confirmation` - Email customer\n7. `clear_cart` - Remove purchased items\n\n**Response includes:** completedSteps, currentStep (if in_progress), error details (if failed), compensation info (if rolled back), and order/payment IDs (if created). (Federated: requires tenant_id. For cart/orders, pass auth_token from POST /v1/auth/login. Product IDs are MongoDB ObjectIds from catalog_search.)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "tenant_id": {
+                "type": "string",
+                "description": "Target tenant ID (required). Use federation_list_tenants() to see available tenants."
+              },
+              "auth_token": {
+                "type": "string",
+                "description": "JWT auth token for authenticated operations (cart, orders). Get from api_call POST /v1/auth/login."
+              },
+              "sagaId": {
+                "type": "string",
+                "description": "Checkout saga ID"
+              }
+            },
+            "required": [
+              "tenant_id",
+              "sagaId"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "checkout_list",
+          "description": "List checkout history for a user with optional status filtering.\n\n**When to use:**\n- Show order history to customer\n- Find abandoned checkouts (`payment_pending`) for recovery\n- Identify failed checkouts that may need retry\n- Debug checkout issues for a specific user\n\n**Status Filter Values:**\n| Status | Use Case |\n|--------|----------|\n| `pending` | Recently started, not yet processing |\n| `in_progress` | Currently processing (transient state) |\n| `payment_pending` | Abandoned carts awaiting payment |\n| `completed` | Successful orders |\n| `failed` | Failed checkouts (may be retryable) |\n| `compensating` | Currently rolling back (transient) |\n| `compensated` | Fully rolled back after failure |\n\n**Common Queries:**\n- Abandoned carts: filter by `payment_pending`\n- Order history: filter by `completed`\n- Retryable failures: filter by `failed`, then check each saga's error.retryable field (Federated: requires tenant_id. For cart/orders, pass auth_token from POST /v1/auth/login. Product IDs are MongoDB ObjectIds from catalog_search.)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "tenant_id": {
+                "type": "string",
+                "description": "Target tenant ID (required). Use federation_list_tenants() to see available tenants."
+              },
+              "auth_token": {
+                "type": "string",
+                "description": "JWT auth token for authenticated operations (cart, orders). Get from api_call POST /v1/auth/login."
+              },
+              "userId": {
+                "type": "string",
+                "description": "User ID to list checkouts for"
+              },
+              "status": {
+                "type": "string",
+                "description": "Filter by checkout status"
+              }
+            },
+            "required": [
+              "tenant_id",
+              "userId"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "checkout_shipping_options",
+          "description": "Get available shipping methods and rates for a checkout.\n\n**When to use:** After `checkout_start`, before `checkout_create_payment_session`, to let the customer choose shipping speed/carrier.\n\n**Prerequisites:**\n- Checkout must exist (valid sagaId from `checkout_start`)\n- Shipping address must be set (provided during `checkout_start`)\n\n**Returns:** List of shipping options with carrier, service, price, and estimated delivery days.\n\n**Important Notes:**\n- Rates are calculated based on shipping address, cart weight, and dimensions\n- If no options returned, tenant may lack shipping configuration or address is unserviceable\n- **This step is OPTIONAL.** If skipped, a default shipping method is automatically applied\n- Can be called multiple times (e.g., if address changes)\n\n**After getting options:** Use `checkout_select_shipping` with the desired carrierId and serviceId. (Federated: requires tenant_id. For cart/orders, pass auth_token from POST /v1/auth/login. Product IDs are MongoDB ObjectIds from catalog_search.)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "tenant_id": {
+                "type": "string",
+                "description": "Target tenant ID (required). Use federation_list_tenants() to see available tenants."
+              },
+              "auth_token": {
+                "type": "string",
+                "description": "JWT auth token for authenticated operations (cart, orders). Get from api_call POST /v1/auth/login."
+              },
+              "sagaId": {
+                "type": "string",
+                "description": "Checkout saga ID"
+              }
+            },
+            "required": [
+              "tenant_id",
+              "sagaId"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "checkout_select_shipping",
+          "description": "Select a shipping method for a checkout.\n\n**When to use:** After `checkout_shipping_options`, when customer has chosen their preferred shipping method.\n\n**Prerequisites:**\n- Must call `checkout_shipping_options` first to get valid carrierId/serviceId combinations\n- Checkout must be in `pending` or `payment_pending` status\n\n**Behavior:**\n- Updates the checkout's shipping method and recalculates total\n- Can be called multiple times to change selection (before payment)\n- Invalid carrierId/serviceId combinations will error\n\n**Returns:** Selected shipping details and updated order total.\n\n**This step is OPTIONAL.** If skipped entirely (no `checkout_shipping_options` or `checkout_select_shipping`), a default shipping method is applied automatically. (Federated: requires tenant_id. For cart/orders, pass auth_token from POST /v1/auth/login. Product IDs are MongoDB ObjectIds from catalog_search.)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "tenant_id": {
+                "type": "string",
+                "description": "Target tenant ID (required). Use federation_list_tenants() to see available tenants."
+              },
+              "auth_token": {
+                "type": "string",
+                "description": "JWT auth token for authenticated operations (cart, orders). Get from api_call POST /v1/auth/login."
+              },
+              "sagaId": {
+                "type": "string",
+                "description": "Checkout saga ID"
+              },
+              "carrierId": {
+                "type": "string",
+                "description": "Carrier ID from shipping options (e.g., 'fedex', 'ups')"
+              },
+              "serviceId": {
+                "type": "string",
+                "description": "Service ID from shipping options (e.g., 'ground', 'express')"
+              }
+            },
+            "required": [
+              "tenant_id",
+              "sagaId",
+              "carrierId",
+              "serviceId"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "checkout_create_payment_session",
+          "description": "Create a secure Stripe Checkout Session for payment collection. Returns a payment URL where the customer enters card details.\n\n**IMPORTANT: Use this for REAL payments instead of checkout_start with paymentMethodId.**\n\n**Recommended Flow:**\n1. Collect shipping address from user via conversation\n2. Start checkout with `checkout_start` (without paymentMethodId) → creates pending checkout\n3. Optionally: `checkout_shipping_options` → `checkout_select_shipping` for shipping choice\n4. Call this tool → returns Stripe payment URL\n5. Present URL to user (redirect, link, or embed)\n6. After payment, verify with `checkout_status`\n\n**Why this flow?**\n- Customer enters card on Stripe's PCI-compliant hosted page\n- Card numbers never touch your servers\n- Supports all Stripe methods (cards, Apple Pay, Google Pay, etc.)\n- Handles 3D Secure authentication automatically\n\n**Webhook Behavior:**\n- Order completes automatically when Stripe confirms payment via webhook\n- If webhook is delayed: poll `checkout_status` to verify (Stripe eventually delivers)\n- If webhook fails: saga remains `payment_pending`; manual intervention may be needed\n\n**Session Notes:**\n- URL is single-use; once customer starts, it cannot be reused\n- Sessions expire after ~24 hours; create new session if expired\n- Returns `payment_pending` status after successful creation (Federated: requires tenant_id. For cart/orders, pass auth_token from POST /v1/auth/login. Product IDs are MongoDB ObjectIds from catalog_search.)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "tenant_id": {
+                "type": "string",
+                "description": "Tenant ID (pass the same tenant_id used in checkout_start)"
+              },
+              "auth_token": {
+                "type": "string",
+                "description": "JWT auth token for authenticated operations (cart, orders). Get from api_call POST /v1/auth/login."
+              },
+              "sagaId": {
+                "type": "string",
+                "description": "Checkout saga ID from checkout_start"
+              }
+            },
+            "required": [
+              "tenant_id",
+              "sagaId"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "checkout_retry",
+          "description": "Retry a failed or compensated checkout by restarting the saga from the beginning.\n\n**When to use:** When a checkout failed due to a transient issue that has been resolved (service timeout, temporary stock shortage).\n\n**Prerequisites:**\n- Saga must be in `failed` or `compensated` status\n- Original cart must still exist with items\n- Check `checkout_status` first to verify error is `retryable: true`\n\n**Behavior:**\n1. Validates saga exists and is in retriable state\n2. Re-validates cart still has items\n3. Resets saga to `pending` status\n4. Clears previous error and compensation records\n5. Restarts saga execution from step 1\n\n**CAN retry (transient failures):**\n- `INVENTORY_SERVICE_ERROR` - Service was temporarily unavailable\n- `PAYMENT_SERVICE_ERROR` - Stripe API had temporary issues\n- `ORDER_SERVICE_ERROR` - Order service timeout\n- `SAGA_TIMEOUT` - Processing exceeded time limit\n\n**CANNOT retry (permanent failures):**\n- `PAYMENT_DECLINED` - Customer needs different payment method\n- `INVALID_ADDRESS` - Customer must correct address\n- `CART_EMPTY` / `CART_NOT_FOUND` - Cart was cleared or deleted\n- `INVENTORY_UNAVAILABLE` - Items still out of stock (check first)\n\n**Cannot retry these statuses:**\n- `completed` - Already succeeded (start new checkout instead)\n- `in_progress` / `payment_pending` - Still active (Federated: requires tenant_id. For cart/orders, pass auth_token from POST /v1/auth/login. Product IDs are MongoDB ObjectIds from catalog_search.)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "tenant_id": {
+                "type": "string",
+                "description": "Target tenant ID (required). Use federation_list_tenants() to see available tenants."
+              },
+              "auth_token": {
+                "type": "string",
+                "description": "JWT auth token for authenticated operations (cart, orders). Get from api_call POST /v1/auth/login."
+              },
+              "sagaId": {
+                "type": "string",
+                "description": "Checkout saga ID to retry"
+              }
+            },
+            "required": [
+              "tenant_id",
+              "sagaId"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "api_call",
+          "description": "Call any comAI API endpoint not covered by specific tools.\nUse this for: payments, shipping rates, recommendations, returns, user profiles, policies, help articles, and more.\nRead the 'api_documentation' resource first to see available endpoints and their parameters.\n\nIMPORTANT: For multi-tenant operations (checkout, cart, orders), you MUST specify the tenant_id parameter.\nThe tenant_id should match the tenant where the cart/customer data exists (e.g., 'vnm-sport', not 'test-test').\n\nCommon endpoints:\n- GET /v1/users/{userId} - Get user profile\n- GET /v1/recommendations/{userId} - Get personalized recommendations\n- GET /v1/shipping/rates - Calculate shipping rates\n- POST /v1/checkout - Process checkout (requires tenant_id)\n- GET /v1/returns/{returnId} - Check return status\n- POST /v1/returns - Request a return\n- GET /v1/help - Search help articles\n- GET /v1/policies - List store policies\n- GET /v1/api-keys - List user's API keys (requires auth)\n- POST /v1/api-keys - Create new API key (requires auth) (Federated: requires tenant_id. For cart/orders, pass auth_token from POST /v1/auth/login. Product IDs are MongoDB ObjectIds from catalog_search.)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "tenant_id": {
+                "type": "string",
+                "description": "Override tenant ID for multi-tenant operations. Required for checkout, cart, and order operations to ensure correct tenant context."
+              },
+              "auth_token": {
+                "type": "string",
+                "description": "JWT auth token for authenticated operations (cart, orders). Get from api_call POST /v1/auth/login."
+              },
+              "method": {
+                "type": "string",
+                "description": "HTTP method"
+              },
+              "path": {
+                "type": "string",
+                "description": "API path starting with /v1/ (e.g., '/v1/shipping/rates')"
+              },
+              "body": {
+                "type": "object",
+                "additionalProperties": {},
+                "description": "Request body for POST/PUT/PATCH requests"
+              },
+              "params": {
+                "type": "object",
+                "additionalProperties": {},
+                "description": "Query parameters as key-value pairs"
+              }
+            },
+            "required": [
+              "tenant_id",
+              "method",
+              "path"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        }
+      ],
+      "python_sdk_url": "https://mcp.comos-gateway.com/mcp",
+      "python_sdk_config": "{\"debug\": false}"
+    },
+    "source_filename": "0025.ComOS-Federation-Gateway_labeled.json",
+    "processed_timestamp": 1772876337,
+    "processing_mode": "gateway",
+    "rank": 26
+  }
+}

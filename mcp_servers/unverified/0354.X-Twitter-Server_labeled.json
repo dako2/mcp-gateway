@@ -1,0 +1,67 @@
+{
+  "labels": {
+    "analysis": "The MCP Server \"X Twitter Server\" is designed to facilitate natural language interaction with Twitter via its API v2. It provides a comprehensive set of tools for managing user profiles, posts, followers, and other Twitter interactions. The server simplifies Twitter API usage by handling rate limits, authentication, and integrating with AI tools for enhanced social media management. Key functionalities include fetching user data, posting/editing tweets, managing followers, and searching trends.",
+    "reasoning": "The primary label \"Social Media\" is chosen because the server's core functionality revolves around Twitter operations, a social media platform. The secondary labels \"API Integration\" and \"Communications Tools\" are selected because the server heavily relies on Twitter API integration and enables communication/management of Twitter content.",
+    "primary_label": "Social Media",
+    "secondary_labels": [
+      "API Integration",
+      "Communication Tools"
+    ],
+    "custom_label": "Twitter API Management",
+    "is_connected": false,
+    "is_remote_tool_valid": false,
+    "featured_server": false,
+    "tool_verified": false,
+    "tool_verified_status": "broken",
+    "tool_verified_at": "2026-03-14T20:39:42.911506+00:00",
+    "tool_verified_tool": null,
+    "tool_verified_reason": "no tools defined"
+  },
+  "metadata": {
+    "server_id": 354,
+    "server_name": "X Twitter Server",
+    "rank_by_usage": 367,
+    "usage_count": "75",
+    "original_file": "toucan_live#@rafaljanicki/x-twitter-mcp-server",
+    "mode": "toucan",
+    "timestamp": 1772876338,
+    "remote_server_response": {
+      "url": "https://server.smithery.ai/@rafaljanicki/x-twitter-mcp-server/mcp",
+      "is_success": true,
+      "error": null,
+      "tools": [],
+      "tool_count": 0,
+      "tool_names": []
+    },
+    "server_info_crawled": {
+      "id": 354,
+      "name": "X Twitter Server",
+      "author": "",
+      "overview": "Enable natural language interaction with Twitter to fetch profiles, post tweets, search trends, and manage followers and bookmarks. Simplify Twitter API v2 usage with built-in rate limit handling and secure authentication. Integrate seamlessly with AI tools for enhanced social media management.",
+      "repository_url": "",
+      "homepage": "https://server.smithery.ai/@rafaljanicki/x-twitter-mcp-server/mcp",
+      "remote_or_local": "Remote",
+      "license": "",
+      "usage_count": "75",
+      "success_rate": "Not available",
+      "tags": [
+        "search",
+        "web",
+        "api",
+        "mcp"
+      ],
+      "categories": [
+        "search",
+        "api"
+      ],
+      "tools_count": 0,
+      "tools": [],
+      "python_sdk_url": "https://server.smithery.ai/@rafaljanicki/x-twitter-mcp-server/mcp",
+      "python_sdk_config": "{\"debug\": false}"
+    },
+    "source_filename": "0354.X-Twitter-Server_labeled.json",
+    "processed_timestamp": 1772876338,
+    "processing_mode": "toucan",
+    "rank": 367
+  }
+}

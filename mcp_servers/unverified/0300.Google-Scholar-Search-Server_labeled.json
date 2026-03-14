@@ -1,0 +1,248 @@
+{
+  "labels": {
+    "analysis": "The MCP Server is designed to facilitate academic research by providing tools to search Google Scholar for academic papers, author information, and metadata. Its core functionality revolves around web search and research, specifically in the academic domain. The available tools allow for keyword and advanced searches, as well as retrieval of detailed author information, which are essential for conducting comprehensive academic research.",
+    "reasoning": "The server's primary purpose is to enable academic research through web search, making \"Web Search & Research\" the most applicable primary label. The tools provided are specialized for academic research, which aligns with the predefined category. No secondary labels are necessary as the server's functionality is narrowly focused on this specific use case. No custom label is required as the predefined category sufficiently describes the server's purpose.",
+    "primary_label": "Web Search & Research",
+    "secondary_labels": [],
+    "custom_label": "Not applicable in this case",
+    "is_connected": true,
+    "is_remote_tool_valid": true,
+    "featured_server": false,
+    "tool_verified": false,
+    "tool_verified_status": "broken",
+    "tool_verified_at": "2026-03-14T20:39:10.608807+00:00",
+    "tool_verified_tool": "search_google_scholar_key_words",
+    "tool_verified_reason": "client timeout after 20003ms"
+  },
+  "metadata": {
+    "server_id": 300,
+    "server_name": "Google Scholar Search Server",
+    "rank_by_usage": 339,
+    "usage_count": "92",
+    "original_file": "toucan_live#@jiqingci/google",
+    "mode": "toucan",
+    "timestamp": 1772876338,
+    "remote_server_response": {
+      "url": "https://server.smithery.ai/@jiqingci/google/mcp",
+      "is_success": true,
+      "error": null,
+      "tools": [
+        {
+          "name": "search_google_scholar_key_words",
+          "description": "",
+          "input_schema": {
+            "properties": {
+              "query": {
+                "title": "Query",
+                "type": "string"
+              },
+              "num_results": {
+                "default": 5000,
+                "title": "Num Results",
+                "type": "integer"
+              }
+            },
+            "required": [
+              "query"
+            ],
+            "title": "search_google_scholar_key_wordsArguments",
+            "type": "object"
+          },
+          "annotations": null
+        },
+        {
+          "name": "search_google_scholar_advanced",
+          "description": "",
+          "input_schema": {
+            "properties": {
+              "query": {
+                "title": "Query",
+                "type": "string"
+              },
+              "author": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Author"
+              },
+              "year_range": {
+                "anyOf": [
+                  {
+                    "items": {},
+                    "type": "array"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Year Range"
+              },
+              "num_results": {
+                "default": 5000,
+                "title": "Num Results",
+                "type": "integer"
+              }
+            },
+            "required": [
+              "query"
+            ],
+            "title": "search_google_scholar_advancedArguments",
+            "type": "object"
+          },
+          "annotations": null
+        },
+        {
+          "name": "get_author_info",
+          "description": "",
+          "input_schema": {
+            "properties": {
+              "author_name": {
+                "title": "Author Name",
+                "type": "string"
+              }
+            },
+            "required": [
+              "author_name"
+            ],
+            "title": "get_author_infoArguments",
+            "type": "object"
+          },
+          "annotations": null
+        }
+      ],
+      "tool_count": 3,
+      "tool_names": [
+        "search_google_scholar_key_words",
+        "search_google_scholar_advanced",
+        "get_author_info"
+      ]
+    },
+    "server_info_crawled": {
+      "id": 300,
+      "name": "Google Scholar Search Server",
+      "author": "",
+      "overview": "Enable AI assistants to search and access academic papers from Google Scholar through a simple MCP interface. Perform keyword and advanced searches, retrieve paper metadata, and obtain detailed author information to support academic research and analysis. Integrate seamlessly with AI applications to enhance research capabilities.",
+      "repository_url": "",
+      "homepage": "https://server.smithery.ai/@jiqingci/google/mcp",
+      "remote_or_local": "Remote",
+      "license": "",
+      "usage_count": "92",
+      "success_rate": "Not available",
+      "tags": [
+        "search",
+        "web",
+        "api",
+        "mcp"
+      ],
+      "categories": [
+        "search",
+        "api"
+      ],
+      "tools_count": 3,
+      "tools": [
+        {
+          "name": "search_google_scholar_key_words",
+          "description": "",
+          "input_schema": {
+            "properties": {
+              "query": {
+                "title": "Query",
+                "type": "string"
+              },
+              "num_results": {
+                "default": 5000,
+                "title": "Num Results",
+                "type": "integer"
+              }
+            },
+            "required": [
+              "query"
+            ],
+            "title": "search_google_scholar_key_wordsArguments",
+            "type": "object"
+          },
+          "annotations": null
+        },
+        {
+          "name": "search_google_scholar_advanced",
+          "description": "",
+          "input_schema": {
+            "properties": {
+              "query": {
+                "title": "Query",
+                "type": "string"
+              },
+              "author": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Author"
+              },
+              "year_range": {
+                "anyOf": [
+                  {
+                    "items": {},
+                    "type": "array"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Year Range"
+              },
+              "num_results": {
+                "default": 5000,
+                "title": "Num Results",
+                "type": "integer"
+              }
+            },
+            "required": [
+              "query"
+            ],
+            "title": "search_google_scholar_advancedArguments",
+            "type": "object"
+          },
+          "annotations": null
+        },
+        {
+          "name": "get_author_info",
+          "description": "",
+          "input_schema": {
+            "properties": {
+              "author_name": {
+                "title": "Author Name",
+                "type": "string"
+              }
+            },
+            "required": [
+              "author_name"
+            ],
+            "title": "get_author_infoArguments",
+            "type": "object"
+          },
+          "annotations": null
+        }
+      ],
+      "python_sdk_url": "https://server.smithery.ai/@jiqingci/google/mcp",
+      "python_sdk_config": "{\"debug\": false}"
+    },
+    "source_filename": "0300.Google-Scholar-Search-Server_labeled.json",
+    "processed_timestamp": 1772876338,
+    "processing_mode": "toucan",
+    "rank": 339
+  }
+}

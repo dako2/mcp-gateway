@@ -1,0 +1,161 @@
+{
+  "labels": {
+    "analysis": "The MCP Server \"Nmap Scanner Server\" provides 2 tools focused on development tools tasks. Core capabilities include various operations. Key tools: nmapScan, getInfo.",
+    "reasoning": "Default category assigned; no strong keyword matches found for nmap scanner server.",
+    "primary_label": "Development Tools",
+    "secondary_labels": [],
+    "custom_label": "Data Access - Nmap Scanner Server",
+    "is_connected": true,
+    "is_remote_tool_valid": true,
+    "featured_server": false,
+    "tool_verified": false,
+    "tool_verified_status": "tool_error",
+    "tool_verified_at": "2026-03-14T20:38:21.173817+00:00",
+    "tool_verified_tool": "getInfo",
+    "tool_verified_reason": "HTTP 404: Server not found"
+  },
+  "metadata": {
+    "server_id": 242,
+    "server_name": "Nmap Scanner Server",
+    "rank_by_usage": 243,
+    "usage_count": "10",
+    "original_file": "tools.json#242",
+    "mode": "gateway",
+    "timestamp": 1772876338,
+    "remote_server_response": {
+      "url": "https://server.smithery.ai/@sideffect263/nmap-mcp-server/mcp",
+      "is_success": true,
+      "error": null,
+      "tools": [
+        {
+          "name": "nmapScan",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "target": {
+                "type": "string",
+                "description": "Domain name, IP address, or CIDR notation to scan (e.g., example.com, 192.168.1.1, 10.0.0.0/24)"
+              },
+              "flags": {
+                "type": "string",
+                "default": "-T4 -p 1-1000",
+                "description": "Nmap scanning flags. Common options: -T4 (timing), -p 1-1000 (port range), -sS (SYN scan), -A (aggressive scan)"
+              }
+            },
+            "required": [
+              "target"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          }
+        },
+        {
+          "name": "getInfo",
+          "inputSchema": {
+            "type": "object"
+          },
+          "annotations": {
+            "_def": {
+              "unknownKeys": "strip",
+              "catchall": {
+                "_def": {
+                  "typeName": "ZodNever"
+                },
+                "~standard": {
+                  "version": 1,
+                  "vendor": "zod"
+                }
+              },
+              "typeName": "ZodObject"
+            },
+            "~standard": {
+              "version": 1,
+              "vendor": "zod"
+            },
+            "_cached": null
+          }
+        }
+      ],
+      "tool_count": 2,
+      "tool_names": [
+        "nmapScan",
+        "getInfo"
+      ]
+    },
+    "server_info_crawled": {
+      "id": 242,
+      "name": "Nmap Scanner Server",
+      "author": "",
+      "overview": "Nmap Scanner Server - Development Tools server with 2 tools. The MCP Server \"Nmap Scanner Server\" provides 2 tools focused on development tools tasks. Core capab",
+      "repository_url": "",
+      "homepage": "https://server.smithery.ai/@sideffect263/nmap-mcp-server/mcp",
+      "remote_or_local": "Remote",
+      "license": "",
+      "usage_count": "10",
+      "success_rate": "100%",
+      "tags": [
+        "development-tools"
+      ],
+      "categories": [
+        "development tools"
+      ],
+      "tools_count": 2,
+      "tools": [
+        {
+          "name": "nmapScan",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "target": {
+                "type": "string",
+                "description": "Domain name, IP address, or CIDR notation to scan (e.g., example.com, 192.168.1.1, 10.0.0.0/24)"
+              },
+              "flags": {
+                "type": "string",
+                "default": "-T4 -p 1-1000",
+                "description": "Nmap scanning flags. Common options: -T4 (timing), -p 1-1000 (port range), -sS (SYN scan), -A (aggressive scan)"
+              }
+            },
+            "required": [
+              "target"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          }
+        },
+        {
+          "name": "getInfo",
+          "inputSchema": {
+            "type": "object"
+          },
+          "annotations": {
+            "_def": {
+              "unknownKeys": "strip",
+              "catchall": {
+                "_def": {
+                  "typeName": "ZodNever"
+                },
+                "~standard": {
+                  "version": 1,
+                  "vendor": "zod"
+                }
+              },
+              "typeName": "ZodObject"
+            },
+            "~standard": {
+              "version": 1,
+              "vendor": "zod"
+            },
+            "_cached": null
+          }
+        }
+      ],
+      "python_sdk_url": "https://server.smithery.ai/@sideffect263/nmap-mcp-server/mcp",
+      "python_sdk_config": "{\"debug\": false}"
+    },
+    "source_filename": "0242.Nmap-Scanner-Server_labeled.json",
+    "processed_timestamp": 1772876338,
+    "processing_mode": "gateway",
+    "rank": 243
+  }
+}

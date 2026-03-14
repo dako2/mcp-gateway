@@ -1,0 +1,124 @@
+{
+  "labels": {
+    "analysis": "The MCP Server \"iVisa MCP Server\" provides 1 tools focused on e-commerce tasks. Core capabilities include various operations. Key tools: product-information-tool.",
+    "reasoning": "Primary label \"E-Commerce\" assigned based on strong keyword matches in tool names and descriptions: product.",
+    "primary_label": "E-Commerce",
+    "secondary_labels": [],
+    "custom_label": "E-Commerce - iVisa MCP Server",
+    "is_connected": true,
+    "is_remote_tool_valid": true,
+    "featured_server": false,
+    "tool_verified": true,
+    "tool_verified_status": "verified",
+    "tool_verified_at": "2026-03-14T20:38:21.771325+00:00",
+    "tool_verified_tool": "product-information-tool",
+    "tool_verified_reason": "tool call succeeded"
+  },
+  "metadata": {
+    "server_id": 246,
+    "server_name": "iVisa MCP Server",
+    "rank_by_usage": 247,
+    "usage_count": "10",
+    "original_file": "tools.json#246",
+    "mode": "gateway",
+    "timestamp": 1772876338,
+    "remote_server_response": {
+      "url": "https://www.ivisa.com/mcp",
+      "is_success": true,
+      "error": null,
+      "tools": [
+        {
+          "name": "product-information-tool",
+          "title": "Product Information Tool",
+          "description": "Provides information about visa availability for a given country",
+          "inputSchema": {
+            "properties": {
+              "nationality": {
+                "description": "The nationality of the user; ISO 3166-1 alpha-2 code",
+                "type": "string"
+              },
+              "destination": {
+                "description": "The destination country; ISO 3166-1 alpha-2 code",
+                "type": "string"
+              },
+              "currency": {
+                "description": "The currency of the user; ISO 4217 code",
+                "type": "string"
+              }
+            },
+            "type": "object",
+            "required": [
+              "nationality",
+              "destination",
+              "currency"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": true
+          }
+        }
+      ],
+      "tool_count": 1,
+      "tool_names": [
+        "product-information-tool"
+      ]
+    },
+    "server_info_crawled": {
+      "id": 246,
+      "name": "iVisa MCP Server",
+      "author": "",
+      "overview": "iVisa MCP Server - E-Commerce server with 1 tools. The MCP Server \"iVisa MCP Server\" provides 1 tools focused on e-commerce tasks. Core capabilities in",
+      "repository_url": "",
+      "homepage": "https://www.ivisa.com/mcp",
+      "remote_or_local": "Remote",
+      "license": "",
+      "usage_count": "10",
+      "success_rate": "100%",
+      "tags": [
+        "e-commerce"
+      ],
+      "categories": [
+        "e-commerce"
+      ],
+      "tools_count": 1,
+      "tools": [
+        {
+          "name": "product-information-tool",
+          "title": "Product Information Tool",
+          "description": "Provides information about visa availability for a given country",
+          "inputSchema": {
+            "properties": {
+              "nationality": {
+                "description": "The nationality of the user; ISO 3166-1 alpha-2 code",
+                "type": "string"
+              },
+              "destination": {
+                "description": "The destination country; ISO 3166-1 alpha-2 code",
+                "type": "string"
+              },
+              "currency": {
+                "description": "The currency of the user; ISO 4217 code",
+                "type": "string"
+              }
+            },
+            "type": "object",
+            "required": [
+              "nationality",
+              "destination",
+              "currency"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": true
+          }
+        }
+      ],
+      "python_sdk_url": "https://www.ivisa.com/mcp",
+      "python_sdk_config": "{\"debug\": false}"
+    },
+    "source_filename": "0246.iVisa-MCP-Server_labeled.json",
+    "processed_timestamp": 1772876338,
+    "processing_mode": "gateway",
+    "rank": 247
+  }
+}

@@ -1,0 +1,866 @@
+{
+  "labels": {
+    "analysis": "The MCP Server \"io.github.f/prompts.chat-mcp\" provides 10 tools focused on ai/ml tools tasks. Core capabilities include creation and generation, data access and reading, deletion and cleanup, modification and updates. Key tools: search_prompts, get_prompt, save_prompt, improve_prompt, save_skill.",
+    "reasoning": "Primary label \"AI/ML Tools\" assigned based on strong keyword matches in tool names and descriptions: prompt.",
+    "primary_label": "AI/ML Tools",
+    "secondary_labels": [
+      "Web Search & Research",
+      "File Management"
+    ],
+    "custom_label": "Data Access & Management - io.github.f/prompts.chat-mcp",
+    "is_connected": true,
+    "is_remote_tool_valid": true,
+    "featured_server": true,
+    "tool_verified": true,
+    "tool_verified_status": "verified",
+    "tool_verified_at": "2026-03-14T20:38:13.263760+00:00",
+    "tool_verified_tool": "search_prompts",
+    "tool_verified_reason": "response received"
+  },
+  "metadata": {
+    "server_id": 80,
+    "server_name": "io.github.f/prompts.chat-mcp",
+    "rank_by_usage": 81,
+    "usage_count": "400",
+    "original_file": "tools.json#80",
+    "mode": "gateway",
+    "timestamp": 1772876337,
+    "remote_server_response": {
+      "url": "https://prompts.chat/api/mcp",
+      "is_success": true,
+      "error": null,
+      "tools": [
+        {
+          "name": "search_prompts",
+          "title": "Search Prompts",
+          "description": "Search for AI prompts by keyword. Returns matching prompts with title, description, content, author, category, and tags. Use this to discover prompts for various AI tasks like coding, writing, analysis, and more.",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {
+              "query": {
+                "description": "Search query to find relevant prompts",
+                "type": "string"
+              },
+              "limit": {
+                "description": "Maximum number of prompts to return (default 10, max 50)",
+                "default": 10,
+                "type": "number",
+                "minimum": 1,
+                "maximum": 50
+              },
+              "type": {
+                "description": "Filter by prompt type",
+                "type": "string",
+                "enum": [
+                  "TEXT",
+                  "STRUCTURED",
+                  "IMAGE",
+                  "VIDEO",
+                  "AUDIO"
+                ]
+              },
+              "category": {
+                "description": "Filter by category slug",
+                "type": "string"
+              },
+              "tag": {
+                "description": "Filter by tag slug",
+                "type": "string"
+              }
+            },
+            "required": [
+              "query"
+            ]
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "get_prompt",
+          "title": "Get Prompt",
+          "description": "Get a prompt by ID and optionally fill in its variables. If the prompt contains template variables (like {{variable}}), you will be asked to provide values for them.",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {
+              "id": {
+                "description": "The ID of the prompt to retrieve",
+                "type": "string"
+              }
+            },
+            "required": [
+              "id"
+            ]
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "save_prompt",
+          "title": "Save Prompt",
+          "description": "Save a new prompt to your prompts.chat account. Requires API key authentication. Prompts are private by default unless configured otherwise in settings.",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {
+              "title": {
+                "description": "Title of the prompt",
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 200
+              },
+              "content": {
+                "description": "The prompt content. Can include variables like ${variable} or ${variable:default}",
+                "type": "string",
+                "minLength": 1
+              },
+              "description": {
+                "description": "Optional description of the prompt",
+                "type": "string",
+                "maxLength": 500
+              },
+              "tags": {
+                "description": "Optional array of tag names (will be created if they don't exist)",
+                "maxItems": 10,
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "category": {
+                "description": "Optional category slug",
+                "type": "string"
+              },
+              "isPrivate": {
+                "description": "Whether the prompt is private (default: uses your account setting)",
+                "type": "boolean"
+              },
+              "type": {
+                "description": "Prompt type (default: TEXT)",
+                "type": "string",
+                "enum": [
+                  "TEXT",
+                  "STRUCTURED",
+                  "IMAGE",
+                  "VIDEO",
+                  "AUDIO"
+                ]
+              },
+              "structuredFormat": {
+                "description": "Format for structured prompts",
+                "type": "string",
+                "enum": [
+                  "JSON",
+                  "YAML"
+                ]
+              }
+            },
+            "required": [
+              "title",
+              "content"
+            ]
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "improve_prompt",
+          "title": "Improve Prompt",
+          "description": "Transform a basic prompt into a well-structured, comprehensive prompt using AI. Optionally searches for similar prompts for inspiration. Supports different output types (text, image, video, sound) and formats (text, JSON, YAML).",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {
+              "prompt": {
+                "description": "The prompt to improve",
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 10000
+              },
+              "outputType": {
+                "description": "Content type: text, image, video, or sound",
+                "default": "text",
+                "type": "string",
+                "enum": [
+                  "text",
+                  "image",
+                  "video",
+                  "sound"
+                ]
+              },
+              "outputFormat": {
+                "description": "Response format: text, structured_json, or structured_yaml",
+                "default": "text",
+                "type": "string",
+                "enum": [
+                  "text",
+                  "structured_json",
+                  "structured_yaml"
+                ]
+              }
+            },
+            "required": [
+              "prompt"
+            ]
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "save_skill",
+          "title": "Save Skill",
+          "description": "Save a new Agent Skill to your prompts.chat account. Skills are multi-file prompts that can include SKILL.md (required), reference docs, scripts, and configuration files. Requires API key authentication. If the file contents are too long, first save the SKILL.md only, with no other files. Then call add_file_to_skill tool per file.",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {
+              "title": {
+                "description": "Title of the skill",
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 200
+              },
+              "description": {
+                "description": "Description of what the skill does",
+                "type": "string",
+                "maxLength": 500
+              },
+              "files": {
+                "description": "Array of files. Must include SKILL.md as the main skill file.",
+                "minItems": 1,
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "filename": {
+                      "description": "File path (e.g., 'SKILL.md', 'reference.md', 'scripts/helper.py')",
+                      "type": "string"
+                    },
+                    "content": {
+                      "description": "File content",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "filename",
+                    "content"
+                  ]
+                }
+              },
+              "tags": {
+                "description": "Optional array of tag names",
+                "maxItems": 10,
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "category": {
+                "description": "Optional category slug",
+                "type": "string"
+              },
+              "isPrivate": {
+                "description": "Whether the skill is private (default: uses your account setting)",
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "title",
+              "files"
+            ]
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "add_file_to_skill",
+          "title": "Add File to Skill",
+          "description": "Add a new file to an existing Agent Skill. Use this to add reference docs, scripts, or configuration files to a skill you own.",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {
+              "skillId": {
+                "description": "The ID of the skill to add the file to",
+                "type": "string"
+              },
+              "filename": {
+                "description": "File path (e.g., 'reference.md', 'scripts/helper.py', 'config/settings.json')",
+                "type": "string"
+              },
+              "content": {
+                "description": "File content",
+                "type": "string"
+              }
+            },
+            "required": [
+              "skillId",
+              "filename",
+              "content"
+            ]
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "update_skill_file",
+          "title": "Update Skill File",
+          "description": "Update an existing file in an Agent Skill. Use this to modify reference docs, scripts, configuration files, or SKILL.md content.",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {
+              "skillId": {
+                "description": "The ID of the skill containing the file",
+                "type": "string"
+              },
+              "filename": {
+                "description": "File path to update (e.g., 'SKILL.md', 'reference.md', 'scripts/helper.py')",
+                "type": "string"
+              },
+              "content": {
+                "description": "New file content",
+                "type": "string"
+              }
+            },
+            "required": [
+              "skillId",
+              "filename",
+              "content"
+            ]
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "remove_file_from_skill",
+          "title": "Remove File from Skill",
+          "description": "Remove a file from an existing Agent Skill. Cannot remove SKILL.md as it is required.",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {
+              "skillId": {
+                "description": "The ID of the skill to remove the file from",
+                "type": "string"
+              },
+              "filename": {
+                "description": "File path to remove (e.g., 'reference.md', 'scripts/helper.py')",
+                "type": "string"
+              }
+            },
+            "required": [
+              "skillId",
+              "filename"
+            ]
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "get_skill",
+          "title": "Get Skill",
+          "description": "Get an Agent Skill by ID, including all its files (SKILL.md, reference docs, scripts, etc.). Returns the skill metadata and file contents. Save to .claude/skills/{slug}/SKILL.md and .claude/skills/{slug}/[other files] structure if user asks to download.",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {
+              "id": {
+                "description": "The ID of the skill to retrieve",
+                "type": "string"
+              }
+            },
+            "required": [
+              "id"
+            ]
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "search_skills",
+          "title": "Search Skills",
+          "description": "Search for Agent Skills by keyword. Returns matching skills with title, description, author, and file list. Use this to discover reusable AI agent capabilities for coding, analysis, automation, and more.",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {
+              "query": {
+                "description": "Search query to find relevant skills",
+                "type": "string"
+              },
+              "limit": {
+                "description": "Maximum number of skills to return (default 10, max 50)",
+                "default": 10,
+                "type": "number",
+                "minimum": 1,
+                "maximum": 50
+              },
+              "category": {
+                "description": "Filter by category slug",
+                "type": "string"
+              },
+              "tag": {
+                "description": "Filter by tag slug",
+                "type": "string"
+              }
+            },
+            "required": [
+              "query"
+            ]
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        }
+      ],
+      "tool_count": 10,
+      "tool_names": [
+        "search_prompts",
+        "get_prompt",
+        "save_prompt",
+        "improve_prompt",
+        "save_skill",
+        "add_file_to_skill",
+        "update_skill_file",
+        "remove_file_from_skill",
+        "get_skill",
+        "search_skills"
+      ]
+    },
+    "server_info_crawled": {
+      "id": 80,
+      "name": "io.github.f/prompts.chat-mcp",
+      "author": "",
+      "overview": "io.github.f/prompts.chat-mcp - AI/ML Tools server with 10 tools. The MCP Server \"io.github.f/prompts.chat-mcp\" provides 10 tools focused on ai/ml tools tasks. Core c",
+      "repository_url": "",
+      "homepage": "https://prompts.chat/api/mcp",
+      "remote_or_local": "Remote",
+      "license": "",
+      "usage_count": "400",
+      "success_rate": "100%",
+      "tags": [
+        "ai/ml-tools",
+        "web-search-research",
+        "file-management"
+      ],
+      "categories": [
+        "ai/ml tools",
+        "web search & research",
+        "file management"
+      ],
+      "tools_count": 10,
+      "tools": [
+        {
+          "name": "search_prompts",
+          "title": "Search Prompts",
+          "description": "Search for AI prompts by keyword. Returns matching prompts with title, description, content, author, category, and tags. Use this to discover prompts for various AI tasks like coding, writing, analysis, and more.",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {
+              "query": {
+                "description": "Search query to find relevant prompts",
+                "type": "string"
+              },
+              "limit": {
+                "description": "Maximum number of prompts to return (default 10, max 50)",
+                "default": 10,
+                "type": "number",
+                "minimum": 1,
+                "maximum": 50
+              },
+              "type": {
+                "description": "Filter by prompt type",
+                "type": "string",
+                "enum": [
+                  "TEXT",
+                  "STRUCTURED",
+                  "IMAGE",
+                  "VIDEO",
+                  "AUDIO"
+                ]
+              },
+              "category": {
+                "description": "Filter by category slug",
+                "type": "string"
+              },
+              "tag": {
+                "description": "Filter by tag slug",
+                "type": "string"
+              }
+            },
+            "required": [
+              "query"
+            ]
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "get_prompt",
+          "title": "Get Prompt",
+          "description": "Get a prompt by ID and optionally fill in its variables. If the prompt contains template variables (like {{variable}}), you will be asked to provide values for them.",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {
+              "id": {
+                "description": "The ID of the prompt to retrieve",
+                "type": "string"
+              }
+            },
+            "required": [
+              "id"
+            ]
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "save_prompt",
+          "title": "Save Prompt",
+          "description": "Save a new prompt to your prompts.chat account. Requires API key authentication. Prompts are private by default unless configured otherwise in settings.",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {
+              "title": {
+                "description": "Title of the prompt",
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 200
+              },
+              "content": {
+                "description": "The prompt content. Can include variables like ${variable} or ${variable:default}",
+                "type": "string",
+                "minLength": 1
+              },
+              "description": {
+                "description": "Optional description of the prompt",
+                "type": "string",
+                "maxLength": 500
+              },
+              "tags": {
+                "description": "Optional array of tag names (will be created if they don't exist)",
+                "maxItems": 10,
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "category": {
+                "description": "Optional category slug",
+                "type": "string"
+              },
+              "isPrivate": {
+                "description": "Whether the prompt is private (default: uses your account setting)",
+                "type": "boolean"
+              },
+              "type": {
+                "description": "Prompt type (default: TEXT)",
+                "type": "string",
+                "enum": [
+                  "TEXT",
+                  "STRUCTURED",
+                  "IMAGE",
+                  "VIDEO",
+                  "AUDIO"
+                ]
+              },
+              "structuredFormat": {
+                "description": "Format for structured prompts",
+                "type": "string",
+                "enum": [
+                  "JSON",
+                  "YAML"
+                ]
+              }
+            },
+            "required": [
+              "title",
+              "content"
+            ]
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "improve_prompt",
+          "title": "Improve Prompt",
+          "description": "Transform a basic prompt into a well-structured, comprehensive prompt using AI. Optionally searches for similar prompts for inspiration. Supports different output types (text, image, video, sound) and formats (text, JSON, YAML).",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {
+              "prompt": {
+                "description": "The prompt to improve",
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 10000
+              },
+              "outputType": {
+                "description": "Content type: text, image, video, or sound",
+                "default": "text",
+                "type": "string",
+                "enum": [
+                  "text",
+                  "image",
+                  "video",
+                  "sound"
+                ]
+              },
+              "outputFormat": {
+                "description": "Response format: text, structured_json, or structured_yaml",
+                "default": "text",
+                "type": "string",
+                "enum": [
+                  "text",
+                  "structured_json",
+                  "structured_yaml"
+                ]
+              }
+            },
+            "required": [
+              "prompt"
+            ]
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "save_skill",
+          "title": "Save Skill",
+          "description": "Save a new Agent Skill to your prompts.chat account. Skills are multi-file prompts that can include SKILL.md (required), reference docs, scripts, and configuration files. Requires API key authentication. If the file contents are too long, first save the SKILL.md only, with no other files. Then call add_file_to_skill tool per file.",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {
+              "title": {
+                "description": "Title of the skill",
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 200
+              },
+              "description": {
+                "description": "Description of what the skill does",
+                "type": "string",
+                "maxLength": 500
+              },
+              "files": {
+                "description": "Array of files. Must include SKILL.md as the main skill file.",
+                "minItems": 1,
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "filename": {
+                      "description": "File path (e.g., 'SKILL.md', 'reference.md', 'scripts/helper.py')",
+                      "type": "string"
+                    },
+                    "content": {
+                      "description": "File content",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "filename",
+                    "content"
+                  ]
+                }
+              },
+              "tags": {
+                "description": "Optional array of tag names",
+                "maxItems": 10,
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "category": {
+                "description": "Optional category slug",
+                "type": "string"
+              },
+              "isPrivate": {
+                "description": "Whether the skill is private (default: uses your account setting)",
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "title",
+              "files"
+            ]
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "add_file_to_skill",
+          "title": "Add File to Skill",
+          "description": "Add a new file to an existing Agent Skill. Use this to add reference docs, scripts, or configuration files to a skill you own.",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {
+              "skillId": {
+                "description": "The ID of the skill to add the file to",
+                "type": "string"
+              },
+              "filename": {
+                "description": "File path (e.g., 'reference.md', 'scripts/helper.py', 'config/settings.json')",
+                "type": "string"
+              },
+              "content": {
+                "description": "File content",
+                "type": "string"
+              }
+            },
+            "required": [
+              "skillId",
+              "filename",
+              "content"
+            ]
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "update_skill_file",
+          "title": "Update Skill File",
+          "description": "Update an existing file in an Agent Skill. Use this to modify reference docs, scripts, configuration files, or SKILL.md content.",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {
+              "skillId": {
+                "description": "The ID of the skill containing the file",
+                "type": "string"
+              },
+              "filename": {
+                "description": "File path to update (e.g., 'SKILL.md', 'reference.md', 'scripts/helper.py')",
+                "type": "string"
+              },
+              "content": {
+                "description": "New file content",
+                "type": "string"
+              }
+            },
+            "required": [
+              "skillId",
+              "filename",
+              "content"
+            ]
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "remove_file_from_skill",
+          "title": "Remove File from Skill",
+          "description": "Remove a file from an existing Agent Skill. Cannot remove SKILL.md as it is required.",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {
+              "skillId": {
+                "description": "The ID of the skill to remove the file from",
+                "type": "string"
+              },
+              "filename": {
+                "description": "File path to remove (e.g., 'reference.md', 'scripts/helper.py')",
+                "type": "string"
+              }
+            },
+            "required": [
+              "skillId",
+              "filename"
+            ]
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "get_skill",
+          "title": "Get Skill",
+          "description": "Get an Agent Skill by ID, including all its files (SKILL.md, reference docs, scripts, etc.). Returns the skill metadata and file contents. Save to .claude/skills/{slug}/SKILL.md and .claude/skills/{slug}/[other files] structure if user asks to download.",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {
+              "id": {
+                "description": "The ID of the skill to retrieve",
+                "type": "string"
+              }
+            },
+            "required": [
+              "id"
+            ]
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "search_skills",
+          "title": "Search Skills",
+          "description": "Search for Agent Skills by keyword. Returns matching skills with title, description, author, and file list. Use this to discover reusable AI agent capabilities for coding, analysis, automation, and more.",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {
+              "query": {
+                "description": "Search query to find relevant skills",
+                "type": "string"
+              },
+              "limit": {
+                "description": "Maximum number of skills to return (default 10, max 50)",
+                "default": 10,
+                "type": "number",
+                "minimum": 1,
+                "maximum": 50
+              },
+              "category": {
+                "description": "Filter by category slug",
+                "type": "string"
+              },
+              "tag": {
+                "description": "Filter by tag slug",
+                "type": "string"
+              }
+            },
+            "required": [
+              "query"
+            ]
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        }
+      ],
+      "python_sdk_url": "https://prompts.chat/api/mcp",
+      "python_sdk_config": "{\"debug\": false}"
+    },
+    "source_filename": "0080.iogithubfpromptschat-mcp_labeled.json",
+    "processed_timestamp": 1772876337,
+    "processing_mode": "gateway",
+    "rank": 81
+  }
+}

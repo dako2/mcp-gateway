@@ -1,0 +1,212 @@
+{
+  "labels": {
+    "analysis": "The MCP Server \"com.docfork/docfork-mcp\" provides 2 tools focused on web search & research tasks. Core capabilities include search and retrieval. Key tools: search_docs, fetch_doc.",
+    "reasoning": "Primary label \"Web Search & Research\" assigned based on strong keyword matches in tool names and descriptions: search, fetch, browse.",
+    "primary_label": "Web Search & Research",
+    "secondary_labels": [
+      "File Management",
+      "Content Creation"
+    ],
+    "custom_label": "Search - com.docfork/docfork-mcp",
+    "is_connected": true,
+    "is_remote_tool_valid": true,
+    "featured_server": false,
+    "tool_verified": true,
+    "tool_verified_status": "verified",
+    "tool_verified_at": "2026-03-14T20:38:20.998198+00:00",
+    "tool_verified_tool": "fetch_doc",
+    "tool_verified_reason": "tool call succeeded"
+  },
+  "metadata": {
+    "server_id": 229,
+    "server_name": "com.docfork/docfork-mcp",
+    "rank_by_usage": 230,
+    "usage_count": "10",
+    "original_file": "tools.json#229",
+    "mode": "gateway",
+    "timestamp": 1772876338,
+    "remote_server_response": {
+      "url": "https://mcp.docfork.com/mcp",
+      "is_success": true,
+      "error": null,
+      "tools": [
+        {
+          "name": "search_docs",
+          "title": "Search Documentation",
+          "description": "Search a library's indexed documentation and return relevant sections with titles, summaries, and URLs. Results are sourced from official, versioned documentation.\n\nUsage:\n- Be specific in your query. Include the feature, API, or concept you need. Good: \"server-side rendering with App Router\". Bad: \"rendering\".\n- The library parameter accepts a simple name (e.g., react, nextjs) or exact owner/repo for precision (e.g., vercel/next.js, TanStack/query).\n- When multiple library candidates appear, prefer exact name matches and official organizations over forks.\n- After 2 searches without finding the relevant section, switch to fetch_doc on the best result URL or the library's documentation root rather than searching again.\n- Use fetch_doc on result URLs to retrieve full documentation content.",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {
+              "query": {
+                "type": "string",
+                "description": "The search query. Be specific and include relevant details. Good: 'How to set up server-side rendering in Next.js' or 'Zod schema validation for nested objects'. Bad: 'rendering' or 'validation'."
+              },
+              "library": {
+                "type": "string",
+                "description": "Library name or keyword (e.g., react, nextjs), or exact owner/repo for higher precision (e.g., vercel/next.js, TanStack/query). Prefer official organizations and upstream repositories when multiple candidates match."
+              },
+              "tokens": {
+                "description": "Result detail level. Omit for automatic sizing.",
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "const": "dynamic"
+                  },
+                  {
+                    "type": "integer",
+                    "minimum": 100,
+                    "maximum": 10000
+                  },
+                  {
+                    "type": "string"
+                  }
+                ]
+              }
+            },
+            "required": [
+              "query",
+              "library"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": true
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "fetch_doc",
+          "title": "Fetch Documentation",
+          "description": "Retrieve full documentation content from a URL and return it as rendered markdown. Use this tool to get complete pages — including code examples, API signatures, and prose — from search_docs result URLs.\n\n- Pass a URL directly from search_docs results to retrieve that section's full content.\n- Trim the URL anchor or path to a parent directory to get a broader table of contents with section previews.\n- Returns rendered markdown that preserves code blocks, headings, and document structure.\n- Only works on Docfork-indexed documentation — use WebFetch for URLs not returned by search_docs.\n- If search_docs returns sparse or no results, try fetch_doc on the library's root documentation URL (e.g. https://github.com/owner/repo/tree/main/docs) to browse available content.",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {
+              "url": {
+                "type": "string",
+                "description": "URL from search_docs results. Keep the anchor for a specific section, or trim it for a broader page view."
+              }
+            },
+            "required": [
+              "url"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": true
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        }
+      ],
+      "tool_count": 2,
+      "tool_names": [
+        "search_docs",
+        "fetch_doc"
+      ]
+    },
+    "server_info_crawled": {
+      "id": 229,
+      "name": "com.docfork/docfork-mcp",
+      "author": "",
+      "overview": "com.docfork/docfork-mcp - Web Search & Research server with 2 tools. The MCP Server \"com.docfork/docfork-mcp\" provides 2 tools focused on web search & research tasks. Co",
+      "repository_url": "",
+      "homepage": "https://mcp.docfork.com/mcp",
+      "remote_or_local": "Remote",
+      "license": "",
+      "usage_count": "10",
+      "success_rate": "100%",
+      "tags": [
+        "web-search-research",
+        "file-management",
+        "content-creation"
+      ],
+      "categories": [
+        "web search & research",
+        "file management",
+        "content creation"
+      ],
+      "tools_count": 2,
+      "tools": [
+        {
+          "name": "search_docs",
+          "title": "Search Documentation",
+          "description": "Search a library's indexed documentation and return relevant sections with titles, summaries, and URLs. Results are sourced from official, versioned documentation.\n\nUsage:\n- Be specific in your query. Include the feature, API, or concept you need. Good: \"server-side rendering with App Router\". Bad: \"rendering\".\n- The library parameter accepts a simple name (e.g., react, nextjs) or exact owner/repo for precision (e.g., vercel/next.js, TanStack/query).\n- When multiple library candidates appear, prefer exact name matches and official organizations over forks.\n- After 2 searches without finding the relevant section, switch to fetch_doc on the best result URL or the library's documentation root rather than searching again.\n- Use fetch_doc on result URLs to retrieve full documentation content.",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {
+              "query": {
+                "type": "string",
+                "description": "The search query. Be specific and include relevant details. Good: 'How to set up server-side rendering in Next.js' or 'Zod schema validation for nested objects'. Bad: 'rendering' or 'validation'."
+              },
+              "library": {
+                "type": "string",
+                "description": "Library name or keyword (e.g., react, nextjs), or exact owner/repo for higher precision (e.g., vercel/next.js, TanStack/query). Prefer official organizations and upstream repositories when multiple candidates match."
+              },
+              "tokens": {
+                "description": "Result detail level. Omit for automatic sizing.",
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "const": "dynamic"
+                  },
+                  {
+                    "type": "integer",
+                    "minimum": 100,
+                    "maximum": 10000
+                  },
+                  {
+                    "type": "string"
+                  }
+                ]
+              }
+            },
+            "required": [
+              "query",
+              "library"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": true
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "fetch_doc",
+          "title": "Fetch Documentation",
+          "description": "Retrieve full documentation content from a URL and return it as rendered markdown. Use this tool to get complete pages — including code examples, API signatures, and prose — from search_docs result URLs.\n\n- Pass a URL directly from search_docs results to retrieve that section's full content.\n- Trim the URL anchor or path to a parent directory to get a broader table of contents with section previews.\n- Returns rendered markdown that preserves code blocks, headings, and document structure.\n- Only works on Docfork-indexed documentation — use WebFetch for URLs not returned by search_docs.\n- If search_docs returns sparse or no results, try fetch_doc on the library's root documentation URL (e.g. https://github.com/owner/repo/tree/main/docs) to browse available content.",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {
+              "url": {
+                "type": "string",
+                "description": "URL from search_docs results. Keep the anchor for a specific section, or trim it for a broader page view."
+              }
+            },
+            "required": [
+              "url"
+            ]
+          },
+          "annotations": {
+            "readOnlyHint": true
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        }
+      ],
+      "python_sdk_url": "https://mcp.docfork.com/mcp",
+      "python_sdk_config": "{\"debug\": false}"
+    },
+    "source_filename": "0229.comdocforkdocfork-mcp_labeled.json",
+    "processed_timestamp": 1772876338,
+    "processing_mode": "gateway",
+    "rank": 230
+  }
+}

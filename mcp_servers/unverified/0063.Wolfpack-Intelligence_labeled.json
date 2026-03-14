@@ -1,0 +1,1157 @@
+{
+  "labels": {
+    "analysis": "The MCP Server \"Wolfpack Intelligence\" provides 15 tools focused on cryptocurrency & blockchain tasks. Core capabilities include analysis and computation, data access and reading, modification and updates. Key tools: token_risk_analysis, security_check, narrative_momentum, agent_trust_score, smart_money_signals.",
+    "reasoning": "Primary label \"Cryptocurrency & Blockchain\" assigned based on strong keyword matches in tool names and descriptions: crypto, token, wallet, defi.",
+    "primary_label": "Cryptocurrency & Blockchain",
+    "secondary_labels": [
+      "Data Analysis & Processing",
+      "Gaming"
+    ],
+    "custom_label": "Analytics - Wolfpack Intelligence",
+    "is_connected": true,
+    "is_remote_tool_valid": true,
+    "featured_server": true,
+    "tool_verified": false,
+    "tool_verified_status": "auth_required",
+    "tool_verified_at": "2026-03-14T20:38:12.426872+00:00",
+    "tool_verified_tool": "security_check",
+    "tool_verified_reason": "auth error in response: event: message\ndata: {\"result\":{\"content\":[{\"type\":\"text\",\"text\":\"{\\\"error\\\":\\\"Invalid token_address"
+  },
+  "metadata": {
+    "server_id": 63,
+    "server_name": "Wolfpack Intelligence",
+    "rank_by_usage": 64,
+    "usage_count": "740",
+    "original_file": "tools.json#63",
+    "mode": "gateway",
+    "timestamp": 1772876337,
+    "remote_server_response": {
+      "url": "https://wolfpack-production.up.railway.app/api/v1/mcp",
+      "is_success": true,
+      "error": null,
+      "tools": [
+        {
+          "name": "token_risk_analysis",
+          "title": "Token Risk Analysis",
+          "description": "Comprehensive multi-source token risk scoring. Combines GoPlus honeypot detection, DexScreener liquidity analysis, Dune on-chain analytics, and SocialData narrative monitoring. Returns a 0-100 risk score with detailed check results. Response time ~3-5 seconds.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "token_address": {
+                "type": "string",
+                "description": "0x-prefixed contract address on Base chain (40 hex characters)"
+              },
+              "chain": {
+                "type": "string",
+                "description": "Blockchain network. Default: \"base\". Supports: base, ethereum"
+              },
+              "analysis_depth": {
+                "type": "string",
+                "description": "Analysis depth: \"standard\" (GoPlus + DexScreener, ~3s) or \"deep\" (adds Dune + social, ~8s)"
+              }
+            },
+            "required": [
+              "token_address"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "annotations": {
+            "title": "Token Risk Analysis",
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "security_check",
+          "title": "Quick Security Check",
+          "description": "Fast GoPlus-only token security scan. Returns honeypot status, contract verification, ownership flags, and holder concentration. Sub-second response time. No social or on-chain analysis.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "token_address": {
+                "type": "string",
+                "description": "0x-prefixed contract address to scan for security issues"
+              },
+              "chain": {
+                "type": "string",
+                "description": "Blockchain network. Default: \"base\". Supports: base, ethereum"
+              }
+            },
+            "required": [
+              "token_address"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "annotations": {
+            "title": "Quick Security Check",
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "narrative_momentum",
+          "title": "Narrative Momentum Score",
+          "description": "Score the momentum of a crypto narrative or topic. Analyzes Twitter/X social signals with crypto-tuned VADER sentiment, engagement quality, influencer ratio, and optional on-chain corroboration. Returns 0-100 momentum score.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "query": {
+                "type": "string",
+                "description": "Narrative topic, token name, or project to analyze (e.g. \"DEGEN on Base\", \"Virtuals Protocol\")"
+              },
+              "keywords": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "Additional keywords to include in social search. Improves signal quality."
+              },
+              "contracts": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "Contract addresses for on-chain corroboration of social signals"
+              }
+            },
+            "required": [
+              "query"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "annotations": {
+            "title": "Narrative Momentum Score",
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": false,
+            "openWorldHint": false
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "agent_trust_score",
+          "title": "Agent Trust Score",
+          "description": "Composite agent reliability rating. Scores any ERC-8004/ACP registered agent on 4 pillars: ACP performance (40%), network position (25%), operational health (25%), metadata compliance (10%). Accepts agent_address (0x hex) or agent_id (number). Returns trust score 0-100 with breakdown.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "agent_address": {
+                "type": "string",
+                "description": "0x-prefixed wallet address of the agent to score"
+              },
+              "agent_id": {
+                "type": "number",
+                "description": "ACP/ERC-8004 numeric agent ID"
+              }
+            },
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "annotations": {
+            "title": "Agent Trust Score",
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "smart_money_signals",
+          "title": "Smart Money Signals",
+          "description": "Real-time smart money wallet activity on Base. Tracks profitable DEX traders discovered via Dune Analytics and surfaces their recent buys aggregated by token. Returns signal strength, wallet count, and USD volume.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "token_address": {
+                "type": "string",
+                "description": "Optional: filter signals to a specific token contract address"
+              },
+              "limit": {
+                "type": "number",
+                "description": "Number of top signals to return (default: 10, max: 50)"
+              },
+              "timeframe": {
+                "type": "string",
+                "description": "Lookback window: \"1h\" (default), \"4h\", or \"24h\""
+              }
+            },
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "annotations": {
+            "title": "Smart Money Signals",
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": false,
+            "openWorldHint": false
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "token_market_snapshot",
+          "title": "Token Market Snapshot",
+          "description": "Comprehensive market data snapshot for any Base token via DexScreener. Returns price, volume (1h/6h/24h), liquidity, buy/sell ratio, price changes, market cap, FDV, and DEX pair info. Sub-second response.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "token_address": {
+                "type": "string",
+                "description": "0x-prefixed token contract address on Base chain"
+              },
+              "include_all_pairs": {
+                "type": "boolean",
+                "description": "Include details for all DEX pairs (default: false, primary pair only)"
+              }
+            },
+            "required": [
+              "token_address"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "annotations": {
+            "title": "Token Market Snapshot",
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "mega_report",
+          "title": "Mega Report",
+          "description": "All-in-one intelligence bundle. Orchestrates security_check + token_risk + narrative + smart_money + market_snapshot in parallel (~15-45s). Returns comprehensive report.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "token_address": {
+                "type": "string",
+                "description": "0x-prefixed token contract address on Base"
+              },
+              "query": {
+                "type": "string",
+                "description": "Narrative query (defaults to token address)"
+              },
+              "analysis_depth": {
+                "type": "string",
+                "description": "standard or deep (default: standard)"
+              }
+            },
+            "required": [
+              "token_address"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "annotations": {
+            "title": "Mega Report",
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "prediction_market",
+          "title": "Prediction Market Analysis",
+          "description": "Crypto prediction market data from Polymarket. Returns current odds, volume, and liquidity for crypto-relevant events.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "query": {
+                "type": "string",
+                "description": "Search query to filter markets (e.g. \"bitcoin\", \"ethereum\")"
+              },
+              "limit": {
+                "type": "number",
+                "description": "Number of markets to return (default: 10, max: 50)"
+              }
+            },
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "annotations": {
+            "title": "Prediction Market Analysis",
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": false,
+            "openWorldHint": false
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "il_calculator",
+          "title": "Impermanent Loss Calculator",
+          "description": "Calculate impermanent loss for standard AMM (x*y=k) or concentrated liquidity (V3) positions. Optionally compute net yield after IL with APY.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "entry_price": {
+                "type": "number",
+                "description": "Price at LP entry"
+              },
+              "current_price": {
+                "type": "number",
+                "description": "Current price"
+              },
+              "position_size_usd": {
+                "type": "number",
+                "description": "Position size in USD"
+              },
+              "pool_type": {
+                "type": "string",
+                "description": "standard (default) or concentrated"
+              },
+              "price_lower": {
+                "type": "number",
+                "description": "Lower range bound (concentrated only)"
+              },
+              "price_upper": {
+                "type": "number",
+                "description": "Upper range bound (concentrated only)"
+              },
+              "gross_apy_percent": {
+                "type": "number",
+                "description": "Gross APY for net yield calculation"
+              },
+              "holding_days": {
+                "type": "number",
+                "description": "Holding period in days (default: 7)"
+              }
+            },
+            "required": [
+              "entry_price",
+              "current_price",
+              "position_size_usd"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "annotations": {
+            "title": "IL Calculator",
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "yield_scanner",
+          "title": "Yield Scanner",
+          "description": "IL-adjusted Base yield opportunities. Combines DefiLlama yields with IL analysis, ranks pools by risk-adjusted net APY.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "limit": {
+                "type": "number",
+                "description": "Number of top pools (default: 10, max: 50)"
+              },
+              "min_tvl_usd": {
+                "type": "number",
+                "description": "Minimum TVL filter in USD (default: 10000)"
+              },
+              "stablecoin_only": {
+                "type": "boolean",
+                "description": "Only return stablecoin pools"
+              },
+              "holding_days": {
+                "type": "number",
+                "description": "Holding period for IL calculation (default: 30)"
+              }
+            },
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "annotations": {
+            "title": "Yield Scanner",
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": false,
+            "openWorldHint": false
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "technical_analysis",
+          "title": "Technical Analysis",
+          "description": "Deterministic TA indicators from GeckoTerminal OHLCV candle data. RSI(14), SMA(20/50), Bollinger Bands, support/resistance levels, volume profile, trend direction.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "token_address": {
+                "type": "string",
+                "description": "0x-prefixed token contract address on Base"
+              },
+              "timeframe": {
+                "type": "string",
+                "description": "Candle timeframe: 15m, 1h (default), 4h, 1d"
+              }
+            },
+            "required": [
+              "token_address"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "annotations": {
+            "title": "Technical Analysis",
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "graduation_readiness_check",
+          "title": "Graduation Readiness Check",
+          "description": "Live graduation readiness audit for ACP agents ($1.49 USDC). Fires real test jobs against your services, scores job lifecycle handling, schema correctness, and output consistency. Provides blockers, warnings, and remediation steps.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "target_agent_address": {
+                "type": "string",
+                "description": "0x-prefixed wallet address of the ACP agent to check"
+              },
+              "offering_name": {
+                "type": "string",
+                "description": "Specific service offering to check (default: all)"
+              }
+            },
+            "required": [
+              "target_agent_address"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "annotations": {
+            "title": "Graduation Readiness Check",
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": false,
+            "openWorldHint": false
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "agent_credit_risk_index",
+          "title": "Agent Credit Risk Index",
+          "description": "Financial credit risk scoring for ACP agents. Three pillars: realized liquidity (USDC balance vs job fees, 40%), execution reliability (success rate weighted by volume, 40%), wallet maturity (age + VIRTUAL holdings, 20%). Returns credit score 0-100 with rating (prime/standard/subprime/unrated). Handles liquid-lean agents (high volume, low balance) without penalty. $0.05/query.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "agent_id": {
+                "type": "number",
+                "description": "Virtuals ACP agent ID (integer)"
+              }
+            },
+            "required": [
+              "agent_id"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "annotations": {
+            "title": "Agent Credit Risk Index",
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "trade_signals",
+          "title": "Trade Signals",
+          "description": "Execution-ready trade signals with TP/SL suggestions. Composes security check, risk analysis, narrative momentum, smart money signals, and market data into a deterministic signal (strong_buy/buy/neutral/sell/strong_sell) with confidence level. $0.25/query.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "token_address": {
+                "type": "string",
+                "description": "0x-prefixed token contract address on Base"
+              },
+              "timeframe": {
+                "type": "string",
+                "description": "Lookback window for smart money: 1h (default), 4h, or 24h"
+              }
+            },
+            "required": [
+              "token_address"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "annotations": {
+            "title": "Trade Signals",
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "kol_alpha_tracking",
+          "title": "KOL Alpha Tracking",
+          "description": "Track the most influential crypto KOLs (Key Opinion Leaders) discussing a token or topic on X/Twitter. Returns KOL profiles with sentiment, engagement, reach scoring, and consensus analysis. Supports both token addresses and topic keywords. $0.25/query.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "token_address": {
+                "type": "string",
+                "description": "0x-prefixed token contract address on Base — provide this or topic"
+              },
+              "topic": {
+                "type": "string",
+                "description": "Topic or keyword to track KOL discussion about — provide this or token_address"
+              },
+              "limit": {
+                "type": "number",
+                "description": "Max KOLs to return (default: 10, max: 50)"
+              }
+            },
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "annotations": {
+            "title": "KOL Alpha Tracking",
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": false,
+            "openWorldHint": true
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        }
+      ],
+      "tool_count": 15,
+      "tool_names": [
+        "token_risk_analysis",
+        "security_check",
+        "narrative_momentum",
+        "agent_trust_score",
+        "smart_money_signals",
+        "token_market_snapshot",
+        "mega_report",
+        "prediction_market",
+        "il_calculator",
+        "yield_scanner",
+        "technical_analysis",
+        "graduation_readiness_check",
+        "agent_credit_risk_index",
+        "trade_signals",
+        "kol_alpha_tracking"
+      ]
+    },
+    "server_info_crawled": {
+      "id": 63,
+      "name": "Wolfpack Intelligence",
+      "author": "",
+      "overview": "Wolfpack Intelligence - Cryptocurrency & Blockchain server with 15 tools. The MCP Server \"Wolfpack Intelligence\" provides 15 tools focused on cryptocurrency & blockchain task",
+      "repository_url": "",
+      "homepage": "https://wolfpack-production.up.railway.app/api/v1/mcp",
+      "remote_or_local": "Remote",
+      "license": "",
+      "usage_count": "740",
+      "success_rate": "100%",
+      "tags": [
+        "cryptocurrency-blockchain",
+        "data-analysis-processing",
+        "gaming"
+      ],
+      "categories": [
+        "cryptocurrency & blockchain",
+        "data analysis & processing",
+        "gaming"
+      ],
+      "tools_count": 15,
+      "tools": [
+        {
+          "name": "token_risk_analysis",
+          "title": "Token Risk Analysis",
+          "description": "Comprehensive multi-source token risk scoring. Combines GoPlus honeypot detection, DexScreener liquidity analysis, Dune on-chain analytics, and SocialData narrative monitoring. Returns a 0-100 risk score with detailed check results. Response time ~3-5 seconds.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "token_address": {
+                "type": "string",
+                "description": "0x-prefixed contract address on Base chain (40 hex characters)"
+              },
+              "chain": {
+                "type": "string",
+                "description": "Blockchain network. Default: \"base\". Supports: base, ethereum"
+              },
+              "analysis_depth": {
+                "type": "string",
+                "description": "Analysis depth: \"standard\" (GoPlus + DexScreener, ~3s) or \"deep\" (adds Dune + social, ~8s)"
+              }
+            },
+            "required": [
+              "token_address"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "annotations": {
+            "title": "Token Risk Analysis",
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "security_check",
+          "title": "Quick Security Check",
+          "description": "Fast GoPlus-only token security scan. Returns honeypot status, contract verification, ownership flags, and holder concentration. Sub-second response time. No social or on-chain analysis.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "token_address": {
+                "type": "string",
+                "description": "0x-prefixed contract address to scan for security issues"
+              },
+              "chain": {
+                "type": "string",
+                "description": "Blockchain network. Default: \"base\". Supports: base, ethereum"
+              }
+            },
+            "required": [
+              "token_address"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "annotations": {
+            "title": "Quick Security Check",
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "narrative_momentum",
+          "title": "Narrative Momentum Score",
+          "description": "Score the momentum of a crypto narrative or topic. Analyzes Twitter/X social signals with crypto-tuned VADER sentiment, engagement quality, influencer ratio, and optional on-chain corroboration. Returns 0-100 momentum score.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "query": {
+                "type": "string",
+                "description": "Narrative topic, token name, or project to analyze (e.g. \"DEGEN on Base\", \"Virtuals Protocol\")"
+              },
+              "keywords": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "Additional keywords to include in social search. Improves signal quality."
+              },
+              "contracts": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "Contract addresses for on-chain corroboration of social signals"
+              }
+            },
+            "required": [
+              "query"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "annotations": {
+            "title": "Narrative Momentum Score",
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": false,
+            "openWorldHint": false
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "agent_trust_score",
+          "title": "Agent Trust Score",
+          "description": "Composite agent reliability rating. Scores any ERC-8004/ACP registered agent on 4 pillars: ACP performance (40%), network position (25%), operational health (25%), metadata compliance (10%). Accepts agent_address (0x hex) or agent_id (number). Returns trust score 0-100 with breakdown.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "agent_address": {
+                "type": "string",
+                "description": "0x-prefixed wallet address of the agent to score"
+              },
+              "agent_id": {
+                "type": "number",
+                "description": "ACP/ERC-8004 numeric agent ID"
+              }
+            },
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "annotations": {
+            "title": "Agent Trust Score",
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "smart_money_signals",
+          "title": "Smart Money Signals",
+          "description": "Real-time smart money wallet activity on Base. Tracks profitable DEX traders discovered via Dune Analytics and surfaces their recent buys aggregated by token. Returns signal strength, wallet count, and USD volume.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "token_address": {
+                "type": "string",
+                "description": "Optional: filter signals to a specific token contract address"
+              },
+              "limit": {
+                "type": "number",
+                "description": "Number of top signals to return (default: 10, max: 50)"
+              },
+              "timeframe": {
+                "type": "string",
+                "description": "Lookback window: \"1h\" (default), \"4h\", or \"24h\""
+              }
+            },
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "annotations": {
+            "title": "Smart Money Signals",
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": false,
+            "openWorldHint": false
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "token_market_snapshot",
+          "title": "Token Market Snapshot",
+          "description": "Comprehensive market data snapshot for any Base token via DexScreener. Returns price, volume (1h/6h/24h), liquidity, buy/sell ratio, price changes, market cap, FDV, and DEX pair info. Sub-second response.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "token_address": {
+                "type": "string",
+                "description": "0x-prefixed token contract address on Base chain"
+              },
+              "include_all_pairs": {
+                "type": "boolean",
+                "description": "Include details for all DEX pairs (default: false, primary pair only)"
+              }
+            },
+            "required": [
+              "token_address"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "annotations": {
+            "title": "Token Market Snapshot",
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "mega_report",
+          "title": "Mega Report",
+          "description": "All-in-one intelligence bundle. Orchestrates security_check + token_risk + narrative + smart_money + market_snapshot in parallel (~15-45s). Returns comprehensive report.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "token_address": {
+                "type": "string",
+                "description": "0x-prefixed token contract address on Base"
+              },
+              "query": {
+                "type": "string",
+                "description": "Narrative query (defaults to token address)"
+              },
+              "analysis_depth": {
+                "type": "string",
+                "description": "standard or deep (default: standard)"
+              }
+            },
+            "required": [
+              "token_address"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "annotations": {
+            "title": "Mega Report",
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "prediction_market",
+          "title": "Prediction Market Analysis",
+          "description": "Crypto prediction market data from Polymarket. Returns current odds, volume, and liquidity for crypto-relevant events.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "query": {
+                "type": "string",
+                "description": "Search query to filter markets (e.g. \"bitcoin\", \"ethereum\")"
+              },
+              "limit": {
+                "type": "number",
+                "description": "Number of markets to return (default: 10, max: 50)"
+              }
+            },
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "annotations": {
+            "title": "Prediction Market Analysis",
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": false,
+            "openWorldHint": false
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "il_calculator",
+          "title": "Impermanent Loss Calculator",
+          "description": "Calculate impermanent loss for standard AMM (x*y=k) or concentrated liquidity (V3) positions. Optionally compute net yield after IL with APY.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "entry_price": {
+                "type": "number",
+                "description": "Price at LP entry"
+              },
+              "current_price": {
+                "type": "number",
+                "description": "Current price"
+              },
+              "position_size_usd": {
+                "type": "number",
+                "description": "Position size in USD"
+              },
+              "pool_type": {
+                "type": "string",
+                "description": "standard (default) or concentrated"
+              },
+              "price_lower": {
+                "type": "number",
+                "description": "Lower range bound (concentrated only)"
+              },
+              "price_upper": {
+                "type": "number",
+                "description": "Upper range bound (concentrated only)"
+              },
+              "gross_apy_percent": {
+                "type": "number",
+                "description": "Gross APY for net yield calculation"
+              },
+              "holding_days": {
+                "type": "number",
+                "description": "Holding period in days (default: 7)"
+              }
+            },
+            "required": [
+              "entry_price",
+              "current_price",
+              "position_size_usd"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "annotations": {
+            "title": "IL Calculator",
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "yield_scanner",
+          "title": "Yield Scanner",
+          "description": "IL-adjusted Base yield opportunities. Combines DefiLlama yields with IL analysis, ranks pools by risk-adjusted net APY.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "limit": {
+                "type": "number",
+                "description": "Number of top pools (default: 10, max: 50)"
+              },
+              "min_tvl_usd": {
+                "type": "number",
+                "description": "Minimum TVL filter in USD (default: 10000)"
+              },
+              "stablecoin_only": {
+                "type": "boolean",
+                "description": "Only return stablecoin pools"
+              },
+              "holding_days": {
+                "type": "number",
+                "description": "Holding period for IL calculation (default: 30)"
+              }
+            },
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "annotations": {
+            "title": "Yield Scanner",
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": false,
+            "openWorldHint": false
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "technical_analysis",
+          "title": "Technical Analysis",
+          "description": "Deterministic TA indicators from GeckoTerminal OHLCV candle data. RSI(14), SMA(20/50), Bollinger Bands, support/resistance levels, volume profile, trend direction.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "token_address": {
+                "type": "string",
+                "description": "0x-prefixed token contract address on Base"
+              },
+              "timeframe": {
+                "type": "string",
+                "description": "Candle timeframe: 15m, 1h (default), 4h, 1d"
+              }
+            },
+            "required": [
+              "token_address"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "annotations": {
+            "title": "Technical Analysis",
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "graduation_readiness_check",
+          "title": "Graduation Readiness Check",
+          "description": "Live graduation readiness audit for ACP agents ($1.49 USDC). Fires real test jobs against your services, scores job lifecycle handling, schema correctness, and output consistency. Provides blockers, warnings, and remediation steps.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "target_agent_address": {
+                "type": "string",
+                "description": "0x-prefixed wallet address of the ACP agent to check"
+              },
+              "offering_name": {
+                "type": "string",
+                "description": "Specific service offering to check (default: all)"
+              }
+            },
+            "required": [
+              "target_agent_address"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "annotations": {
+            "title": "Graduation Readiness Check",
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": false,
+            "openWorldHint": false
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "agent_credit_risk_index",
+          "title": "Agent Credit Risk Index",
+          "description": "Financial credit risk scoring for ACP agents. Three pillars: realized liquidity (USDC balance vs job fees, 40%), execution reliability (success rate weighted by volume, 40%), wallet maturity (age + VIRTUAL holdings, 20%). Returns credit score 0-100 with rating (prime/standard/subprime/unrated). Handles liquid-lean agents (high volume, low balance) without penalty. $0.05/query.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "agent_id": {
+                "type": "number",
+                "description": "Virtuals ACP agent ID (integer)"
+              }
+            },
+            "required": [
+              "agent_id"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "annotations": {
+            "title": "Agent Credit Risk Index",
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "trade_signals",
+          "title": "Trade Signals",
+          "description": "Execution-ready trade signals with TP/SL suggestions. Composes security check, risk analysis, narrative momentum, smart money signals, and market data into a deterministic signal (strong_buy/buy/neutral/sell/strong_sell) with confidence level. $0.25/query.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "token_address": {
+                "type": "string",
+                "description": "0x-prefixed token contract address on Base"
+              },
+              "timeframe": {
+                "type": "string",
+                "description": "Lookback window for smart money: 1h (default), 4h, or 24h"
+              }
+            },
+            "required": [
+              "token_address"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "annotations": {
+            "title": "Trade Signals",
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "kol_alpha_tracking",
+          "title": "KOL Alpha Tracking",
+          "description": "Track the most influential crypto KOLs (Key Opinion Leaders) discussing a token or topic on X/Twitter. Returns KOL profiles with sentiment, engagement, reach scoring, and consensus analysis. Supports both token addresses and topic keywords. $0.25/query.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "token_address": {
+                "type": "string",
+                "description": "0x-prefixed token contract address on Base — provide this or topic"
+              },
+              "topic": {
+                "type": "string",
+                "description": "Topic or keyword to track KOL discussion about — provide this or token_address"
+              },
+              "limit": {
+                "type": "number",
+                "description": "Max KOLs to return (default: 10, max: 50)"
+              }
+            },
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "annotations": {
+            "title": "KOL Alpha Tracking",
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": false,
+            "openWorldHint": true
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        }
+      ],
+      "python_sdk_url": "https://wolfpack-production.up.railway.app/api/v1/mcp",
+      "python_sdk_config": "{\"debug\": false}"
+    },
+    "source_filename": "0063.Wolfpack-Intelligence_labeled.json",
+    "processed_timestamp": 1772876337,
+    "processing_mode": "gateway",
+    "rank": 64
+  }
+}

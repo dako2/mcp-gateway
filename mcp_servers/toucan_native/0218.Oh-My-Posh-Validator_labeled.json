@@ -1,0 +1,177 @@
+{
+  "labels": {
+    "analysis": "The MCP Server \"Oh My Posh Validator\" provides 2 tools focused on ai/ml tools tasks. Core capabilities include various operations. Key tools: validate_config, validate_segment.",
+    "reasoning": "Primary label \"AI/ML Tools\" assigned based on strong keyword matches in tool names and descriptions: prompt.",
+    "primary_label": "AI/ML Tools",
+    "secondary_labels": [
+      "Development Tools"
+    ],
+    "custom_label": "AI/ML Tools - Oh My Posh Validator",
+    "is_connected": true,
+    "is_remote_tool_valid": true,
+    "featured_server": false,
+    "tool_verified": true,
+    "tool_verified_status": "verified",
+    "tool_verified_at": "2026-03-14T20:38:20.871133+00:00",
+    "tool_verified_tool": "validate_config",
+    "tool_verified_reason": "tool call succeeded"
+  },
+  "metadata": {
+    "server_id": 218,
+    "server_name": "Oh My Posh Validator",
+    "rank_by_usage": 219,
+    "usage_count": "10",
+    "original_file": "tools.json#218",
+    "mode": "gateway",
+    "timestamp": 1772876338,
+    "remote_server_response": {
+      "url": "https://ohmyposh.dev/api/mcp",
+      "is_success": true,
+      "error": null,
+      "tools": [
+        {
+          "name": "validate_config",
+          "description": "Validate an oh-my-posh configuration against the schema. Supports JSON, YAML, and TOML formats.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "content": {
+                "type": "string",
+                "description": "The configuration content as a string (JSON, YAML, or TOML)"
+              },
+              "format": {
+                "type": "string",
+                "enum": [
+                  "json",
+                  "yaml",
+                  "toml",
+                  "auto"
+                ],
+                "description": "The format of the configuration (auto-detect if not specified)",
+                "default": "auto"
+              }
+            },
+            "required": [
+              "content"
+            ]
+          }
+        },
+        {
+          "name": "validate_segment",
+          "description": "Validate a segment snippet against the oh-my-posh schema. Useful for validating individual prompt segments before adding them to a configuration.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "content": {
+                "type": "string",
+                "description": "The segment content as a string (JSON, YAML, or TOML)"
+              },
+              "format": {
+                "type": "string",
+                "enum": [
+                  "json",
+                  "yaml",
+                  "toml",
+                  "auto"
+                ],
+                "description": "The format of the segment (auto-detect if not specified)",
+                "default": "auto"
+              }
+            },
+            "required": [
+              "content"
+            ]
+          }
+        }
+      ],
+      "tool_count": 2,
+      "tool_names": [
+        "validate_config",
+        "validate_segment"
+      ]
+    },
+    "server_info_crawled": {
+      "id": 218,
+      "name": "Oh My Posh Validator",
+      "author": "",
+      "overview": "Oh My Posh Validator - AI/ML Tools server with 2 tools. The MCP Server \"Oh My Posh Validator\" provides 2 tools focused on ai/ml tools tasks. Core capabiliti",
+      "repository_url": "",
+      "homepage": "https://ohmyposh.dev/api/mcp",
+      "remote_or_local": "Remote",
+      "license": "",
+      "usage_count": "10",
+      "success_rate": "100%",
+      "tags": [
+        "ai/ml-tools",
+        "development-tools"
+      ],
+      "categories": [
+        "ai/ml tools",
+        "development tools"
+      ],
+      "tools_count": 2,
+      "tools": [
+        {
+          "name": "validate_config",
+          "description": "Validate an oh-my-posh configuration against the schema. Supports JSON, YAML, and TOML formats.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "content": {
+                "type": "string",
+                "description": "The configuration content as a string (JSON, YAML, or TOML)"
+              },
+              "format": {
+                "type": "string",
+                "enum": [
+                  "json",
+                  "yaml",
+                  "toml",
+                  "auto"
+                ],
+                "description": "The format of the configuration (auto-detect if not specified)",
+                "default": "auto"
+              }
+            },
+            "required": [
+              "content"
+            ]
+          }
+        },
+        {
+          "name": "validate_segment",
+          "description": "Validate a segment snippet against the oh-my-posh schema. Useful for validating individual prompt segments before adding them to a configuration.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "content": {
+                "type": "string",
+                "description": "The segment content as a string (JSON, YAML, or TOML)"
+              },
+              "format": {
+                "type": "string",
+                "enum": [
+                  "json",
+                  "yaml",
+                  "toml",
+                  "auto"
+                ],
+                "description": "The format of the segment (auto-detect if not specified)",
+                "default": "auto"
+              }
+            },
+            "required": [
+              "content"
+            ]
+          }
+        }
+      ],
+      "python_sdk_url": "https://ohmyposh.dev/api/mcp",
+      "python_sdk_config": "{\"debug\": false}"
+    },
+    "source_filename": "0218.Oh-My-Posh-Validator_labeled.json",
+    "processed_timestamp": 1772876338,
+    "processing_mode": "gateway",
+    "rank": 219
+  }
+}

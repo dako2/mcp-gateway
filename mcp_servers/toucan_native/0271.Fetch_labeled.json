@@ -1,0 +1,71 @@
+{
+  "labels": {
+    "analysis": "Public MCP server \"Fetch (mcpservers.org)\" with 1 tools. Fetch any webpage and convert to clean markdown.",
+    "reasoning": "Verified as publicly accessible with no authentication required.",
+    "primary_label": "Web Scraping",
+    "secondary_labels": [],
+    "custom_label": "Web Scraping - Fetch (mcpservers.org)",
+    "is_connected": true,
+    "is_remote_tool_valid": true,
+    "featured_server": false,
+    "tool_verified": true,
+    "tool_verified_status": "verified",
+    "tool_verified_at": "2026-03-14T21:03:13.602737+00:00",
+    "tool_verified_tool": "fetch",
+    "tool_verified_reason": "tools/list returned valid tools via direct MCP connection"
+  },
+  "metadata": {
+    "server_id": 271,
+    "server_name": "Fetch",
+    "rank_by_usage": null,
+    "usage_count": null,
+    "original_file": "awesome-remote-mcp-servers",
+    "mode": "gateway",
+    "timestamp": 1773522193,
+    "remote_server_response": {
+      "url": "https://remote.mcpservers.org/fetch/mcp",
+      "is_success": true,
+      "error": null,
+      "tools": [
+        {
+          "name": "fetch",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "url": {
+                "type": "string"
+              },
+              "max_length": {
+                "type": "number",
+                "default": 5000
+              },
+              "start_index": {
+                "type": "number",
+                "default": 0
+              },
+              "raw": {
+                "type": "boolean",
+                "default": false
+              }
+            },
+            "required": [
+              "url"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          }
+        }
+      ],
+      "tool_count": 1,
+      "tool_names": [
+        "fetch"
+      ]
+    },
+    "server_info_crawled": {
+      "name": "Fetch",
+      "overview": "Fetch any webpage and convert to clean markdown",
+      "remote_or_local": "Remote",
+      "python_sdk_url": "https://remote.mcpservers.org/fetch/mcp"
+    }
+  }
+}

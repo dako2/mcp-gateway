@@ -1,0 +1,1517 @@
+{
+  "labels": {
+    "analysis": "The MCP Server \"io.github.blathrop07/voyager-commerce\" provides 19 tools focused on e-commerce tasks. Core capabilities include creation and generation, data access and reading, modification and updates, search and retrieval. Key tools: get_checkout_url, get_cart, get_order_status, add_to_cart, get_orders.",
+    "reasoning": "Primary label \"E-Commerce\" assigned based on strong keyword matches in tool names and descriptions: shop, cart, order_, product, checkout.",
+    "primary_label": "E-Commerce",
+    "secondary_labels": [
+      "Development Tools",
+      "Web Search & Research"
+    ],
+    "custom_label": "Data Access & Generation - io.github.blathrop07/voyager-commerce",
+    "is_connected": true,
+    "is_remote_tool_valid": true,
+    "featured_server": true,
+    "tool_verified": false,
+    "tool_verified_status": "auth_required",
+    "tool_verified_at": "2026-03-14T20:38:11.570750+00:00",
+    "tool_verified_tool": "get_order_status",
+    "tool_verified_reason": "auth error in response: event: message\ndata: {\"result\":{\"content\":[{\"type\":\"text\",\"text\":\"{\\u0022orderNumber\\u0022:\\u0022\\u0"
+  },
+  "metadata": {
+    "server_id": 45,
+    "server_name": "io.github.blathrop07/voyager-commerce",
+    "rank_by_usage": 46,
+    "usage_count": "1,100",
+    "original_file": "tools.json#45",
+    "mode": "gateway",
+    "timestamp": 1772876337,
+    "remote_server_response": {
+      "url": "https://review-002-voyager-ai-commerce.zeus.gatewayticketing.hosting/mcp",
+      "is_success": true,
+      "error": null,
+      "tools": [
+        {
+          "name": "get_checkout_url",
+          "description": "Generate a secure checkout URL for the cart. Omit venueId when connected to a venue-specific endpoint.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "cartId": {
+                "description": "Cart ID",
+                "type": "string",
+                "format": "uuid"
+              },
+              "venueId": {
+                "description": "Venue ID. Omit when connected to a venue-specific endpoint.",
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "format": "uuid",
+                "default": null
+              },
+              "successUrl": {
+                "description": "Success redirect URL",
+                "type": "string",
+                "default": null
+              },
+              "cancelUrl": {
+                "description": "Cancel redirect URL",
+                "type": "string",
+                "default": null
+              },
+              "customerEmail": {
+                "description": "Customer email to pre-fill",
+                "type": "string",
+                "default": null
+              }
+            },
+            "required": [
+              "cartId"
+            ]
+          },
+          "execution": {
+            "taskSupport": "optional"
+          }
+        },
+        {
+          "name": "get_cart",
+          "description": "Get the current state of a shopping cart. Omit venueId when connected to a venue-specific endpoint.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "cartId": {
+                "description": "Cart ID",
+                "type": "string",
+                "format": "uuid"
+              },
+              "venueId": {
+                "description": "Venue ID. Omit when connected to a venue-specific endpoint.",
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "format": "uuid",
+                "default": null
+              }
+            },
+            "required": [
+              "cartId"
+            ]
+          },
+          "execution": {
+            "taskSupport": "optional"
+          }
+        },
+        {
+          "name": "get_order_status",
+          "description": "Check the status of a specific order. Omit venueId when connected to a venue-specific endpoint.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "venueId": {
+                "description": "Venue ID. Omit when connected to a venue-specific endpoint.",
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "format": "uuid",
+                "default": null
+              },
+              "orderNumber": {
+                "description": "Order number to check",
+                "type": "string",
+                "default": null
+              }
+            }
+          },
+          "execution": {
+            "taskSupport": "optional"
+          }
+        },
+        {
+          "name": "add_to_cart",
+          "description": "Add a product to the shopping cart. Omit venueId when connected to a venue-specific endpoint.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "cartId": {
+                "description": "Cart ID from create_cart",
+                "type": "string",
+                "format": "uuid"
+              },
+              "venueId": {
+                "description": "Venue ID. Omit when connected to a venue-specific endpoint.",
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "format": "uuid",
+                "default": null
+              },
+              "productId": {
+                "description": "Product ID from search_experiences",
+                "type": "string",
+                "default": null
+              },
+              "quantity": {
+                "description": "Quantity to add",
+                "type": "integer",
+                "default": 1
+              },
+              "date": {
+                "description": "Visit date (YYYY-MM-DD)",
+                "type": "string",
+                "default": null
+              },
+              "timeSlot": {
+                "description": "Time slot (HH:mm)",
+                "type": "string",
+                "default": null
+              },
+              "idempotencyKey": {
+                "description": "Unique idempotency key",
+                "type": "string",
+                "default": null
+              }
+            },
+            "required": [
+              "cartId"
+            ]
+          },
+          "execution": {
+            "taskSupport": "optional"
+          }
+        },
+        {
+          "name": "get_orders",
+          "description": "Get authenticated customer's order history at a venue. Omit venueId when connected to a venue-specific endpoint.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "venueId": {
+                "description": "Venue ID. Omit when connected to a venue-specific endpoint.",
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "format": "uuid",
+                "default": null
+              },
+              "limit": {
+                "description": "Maximum orders to return",
+                "type": "integer",
+                "default": 10
+              },
+              "includeItems": {
+                "description": "Include order line items",
+                "type": "boolean",
+                "default": false
+              }
+            }
+          },
+          "execution": {
+            "taskSupport": "optional"
+          }
+        },
+        {
+          "name": "update_cart",
+          "description": "Update the quantity of an item in the cart. Omit venueId when connected to a venue-specific endpoint.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "cartId": {
+                "description": "Cart ID",
+                "type": "string",
+                "format": "uuid"
+              },
+              "venueId": {
+                "description": "Venue ID. Omit when connected to a venue-specific endpoint.",
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "format": "uuid",
+                "default": null
+              },
+              "lineItemId": {
+                "description": "Line item ID to update",
+                "type": "string",
+                "format": "uuid",
+                "default": "00000000-0000-0000-0000-000000000000"
+              },
+              "quantity": {
+                "description": "New quantity (0 to remove)",
+                "type": "integer",
+                "default": 1
+              }
+            },
+            "required": [
+              "cartId"
+            ]
+          },
+          "execution": {
+            "taskSupport": "optional"
+          }
+        },
+        {
+          "name": "initiate_checkout",
+          "description": "Initiate checkout - returns checkout URL or platform payment flow based on operator config. Omit venueId when connected to a venue-specific endpoint.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "cartId": {
+                "description": "Cart ID",
+                "type": "string",
+                "format": "uuid"
+              },
+              "venueId": {
+                "description": "Venue ID. Omit when connected to a venue-specific endpoint.",
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "format": "uuid",
+                "default": null
+              },
+              "platform": {
+                "description": "AI platform (claude, chatgpt, copilot)",
+                "type": "string",
+                "default": null
+              },
+              "customerEmail": {
+                "description": "Customer email",
+                "type": "string",
+                "default": null
+              },
+              "successUrl": {
+                "description": "Success redirect URL",
+                "type": "string",
+                "default": null
+              },
+              "cancelUrl": {
+                "description": "Cancel redirect URL",
+                "type": "string",
+                "default": null
+              },
+              "idempotencyKey": {
+                "description": "Unique idempotency key",
+                "type": "string",
+                "default": null
+              }
+            },
+            "required": [
+              "cartId"
+            ]
+          },
+          "execution": {
+            "taskSupport": "optional"
+          }
+        },
+        {
+          "name": "create_cart",
+          "description": "Create a new shopping cart for this session. Omit venueId when connected to a venue-specific endpoint.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "venueId": {
+                "description": "Venue ID from discover_venues. Omit when connected to a venue-specific endpoint.",
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "format": "uuid",
+                "default": null
+              },
+              "sessionId": {
+                "description": "MCP session ID",
+                "type": "string",
+                "default": null
+              },
+              "customerId": {
+                "description": "Customer ID if authenticated",
+                "type": "string",
+                "default": null
+              },
+              "currency": {
+                "description": "Currency code (default: USD)",
+                "type": "string",
+                "default": "USD"
+              },
+              "idempotencyKey": {
+                "description": "Unique idempotency key",
+                "type": "string",
+                "default": null
+              }
+            }
+          },
+          "execution": {
+            "taskSupport": "optional"
+          }
+        },
+        {
+          "name": "apply_promo_code",
+          "description": "Apply a promotional code to the cart for a discount. Omit venueId when connected to a venue-specific endpoint.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "cartId": {
+                "description": "Cart ID",
+                "type": "string",
+                "format": "uuid"
+              },
+              "venueId": {
+                "description": "Venue ID. Omit when connected to a venue-specific endpoint.",
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "format": "uuid",
+                "default": null
+              },
+              "promoCode": {
+                "description": "Promotional code",
+                "type": "string",
+                "default": null
+              },
+              "idempotencyKey": {
+                "description": "Unique idempotency key",
+                "type": "string",
+                "default": null
+              }
+            },
+            "required": [
+              "cartId"
+            ]
+          },
+          "execution": {
+            "taskSupport": "optional"
+          }
+        },
+        {
+          "name": "get_membership",
+          "description": "Get authenticated customer's membership status and benefits at a venue. Omit venueId when connected to a venue-specific endpoint.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "venueId": {
+                "description": "Venue ID. Omit when connected to a venue-specific endpoint.",
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "format": "uuid",
+                "default": null
+              }
+            }
+          },
+          "execution": {
+            "taskSupport": "optional"
+          }
+        },
+        {
+          "name": "get_pricing",
+          "description": "Get dynamic pricing for a product including guest type breakdown and discounts. Omit venueId when connected to a venue-specific endpoint.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "venueId": {
+                "description": "Venue ID. Omit when connected to a venue-specific endpoint.",
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "format": "uuid",
+                "default": null
+              },
+              "productId": {
+                "description": "Product ID from search_experiences",
+                "type": "string",
+                "default": null
+              },
+              "date": {
+                "description": "Date for pricing (YYYY-MM-DD)",
+                "type": "string",
+                "default": null
+              },
+              "adults": {
+                "description": "Number of adult tickets",
+                "type": "integer",
+                "default": 1
+              },
+              "children": {
+                "description": "Number of child tickets",
+                "type": "integer",
+                "default": 0
+              },
+              "seniors": {
+                "description": "Number of senior tickets",
+                "type": "integer",
+                "default": 0
+              },
+              "promoCode": {
+                "description": "Promotional code",
+                "type": "string",
+                "default": null
+              }
+            }
+          },
+          "execution": {
+            "taskSupport": "optional"
+          }
+        },
+        {
+          "name": "check_availability",
+          "description": "Check real-time availability for a product on a specific date. Omit venueId when connected to a venue-specific endpoint.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "venueId": {
+                "description": "Venue ID. Omit when connected to a venue-specific endpoint.",
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "format": "uuid",
+                "default": null
+              },
+              "productId": {
+                "description": "Product ID from search_experiences",
+                "type": "string",
+                "default": null
+              },
+              "date": {
+                "description": "Date to check (YYYY-MM-DD)",
+                "type": "string",
+                "default": null
+              },
+              "quantity": {
+                "description": "Number of tickets needed",
+                "type": "integer",
+                "default": 1
+              },
+              "timeSlotPreference": {
+                "description": "Preferred time slot (HH:mm)",
+                "type": "string",
+                "default": null
+              }
+            }
+          },
+          "execution": {
+            "taskSupport": "optional"
+          }
+        },
+        {
+          "name": "search_experiences",
+          "description": "Search for tickets, experiences, and products at a venue using natural language. Omit venueId when connected to a venue-specific endpoint.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "venueId": {
+                "description": "Venue ID from discover_venues. Omit when connected to a venue-specific endpoint.",
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "format": "uuid",
+                "default": null
+              },
+              "query": {
+                "description": "Natural language search query",
+                "type": "string",
+                "default": null
+              },
+              "date": {
+                "description": "Date for availability (YYYY-MM-DD)",
+                "type": "string",
+                "default": null
+              },
+              "quantity": {
+                "description": "Number of tickets needed",
+                "type": [
+                  "integer",
+                  "null"
+                ],
+                "default": null
+              },
+              "ticketTypes": {
+                "description": "Filter by ticket types",
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "default": null
+              },
+              "limit": {
+                "description": "Maximum results to return",
+                "type": "integer",
+                "default": 10
+              }
+            }
+          },
+          "execution": {
+            "taskSupport": "optional"
+          }
+        },
+        {
+          "name": "get_venue_details",
+          "description": "Get detailed information about a venue including location, type, and attributes. Omit tenantId when connected to a venue-specific endpoint.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "tenantId": {
+                "description": "Venue ID from discover_venues result. Omit when connected to a venue-specific endpoint.",
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "format": "uuid",
+                "default": null
+              }
+            }
+          },
+          "execution": {
+            "taskSupport": "optional"
+          }
+        },
+        {
+          "name": "get_venue_hours",
+          "description": "Get venue operating hours for a specific date. Omit tenantId when connected to a venue-specific endpoint.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "tenantId": {
+                "description": "Venue ID. Omit when connected to a venue-specific endpoint.",
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "format": "uuid",
+                "default": null
+              },
+              "date": {
+                "description": "Date to check hours (YYYY-MM-DD, defaults to today)",
+                "type": "string",
+                "default": null
+              }
+            }
+          },
+          "execution": {
+            "taskSupport": "optional"
+          }
+        },
+        {
+          "name": "get_entitlements",
+          "description": "Get authenticated customer's active tickets, passes, and entitlements. Omit venueId when connected to a venue-specific endpoint.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "venueId": {
+                "description": "Venue ID. Omit when connected to a venue-specific endpoint.",
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "format": "uuid",
+                "default": null
+              },
+              "activeOnly": {
+                "description": "Only return active/valid entitlements",
+                "type": "boolean",
+                "default": true
+              }
+            }
+          },
+          "execution": {
+            "taskSupport": "optional"
+          }
+        },
+        {
+          "name": "get_venue_info",
+          "description": "Get comprehensive venue information including hours, policies, and FAQ. Omit tenantId when connected to a venue-specific endpoint.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "tenantId": {
+                "description": "Venue ID. Omit when connected to a venue-specific endpoint.",
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "format": "uuid",
+                "default": null
+              },
+              "includeHours": {
+                "description": "Include operating hours",
+                "type": "boolean",
+                "default": true
+              },
+              "includePolicies": {
+                "description": "Include venue policies",
+                "type": "boolean",
+                "default": true
+              },
+              "includeFaq": {
+                "description": "Include FAQ items",
+                "type": "boolean",
+                "default": true
+              }
+            }
+          },
+          "execution": {
+            "taskSupport": "optional"
+          }
+        },
+        {
+          "name": "remove_from_cart",
+          "description": "Remove an item from the cart. Omit venueId when connected to a venue-specific endpoint.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "cartId": {
+                "description": "Cart ID",
+                "type": "string",
+                "format": "uuid"
+              },
+              "venueId": {
+                "description": "Venue ID. Omit when connected to a venue-specific endpoint.",
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "format": "uuid",
+                "default": null
+              },
+              "lineItemId": {
+                "description": "Line item ID to remove",
+                "type": "string",
+                "format": "uuid",
+                "default": "00000000-0000-0000-0000-000000000000"
+              }
+            },
+            "required": [
+              "cartId"
+            ]
+          },
+          "execution": {
+            "taskSupport": "optional"
+          }
+        },
+        {
+          "name": "discover_venues",
+          "description": "Search for venues, theme parks, zoos, museums, and attractions near a location",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "location": {
+                "description": "Location to search near (e.g., 'San Diego, CA', 'New York City')",
+                "type": "string"
+              },
+              "radiusMiles": {
+                "description": "Search radius in miles",
+                "type": "integer",
+                "default": 50
+              },
+              "types": {
+                "description": "Venue types to filter by",
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "default": null
+              },
+              "keywords": {
+                "description": "Keywords for natural language search",
+                "type": "string",
+                "default": null
+              },
+              "date": {
+                "description": "Date to check availability (YYYY-MM-DD format)",
+                "type": "string",
+                "default": null
+              },
+              "limit": {
+                "description": "Maximum results to return",
+                "type": "integer",
+                "default": 10
+              }
+            },
+            "required": [
+              "location"
+            ]
+          },
+          "execution": {
+            "taskSupport": "optional"
+          }
+        }
+      ],
+      "tool_count": 19,
+      "tool_names": [
+        "get_checkout_url",
+        "get_cart",
+        "get_order_status",
+        "add_to_cart",
+        "get_orders",
+        "update_cart",
+        "initiate_checkout",
+        "create_cart",
+        "apply_promo_code",
+        "get_membership",
+        "get_pricing",
+        "check_availability",
+        "search_experiences",
+        "get_venue_details",
+        "get_venue_hours",
+        "get_entitlements",
+        "get_venue_info",
+        "remove_from_cart",
+        "discover_venues"
+      ]
+    },
+    "server_info_crawled": {
+      "id": 45,
+      "name": "io.github.blathrop07/voyager-commerce",
+      "author": "",
+      "overview": "io.github.blathrop07/voyager-commerce - E-Commerce server with 19 tools. The MCP Server \"io.github.blathrop07/voyager-commerce\" provides 19 tools focused on e-commerce tasks",
+      "repository_url": "",
+      "homepage": "https://review-002-voyager-ai-commerce.zeus.gatewayticketing.hosting/mcp",
+      "remote_or_local": "Remote",
+      "license": "",
+      "usage_count": "1,100",
+      "success_rate": "100%",
+      "tags": [
+        "e-commerce",
+        "development-tools",
+        "web-search-research"
+      ],
+      "categories": [
+        "e-commerce",
+        "development tools",
+        "web search & research"
+      ],
+      "tools_count": 19,
+      "tools": [
+        {
+          "name": "get_checkout_url",
+          "description": "Generate a secure checkout URL for the cart. Omit venueId when connected to a venue-specific endpoint.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "cartId": {
+                "description": "Cart ID",
+                "type": "string",
+                "format": "uuid"
+              },
+              "venueId": {
+                "description": "Venue ID. Omit when connected to a venue-specific endpoint.",
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "format": "uuid",
+                "default": null
+              },
+              "successUrl": {
+                "description": "Success redirect URL",
+                "type": "string",
+                "default": null
+              },
+              "cancelUrl": {
+                "description": "Cancel redirect URL",
+                "type": "string",
+                "default": null
+              },
+              "customerEmail": {
+                "description": "Customer email to pre-fill",
+                "type": "string",
+                "default": null
+              }
+            },
+            "required": [
+              "cartId"
+            ]
+          },
+          "execution": {
+            "taskSupport": "optional"
+          }
+        },
+        {
+          "name": "get_cart",
+          "description": "Get the current state of a shopping cart. Omit venueId when connected to a venue-specific endpoint.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "cartId": {
+                "description": "Cart ID",
+                "type": "string",
+                "format": "uuid"
+              },
+              "venueId": {
+                "description": "Venue ID. Omit when connected to a venue-specific endpoint.",
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "format": "uuid",
+                "default": null
+              }
+            },
+            "required": [
+              "cartId"
+            ]
+          },
+          "execution": {
+            "taskSupport": "optional"
+          }
+        },
+        {
+          "name": "get_order_status",
+          "description": "Check the status of a specific order. Omit venueId when connected to a venue-specific endpoint.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "venueId": {
+                "description": "Venue ID. Omit when connected to a venue-specific endpoint.",
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "format": "uuid",
+                "default": null
+              },
+              "orderNumber": {
+                "description": "Order number to check",
+                "type": "string",
+                "default": null
+              }
+            }
+          },
+          "execution": {
+            "taskSupport": "optional"
+          }
+        },
+        {
+          "name": "add_to_cart",
+          "description": "Add a product to the shopping cart. Omit venueId when connected to a venue-specific endpoint.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "cartId": {
+                "description": "Cart ID from create_cart",
+                "type": "string",
+                "format": "uuid"
+              },
+              "venueId": {
+                "description": "Venue ID. Omit when connected to a venue-specific endpoint.",
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "format": "uuid",
+                "default": null
+              },
+              "productId": {
+                "description": "Product ID from search_experiences",
+                "type": "string",
+                "default": null
+              },
+              "quantity": {
+                "description": "Quantity to add",
+                "type": "integer",
+                "default": 1
+              },
+              "date": {
+                "description": "Visit date (YYYY-MM-DD)",
+                "type": "string",
+                "default": null
+              },
+              "timeSlot": {
+                "description": "Time slot (HH:mm)",
+                "type": "string",
+                "default": null
+              },
+              "idempotencyKey": {
+                "description": "Unique idempotency key",
+                "type": "string",
+                "default": null
+              }
+            },
+            "required": [
+              "cartId"
+            ]
+          },
+          "execution": {
+            "taskSupport": "optional"
+          }
+        },
+        {
+          "name": "get_orders",
+          "description": "Get authenticated customer's order history at a venue. Omit venueId when connected to a venue-specific endpoint.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "venueId": {
+                "description": "Venue ID. Omit when connected to a venue-specific endpoint.",
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "format": "uuid",
+                "default": null
+              },
+              "limit": {
+                "description": "Maximum orders to return",
+                "type": "integer",
+                "default": 10
+              },
+              "includeItems": {
+                "description": "Include order line items",
+                "type": "boolean",
+                "default": false
+              }
+            }
+          },
+          "execution": {
+            "taskSupport": "optional"
+          }
+        },
+        {
+          "name": "update_cart",
+          "description": "Update the quantity of an item in the cart. Omit venueId when connected to a venue-specific endpoint.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "cartId": {
+                "description": "Cart ID",
+                "type": "string",
+                "format": "uuid"
+              },
+              "venueId": {
+                "description": "Venue ID. Omit when connected to a venue-specific endpoint.",
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "format": "uuid",
+                "default": null
+              },
+              "lineItemId": {
+                "description": "Line item ID to update",
+                "type": "string",
+                "format": "uuid",
+                "default": "00000000-0000-0000-0000-000000000000"
+              },
+              "quantity": {
+                "description": "New quantity (0 to remove)",
+                "type": "integer",
+                "default": 1
+              }
+            },
+            "required": [
+              "cartId"
+            ]
+          },
+          "execution": {
+            "taskSupport": "optional"
+          }
+        },
+        {
+          "name": "initiate_checkout",
+          "description": "Initiate checkout - returns checkout URL or platform payment flow based on operator config. Omit venueId when connected to a venue-specific endpoint.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "cartId": {
+                "description": "Cart ID",
+                "type": "string",
+                "format": "uuid"
+              },
+              "venueId": {
+                "description": "Venue ID. Omit when connected to a venue-specific endpoint.",
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "format": "uuid",
+                "default": null
+              },
+              "platform": {
+                "description": "AI platform (claude, chatgpt, copilot)",
+                "type": "string",
+                "default": null
+              },
+              "customerEmail": {
+                "description": "Customer email",
+                "type": "string",
+                "default": null
+              },
+              "successUrl": {
+                "description": "Success redirect URL",
+                "type": "string",
+                "default": null
+              },
+              "cancelUrl": {
+                "description": "Cancel redirect URL",
+                "type": "string",
+                "default": null
+              },
+              "idempotencyKey": {
+                "description": "Unique idempotency key",
+                "type": "string",
+                "default": null
+              }
+            },
+            "required": [
+              "cartId"
+            ]
+          },
+          "execution": {
+            "taskSupport": "optional"
+          }
+        },
+        {
+          "name": "create_cart",
+          "description": "Create a new shopping cart for this session. Omit venueId when connected to a venue-specific endpoint.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "venueId": {
+                "description": "Venue ID from discover_venues. Omit when connected to a venue-specific endpoint.",
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "format": "uuid",
+                "default": null
+              },
+              "sessionId": {
+                "description": "MCP session ID",
+                "type": "string",
+                "default": null
+              },
+              "customerId": {
+                "description": "Customer ID if authenticated",
+                "type": "string",
+                "default": null
+              },
+              "currency": {
+                "description": "Currency code (default: USD)",
+                "type": "string",
+                "default": "USD"
+              },
+              "idempotencyKey": {
+                "description": "Unique idempotency key",
+                "type": "string",
+                "default": null
+              }
+            }
+          },
+          "execution": {
+            "taskSupport": "optional"
+          }
+        },
+        {
+          "name": "apply_promo_code",
+          "description": "Apply a promotional code to the cart for a discount. Omit venueId when connected to a venue-specific endpoint.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "cartId": {
+                "description": "Cart ID",
+                "type": "string",
+                "format": "uuid"
+              },
+              "venueId": {
+                "description": "Venue ID. Omit when connected to a venue-specific endpoint.",
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "format": "uuid",
+                "default": null
+              },
+              "promoCode": {
+                "description": "Promotional code",
+                "type": "string",
+                "default": null
+              },
+              "idempotencyKey": {
+                "description": "Unique idempotency key",
+                "type": "string",
+                "default": null
+              }
+            },
+            "required": [
+              "cartId"
+            ]
+          },
+          "execution": {
+            "taskSupport": "optional"
+          }
+        },
+        {
+          "name": "get_membership",
+          "description": "Get authenticated customer's membership status and benefits at a venue. Omit venueId when connected to a venue-specific endpoint.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "venueId": {
+                "description": "Venue ID. Omit when connected to a venue-specific endpoint.",
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "format": "uuid",
+                "default": null
+              }
+            }
+          },
+          "execution": {
+            "taskSupport": "optional"
+          }
+        },
+        {
+          "name": "get_pricing",
+          "description": "Get dynamic pricing for a product including guest type breakdown and discounts. Omit venueId when connected to a venue-specific endpoint.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "venueId": {
+                "description": "Venue ID. Omit when connected to a venue-specific endpoint.",
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "format": "uuid",
+                "default": null
+              },
+              "productId": {
+                "description": "Product ID from search_experiences",
+                "type": "string",
+                "default": null
+              },
+              "date": {
+                "description": "Date for pricing (YYYY-MM-DD)",
+                "type": "string",
+                "default": null
+              },
+              "adults": {
+                "description": "Number of adult tickets",
+                "type": "integer",
+                "default": 1
+              },
+              "children": {
+                "description": "Number of child tickets",
+                "type": "integer",
+                "default": 0
+              },
+              "seniors": {
+                "description": "Number of senior tickets",
+                "type": "integer",
+                "default": 0
+              },
+              "promoCode": {
+                "description": "Promotional code",
+                "type": "string",
+                "default": null
+              }
+            }
+          },
+          "execution": {
+            "taskSupport": "optional"
+          }
+        },
+        {
+          "name": "check_availability",
+          "description": "Check real-time availability for a product on a specific date. Omit venueId when connected to a venue-specific endpoint.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "venueId": {
+                "description": "Venue ID. Omit when connected to a venue-specific endpoint.",
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "format": "uuid",
+                "default": null
+              },
+              "productId": {
+                "description": "Product ID from search_experiences",
+                "type": "string",
+                "default": null
+              },
+              "date": {
+                "description": "Date to check (YYYY-MM-DD)",
+                "type": "string",
+                "default": null
+              },
+              "quantity": {
+                "description": "Number of tickets needed",
+                "type": "integer",
+                "default": 1
+              },
+              "timeSlotPreference": {
+                "description": "Preferred time slot (HH:mm)",
+                "type": "string",
+                "default": null
+              }
+            }
+          },
+          "execution": {
+            "taskSupport": "optional"
+          }
+        },
+        {
+          "name": "search_experiences",
+          "description": "Search for tickets, experiences, and products at a venue using natural language. Omit venueId when connected to a venue-specific endpoint.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "venueId": {
+                "description": "Venue ID from discover_venues. Omit when connected to a venue-specific endpoint.",
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "format": "uuid",
+                "default": null
+              },
+              "query": {
+                "description": "Natural language search query",
+                "type": "string",
+                "default": null
+              },
+              "date": {
+                "description": "Date for availability (YYYY-MM-DD)",
+                "type": "string",
+                "default": null
+              },
+              "quantity": {
+                "description": "Number of tickets needed",
+                "type": [
+                  "integer",
+                  "null"
+                ],
+                "default": null
+              },
+              "ticketTypes": {
+                "description": "Filter by ticket types",
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "default": null
+              },
+              "limit": {
+                "description": "Maximum results to return",
+                "type": "integer",
+                "default": 10
+              }
+            }
+          },
+          "execution": {
+            "taskSupport": "optional"
+          }
+        },
+        {
+          "name": "get_venue_details",
+          "description": "Get detailed information about a venue including location, type, and attributes. Omit tenantId when connected to a venue-specific endpoint.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "tenantId": {
+                "description": "Venue ID from discover_venues result. Omit when connected to a venue-specific endpoint.",
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "format": "uuid",
+                "default": null
+              }
+            }
+          },
+          "execution": {
+            "taskSupport": "optional"
+          }
+        },
+        {
+          "name": "get_venue_hours",
+          "description": "Get venue operating hours for a specific date. Omit tenantId when connected to a venue-specific endpoint.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "tenantId": {
+                "description": "Venue ID. Omit when connected to a venue-specific endpoint.",
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "format": "uuid",
+                "default": null
+              },
+              "date": {
+                "description": "Date to check hours (YYYY-MM-DD, defaults to today)",
+                "type": "string",
+                "default": null
+              }
+            }
+          },
+          "execution": {
+            "taskSupport": "optional"
+          }
+        },
+        {
+          "name": "get_entitlements",
+          "description": "Get authenticated customer's active tickets, passes, and entitlements. Omit venueId when connected to a venue-specific endpoint.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "venueId": {
+                "description": "Venue ID. Omit when connected to a venue-specific endpoint.",
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "format": "uuid",
+                "default": null
+              },
+              "activeOnly": {
+                "description": "Only return active/valid entitlements",
+                "type": "boolean",
+                "default": true
+              }
+            }
+          },
+          "execution": {
+            "taskSupport": "optional"
+          }
+        },
+        {
+          "name": "get_venue_info",
+          "description": "Get comprehensive venue information including hours, policies, and FAQ. Omit tenantId when connected to a venue-specific endpoint.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "tenantId": {
+                "description": "Venue ID. Omit when connected to a venue-specific endpoint.",
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "format": "uuid",
+                "default": null
+              },
+              "includeHours": {
+                "description": "Include operating hours",
+                "type": "boolean",
+                "default": true
+              },
+              "includePolicies": {
+                "description": "Include venue policies",
+                "type": "boolean",
+                "default": true
+              },
+              "includeFaq": {
+                "description": "Include FAQ items",
+                "type": "boolean",
+                "default": true
+              }
+            }
+          },
+          "execution": {
+            "taskSupport": "optional"
+          }
+        },
+        {
+          "name": "remove_from_cart",
+          "description": "Remove an item from the cart. Omit venueId when connected to a venue-specific endpoint.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "cartId": {
+                "description": "Cart ID",
+                "type": "string",
+                "format": "uuid"
+              },
+              "venueId": {
+                "description": "Venue ID. Omit when connected to a venue-specific endpoint.",
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "format": "uuid",
+                "default": null
+              },
+              "lineItemId": {
+                "description": "Line item ID to remove",
+                "type": "string",
+                "format": "uuid",
+                "default": "00000000-0000-0000-0000-000000000000"
+              }
+            },
+            "required": [
+              "cartId"
+            ]
+          },
+          "execution": {
+            "taskSupport": "optional"
+          }
+        },
+        {
+          "name": "discover_venues",
+          "description": "Search for venues, theme parks, zoos, museums, and attractions near a location",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "location": {
+                "description": "Location to search near (e.g., 'San Diego, CA', 'New York City')",
+                "type": "string"
+              },
+              "radiusMiles": {
+                "description": "Search radius in miles",
+                "type": "integer",
+                "default": 50
+              },
+              "types": {
+                "description": "Venue types to filter by",
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "default": null
+              },
+              "keywords": {
+                "description": "Keywords for natural language search",
+                "type": "string",
+                "default": null
+              },
+              "date": {
+                "description": "Date to check availability (YYYY-MM-DD format)",
+                "type": "string",
+                "default": null
+              },
+              "limit": {
+                "description": "Maximum results to return",
+                "type": "integer",
+                "default": 10
+              }
+            },
+            "required": [
+              "location"
+            ]
+          },
+          "execution": {
+            "taskSupport": "optional"
+          }
+        }
+      ],
+      "python_sdk_url": "https://review-002-voyager-ai-commerce.zeus.gatewayticketing.hosting/mcp",
+      "python_sdk_config": "{\"debug\": false}"
+    },
+    "source_filename": "0045.iogithubblathrop07voyager-commerce_labeled.json",
+    "processed_timestamp": 1772876337,
+    "processing_mode": "gateway",
+    "rank": 46
+  }
+}

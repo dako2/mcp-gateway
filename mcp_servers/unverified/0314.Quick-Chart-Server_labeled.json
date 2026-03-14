@@ -1,0 +1,100 @@
+{
+  "labels": {
+    "analysis": "The Quick Chart Server is designed to facilitate data visualization by interacting with the Quick Chart API. Its core functionality revolves around generating and retrieving chart images based on user-provided parameters. This tool solves the problem of creating standardized, visually appealing charts programmatically without the need for manual design work, making it particularly useful for data analysis, reporting, and enhancing AI agents with visualization capabilities.",
+    "reasoning": "The primary label \"Data Analysis & Processing\" was chosen because the server's main purpose is to support data visualization, which is a key aspect of data analysis and processing. The secondary label \"Development Tools\" was selected because the server provides a tool for developers to integrate charting capabilities into their applications. A custom label is not needed as the functionality is well-covered by the predefined categories.",
+    "primary_label": "Data Analysis & Processing",
+    "secondary_labels": [
+      "Development Tools"
+    ],
+    "custom_label": null,
+    "is_connected": true,
+    "is_remote_tool_valid": true,
+    "featured_server": false,
+    "tool_verified": false,
+    "tool_verified_status": "broken",
+    "tool_verified_at": "2026-03-14T20:39:24.539049+00:00",
+    "tool_verified_tool": "GetChartImgLink",
+    "tool_verified_reason": "client timeout after 20003ms"
+  },
+  "metadata": {
+    "server_id": 314,
+    "server_name": "Quick Chart Server",
+    "rank_by_usage": 542,
+    "usage_count": "25",
+    "original_file": "toucan_live#@datafe/quick-chart-mcp",
+    "mode": "toucan",
+    "timestamp": 1772876338,
+    "remote_server_response": {
+      "url": "https://server.smithery.ai/@datafe/quick-chart-mcp/mcp",
+      "is_success": true,
+      "error": null,
+      "tools": [
+        {
+          "name": "GetChartImgLink",
+          "description": "To draw chart and get chart image link by parameters, and parameter grammar follows Quick Chart API (quickchart.io).",
+          "input_schema": {
+            "type": "object",
+            "properties": {
+              "json": {
+                "description": "quick chart api's (quickchart.io) parameters and format is JSON object. The object does not include any functions, only values."
+              }
+            },
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "annotations": null
+        }
+      ],
+      "tool_count": 1,
+      "tool_names": [
+        "GetChartImgLink"
+      ]
+    },
+    "server_info_crawled": {
+      "id": 314,
+      "name": "Quick Chart Server",
+      "author": "",
+      "overview": "Interact with Quick Chart to generate and retrieve chart images seamlessly. Enhance your AI agents with standardized charting capabilities, making data visualization effortless and efficient.",
+      "repository_url": "",
+      "homepage": "https://server.smithery.ai/@datafe/quick-chart-mcp/mcp",
+      "remote_or_local": "Remote",
+      "license": "",
+      "usage_count": "25",
+      "success_rate": "Not available",
+      "tags": [
+        "search",
+        "web",
+        "api",
+        "mcp"
+      ],
+      "categories": [
+        "search",
+        "api"
+      ],
+      "tools_count": 1,
+      "tools": [
+        {
+          "name": "GetChartImgLink",
+          "description": "To draw chart and get chart image link by parameters, and parameter grammar follows Quick Chart API (quickchart.io).",
+          "input_schema": {
+            "type": "object",
+            "properties": {
+              "json": {
+                "description": "quick chart api's (quickchart.io) parameters and format is JSON object. The object does not include any functions, only values."
+              }
+            },
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "annotations": null
+        }
+      ],
+      "python_sdk_url": "https://server.smithery.ai/@datafe/quick-chart-mcp/mcp",
+      "python_sdk_config": "{\"debug\": false}"
+    },
+    "source_filename": "0314.Quick-Chart-Server_labeled.json",
+    "processed_timestamp": 1772876338,
+    "processing_mode": "toucan",
+    "rank": 542
+  }
+}

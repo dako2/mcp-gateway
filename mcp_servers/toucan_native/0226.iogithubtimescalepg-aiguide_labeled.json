@@ -1,0 +1,438 @@
+{
+  "labels": {
+    "analysis": "The MCP Server \"io.github.timescale/pg-aiguide\" provides 2 tools focused on database operations tasks. Core capabilities include creation and generation, search and retrieval. Key tools: search_docs, view_skill.",
+    "reasoning": "Primary label \"Database Operations\" assigned based on strong keyword matches in tool names and descriptions: database, postgres, table, migration.",
+    "primary_label": "Database Operations",
+    "secondary_labels": [
+      "Web Search & Research",
+      "Data Analysis & Processing"
+    ],
+    "custom_label": "Search - io.github.timescale/pg-aiguide",
+    "is_connected": true,
+    "is_remote_tool_valid": true,
+    "featured_server": false,
+    "tool_verified": true,
+    "tool_verified_status": "verified",
+    "tool_verified_at": "2026-03-14T20:38:20.789153+00:00",
+    "tool_verified_tool": "search_docs",
+    "tool_verified_reason": "response received"
+  },
+  "metadata": {
+    "server_id": 226,
+    "server_name": "io.github.timescale/pg-aiguide",
+    "rank_by_usage": 227,
+    "usage_count": "10",
+    "original_file": "tools.json#226",
+    "mode": "gateway",
+    "timestamp": 1772876338,
+    "remote_server_response": {
+      "url": "https://mcp.tigerdata.com/docs",
+      "is_success": true,
+      "error": null,
+      "tools": [
+        {
+          "name": "search_docs",
+          "title": "Search Documentation",
+          "description": "Search documentation using semantic or keyword search. Supports Tiger Cloud (TimescaleDB), PostgreSQL, and PostGIS.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "source": {
+                "type": "string",
+                "enum": [
+                  "tiger",
+                  "postgres",
+                  "postgis"
+                ],
+                "description": "The documentation source to search. \"tiger\" for Tiger Cloud and TimescaleDB, \"postgres\" for PostgreSQL, \"postgis\" for PostGIS spatial extension."
+              },
+              "search_type": {
+                "type": "string",
+                "enum": [
+                  "semantic",
+                  "keyword"
+                ],
+                "description": "The type of search to perform. \"semantic\" uses natural language vector similarity, \"keyword\" uses BM25 keyword matching."
+              },
+              "query": {
+                "type": "string",
+                "description": "The search query. For semantic search, use natural language. For keyword search, provide keywords."
+              },
+              "version": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "enum": [
+                      "14",
+                      "15",
+                      "16",
+                      "17",
+                      "18",
+                      "latest"
+                    ]
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "description": "The PostgreSQL major version (ignored when searching \"tiger\"). Recommended to assume the latest version if unknown. Only applicable when source is Postgres. Defaults to latest version."
+              },
+              "limit": {
+                "type": "integer",
+                "description": "The maximum number of matches to return. Default is 10."
+              }
+            },
+            "required": [
+              "source",
+              "search_type",
+              "query",
+              "version",
+              "limit"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "annotations": {
+            "title": "Search Documentation"
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          },
+          "outputSchema": {
+            "type": "object",
+            "properties": {
+              "results": {
+                "type": "array",
+                "items": {
+                  "anyOf": [
+                    {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "integer",
+                          "description": "The unique identifier of the documentation entry."
+                        },
+                        "content": {
+                          "type": "string",
+                          "description": "The content of the documentation entry."
+                        },
+                        "metadata": {
+                          "type": "string",
+                          "description": "Additional metadata about the documentation entry, as a JSON encoded string."
+                        },
+                        "distance": {
+                          "type": "number",
+                          "description": "The distance score indicating the relevance of the entry to the query. Lower values indicate higher relevance."
+                        }
+                      },
+                      "required": [
+                        "id",
+                        "content",
+                        "metadata",
+                        "distance"
+                      ],
+                      "additionalProperties": false
+                    },
+                    {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "$ref": "#/properties/results/items/anyOf/0/properties/id"
+                        },
+                        "content": {
+                          "$ref": "#/properties/results/items/anyOf/0/properties/content"
+                        },
+                        "metadata": {
+                          "$ref": "#/properties/results/items/anyOf/0/properties/metadata"
+                        },
+                        "score": {
+                          "type": "number",
+                          "description": "The score indicating the relevance of the entry to the keywords. Higher values indicate higher relevance."
+                        }
+                      },
+                      "required": [
+                        "id",
+                        "content",
+                        "metadata",
+                        "score"
+                      ],
+                      "additionalProperties": false
+                    }
+                  ]
+                }
+              }
+            },
+            "required": [
+              "results"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          }
+        },
+        {
+          "name": "view_skill",
+          "title": "View Skill",
+          "description": "Retrieve detailed skills for TimescaleDB operations and best practices.\n\n## Available Skills\n\n<available_skills>\n[7\t]{name\tdescription}:\n  design-postgis-tables\tComprehensive PostGIS spatial table design reference covering geometry types, coordinate systems, spatial indexing, and performance patterns for location-based applications\n  design-postgres-tables\t\"Use this skill for general PostgreSQL table design.\\n\\n**Trigger when user asks to:**\\n- Design PostgreSQL tables, schemas, or data models when creating new tables and when modifying existing ones.\\n- Choose data types, constraints, or indexes for PostgreSQL\\n- Create user tables, order tables, reference tables, or JSONB schemas\\n- Understand PostgreSQL best practices for normalization, constraints, or indexing\\n- Design update-heavy, upsert-heavy, or OLTP-style tables\\n\\n\\n**Keywords:** PostgreSQL schema, table design, data types, PRIMARY KEY, FOREIGN KEY, indexes, B-tree, GIN, JSONB, constraints, normalization, identity columns, partitioning, row-level security\\n\\nComprehensive reference covering data types, indexing strategies, constraints, JSONB patterns, partitioning, and PostgreSQL-specific best practices.\\n\"\n  find-hypertable-candidates\t\"Use this skill to analyze an existing PostgreSQL database and identify which tables should be converted to Timescale/TimescaleDB hypertables.\\n\\n**Trigger when user asks to:**\\n- Analyze database tables for hypertable conversion potential\\n- Identify time-series or event tables in an existing schema\\n- Evaluate if a table would benefit from Timescale/TimescaleDB\\n- Audit PostgreSQL tables for migration to Timescale/TimescaleDB/TigerData\\n- Score or rank tables for hypertable candidacy\\n\\n\\n**Keywords:** hypertable candidate, table analysis, migration assessment, Timescale, TimescaleDB, time-series detection, insert-heavy tables, event logs, audit tables\\n\\nProvides SQL queries to analyze table statistics, index patterns, and query patterns. Includes scoring criteria (8+ points = good candidate) and pattern recognition for IoT, events, transactions, and sequential data.\\n\"\n  migrate-postgres-tables-to-hypertables\t\"Use this skill to migrate identified PostgreSQL tables to Timescale/TimescaleDB hypertables with optimal configuration and validation.\\n\\n**Trigger when user asks to:**\\n- Migrate or convert PostgreSQL tables to hypertables\\n- Execute hypertable migration with minimal downtime\\n- Plan blue-green migration for large tables\\n- Validate hypertable migration success\\n- Configure compression after migration\\n\\n**Prerequisites:** Tables already identified as candidates (use find-hypertable-candidates first if needed)\\n\\n**Keywords:** migrate to hypertable, convert table, Timescale, TimescaleDB, blue-green migration, in-place conversion, create_hypertable, migration validation, compression setup\\n\\nStep-by-step migration planning including: partition column selection, chunk interval calculation, PK/constraint handling, migration execution (in-place vs blue-green), and performance validation queries.\\n\"\n  pgvector-semantic-search\t\"Use this skill for setting up vector similarity search with pgvector for AI/ML embeddings, RAG applications, or semantic search.\\n\\n**Trigger when user asks to:**\\n- Store or search vector embeddings in PostgreSQL\\n- Set up semantic search, similarity search, or nearest neighbor search\\n- Create HNSW or IVFFlat indexes for vectors\\n- Implement RAG (Retrieval Augmented Generation) with PostgreSQL\\n- Optimize pgvector performance, recall, or memory usage\\n- Use binary quantization for large vector datasets\\n\\n**Keywords:** pgvector, embeddings, semantic search, vector similarity, HNSW, IVFFlat, halfvec, cosine distance, nearest neighbor, RAG, LLM, AI search\\n\\nCovers: halfvec storage, HNSW index configuration (m, ef_construction, ef_search), quantization strategies, filtered search, bulk loading, and performance tuning.\\n\"\n  postgres-hybrid-text-search\t\"Use this skill to implement hybrid search combining BM25 keyword search with semantic vector search using Reciprocal Rank Fusion (RRF).\\n\\n**Trigger when user asks to:**\\n- Combine keyword and semantic search\\n- Implement hybrid search or multi-modal retrieval\\n- Use BM25/pg_textsearch with pgvector together\\n- Implement RRF (Reciprocal Rank Fusion) for search\\n- Build search that handles both exact terms and meaning\\n\\n\\n**Keywords:** hybrid search, BM25, pg_textsearch, RRF, reciprocal rank fusion, keyword search, full-text search, reranking, cross-encoder\\n\\nCovers: pg_textsearch BM25 index setup, parallel query patterns, client-side RRF fusion (Python/TypeScript), weighting strategies, and optional ML reranking.\\n\"\n  setup-timescaledb-hypertables\t\"Use this skill when creating database schemas or tables for Timescale, TimescaleDB, TigerData, or Tiger Cloud, especially for time-series, IoT, metrics, events, or log data. Use this to improve the performance of any insert-heavy table.\\n\\n**Trigger when user asks to:**\\n- Create or design SQL schemas/tables AND Timescale/TimescaleDB/TigerData/Tiger Cloud is available\\n- Set up hypertables, compression, retention policies, or continuous aggregates\\n- Configure partition columns, segment_by, order_by, or chunk intervals\\n- Optimize time-series database performance or storage\\n- Create tables for sensors, metrics, telemetry, events, or transaction logs\\n\\n**Keywords:** CREATE TABLE, hypertable, Timescale, TimescaleDB, time-series, IoT, metrics, sensor data, compression policy, continuous aggregates, columnstore, retention policy, chunk interval, segment_by, order_by\\n\\nStep-by-step instructions for hypertable creation, column selection, compression policies, retention, continuous aggregates, and indexes.\\n\"\n</available_skills>",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "skill_name": {
+                "type": "string",
+                "description": "The name of the skill to browse, or `.` to list all available skills."
+              },
+              "path": {
+                "type": "string",
+                "description": "A relative path to a file or directory within the skill to view.\nIf empty, will view the `SKILL.md` file by default.\nUse `.` to list the root directory of the skill."
+              }
+            },
+            "required": [
+              "skill_name",
+              "path"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "annotations": {
+            "title": "View Skill"
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          },
+          "outputSchema": {
+            "type": "object",
+            "properties": {
+              "content": {
+                "type": "string",
+                "description": "The content of the file or directory listing."
+              }
+            },
+            "required": [
+              "content"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          }
+        }
+      ],
+      "tool_count": 2,
+      "tool_names": [
+        "search_docs",
+        "view_skill"
+      ]
+    },
+    "server_info_crawled": {
+      "id": 226,
+      "name": "io.github.timescale/pg-aiguide",
+      "author": "",
+      "overview": "io.github.timescale/pg-aiguide - Database Operations server with 2 tools. The MCP Server \"io.github.timescale/pg-aiguide\" provides 2 tools focused on database operations task",
+      "repository_url": "",
+      "homepage": "https://mcp.tigerdata.com/docs",
+      "remote_or_local": "Remote",
+      "license": "",
+      "usage_count": "10",
+      "success_rate": "100%",
+      "tags": [
+        "database-operations",
+        "web-search-research",
+        "data-analysis-processing"
+      ],
+      "categories": [
+        "database operations",
+        "web search & research",
+        "data analysis & processing"
+      ],
+      "tools_count": 2,
+      "tools": [
+        {
+          "name": "search_docs",
+          "title": "Search Documentation",
+          "description": "Search documentation using semantic or keyword search. Supports Tiger Cloud (TimescaleDB), PostgreSQL, and PostGIS.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "source": {
+                "type": "string",
+                "enum": [
+                  "tiger",
+                  "postgres",
+                  "postgis"
+                ],
+                "description": "The documentation source to search. \"tiger\" for Tiger Cloud and TimescaleDB, \"postgres\" for PostgreSQL, \"postgis\" for PostGIS spatial extension."
+              },
+              "search_type": {
+                "type": "string",
+                "enum": [
+                  "semantic",
+                  "keyword"
+                ],
+                "description": "The type of search to perform. \"semantic\" uses natural language vector similarity, \"keyword\" uses BM25 keyword matching."
+              },
+              "query": {
+                "type": "string",
+                "description": "The search query. For semantic search, use natural language. For keyword search, provide keywords."
+              },
+              "version": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "enum": [
+                      "14",
+                      "15",
+                      "16",
+                      "17",
+                      "18",
+                      "latest"
+                    ]
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "description": "The PostgreSQL major version (ignored when searching \"tiger\"). Recommended to assume the latest version if unknown. Only applicable when source is Postgres. Defaults to latest version."
+              },
+              "limit": {
+                "type": "integer",
+                "description": "The maximum number of matches to return. Default is 10."
+              }
+            },
+            "required": [
+              "source",
+              "search_type",
+              "query",
+              "version",
+              "limit"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "annotations": {
+            "title": "Search Documentation"
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          },
+          "outputSchema": {
+            "type": "object",
+            "properties": {
+              "results": {
+                "type": "array",
+                "items": {
+                  "anyOf": [
+                    {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "integer",
+                          "description": "The unique identifier of the documentation entry."
+                        },
+                        "content": {
+                          "type": "string",
+                          "description": "The content of the documentation entry."
+                        },
+                        "metadata": {
+                          "type": "string",
+                          "description": "Additional metadata about the documentation entry, as a JSON encoded string."
+                        },
+                        "distance": {
+                          "type": "number",
+                          "description": "The distance score indicating the relevance of the entry to the query. Lower values indicate higher relevance."
+                        }
+                      },
+                      "required": [
+                        "id",
+                        "content",
+                        "metadata",
+                        "distance"
+                      ],
+                      "additionalProperties": false
+                    },
+                    {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "$ref": "#/properties/results/items/anyOf/0/properties/id"
+                        },
+                        "content": {
+                          "$ref": "#/properties/results/items/anyOf/0/properties/content"
+                        },
+                        "metadata": {
+                          "$ref": "#/properties/results/items/anyOf/0/properties/metadata"
+                        },
+                        "score": {
+                          "type": "number",
+                          "description": "The score indicating the relevance of the entry to the keywords. Higher values indicate higher relevance."
+                        }
+                      },
+                      "required": [
+                        "id",
+                        "content",
+                        "metadata",
+                        "score"
+                      ],
+                      "additionalProperties": false
+                    }
+                  ]
+                }
+              }
+            },
+            "required": [
+              "results"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          }
+        },
+        {
+          "name": "view_skill",
+          "title": "View Skill",
+          "description": "Retrieve detailed skills for TimescaleDB operations and best practices.\n\n## Available Skills\n\n<available_skills>\n[7\t]{name\tdescription}:\n  design-postgis-tables\tComprehensive PostGIS spatial table design reference covering geometry types, coordinate systems, spatial indexing, and performance patterns for location-based applications\n  design-postgres-tables\t\"Use this skill for general PostgreSQL table design.\\n\\n**Trigger when user asks to:**\\n- Design PostgreSQL tables, schemas, or data models when creating new tables and when modifying existing ones.\\n- Choose data types, constraints, or indexes for PostgreSQL\\n- Create user tables, order tables, reference tables, or JSONB schemas\\n- Understand PostgreSQL best practices for normalization, constraints, or indexing\\n- Design update-heavy, upsert-heavy, or OLTP-style tables\\n\\n\\n**Keywords:** PostgreSQL schema, table design, data types, PRIMARY KEY, FOREIGN KEY, indexes, B-tree, GIN, JSONB, constraints, normalization, identity columns, partitioning, row-level security\\n\\nComprehensive reference covering data types, indexing strategies, constraints, JSONB patterns, partitioning, and PostgreSQL-specific best practices.\\n\"\n  find-hypertable-candidates\t\"Use this skill to analyze an existing PostgreSQL database and identify which tables should be converted to Timescale/TimescaleDB hypertables.\\n\\n**Trigger when user asks to:**\\n- Analyze database tables for hypertable conversion potential\\n- Identify time-series or event tables in an existing schema\\n- Evaluate if a table would benefit from Timescale/TimescaleDB\\n- Audit PostgreSQL tables for migration to Timescale/TimescaleDB/TigerData\\n- Score or rank tables for hypertable candidacy\\n\\n\\n**Keywords:** hypertable candidate, table analysis, migration assessment, Timescale, TimescaleDB, time-series detection, insert-heavy tables, event logs, audit tables\\n\\nProvides SQL queries to analyze table statistics, index patterns, and query patterns. Includes scoring criteria (8+ points = good candidate) and pattern recognition for IoT, events, transactions, and sequential data.\\n\"\n  migrate-postgres-tables-to-hypertables\t\"Use this skill to migrate identified PostgreSQL tables to Timescale/TimescaleDB hypertables with optimal configuration and validation.\\n\\n**Trigger when user asks to:**\\n- Migrate or convert PostgreSQL tables to hypertables\\n- Execute hypertable migration with minimal downtime\\n- Plan blue-green migration for large tables\\n- Validate hypertable migration success\\n- Configure compression after migration\\n\\n**Prerequisites:** Tables already identified as candidates (use find-hypertable-candidates first if needed)\\n\\n**Keywords:** migrate to hypertable, convert table, Timescale, TimescaleDB, blue-green migration, in-place conversion, create_hypertable, migration validation, compression setup\\n\\nStep-by-step migration planning including: partition column selection, chunk interval calculation, PK/constraint handling, migration execution (in-place vs blue-green), and performance validation queries.\\n\"\n  pgvector-semantic-search\t\"Use this skill for setting up vector similarity search with pgvector for AI/ML embeddings, RAG applications, or semantic search.\\n\\n**Trigger when user asks to:**\\n- Store or search vector embeddings in PostgreSQL\\n- Set up semantic search, similarity search, or nearest neighbor search\\n- Create HNSW or IVFFlat indexes for vectors\\n- Implement RAG (Retrieval Augmented Generation) with PostgreSQL\\n- Optimize pgvector performance, recall, or memory usage\\n- Use binary quantization for large vector datasets\\n\\n**Keywords:** pgvector, embeddings, semantic search, vector similarity, HNSW, IVFFlat, halfvec, cosine distance, nearest neighbor, RAG, LLM, AI search\\n\\nCovers: halfvec storage, HNSW index configuration (m, ef_construction, ef_search), quantization strategies, filtered search, bulk loading, and performance tuning.\\n\"\n  postgres-hybrid-text-search\t\"Use this skill to implement hybrid search combining BM25 keyword search with semantic vector search using Reciprocal Rank Fusion (RRF).\\n\\n**Trigger when user asks to:**\\n- Combine keyword and semantic search\\n- Implement hybrid search or multi-modal retrieval\\n- Use BM25/pg_textsearch with pgvector together\\n- Implement RRF (Reciprocal Rank Fusion) for search\\n- Build search that handles both exact terms and meaning\\n\\n\\n**Keywords:** hybrid search, BM25, pg_textsearch, RRF, reciprocal rank fusion, keyword search, full-text search, reranking, cross-encoder\\n\\nCovers: pg_textsearch BM25 index setup, parallel query patterns, client-side RRF fusion (Python/TypeScript), weighting strategies, and optional ML reranking.\\n\"\n  setup-timescaledb-hypertables\t\"Use this skill when creating database schemas or tables for Timescale, TimescaleDB, TigerData, or Tiger Cloud, especially for time-series, IoT, metrics, events, or log data. Use this to improve the performance of any insert-heavy table.\\n\\n**Trigger when user asks to:**\\n- Create or design SQL schemas/tables AND Timescale/TimescaleDB/TigerData/Tiger Cloud is available\\n- Set up hypertables, compression, retention policies, or continuous aggregates\\n- Configure partition columns, segment_by, order_by, or chunk intervals\\n- Optimize time-series database performance or storage\\n- Create tables for sensors, metrics, telemetry, events, or transaction logs\\n\\n**Keywords:** CREATE TABLE, hypertable, Timescale, TimescaleDB, time-series, IoT, metrics, sensor data, compression policy, continuous aggregates, columnstore, retention policy, chunk interval, segment_by, order_by\\n\\nStep-by-step instructions for hypertable creation, column selection, compression policies, retention, continuous aggregates, and indexes.\\n\"\n</available_skills>",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "skill_name": {
+                "type": "string",
+                "description": "The name of the skill to browse, or `.` to list all available skills."
+              },
+              "path": {
+                "type": "string",
+                "description": "A relative path to a file or directory within the skill to view.\nIf empty, will view the `SKILL.md` file by default.\nUse `.` to list the root directory of the skill."
+              }
+            },
+            "required": [
+              "skill_name",
+              "path"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "annotations": {
+            "title": "View Skill"
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          },
+          "outputSchema": {
+            "type": "object",
+            "properties": {
+              "content": {
+                "type": "string",
+                "description": "The content of the file or directory listing."
+              }
+            },
+            "required": [
+              "content"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          }
+        }
+      ],
+      "python_sdk_url": "https://mcp.tigerdata.com/docs",
+      "python_sdk_config": "{\"debug\": false}"
+    },
+    "source_filename": "0226.iogithubtimescalepg-aiguide_labeled.json",
+    "processed_timestamp": 1772876338,
+    "processing_mode": "gateway",
+    "rank": 227
+  }
+}

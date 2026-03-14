@@ -1,0 +1,759 @@
+{
+  "labels": {
+    "analysis": "The MCP Server \"Partle Marketplace\" provides 7 tools focused on e-commerce tasks. Core capabilities include creation and generation, data access and reading, search and retrieval. Key tools: search_products, get_product, search_stores, get_store, get_stats.",
+    "reasoning": "Primary label \"E-Commerce\" assigned based on strong keyword matches in tool names and descriptions: product, store, price_.",
+    "primary_label": "E-Commerce",
+    "secondary_labels": [
+      "Web Search & Research",
+      "Content Creation"
+    ],
+    "custom_label": "Data Access & Generation - Partle Marketplace",
+    "is_connected": true,
+    "is_remote_tool_valid": true,
+    "featured_server": true,
+    "tool_verified": true,
+    "tool_verified_status": "verified",
+    "tool_verified_at": "2026-03-14T20:38:15.420447+00:00",
+    "tool_verified_tool": "search_stores",
+    "tool_verified_reason": "response received"
+  },
+  "metadata": {
+    "server_id": 113,
+    "server_name": "Partle Marketplace",
+    "rank_by_usage": 114,
+    "usage_count": "100",
+    "original_file": "tools.json#113",
+    "mode": "gateway",
+    "timestamp": 1772876337,
+    "remote_server_response": {
+      "url": "https://partle.rubenayla.xyz/mcp",
+      "is_success": true,
+      "error": null,
+      "tools": [
+        {
+          "name": "search_products",
+          "description": "Search marketplace products by name or description.\n\n    Args:\n        query: Search term (e.g. \"wireless headphones\", \"cerrojo\").\n        min_price: Minimum price filter in EUR.\n        max_price: Maximum price filter in EUR.\n        tags: Comma-separated tag filter (e.g. \"electronics,bluetooth\").\n        sort_by: Sort order — one of \"price_desc\", \"name_asc\", \"newest\", \"oldest\".\n        limit: Max results (1-100, default 20).\n    ",
+          "inputSchema": {
+            "properties": {
+              "query": {
+                "title": "Query",
+                "type": "string"
+              },
+              "min_price": {
+                "anyOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Min Price"
+              },
+              "max_price": {
+                "anyOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Max Price"
+              },
+              "tags": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Tags"
+              },
+              "sort_by": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Sort By"
+              },
+              "limit": {
+                "default": 20,
+                "title": "Limit",
+                "type": "integer"
+              }
+            },
+            "required": [
+              "query"
+            ],
+            "title": "search_productsArguments",
+            "type": "object"
+          },
+          "outputSchema": {
+            "properties": {
+              "result": {
+                "items": {
+                  "additionalProperties": true,
+                  "type": "object"
+                },
+                "title": "Result",
+                "type": "array"
+              }
+            },
+            "required": [
+              "result"
+            ],
+            "title": "search_productsOutput",
+            "type": "object"
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "openWorldHint": true
+          }
+        },
+        {
+          "name": "get_product",
+          "description": "Get detailed information about a single product by its ID.\n\n    Args:\n        product_id: The product ID.\n    ",
+          "inputSchema": {
+            "properties": {
+              "product_id": {
+                "title": "Product Id",
+                "type": "integer"
+              }
+            },
+            "required": [
+              "product_id"
+            ],
+            "title": "get_productArguments",
+            "type": "object"
+          },
+          "annotations": {
+            "readOnlyHint": true
+          }
+        },
+        {
+          "name": "search_stores",
+          "description": "Search or list stores in the marketplace.\n\n    Args:\n        query: Optional search term to filter stores by name or address.\n        limit: Max results (1-50, default 20).\n    ",
+          "inputSchema": {
+            "properties": {
+              "query": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Query"
+              },
+              "limit": {
+                "default": 20,
+                "title": "Limit",
+                "type": "integer"
+              }
+            },
+            "title": "search_storesArguments",
+            "type": "object"
+          },
+          "outputSchema": {
+            "properties": {
+              "result": {
+                "items": {
+                  "additionalProperties": true,
+                  "type": "object"
+                },
+                "title": "Result",
+                "type": "array"
+              }
+            },
+            "required": [
+              "result"
+            ],
+            "title": "search_storesOutput",
+            "type": "object"
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "openWorldHint": true
+          }
+        },
+        {
+          "name": "get_store",
+          "description": "Get detailed information about a single store by its ID.\n\n    Args:\n        store_id: The store ID.\n    ",
+          "inputSchema": {
+            "properties": {
+              "store_id": {
+                "title": "Store Id",
+                "type": "integer"
+              }
+            },
+            "required": [
+              "store_id"
+            ],
+            "title": "get_storeArguments",
+            "type": "object"
+          },
+          "annotations": {
+            "readOnlyHint": true
+          }
+        },
+        {
+          "name": "get_stats",
+          "description": "Get platform statistics (total products, total stores).",
+          "inputSchema": {
+            "properties": {},
+            "title": "get_statsArguments",
+            "type": "object"
+          },
+          "annotations": {
+            "readOnlyHint": true
+          }
+        },
+        {
+          "name": "create_product",
+          "description": "Create a new product listing. Requires an API key (generate at /account).\n\n    Args:\n        api_key: Your Partle API key (starts with pk_).\n        name: Product name.\n        description: Product description (optional).\n        price: Price in the given currency (optional).\n        currency: Currency symbol, defaults to €.\n        url: Link to the product page (optional).\n        store_id: Store ID to list under (optional — omit for personal listing).\n    ",
+          "inputSchema": {
+            "properties": {
+              "api_key": {
+                "title": "Api Key",
+                "type": "string"
+              },
+              "name": {
+                "title": "Name",
+                "type": "string"
+              },
+              "description": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Description"
+              },
+              "price": {
+                "anyOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Price"
+              },
+              "currency": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": "€",
+                "title": "Currency"
+              },
+              "url": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Url"
+              },
+              "store_id": {
+                "anyOf": [
+                  {
+                    "type": "integer"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Store Id"
+              }
+            },
+            "required": [
+              "api_key",
+              "name"
+            ],
+            "title": "create_productArguments",
+            "type": "object"
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": false,
+            "idempotentHint": false
+          }
+        },
+        {
+          "name": "upload_product_image",
+          "description": "Upload an image for a product. Provide either image_base64 or image_url (not both).\n\n    Args:\n        api_key: Your Partle API key (starts with pk_).\n        product_id: ID of the product to attach the image to.\n        image_base64: Base64-encoded image data.\n        content_type: MIME type when using image_base64 (e.g. \"image/jpeg\"). Required with image_base64.\n        image_url: URL to download the image from (alternative to image_base64).\n    ",
+          "inputSchema": {
+            "properties": {
+              "api_key": {
+                "title": "Api Key",
+                "type": "string"
+              },
+              "product_id": {
+                "title": "Product Id",
+                "type": "integer"
+              },
+              "image_base64": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Image Base64"
+              },
+              "content_type": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Content Type"
+              },
+              "image_url": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Image Url"
+              }
+            },
+            "required": [
+              "api_key",
+              "product_id"
+            ],
+            "title": "upload_product_imageArguments",
+            "type": "object"
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": true,
+            "idempotentHint": true
+          }
+        }
+      ],
+      "tool_count": 7,
+      "tool_names": [
+        "search_products",
+        "get_product",
+        "search_stores",
+        "get_store",
+        "get_stats",
+        "create_product",
+        "upload_product_image"
+      ]
+    },
+    "server_info_crawled": {
+      "id": 113,
+      "name": "Partle Marketplace",
+      "author": "",
+      "overview": "Partle Marketplace - E-Commerce server with 7 tools. The MCP Server \"Partle Marketplace\" provides 7 tools focused on e-commerce tasks. Core capabilities ",
+      "repository_url": "",
+      "homepage": "https://partle.rubenayla.xyz/mcp",
+      "remote_or_local": "Remote",
+      "license": "",
+      "usage_count": "100",
+      "success_rate": "100%",
+      "tags": [
+        "e-commerce",
+        "web-search-research",
+        "content-creation"
+      ],
+      "categories": [
+        "e-commerce",
+        "web search & research",
+        "content creation"
+      ],
+      "tools_count": 7,
+      "tools": [
+        {
+          "name": "search_products",
+          "description": "Search marketplace products by name or description.\n\n    Args:\n        query: Search term (e.g. \"wireless headphones\", \"cerrojo\").\n        min_price: Minimum price filter in EUR.\n        max_price: Maximum price filter in EUR.\n        tags: Comma-separated tag filter (e.g. \"electronics,bluetooth\").\n        sort_by: Sort order — one of \"price_desc\", \"name_asc\", \"newest\", \"oldest\".\n        limit: Max results (1-100, default 20).\n    ",
+          "inputSchema": {
+            "properties": {
+              "query": {
+                "title": "Query",
+                "type": "string"
+              },
+              "min_price": {
+                "anyOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Min Price"
+              },
+              "max_price": {
+                "anyOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Max Price"
+              },
+              "tags": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Tags"
+              },
+              "sort_by": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Sort By"
+              },
+              "limit": {
+                "default": 20,
+                "title": "Limit",
+                "type": "integer"
+              }
+            },
+            "required": [
+              "query"
+            ],
+            "title": "search_productsArguments",
+            "type": "object"
+          },
+          "outputSchema": {
+            "properties": {
+              "result": {
+                "items": {
+                  "additionalProperties": true,
+                  "type": "object"
+                },
+                "title": "Result",
+                "type": "array"
+              }
+            },
+            "required": [
+              "result"
+            ],
+            "title": "search_productsOutput",
+            "type": "object"
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "openWorldHint": true
+          }
+        },
+        {
+          "name": "get_product",
+          "description": "Get detailed information about a single product by its ID.\n\n    Args:\n        product_id: The product ID.\n    ",
+          "inputSchema": {
+            "properties": {
+              "product_id": {
+                "title": "Product Id",
+                "type": "integer"
+              }
+            },
+            "required": [
+              "product_id"
+            ],
+            "title": "get_productArguments",
+            "type": "object"
+          },
+          "annotations": {
+            "readOnlyHint": true
+          }
+        },
+        {
+          "name": "search_stores",
+          "description": "Search or list stores in the marketplace.\n\n    Args:\n        query: Optional search term to filter stores by name or address.\n        limit: Max results (1-50, default 20).\n    ",
+          "inputSchema": {
+            "properties": {
+              "query": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Query"
+              },
+              "limit": {
+                "default": 20,
+                "title": "Limit",
+                "type": "integer"
+              }
+            },
+            "title": "search_storesArguments",
+            "type": "object"
+          },
+          "outputSchema": {
+            "properties": {
+              "result": {
+                "items": {
+                  "additionalProperties": true,
+                  "type": "object"
+                },
+                "title": "Result",
+                "type": "array"
+              }
+            },
+            "required": [
+              "result"
+            ],
+            "title": "search_storesOutput",
+            "type": "object"
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "openWorldHint": true
+          }
+        },
+        {
+          "name": "get_store",
+          "description": "Get detailed information about a single store by its ID.\n\n    Args:\n        store_id: The store ID.\n    ",
+          "inputSchema": {
+            "properties": {
+              "store_id": {
+                "title": "Store Id",
+                "type": "integer"
+              }
+            },
+            "required": [
+              "store_id"
+            ],
+            "title": "get_storeArguments",
+            "type": "object"
+          },
+          "annotations": {
+            "readOnlyHint": true
+          }
+        },
+        {
+          "name": "get_stats",
+          "description": "Get platform statistics (total products, total stores).",
+          "inputSchema": {
+            "properties": {},
+            "title": "get_statsArguments",
+            "type": "object"
+          },
+          "annotations": {
+            "readOnlyHint": true
+          }
+        },
+        {
+          "name": "create_product",
+          "description": "Create a new product listing. Requires an API key (generate at /account).\n\n    Args:\n        api_key: Your Partle API key (starts with pk_).\n        name: Product name.\n        description: Product description (optional).\n        price: Price in the given currency (optional).\n        currency: Currency symbol, defaults to €.\n        url: Link to the product page (optional).\n        store_id: Store ID to list under (optional — omit for personal listing).\n    ",
+          "inputSchema": {
+            "properties": {
+              "api_key": {
+                "title": "Api Key",
+                "type": "string"
+              },
+              "name": {
+                "title": "Name",
+                "type": "string"
+              },
+              "description": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Description"
+              },
+              "price": {
+                "anyOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Price"
+              },
+              "currency": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": "€",
+                "title": "Currency"
+              },
+              "url": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Url"
+              },
+              "store_id": {
+                "anyOf": [
+                  {
+                    "type": "integer"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Store Id"
+              }
+            },
+            "required": [
+              "api_key",
+              "name"
+            ],
+            "title": "create_productArguments",
+            "type": "object"
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": false,
+            "idempotentHint": false
+          }
+        },
+        {
+          "name": "upload_product_image",
+          "description": "Upload an image for a product. Provide either image_base64 or image_url (not both).\n\n    Args:\n        api_key: Your Partle API key (starts with pk_).\n        product_id: ID of the product to attach the image to.\n        image_base64: Base64-encoded image data.\n        content_type: MIME type when using image_base64 (e.g. \"image/jpeg\"). Required with image_base64.\n        image_url: URL to download the image from (alternative to image_base64).\n    ",
+          "inputSchema": {
+            "properties": {
+              "api_key": {
+                "title": "Api Key",
+                "type": "string"
+              },
+              "product_id": {
+                "title": "Product Id",
+                "type": "integer"
+              },
+              "image_base64": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Image Base64"
+              },
+              "content_type": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Content Type"
+              },
+              "image_url": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Image Url"
+              }
+            },
+            "required": [
+              "api_key",
+              "product_id"
+            ],
+            "title": "upload_product_imageArguments",
+            "type": "object"
+          },
+          "annotations": {
+            "readOnlyHint": false,
+            "destructiveHint": true,
+            "idempotentHint": true
+          }
+        }
+      ],
+      "python_sdk_url": "https://partle.rubenayla.xyz/mcp",
+      "python_sdk_config": "{\"debug\": false}"
+    },
+    "source_filename": "0113.Partle-Marketplace_labeled.json",
+    "processed_timestamp": 1772876337,
+    "processing_mode": "gateway",
+    "rank": 114
+  }
+}

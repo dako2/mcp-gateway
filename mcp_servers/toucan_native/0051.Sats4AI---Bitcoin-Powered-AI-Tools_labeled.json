@@ -1,0 +1,1113 @@
+{
+  "labels": {
+    "analysis": "The MCP Server \"Sats4AI - Bitcoin-Powered AI Tools\" provides 17 tools focused on financial services tasks. Core capabilities include analysis and computation, creation and generation, data access and reading. Key tools: create_payment, check_payment_status, generate_image, generate_video, generate_video_from_image.",
+    "reasoning": "Primary label \"Financial Services\" assigned based on strong keyword matches in tool names and descriptions: payment, invoice.",
+    "primary_label": "Financial Services",
+    "secondary_labels": [
+      "AI/ML Tools",
+      "Content Creation"
+    ],
+    "custom_label": "Analytics & Data Access - Sats4AI - Bitcoin-Powered AI Tools",
+    "is_connected": true,
+    "is_remote_tool_valid": true,
+    "featured_server": true,
+    "tool_verified": true,
+    "tool_verified_status": "verified",
+    "tool_verified_at": "2026-03-14T20:38:11.602808+00:00",
+    "tool_verified_tool": "list_models",
+    "tool_verified_reason": "tool call succeeded"
+  },
+  "metadata": {
+    "server_id": 51,
+    "server_name": "Sats4AI - Bitcoin-Powered AI Tools",
+    "rank_by_usage": 52,
+    "usage_count": "980",
+    "original_file": "tools.json#51",
+    "mode": "gateway",
+    "timestamp": 1772876337,
+    "remote_server_response": {
+      "url": "https://sats4ai.com/api/mcp",
+      "is_success": true,
+      "error": null,
+      "tools": [
+        {
+          "name": "create_payment",
+          "description": "Create a Lightning invoice payment for using an AI service. Returns a Lightning invoice that must be paid before calling the service tool.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "toolName": {
+                "type": "string",
+                "description": "The name of the tool to pay for (e.g., 'generate_image', 'generate_video')"
+              },
+              "modelId": {
+                "type": "number",
+                "description": "The AI model database ID to use"
+              },
+              "quantity": {
+                "type": "number",
+                "description": "Number of outputs/credits (default: 1)",
+                "default": 1
+              },
+              "additionalCharge": {
+                "type": "number",
+                "description": "Additional charge in sats (optional)"
+              },
+              "phoneNumber": {
+                "type": "string",
+                "description": "Required for send_sms: destination phone in E.164 format (e.g., +14155550100)"
+              },
+              "message": {
+                "type": "string",
+                "description": "Required for send_sms: message text (max 120 chars)"
+              }
+            },
+            "required": [
+              "toolName",
+              "modelId"
+            ]
+          }
+        },
+        {
+          "name": "check_payment_status",
+          "description": "Check if a Lightning payment has been received for a given payment ID.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "paymentId": {
+                "type": "string",
+                "description": "The payment ID to check"
+              }
+            },
+            "required": [
+              "paymentId"
+            ]
+          }
+        },
+        {
+          "name": "generate_image",
+          "description": "Generate images using AI models like Flux, Stable Diffusion, etc. Requires a valid paid payment ID.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "paymentId": {
+                "type": "string",
+                "description": "Valid payment ID (must be paid)"
+              },
+              "prompt": {
+                "type": "string",
+                "description": "Text prompt describing the image to generate"
+              },
+              "modelId": {
+                "type": "number",
+                "description": "The AI model database ID (see Model IDs Reference)"
+              },
+              "amount": {
+                "type": "number",
+                "description": "Number of images to generate",
+                "default": 1
+              },
+              "imageBase64": {
+                "type": "string",
+                "description": "Optional base64 image for img2img generation"
+              }
+            },
+            "required": [
+              "paymentId",
+              "prompt",
+              "modelId"
+            ]
+          }
+        },
+        {
+          "name": "generate_video",
+          "description": "Generate videos from text prompts. Returns a requestId for async polling. Requires a valid paid payment ID.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "paymentId": {
+                "type": "string",
+                "description": "Valid payment ID (must be paid)"
+              },
+              "prompt": {
+                "type": "string",
+                "description": "Text prompt describing the video"
+              },
+              "modelId": {
+                "type": "number",
+                "description": "The AI model database ID"
+              },
+              "duration": {
+                "type": "number",
+                "description": "Video duration in seconds (3-15)",
+                "minimum": 3,
+                "maximum": 15
+              },
+              "mode": {
+                "type": "string",
+                "enum": [
+                  "standard",
+                  "pro"
+                ],
+                "description": "Quality mode",
+                "default": "pro"
+              },
+              "generate_audio": {
+                "type": "boolean",
+                "description": "Include AI-generated audio track",
+                "default": false
+              }
+            },
+            "required": [
+              "paymentId",
+              "prompt",
+              "modelId",
+              "duration"
+            ]
+          }
+        },
+        {
+          "name": "generate_video_from_image",
+          "description": "Animate an image into a video. Returns a requestId for async polling. Requires a valid paid payment ID.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "paymentId": {
+                "type": "string",
+                "description": "Valid payment ID (must be paid)"
+              },
+              "prompt": {
+                "type": "string",
+                "description": "Text prompt describing the animation"
+              },
+              "modelId": {
+                "type": "number",
+                "description": "The AI model database ID"
+              },
+              "imageBase64": {
+                "type": "string",
+                "description": "Base64 encoded image to animate"
+              },
+              "duration": {
+                "type": "number",
+                "description": "Video duration in seconds (1-15)",
+                "minimum": 1,
+                "maximum": 15
+              }
+            },
+            "required": [
+              "paymentId",
+              "prompt",
+              "modelId",
+              "imageBase64",
+              "duration"
+            ]
+          }
+        },
+        {
+          "name": "check_job_status",
+          "description": "Check the status of an async job (video generation, 3D model, etc.)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "requestId": {
+                "type": "string",
+                "description": "The request ID from the async operation"
+              },
+              "jobType": {
+                "type": "string",
+                "enum": [
+                  "video",
+                  "video-image",
+                  "video-audio",
+                  "image-3d"
+                ],
+                "description": "Type of job"
+              }
+            },
+            "required": [
+              "requestId",
+              "jobType"
+            ]
+          }
+        },
+        {
+          "name": "get_job_result",
+          "description": "Get the final result of a completed async job",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "requestId": {
+                "type": "string",
+                "description": "The request ID from the async operation"
+              },
+              "jobType": {
+                "type": "string",
+                "enum": [
+                  "video",
+                  "video-image",
+                  "video-audio",
+                  "image-3d"
+                ],
+                "description": "Type of job"
+              }
+            },
+            "required": [
+              "requestId",
+              "jobType"
+            ]
+          }
+        },
+        {
+          "name": "analyze_image",
+          "description": "Analyze an image using AI vision models. Requires a valid paid payment ID.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "paymentId": {
+                "type": "string",
+                "description": "Valid payment ID (must be paid)"
+              },
+              "prompt": {
+                "type": "string",
+                "description": "Question or analysis prompt for the image"
+              },
+              "imageBase64": {
+                "type": "string",
+                "description": "Base64 encoded image to analyze"
+              },
+              "modelId": {
+                "type": "number",
+                "description": "The AI model database ID"
+              }
+            },
+            "required": [
+              "paymentId",
+              "prompt",
+              "imageBase64",
+              "modelId"
+            ]
+          }
+        },
+        {
+          "name": "generate_text",
+          "description": "Generate text using AI language models. Requires a valid paid payment ID.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "paymentId": {
+                "type": "string",
+                "description": "Valid payment ID (must be paid)"
+              },
+              "prompt": {
+                "type": "string",
+                "description": "The text prompt or question"
+              },
+              "modelId": {
+                "type": "number",
+                "description": "The AI model database ID"
+              },
+              "systemPrompt": {
+                "type": "string",
+                "description": "Optional system prompt"
+              },
+              "maxTokens": {
+                "type": "number",
+                "description": "Maximum tokens in response",
+                "default": 2048
+              }
+            },
+            "required": [
+              "paymentId",
+              "prompt",
+              "modelId"
+            ]
+          }
+        },
+        {
+          "name": "generate_music",
+          "description": "Generate music using AI. Requires a valid paid payment ID.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "paymentId": {
+                "type": "string",
+                "description": "Valid payment ID (must be paid)"
+              },
+              "prompt": {
+                "type": "string",
+                "description": "Description of the music to generate"
+              },
+              "modelId": {
+                "type": "number",
+                "description": "The AI model database ID"
+              },
+              "lyrics": {
+                "type": "string",
+                "description": "Optional lyrics for the music"
+              }
+            },
+            "required": [
+              "paymentId",
+              "prompt",
+              "modelId"
+            ]
+          }
+        },
+        {
+          "name": "synthesize_speech",
+          "description": "Convert text to speech using AI. Requires a valid paid payment ID.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "paymentId": {
+                "type": "string",
+                "description": "Valid payment ID (must be paid)"
+              },
+              "text": {
+                "type": "string",
+                "description": "Text to convert to speech"
+              },
+              "modelId": {
+                "type": "number",
+                "description": "The AI model database ID"
+              },
+              "voice": {
+                "type": "string",
+                "description": "Voice ID or name"
+              },
+              "speed": {
+                "type": "number",
+                "description": "Speech speed multiplier",
+                "default": 1
+              }
+            },
+            "required": [
+              "paymentId",
+              "text",
+              "modelId"
+            ]
+          }
+        },
+        {
+          "name": "transcribe_audio",
+          "description": "Transcribe audio to text. Requires a valid paid payment ID.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "paymentId": {
+                "type": "string",
+                "description": "Valid payment ID (must be paid)"
+              },
+              "audioBase64": {
+                "type": "string",
+                "description": "Base64 encoded audio file"
+              },
+              "language": {
+                "type": "string",
+                "description": "Language code (e.g., 'en', 'es')"
+              }
+            },
+            "required": [
+              "paymentId",
+              "audioBase64"
+            ]
+          }
+        },
+        {
+          "name": "generate_3d_model",
+          "description": "Generate a 3D model from an image. Returns a requestId for async polling. Requires a valid paid payment ID.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "paymentId": {
+                "type": "string",
+                "description": "Valid payment ID (must be paid)"
+              },
+              "imageBase64": {
+                "type": "string",
+                "description": "Base64 encoded image"
+              },
+              "modelId": {
+                "type": "number",
+                "description": "The AI model database ID"
+              }
+            },
+            "required": [
+              "paymentId",
+              "imageBase64",
+              "modelId"
+            ]
+          }
+        },
+        {
+          "name": "convert_file",
+          "description": "Convert a file from one format to another. Supports 200+ formats: documents (PDF, DOCX, XLSX), images (PNG, JPG, WEBP, SVG), audio (MP3, WAV, FLAC), video (MP4, AVI, MOV), and more. Costs 100 sats. Provide the file as base64 or a public URL (prefer fileUrl for files >5MB). Requires a valid paid payment ID.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "paymentId": {
+                "type": "string",
+                "description": "Valid payment ID (must be paid)"
+              },
+              "fileBase64": {
+                "type": "string",
+                "description": "Base64-encoded file content (provide this OR fileUrl)"
+              },
+              "fileUrl": {
+                "type": "string",
+                "description": "Public URL to the file (provide this OR fileBase64)"
+              },
+              "extensionFrom": {
+                "type": "string",
+                "description": "Source format extension without dot (e.g., 'pdf', 'docx', 'png')"
+              },
+              "extensionTo": {
+                "type": "string",
+                "description": "Target format extension without dot (e.g., 'pdf', 'docx', 'png')"
+              }
+            },
+            "required": [
+              "paymentId",
+              "extensionFrom",
+              "extensionTo"
+            ]
+          }
+        },
+        {
+          "name": "send_sms",
+          "description": "Send an SMS message to any phone number worldwide. Requires a valid paid payment ID. The phoneNumber and message must match those used in create_payment.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "paymentId": {
+                "type": "string",
+                "description": "Valid payment ID (must be paid)"
+              },
+              "phoneNumber": {
+                "type": "string",
+                "description": "Destination phone number in E.164 format (e.g., +14155550100)"
+              },
+              "message": {
+                "type": "string",
+                "description": "Message text (max 120 chars — 40-char disclaimer auto-appended)"
+              }
+            },
+            "required": [
+              "paymentId",
+              "phoneNumber",
+              "message"
+            ]
+          }
+        },
+        {
+          "name": "list_models",
+          "description": "List available AI models with their pricing. No payment required.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": [
+                  "Image",
+                  "Video",
+                  "VideoImage",
+                  "VideoAudio",
+                  "Music",
+                  "Speech",
+                  "Vision",
+                  "Conversation",
+                  "Image3d",
+                  "ImageEdit",
+                  "Service"
+                ],
+                "description": "Filter by model type (optional)"
+              }
+            },
+            "required": []
+          }
+        },
+        {
+          "name": "get_model_pricing",
+          "description": "Get pricing information for a specific model. No payment required.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "modelId": {
+                "type": "number",
+                "description": "The AI model database ID"
+              }
+            },
+            "required": [
+              "modelId"
+            ]
+          }
+        }
+      ],
+      "tool_count": 17,
+      "tool_names": [
+        "create_payment",
+        "check_payment_status",
+        "generate_image",
+        "generate_video",
+        "generate_video_from_image",
+        "check_job_status",
+        "get_job_result",
+        "analyze_image",
+        "generate_text",
+        "generate_music",
+        "synthesize_speech",
+        "transcribe_audio",
+        "generate_3d_model",
+        "convert_file",
+        "send_sms",
+        "list_models",
+        "get_model_pricing"
+      ]
+    },
+    "server_info_crawled": {
+      "id": 51,
+      "name": "Sats4AI - Bitcoin-Powered AI Tools",
+      "author": "",
+      "overview": "Sats4AI - Bitcoin-Powered AI Tools - Financial Services server with 17 tools. The MCP Server \"Sats4AI - Bitcoin-Powered AI Tools\" provides 17 tools focused on financial services ",
+      "repository_url": "",
+      "homepage": "https://sats4ai.com/api/mcp",
+      "remote_or_local": "Remote",
+      "license": "",
+      "usage_count": "980",
+      "success_rate": "100%",
+      "tags": [
+        "financial-services",
+        "ai/ml-tools",
+        "content-creation"
+      ],
+      "categories": [
+        "financial services",
+        "ai/ml tools",
+        "content creation"
+      ],
+      "tools_count": 17,
+      "tools": [
+        {
+          "name": "create_payment",
+          "description": "Create a Lightning invoice payment for using an AI service. Returns a Lightning invoice that must be paid before calling the service tool.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "toolName": {
+                "type": "string",
+                "description": "The name of the tool to pay for (e.g., 'generate_image', 'generate_video')"
+              },
+              "modelId": {
+                "type": "number",
+                "description": "The AI model database ID to use"
+              },
+              "quantity": {
+                "type": "number",
+                "description": "Number of outputs/credits (default: 1)",
+                "default": 1
+              },
+              "additionalCharge": {
+                "type": "number",
+                "description": "Additional charge in sats (optional)"
+              },
+              "phoneNumber": {
+                "type": "string",
+                "description": "Required for send_sms: destination phone in E.164 format (e.g., +14155550100)"
+              },
+              "message": {
+                "type": "string",
+                "description": "Required for send_sms: message text (max 120 chars)"
+              }
+            },
+            "required": [
+              "toolName",
+              "modelId"
+            ]
+          }
+        },
+        {
+          "name": "check_payment_status",
+          "description": "Check if a Lightning payment has been received for a given payment ID.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "paymentId": {
+                "type": "string",
+                "description": "The payment ID to check"
+              }
+            },
+            "required": [
+              "paymentId"
+            ]
+          }
+        },
+        {
+          "name": "generate_image",
+          "description": "Generate images using AI models like Flux, Stable Diffusion, etc. Requires a valid paid payment ID.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "paymentId": {
+                "type": "string",
+                "description": "Valid payment ID (must be paid)"
+              },
+              "prompt": {
+                "type": "string",
+                "description": "Text prompt describing the image to generate"
+              },
+              "modelId": {
+                "type": "number",
+                "description": "The AI model database ID (see Model IDs Reference)"
+              },
+              "amount": {
+                "type": "number",
+                "description": "Number of images to generate",
+                "default": 1
+              },
+              "imageBase64": {
+                "type": "string",
+                "description": "Optional base64 image for img2img generation"
+              }
+            },
+            "required": [
+              "paymentId",
+              "prompt",
+              "modelId"
+            ]
+          }
+        },
+        {
+          "name": "generate_video",
+          "description": "Generate videos from text prompts. Returns a requestId for async polling. Requires a valid paid payment ID.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "paymentId": {
+                "type": "string",
+                "description": "Valid payment ID (must be paid)"
+              },
+              "prompt": {
+                "type": "string",
+                "description": "Text prompt describing the video"
+              },
+              "modelId": {
+                "type": "number",
+                "description": "The AI model database ID"
+              },
+              "duration": {
+                "type": "number",
+                "description": "Video duration in seconds (3-15)",
+                "minimum": 3,
+                "maximum": 15
+              },
+              "mode": {
+                "type": "string",
+                "enum": [
+                  "standard",
+                  "pro"
+                ],
+                "description": "Quality mode",
+                "default": "pro"
+              },
+              "generate_audio": {
+                "type": "boolean",
+                "description": "Include AI-generated audio track",
+                "default": false
+              }
+            },
+            "required": [
+              "paymentId",
+              "prompt",
+              "modelId",
+              "duration"
+            ]
+          }
+        },
+        {
+          "name": "generate_video_from_image",
+          "description": "Animate an image into a video. Returns a requestId for async polling. Requires a valid paid payment ID.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "paymentId": {
+                "type": "string",
+                "description": "Valid payment ID (must be paid)"
+              },
+              "prompt": {
+                "type": "string",
+                "description": "Text prompt describing the animation"
+              },
+              "modelId": {
+                "type": "number",
+                "description": "The AI model database ID"
+              },
+              "imageBase64": {
+                "type": "string",
+                "description": "Base64 encoded image to animate"
+              },
+              "duration": {
+                "type": "number",
+                "description": "Video duration in seconds (1-15)",
+                "minimum": 1,
+                "maximum": 15
+              }
+            },
+            "required": [
+              "paymentId",
+              "prompt",
+              "modelId",
+              "imageBase64",
+              "duration"
+            ]
+          }
+        },
+        {
+          "name": "check_job_status",
+          "description": "Check the status of an async job (video generation, 3D model, etc.)",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "requestId": {
+                "type": "string",
+                "description": "The request ID from the async operation"
+              },
+              "jobType": {
+                "type": "string",
+                "enum": [
+                  "video",
+                  "video-image",
+                  "video-audio",
+                  "image-3d"
+                ],
+                "description": "Type of job"
+              }
+            },
+            "required": [
+              "requestId",
+              "jobType"
+            ]
+          }
+        },
+        {
+          "name": "get_job_result",
+          "description": "Get the final result of a completed async job",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "requestId": {
+                "type": "string",
+                "description": "The request ID from the async operation"
+              },
+              "jobType": {
+                "type": "string",
+                "enum": [
+                  "video",
+                  "video-image",
+                  "video-audio",
+                  "image-3d"
+                ],
+                "description": "Type of job"
+              }
+            },
+            "required": [
+              "requestId",
+              "jobType"
+            ]
+          }
+        },
+        {
+          "name": "analyze_image",
+          "description": "Analyze an image using AI vision models. Requires a valid paid payment ID.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "paymentId": {
+                "type": "string",
+                "description": "Valid payment ID (must be paid)"
+              },
+              "prompt": {
+                "type": "string",
+                "description": "Question or analysis prompt for the image"
+              },
+              "imageBase64": {
+                "type": "string",
+                "description": "Base64 encoded image to analyze"
+              },
+              "modelId": {
+                "type": "number",
+                "description": "The AI model database ID"
+              }
+            },
+            "required": [
+              "paymentId",
+              "prompt",
+              "imageBase64",
+              "modelId"
+            ]
+          }
+        },
+        {
+          "name": "generate_text",
+          "description": "Generate text using AI language models. Requires a valid paid payment ID.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "paymentId": {
+                "type": "string",
+                "description": "Valid payment ID (must be paid)"
+              },
+              "prompt": {
+                "type": "string",
+                "description": "The text prompt or question"
+              },
+              "modelId": {
+                "type": "number",
+                "description": "The AI model database ID"
+              },
+              "systemPrompt": {
+                "type": "string",
+                "description": "Optional system prompt"
+              },
+              "maxTokens": {
+                "type": "number",
+                "description": "Maximum tokens in response",
+                "default": 2048
+              }
+            },
+            "required": [
+              "paymentId",
+              "prompt",
+              "modelId"
+            ]
+          }
+        },
+        {
+          "name": "generate_music",
+          "description": "Generate music using AI. Requires a valid paid payment ID.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "paymentId": {
+                "type": "string",
+                "description": "Valid payment ID (must be paid)"
+              },
+              "prompt": {
+                "type": "string",
+                "description": "Description of the music to generate"
+              },
+              "modelId": {
+                "type": "number",
+                "description": "The AI model database ID"
+              },
+              "lyrics": {
+                "type": "string",
+                "description": "Optional lyrics for the music"
+              }
+            },
+            "required": [
+              "paymentId",
+              "prompt",
+              "modelId"
+            ]
+          }
+        },
+        {
+          "name": "synthesize_speech",
+          "description": "Convert text to speech using AI. Requires a valid paid payment ID.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "paymentId": {
+                "type": "string",
+                "description": "Valid payment ID (must be paid)"
+              },
+              "text": {
+                "type": "string",
+                "description": "Text to convert to speech"
+              },
+              "modelId": {
+                "type": "number",
+                "description": "The AI model database ID"
+              },
+              "voice": {
+                "type": "string",
+                "description": "Voice ID or name"
+              },
+              "speed": {
+                "type": "number",
+                "description": "Speech speed multiplier",
+                "default": 1
+              }
+            },
+            "required": [
+              "paymentId",
+              "text",
+              "modelId"
+            ]
+          }
+        },
+        {
+          "name": "transcribe_audio",
+          "description": "Transcribe audio to text. Requires a valid paid payment ID.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "paymentId": {
+                "type": "string",
+                "description": "Valid payment ID (must be paid)"
+              },
+              "audioBase64": {
+                "type": "string",
+                "description": "Base64 encoded audio file"
+              },
+              "language": {
+                "type": "string",
+                "description": "Language code (e.g., 'en', 'es')"
+              }
+            },
+            "required": [
+              "paymentId",
+              "audioBase64"
+            ]
+          }
+        },
+        {
+          "name": "generate_3d_model",
+          "description": "Generate a 3D model from an image. Returns a requestId for async polling. Requires a valid paid payment ID.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "paymentId": {
+                "type": "string",
+                "description": "Valid payment ID (must be paid)"
+              },
+              "imageBase64": {
+                "type": "string",
+                "description": "Base64 encoded image"
+              },
+              "modelId": {
+                "type": "number",
+                "description": "The AI model database ID"
+              }
+            },
+            "required": [
+              "paymentId",
+              "imageBase64",
+              "modelId"
+            ]
+          }
+        },
+        {
+          "name": "convert_file",
+          "description": "Convert a file from one format to another. Supports 200+ formats: documents (PDF, DOCX, XLSX), images (PNG, JPG, WEBP, SVG), audio (MP3, WAV, FLAC), video (MP4, AVI, MOV), and more. Costs 100 sats. Provide the file as base64 or a public URL (prefer fileUrl for files >5MB). Requires a valid paid payment ID.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "paymentId": {
+                "type": "string",
+                "description": "Valid payment ID (must be paid)"
+              },
+              "fileBase64": {
+                "type": "string",
+                "description": "Base64-encoded file content (provide this OR fileUrl)"
+              },
+              "fileUrl": {
+                "type": "string",
+                "description": "Public URL to the file (provide this OR fileBase64)"
+              },
+              "extensionFrom": {
+                "type": "string",
+                "description": "Source format extension without dot (e.g., 'pdf', 'docx', 'png')"
+              },
+              "extensionTo": {
+                "type": "string",
+                "description": "Target format extension without dot (e.g., 'pdf', 'docx', 'png')"
+              }
+            },
+            "required": [
+              "paymentId",
+              "extensionFrom",
+              "extensionTo"
+            ]
+          }
+        },
+        {
+          "name": "send_sms",
+          "description": "Send an SMS message to any phone number worldwide. Requires a valid paid payment ID. The phoneNumber and message must match those used in create_payment.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "paymentId": {
+                "type": "string",
+                "description": "Valid payment ID (must be paid)"
+              },
+              "phoneNumber": {
+                "type": "string",
+                "description": "Destination phone number in E.164 format (e.g., +14155550100)"
+              },
+              "message": {
+                "type": "string",
+                "description": "Message text (max 120 chars — 40-char disclaimer auto-appended)"
+              }
+            },
+            "required": [
+              "paymentId",
+              "phoneNumber",
+              "message"
+            ]
+          }
+        },
+        {
+          "name": "list_models",
+          "description": "List available AI models with their pricing. No payment required.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": [
+                  "Image",
+                  "Video",
+                  "VideoImage",
+                  "VideoAudio",
+                  "Music",
+                  "Speech",
+                  "Vision",
+                  "Conversation",
+                  "Image3d",
+                  "ImageEdit",
+                  "Service"
+                ],
+                "description": "Filter by model type (optional)"
+              }
+            },
+            "required": []
+          }
+        },
+        {
+          "name": "get_model_pricing",
+          "description": "Get pricing information for a specific model. No payment required.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "modelId": {
+                "type": "number",
+                "description": "The AI model database ID"
+              }
+            },
+            "required": [
+              "modelId"
+            ]
+          }
+        }
+      ],
+      "python_sdk_url": "https://sats4ai.com/api/mcp",
+      "python_sdk_config": "{\"debug\": false}"
+    },
+    "source_filename": "0051.Sats4AI---Bitcoin-Powered-AI-Tools_labeled.json",
+    "processed_timestamp": 1772876337,
+    "processing_mode": "gateway",
+    "rank": 52
+  }
+}

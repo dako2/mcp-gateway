@@ -1,0 +1,487 @@
+{
+  "labels": {
+    "analysis": "The MCP Server \"Bitrix MCP\" provides 5 tools focused on web search & research tasks. Core capabilities include data access and reading, search and retrieval. Key tools: bitrix-search, bitrix-app-development-doc-details, bitrix-method-details, bitrix-article-details, bitrix-event-details.",
+    "reasoning": "Primary label \"Web Search & Research\" assigned based on strong keyword matches in tool names and descriptions: search, fetch.",
+    "primary_label": "Web Search & Research",
+    "secondary_labels": [
+      "News & Media",
+      "File Management"
+    ],
+    "custom_label": "Search - Bitrix MCP",
+    "is_connected": true,
+    "is_remote_tool_valid": true,
+    "featured_server": true,
+    "tool_verified": true,
+    "tool_verified_status": "verified",
+    "tool_verified_at": "2026-03-14T20:38:17.179432+00:00",
+    "tool_verified_tool": "bitrix-search",
+    "tool_verified_reason": "response received"
+  },
+  "metadata": {
+    "server_id": 153,
+    "server_name": "Bitrix MCP",
+    "rank_by_usage": 154,
+    "usage_count": "100",
+    "original_file": "tools.json#153",
+    "mode": "gateway",
+    "timestamp": 1772876337,
+    "remote_server_response": {
+      "url": "https://mcp-dev.bitrix24.com/mcp",
+      "is_success": true,
+      "error": null,
+      "tools": [
+        {
+          "name": "bitrix-search",
+          "description": "Search Bitrix24 REST docs by natural-language query and return a short plain-text list of matches (method/event/article/app doc) with name, type, and brief description. Use the exact name/title from results when calling details tools. Optional filters: `limit` and `doc_type` (method|event|other|app_development_docs).",
+          "inputSchema": {
+            "properties": {
+              "query": {
+                "type": "string"
+              },
+              "limit": {
+                "anyOf": [
+                  {
+                    "type": "integer"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "doc_type": {
+                "anyOf": [
+                  {
+                    "items": {
+                      "enum": [
+                        "method",
+                        "event",
+                        "other",
+                        "app_development_docs"
+                      ],
+                      "type": "string"
+                    },
+                    "type": "array"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              }
+            },
+            "required": [
+              "query"
+            ],
+            "type": "object"
+          },
+          "outputSchema": {
+            "properties": {
+              "result": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "result"
+            ],
+            "type": "object",
+            "x-fastmcp-wrap-result": true
+          },
+          "_meta": {
+            "_fastmcp": {
+              "tags": []
+            }
+          }
+        },
+        {
+          "name": "bitrix-app-development-doc-details",
+          "description": "Fetch Bitrix24 app development documentation by exact title (use `bitrix-search` with doc_type app_development_docs). Returns plain text labeled fields (Title, URL, Module, Category, Description, Content) without Markdown.",
+          "inputSchema": {
+            "properties": {
+              "title_or_hint": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "title_or_hint"
+            ],
+            "type": "object"
+          },
+          "outputSchema": {
+            "properties": {
+              "result": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "result"
+            ],
+            "type": "object",
+            "x-fastmcp-wrap-result": true
+          },
+          "_meta": {
+            "_fastmcp": {
+              "tags": []
+            }
+          }
+        },
+        {
+          "name": "bitrix-method-details",
+          "description": "Get details for a Bitrix24 REST method by exact name (use `bitrix-search` first). Returns plain text with labeled sections including parameters, returns, errors, and examples. Optional `field` limits output; `filter` narrows params by entity or examples by language.",
+          "inputSchema": {
+            "properties": {
+              "method": {
+                "type": "string"
+              },
+              "field": {
+                "default": "all",
+                "type": "string"
+              },
+              "filter": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              }
+            },
+            "required": [
+              "method"
+            ],
+            "type": "object"
+          },
+          "outputSchema": {
+            "properties": {
+              "result": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "result"
+            ],
+            "type": "object",
+            "x-fastmcp-wrap-result": true
+          },
+          "_meta": {
+            "_fastmcp": {
+              "tags": []
+            }
+          }
+        },
+        {
+          "name": "bitrix-article-details",
+          "description": "Fetch a non-method Bitrix24 documentation article by exact title (use `bitrix-search` with doc_type other). Returns Markdown with title, metadata (URL/module/category), description, and content.",
+          "inputSchema": {
+            "properties": {
+              "title_or_hint": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "title_or_hint"
+            ],
+            "type": "object"
+          },
+          "outputSchema": {
+            "properties": {
+              "result": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "result"
+            ],
+            "type": "object",
+            "x-fastmcp-wrap-result": true
+          },
+          "_meta": {
+            "_fastmcp": {
+              "tags": []
+            }
+          }
+        },
+        {
+          "name": "bitrix-event-details",
+          "description": "Fetch Bitrix24 event documentation by exact event name (use `bitrix-search` with doc_type event). Returns Markdown with title, metadata (URL/module/category), description, and content.",
+          "inputSchema": {
+            "properties": {
+              "title_or_hint": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "title_or_hint"
+            ],
+            "type": "object"
+          },
+          "outputSchema": {
+            "properties": {
+              "result": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "result"
+            ],
+            "type": "object",
+            "x-fastmcp-wrap-result": true
+          },
+          "_meta": {
+            "_fastmcp": {
+              "tags": []
+            }
+          }
+        }
+      ],
+      "tool_count": 5,
+      "tool_names": [
+        "bitrix-search",
+        "bitrix-app-development-doc-details",
+        "bitrix-method-details",
+        "bitrix-article-details",
+        "bitrix-event-details"
+      ]
+    },
+    "server_info_crawled": {
+      "id": 153,
+      "name": "Bitrix MCP",
+      "author": "",
+      "overview": "Bitrix MCP - Web Search & Research server with 5 tools. The MCP Server \"Bitrix MCP\" provides 5 tools focused on web search & research tasks. Core capabiliti",
+      "repository_url": "",
+      "homepage": "https://mcp-dev.bitrix24.com/mcp",
+      "remote_or_local": "Remote",
+      "license": "",
+      "usage_count": "100",
+      "success_rate": "100%",
+      "tags": [
+        "web-search-research",
+        "news-media",
+        "file-management"
+      ],
+      "categories": [
+        "web search & research",
+        "news & media",
+        "file management"
+      ],
+      "tools_count": 5,
+      "tools": [
+        {
+          "name": "bitrix-search",
+          "description": "Search Bitrix24 REST docs by natural-language query and return a short plain-text list of matches (method/event/article/app doc) with name, type, and brief description. Use the exact name/title from results when calling details tools. Optional filters: `limit` and `doc_type` (method|event|other|app_development_docs).",
+          "inputSchema": {
+            "properties": {
+              "query": {
+                "type": "string"
+              },
+              "limit": {
+                "anyOf": [
+                  {
+                    "type": "integer"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "doc_type": {
+                "anyOf": [
+                  {
+                    "items": {
+                      "enum": [
+                        "method",
+                        "event",
+                        "other",
+                        "app_development_docs"
+                      ],
+                      "type": "string"
+                    },
+                    "type": "array"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              }
+            },
+            "required": [
+              "query"
+            ],
+            "type": "object"
+          },
+          "outputSchema": {
+            "properties": {
+              "result": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "result"
+            ],
+            "type": "object",
+            "x-fastmcp-wrap-result": true
+          },
+          "_meta": {
+            "_fastmcp": {
+              "tags": []
+            }
+          }
+        },
+        {
+          "name": "bitrix-app-development-doc-details",
+          "description": "Fetch Bitrix24 app development documentation by exact title (use `bitrix-search` with doc_type app_development_docs). Returns plain text labeled fields (Title, URL, Module, Category, Description, Content) without Markdown.",
+          "inputSchema": {
+            "properties": {
+              "title_or_hint": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "title_or_hint"
+            ],
+            "type": "object"
+          },
+          "outputSchema": {
+            "properties": {
+              "result": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "result"
+            ],
+            "type": "object",
+            "x-fastmcp-wrap-result": true
+          },
+          "_meta": {
+            "_fastmcp": {
+              "tags": []
+            }
+          }
+        },
+        {
+          "name": "bitrix-method-details",
+          "description": "Get details for a Bitrix24 REST method by exact name (use `bitrix-search` first). Returns plain text with labeled sections including parameters, returns, errors, and examples. Optional `field` limits output; `filter` narrows params by entity or examples by language.",
+          "inputSchema": {
+            "properties": {
+              "method": {
+                "type": "string"
+              },
+              "field": {
+                "default": "all",
+                "type": "string"
+              },
+              "filter": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              }
+            },
+            "required": [
+              "method"
+            ],
+            "type": "object"
+          },
+          "outputSchema": {
+            "properties": {
+              "result": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "result"
+            ],
+            "type": "object",
+            "x-fastmcp-wrap-result": true
+          },
+          "_meta": {
+            "_fastmcp": {
+              "tags": []
+            }
+          }
+        },
+        {
+          "name": "bitrix-article-details",
+          "description": "Fetch a non-method Bitrix24 documentation article by exact title (use `bitrix-search` with doc_type other). Returns Markdown with title, metadata (URL/module/category), description, and content.",
+          "inputSchema": {
+            "properties": {
+              "title_or_hint": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "title_or_hint"
+            ],
+            "type": "object"
+          },
+          "outputSchema": {
+            "properties": {
+              "result": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "result"
+            ],
+            "type": "object",
+            "x-fastmcp-wrap-result": true
+          },
+          "_meta": {
+            "_fastmcp": {
+              "tags": []
+            }
+          }
+        },
+        {
+          "name": "bitrix-event-details",
+          "description": "Fetch Bitrix24 event documentation by exact event name (use `bitrix-search` with doc_type event). Returns Markdown with title, metadata (URL/module/category), description, and content.",
+          "inputSchema": {
+            "properties": {
+              "title_or_hint": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "title_or_hint"
+            ],
+            "type": "object"
+          },
+          "outputSchema": {
+            "properties": {
+              "result": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "result"
+            ],
+            "type": "object",
+            "x-fastmcp-wrap-result": true
+          },
+          "_meta": {
+            "_fastmcp": {
+              "tags": []
+            }
+          }
+        }
+      ],
+      "python_sdk_url": "https://mcp-dev.bitrix24.com/mcp",
+      "python_sdk_config": "{\"debug\": false}"
+    },
+    "source_filename": "0153.Bitrix-MCP_labeled.json",
+    "processed_timestamp": 1772876337,
+    "processing_mode": "gateway",
+    "rank": 154
+  }
+}
